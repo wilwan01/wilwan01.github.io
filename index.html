@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Wei Wang</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/resume.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Wei Wang</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Patents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Talks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#awards">Services</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h1 class="mb-0">Wei
+          <span class="text-primary">Wang</span>
+        </h1>
+        <div class="subheading mb-5">
+          <a href="https://goo.gl/maps/8EbFmp8KmHoha9fQ7">Find me</a>
+        </div>
+        <p class="lead mb-5"> I'm a researcher at Arm Research in Cambridge, where I lead the systems research on non-volatile memories. My current research focus is on addressing the programming challenges of persistent memory, balancing programmability and performance. Please reach out if you're interested in exploring collaboration opportunities.</p>
+        <div class="social-icons">
+          <a href="https://scholar.google.co.uk/citations?user=nJ9OLBoAAAAJ&hl=en&authuser=1">
+            <i class="fab fa-google"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+      <div class="w-100">
+        <h2 class="mb-5">Selected Publications</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Persistent Atomics for Implementing Durable Lock-Free Data Structures for Non-Volatile Memory</h3>
+            <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
+            <p> This brief announcement presents a persist ordering problem uncovered in implementing durable lock-free data structures for non-volatile memory and proposes a hardware solution with persistent atomics in the Arm instruction set architecture.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">SPAA'19, June 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Language support for memory persistency</h3>
+            <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
+            <p>Memory persistency models enable maintaining recoverable data structures in persistent memories and prior work has proposed ISA-level persistency models. In addition to these models, we argue for extending language-level memory models to provide persistence semantics. We present a taxonomy of guarantees a language-level persistency model could provide and characterize their programmability and performance.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">IEEE Micro Top Picks, May-June 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Efficient State Retention through Paged Memory Management for Reactive Transient Computing</h3>
+            <div class="subheading mb-3">NVM for IoT</div>
+            <p>Reactive transient computing systems preserve computational progress despite frequent power failures by suspending (saving state to nonvolatile memory) when detecting a power failure, and restoring once power returns. Existing methods inefficiently save and restore all allocated memory. We propose lightweight memory management that applies the concept of paging to load pages only when needed, and save only modified pages. We then develop a model that maximises available execution time by dynamically adjusting the suspend and restore voltage thresholds. Experiments on an MSP430FR5994 microcontroller show that our method reduces state retention overheads by up to 86.9% and executes algorithms up to 5.3× faster than the state-of-the-art.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">DAC'19, June 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Software Wear Management for Persistent Memories</h3>
+            <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
+            <p> The commercial release of byte-addressable persistent memories (PMs) is imminent. Unfortunately, these devices suffer from limited write endurance—without any wear management, PM lifetime might be as low as 1.1 months. Existing wear-management techniques introduce an additional indirection layer to remap memory across physical frames and require hardware support to track fine-grain wear. These mechanisms incur storage overhead and increase access latency and energy consumption.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">FAST'19, Feburary 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Quantifying the performance overheads of PMDK</h3>
+            <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
+            <p> For systems with non-volatile main memories, i .e., NVDIMMs, failure atomicity is required to guarantee that systems can always recover to consistent states following power or system failures. Such failure atomicity can be achieved with logging and flushing as with filesystems. Similarly, with non-volatile main memories, failure atomicity can be achieved with user space applications using write logging, cacheline flushing, and barriers that order such operations. Write logging, either undo or redo logging, ensures atomicity when a failure interrupts the last atomic operation from completion. Undo logging helps systems recover to the last consistent state immediately before the failed atomic operation, and redo logging helps systems restore to the consistent state right after the failed atomic operation. Cacheline flushing ensures volatile caches do not hold persistent data from reaching the point of persistence, so persistent data won’t be lost when a sudden power or system failure occurs. Barriers help prevent potential reordering in the memory hierarchy, as caches and memory controllers may reorder memory operations. For example, a barrier ensures the undo log copy of the data gets persisted onto the persistent memory before the data is mutated in-place, so it’s guaranteed that the last atomic operation can be rewound should a failure happens. However, it’s non-trivial to add such failure atomicity in user applications with low-level operations such as write logging, cacheline flushing, and barriers. PMDK is a user space library that abstracts such low-level operations away from application developers and wraps such operations into transactional APIs in libpmemobj that user space applications can call for ensuring failure atomicity. This work quantifies the performance overheads of PMDK</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">MEMSYS'18, October 2018</span>
+          </div>
+        </div>
+
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Persistency for synchronization-free regions</h3>
+            <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
+              <p> Nascent persistent memory (PM) technologies promise the performance of DRAM with the durability of disk, but how best to integrate them into programming systems remains an open question. Recent work extends language memory models with a persistency model prescribing semantics for updates to PM. These semantics enable programmers to design data structures in PM that are accessed like memory and yet are recoverable upon crash or failure. Alas, we find the semantics and performance of existing approaches unsatisfying. Existing approaches require high-overhead mechanisms, are restricted to certain synchronization constructs, provide incomplete semantics, and/or may recover to state that cannot arise in fault-free execution. 
+
+              We propose persistency semantics that guarantee failure atomicity of synchronization-free regions (SFRs) —program regions delimited by synchronization operations. Our approach provides clear semantics for the PM state recovery code may observe and extends C++11’s “sequential consistency for data-race-free” guarantee to post-failure recovery code. We investigate two designs for failure-atomic SFRs that vary in performance and the degree to which commit of persistent state may lag execution. We demonstrate both approaches in LLVM v3.6.0 and compare to a state-of-theart baseline to show performance improvement up to 87.5% (65.5% avg).</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">PLDI'18, June 2018</span>
+          </div>
+        </div>
+
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Composing lifetime enhancing techniques for non-volatile main memories</h3>
+            <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
+              <p> Emerging byte-addressable non-volatile memory (NVM) technologies, such as PCM and ReRAM, offer significant gains in terms of density and power consumption over their volatile counterparts. Their write endurance is, however, orders of magnitude lower than DRAM, potentially causing devices to fail in seconds. Therefore, to use NVM as DRAM replacement, writes must be managed carefully.
+
+              In this paper, we study the endurance problem for NVM main memories with realistic server workloads. We explore three existing techniques to extend NVM lifetime: last-level cache replacement policies, compression, and NVM wear-leveling. The first two approaches increase lifetime by reducing the write traffic from the cache to the main memory. Wear-leveling spreads writes and reduces hotspots responsible for fast failures.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">MEMSYS'17, October 2017</span>
+          </div>
+        </div>
+
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">A structured approach to the simulation, analysis and characterization of smartphone applications</h3>
+            <div class="subheading mb-3">Mobile workloads</div>
+              <p> Full-system simulators are invaluable tools for designing new architectures due to their ability to simulate full applications as well as capture operating system behavior, virtual machine or hypervisor behavior, and interference between concurrently-running applications. However, the systems under investigation and applications under test have become increasingly complicated leading to prohibitively long simulation times for a single experiment. This problem is compounded when many permutations of system design parameters and workloads are tested to investigate system sensitivities and full-system effects with confidence. In this paper, we propose a methodology to tractably explore the processor design space and to characterize applications in a full-system simulation environment. We combine SimPoint, Principal Component Analysis and Fractional Factorial experimental designs to substantially reduce the simulation effort needed to characterize and analyze workloads. We also present a non-invasive user-interface automation tool to allow us to study all types of workloads in a simulation environment. While our methodology is generally applicable to many simulators and workloads, we demonstrate the application of our proposed flow on smartphone applications running on the Android operating system within the gem5 simulation environment.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">IISWC'13, September 2013</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+      <div class="w-100">
+        <h2 class="mb-5">Selected Patents</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Method and apparatus for implementing lock-free data structures</h3>
+            <div class="subheading mb-3">US16/183,201</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">November 2018</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Instruction ordering</h3>
+            <div class="subheading mb-3">US16/296,507</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">March 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Apparatus and method of handling caching of persistent data</h3>
+            <div class="subheading mb-3">US16/005,934</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">June 2017</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Robust Transactional Memory</h3>
+            <div class="subheading mb-3">US16/183,201</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">April 2018</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Control of refresh operation for memory regions</h3>
+            <div class="subheading mb-3">US15/886,970</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">March 2017</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Energy conservation for memory applications</h3>
+            <div class="subheading mb-3">US15/927,478</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">March 2018</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">JInitialisation of a storage device</h3>
+            <div class="subheading mb-3">GB PCT/GB2018/052997</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">March 2017</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Initialisation of a storage device</h3>
+            <div class="subheading mb-3">GB GB2561011A</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">October 2017</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Multi-tier cache placement mechanism</h3>
+            <div class="subheading mb-3">US PCT/GB2018/053361</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">November 2017</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Non-volatile buffer for memory operations</h3>
+            <div class="subheading mb-3">US20170147207A1</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">November 2015</span>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+      <div class="w-100">
+        <h2 class="mb-5">Talks</h2>
+
+        <div class="subheading mb-3"></div>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            <a href="pdf/memsys18_talk.pdf">MEMSYS'18 Talk: "Quantifying the performance overheads of PMDK" </a>
+            </li>
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            <a href="pdf/memsys18_paper.pdf">MEMSYS'18 Paper: "Quantifying the performance overheads of PMDK"</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+      <div class="w-100">
+        <h2 class="mb-5">Research Interests</h2>
+        <p>Apart from systems research related to non-volatile memories, I'm also interested in novel use cases of emerging non-volatile memories, ranging from off-chip to on-chip memory use cases, and from uses as memory to uses as analog computing device for machine learning and bioinformatics.</p>
+        <p class="mb-3">Outside of memory, as non-volatile memory shifts the boundary between volatile and non-volatile from memory & storage to CPU caches & memory, I'm also interested in exploring pushing the boundary between hardware and software from ISA to DFG.</p>
+        <p class="mb-1">Please <a href="mailto:camwwang@gmail.com">get in touch</a> if you are interested in exploring collaboration opportunities.</p>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+      <div class="w-100">
+        <h2 class="mb-5">Services &amp; Awards</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Program Committee for HPCA 2020</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Reviewer for ACM Transactions on Architecture and Code Optimization (TACO) 2018-19</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Program Committee and Session Chair for Arm Research Summit 2016-19 </li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            IEEE Micro Top Picks 2019</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
