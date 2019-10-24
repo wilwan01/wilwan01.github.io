@@ -86,7 +86,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Persistent Atomics for Implementing Durable Lock-Free Data Structures for Non-Volatile Memory</h3>
+            <h3 class="mb-0"><a href=pdf/spaa19_paper.pdf>Persistent Atomics for Implementing Durable Lock-Free Data Structures for Non-Volatile Memory</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
             <p> This brief announcement presents a persist ordering problem uncovered in implementing durable lock-free data structures for non-volatile memory and proposes a hardware solution with persistent atomics in the Arm instruction set architecture.</p>
           </div>
@@ -97,7 +97,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Language support for memory persistency</h3>
+            <h3 class="mb-0"><a href=pdf/toppicks-19.pdf>Language support for memory persistency</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
             <p>Memory persistency models enable maintaining recoverable data structures in persistent memories and prior work has proposed ISA-level persistency models. In addition to these models, we argue for extending language-level memory models to provide persistence semantics. We present a taxonomy of guarantees a language-level persistency model could provide and characterize their programmability and performance.</p>
           </div>
@@ -108,7 +108,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Efficient State Retention through Paged Memory Management for Reactive Transient Computing</h3>
+            <h3 class="mb-0"><a href=pdf/dac19.pdf>Efficient State Retention through Paged Memory Management for Reactive Transient Computing</a></h3>
             <div class="subheading mb-3">NVM for IoT</div>
             <p>Reactive transient computing systems preserve computational progress despite frequent power failures by suspending (saving state to nonvolatile memory) when detecting a power failure, and restoring once power returns. Existing methods inefficiently save and restore all allocated memory. We propose lightweight memory management that applies the concept of paging to load pages only when needed, and save only modified pages. We then develop a model that maximises available execution time by dynamically adjusting the suspend and restore voltage thresholds. Experiments on an MSP430FR5994 microcontroller show that our method reduces state retention overheads by up to 86.9% and executes algorithms up to 5.3× faster than the state-of-the-art.</p>
           </div>
@@ -119,7 +119,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Strand Persistency</h3>
+            <h3 class="mb-0"><a href=pdf/nvmw19.pdf>Strand Persistency</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
             <p> Strand persistency enables high persist concurrency in all designs. We compare performance achieved due to our strand implementation as compared to the baseline Coupled-SFR, DecoupledSFR, and ATLAS designs. Overall, we achieve performance improvement of up to 21.8% (14.3% avg.) in Coupled-SFR, 34.5% (21.4% avg.) in Decoupled-SFR, and 29.9% (18.2% avg.) in ATLAS with our strand implementation.</p>
           </div>
@@ -130,7 +130,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Software Wear Management for Persistent Memories</h3>
+            <h3 class="mb-0"><a href=pdf/fast19.pdf>Software Wear Management for Persistent Memories</a></h3>
             <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
             <p> The commercial release of byte-addressable persistent memories (PMs) is imminent. Unfortunately, these devices suffer from limited write endurance—without any wear management, PM lifetime might be as low as 1.1 months. Existing wear-management techniques introduce an additional indirection layer to remap memory across physical frames and require hardware support to track fine-grain wear. These mechanisms incur storage overhead and increase access latency and energy consumption.</p>
           </div>
@@ -141,7 +141,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Quantifying the performance overheads of PMDK</h3>
+            <h3 class="mb-0"><a href=pdf/memsys18_paper.pdf>Quantifying the performance overheads of PMDK</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
             <p> For systems with non-volatile main memories, i .e., NVDIMMs, failure atomicity is required to guarantee that systems can always recover to consistent states following power or system failures. Such failure atomicity can be achieved with logging and flushing as with filesystems. Similarly, with non-volatile main memories, failure atomicity can be achieved with user space applications using write logging, cacheline flushing, and barriers that order such operations. Write logging, either undo or redo logging, ensures atomicity when a failure interrupts the last atomic operation from completion. Undo logging helps systems recover to the last consistent state immediately before the failed atomic operation, and redo logging helps systems restore to the consistent state right after the failed atomic operation. Cacheline flushing ensures volatile caches do not hold persistent data from reaching the point of persistence, so persistent data won’t be lost when a sudden power or system failure occurs. Barriers help prevent potential reordering in the memory hierarchy, as caches and memory controllers may reorder memory operations. For example, a barrier ensures the undo log copy of the data gets persisted onto the persistent memory before the data is mutated in-place, so it’s guaranteed that the last atomic operation can be rewound should a failure happens. However, it’s non-trivial to add such failure atomicity in user applications with low-level operations such as write logging, cacheline flushing, and barriers. PMDK is a user space library that abstracts such low-level operations away from application developers and wraps such operations into transactional APIs in libpmemobj that user space applications can call for ensuring failure atomicity. This work quantifies the performance overheads of PMDK</p>
           </div>
@@ -153,7 +153,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Persistency for synchronization-free regions</h3>
+            <h3 class="mb-0"><a href=pdf/pldi18.pdf>Persistency for synchronization-free regions</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
               <p> Nascent persistent memory (PM) technologies promise the performance of DRAM with the durability of disk, but how best to integrate them into programming systems remains an open question. Recent work extends language memory models with a persistency model prescribing semantics for updates to PM. These semantics enable programmers to design data structures in PM that are accessed like memory and yet are recoverable upon crash or failure. Alas, we find the semantics and performance of existing approaches unsatisfying. Existing approaches require high-overhead mechanisms, are restricted to certain synchronization constructs, provide incomplete semantics, and/or may recover to state that cannot arise in fault-free execution. 
 
@@ -167,7 +167,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Composing lifetime enhancing techniques for non-volatile main memories</h3>
+            <h3 class="mb-0"><a href=pdf/memsys17.pdf>Composing lifetime enhancing techniques for non-volatile main memories</a></h3>
             <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
               <p> Emerging byte-addressable non-volatile memory (NVM) technologies, such as PCM and ReRAM, offer significant gains in terms of density and power consumption over their volatile counterparts. Their write endurance is, however, orders of magnitude lower than DRAM, potentially causing devices to fail in seconds. Therefore, to use NVM as DRAM replacement, writes must be managed carefully.
 
@@ -181,7 +181,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">Inefficiencies in the Cache Hierarchy: A Sensitivity Study of Cacheline Size with Mobile Workloads</h3>
+            <h3 class="mb-0"><a href=pdf/memsys15.pdf>Inefficiencies in the Cache Hierarchy: A Sensitivity Study of Cacheline Size with Mobile Workloads</a></h3>
             <div class="subheading mb-3">Pushing Mobile Performance and Efficiency Boundary</div>
               <p> With the rising number of cores in mobile devices, the cache hierarchy in mobile application processors gets deeper, and the cache size gets bigger. However, the cacheline size remained relatively constant over the last decade in mobile application processors. In this work, we investigate whether the cacheline size in mobile application processors is due for a refresh, by looking at inefficiencies in the cache hierarchy which tend to be exacerbated when increasing the cacheline size: false sharing and cacheline utilization.
 
@@ -198,7 +198,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">A structured approach to the simulation, analysis and characterization of smartphone applications</h3>
+            <h3 class="mb-0"><a href=pdf/iiswc13.pdf>A structured approach to the simulation, analysis and characterization of smartphone applications</a></h3>
             <div class="subheading mb-3">Pushing Mobile Performance and Efficiency Boundary</div>
               <p> Full-system simulators are invaluable tools for designing new architectures due to their ability to simulate full applications as well as capture operating system behavior, virtual machine or hypervisor behavior, and interference between concurrently-running applications. However, the systems under investigation and applications under test have become increasingly complicated leading to prohibitively long simulation times for a single experiment. This problem is compounded when many permutations of system design parameters and workloads are tested to investigate system sensitivities and full-system effects with confidence. In this paper, we propose a methodology to tractably explore the processor design space and to characterize applications in a full-system simulation environment. We combine SimPoint, Principal Component Analysis and Fractional Factorial experimental designs to substantially reduce the simulation effort needed to characterize and analyze workloads. We also present a non-invasive user-interface automation tool to allow us to study all types of workloads in a simulation environment. While our methodology is generally applicable to many simulators and workloads, we demonstrate the application of our proposed flow on smartphone applications running on the Android operating system within the gem5 simulation environment.</p>
           </div>
