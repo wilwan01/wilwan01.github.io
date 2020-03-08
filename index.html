@@ -165,7 +165,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/nvmw2020.pdf>Hardware Implementation of Strand Persistency</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-            <p> Emerging persistent memory (PM) technologies promise the performance of DRAM with the durability of Flash. Several language-level persistency models have emerged recently to aid programming recoverable data structures in PM. Unfortunately, these persistency models are built upon hardware primitives that impose stricter ordering constraints on PM operations than the persistency models require. Alternative solutions use fixed and inflexible hardware logging techniques to relax ordering constraints on PM operations, but do not readily apply to general synchronization primitives employed by language-level persistency models. Instead, we propose StrandWeaver, a hardware implementation of strand persistency model, to minimally constrain ordering on PM operations. StrandWeaver manages PM order within a strand, a logically independent sequence of operations within a thread. PM operations that lie on separate strands are unordered and may drain concurrently to PM. StrandWeaver implements primitives under strand persistency to allow programmers to improve concurrency and relax ordering constraints on updates as they drain to PM. Furthermore, we design mechanisms that map persistency semantics in high-level language persistency models to the primitives implemented by StrandWeaver. We demonstrate that StrandWeaver can enable greater concurrency of PM operations than existing ISA-level ordering mechanisms, improving performance by up to 1.97x (1.45x avg.).</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">NVMW'20, March 2020</span>
@@ -176,7 +176,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/spaa19_paper.pdf>Persistent Atomics for Implementing Durable Lock-Free Data Structures for Non-Volatile Memory</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-            <p> This brief announcement presents a persist ordering problem uncovered in implementing durable lock-free data structures for non-volatile memory and proposes a hardware solution with persistent atomics in the Arm instruction set architecture.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">SPAA'19, June 2019</span>
@@ -187,7 +187,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/toppicks-19.pdf>Language support for memory persistency</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-            <p>Memory persistency models enable maintaining recoverable data structures in persistent memories and prior work has proposed ISA-level persistency models. In addition to these models, we argue for extending language-level memory models to provide persistence semantics. We present a taxonomy of guarantees a language-level persistency model could provide and characterize their programmability and performance.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">IEEE Micro Top Picks, May-June 2019</span>
@@ -198,7 +198,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/dac19.pdf>Efficient State Retention through Paged Memory Management for Reactive Transient Computing</a></h3>
             <div class="subheading mb-3">NVM for IoT</div>
-            <p>Reactive transient computing systems preserve computational progress despite frequent power failures by suspending (saving state to nonvolatile memory) when detecting a power failure, and restoring once power returns. Existing methods inefficiently save and restore all allocated memory. We propose lightweight memory management that applies the concept of paging to load pages only when needed, and save only modified pages. We then develop a model that maximises available execution time by dynamically adjusting the suspend and restore voltage thresholds. Experiments on an MSP430FR5994 microcontroller show that our method reduces state retention overheads by up to 86.9% and executes algorithms up to 5.3× faster than the state-of-the-art.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">DAC'19, June 2019</span>
@@ -209,7 +209,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/nvmw19.pdf>Strand Persistency</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-            <p> Strand persistency enables high persist concurrency in all designs. We compare performance achieved due to our strand implementation as compared to the baseline Coupled-SFR, DecoupledSFR, and ATLAS designs. Overall, we achieve performance improvement of up to 21.8% (14.3% avg.) in Coupled-SFR, 34.5% (21.4% avg.) in Decoupled-SFR, and 29.9% (18.2% avg.) in ATLAS with our strand implementation.</p>
+            <p> </p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">NVMW'19, March 2019</span>
@@ -220,7 +220,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/fast19.pdf>Software Wear Management for Persistent Memories</a></h3>
             <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
-            <p> The commercial release of byte-addressable persistent memories (PMs) is imminent. Unfortunately, these devices suffer from limited write endurance—without any wear management, PM lifetime might be as low as 1.1 months. Existing wear-management techniques introduce an additional indirection layer to remap memory across physical frames and require hardware support to track fine-grain wear. These mechanisms incur storage overhead and increase access latency and energy consumption.</p>
+            <p> </p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">FAST'19, Feburary 2019</span>
@@ -231,7 +231,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/memsys18_paper.pdf>Quantifying the performance overheads of PMDK</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-            <p> For systems with non-volatile main memories, i .e., NVDIMMs, failure atomicity is required to guarantee that systems can always recover to consistent states following power or system failures. Such failure atomicity can be achieved with logging and flushing as with filesystems. Similarly, with non-volatile main memories, failure atomicity can be achieved with user space applications using write logging, cacheline flushing, and barriers that order such operations. Write logging, either undo or redo logging, ensures atomicity when a failure interrupts the last atomic operation from completion. Undo logging helps systems recover to the last consistent state immediately before the failed atomic operation, and redo logging helps systems restore to the consistent state right after the failed atomic operation. Cacheline flushing ensures volatile caches do not hold persistent data from reaching the point of persistence, so persistent data won’t be lost when a sudden power or system failure occurs. Barriers help prevent potential reordering in the memory hierarchy, as caches and memory controllers may reorder memory operations. For example, a barrier ensures the undo log copy of the data gets persisted onto the persistent memory before the data is mutated in-place, so it’s guaranteed that the last atomic operation can be rewound should a failure happens. However, it’s non-trivial to add such failure atomicity in user applications with low-level operations such as write logging, cacheline flushing, and barriers. PMDK is a user space library that abstracts such low-level operations away from application developers and wraps such operations into transactional APIs in libpmemobj that user space applications can call for ensuring failure atomicity. This work quantifies the performance overheads of PMDK</p>
+            <p> </p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">MEMSYS'18, October 2018</span>
@@ -243,9 +243,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/pldi18.pdf>Persistency for synchronization-free regions</a></h3>
             <div class="subheading mb-3">Addressing NVM Programming Challenges</div>
-              <p> Nascent persistent memory (PM) technologies promise the performance of DRAM with the durability of disk, but how best to integrate them into programming systems remains an open question. Recent work extends language memory models with a persistency model prescribing semantics for updates to PM. These semantics enable programmers to design data structures in PM that are accessed like memory and yet are recoverable upon crash or failure. Alas, we find the semantics and performance of existing approaches unsatisfying. Existing approaches require high-overhead mechanisms, are restricted to certain synchronization constructs, provide incomplete semantics, and/or may recover to state that cannot arise in fault-free execution. 
-
-              We propose persistency semantics that guarantee failure atomicity of synchronization-free regions (SFRs) —program regions delimited by synchronization operations. Our approach provides clear semantics for the PM state recovery code may observe and extends C++11’s “sequential consistency for data-race-free” guarantee to post-failure recovery code. We investigate two designs for failure-atomic SFRs that vary in performance and the degree to which commit of persistent state may lag execution. We demonstrate both approaches in LLVM v3.6.0 and compare to a state-of-theart baseline to show performance improvement up to 87.5% (65.5% avg).</p>
+              <p> </p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">PLDI'18, June 2018</span>
@@ -257,9 +255,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/memsys17.pdf>Composing lifetime enhancing techniques for non-volatile main memories</a></h3>
             <div class="subheading mb-3">Addressing NVM Endurance Challenges</div>
-              <p> Emerging byte-addressable non-volatile memory (NVM) technologies, such as PCM and ReRAM, offer significant gains in terms of density and power consumption over their volatile counterparts. Their write endurance is, however, orders of magnitude lower than DRAM, potentially causing devices to fail in seconds. Therefore, to use NVM as DRAM replacement, writes must be managed carefully.
-
-              In this paper, we study the endurance problem for NVM main memories with realistic server workloads. We explore three existing techniques to extend NVM lifetime: last-level cache replacement policies, compression, and NVM wear-leveling. The first two approaches increase lifetime by reducing the write traffic from the cache to the main memory. Wear-leveling spreads writes and reduces hotspots responsible for fast failures.</p>
+              <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">MEMSYS'17, October 2017</span>
@@ -271,13 +267,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/memsys15.pdf>Inefficiencies in the Cache Hierarchy: A Sensitivity Study of Cacheline Size with Mobile Workloads</a></h3>
             <div class="subheading mb-3">Pushing Mobile Performance and Efficiency Boundary</div>
-              <p> With the rising number of cores in mobile devices, the cache hierarchy in mobile application processors gets deeper, and the cache size gets bigger. However, the cacheline size remained relatively constant over the last decade in mobile application processors. In this work, we investigate whether the cacheline size in mobile application processors is due for a refresh, by looking at inefficiencies in the cache hierarchy which tend to be exacerbated when increasing the cacheline size: false sharing and cacheline utilization.
-
-              Firstly, we look at false sharing, which is more likely to arise at larger cacheline sizes and can severely impact performance. False sharing occurs when non-shared data structures, mapped onto the same cacheline, are being accessed by threads running on different cores, causing avoidable invalidations and subsequent misses. False sharing has been found in various places such as scientific workloads and real applications. We find that whilst increasing the cacheline size does increase false sharing, it still is negligible when compared to known cases of false sharing in scientific workloads, due to the limited level of thread-level parallelism in mobile workloads.
-
-              Secondly, we look at cacheline utilization which measures the number of bytes in a cacheline actually used by the processor. This effect has been investigated under various names for a multitude of server and desktop applications. As a low cacheline utilization implies that very little of the fetched cachelines was used by the processor, this causes waste in bandwidth and energy in moving data across the memory hierarchy. The energy cost associated with data movements is much higher compared to logic operations, increasing the need for cache efficiency, especially in the case of an energy-constrained platform like a mobile device. We find that the cacheline utilization of mobile workloads is low in general, decreasing when increasing the cacheline size. When increasing the cacheline size from 64 bytes to 128 bytes, the number of misses will be reduced by 10%--30%, depending on the workload. However, because of the low cacheline utilization, this more than doubles the amount of unused traffic to the L1 caches.
-
-              Using the cacheline utilization as a metric in this way, illustrates an important point. If a change in cacheline size would only be assessed on its local effects, we find that this change in cacheline size will only have advantages as the miss rate decreases. However, at system level, this change will increase the stress on the bus and increase the amount of wasted energy due to unused traffic. Using cacheline utilization as a metric underscores the need for system-level research when changing characteristics of the cache hierarchy.</p>
+              <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">MEMSYS'15, October 2015</span>
@@ -288,7 +278,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=pdf/iiswc13.pdf>A structured approach to the simulation, analysis and characterization of smartphone applications</a></h3>
             <div class="subheading mb-3">Pushing Mobile Performance and Efficiency Boundary</div>
-              <p> Full-system simulators are invaluable tools for designing new architectures due to their ability to simulate full applications as well as capture operating system behavior, virtual machine or hypervisor behavior, and interference between concurrently-running applications. However, the systems under investigation and applications under test have become increasingly complicated leading to prohibitively long simulation times for a single experiment. This problem is compounded when many permutations of system design parameters and workloads are tested to investigate system sensitivities and full-system effects with confidence. In this paper, we propose a methodology to tractably explore the processor design space and to characterize applications in a full-system simulation environment. We combine SimPoint, Principal Component Analysis and Fractional Factorial experimental designs to substantially reduce the simulation effort needed to characterize and analyze workloads. We also present a non-invasive user-interface automation tool to allow us to study all types of workloads in a simulation environment. While our methodology is generally applicable to many simulators and workloads, we demonstrate the application of our proposed flow on smartphone applications running on the Android operating system within the gem5 simulation environment.</p>
+              <p> </p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">IISWC'13, September 2013</span>
@@ -331,7 +321,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/66/f4/1e/b7aa1f73f83a4b/US10445238.pdf>Robust Transactional Memory</a></h3>
             <div class="subheading mb-3">Processor Microarchitecture, Patent No.: US 10,445,238 B1 </div>
-            <p>Methods and apparatus are provided for executing a transaction in a data processing system,  Responsive to each memory access of the transaction, a transaction log is updated in a persistent memory.  After execution of the transaction and when the transaction log is complete, the transaction log is marked as ‘pending’.  When all values modified in the transaction have been written back to the persistent memory, the transaction log is marked as ‘free’.  When, following a reboot, a transaction log is marked as ‘pending’, data stored in the transaction log is copied to the persistent memory at addresses indicated in the transaction log.  After the copying is complete, the transaction log is marked as ‘free’.  Cache values modified in the transaction may be written back to persistent memory when evicted, and values read in the transaction may be read from the cache rather than from the transaction log.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">April 2018</span>
@@ -342,7 +332,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/cf/59/cf/eaebb28fc30280/US20190294364A1.pdf>Energy conservation for memory applications</a></h3>
             <div class="subheading mb-3">Memory System, US15/927,478</div>
-            <p> Various implementations described herein refer to system memory cache that conserves energy by determining various instances where retaining data may be deemed unnecessary and/or skipping refresh of memory components in the cache that no longer need refreshing.  Some implementations described herein are related to on-chip or off-chip dynamic random access memory (DRAM) cache memory arrays.  For DRAM caches, such as on-chip DRAM caches (e.g., eDRAM, system cache) or off-chip DRAM caches (e.g., NVDIMM, hybrid memories), if a cache line (e.g., having a page size of 4KB) holds invalid data, refresh operations may be skipped.  NVDIMM refers to a non-volatile dual in-line memory module that is a type of random access memory.  In this instance, DRAM rows that map to invalid cache lines may be skipped for refresh.  Therefore, system cache memory may refer to a DRAM cache that needs less refresh instances, and in particular, the system cache memory may refer to a DRAM cache that does not refresh cache lines that are no longer valid, such as invalid cache lines.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">March 2018</span>
@@ -353,7 +343,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/49/a9/47/9402340dca683e/US20190155750A1.pdf>Multi-tier cache placement mechanism</a></h3>
             <div class="subheading mb-3">Processor Microarchitecture, PCT/GB2018/053361</div>
-            <p>Storage of data in a cache system is controlled by a cache monitor. A cache line is filled in response to a memory instruction from a cache client. The cache monitor includes a predictor table and update logic. An entry in the predictor table comprises an instruction identifier that associates the entry with a memory instruction and, for each cache in the system, a reuse counter. The update logic is configured to update a reuse counter table dependent upon cache behavior in response to memory instructions. Storage of data a first data address in cache in response to a memory instruction having a first instruction identifier, is dependent upon reuse counter values in an entry of the predictor table associated with first instruction identifier. Reuse counters are updated dependent upon cache behavior. A Bloom filter or other data structure may be used to associate data addresses with a memory instruction.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">November 2017</span>
@@ -364,7 +354,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/02/39/86/c9aba000861b1e/US20190129633A1.pdf>Initialisation of a storage device</a></h3>
             <div class="subheading mb-3">Memory System, GB2561011A</div>
-            <p>A system comprising: a storage device having a storage portion 205 comprising a plurality of bit cells (0-2n-1)th coupled to respective first and second signal lines and control logic 203, 204 to alter a memory state of the plurality of bitcells via the first (wordlines WL(0)) signal lines and second (bitlines BL(0)) signal lines; a memory controller (8 figure 1) coupled to the storage device 10 to transmit one or more initialisation signals (e.g initialise signal, address (start), range (offset) and data) to the storage device to initialize (put in set or reset state) the storage portion over a clock cycle in response to the initialization signal(s), (figure 4b). The initialise select (IS) signal may be generated based on the initialisation signals and provide input to OR-gate 210, AND-gate logic (310 figure 4d) in conjunction with the first (wordline) signals (IWL(0-m)) to activate the initialisation of the respective bitcells. The storage element in the memory array bit cell may be a correlated electron switch (memory) (CES/CEM/CeRAM). The control logic may apply a first signal to produce a low first impedance state and a second signal to produce a second high impedance state. An embodiment also describes one or more buffers to receive access requests from a bus mater, and an arbiter to determine the order of access requests executed and a signal interface to generate hardware initialisation signals (address, range and data) which enable initialisation of the memory device.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">October 2017</span>
@@ -375,7 +365,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/33/6a/77/c0dc742c81b3fa/US20190004960A1.pdf>Apparatus and method of handling caching of persistent data</a></h3>
             <div class="subheading mb-3">Memory System, US16/005,934</div>
-            <p>An apparatus and method are provided for handling caching of persistent data. The apparatus comprises cache storage having a plurality of entries to cache data items associated with memory address in a non-volatile memory. The data items may comprise persistent data items and non-persistent data items. Write back control circuitry is used to control write back of the data items from the cache storage to the on-volatile memory. In addition, cache usage determination circuity is used to determine, in dependence on information indicative of capacity of a backup energy source, a subset of the plurality of entries to be used to store persistent data items. In response to an event causing the backup energy source to be used, the write back control circuitry is then arranged to initiate write back to the non-volatile memory of the persistent data items cached in the subset of the plurality of entries. By constraining the extent to which the cache storage is allowed to store persistent data items, taking into account the capacity of the backup energy source, the persistence of those data items can then be guaranteed in the event of the backup energy source being triggered, for example due to removal of the primary energy source for the apparatus.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">June 2017</span>
@@ -386,7 +376,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/10/6d/10/77639d3045d654/GB2561011A.pdf>Initialisation of a storage device</a></h3>
             <div class="subheading mb-3">Memory System, PCT/GB2018/052997</div>
-            <p>The present techniques generally relate to devices, method and/or systems for responding to a request for accessing a portion of a memory prior to completion of a requested operation to place the portion of the memory in an initialized state. In one example implementation, a memory controller may delay initiation of a write operation addressed to a particular portion of the memory until completion of a pending request to initialize the particular portion of the memory. In another example implementation, a memory controller may return values to service a request for a read operation comprising values representing an initialized state without accessing the particular portion of the memory responsive to a presence of a pending request to initialize the particular portion of the memory.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">March 2017</span>
@@ -397,7 +387,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/df/65/8b/4420553d6ea232/US20180286475A1.pdf>Control of refresh operation for memory regions</a></h3>
             <div class="subheading mb-3">Memory System, US15/886,970</div>
-            <p>An apparatus comprises first and second memory regions each to store data using a data storage technology for which retention of data for longer than a predetermined period of time is dependent on a refresh operation for refreshing data in the memory region being performed at a frequency that is greater than or equal to a minimum refresh frequency. The apparatus further comprises at least one controller to control storage of data in the first memory region with the refresh operation performed at a first frequency lower than said minimum refresh frequency when valid data is stored in the first memory region, and to control storage of data in the second memory region with the refresh operation performed at a second frequency that is greater than or equal to said minimum refresh frequency. The at least one controller is configured to communicate with the first memory region via a first memory channel and with the second memory region via a second memory channel.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">March 2017</span>
@@ -408,7 +398,7 @@
           <div class="resume-content">
             <h3 class="mb-0"><a href=https://patentimages.storage.googleapis.com/76/4b/90/24b81eb638969d/US20170147207A1.pdf>Non-volatile buffer for memory operations</a></h3>
             <div class="subheading mb-3">Processor Microarchitecture, Memory System, US20170147207A1</div>
-            <p>Subject matter disclosed herein may relate to buffers, and may relate more particularly to non-volatile buffers for memory operations.</p>
+            <p></p>
           </div>
           <div class="resume-date text-md-right">
             <span class="text-primary">November 2015</span>
