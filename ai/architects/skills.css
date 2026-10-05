@@ -13,3 +13,29 @@
 .skill-return{margin-top:18px}
 @media(max-width:1050px){.skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.skills-grid{grid-template-columns:1fr}.reasoning-skill{padding:18px}}
+.skill-matrix{margin-bottom:32px}
+.matrix-controls{display:flex;flex-wrap:wrap;align-items:end;gap:16px;margin:20px 0}
+.matrix-controls label{display:flex;flex-direction:column;gap:7px;font-size:1rem}
+.matrix-controls select,.matrix-controls input{min-height:44px;max-width:100%;padding:9px 12px;border:1px solid #a9bdc8;border-radius:6px;background:white;color:#102c3b;font:inherit}
+.matrix-controls label:has(input){flex:1;min-width:220px}
+.matrix-controls #matrix-count{margin:0 0 10px;font-size:.875rem;color:#586977}
+.matrix-scroll{max-height:620px;overflow:auto;border:1px solid #d8e1e8;border-radius:8px}
+.matrix-scroll:focus-visible{outline:3px solid #d69b37;outline-offset:3px}
+#architect-skill-table{width:100%;min-width:1100px;border-collapse:separate;border-spacing:0;margin:0;font-size:.875rem}
+#architect-skill-table caption{text-align:left;padding:12px 16px;color:#586977;background:#fff}
+#architect-skill-table th,#architect-skill-table td{padding:10px 9px;border-right:1px solid #e5ebef;border-bottom:1px solid #e5ebef;vertical-align:middle;line-height:1.5}
+#architect-skill-table thead th{position:sticky;top:0;z-index:2;background:#102c3b;color:#fff;text-align:center}
+#architect-skill-table thead th:first-child{left:0;z-index:4;text-align:left}
+#architect-skill-table thead a{color:#fff;text-decoration:none}
+.matrix-skill-heading{min-width:65px}
+.matrix-skill-heading span{display:block;margin-top:3px;font-size:.875rem;font-weight:normal}
+#architect-skill-table tbody th{position:sticky;left:0;z-index:1;min-width:180px;background:#fff;text-align:left;font-size:1rem}
+#architect-skill-table tbody tr:nth-child(even) td,#architect-skill-table tbody tr:nth-child(even) th{background:#f5f8fa}
+.matrix-domain{min-width:180px}
+.skill-cell{text-align:center}
+.skill-cell.associated{color:#125261;font-size:1.125rem;font-weight:700}
+.skill-cell.unmarked{color:#758592}
+#architect-skill-table td.selected-skill{background:#dceff2!important}
+#architect-skill-table th.selected-skill{background:#176171}
+#architect-skill-table tr[hidden]{display:none}
+@media(max-width:680px){.matrix-controls{align-items:stretch}.matrix-controls label{width:100%}.matrix-controls #matrix-count{margin:0}.matrix-scroll{max-height:520px}}
