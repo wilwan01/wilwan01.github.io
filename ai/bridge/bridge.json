@@ -4,58 +4,58 @@
   "method": "人工编辑映射：每张卡把一条已收录的财报问答（analysts/corpus.json）连接到架构师提问、人物档案与笔记。架构追问是待检验的问题，不是已核实结论；本页不包含未经来源核实的 HBM 数字。",
   "skill_map": [
     {
-      "analyst": "S7",
+      "analyst": "F7",
       "architect": [
-        "S3",
-        "S7"
+        "A3",
+        "A7"
       ],
       "why": "供需约束要追到瓶颈资源与完整服务成本。"
     },
     {
-      "analyst": "S9",
+      "analyst": "F9",
       "architect": [
-        "S6",
-        "S3"
+        "A6",
+        "A3"
       ],
       "why": "CapEx 传导取决于规模扩展与哪一环节先受限。"
     },
     {
-      "analyst": "S10",
+      "analyst": "F10",
       "architect": [
-        "S7",
-        "S10"
+        "A7",
+        "A10"
       ],
       "why": "单位经济要落到 PPA、TCO 与产品是否值得交付。"
     },
     {
-      "analyst": "S2",
+      "analyst": "F2",
       "architect": [
-        "S7",
-        "S9"
+        "A7",
+        "A9"
       ],
       "why": "盈利质量要拆开量、价与成本，并回到真实负载。"
     },
     {
-      "analyst": "S3",
+      "analyst": "F3",
       "architect": [
-        "S3",
-        "S9"
+        "A3",
+        "A9"
       ],
       "why": "指引解码要区分承诺、产能与实际可交付。"
     },
     {
-      "analyst": "S5",
+      "analyst": "F5",
       "architect": [
-        "S6",
-        "S3"
+        "A6",
+        "A3"
       ],
       "why": "增长二阶变化对应投入与产出之间的时滞和瓶颈迁移。"
     },
     {
-      "analyst": "S14",
+      "analyst": "F14",
       "architect": [
-        "S1",
-        "S9"
+        "A1",
+        "A9"
       ],
       "why": "证伪论点要挑战假设，并找出能反驳的生产证据。"
     }
@@ -69,14 +69,14 @@
         "QA176"
       ],
       "analyst_skills": [
-        "S7",
-        "S5",
-        "S9"
+        "F7",
+        "F5",
+        "F9"
       ],
       "architect_skills": [
-        "S3",
-        "S6",
-        "S7"
+        "A3",
+        "A6",
+        "A7"
       ],
       "architect_followups": [
         "HBM3E→HBM4 的堆叠层数、裸片面积、基底裸片与封装步骤各改变了单位 bit 消耗的晶圆等价量吗？需要哪份公开来源来核实？",
@@ -101,12 +101,12 @@
         "QA176"
       ],
       "analyst_skills": [
-        "S9",
-        "S5"
+        "F9",
+        "F5"
       ],
       "architect_skills": [
-        "S6",
-        "S3"
+        "A6",
+        "A3"
       ],
       "architect_followups": [
         "新增洁净室空间需要多久才能放置并资格验证工具？哪些里程碑可以外部观察？",
@@ -128,14 +128,14 @@
         "QA177"
       ],
       "analyst_skills": [
-        "S2",
-        "S6",
-        "S10"
+        "F2",
+        "F6",
+        "F10"
       ],
       "architect_skills": [
-        "S8",
-        "S10",
-        "S7"
+        "A8",
+        "A10",
+        "A7"
       ],
       "architect_followups": [
         "定制基底裸片把哪些功能从加速器移到存储堆叠？接口与责任边界在哪里？",
@@ -158,12 +158,12 @@
         "QA173"
       ],
       "analyst_skills": [
-        "S2",
-        "S4"
+        "F2",
+        "F4"
       ],
       "architect_skills": [
-        "S7",
-        "S9"
+        "A7",
+        "A9"
       ],
       "architect_followups": [
         "同规格涨价与 mix 提升（更高层数或更高带宽）如何用同一比较边界拆开？",
@@ -175,5 +175,6 @@
       "notes": [],
       "boundary": "拆分需要 bit 出货与 ASP 的同口径数据。"
     }
-  ]
+  ],
+  "skill_map_note": "A1–A10 为架构师技能（Architect），F1–F14 为分析师技能（Financial analysis）；两套编号独立。"
 }
