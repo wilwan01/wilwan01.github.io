@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "as_of": "2026-10-05",
+  "method": "人工编辑映射：每张卡把一条已收录的财报问答（analysts/corpus.json）连接到架构师提问、人物档案与笔记。架构追问是待检验的问题，不是已核实结论；本页不包含未经来源核实的 HBM 数字。",
+  "skill_map": [
+    {
+      "analyst": "S7",
+      "architect": [
+        "S3",
+        "S7"
+      ],
+      "why": "供需约束要追到瓶颈资源与完整服务成本。"
+    },
+    {
+      "analyst": "S9",
+      "architect": [
+        "S6",
+        "S3"
+      ],
+      "why": "CapEx 传导取决于规模扩展与哪一环节先受限。"
+    },
+    {
+      "analyst": "S10",
+      "architect": [
+        "S7",
+        "S10"
+      ],
+      "why": "单位经济要落到 PPA、TCO 与产品是否值得交付。"
+    },
+    {
+      "analyst": "S2",
+      "architect": [
+        "S7",
+        "S9"
+      ],
+      "why": "盈利质量要拆开量、价与成本，并回到真实负载。"
+    },
+    {
+      "analyst": "S3",
+      "architect": [
+        "S3",
+        "S9"
+      ],
+      "why": "指引解码要区分承诺、产能与实际可交付。"
+    },
+    {
+      "analyst": "S5",
+      "architect": [
+        "S6",
+        "S3"
+      ],
+      "why": "增长二阶变化对应投入与产出之间的时滞和瓶颈迁移。"
+    },
+    {
+      "analyst": "S14",
+      "architect": [
+        "S1",
+        "S9"
+      ],
+      "why": "证伪论点要挑战假设，并找出能反驳的生产证据。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "B1",
+      "topic": "HBM 供给为何受限",
+      "qa": [
+        "QA060",
+        "QA176"
+      ],
+      "analyst_skills": [
+        "S7",
+        "S5",
+        "S9"
+      ],
+      "architect_skills": [
+        "S3",
+        "S6",
+        "S7"
+      ],
+      "architect_followups": [
+        "HBM3E→HBM4 的堆叠层数、裸片面积、基底裸片与封装步骤各改变了单位 bit 消耗的晶圆等价量吗？需要哪份公开来源来核实？",
+        "已知良品裸片的叠层良率与封装测试良率，如何放大每个合格堆叠的有效晶圆成本？",
+        "供给增长放缓时，先受限的是前道晶圆、堆叠封装、测试资质还是客户验证？哪一项有独立先行证据？"
+      ],
+      "profiles": [
+        "gurtej-sandhu",
+        "thomas-vogelsang"
+      ],
+      "notes": [
+        "e04",
+        "s02"
+      ],
+      "boundary": "这些追问用于建模，不替代厂商披露；任何晶圆等价比例都必须有来源，否则只能写成假设。"
+    },
+    {
+      "id": "B2",
+      "topic": "建筑先于工具：CapEx 如何传导为 bit 供给",
+      "qa": [
+        "QA175",
+        "QA176"
+      ],
+      "analyst_skills": [
+        "S9",
+        "S5"
+      ],
+      "architect_skills": [
+        "S6",
+        "S3"
+      ],
+      "architect_followups": [
+        "新增洁净室空间需要多久才能放置并资格验证工具？哪些里程碑可以外部观察？",
+        "规模扩大后，瓶颈从建筑转到工具、良率还是封装？各自的时滞是什么？"
+      ],
+      "profiles": [
+        "thomas-vogelsang",
+        "gurtej-sandhu"
+      ],
+      "notes": [
+        "s02"
+      ],
+      "boundary": "这是分析框架；具体时滞需要公司披露或行业证据。"
+    },
+    {
+      "id": "B3",
+      "topic": "定制 HBM4E 基底裸片的价值归属",
+      "qa": [
+        "QA177"
+      ],
+      "analyst_skills": [
+        "S2",
+        "S6",
+        "S10"
+      ],
+      "architect_skills": [
+        "S8",
+        "S10",
+        "S7"
+      ],
+      "architect_followups": [
+        "定制基底裸片把哪些功能从加速器移到存储堆叠？接口与责任边界在哪里？",
+        "定制带来的采用成本、兼容性和 SKU 碎片化，是否抵消每合格服务单位的收益？"
+      ],
+      "profiles": [
+        "gurtej-sandhu",
+        "karin-strauss"
+      ],
+      "notes": [
+        "e04",
+        "s01"
+      ],
+      "boundary": "价值归属需要客户合同与 BOM 证据；此处只给出检验问题。"
+    },
+    {
+      "id": "B4",
+      "topic": "HBM 增长是 bit 还是价格",
+      "qa": [
+        "QA173"
+      ],
+      "analyst_skills": [
+        "S2",
+        "S4"
+      ],
+      "architect_skills": [
+        "S7",
+        "S9"
+      ],
+      "architect_followups": [
+        "同规格涨价与 mix 提升（更高层数或更高带宽）如何用同一比较边界拆开？",
+        "哪个生产计数器或公开指标能证明单位 bit 的实际产出变化？"
+      ],
+      "profiles": [
+        "thomas-vogelsang"
+      ],
+      "notes": [],
+      "boundary": "拆分需要 bit 出货与 ASP 的同口径数据。"
+    }
+  ]
+}
