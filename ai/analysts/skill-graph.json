@@ -1,0 +1,212 @@
+[
+  {
+    "id": "S1",
+    "name": "Expectation Gap",
+    "zh": "预期差",
+    "question": "实际收入 110，财报前共识 105，明确标注的乐观情景 115。三个比较分别说明什么？没有真实买方调查时，你能否解释股价？",
+    "solution": "共识 beat=4.76%；相对情景=-4.35%。115 只是情景，不能当作真实买方预期。股价嵌入预期需估值与事件证据。",
+    "transfer": "换成云业务：汇率中性增长超指引，但美元收入未超共识，如何比较？",
+    "rubric": [
+      "冻结财报前预期时间",
+      "计算同口径差异",
+      "区分情景与真实预期",
+      "指出价格解释的证据缺口"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S2",
+    "name": "Quality of Beat",
+    "zh": "盈利质量",
+    "question": "出货量 +10%，ASP +20%，收入增长多少？若额外收入中 5 来自提前交付，下一季应如何处理？",
+    "solution": "收入乘法增长=1.1×1.2−1=32%，包含 2pp 交互项。提前交付按同期基数、客户确认和后续订单检验，不直接假定每一元都反转。",
+    "transfer": "将 HBM mix 导致的 ASP 上升与同规格涨价拆开；什么证据能区分？",
+    "rubric": [
+      "分解量价组合",
+      "处理交互项",
+      "隔离一次性/时间因素",
+      "检验持续性"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S3",
+    "name": "Guidance Decoder",
+    "zh": "指引解码",
+    "question": "季度指引 120±2%，共识 119；管理层称产能售罄。上调全年收入模型前还缺什么？",
+    "solution": "区间 117.6–122.4；中点相对共识 +0.84%。售罄不等于已验收收入：核验资格、交付、取消权、价格和季度确认。",
+    "transfer": "把 equipment backlog 转成下一年收入，怎样处理交付延期？",
+    "rubric": [
+      "算指引区间",
+      "比较同期间共识",
+      "区别承诺/交付/收入",
+      "列出转化证据"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S4",
+    "name": "Estimate Revision",
+    "zh": "模型修正",
+    "question": "收入预测由 100 到 110，GM 60% 到 62%，OpEx 30 不变，税率 20%，稀释股数 10。EPS 如何变化？",
+    "solution": "旧 EBIT=30，EPS=2.4；新 EBIT=38.2，EPS=3.056，上调 27.33%。若扩产带来折旧/费用或稀释，需重新算，不能线性外推。",
+    "transfer": "将同样模型用于 server ODM，收入上涨但 GM 下降会怎样？",
+    "rubric": [
+      "收入到毛利桥",
+      "OpEx/税/股数口径",
+      "计算旧新EPS",
+      "费用与稀释敏感性"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S5",
+    "name": "Second Derivative",
+    "zh": "增长二阶变化",
+    "question": "收入序列 100→150→195，同比可比条件下，增长率和变化是多少？是否足以判定周期拐点？",
+    "solution": "增长率 50%→30%，减速20个百分点。基数、季节性、订单、价格与容量需对齐；增长减速本身不能证明投资需求下降。",
+    "transfer": "CapEx 仍增长，但 equipment bookings 下滑；解释可能的传导滞后。",
+    "rubric": [
+      "计算增长与百分点",
+      "对齐可比期间",
+      "区分水平与斜率",
+      "提出独立先行证据"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S6",
+    "name": "Cross-company Read-through",
+    "zh": "跨公司传导",
+    "question": "客户 IT设备支出从 100 到120，供应商内容占比 20%→25%，该供应商份额 50%→40%。潜在收入如何变化？",
+    "solution": "旧=100×20%×50%=10；新=120×25%×40%=12，+20%。还需收入确认、客户去重和交付滞后，不等于当季收入。",
+    "transfer": "把 GPU→HBM 的传导改成 Ethernet→optics，哪些内容系数要改？",
+    "rubric": [
+      "内容×份额×支出",
+      "避免产业链重复加总",
+      "加入时间滞后",
+      "识别替代和集中度"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S7",
+    "name": "Supply/Demand",
+    "zh": "供需侦探",
+    "question": "订单 150，合格组件 130，机架集成 110，通电容量支持 90，验收 80。收入应绑定哪个环节？",
+    "solution": "可交付链最小值 80，但收入依据合同控制权/验收条款；订单与收入不能混同。缓解通电后也可能转移到验收。",
+    "transfer": "HBM 宣称售罄，若先进封装受限，会出现怎样的库存与收入？",
+    "rubric": [
+      "区分供应链阶段",
+      "识别最窄环节",
+      "连接合同收入确认",
+      "预测瓶颈转移"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S8",
+    "name": "Cycle Turn",
+    "zh": "周期拐点",
+    "question": "同规格 ASP 连续三期增长 20%、10%、2%，库存天数80→60→65。你会改变什么假设？",
+    "solution": "价格增速放缓且库存回升是需验证的拐点信号。区分合同/现货、生产/客户库存、需求和产品切换；用量价成本模型建立上下行情景。",
+    "transfer": "从 DRAM 换到 optics：有哪些先行指标不再可用？",
+    "rubric": [
+      "同规格ASP序列",
+      "库存来源和季节性",
+      "量价成本敏感性",
+      "可证伪的拐点阈值"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S9",
+    "name": "CapEx Transmission",
+    "zh": "资本开支传导",
+    "question": "现金设备支出80，新增融资租赁30，建设支出20。设备内容占一半时，能直接算出GPU需求吗？",
+    "solution": "先定义80是否含20及租赁是否重复；若80为独立设备现金支出，经济新增设备可为110，仍需内容系数、价格、支付/交付滞后。建设不能直接当GPU。",
+    "transfer": "客户预付款支持扩产，但运营CFO未增长，周期持续性如何检验？",
+    "rubric": [
+      "定义现金与经济CapEx",
+      "去除租赁重复",
+      "区分建设与设备",
+      "建交付及融资传导"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S10",
+    "name": "Unit Economics/ROI",
+    "zh": "单位经济与回报",
+    "question": "服务年成本 100m，容量100m成功任务/年。利用率50%→80%，每任务收入2。成本/任务与贡献如何改变？",
+    "solution": "假定全部成本固定：成本/任务2→1.25；收入100m→160m，贡献0→60m。加入变动成本、质量、SLA、更新与折旧后重算。",
+    "transfer": "更便宜token引发更长推理，成本/成功任务一定下降吗？",
+    "rubric": [
+      "使用成功任务分母",
+      "明确固定/变动成本",
+      "利用率敏感性",
+      "质量和重投资边界"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S11",
+    "name": "Accounting Reality",
+    "zh": "会计与现金核验",
+    "question": "CFO100，现金CapEx80，新租赁30，融资活动收客户可退押金20。FCF是多少？能把押金当盈利吗？",
+    "solution": "标准简化 FCF=CFO−现金CapEx=20；租赁调整经济现金负担需另列。融资押金不进收入或CFO，需列返还义务，不能加到FCF。",
+    "transfer": "资产寿命延长降低折旧，利润上升时现金创造有何变化？",
+    "rubric": [
+      "利润与现金分开",
+      "标准FCF口径",
+      "租赁和押金义务",
+      "避免新增重复计算"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S12",
+    "name": "Valuation Bridge",
+    "zh": "估值桥",
+    "question": "预测EPS10→12，合理倍数40→30，价格应如何变化？基本面改善是否充分？",
+    "solution": "价格400→360，−10%；EPS+20%，倍数−25%，乘法交互影响。需相同预测期、GAAP口径及稀释股份；估值倍数必须有依据。",
+    "transfer": "对亏损neocloud用EV/收入，如何桥接净债务与股权价值？",
+    "rubric": [
+      "同期间同口径",
+      "收益×倍数计算",
+      "倍数变化理由",
+      "EV/股权与稀释边界"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S13",
+    "name": "Stock Reaction",
+    "zh": "股价反应解释",
+    "question": "收入超共识5%，次日股价跌8%，行业指数跌6%。能否归因于财报？",
+    "solution": "简单相对收益−2pp仅初步基准。核对事件时段、beta、未来预期、margin、指引和倍数；没有证据不能把下跌归为获利回吐。",
+    "transfer": "如果盘后先涨后跌，哪条新增信息和时间戳能帮助识别？",
+    "rubric": [
+      "事件与市场时段",
+      "基准/beta口径",
+      "列竞争解释",
+      "用证据而非故事归因"
+    ],
+    "scenario_type": "synthetic teaching case"
+  },
+  {
+    "id": "S14",
+    "name": "Thesis Falsification",
+    "zh": "论点证伪",
+    "question": "论点：受电力限制，合格订单将在两季后转成收入。请给可观测的否决条件与下一次检查。",
+    "solution": "定义订单取消率、通电/验收里程碑和同 cohort 转化阈值与两季期限；失败时下调哪个预测。区分可证伪证据与股价波动。",
+    "transfer": "将相同证伪框架转到 HBM 新工艺爬坡，保留机制但改指标。",
+    "rubric": [
+      "写机制与时限",
+      "给可测阈值",
+      "说明预测修正动作",
+      "迁移到陌生公司"
+    ],
+    "scenario_type": "synthetic teaching case"
+  }
+]
