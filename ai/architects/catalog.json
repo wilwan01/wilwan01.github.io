@@ -25,7 +25,10 @@
         "mike-muller",
         "richard-grisenthwaite",
         "krste-asanovic",
-        "andrew-waterman"
+        "andrew-waterman",
+        "sophie-wilson",
+        "richard-sites",
+        "butler-lampson"
       ]
     },
     {
@@ -48,7 +51,18 @@
         "gerard-williams",
         "manu-gulati",
         "peter-greenhalgh",
-        "mark-papermaster"
+        "mark-papermaster",
+        "rich-witek",
+        "john-edmondson",
+        "dirk-meyer",
+        "fred-weber",
+        "glenn-hinton",
+        "david-papworth",
+        "donald-alpert",
+        "marc-tremblay",
+        "lieven-eeckhout",
+        "tim-sherwood",
+        "daniel-a-jim-nez"
       ]
     },
     {
@@ -64,7 +78,8 @@
         "david-kirk",
         "stephen-jones",
         "doug-burger",
-        "ian-bratt"
+        "ian-bratt",
+        "jason-cong"
       ]
     },
     {
@@ -78,7 +93,11 @@
         "mark-hill",
         "david-wood",
         "moinuddin-qureshi",
-        "onur-mutlu"
+        "onur-mutlu",
+        "abhishek-bhattacharjee",
+        "gabriel-h-loh",
+        "andreas-moshovos",
+        "reetuparna-das"
       ]
     },
     {
@@ -98,7 +117,8 @@
         "algirdas-avizienis",
         "daniel-siewiorek",
         "shubu-mukherjee",
-        "todd-austin"
+        "todd-austin",
+        "ravi-rajwar"
       ]
     },
     {
@@ -116,7 +136,11 @@
         "charles-leiserson",
         "kathryn-mckinley",
         "stephen-blackburn",
-        "martin-rinard"
+        "martin-rinard",
+        "scott-mahlke",
+        "guang-r-gao",
+        "kemal-ebcioglu",
+        "michael-franz"
       ]
     },
     {
@@ -144,7 +168,9 @@
         "thomas-wenisch",
         "andrew-chien",
         "jensen-huang",
-        "wei-wang"
+        "wei-wang",
+        "christos-kozyrakis",
+        "mendel-rosenblum"
       ]
     },
     {
@@ -160,7 +186,8 @@
         "kunle-olukotun",
         "anant-agarwal",
         "steve-scott",
-        "david-e-shaw"
+        "david-e-shaw",
+        "pete-bannon"
       ]
     },
     {
@@ -171,7 +198,10 @@
         "mark-horowitz",
         "trevor-mudge",
         "al-davis",
-        "peter-kogge"
+        "peter-kogge",
+        "steve-furber",
+        "david-brooks",
+        "kevin-skadron"
       ]
     }
   ],
@@ -1246,6 +1276,165 @@
       ]
     },
     {
+      "id": "sophie-wilson",
+      "name": "Sophie Wilson",
+      "field": "指令语义与可实现性",
+      "core": "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
+      "evidence": "本人 CHM 口述史讨论 BBC BASIC 与 ARM 设计；据此连接软件表达与硬件实现。",
+      "habits": [
+        "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
+        "先固定任务、正确性与资源边界，再判断 指令语义与可实现性 的收益。",
+        "把新增负担显式放入比较：指令更丰富却增加解码、编译和验证例外。"
+      ],
+      "questions": [
+        "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指令更丰富却增加解码、编译和验证例外。",
+      "diagnostic": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "CHM：Sophie Wilson 口述史",
+          "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "指令语义与可实现性挑战",
+        "skills": [
+          "S1",
+          "S8",
+          "S10"
+        ],
+        "question": "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
+        "variables": "N：动态指令；c：平均周期/指令；f：Hz；K：编译与验证成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T=Nc/f；用整程序而非单指令比较，并另计 K。",
+        "crossover": "N_new c_new/f_new < N_old c_old/f_old，且兼容与投入可接受。",
+        "counterexample": "指令更丰富却增加解码、编译和验证例外。",
+        "validation": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
+        "transfer": "迁移到向量 ISA 或 AI 专用算子接口。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "richard-sites",
+      "name": "Richard Sites",
+      "field": "长期 ISA 契约与性能诊断",
+      "core": "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
+      "evidence": "Sites 与 Witek 的 Alpha 手册明确列出长设计寿命、性能与迁移目标；归纳来自合作设计。",
+      "habits": [
+        "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
+        "先固定任务、正确性与资源边界，再判断 长期 ISA 契约与性能诊断 的收益。",
+        "把新增负担显式放入比较：极简接口将复杂性全部转嫁给软件迁移。"
+      ],
+      "questions": [
+        "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。极简接口将复杂性全部转嫁给软件迁移。",
+      "diagnostic": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
+          "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "长期 ISA 契约与性能诊断挑战",
+        "skills": [
+          "S1",
+          "S6",
+          "S8"
+        ],
+        "question": "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
+        "variables": "C_now：当代节省；C_future：后续实现负担；K_mig：迁移成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "在相同功能下比较生命周期成本 C_now 与 Σ C_future+K_mig。",
+        "crossover": "当前收益需覆盖后续代际成本；无法估计时以敏感性区间决策。",
+        "counterexample": "极简接口将复杂性全部转嫁给软件迁移。",
+        "validation": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+        "transfer": "迁移到长期稳定的加速器 ABI。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "butler-lampson",
+      "name": "Butler Lampson",
+      "field": "接口、提示与故障边界",
+      "core": "保持契约清楚，将性能提示与正确性真相分离。",
+      "evidence": "本人 Hints for Computer System Design 讨论接口、性能、可靠性与提示；本卡是综合归纳。",
+      "habits": [
+        "保持契约清楚，将性能提示与正确性真相分离。",
+        "先固定任务、正确性与资源边界，再判断 接口、提示与故障边界 的收益。",
+        "把新增负担显式放入比较：验证同原查询一样昂贵，或错误提示被当作事实。"
+      ],
+      "questions": [
+        "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。验证同原查询一样昂贵，或错误提示被当作事实。",
+      "diagnostic": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Butler Lampson：Hints for Computer System Design",
+          "https://www.microsoft.com/en-us/research/publication/hints-for-computer-system-design/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "接口、提示与故障边界挑战",
+        "skills": [
+          "S1",
+          "S8",
+          "S10"
+        ],
+        "question": "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
+        "variables": "h：有效提示比例；V：验证秒；M：失效查询秒；B：基线查询秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E[T]=V+(1-h)M，前提验证足以保证正确性。",
+        "crossover": "V+(1-h)M < B；验证不能弱化契约，未验证提示不构成有效优化。",
+        "counterexample": "验证同原查询一样昂贵，或错误提示被当作事实。",
+        "validation": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
+        "transfer": "迁移到缓存路由、预取和 speculative execution。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "james-thornton",
       "name": "James E. Thornton",
       "awardYear": 1994,
@@ -2170,6 +2359,589 @@
       ]
     },
     {
+      "id": "rich-witek",
+      "name": "Rich Witek",
+      "field": "ISA 与高频微架构协同",
+      "core": "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
+      "evidence": "Alpha 手册与 Digital 技术论文记录其共同架构设计及 21064 实现角色。",
+      "habits": [
+        "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
+        "先固定任务、正确性与资源边界，再判断 ISA 与高频微架构协同 的收益。",
+        "把新增负担显式放入比较：宽度增加造成旁路延迟、功耗和缓存供给瓶颈。"
+      ],
+      "questions": [
+        "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
+      "diagnostic": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
+          "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "ISA 与高频微架构协同挑战",
+        "skills": [
+          "S2",
+          "S3",
+          "S8"
+        ],
+        "question": "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
+        "variables": "N：指令数；IPC：指令/周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T=N/(IPC×f)，加入未包含在 IPC 中的外围服务时间。",
+        "crossover": "IPC_new/IPC_old > f_old/f_new 才抵消降频，且同一任务。",
+        "counterexample": "宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
+        "validation": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+        "transfer": "迁移到宽 GPU 调度器与频率取舍。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "john-edmondson",
+      "name": "John Edmondson",
+      "field": "超标量执行与供给链",
+      "core": "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
+      "evidence": "Alpha 21164 合作论文讨论四发射及缓存组织；以下是基于共同工作的机制归纳。",
+      "habits": [
+        "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
+        "先固定任务、正确性与资源边界，再判断 超标量执行与供给链 的收益。",
+        "把新增负担显式放入比较：依赖链或指令缓存失配使执行宽度空闲。"
+      ],
+      "questions": [
+        "四发射机器增加两个执行单元，为何吞吐可能几乎不变？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。依赖链或指令缓存失配使执行宽度空闲。",
+      "diagnostic": "做执行宽度与缓存供给独立消融，归因空槽和依赖等待；失配主导则否定扩宽。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Digital Technical Journal：Alpha 21164 合作论文",
+          "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "超标量执行与供给链挑战",
+        "skills": [
+          "S3",
+          "S4",
+          "S9"
+        ],
+        "question": "四发射机器增加两个执行单元，为何吞吐可能几乎不变？",
+        "variables": "r_fe/r_ex/r_mem：前端、执行、存储可持续指令/周期；参数需从待评估系统测量，以下为条件模型。",
+        "model": "可持续 IPC≤min(r_fe,r_ex,r_mem)，依赖限制还会压低上界。",
+        "crossover": "只有执行资源绑定时增加 r_ex 才可能提高有效 IPC。",
+        "counterexample": "依赖链或指令缓存失配使执行宽度空闲。",
+        "validation": "做执行宽度与缓存供给独立消融，归因空槽和依赖等待；失配主导则否定扩宽。",
+        "transfer": "迁移到增加 GPU SM 但显存带宽固定。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "dirk-meyer",
+      "name": "Dirk Meyer",
+      "field": "兼容 ISA 下的实现重组",
+      "core": "保留软件接口，同时重组执行与供给资源来改变性能边界。",
+      "evidence": "K7 合作论文列出 Meyer 与 Weber 等作者；奖项说明记录其高性能处理器贡献。",
+      "habits": [
+        "保留软件接口，同时重组执行与供给资源来改变性能边界。",
+        "先固定任务、正确性与资源边界，再判断 兼容 ISA 下的实现重组 的收益。",
+        "把新增负担显式放入比较：偏向峰值浮点使实际服务前端或内存瓶颈更严重。"
+      ],
+      "questions": [
+        "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
+      "diagnostic": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "A Seventh-Generation x86 Microprocessor：作者提供的合作论文",
+          "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "兼容 ISA 下的实现重组挑战",
+        "skills": [
+          "S3",
+          "S8",
+          "S10"
+        ],
+        "question": "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
+        "variables": "w_i：任务比例；T_i：各任务秒数；P：功率预算；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较固定任务组合 Σw_i T_i 与面积、功率硬约束；不能仅平均 IPC。",
+        "crossover": "资源重组的加权任务收益需覆盖频率和其他任务损失。",
+        "counterexample": "偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
+        "validation": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
+        "transfer": "迁移到 CPU 与加速器资源配比。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "fred-weber",
+      "name": "Fred Weber",
+      "field": "核心、内存与系统通路",
+      "core": "将执行能力和内存访问组织作为联合设计问题。",
+      "evidence": "K7 合作论文支持执行资源设计视角；不把不同代际团队决策归为个人独立思想。",
+      "habits": [
+        "将执行能力和内存访问组织作为联合设计问题。",
+        "先固定任务、正确性与资源边界，再判断 核心、内存与系统通路 的收益。",
+        "把新增负担显式放入比较：更多本地通路增加控制、布线和一致性开销。"
+      ],
+      "questions": [
+        "快核心的收益被远端内存吞掉时，应该继续提高频率还是重画内存边界？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。更多本地通路增加控制、布线和一致性开销。",
+      "diagnostic": "固定线程放置，改变内存位置与频率，分离可重叠和暴露等待。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "A Seventh-Generation x86 Microprocessor：作者提供的合作论文",
+          "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "核心、内存与系统通路挑战",
+        "skills": [
+          "S3",
+          "S4",
+          "S6"
+        ],
+        "question": "快核心的收益被远端内存吞掉时，应该继续提高频率还是重画内存边界？",
+        "variables": "T_cpu：计算秒；T_mem：暴露访存秒；K：组织新增秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T=T_cpu+T_mem，避免把已重叠访存重复相加。",
+        "crossover": "减少 T_mem 的收益需大于 K；与降低 T_cpu 的替代方案比较。",
+        "counterexample": "更多本地通路增加控制、布线和一致性开销。",
+        "validation": "固定线程放置，改变内存位置与频率，分离可重叠和暴露等待。",
+        "transfer": "迁移到 chiplet NUMA 与 HBM 放置。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "glenn-hinton",
+      "name": "Glenn Hinton",
+      "field": "流水深度、预测与恢复",
+      "core": "频率收益必须同分支失误、依赖等待和功耗一起评估。",
+      "evidence": "Intel 的 Pentium 4 合作论文讨论深流水、执行与前端设计；奖项记录其微处理器贡献。",
+      "habits": [
+        "频率收益必须同分支失误、依赖等待和功耗一起评估。",
+        "先固定任务、正确性与资源边界，再判断 流水深度、预测与恢复 的收益。",
+        "把新增负担显式放入比较：失误重叠与资源竞争使简单 CPI 分解失真。"
+      ],
+      "questions": [
+        "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。失误重叠与资源竞争使简单 CPI 分解失真。",
+      "diagnostic": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Intel Technology Journal：Pentium 4 微架构合作论文",
+          "https://www.intel.com/content/dam/www/public/us/en/documents/research/2001-vol05-iss-1-intel-technology-journal.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "流水深度、预测与恢复挑战",
+        "skills": [
+          "S2",
+          "S3",
+          "S7"
+        ],
+        "question": "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
+        "variables": "c0：基础 CPI；m：失误/指令；p：惩罚周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T/N≈(c0+mp)/f；是假设惩罚暴露的近似。",
+        "crossover": "(c0_new+m p_new)/f_new < (c0_old+m p_old)/f_old；解 m 的边界。",
+        "counterexample": "失误重叠与资源竞争使简单 CPI 分解失真。",
+        "validation": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
+        "transfer": "迁移到推测深度与验证成本。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "david-papworth",
+      "name": "David Papworth",
+      "field": "乱序执行的可交付实现",
+      "core": "将依赖调度、重命名和精确提交组织成可实现的执行引擎。",
+      "evidence": "ACM 官方说明记录其 P6 乱序引擎及 VLIW 处理器贡献。",
+      "habits": [
+        "将依赖调度、重命名和精确提交组织成可实现的执行引擎。",
+        "先固定任务、正确性与资源边界，再判断 乱序执行的可交付实现 的收益。",
+        "把新增负担显式放入比较：串行指针链扩大窗口也无法增加 MLP。"
+      ],
+      "questions": [
+        "扩大乱序窗口能隐藏多少等待，何时只增加唤醒与选择成本？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。串行指针链扩大窗口也无法增加 MLP。",
+      "diagnostic": "扫窗口和调度复杂度，测关键依赖、访存并行及有效性能/瓦。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM：David Papworth 的 P6 与 VLIW 贡献",
+          "https://awards.acm.org/about/2022-thacker",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "乱序执行的可交付实现挑战",
+        "skills": [
+          "S3",
+          "S7",
+          "S8"
+        ],
+        "question": "扩大乱序窗口能隐藏多少等待，何时只增加唤醒与选择成本？",
+        "variables": "W：窗口条目；MLP：并行访存；L：周期；C_sched：调度成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较有效重叠增加减少的暴露周期与时序、功耗及面积新增负担。",
+        "crossover": "窗口收益需在同功率同频率实现中大于调度代价；无可重叠工作时收益为零。",
+        "counterexample": "串行指针链扩大窗口也无法增加 MLP。",
+        "validation": "扫窗口和调度复杂度，测关键依赖、访存并行及有效性能/瓦。",
+        "transfer": "迁移到 GPU 活跃 warp 数与寄存器压力。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "donald-alpert",
+      "name": "Donald Alpert",
+      "field": "超标量产品与实现约束",
+      "core": "把并行执行的收益放回时序、兼容性与完整产品边界。",
+      "evidence": "本人 Camelback 网站记录其 Pentium 主架构师及处理器产品经历；思想为履历支持的有限归纳。",
+      "habits": [
+        "把并行执行的收益放回时序、兼容性与完整产品边界。",
+        "先固定任务、正确性与资源边界，再判断 超标量产品与实现约束 的收益。",
+        "把新增负担显式放入比较：频繁依赖或无法配对指令使峰值发射率没有用户价值。"
+      ],
+      "questions": [
+        "双发射使合成测试更快，但客户应用提升很小：这还是值得交付的产品吗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。频繁依赖或无法配对指令使峰值发射率没有用户价值。",
+      "diagnostic": "回放实际二进制，记录有效配对、频率和兼容回归；不以峰值宣称通用收益。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Donald Alpert：Camelback Computer Architecture",
+          "https://camelback-comparch.com/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "超标量产品与实现约束挑战",
+        "skills": [
+          "S7",
+          "S8",
+          "S10"
+        ],
+        "question": "双发射使合成测试更快，但客户应用提升很小：这还是值得交付的产品吗？",
+        "variables": "g_i：各负载收益；w_i：客户占比；K：新增验证与实现投入；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定客户任务组合，比较 Σw_i T_i 与部署和验证总成本。",
+        "crossover": "可兑现的任务收益覆盖开发、兼容与平台代价才进入交付。",
+        "counterexample": "频繁依赖或无法配对指令使峰值发射率没有用户价值。",
+        "validation": "回放实际二进制，记录有效配对、频率和兼容回归；不以峰值宣称通用收益。",
+        "transfer": "迁移到向量扩展 SKU 的客户选择。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "marc-tremblay",
+      "name": "Marc Tremblay",
+      "field": "多层并行与推测代价",
+      "core": "并行方式应由任务结构决定，并显式核算推测失效的工作。",
+      "evidence": "Microsoft 公开履历记录其 UltraSPARC、MAJC 与 Rock 工作；首硅不等于产品成功。",
+      "habits": [
+        "并行方式应由任务结构决定，并显式核算推测失效的工作。",
+        "先固定任务、正确性与资源边界，再判断 多层并行与推测代价 的收益。",
+        "把新增负担显式放入比较：推测失败、共享缓存污染和回滚使多线程更慢。"
+      ],
+      "questions": [
+        "推测线程减少关键路径，却占用共享缓存：在什么并发度下失去吞吐优势？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。推测失败、共享缓存污染和回滚使多线程更慢。",
+      "diagnostic": "匹配总资源，扫并发与成功率，记录回滚、缓存干扰与合格任务/s。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Microsoft Research：Marc Tremblay 公开履历",
+          "https://www.microsoft.com/en-us/research/event/system-design-cloud-services/biographies/?lang=zh-cn",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "多层并行与推测代价挑战",
+        "skills": [
+          "S2",
+          "S6",
+          "S8"
+        ],
+        "question": "推测线程减少关键路径，却占用共享缓存：在什么并发度下失去吞吐优势？",
+        "variables": "u：有用工作；s：推测工作；r：成功比例；B：共享预算；参数需从待评估系统测量，以下为条件模型。",
+        "model": "核算每个完成任务的 u+s 与关键路径节省，分别比较延迟和吞吐。",
+        "crossover": "有效重叠节省需覆盖回滚与竞争；延迟改善不保证同预算 goodput 增加。",
+        "counterexample": "推测失败、共享缓存污染和回滚使多线程更慢。",
+        "validation": "匹配总资源，扫并发与成功率，记录回滚、缓存干扰与合格任务/s。",
+        "transfer": "迁移到 LLM speculative decoding。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "lieven-eeckhout",
+      "name": "Lieven Eeckhout",
+      "field": "性能模型与归因",
+      "core": "先建立能解释性能差异的模型，再选择需要改变的资源。",
+      "evidence": "Maurice Wilkes 官方说明表彰其架构性能分析与建模贡献。",
+      "habits": [
+        "先建立能解释性能差异的模型，再选择需要改变的资源。",
+        "先固定任务、正确性与资源边界，再判断 性能模型与归因 的收益。",
+        "把新增负担显式放入比较：停顿类别重叠或测量伪影导致错误优化。"
+      ],
+      "questions": [
+        "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。停顿类别重叠或测量伪影导致错误优化。",
+      "diagnostic": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "性能模型与归因挑战",
+        "skills": [
+          "S3",
+          "S9",
+          "S2"
+        ],
+        "question": "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
+        "variables": "T：任务秒；x：资源配置；ΔT/Δx：实测敏感性；参数需从待评估系统测量，以下为条件模型。",
+        "model": "归因不是因果；用受控资源扰动估计 ΔT，再校准重叠项。",
+        "crossover": "资源成本相同时选择可兑现 ΔT 最大的改动，非最大归因栏。",
+        "counterexample": "停顿类别重叠或测量伪影导致错误优化。",
+        "validation": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
+        "transfer": "迁移到推理服务的 compute/communication 归因。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "tim-sherwood",
+      "name": "Tim Sherwood",
+      "field": "程序阶段与代表性评估",
+      "core": "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
+      "evidence": "Maurice Wilkes 官方说明记录其程序分析、架构建模与安全贡献。",
+      "habits": [
+        "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
+        "先固定任务、正确性与资源边界，再判断 程序阶段与代表性评估 的收益。",
+        "把新增负担显式放入比较：短热点片段遗漏启动、GC 或尾部阶段。"
+      ],
+      "questions": [
+        "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。短热点片段遗漏启动、GC 或尾部阶段。",
+      "diagnostic": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "程序阶段与代表性评估挑战",
+        "skills": [
+          "S9",
+          "S3",
+          "S2"
+        ],
+        "question": "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
+        "variables": "w_i：阶段时间权重；T_i：阶段成本；ε：估计误差；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_est=Σw_i T_i；必须验证阶段选择、权重与重构误差。",
+        "crossover": "收益的置信区间须超过采样误差，且覆盖稀有关键阶段。",
+        "counterexample": "短热点片段遗漏启动、GC 或尾部阶段。",
+        "validation": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
+        "transfer": "迁移到多轮 agent 的 CPU/GPU 阶段采样。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "daniel-a-jim-nez",
+      "name": "Daniel A. Jiménez",
+      "field": "学习预测与硬件预算",
+      "core": "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
+      "evidence": "Bob Rau 官方说明记录其神经分支预测贡献；不等同于现代 transformer 已有收益。",
+      "habits": [
+        "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
+        "先固定任务、正确性与资源边界，再判断 学习预测与硬件预算 的收益。",
+        "把新增负担显式放入比较：长推理、冷启动或相位漂移使离线准确率无法兑现。"
+      ],
+      "questions": [
+        "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。长推理、冷启动或相位漂移使离线准确率无法兑现。",
+      "diagnostic": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "学习预测与硬件预算挑战",
+        "skills": [
+          "S2",
+          "S7",
+          "S9"
+        ],
+        "question": "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
+        "variables": "Δm：失误/指令下降；p：暴露恢复周期；c_add：新增周期/指令；参数需从待评估系统测量，以下为条件模型。",
+        "model": "净 CPI 改善≈Δm p-c_add；增加面积功率作为独立预算。",
+        "crossover": "Δm p > c_add，跨阶段与冷启动仍满足预算。",
+        "counterexample": "长推理、冷启动或相位漂移使离线准确率无法兑现。",
+        "validation": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+        "transfer": "迁移到硬件 ML 预取与页放置预测。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "bill-dally",
       "name": "Bill Dally",
       "field": "能效、数据搬运与专用计算",
@@ -2686,6 +3458,59 @@
       ]
     },
     {
+      "id": "jason-cong",
+      "name": "Jason Cong",
+      "field": "可定制计算与自动化",
+      "core": "让算法表示、综合与物理实现共同决定特化价值。",
+      "evidence": "ACM 官方说明记录其 FPGA 系统设计自动化与可定制计算贡献。",
+      "habits": [
+        "让算法表示、综合与物理实现共同决定特化价值。",
+        "先固定任务、正确性与资源边界，再判断 可定制计算与自动化 的收益。",
+        "把新增负担显式放入比较：数据往返和布线拥塞吞掉计算加速。"
+      ],
+      "questions": [
+        "HLS 核心快十倍，PCIe 传输和布局限制加入后，还值得部署吗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。数据往返和布线拥塞吞掉计算加速。",
+      "diagnostic": "比较综合估计、布局后实现与板级任务，记录利用率、搬运和端到端能量。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM：Jason Cong 的可定制计算贡献",
+          "https://awards.acm.org/about/2024-thacker",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "可定制计算与自动化挑战",
+        "skills": [
+          "S2",
+          "S7",
+          "S8"
+        ],
+        "question": "HLS 核心快十倍，PCIe 传输和布局限制加入后，还值得部署吗？",
+        "variables": "T_host/T_io/T_kernel：未重叠秒；K：开发部署成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_task=T_host+T_io+T_kernel；重叠用实测关键路径，另算生命周期 K。",
+        "crossover": "完整任务收益需覆盖传输、时序退化与开发投入。",
+        "counterexample": "数据往返和布线拥塞吞掉计算加速。",
+        "validation": "比较综合估计、布局后实现与板级任务，记录利用率、搬运和端到端能量。",
+        "transfer": "迁移到专用 AI 芯片及编译器共同设计。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "tom-kilburn",
       "name": "Tom Kilburn",
       "awardYear": 1983,
@@ -3087,6 +3912,218 @@
       "relatedDomains": [
         "physical-energy"
       ]
+    },
+    {
+      "id": "abhishek-bhattacharjee",
+      "name": "Abhishek Bhattacharjee",
+      "field": "地址转换与系统协同",
+      "core": "把地址转换视为受工作负载和 OS 策略影响的完整存储路径。",
+      "evidence": "Maurice Wilkes 官方说明记录其商用处理器和 OS 地址转换贡献。",
+      "habits": [
+        "把地址转换视为受工作负载和 OS 策略影响的完整存储路径。",
+        "先固定任务、正确性与资源边界，再判断 地址转换与系统协同 的收益。",
+        "把新增负担显式放入比较：访问热点远小于页，使转换节省被冷数据复制抵消。"
+      ],
+      "questions": [
+        "大页减少 TLB miss，却迁移更多冷数据，什么时候净收益反转？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。访问热点远小于页，使转换节省被冷数据复制抵消。",
+      "diagnostic": "用相同轨迹独立改变页大小与放置，测走访、复制、远端访问和尾延迟。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "地址转换与系统协同挑战",
+        "skills": [
+          "S2",
+          "S4",
+          "S8"
+        ],
+        "question": "大页减少 TLB miss，却迁移更多冷数据，什么时候净收益反转？",
+        "variables": "n：页走访次数；L：暴露走访秒；D：复制字节；B：复制 B/s；参数需从待评估系统测量，以下为条件模型。",
+        "model": "净时间收益≈n_saved L-D/B-T_policy，仅对暴露且未重叠部分成立。",
+        "crossover": "n_saved L > D/B+T_policy，另需放置与碎片约束。",
+        "counterexample": "访问热点远小于页，使转换节省被冷数据复制抵消。",
+        "validation": "用相同轨迹独立改变页大小与放置，测走访、复制、远端访问和尾延迟。",
+        "transfer": "迁移到 CXL 分层与 GPU 页迁移。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "gabriel-h-loh",
+      "name": "Gabriel H. Loh",
+      "field": "堆叠存储与标签访问",
+      "core": "额外缓存带宽要与标签、命中路径和数据移动一起设计。",
+      "evidence": "Maurice Wilkes 官方说明表彰其 die-stacked architectures 贡献。",
+      "habits": [
+        "额外缓存带宽要与标签、命中路径和数据移动一起设计。",
+        "先固定任务、正确性与资源边界，再判断 堆叠存储与标签访问 的收益。",
+        "把新增负担显式放入比较：标签流量和低复用负载消耗带宽却不减少外部访问。"
+      ],
+      "questions": [
+        "堆叠缓存命中率高，但标签查找额外访存：怎样判断它比直接 DRAM 好？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。标签流量和低复用负载消耗带宽却不减少外部访问。",
+      "diagnostic": "测标签与数据字节、命中服务路径及整任务时间，扫工作集和读写比例。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "堆叠存储与标签访问挑战",
+        "skills": [
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "question": "堆叠缓存命中率高，但标签查找额外访存：怎样判断它比直接 DRAM 好？",
+        "variables": "h：命中率；L_hit/L_miss：完整暴露延迟；L_base：基线延迟；参数需从待评估系统测量，以下为条件模型。",
+        "model": "平均暴露路径≈h L_hit+(1-h)L_miss；各项包含标签但不重复计算。",
+        "crossover": "h L_hit+(1-h)L_miss < L_base，并检查带宽与功耗。",
+        "counterexample": "标签流量和低复用负载消耗带宽却不减少外部访问。",
+        "validation": "测标签与数据字节、命中服务路径及整任务时间，扫工作集和读写比例。",
+        "transfer": "迁移到 HBM 缓存 DDR 的组织。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "andreas-moshovos",
+      "name": "Andreas Moshovos",
+      "field": "内存依赖预测",
+      "core": "预测可提前执行的内存操作，同时保留检测与恢复的正确性边界。",
+      "evidence": "Maurice Wilkes 官方说明记录其内存依赖预测贡献。",
+      "habits": [
+        "预测可提前执行的内存操作，同时保留检测与恢复的正确性边界。",
+        "先固定任务、正确性与资源边界，再判断 内存依赖预测 的收益。",
+        "把新增负担显式放入比较：少量长恢复事件及污染使平均预测准确率误导判断。"
+      ],
+      "questions": [
+        "更激进的 load 越过 store 后，减少的等待是否足以支付恢复代价？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。少量长恢复事件及污染使平均预测准确率误导判断。",
+      "diagnostic": "记录依赖违规、实际恢复、关键路径节省；用关闭预测的匹配基线验证。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "内存依赖预测挑战",
+        "skills": [
+          "S2",
+          "S3",
+          "S9"
+        ],
+        "question": "更激进的 load 越过 store 后，减少的等待是否足以支付恢复代价？",
+        "variables": "n：候选 load；s：每次节省周期；m：误判概率；r：恢复周期；参数需从待评估系统测量，以下为条件模型。",
+        "model": "净周期收益近似 n[(1-m)s-mr]，需校准重叠。",
+        "crossover": "m < s/(s+r)，正确性检测必须可靠。",
+        "counterexample": "少量长恢复事件及污染使平均预测准确率误导判断。",
+        "validation": "记录依赖违规、实际恢复、关键路径节省；用关闭预测的匹配基线验证。",
+        "transfer": "迁移到值预测或事务冲突预测。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "reetuparna-das",
+      "name": "Reetuparna Das",
+      "field": "存内计算与数据移动",
+      "core": "把运算放到数据附近，同时检查精度、外围转换与通用性代价。",
+      "evidence": "Maurice Wilkes 官方说明表彰其 in-memory computing 贡献。",
+      "habits": [
+        "把运算放到数据附近，同时检查精度、外围转换与通用性代价。",
+        "先固定任务、正确性与资源边界，再判断 存内计算与数据移动 的收益。",
+        "把新增负担显式放入比较：外围、稀疏访问及精度修正占主导，阵列峰值不是整任务收益。"
+      ],
+      "questions": [
+        "存内阵列节省搬运，但 ADC 和重映射很贵：什么任务真正获益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。外围、稀疏访问及精度修正占主导，阵列峰值不是整任务收益。",
+      "diagnostic": "匹配质量与输入规模，测阵列、外围和外部搬运的完整能量。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "存内计算与数据移动挑战",
+        "skills": [
+          "S2",
+          "S4",
+          "S7"
+        ],
+        "question": "存内阵列节省搬运，但 ADC 和重映射很贵：什么任务真正获益？",
+        "variables": "E_move：节省 J；E_periph：外围 J；E_map：映射 J；参数需从待评估系统测量，以下为条件模型。",
+        "model": "净能量收益=E_move-E_periph-E_map；匹配精度与任务质量。",
+        "crossover": "E_move > E_periph+E_map，并通过精度和持续吞吐门槛。",
+        "counterexample": "外围、稀疏访问及精度修正占主导，阵列峰值不是整任务收益。",
+        "validation": "匹配质量与输入规模，测阵列、外围和外部搬运的完整能量。",
+        "transfer": "迁移到近内存 embedding 与 KV-cache 放置。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 1
     },
     {
       "id": "kourosh-gharachorloo",
@@ -3836,6 +4873,58 @@
       ]
     },
     {
+      "id": "ravi-rajwar",
+      "name": "Ravi Rajwar",
+      "field": "事务内存与并发优化",
+      "core": "将同步路径的乐观执行同冲突检测、回退及进展保证一起设计。",
+      "evidence": "Maurice Wilkes 官方说明记录其硬件事务内存设计与商业化贡献。",
+      "habits": [
+        "将同步路径的乐观执行同冲突检测、回退及进展保证一起设计。",
+        "先固定任务、正确性与资源边界，再判断 事务内存与并发优化 的收益。",
+        "把新增负担显式放入比较：长事务、容量 abort 与冲突风暴使回退成为常态。"
+      ],
+      "questions": [
+        "事务成功路径快两倍，但重试率上升：何时应该直接用锁？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。长事务、容量 abort 与冲突风暴使回退成为常态。",
+      "diagnostic": "扫共享程度和事务长度，分类 abort，验证锁回退及 P99；平均收益不抵消尾部失败。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "事务内存与并发优化挑战",
+        "skills": [
+          "S2",
+          "S5",
+          "S8"
+        ],
+        "question": "事务成功路径快两倍，但重试率上升：何时应该直接用锁？",
+        "variables": "p：一次尝试成功率；T_tx：尝试秒；T_fb：回退秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "限定一次尝试时 E[T]=T_tx+(1-p)T_fb；多次重试须另建模型。",
+        "crossover": "T_tx+(1-p)T_fb < T_lock，且正确性、进展和尾延迟通过。",
+        "counterexample": "长事务、容量 abort 与冲突风暴使回退成为常态。",
+        "validation": "扫共享程度和事务长度，分类 abort，验证锁回退及 P99；平均收益不抵消尾部失败。",
+        "transfer": "迁移到数据库乐观并发控制。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "jack-dennis",
       "name": "Jack B. Dennis",
       "awardYear": 1984,
@@ -4472,6 +5561,218 @@
       "relatedDomains": [
         "physical-energy"
       ]
+    },
+    {
+      "id": "scott-mahlke",
+      "name": "Scott Mahlke",
+      "field": "编译器引导的特化与并行",
+      "core": "先找到可映射的程序结构，再定制执行资源和编译策略。",
+      "evidence": "Bob Rau 官方说明表彰其 ILP 与应用专用架构编译技术。",
+      "habits": [
+        "先找到可映射的程序结构，再定制执行资源和编译策略。",
+        "先固定任务、正确性与资源边界，再判断 编译器引导的特化与并行 的收益。",
+        "把新增负担显式放入比较：未覆盖的控制与访存主导整任务，热点速度无法迁移。"
+      ],
+      "questions": [
+        "定制数据通路加速热点，却要求新编译器：哪些任务规模值得投入？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。未覆盖的控制与访存主导整任务，热点速度无法迁移。",
+      "diagnostic": "验证端到端覆盖率、编译成功率与回退成本，保留通用处理器基线。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "编译器引导的特化与并行挑战",
+        "skills": [
+          "S8",
+          "S9",
+          "S7"
+        ],
+        "question": "定制数据通路加速热点，却要求新编译器：哪些任务规模值得投入？",
+        "variables": "N：任务次数；s：每次节省秒；K：开发投入；C_extra：运行附加成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "同一核算单位比较 N×单任务净收益与 K+C_extra。",
+        "crossover": "任务规模与覆盖率使累计净收益超过工具链及部署投入。",
+        "counterexample": "未覆盖的控制与访存主导整任务，热点速度无法迁移。",
+        "validation": "验证端到端覆盖率、编译成功率与回退成本，保留通用处理器基线。",
+        "transfer": "迁移到推理算子融合与专用 accelerator。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "guang-r-gao",
+      "name": "Guang R. Gao",
+      "field": "数据流与并行执行模型",
+      "core": "用依赖关系决定执行就绪，而非让串行表示遮蔽可用并行。",
+      "evidence": "Bob Rau 官方说明记录其 ILP、线程并行编译与微架构贡献。",
+      "habits": [
+        "用依赖关系决定执行就绪，而非让串行表示遮蔽可用并行。",
+        "先固定任务、正确性与资源边界，再判断 数据流与并行执行模型 的收益。",
+        "把新增负担显式放入比较：细粒度依赖管理比运算更贵，或者并行度无法喂满资源。"
+      ],
+      "questions": [
+        "数据流揭示更多并行，却增加 token 和同步开销，交叉点在哪里？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。细粒度依赖管理比运算更贵，或者并行度无法喂满资源。",
+      "diagnostic": "改变任务粒度与并行资源，归因就绪队列、token 流量和关键路径。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据流与并行执行模型挑战",
+        "skills": [
+          "S1",
+          "S6",
+          "S8"
+        ],
+        "question": "数据流揭示更多并行，却增加 token 和同步开销，交叉点在哪里？",
+        "variables": "W：有用计算秒；D：关键路径秒；P：资源；H：调度通信秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(W/P,D)，实际 T≈该下界+未重叠 H。",
+        "crossover": "相对基线缩短的关键路径需大于新增 H。",
+        "counterexample": "细粒度依赖管理比运算更贵，或者并行度无法喂满资源。",
+        "validation": "改变任务粒度与并行资源，归因就绪队列、token 流量和关键路径。",
+        "transfer": "迁移到 AI DAG 调度与 agent 工作流。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "kemal-ebcioglu",
+      "name": "Kemal Ebcioglu",
+      "field": "VLIW、二进制翻译与执行分工",
+      "core": "把并行发现移到工具链时，也把兼容与动态适应成本算进去。",
+      "evidence": "Bob Rau 官方说明记录其 VLIW、ILP 与二进制翻译贡献。",
+      "habits": [
+        "把并行发现移到工具链时，也把兼容与动态适应成本算进去。",
+        "先固定任务、正确性与资源边界，再判断 VLIW、二进制翻译与执行分工 的收益。",
+        "把新增负担显式放入比较：延迟和分支变化使静态计划失效，重翻译成本难摊销。"
+      ],
+      "questions": [
+        "静态调度省硬件，却遇到不可预测内存延迟：何时应让运行时接管？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。延迟和分支变化使静态计划失效，重翻译成本难摊销。",
+      "diagnostic": "扫调用次数与访存扰动，测翻译、回退和有效执行时间。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "VLIW、二进制翻译与执行分工挑战",
+        "skills": [
+          "S2",
+          "S8",
+          "S10"
+        ],
+        "question": "静态调度省硬件，却遇到不可预测内存延迟：何时应让运行时接管？",
+        "variables": "s：执行节省/次；J：翻译成本；n：复用次数；h：失配损失/次；参数需从待评估系统测量，以下为条件模型。",
+        "model": "累计净收益=n(s-h)-J；正确性与 ISA 兼容独立验证。",
+        "crossover": "n > J/(s-h)，前提 s>h；失配主导时没有摊销交叉点。",
+        "counterexample": "延迟和分支变化使静态计划失效，重翻译成本难摊销。",
+        "validation": "扫调用次数与访存扰动，测翻译、回退和有效执行时间。",
+        "transfer": "迁移到图编译、shape 特化与运行时重编译。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "michael-franz",
+      "name": "Michael Franz",
+      "field": "运行时编译与摊销",
+      "core": "以实际运行行为选择代码优化深度，并检查编译成本何时回本。",
+      "evidence": "UC Irvine 与 ACM 获奖资料记录其 JIT 编译贡献；挑战是现代应用抽象。",
+      "habits": [
+        "以实际运行行为选择代码优化深度，并检查编译成本何时回本。",
+        "先固定任务、正确性与资源边界，再判断 运行时编译与摊销 的收益。",
+        "把新增负担显式放入比较：短生命周期、代码失效或缓存膨胀导致永远不回本。"
+      ],
+      "questions": [
+        "优化后的代码快 12%，但编译花两秒，哪些短任务不该升级编译层级？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。短生命周期、代码失效或缓存膨胀导致永远不回本。",
+      "diagnostic": "测首次、稳态、失效重编译及完整生命周期时间，按调用频率分段。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "UC Irvine：Michael Franz 研究与获奖资料",
+          "https://ics.uci.edu/?people=michael-franz",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "运行时编译与摊销挑战",
+        "skills": [
+          "S2",
+          "S8",
+          "S9"
+        ],
+        "question": "优化后的代码快 12%，但编译花两秒，哪些短任务不该升级编译层级？",
+        "variables": "J：编译秒；t0/t1：每次执行秒；n：执行次数；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_new=J+n t1；T_old=n t0，另检查停顿和代码缓存。",
+        "crossover": "n > J/(t0-t1)，t0>t1；延迟门槛可限制首次编译。",
+        "counterexample": "短生命周期、代码失效或缓存膨胀导致永远不回本。",
+        "validation": "测首次、稳态、失效重编译及完整生命周期时间，按调用频率分段。",
+        "transfer": "迁移到 GPU 图捕获与 kernel autotuning。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
     },
     {
       "id": "kenneth-batcher",
@@ -5328,6 +6629,112 @@
       ]
     },
     {
+      "id": "christos-kozyrakis",
+      "name": "Christos Kozyrakis",
+      "field": "资源效率与服务约束",
+      "core": "用服务质量约束指导资源共享和硬件软件协同。",
+      "evidence": "Maurice Wilkes 官方说明记录其资源高效计算系统贡献；以下训练边界面向现代服务。",
+      "habits": [
+        "用服务质量约束指导资源共享和硬件软件协同。",
+        "先固定任务、正确性与资源边界，再判断 资源效率与服务约束 的收益。",
+        "把新增负担显式放入比较：平均利用率增加来自排队、重试或低价值工作。"
+      ],
+      "questions": [
+        "混部提高利用率，却降低合格吞吐：如何选择共享强度？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。平均利用率增加来自排队、重试或低价值工作。",
+      "diagnostic": "扫混部强度，记录服务分布、干扰和有效请求；相同 SLO 下验证成本。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "资源效率与服务约束挑战",
+        "skills": [
+          "S5",
+          "S7",
+          "S9"
+        ],
+        "question": "混部提高利用率，却降低合格吞吐：如何选择共享强度？",
+        "variables": "Q：SLO 合格请求/s；C：同周期完整成本；u：共享强度；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较 C(u)/Q(u)，并以延迟和隔离为硬约束。",
+        "crossover": "利用率改善只有在 Q/C 上升且 SLO 通过时才有价值。",
+        "counterexample": "平均利用率增加来自排队、重试或低价值工作。",
+        "validation": "扫混部强度，记录服务分布、干扰和有效请求；相同 SLO 下验证成本。",
+        "transfer": "迁移到共享 GPU 与内存池租户管理。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "mendel-rosenblum",
+      "name": "Mendel Rosenblum",
+      "field": "虚拟化与资源解耦",
+      "core": "用稳定的机器抽象解耦工作负载和物理部署，再管理隔离与迁移成本。",
+      "evidence": "Stanford 与 ACM 资料记录其操作系统和虚拟化贡献；不把虚拟化等同于零成本。",
+      "habits": [
+        "用稳定的机器抽象解耦工作负载和物理部署，再管理隔离与迁移成本。",
+        "先固定任务、正确性与资源边界，再判断 虚拟化与资源解耦 的收益。",
+        "把新增负担显式放入比较：超售带来的排队和抖动使高利用率降低有效产出。"
+      ],
+      "questions": [
+        "虚拟化提高整合率，但二级地址转换和干扰增加：何时减少单位服务成本？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。超售带来的排队和抖动使高利用率降低有效产出。",
+      "diagnostic": "相同 SLO 下比较裸机与 VM，独立测 CPU、内存及 I/O 虚拟化路径。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Stanford：Mendel Rosenblum",
+          "https://profiles.stanford.edu/mendel-rosenblum",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "虚拟化与资源解耦挑战",
+        "skills": [
+          "S1",
+          "S5",
+          "S8"
+        ],
+        "question": "虚拟化提高整合率，但二级地址转换和干扰增加：何时减少单位服务成本？",
+        "variables": "C：平台成本/周期；Q：SLO 合格任务/周期；H：虚拟化开销；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较 C_virtual/Q_virtual 与 C_native/Q_native；Q 包含隔离和可用性要求。",
+        "crossover": "整合节省需超过转换、干扰、管理和迁移开销。",
+        "counterexample": "超售带来的排队和抖动使高利用率降低有效产出。",
+        "validation": "相同 SLO 下比较裸机与 VM，独立测 CPU、内存及 I/O 虚拟化路径。",
+        "transfer": "迁移到 GPU 虚拟化与容器隔离。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "seymour-cray",
       "name": "Seymour Cray",
       "field": "物理布局、系统简洁性与超级计算",
@@ -5855,6 +7262,58 @@
       ]
     },
     {
+      "id": "pete-bannon",
+      "name": "Pete Bannon",
+      "field": "处理器与片上网络协同",
+      "core": "将内存控制与通信组织纳入处理器性能，而非只优化核心。",
+      "evidence": "Alpha 21364 Network Architecture 合作论文记录 Bannon 的架构角色与网络设计。",
+      "habits": [
+        "将内存控制与通信组织纳入处理器性能，而非只优化核心。",
+        "先固定任务、正确性与资源边界，再判断 处理器与片上网络协同 的收益。",
+        "把新增负担显式放入比较：热点和路由竞争使平均链路利用率掩盖尾部拥塞。"
+      ],
+      "questions": [
+        "核心吞吐翻倍，互连吞吐固定，整机在哪里停止扩展？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。热点和路由竞争使平均链路利用率掩盖尾部拥塞。",
+      "diagnostic": "按消息路径测注入率、拥塞与完成时间，扫并发及拓扑；通信主导即否证核心扩展。",
+      "notes": [
+        [
+          "e10",
+          "规模与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "The Alpha 21364 Network Architecture：合作论文",
+          "https://pages.cs.wisc.edu/~markhill/restricted/ieeemicro_21364network.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "处理器与片上网络协同挑战",
+        "skills": [
+          "S3",
+          "S5",
+          "S6"
+        ],
+        "question": "核心吞吐翻倍，互连吞吐固定，整机在哪里停止扩展？",
+        "variables": "N：节点；q：每节点消息/s；b：消息字节；B：瓶颈链路 B/s；参数需从待评估系统测量，以下为条件模型。",
+        "model": "链路需求约 Nqb×拓扑穿越系数；需低于可用 B，并检查排队。",
+        "crossover": "计算节省须超过新增通信关键路径与排队；不能从链路峰值推导 P99。",
+        "counterexample": "热点和路由竞争使平均链路利用率掩盖尾部拥塞。",
+        "validation": "按消息路径测注入率、拥塞与完成时间，扫并发及拓扑；通信主导即否证核心扩展。",
+        "transfer": "迁移到训练集群 collective 拓扑。"
+      },
+      "domain": "hpc",
+      "relatedDomains": [
+        "network"
+      ],
+      "additionBatch": 1
+    },
+    {
       "id": "mark-horowitz",
       "name": "Mark Horowitz",
       "field": "电路成本、能耗约束与任务匹配",
@@ -6082,6 +7541,165 @@
         "hpc",
         "datacenter"
       ]
+    },
+    {
+      "id": "steve-furber",
+      "name": "Steve Furber",
+      "field": "低复杂度实现与能效",
+      "core": "先压低实现与控制复杂性，再检验性能是否足够。",
+      "evidence": "CHM 记录其与 Sophie Wilson 合作设计 BBC Micro 与 ARM；本卡不将团队成果归于一人。",
+      "habits": [
+        "先压低实现与控制复杂性，再检验性能是否足够。",
+        "先固定任务、正确性与资源边界，再判断 低复杂度实现与能效 的收益。",
+        "把新增负担显式放入比较：外围持续功耗使低核心功率无法兑现低任务能量。"
+      ],
+      "questions": [
+        "简单核心能耗低 20%，但任务执行时间长 35%，是否更省电？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。外围持续功耗使低核心功率无法兑现低任务能量。",
+      "diagnostic": "匹配任务、频率策略和软件，测整机能量及延迟；未降低 J/合格任务即否证。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "CHM：Steve Furber",
+          "https://computerhistory.org/profile/steve-furber/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "低复杂度实现与能效挑战",
+        "skills": [
+          "S1",
+          "S7",
+          "S10"
+        ],
+        "question": "简单核心能耗低 20%，但任务执行时间长 35%，是否更省电？",
+        "variables": "P：平均功率 W；T：同任务秒数；E_other：外围 J；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E=P×T+E_other；同时检查截止时间。",
+        "crossover": "简单方案的功率比必须小于执行时间比的倒数，并计入外围。",
+        "counterexample": "外围持续功耗使低核心功率无法兑现低任务能量。",
+        "validation": "匹配任务、频率策略和软件，测整机能量及延迟；未降低 J/合格任务即否证。",
+        "transfer": "将判断迁移到小核服务器与大核服务器采购。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "david-brooks",
+      "name": "David Brooks",
+      "field": "功耗建模与微架构能效",
+      "core": "性能机制必须通过活动驱动的功耗与任务能量核算。",
+      "evidence": "Maurice Wilkes 官方说明记录其功耗模型、电路与微架构能效贡献。",
+      "habits": [
+        "性能机制必须通过活动驱动的功耗与任务能量核算。",
+        "先固定任务、正确性与资源边界，再判断 功耗建模与微架构能效 的收益。",
+        "把新增负担显式放入比较：静态功耗、频率变化和外围等待使核心模型偏离整机。"
+      ],
+      "questions": [
+        "IPC 提升 8% 但功率增加 12%，何时仍有系统价值？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。静态功耗、频率变化和外围等待使核心模型偏离整机。",
+      "diagnostic": "校准功率模型，匹配工作量与电压频率，比较实测整机 J/任务。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "功耗建模与微架构能效挑战",
+        "skills": [
+          "S7",
+          "S3",
+          "S9"
+        ],
+        "question": "IPC 提升 8% 但功率增加 12%，何时仍有系统价值？",
+        "variables": "P：平均 W；T：任务 s；E=P T；Q：SLO 合格吞吐；参数需从待评估系统测量，以下为条件模型。",
+        "model": "分别比较 E、Q/P 与延迟门槛，外围功率纳入整机。",
+        "crossover": "同任务能量要求 P_new/P_old < T_old/T_new；SLO 改善另评估。",
+        "counterexample": "静态功耗、频率变化和外围等待使核心模型偏离整机。",
+        "validation": "校准功率模型，匹配工作量与电压频率，比较实测整机 J/任务。",
+        "transfer": "迁移到 GPU 特化单元与功率预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "kevin-skadron",
+      "name": "Kevin Skadron",
+      "field": "温度、功率与持续性能",
+      "core": "按热稳态和空间热点评估性能，而非短时频率峰值。",
+      "evidence": "Maurice Wilkes 官方说明表彰其热感知架构建模与设计。",
+      "habits": [
+        "按热稳态和空间热点评估性能，而非短时频率峰值。",
+        "先固定任务、正确性与资源边界，再判断 温度、功率与持续性能 的收益。",
+        "把新增负担显式放入比较：局部热点导致限频，即使平均封装功率未触顶。"
+      ],
+      "questions": [
+        "短测快 10% 的设计在热稳态下降频，怎样定义赢家？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。局部热点导致限频，即使平均封装功率未触顶。",
+      "diagnostic": "持续负载至热稳态，测传感器、限频原因和有效吞吐，并改变冷却条件。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "温度、功率与持续性能挑战",
+        "skills": [
+          "S3",
+          "S7",
+          "S9"
+        ],
+        "question": "短测快 10% 的设计在热稳态下降频，怎样定义赢家？",
+        "variables": "T_steady：稳态温度；Q(t)：合格任务/s；P(t)：W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较稳定窗口内 ∫Q dt 与 ∫P dt；另检查温度安全边界。",
+        "crossover": "热稳态产出与能量优势必须持续，不以启动突发代替。",
+        "counterexample": "局部热点导致限频，即使平均封装功率未触顶。",
+        "validation": "持续负载至热稳态，测传感器、限频原因和有效吞吐，并改变冷却条件。",
+        "transfer": "迁移到机架热密度与液冷采购。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 1
     }
   ]
 }
