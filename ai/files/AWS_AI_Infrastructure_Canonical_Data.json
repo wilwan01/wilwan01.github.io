@@ -1,0 +1,7124 @@
+{
+  "vendor": "AWS",
+  "cutoff": "2026-09-28",
+  "sections": [
+    {
+      "id": "01",
+      "title": [
+        "Scope and executive synthesis",
+        "范围与核心判断"
+      ],
+      "blocks": [
+        {
+          "id": "01.scope",
+          "type": "prose",
+          "text": [
+            "Deep coverage: Graviton CPUs and Inferentia/Trainium accelerators. Full coverage: NeuronLink, UltraServer, Nitro, EFA and the Neuron software model. Period: 2015-28 September 2026; the CPU product sequence starts in 2018. FPGA instances and third-party GPUs are complementary context, not AWS-designed silicon. Reviewed milestones include re:Invent 2024/2025 materials, Graviton5 general availability in June 2026, and current Neuron architecture documentation.",
+            "深入覆盖 Graviton CPU 与 Inferentia／Trainium 加速器；完整覆盖 NeuronLink、UltraServer、Nitro、EFA 及 Neuron 软件模型。时间范围为 2015 年至 2026 年 9 月 28 日；CPU 产品序列始于 2018 年。FPGA 实例和第三方 GPU 作为配套背景，不归为 AWS 自研芯片。已审阅的里程碑包括 re:Invent 2024／2025 资料、2026 年 6 月 Graviton5 正式商用，以及当前 Neuron 架构文档。"
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "C01",
+            "E01",
+            "E02",
+            "E03"
+          ]
+        },
+        {
+          "id": "01.thesis",
+          "type": "prose",
+          "text": [
+            "AWS’s architectural strategy is to make specialization deployable through a stable cloud service boundary. Graviton supplies general compute; Trainium and Inferentia supply model compute; Nitro supplies isolation and infrastructure offload; EFA supplies distributed communication. The economic unit is an instance or a tightly connected system with a supported software stack. The principal engineering question is how much specialized silicon can be exposed without forcing customers to operate a bespoke machine.",
+            "AWS 的架构策略，是通过稳定的云服务边界交付专用化能力。Graviton 提供通用计算，Trainium 与 Inferentia 提供模型计算，Nitro 提供隔离及基础设施卸载，EFA 提供分布式通信。经济评价单位是配有受支持软件栈的实例或紧耦合系统。核心工程问题是：在不要求客户运维专用机器的前提下，能暴露多少专用芯片能力。"
+          ],
+          "sources": [
+            "P01",
+            "P07",
+            "P08",
+            "C01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": [
+        "Numerical and availability conventions",
+        "数值与可用性口径"
+      ],
+      "blocks": [
+        {
+          "id": "02.basis",
+          "type": "prose",
+          "text": [
+            "CPU counts are per package, not the largest multi-socket EC2 instance. A Graviton vCPU represents a physical core rather than an SMT thread. Accelerator figures are per physical device and dense; cFP8, FP8 and MXFP8 are not interchangeable formats. HBM GiB and GB are retained as published. NeuronLink totals whose direction is unspecified remain quoted totals rather than invented one-way bandwidth. Service GA, preview and future roadmap are separate statuses. n/d means not established; n/a means not applicable.",
+            "CPU 数量以封装为单位，不以最大多插槽 EC2 实例为单位。Graviton vCPU 对应物理核心，而不是 SMT 线程。加速器规格按物理设备计，采用稠密值；cFP8、FP8 与 MXFP8 不是可随意互换的格式。HBM 的 GiB 与 GB 保留资料原始单位。对未明确方向的 NeuronLink 总带宽，仅记录原始总量，不推造单方向值。服务正式商用、预览和未来路线图分别记录。n/d 表示未确定，n/a 表示不适用。"
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": [
+        "Graviton1 and Graviton2: establishing the platform",
+        "Graviton1 与 Graviton2：建立平台"
+      ],
+      "blocks": [
+        {
+          "id": "03.early",
+          "type": "prose",
+          "text": [
+            "The first Graviton A1 instances established an Arm64 deployment path in 2018. Graviton2 made that path a broad server platform through 64 Neoverse N1 cores, private L2 caches and an eight-channel memory interface. The move was more than an ISA substitution: software builds, native libraries, runtime optimization and instance sizing had to become routine. A single-thread-per-core model also changes the meaning of a vCPU when comparing against an SMT-based x86 instance.",
+            "首代 Graviton A1 实例于 2018 年建立 Arm64 部署路径。Graviton2 通过 64 个 Neoverse N1 核心、私有 L2 和八通道内存接口，把这一路径扩展成通用服务器平台。变化不只是替换 ISA：软件构建、原生库、运行时优化和实例配置都必须成为常规流程。单线程核心模型也改变了 vCPU 的含义，不能直接与启用 SMT 的 x86 实例按 vCPU 数量比较。"
+          ],
+          "sources": [
+            "P01",
+            "C01"
+          ]
+        },
+        {
+          "id": "03.buy",
+          "type": "prose",
+          "text": [
+            "Architectural interpretation: the migration succeeds when an application’s dependency graph is portable and its working set fits the memory and cache envelope. The useful experiments are fleet-representative throughput and tail latency at a fixed service objective. Compiler-generated Arm code is necessary but insufficient: synchronization primitives, cryptography, compression and managed runtimes can determine whether silicon resources translate into service capacity.",
+            "架构解读：迁移能否成功，取决于应用依赖是否可移植，以及工作集是否适合其内存和缓存配置。有效实验应在固定服务目标下测量代表真实机群的吞吐及尾延迟。编译器能生成 Arm 代码是必要条件，但并不充分；同步原语、加密、压缩及托管运行时，可能决定芯片资源能否转化为服务容量。"
+          ],
+          "sources": [
+            "P01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": [
+        "Graviton3-5: vector growth and a new chiplet boundary",
+        "Graviton3-5：向量能力与芯粒边界演进"
+      ],
+      "blocks": [
+        {
+          "id": "04.g34",
+          "type": "prose",
+          "text": [
+            "Graviton3 kept 64 cores while moving to Neoverse V1 and DDR5; Graviton3E is a related HPC-oriented variant rather than a separate ISA generation. Graviton4 increased the package to 96 Neoverse V2 cores and twelve DDR5 channels, with two-socket configurations exposed in selected large instances. Wider aggregate vector capability should not be confused with a fixed architectural SVE vector length: the V1 and V2 implementations organize their datapaths differently.",
+            "Graviton3 保持 64 核，转向 Neoverse V1 和 DDR5；Graviton3E 是相关的 HPC 优化变体，不是独立 ISA 代际。Graviton4 增至每封装 96 个 Neoverse V2 核心和十二个 DDR5 通道，部分大型实例提供双插槽配置。更强的聚合向量能力不能等同于固定的 SVE 架构向量长度：V1 和 V2 的数据通路组织不同。"
+          ],
+          "sources": [
+            "P01",
+            "E05",
+            "E06"
+          ]
+        },
+        {
+          "id": "04.g5",
+          "type": "prose",
+          "text": [
+            "Graviton5 changes the partitioning: four chiplets each integrate 48 cores, memory controllers and PCIe controllers. The package has 192 cores and 192 MB L3, supports DDR5-8800 and PCIe 6, and uses Neoverse V3. The previous separate I/O and memory-controller dies disappear from this organization. The vendor quotes up to 420 GB/s between chiplets without fully specifying the directional basis; it is retained as a quoted link figure. NUMA and cache partitioning must be interpreted at the selected VM size, not inferred from the package total.",
+            "Graviton5 改变分区方式：四颗芯粒分别集成 48 核、内存控制器及 PCIe 控制器。封装共 192 核、192 MB L3，支持 DDR5-8800 和 PCIe 6，采用 Neoverse V3。此前独立的 I/O 与内存控制器裸片不再出现在这种组织中。厂商公布芯粒间最高 420 GB/s，但未完整说明方向口径，本报告保留为原始链路数值。NUMA 与缓存分区必须结合所选 VM 大小理解，不能仅从封装总量推断。"
+          ],
+          "sources": [
+            "E01",
+            "P01"
+          ]
+        },
+        {
+          "id": "04.numa",
+          "type": "prose",
+          "text": [
+            "Architectural implication: placing memory controllers beside compute can reduce traffic that crosses a dedicated I/O boundary, but distributed controllers make locality and allocation policy more important. Doubling core count with twelve channels also means that per-core peak DRAM bandwidth need not rise with package bandwidth. Larger L3 can reduce traffic, but it cannot remove the streaming bandwidth limit. These two effects should be measured separately before attributing an application gain to core IPC.",
+            "架构含义：把内存控制器放在计算旁边，可减少跨独立 I/O 边界的流量，但分布式控制器提高了局部性与分配策略的重要性。核心数翻倍而仍为十二通道，也意味着每核 DRAM 峰值带宽不一定随封装总带宽增长。更大 L3 可以减少流量，却不能消除流式访问的带宽上限。在把应用提升归因于核心 IPC 之前，应分别测量这两种效应。"
+          ],
+          "sources": [
+            "E01",
+            "P01",
+            "E05"
+          ]
+        },
+        {
+          "id": "cpu",
+          "type": "table",
+          "table": "cpu"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": [
+        "Inferentia and Trainium1: the NeuronCore foundation",
+        "Inferentia 与 Trainium1：NeuronCore 基础"
+      ],
+      "blocks": [
+        {
+          "id": "05.inf",
+          "type": "prose",
+          "text": [
+            "Inferentia1 combines four NeuronCore-v1 units with external DRAM. It targets inference and benefits from pipelining work through cores. Inferentia2 and Trainium1 use NeuronCore-v2, HBM, separate tensor/vector/scalar engines and programmable GPSIMD resources. This shared core lineage does not make the cloud products identical: Inf2 and Trn1 expose different chip counts, networking and intended workload envelopes. The move to HBM makes larger models practical while increasing the importance of explicit data movement.",
+            "Inferentia1 组合四个 NeuronCore-v1 与外部 DRAM，面向推理，可通过核心间流水处理获益。Inferentia2 和 Trainium1 采用 NeuronCore-v2、HBM、分离的张量／向量／标量引擎及可编程 GPSIMD 资源。共享核心谱系不意味着云产品相同：Inf2 和 Trn1 提供不同芯片数量、网络及目标负载配置。HBM 使更大模型成为可能，也提高了显式数据搬移的重要性。"
+          ],
+          "sources": [
+            "P02",
+            "P05",
+            "P06"
+          ]
+        },
+        {
+          "id": "05.sram",
+          "type": "prose",
+          "text": [
+            "Software-managed SBUF and accumulation storage are architectural resources, not transparent caches. A kernel must arrange tensors to fit the array’s contraction dimension and the scratchpad’s partitioning. DMA overlap is therefore part of the algorithm. This is a useful distinction from a superficial “GPU alternative” description: the compiler and kernel author carry substantial responsibility for locality, even when a framework hides that responsibility from the model author.",
+            "软件管理的 SBUF 与累加存储是显式架构资源，不是透明缓存。内核必须按阵列归约维度和暂存区分区组织张量，因此 DMA 重叠本身就是算法的一部分。这比简单称为“GPU 替代品”更准确：即使框架向模型开发者隐藏这些责任，编译器及内核作者仍承担大量局部性管理工作。"
+          ],
+          "sources": [
+            "P09"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": [
+        "Trainium2, Trainium3 and the Trainium4 roadmap",
+        "Trainium2、Trainium3 与 Trainium4 路线图"
+      ],
+      "blocks": [
+        {
+          "id": "06.trn2",
+          "type": "prose",
+          "text": [
+            "Trainium2 expands to eight NeuronCore-v3 units, larger on-chip storage and a 96 GiB HBM system. Logical NeuronCore configuration can combine physical resources behind a larger logical core. Dedicated collective-control cores support communication alongside computation. Trn2 UltraServers extend the directly connected resource pool beyond one conventional server, so both the physical core count and the logical execution mode matter when interpreting utilization.",
+            "Trainium2 扩展至八个 NeuronCore-v3、更大片上存储及 96 GiB HBM。Logical NeuronCore 配置可把多个物理资源组合为更大的逻辑核心。专用集合控制核心支持通信与计算并行。Trn2 UltraServer 把直接连接资源池扩展到传统单服务器之外，因此解释利用率时必须同时考虑物理核心数和逻辑执行模式。"
+          ],
+          "sources": [
+            "P03",
+            "C01"
+          ]
+        },
+        {
+          "id": "06.trn3",
+          "type": "prose",
+          "text": [
+            "Trainium3 retains eight physical cores but changes the low-precision datapath. The NKI guide explains quad-packed microscaling inputs on a physical 128×128 array, presenting a larger logical contraction dimension. The overview gives 2,517 TFLOPS for MXFP8/MXFP4 and 671 TFLOPS for dense BF16. Thus the headline low-precision improvement is not a universal BF16 improvement. Trn3 UltraServers reach 144 chips and use NeuronSwitch-v1; their aggregate improvement also includes a larger chip count.",
+            "Trainium3 保留八个物理核心，但改变低精度数据通路。NKI 指南说明，在物理 128×128 阵列上使用四元素打包的微缩放输入，向程序呈现更大的逻辑归约维度。概述给出 MXFP8／MXFP4 为 2,517 TFLOPS，稠密 BF16 为 671 TFLOPS。因此，低精度的显著提升不等于 BF16 普遍提升。Trn3 UltraServer 达到 144 芯片，使用 NeuronSwitch-v1；其系统聚合提升还包含芯片数增加的贡献。"
+          ],
+          "sources": [
+            "P04",
+            "P09",
+            "E02"
+          ]
+        },
+        {
+          "id": "06.trn4",
+          "type": "prose",
+          "text": [
+            "Trainium4 remains a roadmap item in the reviewed disclosure. AWS states intended NVLink Fusion support alongside Graviton and EFA in MGX-based infrastructure. This is a future integration direction, not a reason to relabel existing NeuronLink systems as NVLink systems. Qualification must ultimately cover memory semantics, collective software, fault handling and topology as well as physical link compatibility.",
+            "在已审阅披露中，Trainium4 仍为路线图项目。AWS 表示计划支持 NVLink Fusion，并在基于 MGX 的基础设施中结合 Graviton 和 EFA。这是未来集成方向，不能据此把现有 NeuronLink 系统重新标为 NVLink 系统。最终验证不仅需要物理链路兼容，还应覆盖内存语义、集合软件、故障处理与拓扑。"
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": [
+        "Accelerator comparison",
+        "加速器对照"
+      ],
+      "blocks": [
+        {
+          "id": "gpu",
+          "type": "table",
+          "table": "gpu"
+        },
+        {
+          "id": "07.conflict",
+          "type": "prose",
+          "text": [
+            "Source reconciliation: the current Trainium3 overview reports 4.9 TB/s HBM and 16 collective cores; the NKI guide gives 4.7 TB/s and 20 CC-Cores in its introductory list. The overview is used consistently for package comparison, while the guide supports datapath discussion. Likewise, Trainium1 is rounded to 190 TFLOPS in its own guide and 191 in a later comparison. These discrepancies are retained in the evidence record rather than silently combined.",
+            "资料对照：当前 Trainium3 概述给出 4.9 TB/s HBM 与 16 个集合核心，NKI 指南开头则给出 4.7 TB/s 与 20 个 CC-Core。封装比较统一采用概述，数据通路讨论采用指南。另外，Trainium1 自身指南使用 190 TFLOPS，后续对比表使用 191。这些差异保留在证据记录中，不进行无说明的混合。"
+          ],
+          "sources": [
+            "P02",
+            "P03",
+            "P04",
+            "P09"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": [
+        "Nitro and EFA: infrastructure versus AI traffic",
+        "Nitro 与 EFA：基础设施和 AI 流量"
+      ],
+      "blocks": [
+        {
+          "id": "08.nitro",
+          "type": "prose",
+          "text": [
+            "Nitro separates much of the networking, storage and management work from customer CPU execution. Its security chip, cards and minimal hypervisor form a system, not a single AI NIC. Successive Nitro versions appear across EC2 CPU and accelerator families; their network limits depend on the instance. Nitro v6 is publicly associated with the 2025 generation of network-optimized instances. The 2026 Nitro Isolation Engine adds a formally verified isolation component, which is a specific security property rather than proof that every part of the system is formally verified.",
+            "Nitro 把大量网络、存储和管理工作与客户 CPU 执行分离。其安全芯片、板卡和精简虚拟机监控器构成系统，而不是单一 AI 网卡。后续 Nitro 版本分布于不同 EC2 CPU 与加速器系列，网络上限取决于实例。Nitro v6 已用于公开的 2025 年网络优化实例。2026 年 Nitro Isolation Engine 增加经过形式化验证的隔离组件；这是一项具体安全属性，不意味着整个系统的所有部分均经过形式化验证。"
+          ],
+          "sources": [
+            "P07",
+            "P10",
+            "E01"
+          ]
+        },
+        {
+          "id": "08.efa",
+          "type": "prose",
+          "text": [
+            "EFA presents an application communication interface backed by AWS’s scalable reliable datagram transport. Multipath delivery and fast recovery address the variability of a shared datacenter network. The accelerator collective library, provider interface, EFA device and underlying fabric are separate layers. Their combined behavior determines job performance; a port line rate alone says little about small-message latency, tail behavior or communication-compute overlap. ENA front-end traffic and EFA collective traffic should also remain distinct in the system map.",
+            "EFA 提供应用通信接口，其底层采用 AWS 的可扩展可靠数据报传输。多路径传输及快速恢复应对共享数据中心网络的波动。加速器集合库、接口提供者、EFA 设备和底层网络属于不同层次，共同行为决定作业性能；单看端口速率，无法说明小消息延迟、尾部行为或通信计算重叠。系统图还应区分 ENA 前端流量与 EFA 集合通信流量。"
+          ],
+          "sources": [
+            "P08",
+            "P11"
+          ]
+        },
+        {
+          "id": "network",
+          "type": "table",
+          "table": "network"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": [
+        "Systems, software and bandwidth hierarchy",
+        "系统、软件与带宽层次"
+      ],
+      "blocks": [
+        {
+          "id": "09.sw",
+          "type": "prose",
+          "text": [
+            "Neuron provides graph compilation, runtime, libraries and framework integration. NKI exposes the hardware memory hierarchy to specialist kernel authors; logical-core configuration changes how physical resources are presented. A production migration should track supported operators, compilation cost, numerical behavior, profiling and collective overlap together. AWS FPGA instances remain a programmable acceleration option, while GPUs remain part of the same cloud portfolio; neither is evidence that AWS designed the underlying third-party silicon.",
+            "Neuron 提供图编译、运行时、库和框架集成。NKI 向专业内核作者暴露硬件存储层次，逻辑核心配置则改变物理资源的呈现方式。生产迁移应共同跟踪算子支持、编译成本、数值行为、性能分析及集合通信重叠。AWS FPGA 实例仍提供可编程加速选择，GPU 也继续存在于同一云产品组合中；这些并不意味着底层第三方芯片由 AWS 设计。"
+          ],
+          "sources": [
+            "P03",
+            "P09",
+            "C01"
+          ]
+        },
+        {
+          "id": "system",
+          "type": "table",
+          "table": "system"
+        },
+        {
+          "id": "links",
+          "type": "table",
+          "table": "links"
+        },
+        {
+          "id": "era1",
+          "type": "figure",
+          "figure": "era1"
+        },
+        {
+          "id": "era2",
+          "type": "figure",
+          "figure": "era2"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": [
+        "Derived balance and engineering consequences",
+        "推导平衡与工程后果"
+      ],
+      "blocks": [
+        {
+          "id": "ratios",
+          "type": "table",
+          "table": "ratios"
+        },
+        {
+          "id": "10.trade",
+          "type": "prose",
+          "text": [
+            "Derived CPU balance: Graviton4 provides 537.6/96 = 5.6 GB/s per core; Graviton5 provides 844.8/192 = 4.4 GB/s per core, a 21.4% reduction in this theoretical streaming metric. Package L3 per core rises from 0.375 MB to 1 MB, before VM partitioning. The architectural bet is that improved cores, more cache and locality compensate for less bandwidth per core on enough real workloads. A streaming workload and a large instruction-footprint service can therefore move in opposite directions.",
+            "CPU 平衡推导：Graviton4 为 537.6/96 = 5.6 GB/s 每核，Graviton5 为 844.8/192 = 4.4 GB/s 每核，该理论流式指标下降 21.4%。VM 分区前的封装 L3 每核则从 0.375 MB 增至 1 MB。其架构选择，是依靠更强核心、更多缓存及局部性，在足够多真实负载上补偿每核带宽减少。因此，流式负载与指令工作集较大的服务，可能出现不同的性能趋势。"
+          ],
+          "sources": [
+            "P01",
+            "E01",
+            "E05"
+          ]
+        },
+        {
+          "id": "10.eval",
+          "type": "prose",
+          "text": [
+            "For accelerators, Trainium3 improves memory bandwidth per BF16 FLOP substantially because BF16 compute remains nearly flat while memory bandwidth rises. Against its faster MX datapath, the bandwidth balance is tighter. This is why a procurement model should carry separate BF16 and microscaling rooflines, and why a token-throughput claim needs batch size and latency limits. System-level gains also depend on whether the model can exploit the enlarged scale-up domain without adding excessive communication or idle capacity.",
+            "对加速器而言，Trainium3 的 BF16 算力基本不变而内存带宽提高，因此每 BF16 FLOP 的存储带宽明显改善；相对更快的 MX 数据通路，带宽平衡则更紧。采购模型应分别保留 BF16 与微缩放精度的 Roofline，token 吞吐表述也必须附带批量及延迟限制。系统收益还取决于模型能否利用扩大的纵向域，而不引入过多通信或闲置容量。"
+          ],
+          "sources": [
+            "P03",
+            "P04",
+            "P09",
+            "E02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": [
+        "Conference map, software timeline and naming",
+        "会议映射、软件时间线与命名"
+      ],
+      "blocks": [
+        {
+          "id": "conference",
+          "type": "table",
+          "table": "conference"
+        },
+        {
+          "id": "11.academic",
+          "type": "prose",
+          "text": [
+            "The reviewed corpus supports stronger implementation coverage through AWS architecture guides than through a verified ISCA/MICRO/HPCA/ASPLOS or ISSCC product-paper sequence. No such sequence is invented. Hot Chips was searched, but no specific AWS generation talk is used as an implementation source in this edition. This is a disclosure-channel difference from Google, not evidence of less architectural sophistication. re:Invent materials establish deployment and system context; Neuron and Graviton guides supply the detailed programming-visible architecture.",
+            "已审阅资料主要通过 AWS 架构指南提供实现细节，而非已经核实的 ISCA／MICRO／HPCA／ASPLOS 或 ISSCC 产品论文序列。本报告不虚构此类序列。已检索 Hot Chips，但本版未把某个 AWS 代际演讲作为实现来源。这是与 Google 不同的披露渠道，并不意味着架构技术较弱。re:Invent 资料建立部署与系统背景，Neuron 和 Graviton 指南提供编程可见的详细架构。"
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P09",
+            "C01"
+          ]
+        },
+        {
+          "id": "software",
+          "type": "table",
+          "table": "software"
+        },
+        {
+          "id": "cross",
+          "type": "table",
+          "table": "cross"
+        },
+        {
+          "id": "11.gaps",
+          "type": "prose",
+          "text": [
+            "Open implementation fields include package power, precise per-die process and packaging information for several accelerator generations, and fully directional NeuronLink electrical specifications. The system tables keep rack power and per-accelerator EFA bandwidth n/d when the selected configuration is not fixed. The next decision-relevant evidence is a matched workload comparison with compilation and communication costs included, rather than an extrapolation from chip peak to fleet efficiency.",
+            "仍未确定的实现字段包括封装功耗、部分加速器代际的逐裸片工艺和封装信息，以及完整说明方向的 NeuronLink 电气规格。当未固定具体配置时，系统表对机架功耗及每加速器 EFA 带宽保留 n/d。下一步对决策最有价值的证据，是把编译和通信成本纳入的同负载比较，而不是从芯片峰值外推机群效率。"
+          ],
+          "sources": [
+            "P03",
+            "P04",
+            "P08"
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": {
+    "cpu": {
+      "id": "cpu",
+      "title": [
+        "Graviton generations",
+        "Graviton 代际"
+      ],
+      "headers": [
+        [
+          "Generation / reference SKU",
+          "代际／参考 SKU"
+        ],
+        [
+          "Codename",
+          "代号"
+        ],
+        [
+          "GA",
+          "正式商用"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Core µarch",
+          "核心微架构"
+        ],
+        [
+          "Cores / threads",
+          "核心／线程"
+        ],
+        [
+          "Process per die",
+          "各裸片工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "L2 per core",
+          "每核 L2"
+        ],
+        [
+          "L3 / domain",
+          "L3／共享域"
+        ],
+        [
+          "Memory: channels; rate; GB/s",
+          "内存：通道；速率；GB/s"
+        ],
+        [
+          "Sockets / links",
+          "插槽／互联"
+        ],
+        [
+          "PCIe / CXL",
+          "PCIe／CXL"
+        ],
+        [
+          "TDP",
+          "TDP"
+        ],
+        [
+          "Vector / matrix ISA",
+          "向量／矩阵 ISA"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "g1",
+          "values": [
+            [
+              "Graviton / A1",
+              "Graviton / A1"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2018",
+              "2018"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ],
+            [
+              "Arm64",
+              "Arm64"
+            ],
+            [
+              "16 / 16",
+              "16 / 16"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "DDR4; n/d",
+              "DDR4; n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Arm64",
+              "Arm64"
+            ]
+          ],
+          "sources": [
+            "E07"
+          ]
+        },
+        {
+          "id": "g2",
+          "values": [
+            [
+              "Graviton2",
+              "Graviton2"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2020",
+              "2020"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Neoverse N1",
+              "Neoverse N1"
+            ],
+            [
+              "64 / 64",
+              "64 / 64"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "1 MB",
+              "1 MB"
+            ],
+            [
+              "32 MB",
+              "32 MB"
+            ],
+            [
+              "8 × DDR4; rate n/d",
+              "8 × DDR4; rate n/d"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2 × 128-bit Neon",
+              "2 × 128-bit Neon"
+            ]
+          ],
+          "sources": [
+            "P01"
+          ]
+        },
+        {
+          "id": "g3",
+          "values": [
+            [
+              "Graviton3 / 3E",
+              "Graviton3 / 3E"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2022 / 2023",
+              "2022 / 2023"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Neoverse V1",
+              "Neoverse V1"
+            ],
+            [
+              "64 / 64",
+              "64 / 64"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "7 dies; split compute/memory/I/O",
+              "7 裸片；计算／内存／I/O 分离"
+            ],
+            [
+              "1 MB",
+              "1 MB"
+            ],
+            [
+              "32 MB",
+              "32 MB"
+            ],
+            [
+              "8 × DDR5; rate n/d",
+              "8 × DDR5; rate n/d"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2 × 256-bit SVE; BF16",
+              "2 × 256-bit SVE; BF16"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E01",
+            "E06"
+          ]
+        },
+        {
+          "id": "g4",
+          "values": [
+            [
+              "Graviton4",
+              "Graviton4"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Neoverse V2",
+              "Neoverse V2"
+            ],
+            [
+              "96 / 96",
+              "96 / 96"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Separate controller dies",
+              "独立控制器裸片"
+            ],
+            [
+              "2 MB",
+              "2 MB"
+            ],
+            [
+              "36 MB",
+              "36 MB"
+            ],
+            [
+              "12 × DDR5-5600; 537.6 GB/s",
+              "12 × DDR5-5600; 537.6 GB/s"
+            ],
+            [
+              "1-2; link n/d",
+              "1-2；链路 n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "4 × 128-bit SVE; SVE2",
+              "4 × 128-bit SVE; SVE2"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E01",
+            "E05"
+          ]
+        },
+        {
+          "id": "g5",
+          "values": [
+            [
+              "Graviton5",
+              "Graviton5"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2026-06-10",
+              "2026-06-10"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Neoverse V3",
+              "Neoverse V3"
+            ],
+            [
+              "192 / 192",
+              "192 / 192"
+            ],
+            [
+              "3 nm",
+              "3 nm"
+            ],
+            [
+              "4 × 48-core chiplets",
+              "4 × 48 核芯粒"
+            ],
+            [
+              "2 MB",
+              "2 MB"
+            ],
+            [
+              "192 MB package; VM partitioned",
+              "封装 192 MB；按 VM 分区"
+            ],
+            [
+              "12 × DDR5-8800; 844.8 GB/s",
+              "12 × DDR5-8800; 844.8 GB/s"
+            ],
+            [
+              "NUMA 2/4 regions physical",
+              "物理 NUMA 2／4 域"
+            ],
+            [
+              "PCIe 6; CXL n/d",
+              "PCIe 6; CXL n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "4 × 128-bit SVE; Armv9.2",
+              "4 × 128-bit SVE; Armv9.2"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E01",
+            "E03"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          0,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "gpu": {
+      "id": "gpu",
+      "title": [
+        "Inferentia and Trainium",
+        "Inferentia 与 Trainium"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Architecture",
+          "架构"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Process",
+          "工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "Compute units",
+          "计算单元"
+        ],
+        [
+          "Dense BF16",
+          "稠密 BF16"
+        ],
+        [
+          "Dense FP8",
+          "稠密 FP8"
+        ],
+        [
+          "Dense FP6 / FP4",
+          "稠密 FP6／FP4"
+        ],
+        [
+          "FP64 vector / matrix",
+          "FP64 向量／矩阵"
+        ],
+        [
+          "Memory: type; stacks; GB; TB/s",
+          "内存：类型；堆栈；GB；TB/s"
+        ],
+        [
+          "LLC / SRAM",
+          "末级缓存／SRAM"
+        ],
+        [
+          "Scale-up: links; GB/s per direction; domain",
+          "纵向扩展：链路；单向 GB/s；域"
+        ],
+        [
+          "Host link",
+          "主机连接"
+        ],
+        [
+          "Power / cooling",
+          "功耗／散热"
+        ],
+        [
+          "Form factor",
+          "形态"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "i1",
+          "values": [
+            [
+              "Inferentia1",
+              "Inferentia1"
+            ],
+            [
+              "NeuronCore-v1",
+              "NeuronCore-v1"
+            ],
+            [
+              "2019",
+              "2019"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "64 TFLOPS",
+              "64 TFLOPS"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "DRAM; 8 GiB; 50 GiB/s",
+              "DRAM; 8 GiB; 50 GiB/s"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "NeuronLink; n/d",
+              "NeuronLink; n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "P05",
+            "E08"
+          ]
+        },
+        {
+          "id": "t1",
+          "values": [
+            [
+              "Trainium1",
+              "Trainium1"
+            ],
+            [
+              "NeuronCore-v2",
+              "NeuronCore-v2"
+            ],
+            [
+              "2022",
+              "2022"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "190 TFLOPS",
+              "190 TFLOPS"
+            ],
+            [
+              "190 cFP8 TFLOPS",
+              "190 cFP8 TFLOPS"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM; 32 GiB; 820 GiB/s",
+              "HBM; 32 GiB; 820 GiB/s"
+            ],
+            [
+              "48 MiB SBUF",
+              "48 MiB SBUF"
+            ],
+            [
+              "NeuronLink-v2; 16 chips",
+              "NeuronLink-v2; 16 chips"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "P02",
+            "P03"
+          ]
+        },
+        {
+          "id": "i2",
+          "values": [
+            [
+              "Inferentia2",
+              "Inferentia2"
+            ],
+            [
+              "NeuronCore-v2",
+              "NeuronCore-v2"
+            ],
+            [
+              "2023",
+              "2023"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "190 TFLOPS",
+              "190 TFLOPS"
+            ],
+            [
+              "190 cFP8 TFLOPS",
+              "190 cFP8 TFLOPS"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM; 32 GiB; 820 GiB/s",
+              "HBM; 32 GiB; 820 GiB/s"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "NeuronLink-v2; ≤12 chips/instance",
+              "NeuronLink-v2; ≤12 chips/instance"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "P06",
+            "E09"
+          ]
+        },
+        {
+          "id": "t2",
+          "values": [
+            [
+              "Trainium2",
+              "Trainium2"
+            ],
+            [
+              "NeuronCore-v3",
+              "NeuronCore-v3"
+            ],
+            [
+              "2024-12",
+              "2024-12"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "667 TFLOPS",
+              "667 TFLOPS"
+            ],
+            [
+              "1,299 TFLOPS",
+              "1,299 TFLOPS"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM; 96 GiB; 2.9 TB/s",
+              "HBM; 96 GiB; 2.9 TB/s"
+            ],
+            [
+              "224 MiB SBUF",
+              "224 MiB SBUF"
+            ],
+            [
+              "1.28 TB/s quoted; 64 chips",
+              "1.28 TB/s quoted; 64 chips"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "P03",
+            "E02"
+          ]
+        },
+        {
+          "id": "t3",
+          "values": [
+            [
+              "Trainium3",
+              "Trainium3"
+            ],
+            [
+              "NeuronCore-v4",
+              "NeuronCore-v4"
+            ],
+            [
+              "2025-12",
+              "2025-12"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "3 nm",
+              "3 nm"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "671 TFLOPS",
+              "671 TFLOPS"
+            ],
+            [
+              "2,517 MXFP8 TFLOPS",
+              "2,517 MXFP8 TFLOPS"
+            ],
+            [
+              "2,517 MXFP4 TFLOPS",
+              "2,517 MXFP4 TFLOPS"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM3e; 144 GiB; 4.9 TB/s",
+              "HBM3e; 144 GiB; 4.9 TB/s"
+            ],
+            [
+              "256 MiB SBUF",
+              "256 MiB SBUF"
+            ],
+            [
+              "2.56 TB/s quoted; 144 chips",
+              "2.56 TB/s quoted; 144 chips"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "P04",
+            "E04"
+          ]
+        },
+        {
+          "id": "t4",
+          "values": [
+            [
+              "Trainium4",
+              "Trainium4"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Roadmap",
+              "路线图"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "NVLink Fusion planned",
+              "NVLink Fusion planned"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AWS platform",
+              "AWS 平台"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          11,
+          12
+        ],
+        [
+          0,
+          13,
+          14,
+          15,
+          16
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "network": {
+      "id": "network",
+      "title": [
+        "Offload and network families",
+        "卸载与网络家族"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Class",
+          "类别"
+        ],
+        [
+          "Ports × speed",
+          "端口×速率"
+        ],
+        [
+          "SerDes",
+          "SerDes"
+        ],
+        [
+          "Host interface",
+          "主机接口"
+        ],
+        [
+          "Programmable engine",
+          "可编程引擎"
+        ],
+        [
+          "Embedded CPU",
+          "嵌入式 CPU"
+        ],
+        [
+          "On-card memory",
+          "板载内存"
+        ],
+        [
+          "Transport / RDMA",
+          "传输／RDMA"
+        ],
+        [
+          "Congestion control",
+          "拥塞控制"
+        ],
+        [
+          "Key offloads",
+          "主要卸载"
+        ],
+        [
+          "Power",
+          "功耗"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "n",
+          "values": [
+            [
+              "Nitro System",
+              "Nitro System"
+            ],
+            [
+              "2017 onward",
+              "2017 onward"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Infrastructure offload / isolation",
+              "基础设施卸载／隔离"
+            ],
+            [
+              "Instance-dependent",
+              "依实例"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "PCIe; n/d",
+              "PCIe; n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "ENA / EBS",
+              "ENA / EBS"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "VPC, storage, management",
+              "VPC、存储、管理"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P07",
+            "P10"
+          ]
+        },
+        {
+          "id": "e",
+          "values": [
+            [
+              "EFA",
+              "EFA"
+            ],
+            [
+              "2019 onward",
+              "2019 onward"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "AI / HPC network interface",
+              "AI／HPC 网络接口"
+            ],
+            [
+              "Instance-dependent",
+              "依实例"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "SRD / libfabric",
+              "SRD / libfabric"
+            ],
+            [
+              "Multipath / recovery",
+              "多路径／恢复"
+            ],
+            [
+              "OS-bypass communication",
+              "绕过操作系统通信"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P08",
+            "P11"
+          ]
+        },
+        {
+          "id": "s",
+          "values": [
+            [
+              "NeuronSwitch-v1",
+              "NeuronSwitch-v1"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Scale-up switch",
+              "纵向扩展交换机"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "NeuronLink",
+              "NeuronLink"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Device fabric",
+              "设备网络"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          12,
+          13
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "system": {
+      "id": "system",
+      "title": [
+        "System progression",
+        "系统演进"
+      ],
+      "headers": [
+        [
+          "Platform",
+          "平台"
+        ],
+        [
+          "Year / milestone",
+          "年份／里程碑"
+        ],
+        [
+          "CPU / accelerator count",
+          "CPU／加速器数量"
+        ],
+        [
+          "Scale-up domain",
+          "纵向扩展域"
+        ],
+        [
+          "Scale-out per accelerator",
+          "每加速器横向带宽"
+        ],
+        [
+          "Rack power",
+          "机架功耗"
+        ],
+        [
+          "Cooling",
+          "散热"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "t1",
+          "values": [
+            [
+              "Trn1",
+              "Trn1"
+            ],
+            [
+              "2022",
+              "2022"
+            ],
+            [
+              "16 Trainium1",
+              "16 Trainium1"
+            ],
+            [
+              "16",
+              "16"
+            ],
+            [
+              "Instance-dependent; n/d here",
+              "依实例；此处 n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P02",
+            "C01"
+          ]
+        },
+        {
+          "id": "t2",
+          "values": [
+            [
+              "Trn2 UltraServer",
+              "Trn2 UltraServer"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "64 Trainium2",
+              "64 Trainium2"
+            ],
+            [
+              "64",
+              "64"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P03",
+            "E02"
+          ]
+        },
+        {
+          "id": "t3",
+          "values": [
+            [
+              "Trn3 UltraServer",
+              "Trn3 UltraServer"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "144 Trainium3",
+              "144 Trainium3"
+            ],
+            [
+              "144",
+              "144"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "links": {
+      "id": "links",
+      "title": [
+        "Interconnect lineage",
+        "互联谱系"
+      ],
+      "headers": [
+        [
+          "Interconnect",
+          "互联"
+        ],
+        [
+          "Year / generation",
+          "年份／代际"
+        ],
+        [
+          "Lane rate",
+          "通道速率"
+        ],
+        [
+          "Lanes / link",
+          "每链路通道"
+        ],
+        [
+          "GB/s per link per direction",
+          "每链路单向 GB/s"
+        ],
+        [
+          "Links / device",
+          "每设备链路"
+        ],
+        [
+          "Topology",
+          "拓扑"
+        ],
+        [
+          "Domain limit",
+          "域规模"
+        ],
+        [
+          "Coherence / semantics",
+          "一致性／语义"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "l2",
+          "values": [
+            [
+              "NeuronLink-v2",
+              "NeuronLink-v2"
+            ],
+            [
+              "2022",
+              "2022"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "16",
+              "16"
+            ],
+            [
+              "Device communication; not CPU coherence",
+              "设备通信；非 CPU 一致性"
+            ]
+          ],
+          "sources": [
+            "P02",
+            "P03"
+          ]
+        },
+        {
+          "id": "l3",
+          "values": [
+            [
+              "NeuronLink-v3",
+              "NeuronLink-v3"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "64",
+              "64"
+            ],
+            [
+              "Device communication; not CPU coherence",
+              "设备通信；非 CPU 一致性"
+            ]
+          ],
+          "sources": [
+            "P03"
+          ]
+        },
+        {
+          "id": "l4",
+          "values": [
+            [
+              "NeuronLink-v4",
+              "NeuronLink-v4"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "NeuronSwitch-v1",
+              "NeuronSwitch-v1"
+            ],
+            [
+              "144",
+              "144"
+            ],
+            [
+              "Device communication; not CPU coherence",
+              "设备通信；非 CPU 一致性"
+            ]
+          ],
+          "sources": [
+            "P04",
+            "E02"
+          ]
+        },
+        {
+          "id": "lf",
+          "values": [
+            [
+              "NVLink Fusion",
+              "NVLink Fusion"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Planned",
+              "计划"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Device communication; not CPU coherence",
+              "设备通信；非 CPU 一致性"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          5,
+          6,
+          7,
+          8
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "ratios": {
+      "id": "ratios",
+      "title": [
+        "Per-device derived ratios",
+        "每设备推导比值"
+      ],
+      "headers": [
+        [
+          "Device",
+          "设备"
+        ],
+        [
+          "Memory BW / BF16, B/FLOP",
+          "存储带宽／BF16，B/FLOP"
+        ],
+        [
+          "BW / low-precision, B/FLOP",
+          "带宽／低精度，B/FLOP"
+        ],
+        [
+          "Capacity / BF16, B·s/FLOP",
+          "容量／BF16，B·s/FLOP"
+        ],
+        [
+          "Performance / W",
+          "性能／W"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "Trainium1",
+          "values": [
+            [
+              "Trainium1",
+              "Trainium1"
+            ],
+            [
+              "0.004634",
+              "0.004634"
+            ],
+            [
+              "0.004634",
+              "0.004634"
+            ],
+            [
+              "0.0001808",
+              "0.0001808"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P02"
+          ]
+        },
+        {
+          "id": "Trainium2",
+          "values": [
+            [
+              "Trainium2",
+              "Trainium2"
+            ],
+            [
+              "0.004348",
+              "0.004348"
+            ],
+            [
+              "0.002232",
+              "0.002232"
+            ],
+            [
+              "0.0001545",
+              "0.0001545"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P03"
+          ]
+        },
+        {
+          "id": "Trainium3",
+          "values": [
+            [
+              "Trainium3",
+              "Trainium3"
+            ],
+            [
+              "0.007303",
+              "0.007303"
+            ],
+            [
+              "0.001947",
+              "0.001947"
+            ],
+            [
+              "0.0002304",
+              "0.0002304"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P04"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "conference": {
+      "id": "conference",
+      "title": [
+        "Verified disclosure channels",
+        "已核实披露渠道"
+      ],
+      "headers": [
+        [
+          "Venue",
+          "会议／活动"
+        ],
+        [
+          "Year",
+          "年份"
+        ],
+        [
+          "Paper / talk / disclosure",
+          "论文／演讲／披露"
+        ],
+        [
+          "Presenter / authors",
+          "报告人／作者"
+        ],
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Evidence type",
+          "证据类型"
+        ],
+        [
+          "Source",
+          "来源"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "r",
+          "values": [
+            [
+              "re:Invent",
+              "re:Invent"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "CMP207 AWS accelerated computing",
+              "CMP207 AWS accelerated computing"
+            ],
+            [
+              "AWS",
+              "AWS"
+            ],
+            [
+              "Trainium2 / Nitro / EFA",
+              "Trainium2 / Nitro / EFA"
+            ],
+            [
+              "Architecture and systems",
+              "架构与系统"
+            ],
+            [
+              "C01",
+              "C01"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "r5",
+          "values": [
+            [
+              "re:Invent",
+              "re:Invent"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "Trainium3 and Trainium4 outlook",
+              "Trainium3 and Trainium4 outlook"
+            ],
+            [
+              "AWS",
+              "AWS"
+            ],
+            [
+              "Trainium3 / 4",
+              "Trainium3 / 4"
+            ],
+            [
+              "GA / roadmap",
+              "正式商用／路线图"
+            ],
+            [
+              "E02 E04",
+              "E02 E04"
+            ]
+          ],
+          "sources": [
+            "E02",
+            "E04"
+          ]
+        },
+        {
+          "id": "su",
+          "values": [
+            [
+              "AWS Summit",
+              "AWS Summit"
+            ],
+            [
+              "2022",
+              "2022"
+            ],
+            [
+              "The journey of silicon innovation at AWS",
+              "The journey of silicon innovation at AWS"
+            ],
+            [
+              "AWS",
+              "AWS"
+            ],
+            [
+              "Graviton / Nitro",
+              "Graviton / Nitro"
+            ],
+            [
+              "Portfolio and systems",
+              "产品组合与系统"
+            ],
+            [
+              "C02",
+              "C02"
+            ]
+          ],
+          "sources": [
+            "C02"
+          ]
+        },
+        {
+          "id": "sc",
+          "values": [
+            [
+              "Amazon Science",
+              "Amazon Science"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "Graviton5 chiplet architecture",
+              "Graviton5 chiplet architecture"
+            ],
+            [
+              "Ali Saidi",
+              "Ali Saidi"
+            ],
+            [
+              "Graviton5",
+              "Graviton5"
+            ],
+            [
+              "Vendor technical disclosure; not conference paper",
+              "厂商技术披露；非会议论文"
+            ],
+            [
+              "E01",
+              "E01"
+            ]
+          ],
+          "sources": [
+            "E01"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          3,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "software": {
+      "id": "software",
+      "title": [
+        "Hardware and software alignment",
+        "硬件与软件对应"
+      ],
+      "headers": [
+        [
+          "Release",
+          "版本"
+        ],
+        [
+          "Date",
+          "日期"
+        ],
+        [
+          "Hardware",
+          "硬件"
+        ],
+        [
+          "Feature",
+          "特性"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "NeuronCore-v1 support",
+              "NeuronCore-v1 support"
+            ],
+            [
+              "2019",
+              "2019"
+            ],
+            [
+              "Inferentia1",
+              "Inferentia1"
+            ],
+            [
+              "Inference compilation / pipeline",
+              "推理编译／流水"
+            ]
+          ],
+          "sources": [
+            "P05"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "NeuronCore-v2 support",
+              "NeuronCore-v2 support"
+            ],
+            [
+              "2022-2023",
+              "2022-2023"
+            ],
+            [
+              "Trainium1 / Inferentia2",
+              "Trainium1 / Inferentia2"
+            ],
+            [
+              "Dynamic shapes; GPSIMD operators",
+              "动态形状；GPSIMD 算子"
+            ]
+          ],
+          "sources": [
+            "P02",
+            "P06"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "NKI / LNC",
+              "NKI / LNC"
+            ],
+            [
+              "2024-2026",
+              "2024-2026"
+            ],
+            [
+              "Trainium2 / 3",
+              "Trainium2 / 3"
+            ],
+            [
+              "Explicit kernels / logical cores",
+              "显式内核／逻辑核心"
+            ]
+          ],
+          "sources": [
+            "P03",
+            "P09"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "cross": {
+      "id": "cross",
+      "title": [
+        "Product crosswalk",
+        "产品命名对照"
+      ],
+      "headers": [
+        [
+          "Silicon",
+          "芯片"
+        ],
+        [
+          "Service",
+          "服务"
+        ],
+        [
+          "Core / fabric",
+          "核心／网络"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Inferentia1 / 2",
+              "Inferentia1 / 2"
+            ],
+            [
+              "Inf1 / Inf2",
+              "Inf1 / Inf2"
+            ],
+            [
+              "NeuronCore-v1 / v2",
+              "NeuronCore-v1 / v2"
+            ]
+          ],
+          "sources": [
+            "P05",
+            "P06"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Trainium1 / 2 / 3",
+              "Trainium1 / 2 / 3"
+            ],
+            [
+              "Trn1 / Trn2 / Trn3",
+              "Trn1 / Trn2 / Trn3"
+            ],
+            [
+              "NeuronCore-v2 / v3 / v4",
+              "NeuronCore-v2 / v3 / v4"
+            ]
+          ],
+          "sources": [
+            "P02",
+            "P03",
+            "P04"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Graviton5",
+              "Graviton5"
+            ],
+            [
+              "M9g / related families",
+              "M9g / related families"
+            ],
+            [
+              "Neoverse V3; Nitro",
+              "Neoverse V3; Nitro"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E03"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    }
+  },
+  "figures": {
+    "era1": {
+      "id": "era1",
+      "title": [
+        "2019-2022 integrated stack",
+        "2019-2022 集成技术栈"
+      ],
+      "nodes": [
+        [
+          "host",
+          [
+            "EC2 CPU host",
+            "EC2 CPU 主机"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "Inferentia1 / Trainium1",
+            "Inferentia1 / Trainium1"
+          ],
+          0,
+          1
+        ],
+        [
+          "domain",
+          [
+            "NeuronLink / instance",
+            "NeuronLink / instance"
+          ],
+          1,
+          1
+        ],
+        [
+          "soft",
+          [
+            "Neuron / frameworks",
+            "Neuron / frameworks"
+          ],
+          1,
+          0
+        ],
+        [
+          "net",
+          [
+            "Nitro + EFA",
+            "Nitro + EFA"
+          ],
+          0,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "host",
+          "gpu",
+          [
+            "host attach",
+            "主机连接"
+          ]
+        ],
+        [
+          "gpu",
+          "domain",
+          [
+            "scale-up",
+            "纵向扩展"
+          ]
+        ],
+        [
+          "soft",
+          "domain",
+          [
+            "compile / map",
+            "编译／映射"
+          ]
+        ],
+        [
+          "gpu",
+          "net",
+          [
+            "scale-out",
+            "横向扩展"
+          ]
+        ]
+      ],
+      "caption": [
+        "Logical data and control paths. Graviton is not assumed to host every historical accelerator instance.",
+        "逻辑数据与控制路径；不假定所有历史加速器实例均采用 Graviton 主机。"
+      ]
+    },
+    "era2": {
+      "id": "era2",
+      "title": [
+        "2024-2026 integrated stack",
+        "2024-2026 集成技术栈"
+      ],
+      "nodes": [
+        [
+          "host",
+          [
+            "EC2 CPU host",
+            "EC2 CPU 主机"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "Trainium2 / Trainium3",
+            "Trainium2 / Trainium3"
+          ],
+          0,
+          1
+        ],
+        [
+          "domain",
+          [
+            "UltraServer / NeuronSwitch",
+            "UltraServer / NeuronSwitch"
+          ],
+          1,
+          1
+        ],
+        [
+          "soft",
+          [
+            "Neuron / NKI / LNC",
+            "Neuron / NKI / LNC"
+          ],
+          1,
+          0
+        ],
+        [
+          "net",
+          [
+            "Nitro + EFA / UltraCluster",
+            "Nitro + EFA / UltraCluster"
+          ],
+          0,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "host",
+          "gpu",
+          [
+            "host attach",
+            "主机连接"
+          ]
+        ],
+        [
+          "gpu",
+          "domain",
+          [
+            "scale-up",
+            "纵向扩展"
+          ]
+        ],
+        [
+          "soft",
+          "domain",
+          [
+            "compile / map",
+            "编译／映射"
+          ]
+        ],
+        [
+          "gpu",
+          "net",
+          [
+            "scale-out",
+            "横向扩展"
+          ]
+        ]
+      ],
+      "caption": [
+        "Logical data and control paths. Graviton is not assumed to host every historical accelerator instance.",
+        "逻辑数据与控制路径；不假定所有历史加速器实例均采用 Graviton 主机。"
+      ]
+    }
+  },
+  "claims": {
+    "cpu.g1.0": {
+      "value": "Graviton / A1",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.2": {
+      "value": "2018",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.3": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.4": {
+      "value": "Arm64",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.5": {
+      "value": "16 / 16",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.6": {
+      "value": "n/d",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.7": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.8": {
+      "value": "n/d",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.9": {
+      "value": "n/d",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.10": {
+      "value": "DDR4; n/d",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.11": {
+      "value": "n/d",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g1.14": {
+      "value": "Arm64",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "g1"
+    },
+    "cpu.g2.0": {
+      "value": "Graviton2",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.2": {
+      "value": "2020",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.4": {
+      "value": "Neoverse N1",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.5": {
+      "value": "64 / 64",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.6": {
+      "value": "n/d",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.7": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.8": {
+      "value": "1 MB",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.9": {
+      "value": "32 MB",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.10": {
+      "value": "8 × DDR4; rate n/d",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.11": {
+      "value": "1",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g2.14": {
+      "value": "2 × 128-bit Neon",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "g2"
+    },
+    "cpu.g3.0": {
+      "value": "Graviton3 / 3E",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.2": {
+      "value": "2022 / 2023",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.4": {
+      "value": "Neoverse V1",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.5": {
+      "value": "64 / 64",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.6": {
+      "value": "n/d",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.7": {
+      "value": "7 dies; split compute/memory/I/O",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.8": {
+      "value": "1 MB",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.9": {
+      "value": "32 MB",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.10": {
+      "value": "8 × DDR5; rate n/d",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.11": {
+      "value": "1",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g3.14": {
+      "value": "2 × 256-bit SVE; BF16",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E06"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "g3"
+    },
+    "cpu.g4.0": {
+      "value": "Graviton4",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.2": {
+      "value": "2024",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.4": {
+      "value": "Neoverse V2",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.5": {
+      "value": "96 / 96",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.6": {
+      "value": "n/d",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.7": {
+      "value": "Separate controller dies",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.8": {
+      "value": "2 MB",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.9": {
+      "value": "36 MB",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.10": {
+      "value": "12 × DDR5-5600; 537.6 GB/s",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.11": {
+      "value": "1-2; link n/d",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g4.14": {
+      "value": "4 × 128-bit SVE; SVE2",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E05"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "g4"
+    },
+    "cpu.g5.0": {
+      "value": "Graviton5",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.2": {
+      "value": "2026-06-10",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.4": {
+      "value": "Neoverse V3",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.5": {
+      "value": "192 / 192",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.6": {
+      "value": "3 nm",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.7": {
+      "value": "4 × 48-core chiplets",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.8": {
+      "value": "2 MB",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.9": {
+      "value": "192 MB package; VM partitioned",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.10": {
+      "value": "12 × DDR5-8800; 844.8 GB/s",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.11": {
+      "value": "NUMA 2/4 regions physical",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.12": {
+      "value": "PCIe 6; CXL n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "cpu.g5.14": {
+      "value": "4 × 128-bit SVE; Armv9.2",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E01",
+        "E03"
+      ],
+      "disclosure_date": "2026-06-10",
+      "status": "shipping",
+      "scope": "g5"
+    },
+    "gpu.i1.0": {
+      "value": "Inferentia1",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.1": {
+      "value": "NeuronCore-v1",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.2": {
+      "value": "2019",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.3": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.6": {
+      "value": "4",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.7": {
+      "value": "64 TFLOPS",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.8": {
+      "value": "n/a",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.9": {
+      "value": "n/a",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.11": {
+      "value": "DRAM; 8 GiB; 50 GiB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.12": {
+      "value": "n/d",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.13": {
+      "value": "NeuronLink; n/d",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.i1.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i1"
+    },
+    "gpu.t1.0": {
+      "value": "Trainium1",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.1": {
+      "value": "NeuronCore-v2",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.2": {
+      "value": "2022",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.6": {
+      "value": "2",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.7": {
+      "value": "190 TFLOPS",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.8": {
+      "value": "190 cFP8 TFLOPS",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.9": {
+      "value": "n/a",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.11": {
+      "value": "HBM; 32 GiB; 820 GiB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.12": {
+      "value": "48 MiB SBUF",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.13": {
+      "value": "NeuronLink-v2; 16 chips",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.t1.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "gpu.i2.0": {
+      "value": "Inferentia2",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.1": {
+      "value": "NeuronCore-v2",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.2": {
+      "value": "2023",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.6": {
+      "value": "2",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.7": {
+      "value": "190 TFLOPS",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.8": {
+      "value": "190 cFP8 TFLOPS",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.9": {
+      "value": "n/a",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.11": {
+      "value": "HBM; 32 GiB; 820 GiB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.12": {
+      "value": "n/d",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.13": {
+      "value": "NeuronLink-v2; ≤12 chips/instance",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.i2.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P06",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "i2"
+    },
+    "gpu.t2.0": {
+      "value": "Trainium2",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.1": {
+      "value": "NeuronCore-v3",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.2": {
+      "value": "2024-12",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.6": {
+      "value": "8",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.7": {
+      "value": "667 TFLOPS",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.8": {
+      "value": "1,299 TFLOPS",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.9": {
+      "value": "n/a",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.11": {
+      "value": "HBM; 96 GiB; 2.9 TB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.12": {
+      "value": "224 MiB SBUF",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.13": {
+      "value": "1.28 TB/s quoted; 64 chips",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t2.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "gpu.t3.0": {
+      "value": "Trainium3",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.1": {
+      "value": "NeuronCore-v4",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.2": {
+      "value": "2025-12",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.4": {
+      "value": "3 nm",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.6": {
+      "value": "8",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.7": {
+      "value": "671 TFLOPS",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.8": {
+      "value": "2,517 MXFP8 TFLOPS",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.9": {
+      "value": "2,517 MXFP4 TFLOPS",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.11": {
+      "value": "HBM3e; 144 GiB; 4.9 TB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.12": {
+      "value": "256 MiB SBUF",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.13": {
+      "value": "2.56 TB/s quoted; 144 chips",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t3.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "gpu.t4.0": {
+      "value": "Trainium4",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.1": {
+      "value": "n/d",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.2": {
+      "value": "n/d",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.3": {
+      "value": "Roadmap",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.6": {
+      "value": "n/d",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.7": {
+      "value": "n/d",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.8": {
+      "value": "n/d",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.9": {
+      "value": "n/d",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.11": {
+      "value": "n/d",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.12": {
+      "value": "n/d",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.13": {
+      "value": "NVLink Fusion planned",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "gpu.t4.16": {
+      "value": "AWS platform",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "roadmap",
+      "scope": "t4"
+    },
+    "network.n.0": {
+      "value": "Nitro System",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.1": {
+      "value": "2017 onward",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.3": {
+      "value": "Infrastructure offload / isolation",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.4": {
+      "value": "Instance-dependent",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.6": {
+      "value": "PCIe; n/d",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.7": {
+      "value": "n/d",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.10": {
+      "value": "ENA / EBS",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.11": {
+      "value": "n/d",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.12": {
+      "value": "VPC, storage, management",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.n.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P07",
+        "P10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "n"
+    },
+    "network.e.0": {
+      "value": "EFA",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.1": {
+      "value": "2019 onward",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.3": {
+      "value": "AI / HPC network interface",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.4": {
+      "value": "Instance-dependent",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.6": {
+      "value": "n/d",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.7": {
+      "value": "n/d",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.10": {
+      "value": "SRD / libfabric",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.11": {
+      "value": "Multipath / recovery",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.12": {
+      "value": "OS-bypass communication",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.e.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P08",
+        "P11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "e"
+    },
+    "network.s.0": {
+      "value": "NeuronSwitch-v1",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.1": {
+      "value": "2025",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.3": {
+      "value": "Scale-up switch",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.4": {
+      "value": "n/d",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.6": {
+      "value": "n/a",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.7": {
+      "value": "n/d",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.10": {
+      "value": "NeuronLink",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.11": {
+      "value": "n/d",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.12": {
+      "value": "Device fabric",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "network.s.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "s"
+    },
+    "system.t1.0": {
+      "value": "Trn1",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.1": {
+      "value": "2022",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.2": {
+      "value": "16 Trainium1",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.3": {
+      "value": "16",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.4": {
+      "value": "Instance-dependent; n/d here",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t1.6": {
+      "value": "n/d",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "C01"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "t1"
+    },
+    "system.t2.0": {
+      "value": "Trn2 UltraServer",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.1": {
+      "value": "2024",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.2": {
+      "value": "64 Trainium2",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.3": {
+      "value": "64",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.4": {
+      "value": "n/d",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t2.6": {
+      "value": "n/d",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E02"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "t2"
+    },
+    "system.t3.0": {
+      "value": "Trn3 UltraServer",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.1": {
+      "value": "2025",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.2": {
+      "value": "144 Trainium3",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.3": {
+      "value": "144",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.4": {
+      "value": "n/d",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "system.t3.6": {
+      "value": "n/d",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "t3"
+    },
+    "links.l2.0": {
+      "value": "NeuronLink-v2",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.1": {
+      "value": "2022",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.2": {
+      "value": "n/d",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.4": {
+      "value": "n/d",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.6": {
+      "value": "n/d",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.7": {
+      "value": "16",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l2.8": {
+      "value": "Device communication; not CPU coherence",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03"
+      ],
+      "disclosure_date": "2022",
+      "status": "shipping",
+      "scope": "l2"
+    },
+    "links.l3.0": {
+      "value": "NeuronLink-v3",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.1": {
+      "value": "2024",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.2": {
+      "value": "n/d",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.4": {
+      "value": "n/d",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.6": {
+      "value": "n/d",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.7": {
+      "value": "64",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l3.8": {
+      "value": "Device communication; not CPU coherence",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2024",
+      "status": "shipping",
+      "scope": "l3"
+    },
+    "links.l4.0": {
+      "value": "NeuronLink-v4",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.1": {
+      "value": "2025",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.2": {
+      "value": "n/d",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.4": {
+      "value": "n/d",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.6": {
+      "value": "NeuronSwitch-v1",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.7": {
+      "value": "144",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.l4.8": {
+      "value": "Device communication; not CPU coherence",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "l4"
+    },
+    "links.lf.0": {
+      "value": "NVLink Fusion",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.1": {
+      "value": "n/d",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.2": {
+      "value": "n/d",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.4": {
+      "value": "n/d",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.6": {
+      "value": "Planned",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.7": {
+      "value": "n/d",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "links.lf.8": {
+      "value": "Device communication; not CPU coherence",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "n/d",
+      "status": "roadmap",
+      "scope": "lf"
+    },
+    "ratios.Trainium1.0": {
+      "value": "Trainium1",
+      "field": "Device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium1"
+    },
+    "ratios.Trainium1.1": {
+      "value": "0.004634",
+      "field": "Memory BW / BF16, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium1"
+    },
+    "ratios.Trainium1.2": {
+      "value": "0.004634",
+      "field": "BW / low-precision, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium1"
+    },
+    "ratios.Trainium1.3": {
+      "value": "0.0001808",
+      "field": "Capacity / BF16, B·s/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium1"
+    },
+    "ratios.Trainium1.4": {
+      "value": "n/d",
+      "field": "Performance / W",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium1"
+    },
+    "ratios.Trainium2.0": {
+      "value": "Trainium2",
+      "field": "Device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium2"
+    },
+    "ratios.Trainium2.1": {
+      "value": "0.004348",
+      "field": "Memory BW / BF16, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium2"
+    },
+    "ratios.Trainium2.2": {
+      "value": "0.002232",
+      "field": "BW / low-precision, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium2"
+    },
+    "ratios.Trainium2.3": {
+      "value": "0.0001545",
+      "field": "Capacity / BF16, B·s/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium2"
+    },
+    "ratios.Trainium2.4": {
+      "value": "n/d",
+      "field": "Performance / W",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium2"
+    },
+    "ratios.Trainium3.0": {
+      "value": "Trainium3",
+      "field": "Device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium3"
+    },
+    "ratios.Trainium3.1": {
+      "value": "0.007303",
+      "field": "Memory BW / BF16, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium3"
+    },
+    "ratios.Trainium3.2": {
+      "value": "0.001947",
+      "field": "BW / low-precision, B/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium3"
+    },
+    "ratios.Trainium3.3": {
+      "value": "0.0002304",
+      "field": "Capacity / BF16, B·s/FLOP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium3"
+    },
+    "ratios.Trainium3.4": {
+      "value": "n/d",
+      "field": "Performance / W",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "Trainium3"
+    },
+    "conference.r.0": {
+      "value": "re:Invent",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.1": {
+      "value": "2024",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.2": {
+      "value": "CMP207 AWS accelerated computing",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.3": {
+      "value": "AWS",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.4": {
+      "value": "Trainium2 / Nitro / EFA",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.5": {
+      "value": "Architecture and systems",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r.6": {
+      "value": "C01",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "r"
+    },
+    "conference.r5.0": {
+      "value": "re:Invent",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.1": {
+      "value": "2025",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.2": {
+      "value": "Trainium3 and Trainium4 outlook",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.3": {
+      "value": "AWS",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.4": {
+      "value": "Trainium3 / 4",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.5": {
+      "value": "GA / roadmap",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.r5.6": {
+      "value": "E02 E04",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "r5"
+    },
+    "conference.su.0": {
+      "value": "AWS Summit",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.1": {
+      "value": "2022",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.2": {
+      "value": "The journey of silicon innovation at AWS",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.3": {
+      "value": "AWS",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.4": {
+      "value": "Graviton / Nitro",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.5": {
+      "value": "Portfolio and systems",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.su.6": {
+      "value": "C02",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2022",
+      "status": "published",
+      "scope": "su"
+    },
+    "conference.sc.0": {
+      "value": "Amazon Science",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.1": {
+      "value": "2026",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.2": {
+      "value": "Graviton5 chiplet architecture",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.3": {
+      "value": "Ali Saidi",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.4": {
+      "value": "Graviton5",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.5": {
+      "value": "Vendor technical disclosure; not conference paper",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "conference.sc.6": {
+      "value": "E01",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "sc"
+    },
+    "software.a.0": {
+      "value": "NeuronCore-v1 support",
+      "field": "Release",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2019",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.1": {
+      "value": "2019",
+      "field": "Date",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2019",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.2": {
+      "value": "Inferentia1",
+      "field": "Hardware",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2019",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.3": {
+      "value": "Inference compilation / pipeline",
+      "field": "Feature",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2019",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.b.0": {
+      "value": "NeuronCore-v2 support",
+      "field": "Release",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P06"
+      ],
+      "disclosure_date": "2023",
+      "status": "available",
+      "scope": "b"
+    },
+    "software.b.1": {
+      "value": "2022-2023",
+      "field": "Date",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P06"
+      ],
+      "disclosure_date": "2023",
+      "status": "available",
+      "scope": "b"
+    },
+    "software.b.2": {
+      "value": "Trainium1 / Inferentia2",
+      "field": "Hardware",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P06"
+      ],
+      "disclosure_date": "2023",
+      "status": "available",
+      "scope": "b"
+    },
+    "software.b.3": {
+      "value": "Dynamic shapes; GPSIMD operators",
+      "field": "Feature",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P06"
+      ],
+      "disclosure_date": "2023",
+      "status": "available",
+      "scope": "b"
+    },
+    "software.c.0": {
+      "value": "NKI / LNC",
+      "field": "Release",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "P09"
+      ],
+      "disclosure_date": "2026",
+      "status": "available",
+      "scope": "c"
+    },
+    "software.c.1": {
+      "value": "2024-2026",
+      "field": "Date",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "P09"
+      ],
+      "disclosure_date": "2026",
+      "status": "available",
+      "scope": "c"
+    },
+    "software.c.2": {
+      "value": "Trainium2 / 3",
+      "field": "Hardware",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "P09"
+      ],
+      "disclosure_date": "2026",
+      "status": "available",
+      "scope": "c"
+    },
+    "software.c.3": {
+      "value": "Explicit kernels / logical cores",
+      "field": "Feature",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "P09"
+      ],
+      "disclosure_date": "2026",
+      "status": "available",
+      "scope": "c"
+    },
+    "cross.a.0": {
+      "value": "Inferentia1 / 2",
+      "field": "Silicon",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "P06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "a"
+    },
+    "cross.a.1": {
+      "value": "Inf1 / Inf2",
+      "field": "Service",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "P06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "a"
+    },
+    "cross.a.2": {
+      "value": "NeuronCore-v1 / v2",
+      "field": "Core / fabric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "P06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "a"
+    },
+    "cross.b.0": {
+      "value": "Trainium1 / 2 / 3",
+      "field": "Silicon",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.b.1": {
+      "value": "Trn1 / Trn2 / Trn3",
+      "field": "Service",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.b.2": {
+      "value": "NeuronCore-v2 / v3 / v4",
+      "field": "Core / fabric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.c.0": {
+      "value": "Graviton5",
+      "field": "Silicon",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    },
+    "cross.c.1": {
+      "value": "M9g / related families",
+      "field": "Service",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    },
+    "cross.c.2": {
+      "value": "Neoverse V3; Nitro",
+      "field": "Core / fabric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    }
+  },
+  "numeric_facts": {
+    "Trainium1.BW/BF16": {
+      "value": 0.004634043661473684,
+      "unit": "byte/FLOP",
+      "scope": "Trainium1",
+      "source": [
+        "P02"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    },
+    "Trainium1.capacity/BF16": {
+      "value": 0.00018084072825263158,
+      "unit": "byte*s/FLOP",
+      "scope": "Trainium1",
+      "source": [
+        "P02"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    },
+    "Trainium2.BW/BF16": {
+      "value": 0.004347826086956522,
+      "unit": "byte/FLOP",
+      "scope": "Trainium2",
+      "source": [
+        "P03"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    },
+    "Trainium2.capacity/BF16": {
+      "value": 0.00015454155188005997,
+      "unit": "byte*s/FLOP",
+      "scope": "Trainium2",
+      "source": [
+        "P03"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    },
+    "Trainium3.BW/BF16": {
+      "value": 0.007302533532041728,
+      "unit": "byte/FLOP",
+      "scope": "Trainium3",
+      "source": [
+        "P04"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    },
+    "Trainium3.capacity/BF16": {
+      "value": 0.0002304304361490313,
+      "unit": "byte*s/FLOP",
+      "scope": "Trainium3",
+      "source": [
+        "P04"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "BF16",
+      "date": "2026-09-28"
+    }
+  },
+  "sources": {
+    "P01": {
+      "id": "P01",
+      "title": "AWS Graviton technical guide",
+      "url": "https://raw.githubusercontent.com/aws/aws-graviton-getting-started/main/README.md",
+      "access": "Accessible primary source",
+      "chars": 23238,
+      "retrieved": "2026-09-28"
+    },
+    "P02": {
+      "id": "P02",
+      "title": "Trainium architecture",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html",
+      "access": "Accessible primary source",
+      "chars": 1532,
+      "retrieved": "2026-09-28"
+    },
+    "P03": {
+      "id": "P03",
+      "title": "Trainium2 architecture",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html",
+      "access": "Accessible primary source",
+      "chars": 3047,
+      "retrieved": "2026-09-28"
+    },
+    "P04": {
+      "id": "P04",
+      "title": "Trainium3 architecture",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium3.html",
+      "access": "Accessible primary source",
+      "chars": 2759,
+      "retrieved": "2026-09-28"
+    },
+    "P05": {
+      "id": "P05",
+      "title": "Inferentia architecture",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html",
+      "access": "Accessible primary source",
+      "chars": 931,
+      "retrieved": "2026-09-28"
+    },
+    "P06": {
+      "id": "P06",
+      "title": "Inferentia2 architecture",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html",
+      "access": "Accessible primary source",
+      "chars": 1471,
+      "retrieved": "2026-09-28"
+    },
+    "P07": {
+      "id": "P07",
+      "title": "Security design of the AWS Nitro System",
+      "url": "https://docs.aws.amazon.com/whitepapers/latest/security-design-of-aws-nitro-system/security-design-of-aws-nitro-system.html",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "P08": {
+      "id": "P08",
+      "title": "Elastic Fabric Adapter",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "P09": {
+      "id": "P09",
+      "title": "Trainium3 NKI architecture guide",
+      "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html",
+      "access": "Accessible primary source",
+      "chars": 20045,
+      "retrieved": "2026-09-28"
+    },
+    "E01": {
+      "id": "E01",
+      "title": "Graviton5 chiplet architecture",
+      "url": "https://www.amazon.science/blog/graviton5s-improved-design-increases-speed-and-energy-efficiency-beyond-moores-law",
+      "access": "Accessible primary source",
+      "chars": 37275,
+      "retrieved": "2026-09-28"
+    },
+    "E02": {
+      "id": "E02",
+      "title": "Trainium3 UltraServers and Trainium4 outlook",
+      "url": "https://www.aboutamazon.com/news/aws/trainium-3-ultraserver-faster-ai-training-lower-cost",
+      "access": "Accessible primary source",
+      "chars": 9678,
+      "retrieved": "2026-09-28"
+    },
+    "E03": {
+      "id": "E03",
+      "title": "Graviton5 M9g general availability",
+      "url": "https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E04": {
+      "id": "E04",
+      "title": "Trainium3 general availability",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "C01": {
+      "id": "C01",
+      "title": "AWS accelerated computing, re:Invent 2024 CMP207",
+      "url": "https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/events/approved/reinvent-2025/reinvent/2024/slides/cmp/CMP207_AWS-accelerated-computing-enables-customer-success-with-generative-AI.pdf",
+      "access": "Accessible primary source",
+      "chars": 66164,
+      "retrieved": "2026-09-28"
+    },
+    "E05": {
+      "id": "E05",
+      "title": "Graviton4 memory architecture",
+      "url": "https://aws.amazon.com/blogs/aws/join-the-preview-for-new-memory-optimized-aws-graviton4-powered-amazon-ec2-instances-r8g/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E06": {
+      "id": "E06",
+      "title": "Graviton3 C7g GA",
+      "url": "https://aws.amazon.com/blogs/aws/new-amazon-ec2-c7g-instances-powered-by-aws-graviton3-processors/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E07": {
+      "id": "E07",
+      "title": "Graviton A1 launch",
+      "url": "https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E08": {
+      "id": "E08",
+      "title": "Inferentia Inf1 launch",
+      "url": "https://aws.amazon.com/blogs/aws/amazon-ec2-inf1-instances-with-aws-inferentia-chips-for-high-performance-cost-effective-machine-learning-inference/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E09": {
+      "id": "E09",
+      "title": "Inf2 instances",
+      "url": "https://aws.amazon.com/ec2/instance-types/inf2/",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "P10": {
+      "id": "P10",
+      "title": "EC2 Nitro versions",
+      "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "P11": {
+      "id": "P11",
+      "title": "SRD transport",
+      "url": "https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/perf_networking_choose_network_protocols_improve_performance.html",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "C02": {
+      "id": "C02",
+      "title": "AWS Summit2022 silicon innovation",
+      "url": "https://d1.awsstatic.com/events/Summits/aws-summits/The_journey_of_silicon_innovation_at_AWS_CMP201.pdf",
+      "access": "Accessible primary source",
+      "chars": 49578,
+      "retrieved": "2026-09-28"
+    }
+  }
+}

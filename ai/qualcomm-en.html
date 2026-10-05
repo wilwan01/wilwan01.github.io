@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Qualcomm · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="qualcomm-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Qualcomm_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Qualcomm_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#qualcomm-ai-infrastructure-architecture-evolution">Qualcomm AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-units-product-boundaries-and-roadmap-status">02 Units, product boundaries and roadmap status</a></li>
+<li><a href="#03-cpu-generation-atlas">03 CPU generation atlas</a><ul>
+<li><a href="#cpu-and-related-client-references">CPU and related client references</a></li>
+</ul>
+</li>
+<li><a href="#04-centriq-and-falkor-the-first-server-architecture">04 Centriq and Falkor: the first server architecture</a></li>
+<li><a href="#05-oryon-client-silicon-rebuilds-the-cpu-lineage">05 Oryon: client silicon rebuilds the CPU lineage</a></li>
+<li><a href="#06-dragonfly-c1000-and-the-risc-v-branch">06 Dragonfly C1000 and the RISC-V branch</a></li>
+<li><a href="#07-accelerator-generation-atlas">07 Accelerator generation atlas</a><ul>
+<li><a href="#inference-accelerators-in-the-common-comparison-schema">Inference accelerators in the common comparison schema</a></li>
+<li><a href="#published-legacy-card-compute-figures">Published legacy-card compute figures</a></li>
+</ul>
+</li>
+<li><a href="#08-cloud-ai-100-programmable-inference-dataflow">08 Cloud AI 100: programmable inference dataflow</a></li>
+<li><a href="#09-cloud-ai-100-ultra-capacity-by-replication">09 Cloud AI 100 Ultra: capacity by replication</a></li>
+<li><a href="#10-ai200-the-inference-rack-becomes-the-product">10 AI200: the inference rack becomes the product</a></li>
+<li><a href="#11-ai250-and-ai300-near-memory-execution">11 AI250 and AI300: near-memory execution</a></li>
+<li><a href="#12-connectivity-from-alphawave-assets-to-dragonfly-dsps">12 Connectivity: from Alphawave assets to Dragonfly DSPs</a><ul>
+<li><a href="#network-and-connectivity-product-classes">Network and connectivity product classes</a></li>
+</ul>
+</li>
+<li><a href="#13-interconnect-and-system-topology">13 Interconnect and system topology</a><ul>
+<li><a href="#normalized-interconnect-boundaries">Normalized interconnect boundaries</a></li>
+<li><a href="#system-reference-envelopes">System reference envelopes</a></li>
+</ul>
+</li>
+<li><a href="#14-adreno-hexagon-dragonwing-and-ran">14 Adreno, Hexagon, Dragonwing and RAN</a></li>
+<li><a href="#15-software-and-academic-evidence">15 Software and academic evidence</a><ul>
+<li><a href="#software-timeline-and-enablement-boundary">Software timeline and enablement boundary</a></li>
+</ul>
+</li>
+<li><a href="#16-quantitative-balance-and-deployment-trade-offs">16 Quantitative balance and deployment trade-offs</a><ul>
+<li><a href="#derived-ratios-with-explicit-scope">Derived ratios with explicit scope</a></li>
+</ul>
+</li>
+<li><a href="#17-conference-to-product-index">17 Conference-to-product index</a><ul>
+<li><a href="#verified-disclosure-anchors">Verified disclosure anchors</a></li>
+</ul>
+</li>
+<li><a href="#18-codename-and-product-crosswalk">18 Codename and product crosswalk</a><ul>
+<li><a href="#disambiguation-map">Disambiguation map</a></li>
+</ul>
+</li>
+<li><a href="#19-integrated-stack-across-four-eras">19 Integrated stack across four eras</a><ul>
+<li><a href="#2015-2018-the-scale-out-server-attempt">2015-2018: the scale-out server attempt</a></li>
+<li><a href="#2019-2022-inference-cards">2019-2022: inference cards</a></li>
+<li><a href="#2023-2025-model-capacity-and-new-cpu-cores">2023-2025: model capacity and new CPU cores</a></li>
+<li><a href="#2026-disclosures-the-future-rack-portfolio">2026 disclosures: the future rack portfolio</a></li>
+<li><a href="#bandwidth-hierarchy-by-era">Bandwidth hierarchy by era</a></li>
+</ul>
+</li>
+<li><a href="#20-engineering-conclusions">20 Engineering conclusions</a></li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#research-papers-and-publication-registries">Research papers and publication registries</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="qualcomm-ai-infrastructure-architecture-evolution">Qualcomm AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Families and weights: deep on Centriq/Oryon/Dragonfly CPUs and Cloud AI/Dragonfly accelerators; full on datacenter connectivity; proportional on client, edge and RAN derivatives.
+Start: 2015, including the first server effort and the mobile technology baseline.
+Cutoff: 28 September 2026; current disclosures include Investor Day and AI Infra Summit 2026.
+Focus: CPU lineage, inference dataflow, memory capacity/bandwidth, fabric and rack integration.
+Exclusions: exhaustive handset/modem SKUs; no merchant datacenter training GPU or separately specified Qualcomm AI NIC is established by the reviewed portfolio.</p>
+<p>Qualcomm’s infrastructure history is not a continuous server-CPU succession. Centriq was a real commercial Arm server processor, but the next major CPU story comes through Nuvia-derived Oryon client products and the future Dragonfly C1000. In parallel, Cloud AI 100 establishes a dedicated inference architecture, Ultra expands model capacity through a multi-SoC card, and AI200/AI250/AI300 move the product boundary to the rack. Connectivity assets from Alphawave and software from Modular complete parts of that broader platform.</p>
+<p>The dominant architectural bet is inference efficiency rather than reproducing a general-purpose training GPU. Large local capacity can reduce model partitioning, and near-memory execution can reduce the cost of moving weights during decode. These benefits are conditional on dataflow, model placement and software. AI250’s effective HBC bandwidth must therefore remain separate from conventional external-memory bandwidth. The platform’s long-term CPU and accelerator roadmap extends beyond the cutoff: C1000 production is planned for the second half of 2028, not a shipping 2026 server.</p>
+<h2 id="02-units-product-boundaries-and-roadmap-status">02 Units, product boundaries and roadmap status</h2>
+<p>A die, card, server and rack are different accounting scopes. Cloud AI 100 Ultra contains four SoCs; its 128 GB memory and 576 MB SRAM are card totals. AI200’s 43 TB is a rounded rack capacity, whereas 768 GB is per card. Rack power is not card TBP. Bandwidth is decimal GB/s or TB/s, and link direction is stated explicitly. PCIe headline bandwidth is a raw interface budget before protocol overhead. Ethernet Gb/s must be divided by eight before comparison with memory GB/s.</p>
+<p>The standard accelerator table preserves dense BF16, FP8, FP6/FP4 and FP64 columns. Where the reviewed evidence supplies FP16 or INT8 instead, those values are reported separately rather than relabelled. n/d means not established; n/a means not applicable. A product announcement, customer sampling, a demonstration and general availability are different milestones. In particular, AI200’s 2025 launch forecast of 2026 availability is followed by a 2026 investor roadmap labelled sampling FY26; the reviewed September demo does not alone establish broad GA.</p>
+<h2 id="03-cpu-generation-atlas">03 CPU generation atlas</h2>
+<h3 id="cpu-and-related-client-references">CPU and related client references</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centriq 2460</td>
+<td>Falkor</td>
+<td>2017-11</td>
+<td>Historical shipping</td>
+<td>Custom Armv8</td>
+<td>48 / 48</td>
+<td>Samsung 10 nm</td>
+<td>Monolithic; 398 mm2; 18B transistors</td>
+<td>Shared by 2-core duplex; capacity n/d</td>
+<td>60 MB</td>
+<td>DDR4; 6; 2667 MT/s; ~128 GB/s</td>
+<td>1S; QSB internal</td>
+<td>32 PCIe 3; CXL n/a</td>
+<td>120 W</td>
+<td>NEON; AArch64</td>
+</tr>
+<tr>
+<td>Snapdragon X Elite</td>
+<td>Oryon</td>
+<td>2024</td>
+<td>Historical shipping</td>
+<td>Oryon 1</td>
+<td>12 / 12</td>
+<td>4 nm</td>
+<td>Client SoC; 3 CPU clusters</td>
+<td>12 MB / 4-core cluster</td>
+<td>System-cache accounting differs</td>
+<td>LPDDR5X; 135 GB/s</td>
+<td>Client SoC; n/a</td>
+<td>PCIe; CXL n/a</td>
+<td>OEM configurable; n/d</td>
+<td>Arm64; NEON</td>
+</tr>
+<tr>
+<td>Snapdragon X2 Elite Extreme</td>
+<td>X2E-96-100</td>
+<td>2026 systems</td>
+<td>Shipping / available</td>
+<td>Oryon 3</td>
+<td>18 / 18</td>
+<td>3 nm</td>
+<td>Client SoC; Prime + Performance</td>
+<td>n/d</td>
+<td>53 MB total CPU cache; not all L3</td>
+<td>LPDDR5X; 192-bit; 228 GB/s</td>
+<td>Client SoC; n/a</td>
+<td>PCIe; CXL n/a</td>
+<td>OEM configurable; n/d</td>
+<td>Arm64; details n/d</td>
+</tr>
+<tr>
+<td>Dragonfly C1000</td>
+<td>n/d</td>
+<td>2028 H2 target</td>
+<td>Roadmap</td>
+<td>Oryon server</td>
+<td>250+ / n/d</td>
+<td>n/d</td>
+<td>Chiplet architecture</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR; channel count/rate n/d</td>
+<td>n/d</td>
+<td>PCIe 7; CXL; lanes n/d</td>
+<td>n/d</td>
+<td>Server ISA details n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>Client entries explain the core-development lineage; their memory, power and I/O are not server specifications. C1000 is not a socketed Snapdragon X2 Elite. Nor does the acquisition of Ventana make C1000 a RISC-V processor: Qualcomm explicitly identifies Oryon server cores for C1000, while Ventana adds a separate RISC-V capability. No second commercial Centriq generation is established here.</p>
+<h2 id="04-centriq-and-falkor-the-first-server-architecture">04 Centriq and Falkor: the first server architecture</h2>
+<p>Centriq 2400 began sampling in 2016 and commercially shipped in November 2017. Falkor is a custom, single-threaded, AArch64-only core. Hot Chips describes an issue path accepting three instructions plus a direct branch and dispatch of up to eight internal operations. A two-core duplex shares L2 and a QSB interface. The segmented bidirectional coherent ring uses shortest-path routing; its reported aggregate bandwidth above 250 GB/s is an internal-fabric figure, not six-channel DDR payload bandwidth.</p>
+<p>The duplex L2 uses 128-byte cache lines, ECC and an inclusive relationship to L1 data caches. The disclosed minimum L2 hit latency is fifteen cycles. Distributed L3 includes allocation controls for quality of service, an important feature when many independent tenants share a socket. Six DDR4 channels and 32 PCIe 3 lanes define a balanced scale-out server of its time, but offer a much smaller external accelerator budget than later AI hosts. At 48 cores, approximately 128 GB/s of channel bandwidth means about 2.67 GB/s per core before contention and protocol effects.</p>
+<p>The launch disclosure identifies Samsung 10 nm, 18 billion transistors and a 398 mm2 monolithic die. This is implementation evidence even though a matching full Centriq ISSCC paper was not established in the reviewed sources. OCP 2017 supplies the system connection: Qualcomm and Microsoft demonstrated a Centriq-based Open Compute motherboard. That collaboration is evidence of platform development, not proof of Azure public-instance GA. The later break in the server roadmap means that commercial continuity cannot be inferred from the technical quality of Falkor.</p>
+<h2 id="05-oryon-client-silicon-rebuilds-the-cpu-lineage">05 Oryon: client silicon rebuilds the CPU lineage</h2>
+<p>The 2021 Nuvia acquisition leads to the Oryon CPU introduced in Snapdragon X Elite and commercial PCs in 2024. Hot Chips 2024 and its IEEE Micro follow-up provide the architectural anchor. Three four-core clusters combine substantial near-core cache with a wide out-of-order machine. The design emphasizes instruction supply, branch recovery and outstanding memory operations rather than width alone. The core’s client implementation demonstrates engineering capability; it does not demonstrate server RAS, multi-socket coherence or datacenter memory capacity.</p>
+<p>Qualcomm’s Hot Chips 2024 slides give the first Oryon core a 192 KB instruction cache, a 96 KB data cache, eight-instruction decode and eight-micro-op retirement. Six integer and four 128-bit vector execution pipes feed a wide out-of-order machine. The load/store system supports up to four operations per cycle, with a 192-entry load queue and 56-entry store queue. Four cores share a 12 MB L2 at CPU frequency; three clusters connect through a fabric with 6 MB system-level cache to a 135 GB/s LPDDR5X interface. These layers explain why the advertised 42 MB cache total is neither a per-core cache nor a unified last-level cache.</p>
+<p>Oryon then crosses into mobile and the third-generation core returns to Snapdragon X2 Elite. The X2E-96-100 reference combines twelve Prime cores with six Performance cores, 53 MB total CPU cache and 228 GB/s LPDDR5X bandwidth. Its 80 TOPS Hexagon NPU is a separate engine, not CPU vector throughput. The mixed core organization and OEM power envelope are client choices. For the server report, the important continuity is custom core design, cache and power-management expertise, and a common software ISA; memory channels and host links must be re-established for C1000.</p>
+<p>ISSCC/JSSC-related circuit work explains another part of Qualcomm’s efficiency heritage. Keith Bowman’s adaptive-clock research senses supply droop and adjusts clock behavior to avoid paying a permanent worst-case timing margin. The documented Snapdragon 820 connection makes that a legitimate example of research reaching a product. It does not establish that Centriq, Oryon or C1000 uses an identical circuit. The ISSCC 2025 edge-generative-AI tutorial is useful system context, not a transistor-level disclosure of a Dragonfly accelerator.</p>
+<h2 id="06-dragonfly-c1000-and-the-risc-v-branch">06 Dragonfly C1000 and the RISC-V branch</h2>
+<p>Investor Day 2026 announces a chiplet-based C1000 with more than 250 custom Oryon server cores, a core-frequency target above 5 GHz, PCIe 7/CXL connectivity and an LPDDR memory subsystem. Optional HBC attachment is part of the disclosed direction. The architectural shift from Centriq is substantial: a larger package-level design and a CPU positioned around agent orchestration, general cloud services and accelerator head-node work. The Meta agreement places first-generation production in the second half of 2028 and anticipates subsequent generations.</p>
+<p>The headline I/O claim of more than 2 TB/s is not normalized here to a lane count or one-way payload figure, because the disclosed direction and aggregation basis are insufficient. Cache sizes, memory-channel count, process partitioning, socket coherence and SKU TDP remain material disclosure gaps. LPDDR can reduce memory energy, but capacity, serviceability, packaging and board topology must be evaluated together. An announced frequency and a core-count ceiling are not evidence that every core sustains that clock at the eventual package power limit.</p>
+<p>Qualcomm acquired Ventana in December 2025, adding RISC-V CPU expertise alongside Oryon. Ventana’s earlier Veyron compute-chiplet work is relevant as an acquired design capability, but the reviewed Qualcomm disclosure does not define a shipping successor SKU or transfer its specifications to C1000. The two instruction-set paths should therefore remain separate in a portfolio map. Their potential common ground is physical design, chiplet integration, verification and server software engineering, rather than binary compatibility.</p>
+<h2 id="07-accelerator-generation-atlas">07 Accelerator generation atlas</h2>
+<h3 id="inference-accelerators-in-the-common-comparison-schema">Inference accelerators in the common comparison schema</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud AI 100 Standard</td>
+<td>AIC</td>
+<td>2021 systems</td>
+<td>Historical shipping</td>
+<td>7 nm</td>
+<td>1 SoC per card</td>
+<td>SKU-enabled count n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>LPDDR4X; n/a; 16; 0.137</td>
+<td>126 MB SRAM</td>
+<td>PCIe; no dedicated scale-up link</td>
+<td>PCIe 4 x8</td>
+<td>75 W</td>
+<td>HHHL PCIe</td>
+</tr>
+<tr>
+<td>Cloud AI 100 Pro</td>
+<td>AIC</td>
+<td>2021 systems</td>
+<td>Historical shipping</td>
+<td>7 nm</td>
+<td>1 SoC per card</td>
+<td>16 AIC nominal</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>LPDDR4X; n/a; 32; 0.137</td>
+<td>144 MB SRAM</td>
+<td>PCIe; topology-dependent</td>
+<td>PCIe 4 x8</td>
+<td>75 W</td>
+<td>HHHL PCIe</td>
+</tr>
+<tr>
+<td>Cloud AI 100 Ultra</td>
+<td>4 x AIC SoC</td>
+<td>2023-2024</td>
+<td>Shipping / available</td>
+<td>7 nm</td>
+<td>4 SoCs + PCIe switch</td>
+<td>4 x 16 AIC nominal</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>LPDDR4X; n/a; 128; 0.548</td>
+<td>576 MB SRAM</td>
+<td>On-card PCIe switching</td>
+<td>PCIe 4 x16</td>
+<td>150 W</td>
+<td>FH 3/4 length PCIe</td>
+</tr>
+<tr>
+<td>Dragonfly AI200</td>
+<td>Inference ASIC</td>
+<td>GA n/d</td>
+<td>Sampling / demonstrated</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5X; n/a; 768/card; ~7.39 derived</td>
+<td>n/d</td>
+<td>PCIe 6; link count/BW n/d</td>
+<td>PCIe; details n/d</td>
+<td>Card n/d; rack 140 kW</td>
+<td>Card / ORv3 rack</td>
+</tr>
+<tr>
+<td>Dragonfly AI250</td>
+<td>HBC Gen 1</td>
+<td>2027 target</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>Near-memory architecture; die count n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBC; n/a; 768/card; 133 effective</td>
+<td>n/d</td>
+<td>PCIe 6; link count/BW n/d</td>
+<td>n/d</td>
+<td>Card n/d; air/DLC rack</td>
+<td>Card / ORv3 rack</td>
+</tr>
+<tr>
+<td>Dragonfly AI300</td>
+<td>HBC Gen 2</td>
+<td>FY28 roadmap</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBC; capacity n/d; 54x AI200 effective BW target</td>
+<td>n/d</td>
+<td>UALink / ESUN roadmap; all-to-all</td>
+<td>n/d</td>
+<td>n/d; liquid-cooled rack</td>
+<td>Rack platform</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="published-legacy-card-compute-figures">Published legacy-card compute figures</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Card</th>
+<th>FP16 TFLOP/s</th>
+<th>INT8 TOPS</th>
+<th>Rated power</th>
+<th>Source basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard</td>
+<td>110</td>
+<td>325</td>
+<td>75 W</td>
+<td>SDK 1.12 SKU table</td>
+</tr>
+<tr>
+<td>Pro</td>
+<td>125</td>
+<td>375</td>
+<td>75 W</td>
+<td>SDK 1.12 SKU table</td>
+</tr>
+<tr>
+<td>Ultra</td>
+<td>288 product / 290 SDK</td>
+<td>870</td>
+<td>150 W</td>
+<td>Small document revision/rounding difference retained</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08-cloud-ai-100-programmable-inference-dataflow">08 Cloud AI 100: programmable inference dataflow</h2>
+<p>The 2019 announcement is followed by selected-customer shipments in 2020 and commercial system activity in 2021. Hot Chips 2021 presents the inference architecture. Each AI core separates tensor, vector and scalar work. Tensor units handle the dense linear algebra; vector units process elementwise and other non-matrix operations; a multithreaded VLIW scalar processor coordinates execution. This is not a GPU warp machine. The compiler must expose parallelism, schedule movement and keep specialized engines occupied across a model graph.</p>
+<p>The SDK describes 8 MB vector tightly coupled memory and 1 MB shared L2 within each nominal AI core, producing 144 MB of on-chip storage across sixteen cores. Separate compute, memory and configuration networks serve different traffic classes. External LPDDR4X provides capacity; local SRAM provides reuse and predictable scheduling. DMA and tiling are therefore first-class architectural mechanisms. A model that reuses weights or activations locally can amortize external traffic, while a large decode workload repeatedly reading weights can become memory-bound despite substantial tensor capacity.</p>
+<p>Standard, Pro and the early DM.2 variants address different power and deployment envelopes. The SoC’s architectural peak, an initial launch target and a shipping card’s rated clock point are not interchangeable. For this reason the report uses the explicit Standard/Pro SKU table for card-level comparisons. Host PCIe 4 x8 provides about 15.75 GB/s per direction before protocol overhead, far below the card’s 137 GB/s memory figure. Keeping model state resident on the card is consequently much more attractive than repeatedly streaming it across the host link.</p>
+<h2 id="09-cloud-ai-100-ultra-capacity-by-replication">09 Cloud AI 100 Ultra: capacity by replication</h2>
+<p>Ultra combines four Cloud AI 100 SoCs and a PCIe switch on a 150 W card. Each SoC has its own local memory; the card totals 128 GB LPDDR4X, 576 MB SRAM and 548 GB/s of summed memory bandwidth. The host interface expands to PCIe 4 x16, while each SoC attaches to the switch over x8. Four chips on one board do not create one uniform-latency shared SRAM or one unconstrained 548 GB/s path for every operation. Model partitioning and communication scheduling remain necessary.</p>
+<p>The 2023 product is explicitly positioned around generative inference. Its capacity allows some large quantized models to remain on one card, reducing the number of boards and host/network crossings. That is a model-placement advantage, not evidence of higher training throughput. Weight precision, KV-cache size, context length and batch size determine whether a model fits. Independent 2025 NRP measurements confirm that the platform can be used for real LLM serving, but their energy ratios depend on the selected models, comparison configurations and utilization; they are not portable chip-level efficiency constants.</p>
+<h2 id="10-ai200-the-inference-rack-becomes-the-product">10 AI200: the inference rack becomes the product</h2>
+<p>AI200 moves from a low-power PCIe-card story to a rack-scale inference platform. The published configuration contains 56 cards, 768 GB LPDDR per card, approximately 43 TB per rack and 0.414 PB/s aggregate memory bandwidth. It specifies PCIe 6 scale-up and Ethernet/RoCE scale-out in an ORv3 rack, with a 140 kW liquid-cooled configuration. Dividing rack memory bandwidth by 56 gives approximately 7.39 TB/s per card as an arithmetic average. It does not disclose a single die’s memory interface or prove equal bandwidth for every placement.</p>
+<p>A September 2026 demonstration places Kimi-K2.5 on a single AI200 card. That is relevant evidence for model-capacity and software progress, but the demo does not establish sustained throughput, response-time distribution, model precision or broad customer availability. Architecturally, the large capacity can reduce weight sharding, while PCIe scale-up and RoCE still have to move activations, expert-routing traffic and collectives. Model residency and communication efficiency solve different constraints.</p>
+<h2 id="11-ai250-and-ai300-near-memory-execution">11 AI250 and AI300: near-memory execution</h2>
+<p>AI250 introduces High Bandwidth Compute Gen 1, with a published 133 TB/s effective memory bandwidth per card and 7.4 PB/s per rack. Qualcomm describes this as eighteen times AI200’s effective bandwidth. The key mechanism is moving computation closer to memory, so a useful computation need not pay the same external data movement as a conventional processor reading every operand over a memory bus. Effective bandwidth is a workload/architecture equivalence metric; treating it as an ordinary HBM pin-rate specification would produce a misleading roofline comparison.</p>
+<p>The natural target is memory-sensitive decode and long-context serving. Prefill may remain more compute-intensive, so disaggregating the phases can improve resource matching but adds transfer and scheduling costs. HBC’s practical value depends on which operators execute near memory, the precision they support, locality across memory partitions, and how intermediate results reach the rest of the machine. The public investor material outlines the approach but does not disclose enough circuit, stack or inter-die detail to reconstruct a complete implementation.</p>
+<p>AI300 extends the roadmap to HBC Gen 2, with UALink/ESUN scale-up, copper and optical scale-out, and a single-hop all-to-all rack objective. The investor roadmap quotes a fifty-four-times AI200 effective-bandwidth target. This is a future architecture claim, not measured shipping throughput. C1000 is shown as the future CPU partner. Per-card link rates, radix, packet semantics, memory capacity and complete power limits remain undisclosed in the reviewed material, so the report does not manufacture a rack bisection figure.</p>
+<h2 id="12-connectivity-from-alphawave-assets-to-dragonfly-dsps">12 Connectivity: from Alphawave assets to Dragonfly DSPs</h2>
+<p>The Alphawave transaction closed on 18 December 2025, earlier than the original 2026 expectation. It adds high-speed wired connectivity and custom-silicon capabilities, which matter because a rack platform needs more than compute engines. The 2026 portfolio spans electrical SerDes, die-to-die interfaces, optical DSPs, active electrical cable retimers and custom silicon. A protocol controller, a PHY, a retimer, an optical module and a complete NIC occupy different layers; they must not be collapsed into a single AI-networking product count.</p>
+<p>Dragonfly O100/O200 are PAM4 optical DSP families; CO400 is a coherent-lite 16QAM optical DSP. CU100/CU200 address PAM4 active electrical cables. CU100 is described as a 4 nm retimer. The 100G/200G/400G labels identify signaling/product classes, not a fully specified NIC port count. Investor Day distinguishes volume-production 800G connectivity, 1.6T scaling in the 2026-2027 period and later 3.2T development. A 448G SerDes roadmap is likewise a technology direction, not evidence of a shipping 448G-per-lane rack.</p>
+<h3 id="network-and-connectivity-product-classes">Network and connectivity product classes</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dragonfly O100</td>
+<td>2026 portfolio</td>
+<td>Announced; GA n/d</td>
+<td>Optical DSP</td>
+<td>n/a</td>
+<td>100G PAM4 class</td>
+<td>n/a</td>
+<td>Signal processing; packet pipeline n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Optical link DSP</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Dragonfly O200</td>
+<td>2026 portfolio</td>
+<td>Announced; GA n/d</td>
+<td>Optical DSP</td>
+<td>n/a</td>
+<td>200G PAM4 class</td>
+<td>n/a</td>
+<td>DSP</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Optical link DSP</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Dragonfly CO400</td>
+<td>2026 portfolio</td>
+<td>Announced; GA n/d</td>
+<td>Coherent-lite DSP</td>
+<td>n/a</td>
+<td>400G 16QAM</td>
+<td>n/a</td>
+<td>DSP</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Longer-reach optics</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Dragonfly CU100</td>
+<td>2026 portfolio</td>
+<td>Announced; GA n/d</td>
+<td>AEC DSP; 4 nm</td>
+<td>n/a</td>
+<td>100G PAM4</td>
+<td>n/a</td>
+<td>DSP</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Electrical retiming</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Dragonfly CU200</td>
+<td>2026 portfolio</td>
+<td>Announced; GA n/d</td>
+<td>AEC DSP</td>
+<td>n/a</td>
+<td>200G PAM4</td>
+<td>n/a</td>
+<td>DSP</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Electrical retiming</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Dragonwing X100</td>
+<td>2021 disclosure</td>
+<td>Shipping / available</td>
+<td>5G RAN inline accelerator</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe</td>
+<td>5G L1 software</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>O-RAN fronthaul; AI RDMA n/a</td>
+<td>n/a</td>
+<td>Baseband L1 processing</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-interconnect-and-system-topology">13 Interconnect and system topology</h2>
+<h3 id="normalized-interconnect-boundaries">Normalized interconnect boundaries</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QSB</td>
+<td>2017</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d; &gt;250 GB/s aggregate internal</td>
+<td>n/a</td>
+<td>Segmented coherent ring</td>
+<td>48 cores</td>
+<td>CPU/cache/I/O coherence</td>
+</tr>
+<tr>
+<td>Cloud AI 100 host</td>
+<td>2021</td>
+<td>16 GT/s</td>
+<td>8</td>
+<td>~15.75</td>
+<td>1</td>
+<td>PCIe</td>
+<td>1 card</td>
+<td>DMA / host I/O</td>
+</tr>
+<tr>
+<td>Ultra host / local</td>
+<td>2023</td>
+<td>16 GT/s</td>
+<td>16 host; 8/SoC</td>
+<td>~31.5 host; ~15.75/SoC</td>
+<td>4 SoC links</td>
+<td>On-card PCIe switch</td>
+<td>4 SoCs</td>
+<td>Partitioned local memory; PCIe movement</td>
+</tr>
+<tr>
+<td>AI200 / AI250 scale-up</td>
+<td>2026-2027</td>
+<td>64 GT/s</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe 6</td>
+<td>Rack solution; topology n/d</td>
+<td>Coherence not established</td>
+</tr>
+<tr>
+<td>AI300 UALink / ESUN</td>
+<td>FY28</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Single-hop all-to-all target</td>
+<td>n/d</td>
+<td>Protocol details n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="system-reference-envelopes">System reference envelopes</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centriq OCP motherboard</td>
+<td>2017</td>
+<td>Centriq 2400</td>
+<td>1 socket</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Server-dependent</td>
+</tr>
+<tr>
+<td>Ultra inference server</td>
+<td>2023-2025</td>
+<td>Host CPU + PCIe cards</td>
+<td>4 SoCs per card; system-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Air, platform-dependent</td>
+</tr>
+<tr>
+<td>AI200 ORv3</td>
+<td>2026</td>
+<td>56 cards</td>
+<td>PCIe 6 rack integration</td>
+<td>RoCE; per-card rate n/d</td>
+<td>140 kW</td>
+<td>DLC reference; air option disclosed</td>
+</tr>
+<tr>
+<td>AI250 ORv3</td>
+<td>2027 target</td>
+<td>43 TB rack; card count n/d here</td>
+<td>PCIe 6</td>
+<td>RoCE; rate n/d</td>
+<td>n/d</td>
+<td>Air / DLC</td>
+</tr>
+<tr>
+<td>AI300 + C1000</td>
+<td>2028 roadmap</td>
+<td>Future CPU + HBC accelerators</td>
+<td>All-to-all target</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Liquid</td>
+</tr>
+</tbody>
+</table></div>
+<p>The rack references include NICs and switches, but the reviewed product pages do not specify a complete Qualcomm-branded AI NIC with transport, congestion-control and offload details. It is therefore more accurate to show RoCE as the system transport and the DSPs as connectivity components. Retiming a signal does not implement RDMA, congestion control or collective acceleration. Similarly, UALink participation and controller IP do not by themselves establish a merchant scale-up switch SKU.</p>
+<h2 id="14-adreno-hexagon-dragonwing-and-ran">14 Adreno, Hexagon, Dragonwing and RAN</h2>
+<p>Qualcomm’s GPU line is Adreno, integrated into Snapdragon and related SoCs. Its role includes graphics and flexible local compute; it is not the architecture identity of Cloud AI 100. Hexagon combines DSP/vector/tensor capabilities for edge AI, with newer products emphasizing dedicated NPU execution. Snapdragon X and mobile Oryon products show CPU, GPU and NPU sharing a constrained memory and thermal envelope. Peak values across these engines cannot simply be added as one usable model throughput because operators, formats and data movement differ.</p>
+<p>Dragonwing is the industrial/embedded and infrastructure brand; Dragonfly is the datacenter portfolio. The Cloud AI 100 Ultra can also serve on-premises inference appliances, connecting the edge and datacenter stories without turning every embedded product into a server accelerator. X100 is especially easy to misread: Dragonwing X100 is a 5G RAN inline accelerator for Layer 1 baseband processing, whereas Cloud AI 100 is an AI inference family. MWC disclosures belong to telecom infrastructure, not evidence of an AI training fabric.</p>
+<h2 id="15-software-and-academic-evidence">15 Software and academic evidence</h2>
+<p>Cloud AI SDK separates model compilation from runtime execution and exposes hardware-aware model preparation. The future Dragonfly stack adds the AI Inference Suite, infrastructure management, AIC ahead-of-time compilation, QCCL, NPU-direct and orchestration integration. Modular’s acquisition completed in July 2026, adding a software platform whose existing cross-hardware capability is distinct from future Dragonfly optimization. An acquisition announcement or a stack diagram does not establish that every operator and numerical format is production-ready on every accelerator generation.</p>
+<p>ASPLOS 2025’s Fast On-device LLM Inference with NPUs is a useful implementation-facing study: it partitions variable-length prompts, handles quantization outliers across engines and schedules blocks according to CPU/GPU/NPU affinity. It studies how to use available hardware, not an undisclosed Dragonfly microarchitecture. ISCA 2023 shared-microexponent work and the OCP microscaling paper explain low-precision representation choices, but neither alone proves native support in Cloud AI 100 silicon. Academic sponsorship, a program-committee affiliation or a paper using a Snapdragon phone is not a product disclosure.</p>
+<h3 id="software-timeline-and-enablement-boundary">Software timeline and enablement boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Release / component</th>
+<th>Date</th>
+<th>Hardware enabled</th>
+<th>Key features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud AI SDK</td>
+<td>2021-2026</td>
+<td>Cloud AI 100 / Ultra</td>
+<td>Compile, deploy, profile; model support is release-specific</td>
+</tr>
+<tr>
+<td>AI Engine Direct / QNN</td>
+<td>2022-2026</td>
+<td>Snapdragon / Hexagon / Adreno</td>
+<td>On-device heterogeneous execution</td>
+</tr>
+<tr>
+<td>AI Inference Suite / AIMS</td>
+<td>2026 disclosure</td>
+<td>Dragonfly</td>
+<td>Serving, fleet management, QCCL and NPU-direct roadmap</td>
+</tr>
+<tr>
+<td>Modular acquisition</td>
+<td>2026-07</td>
+<td>Cross-hardware AI software</td>
+<td>Completed acquisition; future hardware enablement separate</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="16-quantitative-balance-and-deployment-trade-offs">16 Quantitative balance and deployment trade-offs</h2>
+<h3 id="derived-ratios-with-explicit-scope">Derived ratios with explicit scope</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Derived quantity</th>
+<th>Value</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centriq 48C</td>
+<td>DRAM/core; LLC/core</td>
+<td>~2.67 GB/s; 1.25 MB</td>
+<td>Theoretical equal share</td>
+</tr>
+<tr>
+<td>AI 100 Pro</td>
+<td>Memory BW / FP16 peak</td>
+<td>0.001096 byte/FLOP</td>
+<td>137 GB/s / 125 TFLOP/s; not BF16</td>
+</tr>
+<tr>
+<td>AI 100 Ultra</td>
+<td>Memory BW / FP16 peak</td>
+<td>0.001903 byte/FLOP</td>
+<td>548 GB/s / 288 TFLOP/s product figure</td>
+</tr>
+<tr>
+<td>AI 100 Pro</td>
+<td>Host / local memory bandwidth</td>
+<td>~0.115</td>
+<td>15.75 / 137; one direction; raw host link</td>
+</tr>
+<tr>
+<td>AI 100 Ultra</td>
+<td>Host / summed local memory BW</td>
+<td>~0.0575</td>
+<td>31.5 / 548; four memory domains</td>
+</tr>
+<tr>
+<td>AI200</td>
+<td>Memory/card; BW/card average</td>
+<td>768 GB; ~7.39 TB/s</td>
+<td>414 TB/s / 56 cards; no card-power inference</td>
+</tr>
+<tr>
+<td>AI 100 Pro</td>
+<td>FP16 peak / rated TDP</td>
+<td>1.67 TFLOP/s/W</td>
+<td>125 / 75; not measured tokens/W</td>
+</tr>
+<tr>
+<td>AI 100 Ultra</td>
+<td>FP16 peak / rated TDP</td>
+<td>1.92 TFLOP/s/W</td>
+<td>288 / 150; not whole-system energy</td>
+</tr>
+</tbody>
+</table></div>
+<p>These ratios expose the portfolio’s trade-offs. Ultra quadruples card memory capacity relative to Pro while doubling rated card power, but only doubles the host-link width; residency becomes more important. AI200 increases the unit of integration and cooling burden. AI250 attacks decode movement with a different memory-compute organization. Dense BF16/FP8 bytes-per-FLOP, HBM ratios, scale-out bandwidth per card and measured rack tokens/W remain n/d where the required normalized inputs are absent. Substituting marketing multipliers would hide the architectural question rather than answer it.</p>
+<h2 id="17-conference-to-product-index">17 Conference-to-product index</h2>
+<h3 id="verified-disclosure-anchors">Verified disclosure anchors</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2017</td>
+<td>Qualcomm Centriq 2400 Processor / Falkor</td>
+<td>Qualcomm</td>
+<td>Centriq</td>
+<td>Architecture</td>
+<td>C01 E01</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2021</td>
+<td>Cloud AI 100: Scalable, High Performance and Low Latency Deep Learning Inference Accelerator</td>
+<td>Qualcomm</td>
+<td>Cloud AI 100</td>
+<td>Architecture</td>
+<td>C06 P01</td>
+</tr>
+<tr>
+<td>Hot Chips / IEEE Micro</td>
+<td>2024 / 2025</td>
+<td>Snapdragon X Elite Qualcomm Oryon CPU: Design &amp; Architecture Overview</td>
+<td>Gerard Williams / Qualcomm</td>
+<td>Oryon</td>
+<td>Architecture</td>
+<td>C07 C08 C02</td>
+</tr>
+<tr>
+<td>ISSCC / JSSC lineage</td>
+<td>2015 / 2016</td>
+<td>Auto-calibrating adaptive clock distribution</td>
+<td>Keith Bowman et al.</td>
+<td>Circuit research; Snapdragon 820 link</td>
+<td>Circuit research</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2025</td>
+<td>Generative AI on Edge Devices: Models, Hardware and Systems</td>
+<td>Paul Whatmough</td>
+<td>Edge AI context</td>
+<td>Tutorial</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2025</td>
+<td>Fast On-device LLM Inference with NPUs</td>
+<td>Daliang Xu et al.</td>
+<td>Snapdragon-class NPU use</td>
+<td>System research</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2023</td>
+<td>With Shared Microexponents, A Little Shifting Goes a Long Way</td>
+<td>B. Rouhani et al.</td>
+<td>Numerical-format background</td>
+<td>Related research</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>OCP Summit</td>
+<td>2017</td>
+<td>Centriq Open Compute motherboard with Microsoft</td>
+<td>Qualcomm / Microsoft</td>
+<td>Centriq</td>
+<td>System demonstration</td>
+<td>E12</td>
+</tr>
+<tr>
+<td>MWC-era announcement</td>
+<td>2021</td>
+<td>5G DU X100 accelerator</td>
+<td>Qualcomm</td>
+<td>X100 RAN</td>
+<td>Product / system</td>
+<td>E11</td>
+</tr>
+<tr>
+<td>Snapdragon Summit</td>
+<td>2023 / 2025</td>
+<td>X Elite / X2 Elite</td>
+<td>Qualcomm</td>
+<td>Oryon client lineage</td>
+<td>Product launch</td>
+<td>E17 P12</td>
+</tr>
+<tr>
+<td>Investor Day</td>
+<td>2026</td>
+<td>Dragonfly CPU, HBC, accelerators and connectivity</td>
+<td>Tony Pialis</td>
+<td>C1000 / AI200-300 / DSPs</td>
+<td>Roadmap / system</td>
+<td>P08 E09 E10</td>
+</tr>
+<tr>
+<td>AI Infra Summit</td>
+<td>2026</td>
+<td>Dragonfly inference demonstrations</td>
+<td>Qualcomm</td>
+<td>AI200</td>
+<td>Demonstration</td>
+<td>E07</td>
+</tr>
+</tbody>
+</table></div>
+<p>MICRO and HPCA were checked as architecture-research venues, but the reviewed record does not establish a primary Centriq, Cloud AI or Dragonfly product-architecture paper there. DAC and VLSI can illuminate implementation methods; OFC and Hot Interconnects are relevant to the acquired connectivity stack; Computex and company events establish product milestones. AWS re:Invent, Microsoft Ignite, Google Cloud Next and GTC require a specific partner deployment to count as evidence. The report does not turn generic ecosystem participation into a product presentation or claim exhaustive conference attendance.</p>
+<h2 id="18-codename-and-product-crosswalk">18 Codename and product crosswalk</h2>
+<h3 id="disambiguation-map">Disambiguation map</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Product identity</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Falkor</td>
+<td>Custom CPU core in Centriq 2400</td>
+<td>Not Neoverse; not Oryon</td>
+</tr>
+<tr>
+<td>Oryon</td>
+<td>Custom CPU family; client and future server</td>
+<td>Client SoC != C1000</td>
+</tr>
+<tr>
+<td>Cloud AI 100 / Ultra</td>
+<td>Inference ASIC and PCIe cards</td>
+<td>Not Adreno GPU; not X100 RAN</td>
+</tr>
+<tr>
+<td>Dragonfly</td>
+<td>Datacenter CPU, accelerator and connectivity brand</td>
+<td>C1000 / AI200 / AI250 / AI300 / DSPs</td>
+</tr>
+<tr>
+<td>Dragonwing X100</td>
+<td>5G baseband inline accelerator</td>
+<td>Telecom L1 offload</td>
+</tr>
+<tr>
+<td>HBC</td>
+<td>High Bandwidth Compute</td>
+<td>Near-memory compute; not HBM synonym</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="19-integrated-stack-across-four-eras">19 Integrated stack across four eras</h2>
+<p>Connections show architectural composition. A roadmap block remains a roadmap in the system view; placing two future products in one figure does not establish a shipping platform.</p>
+<h3 id="2015-2018-the-scale-out-server-attempt">2015-2018: the scale-out server attempt</h3>
+<pre class="mermaid">flowchart TD
+  n0["Falkor duplexes"]
+  n1["DDR4 + QSB"]
+  n2["Centriq 2400"]
+  n3["PCIe NIC / storage"]
+  n4["Linux / server firmware"]
+  n5["OCP / cloud evaluation"]
+  n0 ---|"compute"| n2
+  n1 ---|"data path"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"integrate"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual composition, with statuses defined in the product chapters; external NIC ownership is not inferred.</p>
+<h3 id="2019-2022-inference-cards">2019-2022: inference cards</h3>
+<pre class="mermaid">flowchart TD
+  n0["Cloud AI 100 AIC"]
+  n1["SRAM + LPDDR4X"]
+  n2["PCIe card + host CPU"]
+  n3["External Ethernet"]
+  n4["Cloud AI SDK"]
+  n5["Inference server / edge"]
+  n0 ---|"compute"| n2
+  n1 ---|"data path"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"integrate"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual composition, with statuses defined in the product chapters; external NIC ownership is not inferred.</p>
+<h3 id="2023-2025-model-capacity-and-new-cpu-cores">2023-2025: model capacity and new CPU cores</h3>
+<pre class="mermaid">flowchart TD
+  n0["4 x AI 100 SoCs"]
+  n1["128 GB card memory"]
+  n2["Ultra + PCIe host"]
+  n3["Oryon client lineage"]
+  n4["SDK + model partitioning"]
+  n5["LLM serving / on-prem"]
+  n0 ---|"compute"| n2
+  n1 ---|"data path"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"integrate"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual composition, with statuses defined in the product chapters; external NIC ownership is not inferred.</p>
+<h3 id="2026-disclosures-the-future-rack-portfolio">2026 disclosures: the future rack portfolio</h3>
+<pre class="mermaid">flowchart TD
+  n0["C1000 roadmap CPU"]
+  n1["AI200 / AI250 / AI300"]
+  n2["PCIe / UALink roadmap"]
+  n3["RoCE + DSP connectivity"]
+  n4["Inference Suite / Modular"]
+  n5["ORv3 inference racks"]
+  n0 ---|"compute"| n2
+  n1 ---|"data path"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"integrate"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual composition, with statuses defined in the product chapters; external NIC ownership is not inferred.</p>
+<h3 id="bandwidth-hierarchy-by-era">Bandwidth hierarchy by era</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Era / reference</th>
+<th>On-die / die-to-die</th>
+<th>Local memory</th>
+<th>CPU / scale-up</th>
+<th>Scale-out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017 Centriq</td>
+<td>QSB &gt;250 GB/s aggregate</td>
+<td>~128 GB/s DDR4</td>
+<td>PCIe 3; ~15.75 GB/s per x16 direction</td>
+<td>External NIC; n/d</td>
+</tr>
+<tr>
+<td>2021 AI 100 Pro</td>
+<td>3 NoCs; aggregate scope not normalized</td>
+<td>137 GB/s</td>
+<td>PCIe 4 x8 ~15.75 GB/s/direction</td>
+<td>External NIC; n/d</td>
+</tr>
+<tr>
+<td>2023 Ultra</td>
+<td>4 discrete SoCs; PCIe switch</td>
+<td>548 GB/s summed</td>
+<td>PCIe 4 x16 ~31.5 GB/s/direction</td>
+<td>External NIC; n/d</td>
+</tr>
+<tr>
+<td>2026 Dragonfly disclosure</td>
+<td>HBC implementation details n/d</td>
+<td>AI200 ~7.39 TB/s/card; AI250 133 effective</td>
+<td>PCIe 6 / future UALink; n/d</td>
+<td>RoCE; per-card bandwidth n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="20-engineering-conclusions">20 Engineering conclusions</h2>
+<p>Qualcomm’s strongest continuity is in energy-conscious programmable compute and data movement, not an uninterrupted server product cadence. Centriq contributes a real server baseline; Oryon rebuilds custom CPU capability; Cloud AI 100 provides a distinct inference engine; Ultra demonstrates capacity scaling through board-level replication. Dragonfly’s next step is harder: coordinating CPU, near-memory acceleration, high-speed connectivity, software and cooling at rack scale. Its success should be assessed with model fit, latency-constrained token throughput, communication overhead and measured system power, while keeping future production targets separate from present capabilities.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C01, E02, E05, E07, E08, E10, E14, P01, P05, P08</p>
+<p>02 Units, product boundaries and roadmap status — E06, E07, P01, P04, P08</p>
+<p>03 CPU generation atlas — C01, C02, C07, C08, E01, E02, E10, E13, E16, P07, P08, P12</p>
+<p>04 Centriq and Falkor: the first server architecture — C01, E01, E02, E12</p>
+<p>05 Oryon: client silicon rebuilds the CPU lineage — C02, C03, C04, C05, C08, E15, P12</p>
+<p>06 Dragonfly C1000 and the RISC-V branch — E10, E13, P07, P08</p>
+<p>07 Accelerator generation atlas — E04, E05, E06, E07, P01, P02, P03, P04, P05, P06, P08</p>
+<p>08 Cloud AI 100: programmable inference dataflow — C06, E03, E04, P01, P02</p>
+<p>09 Cloud AI 100 Ultra: capacity by replication — E05, P01, P03, R01</p>
+<p>10 AI200: the inference rack becomes the product — E07, P04</p>
+<p>11 AI250 and AI300: near-memory execution — P05, P06, P08</p>
+<p>12 Connectivity: from Alphawave assets to Dragonfly DSPs — E08, E11, P08, P09, P10, P11</p>
+<p>13 Interconnect and system topology — C01, E10, E12, P01, P04, P05, P06, P08, P09, R01</p>
+<p>14 Adreno, Hexagon, Dragonwing and RAN — E11, P03, P11, P12, P14, R04</p>
+<p>15 Software and academic evidence — E14, P01, P08, P13, P14, R02, R03, R04</p>
+<p>16 Quantitative balance and deployment trade-offs — C01, E02, P01, P03, P04, P05</p>
+<p>17 Conference-to-product index — C01, C02, C03, C04, C06, C07, C08, E01, E07, E09, E10, E11, E12, E17, P01, P08, P12, R02, R04</p>
+<p>18 Codename and product crosswalk — C01, C07, P01, P07, P08, P09, P11</p>
+<p>19 Integrated stack across four eras — C01, E10, P01, P04, P05, P06, P08</p>
+<p>20 Engineering conclusions — C01, E10, E14, P01, P08</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] Cloud AI 100 architecture, SDK 1.12. <a href="https://quic.github.io/cloud-ai-sdk-pages/1.12/Getting-Started/Architecture/">https://quic.github.io/cloud-ai-sdk-pages/1.12/Getting-Started/Architecture/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Cloud AI 100 announcement and silicon specifications. <a href="https://www.qualcomm.com/media/documents/files/qualcomm-cloud-ai-100-announcement.pdf">https://www.qualcomm.com/media/documents/files/qualcomm-cloud-ai-100-announcement.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] Cloud AI 100 Ultra specifications. <a href="https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra">https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] Dragonfly AI200 specifications. <a href="https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai200">https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai200</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Dragonfly AI250 specifications. <a href="https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai250">https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai250</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] Dragonfly AI300 specifications. <a href="https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai300">https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-ai300</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] Dragonfly C1000 specifications. <a href="https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-c1000">https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-c1000</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P08] Investor Day 2026 Data Center presentation. <a href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Investor-Day-2026_TPialis_Data-Center.pdf">https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Investor-Day-2026_TPialis_Data-Center.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P09] Dragonfly connectivity portfolio. <a href="https://www.qualcomm.com/data-center/expertise/connectivity">https://www.qualcomm.com/data-center/expertise/connectivity</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] Dragonfly CU100 AEC DSP. <a href="https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-cu100">https://www.qualcomm.com/data-center/products/qualcomm-dragonfly-cu100</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P11] Dragonwing X100 RAN accelerator. <a href="https://www.qualcomm.com/cellular-infrastructure/products/qualcomm-x100-5g-ran-accelerator-card">https://www.qualcomm.com/cellular-infrastructure/products/qualcomm-x100-5g-ran-accelerator-card</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P12] Snapdragon X2 Elite product brief. <a href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-X2-Elite-Product-Brief.pdf">https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-X2-Elite-Product-Brief.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P13] Cloud AI SDK model architecture support. <a href="https://quic.github.io/cloud-ai-sdk-pages/latest/Getting-Started/Model-Architecture-Support/">https://quic.github.io/cloud-ai-sdk-pages/latest/Getting-Started/Model-Architecture-Support/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P14] Qualcomm AI Engine Direct SDK documentation. <a href="https://docs.qualcomm.com/bundle/publicresource/topics/80-63442-50/introduction.html">https://docs.qualcomm.com/bundle/publicresource/topics/80-63442-50/introduction.html</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] Qualcomm Centriq 2400 Processor, Hot Chips 2017. <a href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qualcomm_centriq_2400_hotchips_final_0.pdf">https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/qualcomm_centriq_2400_hotchips_final_0.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] Qualcomm Oryon CPU in Snapdragon X Elite: Micro-Architecture and Design, IEEE Micro 2025. <a href="https://ieeexplore.ieee.org/abstract/document/11002606">https://ieeexplore.ieee.org/abstract/document/11002606</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[C03] ISSCC 2025 advance program: Generative AI on Edge Devices tutorial. <a href="https://www.isscc.org/s/ISSCC2025AdvanceProgram.pdf">https://www.isscc.org/s/ISSCC2025AdvanceProgram.pdf</a>. Official conference press kit; not the full paper.</p>
+<p>[C04] Adaptive and Resilient Circuits for Processors: Keith Bowman lecture. <a href="https://www.ece.uw.edu/colloquia/adaptive-and-resilient-circuits-for-processors/">https://www.ece.uw.edu/colloquia/adaptive-and-resilient-circuits-for-processors/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C05] Hot Chips 2024 conference program: Oryon. <a href="https://hc2024.hotchips.org/">https://hc2024.hotchips.org/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[C06] Hot Chips 2021 conference program: Cloud AI 100. <a href="https://hc33.hotchips.org/">https://hc33.hotchips.org/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[C07] Snapdragon X Elite product brief and Oryon configuration. <a href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/snapdragon-summit-2023/documents/SnapdragonXEliteProductBrief.pdf">https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/snapdragon-summit-2023/documents/SnapdragonXEliteProductBrief.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C08] Qualcomm-authored Hot Chips 2024 Oryon architecture slides, reproduced by ServeTheHome. <a href="https://www.servethehome.com/snapdragon-x-elite-qualcomm-oryon-cpu-design-and-architecture-hot-chips-2024-arm/">https://www.servethehome.com/snapdragon-x-elite-qualcomm-oryon-cpu-design-and-architecture-hot-chips-2024-arm/</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="research-papers-and-publication-registries">Research papers and publication registries</h3>
+<p>[R01] Serving LLMs in HPC Clusters: A Comparative Study of Qualcomm Cloud AI 100 Ultra and NVIDIA Data Center GPUs. <a href="https://arxiv.org/abs/2507.00418">https://arxiv.org/abs/2507.00418</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R02] With Shared Microexponents, A Little Shifting Goes a Long Way. <a href="https://arxiv.org/abs/2302.08007">https://arxiv.org/abs/2302.08007</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R03] Microscaling Data Formats for Deep Learning. <a href="https://arxiv.org/abs/2310.10537">https://arxiv.org/abs/2310.10537</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R04] Fast On-device LLM Inference with NPUs, ASPLOS 2025. <a href="https://xumengwei.github.io/files/ASPLOS25-NPU.pdf">https://xumengwei.github.io/files/ASPLOS25-NPU.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Introducing Falkor, Hot Chips 2017. <a href="https://www.qualcomm.com/news/onq/2017/08/introducing-qualcomm-falkor-cpu-core-purpose-built-cloud-workloads">https://www.qualcomm.com/news/onq/2017/08/introducing-qualcomm-falkor-cpu-core-purpose-built-cloud-workloads</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Centriq 2400 commercial shipment, 2017. <a href="https://www.qualcomm.com/news/releases/2017/11/qualcomm-datacenter-technologies-announces-commercial-shipment-qualcomm">https://www.qualcomm.com/news/releases/2017/11/qualcomm-datacenter-technologies-announces-commercial-shipment-qualcomm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Cloud AI 100 launch, 2019. <a href="https://www.qualcomm.com/news/releases/2019/04/qualcomm-brings-power-efficient-artificial-intelligence-inference">https://www.qualcomm.com/news/releases/2019/04/qualcomm-brings-power-efficient-artificial-intelligence-inference</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] Cloud AI 100 first customer shipments, 2020. <a href="https://www.qualcomm.com/news/releases/2020/09/qualcomm-announces-first-shipments-qualcomm-cloud-ai-100-accelerator-and">https://www.qualcomm.com/news/releases/2020/09/qualcomm-announces-first-shipments-qualcomm-cloud-ai-100-accelerator-and</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Cloud AI 100 Ultra launch, 2023. <a href="https://www.qualcomm.com/news/onq/2023/11/introducing-qualcomm-cloud-ai-100-ultra">https://www.qualcomm.com/news/onq/2023/11/introducing-qualcomm-cloud-ai-100-ultra</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] AI200 and AI250 announcement, October 2025. <a href="https://www.qualcomm.com/news/releases/2025/10/qualcomm-unveils-ai200-and-ai250-redefining-rack-scale-data-cent">https://www.qualcomm.com/news/releases/2025/10/qualcomm-unveils-ai200-and-ai250-redefining-rack-scale-data-cent</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Dragonfly at AI Infra Summit 2026. <a href="https://www.qualcomm.com/news/onq/2026/09/qualcomm-dragonfly-ai-infra-summit-2026">https://www.qualcomm.com/news/onq/2026/09/qualcomm-dragonfly-ai-infra-summit-2026</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E08] Alphawave acquisition completion, SEC note. <a href="https://www.sec.gov/Archives/edgar/data/804328/000080432826000061/R14.htm">https://www.sec.gov/Archives/edgar/data/804328/000080432826000061/R14.htm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] Qualcomm Dragonfly roadmap announcement, June 2026 (company release). <a href="https://www.nasdaq.com/press-release/qualcomm-unveils-comprehensive-data-center-roadmap-agentic-ai-era-new-qualcomm">https://www.nasdaq.com/press-release/qualcomm-unveils-comprehensive-data-center-roadmap-agentic-ai-era-new-qualcomm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E10] Qualcomm and Meta C1000 agreement (company release). <a href="https://www.nasdaq.com/press-release/qualcomm-and-meta-announce-strategic-multi-generation-agreement-data-center-cpus-2026">https://www.nasdaq.com/press-release/qualcomm-and-meta-announce-strategic-multi-generation-agreement-data-center-cpus-2026</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] X100 5G DU accelerator introduction, MWC 2021. <a href="https://www.qualcomm.com/news/releases/2021/06/qualcomm-introduces-new-5g-distributed-unit-accelerator-card-drive-global">https://www.qualcomm.com/news/releases/2021/06/qualcomm-introduces-new-5g-distributed-unit-accelerator-card-drive-global</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Qualcomm Centriq Open Compute motherboard with Microsoft, 2017. <a href="https://investor.qualcomm.com/news-events/press-releases/news-details/2017/Qualcomm-Collaborates-with-Microsoft-to-Accelerate-Cloud-Services-on-10nm-Qualcomm-Centriq-2400-Platform-03-08-2017/default.aspx">https://investor.qualcomm.com/news-events/press-releases/news-details/2017/Qualcomm-Collaborates-with-Microsoft-to-Accelerate-Cloud-Services-on-10nm-Qualcomm-Centriq-2400-Platform-03-08-2017/default.aspx</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[E13] Qualcomm acquisition of Ventana, December 2025. <a href="https://www.qualcomm.com/news/releases/2025/12/qualcomm-acquires-ventana-micro-systems--deepening-risc-v-cpu-ex">https://www.qualcomm.com/news/releases/2025/12/qualcomm-acquires-ventana-micro-systems--deepening-risc-v-cpu-ex</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E14] Qualcomm completes Modular acquisition, July 2026. <a href="https://www.qualcomm.com/news/releases/2026/07/qualcomm-completes-acquisition-of-modular">https://www.qualcomm.com/news/releases/2026/07/qualcomm-completes-acquisition-of-modular</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E15] Qualcomm completes NUVIA acquisition, March 2021. <a href="https://s204.q4cdn.com/645488518/files/doc_news/2021/03/2021-03-16_Qualcomm_Completes_Acquisition_of_1304.pdf">https://s204.q4cdn.com/645488518/files/doc_news/2021/03/2021-03-16_Qualcomm_Completes_Acquisition_of_1304.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E16] Snapdragon X2 commercial PC lineup, April 2026. <a href="https://www.qualcomm.com/snapdragon/news/explore-the-lineup-of-new-next-gen-pcs-powered-by-snapdragon-x2-">https://www.qualcomm.com/snapdragon/news/explore-the-lineup-of-new-next-gen-pcs-powered-by-snapdragon-x2-</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E17] Snapdragon X Elite introduction, Summit 2023. <a href="https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat">https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

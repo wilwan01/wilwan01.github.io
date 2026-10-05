@@ -1,0 +1,5976 @@
+{
+  "vendor": "Broadcom",
+  "cutoff": "2026-09-28",
+  "sections": [
+    {
+      "id": "01",
+      "title": [
+        "Scope and executive synthesis",
+        "范围与核心判断"
+      ],
+      "blocks": [
+        {
+          "id": "01.scope",
+          "type": "prose",
+          "text": [
+            "Deep coverage: Tomahawk, Jericho, AI Ethernet NICs and their system roles. Full coverage: SerDes, CPO and publicly named custom-XPU programs. CPU and accelerator schemas are retained, but Broadcom is not treated as a merchant server-CPU or general-purpose GPU vendor. Period: 2015-28 September 2026. The latest reviewed events include ISSCC 2025, Hot Chips 2025, the public Hot Chips 2026 program and 2026 partner announcements. Storage connectivity is proportional; VMware is outside the silicon architecture scope.",
+            "深入覆盖 Tomahawk、Jericho、AI 以太网卡及其系统角色；完整覆盖 SerDes、CPO 和公开具名的定制 XPU 项目。保留 CPU 与加速器表结构，但不把 Broadcom 视为通用商用服务器 CPU 或 GPU 厂商。时间范围：2015 年至 2026 年 9 月 28 日。最新已审阅活动包括 ISSCC 2025、Hot Chips 2025、Hot Chips 2026 公开议程及 2026 年合作伙伴发布。按相关性覆盖存储连接；VMware 不属于本报告芯片架构范围。"
+          ],
+          "sources": [
+            "C01",
+            "C02",
+            "C03",
+            "E11",
+            "E12"
+          ]
+        },
+        {
+          "id": "01.thesis",
+          "type": "prose",
+          "text": [
+            "Broadcom’s evolution is from supplying switch capacity to shaping the entire communication path of an AI system. High radix reduces network tiers; NIC transport handles path diversity and recovery; scheduled fabrics control contention; optics changes physical reach and power. The custom-XPU business connects these technologies to customer-specific compute. The important architectural comparison is not simply Ethernet versus a proprietary fabric, but which layer owns scheduling, ordering, congestion and failure recovery.",
+            "Broadcom 的演进，是从提供交换容量转向塑造 AI 系统的完整通信路径。高端口密度减少网络层级；网卡传输处理多路径与恢复；调度式网络控制争用；光互联改变距离与功耗；定制 XPU 则把这些技术连接到客户专用计算。关键架构比较不只是以太网与专有网络之争，而是哪一层负责调度、排序、拥塞及故障恢复。"
+          ],
+          "sources": [
+            "E01",
+            "E02",
+            "E03",
+            "C02",
+            "E11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": [
+        "Bandwidth, status and topology conventions",
+        "带宽、状态与拓扑口径"
+      ],
+      "blocks": [
+        {
+          "id": "02.basis",
+          "type": "prose",
+          "text": [
+            "Switch capacity is quoted in the vendor’s native convention and is not automatically the sum of both directions. Endpoint Ethernet rates are line rates; dividing Gb/s by eight gives nominal GB/s before protocol overhead. Jericho front-panel bandwidth and fabric-interface bandwidth must be separated: adding them can produce a headline that is not usable endpoint injection bandwidth. Chip availability, OEM switch qualification and deployed system scale are separate milestones. n/d means not established in reviewed sources; n/a means not applicable.",
+            "交换容量保留厂商原始口径，不自动理解为两个方向之和。端点以太网速率是线路速率；Gb/s 除以八得到未扣除协议开销的标称 GB/s。Jericho 的前面板带宽与内部网络接口带宽必须分开；把它们相加得到的标题数字，并不是端点可用注入带宽。芯片可用、OEM 交换机验证和系统部署规模属于不同里程碑。n/d 表示已审阅资料未确定，n/a 表示不适用。"
+          ],
+          "sources": [
+            "P04",
+            "P05",
+            "E01",
+            "E03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": [
+        "Tomahawk1-4: radix and SerDes drive the system",
+        "Tomahawk1-4：端口密度与 SerDes 驱动系统"
+      ],
+      "blocks": [
+        {
+          "id": "03.early",
+          "type": "prose",
+          "text": [
+            "Tomahawk established the high-bandwidth cloud-switch line in the 2015-era baseline. Tomahawk2 doubled capacity to 6.4 Tb/s; Tomahawk3 doubled it again to 12.8 Tb/s and enabled dense 400GbE configurations through 50G PAM4 signaling. Tomahawk4 reached 25.6 Tb/s and subsequently entered production. These transitions are not just larger crossbars: each changes the number of endpoints that can be connected at a fixed radix, the number of tiers, cable count and optical power.",
+            "Tomahawk 在 2015 年前后的基线阶段建立高带宽云交换产品线。Tomahawk2 将容量翻倍至 6.4 Tb/s，Tomahawk3 再翻倍至 12.8 Tb/s，并通过 50G PAM4 支持高密度 400GbE 配置。Tomahawk4 达到 25.6 Tb/s，随后进入量产。这些变化不只是交叉开关变大：每一代都改变固定端口密度下可连接的端点数、网络层级、线缆数量及光模块功耗。"
+          ],
+          "sources": [
+            "P03",
+            "E05",
+            "E06",
+            "E07"
+          ]
+        },
+        {
+          "id": "03.radix",
+          "type": "prose",
+          "text": [
+            "Architectural interpretation: at fixed total switching bandwidth, increasing endpoint speed reduces the number of endpoint-facing ports. Capacity doubling can therefore be consumed entirely by speed doubling, leaving radix unchanged. A system designer should ask whether a new generation buys more nodes per tier, higher bandwidth per node or lower oversubscription. Those are different benefits. Port counts must also reserve uplinks; a 64-port switch is not automatically a nonblocking 64-endpoint leaf.",
+            "架构解读：在总交换带宽固定时，提高端点速率会减少面向端点的端口数。因此，容量翻倍可能被速率翻倍全部消耗，端口数量并不增加。系统设计者应明确新一代带来的是每层更多节点、每节点更高带宽，还是更低超售比。这是不同收益。端口还必须预留上联；64 端口交换机不自动等于无阻塞连接 64 个端点的叶交换机。"
+          ],
+          "sources": [
+            "P01",
+            "E01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": [
+        "Tomahawk5, Tomahawk6 and Tomahawk Ultra",
+        "Tomahawk5、Tomahawk6 与 Tomahawk Ultra"
+      ],
+      "blocks": [
+        {
+          "id": "04.th5",
+          "type": "prose",
+          "text": [
+            "Tomahawk5 couples 51.2 Tb/s switching with 100G-class PAM4 lanes. The ISSCC 2025 paper 16.1 identifies a monolithic 5 nm implementation with 512 PAM4 SerDes lanes; the reviewed press kit establishes that implementation mapping, while product documents establish supported port configurations. This is a useful example of conference synthesis: the circuit venue explains realization and power-management concerns, while the product source explains the network building block. The press kit is not treated as the full paper.",
+            "Tomahawk5 把 51.2 Tb/s 交换与 100G 级 PAM4 通道结合。ISSCC 2025 论文 16.1 对应单片 5 nm 实现、512 条 PAM4 SerDes；已审阅的会议新闻资料建立该实现映射，产品文档提供端口配置。这体现了跨会议综合的价值：电路会议解释实现与功耗管理问题，产品资料解释网络构件。本报告不把新闻资料当作论文全文。"
+          ],
+          "sources": [
+            "C01",
+            "P01",
+            "E08"
+          ]
+        },
+        {
+          "id": "04.th6",
+          "type": "prose",
+          "text": [
+            "Tomahawk6 reaches 102.4 Tb/s and offers 100G- and 200G-class SerDes configurations. Its architecture combines higher radix with routing, congestion and telemetry functions for AI. The 2025 announcement and the 2026 production announcement are recorded separately. CPO variants are not automatically identical to the electrical package: optical-engine integration changes the package, cooling, serviceability and link-budget problem even when the logical switch capacity remains the same.",
+            "Tomahawk6 达到 102.4 Tb/s，提供 100G 与 200G 级 SerDes 配置。其架构把更高端口密度与面向 AI 的路由、拥塞和遥测功能结合。2025 年发布与 2026 年量产分别记录。CPO 变体不自动等同于电接口封装：即使逻辑交换容量相同，光引擎集成也会改变封装、散热、维护和链路预算问题。"
+          ],
+          "sources": [
+            "E01",
+            "E04",
+            "E09"
+          ]
+        },
+        {
+          "id": "04.ultra",
+          "type": "prose",
+          "text": [
+            "Tomahawk Ultra is a specialization branch, not simply the next numbered Tomahawk. The Hot Chips 2025 presentation emphasizes 51.2 Tb/s operation for small packets, roughly 250 ns switching latency, link-level retry, shortened headers and in-network collectives. These features address scale-up traffic where transaction overhead and latency can dominate. A small-packet throughput claim and a bulk-bandwidth claim are different tests; full-size frame line rate cannot establish the former.",
+            "Tomahawk Ultra 是专用化分支，并非简单的下一代编号 Tomahawk。Hot Chips 2025 演讲强调小包条件下 51.2 Tb/s、约 250 ns 交换延迟、链路级重试、精简报头与网内集合操作。这些特性针对事务开销和延迟可能占主导的纵向扩展流量。小包吞吐与大块数据带宽是不同测试；大帧满线速无法证明小包性能。"
+          ],
+          "sources": [
+            "C02",
+            "P02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": [
+        "Jericho: scheduled fabrics and regional scale",
+        "Jericho：调度式网络与区域扩展"
+      ],
+      "blocks": [
+        {
+          "id": "05.jer",
+          "type": "prose",
+          "text": [
+            "The Jericho lineage targets richer traffic management and modular fabric construction. Jericho2 combines packet processing, buffering and fabric attachment; its 9.6 Tb/s headline includes interfaces that must not all be counted as endpoint traffic. Jericho3-AI extends this approach to AI fabrics using coordinated scheduling and a separate fabric element. Its significance is contention management across a distributed switch system, rather than a claim that every individual chip has the capacity of the whole cluster.",
+            "Jericho 谱系侧重更丰富的流量管理及模块化网络构建。Jericho2 结合包处理、缓冲及内部网络连接；9.6 Tb/s 标题包含不同接口，不能全部算作端点流量。Jericho3-AI 通过协调调度与独立网络交换元件，把这一方法扩展到 AI 网络。其意义在于分布式交换系统的争用管理，而不是单颗芯片具有整个集群的容量。"
+          ],
+          "sources": [
+            "P04",
+            "P05",
+            "E13"
+          ]
+        },
+        {
+          "id": "05.j4",
+          "type": "prose",
+          "text": [
+            "Jericho4 adds 3 nm implementation, 200G PAM4, MACsec and the 3.2 Tb/s HyperPort abstraction formed from four 800GbE links. The launch discusses RoCE over regional distances beyond 100 km. The availability paragraph says sampling, despite a headline using “ships”; this report uses sampling unless a later production source establishes otherwise. Longer reach expands placement freedom but cannot remove propagation latency, so the suitable parallelism and synchronization cadence remain workload-dependent.",
+            "Jericho4 增加 3 nm 实现、200G PAM4、MACsec，并以四条 800GbE 链路构成 3.2 Tb/s HyperPort 抽象。发布资料讨论超过 100 km 区域距离上的 RoCE。虽然标题使用“发货”，可用性段落明确为送样，因此在没有更新量产证据时本报告采用送样状态。更远距离扩大部署自由度，却无法消除传播延迟；合适的并行方式与同步频率仍取决于负载。"
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": [
+        "NICs, SmartNICs and complementary connectivity",
+        "网卡、SmartNIC 与配套连接"
+      ],
+      "blocks": [
+        {
+          "id": "06.nic",
+          "type": "prose",
+          "text": [
+            "Stingray represents infrastructure offload: programmable processing moves cloud services away from the host CPU. Thor and Thor Ultra represent the endpoint communication path. Thor Ultra’s PCIe 6 ×16 interface, 800G Ethernet, multipath delivery, out-of-order placement, selective retransmission and programmable congestion control target AI collective traffic. PSP offload and device security complement transport. These functions do not make it interchangeable with a DPU running arbitrary infrastructure services.",
+            "Stingray 代表基础设施卸载：通过可编程处理把云服务工作移出主机 CPU。Thor 与 Thor Ultra 则代表端点通信路径。Thor Ultra 的 PCIe 6 ×16、800G 以太网、多路径、乱序放置、选择性重传及可编程拥塞控制，针对 AI 集合通信流量。PSP 卸载与设备安全为传输提供配套能力。这些功能并不使其与运行任意基础设施服务的 DPU 完全可互换。"
+          ],
+          "sources": [
+            "E10",
+            "E03"
+          ]
+        },
+        {
+          "id": "06.opt",
+          "type": "prose",
+          "text": [
+            "SerDes, retimers, optical DSPs, CPO, PCIe switches and storage connectivity are adjacent but distinct product layers. A retimer restores an electrical link; an optical DSP conditions a modulated optical channel; a switch routes traffic. Their power and latency belong in the end-to-end path rather than being hidden in a switch-chip number. OCP and OFC disclosures are especially relevant for these integration boundaries, while OEM demonstrations establish system compatibility rather than universal deployment.",
+            "SerDes、重定时器、光 DSP、CPO、PCIe 交换机与存储连接相邻，但属于不同产品层次。重定时器恢复电链路，光 DSP 处理调制光通道，交换机路由流量。它们的功耗和延迟应计入端到端路径，而不是隐藏在交换芯片指标中。OCP 与 OFC 披露尤其适合研究这些集成边界；OEM 演示证明系统兼容，并不代表全面部署。"
+          ],
+          "sources": [
+            "E04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": [
+        "Generation and network comparison tables",
+        "代际与网络对照表"
+      ],
+      "blocks": [
+        {
+          "id": "switches",
+          "type": "table",
+          "table": "switches"
+        },
+        {
+          "id": "network",
+          "type": "table",
+          "table": "network"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": [
+        "Custom XPUs and portfolio boundaries",
+        "定制 XPU 与产品边界"
+      ],
+      "blocks": [
+        {
+          "id": "08.custom",
+          "type": "prose",
+          "text": [
+            "Publicly named collaborations establish Broadcom’s role in customer-specific accelerators. Meta identifies the MTIA collaboration, and the June 2026 OpenAI announcement identifies Jalapeño engineering samples and Broadcom’s implementation and networking contribution. Customer architecture ownership and supplier implementation responsibility must remain distinct. There is no single public Broadcom XPU instruction set or uniform accelerator specification that can be assigned to every customer.",
+            "公开具名合作确定了 Broadcom 在客户专用加速器中的角色。Meta 披露 MTIA 合作，OpenAI 于 2026 年 6 月披露 Jalapeño 工程样片及 Broadcom 在实现和网络方面的贡献。客户架构所有权与供应商实现职责必须区分。不存在可以统一赋予所有客户项目的公开 Broadcom XPU 指令集或通用加速器规格。"
+          ],
+          "sources": [
+            "E11",
+            "E12"
+          ]
+        },
+        {
+          "id": "08.platform",
+          "type": "prose",
+          "text": [
+            "Architectural interpretation: reusable SerDes, memory interfaces, die-to-die links and physical-design capabilities can shorten implementation without making customer compute architectures identical. The software burden remains attached to the customer’s compiler, runtime and model kernels. A useful cross-vendor comparison should place MTIA specifications in the Meta report and only documented supplier contributions here, preventing double counting of both engineering claims and installed capacity.",
+            "架构解读：可复用的 SerDes、存储接口、裸片互联与物理设计能力，可以缩短实现周期，但不使客户计算架构变得相同。软件负担仍由客户编译器、运行时和模型内核承担。跨厂商比较应把 MTIA 规格放在 Meta 报告中，在此仅记录有证据的供应商贡献，避免工程成果和部署容量重复计算。"
+          ],
+          "sources": [
+            "E11",
+            "E12"
+          ]
+        },
+        {
+          "id": "cpu",
+          "type": "table",
+          "table": "cpu"
+        },
+        {
+          "id": "gpu",
+          "type": "table",
+          "table": "gpu"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": [
+        "Integrated stack and software",
+        "集成技术栈与软件"
+      ],
+      "blocks": [
+        {
+          "id": "09.sw",
+          "type": "prose",
+          "text": [
+            "The deployed network combines silicon SDKs, operating systems such as SONiC in supported platforms, management and telemetry, and endpoint transport software. Open protocols do not guarantee identical behavior across vendors: feature negotiation, congestion tuning and firmware maturity can dominate interoperability. UEC compliance, RoCE compatibility and scale-up memory semantics are separate questions. Network software must be qualified with the target accelerator collective library and failure scenarios.",
+            "部署网络结合芯片 SDK、受支持平台上的 SONiC 等操作系统、管理遥测和端点传输软件。开放协议不保证不同厂商行为完全相同：特性协商、拥塞调优及固件成熟度可能主导互操作性。UEC 合规、RoCE 兼容与纵向扩展内存语义是不同问题。网络软件必须结合目标加速器集合库及故障场景验证。"
+          ],
+          "sources": [
+            "E01",
+            "E03",
+            "E04"
+          ]
+        },
+        {
+          "id": "era1",
+          "type": "figure",
+          "figure": "era1"
+        },
+        {
+          "id": "era2",
+          "type": "figure",
+          "figure": "era2"
+        },
+        {
+          "id": "interconnect",
+          "type": "table",
+          "table": "interconnect"
+        },
+        {
+          "id": "systems",
+          "type": "table",
+          "table": "systems"
+        },
+        {
+          "id": "software",
+          "type": "table",
+          "table": "software"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": [
+        "Derived metrics and architectural trade-offs",
+        "推导指标与架构取舍"
+      ],
+      "blocks": [
+        {
+          "id": "ratios",
+          "type": "table",
+          "table": "ratios"
+        },
+        {
+          "id": "10.trade",
+          "type": "prose",
+          "text": [
+            "The main trade-off is where complexity sits. An endpoint-scheduled fabric places congestion response in NICs and hosts; a fabric-scheduled design moves more coordination into the network. Low-latency scale-up adds requirements for small packets, retry and collective support that differ from conventional cloud forwarding. CPO shortens electrical reach and can reduce I/O energy, but places optical reliability and maintenance closer to expensive switch silicon. None of these choices eliminates the need to measure job completion time under contention and failure.",
+            "主要取舍在于复杂性放在哪里。端点调度式网络把拥塞响应放在网卡和主机，网络调度式设计则把更多协调放进网络。低延迟纵向扩展增加小包、重试及集合支持要求，不同于传统云转发。CPO 缩短电链路距离，可能降低 I/O 能耗，却把光学可靠性和维护更紧地绑定到昂贵交换芯片。任何一种选择，都不能替代争用与故障条件下的作业完成时间测量。"
+          ],
+          "sources": [
+            "C02",
+            "E03",
+            "E04",
+            "E13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": [
+        "Conference index and naming crosswalk",
+        "会议索引与命名对照"
+      ],
+      "blocks": [
+        {
+          "id": "conf",
+          "type": "table",
+          "table": "conf"
+        },
+        {
+          "id": "11.venues",
+          "type": "prose",
+          "text": [
+            "ISCA, MICRO, HPCA and ASPLOS are not used here to manufacture a nonexistent product-paper lineage. For this portfolio, the strongest identified bridge is Hot Chips architecture plus ISSCC implementation and vendor/OCP system documentation. OFC is a natural follow-up channel for optics; the present bibliography does not claim exhaustive coverage of every OFC or DAC session. Product names and codenames are crosswalked only where the vendor identifies them.",
+            "本报告不通过 ISCA、MICRO、HPCA 和 ASPLOS 拼造不存在的产品论文谱系。对这类产品，已识别的最强证据链是 Hot Chips 架构、ISSCC 实现及厂商／OCP 系统资料。OFC 是后续光互联研究的重要渠道；本版参考资料不声称穷尽每场 OFC 或 DAC 演讲。仅在厂商明确对应时建立产品名与代号映射。"
+          ],
+          "sources": [
+            "C01",
+            "C02",
+            "C03",
+            "E04"
+          ]
+        },
+        {
+          "id": "cross",
+          "type": "table",
+          "table": "cross"
+        },
+        {
+          "id": "11.gaps",
+          "type": "prose",
+          "text": [
+            "The remaining gaps are quantitative power at a fixed port configuration, full buffer organization for every generation, per-lane electrical detail and customer-XPU implementation specifications. These constrain direct energy comparisons. The most useful next tests would hold endpoint count, port speed, oversubscription, collective mix and failure load constant, then measure delivered bandwidth and tail job latency across endpoint- and fabric-scheduled alternatives.",
+            "剩余缺口包括固定端口配置下的量化功耗、各代完整缓冲组织、逐通道电气细节及客户 XPU 实现规格。这些限制直接能效比较。下一步最有效的测试，是固定端点数、端口速率、超售比、集合操作组合及故障负载，对比端点调度与网络调度方案的实际带宽和作业尾延迟。"
+          ],
+          "sources": [
+            "P01",
+            "C02",
+            "E03",
+            "E13"
+          ]
+        }
+      ]
+    }
+  ],
+  "tables": {
+    "switches": {
+      "id": "switches",
+      "title": [
+        "Switch generations and capacity basis",
+        "交换代际及容量口径"
+      ],
+      "headers": [
+        [
+          "Family",
+          "家族"
+        ],
+        [
+          "First disclosure / production",
+          "首次披露／量产"
+        ],
+        [
+          "Capacity",
+          "容量"
+        ],
+        [
+          "Implementation / role",
+          "实现／角色"
+        ],
+        [
+          "Status",
+          "状态"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "t1",
+          "values": [
+            [
+              "Tomahawk1",
+              "Tomahawk1"
+            ],
+            [
+              "2014-2015",
+              "2014-2015"
+            ],
+            [
+              "3.2 Tb/s",
+              "3.2 Tb/s"
+            ],
+            [
+              "Cloud Ethernet",
+              "云以太网"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ]
+          ],
+          "sources": [
+            "P03"
+          ]
+        },
+        {
+          "id": "t2",
+          "values": [
+            [
+              "Tomahawk2",
+              "Tomahawk2"
+            ],
+            [
+              "2016",
+              "2016"
+            ],
+            [
+              "6.4 Tb/s",
+              "6.4 Tb/s"
+            ],
+            [
+              "64 × 100GbE",
+              "64 × 100GbE"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ]
+          ],
+          "sources": [
+            "E05"
+          ]
+        },
+        {
+          "id": "t3",
+          "values": [
+            [
+              "Tomahawk3",
+              "Tomahawk3"
+            ],
+            [
+              "2017 / 2018",
+              "2017 / 2018"
+            ],
+            [
+              "12.8 Tb/s",
+              "12.8 Tb/s"
+            ],
+            [
+              "50G PAM4",
+              "50G PAM4"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ]
+          ],
+          "sources": [
+            "E06"
+          ]
+        },
+        {
+          "id": "t4",
+          "values": [
+            [
+              "Tomahawk4",
+              "Tomahawk4"
+            ],
+            [
+              "2019 / 2020",
+              "2019 / 2020"
+            ],
+            [
+              "25.6 Tb/s",
+              "25.6 Tb/s"
+            ],
+            [
+              "High-radix Ethernet",
+              "高端口密度以太网"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ]
+          ],
+          "sources": [
+            "E07"
+          ]
+        },
+        {
+          "id": "t5",
+          "values": [
+            [
+              "Tomahawk5",
+              "Tomahawk5"
+            ],
+            [
+              "2022 / 2023",
+              "2022 / 2023"
+            ],
+            [
+              "51.2 Tb/s",
+              "51.2 Tb/s"
+            ],
+            [
+              "5 nm; 512 PAM4 lanes",
+              "5 nm; 512 PAM4 lanes"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "C01",
+            "E08"
+          ]
+        },
+        {
+          "id": "t6",
+          "values": [
+            [
+              "Tomahawk6",
+              "Tomahawk6"
+            ],
+            [
+              "2025 / 2026",
+              "2025 / 2026"
+            ],
+            [
+              "102.4 Tb/s",
+              "102.4 Tb/s"
+            ],
+            [
+              "100G / 200G PAM4",
+              "100G / 200G PAM4"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ]
+          ],
+          "sources": [
+            "E01",
+            "E09"
+          ]
+        },
+        {
+          "id": "tu",
+          "values": [
+            [
+              "Tomahawk Ultra",
+              "Tomahawk Ultra"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "51.2 Tb/s",
+              "51.2 Tb/s"
+            ],
+            [
+              "Small-packet / low latency",
+              "小包／低延迟"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ]
+          ],
+          "sources": [
+            "C02"
+          ]
+        },
+        {
+          "id": "j2",
+          "values": [
+            [
+              "Jericho2",
+              "Jericho2"
+            ],
+            [
+              "2018 / 2019",
+              "2018 / 2019"
+            ],
+            [
+              "4.8 Tb/s packet path; separate fabric I/O",
+              "4.8 Tb/s 包路径；另有内部网络 I/O"
+            ],
+            [
+              "Buffered modular switch",
+              "有缓冲模块化交换"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ]
+          ],
+          "sources": [
+            "P04"
+          ]
+        },
+        {
+          "id": "j3",
+          "values": [
+            [
+              "Jericho3-AI",
+              "Jericho3-AI"
+            ],
+            [
+              "2023",
+              "2023"
+            ],
+            [
+              "28.8 Tb/s vendor combined basis",
+              "厂商组合口径 28.8 Tb/s"
+            ],
+            [
+              "Scheduled AI fabric",
+              "调度式 AI 网络"
+            ],
+            [
+              "Announced; GA n/d",
+              "已公布；GA n/d"
+            ]
+          ],
+          "sources": [
+            "P05",
+            "E13"
+          ]
+        },
+        {
+          "id": "j4",
+          "values": [
+            [
+              "Jericho4",
+              "Jericho4"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "3.2 Tb/s per HyperPort; chip total n/d",
+              "每 HyperPort 3.2 Tb/s；芯片总量 n/d"
+            ],
+            [
+              "3 nm; 200G PAM4",
+              "3 nm; 200G PAM4"
+            ],
+            [
+              "Sampling; GA n/d",
+              "送样；正式商用 n/d"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "network": {
+      "id": "network",
+      "title": [
+        "Networking fixed schema",
+        "网络固定规格表"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Class",
+          "类别"
+        ],
+        [
+          "Ports × speed",
+          "端口×速率"
+        ],
+        [
+          "SerDes",
+          "SerDes"
+        ],
+        [
+          "Host interface",
+          "主机接口"
+        ],
+        [
+          "Programmable engine",
+          "可编程引擎"
+        ],
+        [
+          "Embedded CPU",
+          "嵌入式 CPU"
+        ],
+        [
+          "On-card memory",
+          "板载内存"
+        ],
+        [
+          "Transport / RDMA",
+          "传输／RDMA"
+        ],
+        [
+          "Congestion control",
+          "拥塞控制"
+        ],
+        [
+          "Key offloads",
+          "主要卸载"
+        ],
+        [
+          "Power",
+          "功耗"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "t5",
+          "values": [
+            [
+              "Tomahawk5",
+              "Tomahawk5"
+            ],
+            [
+              "2023",
+              "2023"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Scale-out switch",
+              "横向交换"
+            ],
+            [
+              "64 × 800GbE",
+              "64 × 800GbE"
+            ],
+            [
+              "100G PAM4",
+              "100G PAM4"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "Switch pipeline",
+              "交换流水线"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Ethernet",
+              "Ethernet"
+            ],
+            [
+              "Cognitive Routing",
+              "认知路由"
+            ],
+            [
+              "L2/L3 / telemetry",
+              "L2/L3 / telemetry"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E08"
+          ]
+        },
+        {
+          "id": "tu",
+          "values": [
+            [
+              "Tomahawk Ultra",
+              "Tomahawk Ultra"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Scale-up switch",
+              "纵向交换"
+            ],
+            [
+              "64 × 800GbE",
+              "64 × 800GbE"
+            ],
+            [
+              "100G PAM4",
+              "100G PAM4"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "Switch / collectives",
+              "交换／集合操作"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Ethernet / LLR",
+              "Ethernet / LLR"
+            ],
+            [
+              "Adaptive routing",
+              "自适应路由"
+            ],
+            [
+              "Header reduction / collectives",
+              "精简报头／集合操作"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "C02"
+          ]
+        },
+        {
+          "id": "t6",
+          "values": [
+            [
+              "Tomahawk6",
+              "Tomahawk6"
+            ],
+            [
+              "2026 production",
+              "2026 production"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Scale-up / out switch",
+              "纵向／横向交换"
+            ],
+            [
+              "102.4 Tb/s total",
+              "102.4 Tb/s total"
+            ],
+            [
+              "100G / 200G PAM4",
+              "100G / 200G PAM4"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "Switch pipeline",
+              "交换流水线"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Ethernet",
+              "Ethernet"
+            ],
+            [
+              "Cognitive Routing 2.0",
+              "Cognitive Routing 2.0"
+            ],
+            [
+              "Telemetry / CPO option",
+              "遥测／CPO 选项"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E01",
+            "E09"
+          ]
+        },
+        {
+          "id": "j4",
+          "values": [
+            [
+              "Jericho4",
+              "Jericho4"
+            ],
+            [
+              "2025 sampling",
+              "2025 sampling"
+            ],
+            [
+              "Sampling; GA n/d",
+              "送样；正式商用 n/d"
+            ],
+            [
+              "Fabric router",
+              "网络路由器"
+            ],
+            [
+              "HyperPort 4 × 800G",
+              "HyperPort 4 × 800G"
+            ],
+            [
+              "200G PAM4",
+              "200G PAM4"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "Traffic manager",
+              "流量管理"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Ethernet / RoCE",
+              "Ethernet / RoCE"
+            ],
+            [
+              "Deep-buffer fabric",
+              "深缓冲网络"
+            ],
+            [
+              "MACsec",
+              "MACsec"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        },
+        {
+          "id": "th",
+          "values": [
+            [
+              "Thor Ultra",
+              "Thor Ultra"
+            ],
+            [
+              "2025 announced",
+              "2025 announced"
+            ],
+            [
+              "Announced; GA n/d",
+              "已公布；GA n/d"
+            ],
+            [
+              "AI NIC",
+              "AI 网卡"
+            ],
+            [
+              "800 Gb/s",
+              "800 Gb/s"
+            ],
+            [
+              "100G / 200G PAM4",
+              "100G / 200G PAM4"
+            ],
+            [
+              "PCIe 6 ×16",
+              "PCIe 6 ×16"
+            ],
+            [
+              "Programmable congestion pipeline",
+              "可编程拥塞流水线"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "RoCE / UEC",
+              "RoCE / UEC"
+            ],
+            [
+              "Sender / receiver programmable",
+              "发送端／接收端可编程"
+            ],
+            [
+              "PSP / OOO / retry",
+              "PSP / OOO / retry"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E03"
+          ]
+        },
+        {
+          "id": "st",
+          "values": [
+            [
+              "Stingray",
+              "Stingray"
+            ],
+            [
+              "2020 deployment",
+              "2020 deployment"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ],
+            [
+              "SmartNIC",
+              "SmartNIC"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "PCIe; n/d",
+              "PCIe; n/d"
+            ],
+            [
+              "Programmable offload",
+              "可编程卸载"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Cloud infrastructure",
+              "云基础设施"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E10"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          12,
+          13
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "cpu": {
+      "id": "cpu",
+      "title": [
+        "Host CPU boundary",
+        "主机 CPU 边界"
+      ],
+      "headers": [
+        [
+          "Generation / reference SKU",
+          "代际／参考 SKU"
+        ],
+        [
+          "Codename",
+          "代号"
+        ],
+        [
+          "GA",
+          "正式商用"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Core µarch",
+          "核心微架构"
+        ],
+        [
+          "Cores / threads",
+          "核心／线程"
+        ],
+        [
+          "Process per die",
+          "各裸片工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "L2 per core",
+          "每核 L2"
+        ],
+        [
+          "L3 / domain",
+          "L3／共享域"
+        ],
+        [
+          "Memory: channels; rate; GB/s",
+          "内存：通道；速率；GB/s"
+        ],
+        [
+          "Sockets / links",
+          "插槽／互联"
+        ],
+        [
+          "PCIe / CXL",
+          "PCIe／CXL"
+        ],
+        [
+          "TDP",
+          "TDP"
+        ],
+        [
+          "Vector / matrix ISA",
+          "向量／矩阵 ISA"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "none",
+          "values": [
+            [
+              "No in-scope merchant host CPU",
+              "范围内无通用商用主机 CPU"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ]
+          ],
+          "sources": [
+            "E11",
+            "E12"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          0,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "gpu": {
+      "id": "gpu",
+      "title": [
+        "Customer-owned accelerator programs",
+        "客户拥有的加速器项目"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Architecture",
+          "架构"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Process",
+          "工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "Compute units",
+          "计算单元"
+        ],
+        [
+          "Dense BF16",
+          "稠密 BF16"
+        ],
+        [
+          "Dense FP8",
+          "稠密 FP8"
+        ],
+        [
+          "Dense FP6 / FP4",
+          "稠密 FP6／FP4"
+        ],
+        [
+          "FP64 vector / matrix",
+          "FP64 向量／矩阵"
+        ],
+        [
+          "Memory: type; stacks; GB; TB/s",
+          "内存：类型；堆栈；GB；TB/s"
+        ],
+        [
+          "LLC / SRAM",
+          "末级缓存／SRAM"
+        ],
+        [
+          "Scale-up: links; GB/s per direction; domain",
+          "纵向扩展：链路；单向 GB/s；域"
+        ],
+        [
+          "Host link",
+          "主机连接"
+        ],
+        [
+          "Power / cooling",
+          "功耗／散热"
+        ],
+        [
+          "Form factor",
+          "形态"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "mt",
+          "values": [
+            [
+              "MTIA collaboration",
+              "MTIA collaboration"
+            ],
+            [
+              "Customer-specific",
+              "Customer-specific"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "See Meta report",
+              "见 Meta 报告"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E11"
+          ]
+        },
+        {
+          "id": "ja",
+          "values": [
+            [
+              "Jalapeño",
+              "Jalapeño"
+            ],
+            [
+              "OpenAI inference",
+              "OpenAI inference"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Sampling; GA n/d",
+              "送样；正式商用 n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E12"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          11,
+          12
+        ],
+        [
+          0,
+          13,
+          14,
+          15,
+          16
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "interconnect": {
+      "id": "interconnect",
+      "title": [
+        "Interconnect roles",
+        "互联角色"
+      ],
+      "headers": [
+        [
+          "Interconnect",
+          "互联"
+        ],
+        [
+          "Year / generation",
+          "年份／代际"
+        ],
+        [
+          "Lane rate",
+          "通道速率"
+        ],
+        [
+          "Lanes / link",
+          "每链路通道"
+        ],
+        [
+          "GB/s per link per direction",
+          "每链路单向 GB/s"
+        ],
+        [
+          "Links / device",
+          "每设备链路"
+        ],
+        [
+          "Topology",
+          "拓扑"
+        ],
+        [
+          "Domain limit",
+          "域规模"
+        ],
+        [
+          "Coherence / semantics",
+          "一致性／语义"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "eth",
+          "values": [
+            [
+              "Ethernet / SUE",
+              "Ethernet / SUE"
+            ],
+            [
+              "2025-2026",
+              "2025-2026"
+            ],
+            [
+              "100G / 200G class",
+              "100G / 200G class"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Switched",
+              "交换式"
+            ],
+            [
+              "Topology-dependent",
+              "依拓扑"
+            ],
+            [
+              "Transport does not establish CPU coherence",
+              "传输不等于 CPU 一致性"
+            ]
+          ],
+          "sources": [
+            "E01",
+            "C02"
+          ]
+        },
+        {
+          "id": "hyp",
+          "values": [
+            [
+              "HyperPort",
+              "HyperPort"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "4 × 800GbE",
+              "4 × 800GbE"
+            ],
+            [
+              "400 GB/s nominal",
+              "400 GB/s nominal"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Logical grouped port",
+              "逻辑组合端口"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Ethernet / RoCE",
+              "Ethernet / RoCE"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          5,
+          6,
+          7,
+          8
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "systems": {
+      "id": "systems",
+      "title": [
+        "System integration boundary",
+        "系统集成边界"
+      ],
+      "headers": [
+        [
+          "Platform",
+          "平台"
+        ],
+        [
+          "Year / milestone",
+          "年份／里程碑"
+        ],
+        [
+          "CPU / accelerator count",
+          "CPU／加速器数量"
+        ],
+        [
+          "Scale-up domain",
+          "纵向扩展域"
+        ],
+        [
+          "Scale-out per accelerator",
+          "每加速器横向带宽"
+        ],
+        [
+          "Rack power",
+          "机架功耗"
+        ],
+        [
+          "Cooling",
+          "散热"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "oem",
+          "values": [
+            [
+              "OEM switch platforms",
+              "OEM 交换平台"
+            ],
+            [
+              "2015-2026",
+              "2015-2026"
+            ],
+            [
+              "External CPUs / XPUs",
+              "外部 CPU／XPU"
+            ],
+            [
+              "Topology-dependent",
+              "依拓扑"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Platform-dependent",
+              "依平台"
+            ]
+          ],
+          "sources": [
+            "E04"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "ratios": {
+      "id": "ratios",
+      "title": [
+        "Nominal bandwidth normalization",
+        "标称带宽归一化"
+      ],
+      "headers": [
+        [
+          "Quantity",
+          "项目"
+        ],
+        [
+          "Calculation",
+          "计算"
+        ],
+        [
+          "Meaning",
+          "含义"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "800GbE",
+              "800GbE"
+            ],
+            [
+              "800/8 = 100 GB/s",
+              "800/8 = 100 GB/s"
+            ],
+            [
+              "Per direction before overhead",
+              "每方向；未扣开销"
+            ]
+          ],
+          "sources": [
+            "E03"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "3.2T HyperPort",
+              "3.2T HyperPort"
+            ],
+            [
+              "4×800/8 = 400 GB/s",
+              "4×800/8 = 400 GB/s"
+            ],
+            [
+              "Logical port; not chip total",
+              "逻辑端口；非芯片总量"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Tomahawk1 → 6",
+              "Tomahawk1 → 6"
+            ],
+            [
+              "102.4/3.2 = 32×",
+              "102.4/3.2 = 32×"
+            ],
+            [
+              "Native switch-capacity convention",
+              "原始交换容量口径"
+            ]
+          ],
+          "sources": [
+            "P03",
+            "E01"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "HBM / FLOP; performance / W",
+              "HBM／FLOP；性能／W"
+            ],
+            [
+              "n/a; n/d",
+              "n/a; n/d"
+            ],
+            [
+              "No uniform compute SKU / power basis",
+              "无统一计算 SKU／功耗口径"
+            ]
+          ],
+          "sources": [
+            "E11",
+            "E12"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "conf": {
+      "id": "conf",
+      "title": [
+        "Verified disclosure map",
+        "已核实披露映射"
+      ],
+      "headers": [
+        [
+          "Venue",
+          "会议／活动"
+        ],
+        [
+          "Year",
+          "年份"
+        ],
+        [
+          "Paper / talk / disclosure",
+          "论文／演讲／披露"
+        ],
+        [
+          "Presenter / authors",
+          "报告人／作者"
+        ],
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Evidence type",
+          "证据类型"
+        ],
+        [
+          "Source",
+          "来源"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "i",
+          "values": [
+            [
+              "ISSCC",
+              "ISSCC"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "16.1 Tomahawk5: 51.2Tb/s 5nm Monolithic Switch Chip for AI/ML Networking",
+              "16.1 Tomahawk5: 51.2Tb/s 5nm Monolithic Switch Chip for AI/ML Networking"
+            ],
+            [
+              "Broadcom",
+              "Broadcom"
+            ],
+            [
+              "Tomahawk5",
+              "Tomahawk5"
+            ],
+            [
+              "Implementation; press kit reviewed",
+              "实现；审阅新闻资料"
+            ],
+            [
+              "C01",
+              "C01"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "h",
+          "values": [
+            [
+              "Hot Chips",
+              "Hot Chips"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "Tomahawk Ultra",
+              "Tomahawk Ultra"
+            ],
+            [
+              "Broadcom",
+              "Broadcom"
+            ],
+            [
+              "Tomahawk Ultra",
+              "Tomahawk Ultra"
+            ],
+            [
+              "Architecture slides",
+              "架构幻灯片"
+            ],
+            [
+              "C02",
+              "C02"
+            ]
+          ],
+          "sources": [
+            "C02"
+          ]
+        },
+        {
+          "id": "h6",
+          "values": [
+            [
+              "Hot Chips",
+              "Hot Chips"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "Thor Ultra: An Ethernet NIC Chip Optimized for AI & HPC",
+              "Thor Ultra: An Ethernet NIC Chip Optimized for AI & HPC"
+            ],
+            [
+              "Hemal Shah",
+              "Hemal Shah"
+            ],
+            [
+              "Thor Ultra",
+              "Thor Ultra"
+            ],
+            [
+              "Program verified; vendor specs used",
+              "核实议程；规格来自厂商"
+            ],
+            [
+              "C03 E03",
+              "C03 E03"
+            ]
+          ],
+          "sources": [
+            "C03",
+            "E03"
+          ]
+        },
+        {
+          "id": "o",
+          "values": [
+            [
+              "OCP Global Summit",
+              "OCP Global Summit"
+            ],
+            [
+              "2025",
+              "2025"
+            ],
+            [
+              "End-to-end AI networking",
+              "End-to-end AI networking"
+            ],
+            [
+              "Broadcom",
+              "Broadcom"
+            ],
+            [
+              "Switch / NIC / CPO",
+              "Switch / NIC / CPO"
+            ],
+            [
+              "System demonstrations",
+              "系统演示"
+            ],
+            [
+              "E04",
+              "E04"
+            ]
+          ],
+          "sources": [
+            "E04"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          3,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "cross": {
+      "id": "cross",
+      "title": [
+        "Product names",
+        "产品名称"
+      ],
+      "headers": [
+        [
+          "Marketing family",
+          "市场家族"
+        ],
+        [
+          "Product identifier",
+          "产品标识"
+        ],
+        [
+          "Distinction",
+          "区别"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Tomahawk1",
+              "Tomahawk1"
+            ],
+            [
+              "BCM56960",
+              "BCM56960"
+            ],
+            [
+              "Cloud switch baseline",
+              "云交换基线"
+            ]
+          ],
+          "sources": [
+            "P03"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Tomahawk5",
+              "Tomahawk5"
+            ],
+            [
+              "BCM78900",
+              "BCM78900"
+            ],
+            [
+              "General high-radix switch",
+              "通用高密度交换"
+            ]
+          ],
+          "sources": [
+            "P01"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Tomahawk Ultra",
+              "Tomahawk Ultra"
+            ],
+            [
+              "BCM78920",
+              "BCM78920"
+            ],
+            [
+              "Scale-up specialization",
+              "纵向扩展专用化"
+            ]
+          ],
+          "sources": [
+            "P02"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "Jericho3-AI",
+              "Jericho3-AI"
+            ],
+            [
+              "BCM88890",
+              "BCM88890"
+            ],
+            [
+              "Scheduled AI fabric",
+              "调度式 AI 网络"
+            ]
+          ],
+          "sources": [
+            "P05"
+          ]
+        },
+        {
+          "id": "e",
+          "values": [
+            [
+              "Thor Ultra",
+              "Thor Ultra"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "AI NIC; not Tomahawk Ultra",
+              "AI 网卡；区别于 Tomahawk Ultra"
+            ]
+          ],
+          "sources": [
+            "E03"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "software": {
+      "id": "software",
+      "title": [
+        "Software integration contracts",
+        "软件集成契约"
+      ],
+      "headers": [
+        [
+          "Layer",
+          "层"
+        ],
+        [
+          "Interface",
+          "接口"
+        ],
+        [
+          "Function",
+          "功能"
+        ],
+        [
+          "Boundary",
+          "边界"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Switch control",
+              "交换控制"
+            ],
+            [
+              "SDK / supported open interfaces",
+              "SDK／受支持开放接口"
+            ],
+            [
+              "Forwarding and telemetry",
+              "转发与遥测"
+            ],
+            [
+              "ASIC-specific implementation",
+              "依 ASIC 实现"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "E03",
+            "E10"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Infrastructure",
+              "基础设施"
+            ],
+            [
+              "Firmware / driver / acceleration APIs",
+              "固件／驱动／加速 API"
+            ],
+            [
+              "Packet, storage and security offload",
+              "包、存储与安全卸载"
+            ],
+            [
+              "SKU and platform dependent",
+              "依 SKU 与平台"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "E03",
+            "E10"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "System integration",
+              "系统集成"
+            ],
+            [
+              "Host software and partner stack",
+              "主机软件及伙伴技术栈"
+            ],
+            [
+              "Resource and traffic management",
+              "资源与流量管理"
+            ],
+            [
+              "No single vendor-only AI framework",
+              "不存在统一纯厂商 AI 框架"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "P02",
+            "E03",
+            "E10"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    }
+  },
+  "figures": {
+    "era1": {
+      "id": "era1",
+      "title": [
+        "2015-2020 network stack",
+        "2015-2020 网络技术栈"
+      ],
+      "nodes": [
+        [
+          "cpu",
+          [
+            "CPU / customer XPU",
+            "CPU／客户 XPU"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "NIC / Stingray",
+            "NIC / Stingray"
+          ],
+          0,
+          1
+        ],
+        [
+          "leaf",
+          [
+            "Tomahawk1-4",
+            "Tomahawk1-4"
+          ],
+          1,
+          1
+        ],
+        [
+          "sw",
+          [
+            "SDK / NOS / telemetry",
+            "SDK／网络系统／遥测"
+          ],
+          1,
+          0
+        ],
+        [
+          "spine",
+          [
+            "Jericho2 / fabric",
+            "Jericho2 / fabric"
+          ],
+          1,
+          2
+        ],
+        [
+          "io",
+          [
+            "Storage / front-end",
+            "存储／前端网络"
+          ],
+          0,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "cpu",
+          "gpu",
+          [
+            "PCIe",
+            "PCIe"
+          ]
+        ],
+        [
+          "gpu",
+          "leaf",
+          [
+            "Ethernet",
+            "Ethernet"
+          ]
+        ],
+        [
+          "leaf",
+          "spine",
+          [
+            "fabric",
+            "网络"
+          ]
+        ],
+        [
+          "sw",
+          "leaf",
+          [
+            "control",
+            "控制"
+          ]
+        ],
+        [
+          "gpu",
+          "io",
+          [
+            "services",
+            "服务"
+          ]
+        ]
+      ],
+      "caption": [
+        "Product roles, not a claim that all families are required in one deployment.",
+        "产品角色图，不表示所有家族必须同时用于同一部署。"
+      ]
+    },
+    "era2": {
+      "id": "era2",
+      "title": [
+        "2023-2026 network stack",
+        "2023-2026 网络技术栈"
+      ],
+      "nodes": [
+        [
+          "cpu",
+          [
+            "CPU / customer XPU",
+            "CPU／客户 XPU"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "Thor / Thor Ultra",
+            "Thor / Thor Ultra"
+          ],
+          0,
+          1
+        ],
+        [
+          "leaf",
+          [
+            "Tomahawk5-6 / Ultra",
+            "Tomahawk5-6 / Ultra"
+          ],
+          1,
+          1
+        ],
+        [
+          "sw",
+          [
+            "SDK / NOS / telemetry",
+            "SDK／网络系统／遥测"
+          ],
+          1,
+          0
+        ],
+        [
+          "spine",
+          [
+            "Jericho3-AI / Jericho4",
+            "Jericho3-AI / Jericho4"
+          ],
+          1,
+          2
+        ],
+        [
+          "io",
+          [
+            "Storage / front-end",
+            "存储／前端网络"
+          ],
+          0,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "cpu",
+          "gpu",
+          [
+            "PCIe",
+            "PCIe"
+          ]
+        ],
+        [
+          "gpu",
+          "leaf",
+          [
+            "Ethernet",
+            "Ethernet"
+          ]
+        ],
+        [
+          "leaf",
+          "spine",
+          [
+            "fabric",
+            "网络"
+          ]
+        ],
+        [
+          "sw",
+          "leaf",
+          [
+            "control",
+            "控制"
+          ]
+        ],
+        [
+          "gpu",
+          "io",
+          [
+            "services",
+            "服务"
+          ]
+        ]
+      ],
+      "caption": [
+        "Product roles, not a claim that all families are required in one deployment.",
+        "产品角色图，不表示所有家族必须同时用于同一部署。"
+      ]
+    }
+  },
+  "claims": {
+    "switches.t1.0": {
+      "value": "Tomahawk1",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2015",
+      "status": "historical",
+      "scope": "t1"
+    },
+    "switches.t1.1": {
+      "value": "2014-2015",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2015",
+      "status": "historical",
+      "scope": "t1"
+    },
+    "switches.t1.2": {
+      "value": "3.2 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2015",
+      "status": "historical",
+      "scope": "t1"
+    },
+    "switches.t1.3": {
+      "value": "Cloud Ethernet",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2015",
+      "status": "historical",
+      "scope": "t1"
+    },
+    "switches.t1.4": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2015",
+      "status": "historical",
+      "scope": "t1"
+    },
+    "switches.t2.0": {
+      "value": "Tomahawk2",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05"
+      ],
+      "disclosure_date": "2016",
+      "status": "historical",
+      "scope": "t2"
+    },
+    "switches.t2.1": {
+      "value": "2016",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05"
+      ],
+      "disclosure_date": "2016",
+      "status": "historical",
+      "scope": "t2"
+    },
+    "switches.t2.2": {
+      "value": "6.4 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05"
+      ],
+      "disclosure_date": "2016",
+      "status": "historical",
+      "scope": "t2"
+    },
+    "switches.t2.3": {
+      "value": "64 × 100GbE",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05"
+      ],
+      "disclosure_date": "2016",
+      "status": "historical",
+      "scope": "t2"
+    },
+    "switches.t2.4": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05"
+      ],
+      "disclosure_date": "2016",
+      "status": "historical",
+      "scope": "t2"
+    },
+    "switches.t3.0": {
+      "value": "Tomahawk3",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "t3"
+    },
+    "switches.t3.1": {
+      "value": "2017 / 2018",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "t3"
+    },
+    "switches.t3.2": {
+      "value": "12.8 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "t3"
+    },
+    "switches.t3.3": {
+      "value": "50G PAM4",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "t3"
+    },
+    "switches.t3.4": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06"
+      ],
+      "disclosure_date": "2018",
+      "status": "historical",
+      "scope": "t3"
+    },
+    "switches.t4.0": {
+      "value": "Tomahawk4",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "t4"
+    },
+    "switches.t4.1": {
+      "value": "2019 / 2020",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "t4"
+    },
+    "switches.t4.2": {
+      "value": "25.6 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "t4"
+    },
+    "switches.t4.3": {
+      "value": "High-radix Ethernet",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "t4"
+    },
+    "switches.t4.4": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07"
+      ],
+      "disclosure_date": "2020",
+      "status": "shipping",
+      "scope": "t4"
+    },
+    "switches.t5.0": {
+      "value": "Tomahawk5",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "C01",
+        "E08"
+      ],
+      "disclosure_date": "2023",
+      "status": "shipping",
+      "scope": "t5"
+    },
+    "switches.t5.1": {
+      "value": "2022 / 2023",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "C01",
+        "E08"
+      ],
+      "disclosure_date": "2023",
+      "status": "shipping",
+      "scope": "t5"
+    },
+    "switches.t5.2": {
+      "value": "51.2 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "C01",
+        "E08"
+      ],
+      "disclosure_date": "2023",
+      "status": "shipping",
+      "scope": "t5"
+    },
+    "switches.t5.3": {
+      "value": "5 nm; 512 PAM4 lanes",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "C01",
+        "E08"
+      ],
+      "disclosure_date": "2023",
+      "status": "shipping",
+      "scope": "t5"
+    },
+    "switches.t5.4": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "C01",
+        "E08"
+      ],
+      "disclosure_date": "2023",
+      "status": "shipping",
+      "scope": "t5"
+    },
+    "switches.t6.0": {
+      "value": "Tomahawk6",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026",
+      "status": "shipping",
+      "scope": "t6"
+    },
+    "switches.t6.1": {
+      "value": "2025 / 2026",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026",
+      "status": "shipping",
+      "scope": "t6"
+    },
+    "switches.t6.2": {
+      "value": "102.4 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026",
+      "status": "shipping",
+      "scope": "t6"
+    },
+    "switches.t6.3": {
+      "value": "100G / 200G PAM4",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026",
+      "status": "shipping",
+      "scope": "t6"
+    },
+    "switches.t6.4": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026",
+      "status": "shipping",
+      "scope": "t6"
+    },
+    "switches.tu.0": {
+      "value": "Tomahawk Ultra",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "tu"
+    },
+    "switches.tu.1": {
+      "value": "2025",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "tu"
+    },
+    "switches.tu.2": {
+      "value": "51.2 Tb/s",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "tu"
+    },
+    "switches.tu.3": {
+      "value": "Small-packet / low latency",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "tu"
+    },
+    "switches.tu.4": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "shipping",
+      "scope": "tu"
+    },
+    "switches.j2.0": {
+      "value": "Jericho2",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2019",
+      "status": "historical",
+      "scope": "j2"
+    },
+    "switches.j2.1": {
+      "value": "2018 / 2019",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2019",
+      "status": "historical",
+      "scope": "j2"
+    },
+    "switches.j2.2": {
+      "value": "4.8 Tb/s packet path; separate fabric I/O",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2019",
+      "status": "historical",
+      "scope": "j2"
+    },
+    "switches.j2.3": {
+      "value": "Buffered modular switch",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2019",
+      "status": "historical",
+      "scope": "j2"
+    },
+    "switches.j2.4": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2019",
+      "status": "historical",
+      "scope": "j2"
+    },
+    "switches.j3.0": {
+      "value": "Jericho3-AI",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E13"
+      ],
+      "disclosure_date": "2023",
+      "status": "announced",
+      "scope": "j3"
+    },
+    "switches.j3.1": {
+      "value": "2023",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E13"
+      ],
+      "disclosure_date": "2023",
+      "status": "announced",
+      "scope": "j3"
+    },
+    "switches.j3.2": {
+      "value": "28.8 Tb/s vendor combined basis",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E13"
+      ],
+      "disclosure_date": "2023",
+      "status": "announced",
+      "scope": "j3"
+    },
+    "switches.j3.3": {
+      "value": "Scheduled AI fabric",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E13"
+      ],
+      "disclosure_date": "2023",
+      "status": "announced",
+      "scope": "j3"
+    },
+    "switches.j3.4": {
+      "value": "Announced; GA n/d",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05",
+        "E13"
+      ],
+      "disclosure_date": "2023",
+      "status": "announced",
+      "scope": "j3"
+    },
+    "switches.j4.0": {
+      "value": "Jericho4",
+      "field": "Family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "switches.j4.1": {
+      "value": "2025",
+      "field": "First disclosure / production",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "switches.j4.2": {
+      "value": "3.2 Tb/s per HyperPort; chip total n/d",
+      "field": "Capacity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "switches.j4.3": {
+      "value": "3 nm; 200G PAM4",
+      "field": "Implementation / role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "switches.j4.4": {
+      "value": "Sampling; GA n/d",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.t5.0": {
+      "value": "Tomahawk5",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.1": {
+      "value": "2023",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.3": {
+      "value": "Scale-out switch",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.4": {
+      "value": "64 × 800GbE",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.5": {
+      "value": "100G PAM4",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.6": {
+      "value": "n/a",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.7": {
+      "value": "Switch pipeline",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.10": {
+      "value": "Ethernet",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.11": {
+      "value": "Cognitive Routing",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.12": {
+      "value": "L2/L3 / telemetry",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.t5.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t5"
+    },
+    "network.tu.0": {
+      "value": "Tomahawk Ultra",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.1": {
+      "value": "2025",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.3": {
+      "value": "Scale-up switch",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.4": {
+      "value": "64 × 800GbE",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.5": {
+      "value": "100G PAM4",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.6": {
+      "value": "n/a",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.7": {
+      "value": "Switch / collectives",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.10": {
+      "value": "Ethernet / LLR",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.11": {
+      "value": "Adaptive routing",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.12": {
+      "value": "Header reduction / collectives",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.tu.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "tu"
+    },
+    "network.t6.0": {
+      "value": "Tomahawk6",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.1": {
+      "value": "2026 production",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.3": {
+      "value": "Scale-up / out switch",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.4": {
+      "value": "102.4 Tb/s total",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.5": {
+      "value": "100G / 200G PAM4",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.6": {
+      "value": "n/a",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.7": {
+      "value": "Switch pipeline",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.10": {
+      "value": "Ethernet",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.11": {
+      "value": "Cognitive Routing 2.0",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.12": {
+      "value": "Telemetry / CPO option",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.t6.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "E09"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "t6"
+    },
+    "network.j4.0": {
+      "value": "Jericho4",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.1": {
+      "value": "2025 sampling",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.2": {
+      "value": "Sampling; GA n/d",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.3": {
+      "value": "Fabric router",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.4": {
+      "value": "HyperPort 4 × 800G",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.5": {
+      "value": "200G PAM4",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.6": {
+      "value": "n/a",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.7": {
+      "value": "Traffic manager",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.10": {
+      "value": "Ethernet / RoCE",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.11": {
+      "value": "Deep-buffer fabric",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.12": {
+      "value": "MACsec",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.j4.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "sampling",
+      "scope": "j4"
+    },
+    "network.th.0": {
+      "value": "Thor Ultra",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.1": {
+      "value": "2025 announced",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.2": {
+      "value": "Announced; GA n/d",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.3": {
+      "value": "AI NIC",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.4": {
+      "value": "800 Gb/s",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.5": {
+      "value": "100G / 200G PAM4",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.6": {
+      "value": "PCIe 6 ×16",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.7": {
+      "value": "Programmable congestion pipeline",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.10": {
+      "value": "RoCE / UEC",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.11": {
+      "value": "Sender / receiver programmable",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.12": {
+      "value": "PSP / OOO / retry",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.th.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "th"
+    },
+    "network.st.0": {
+      "value": "Stingray",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.1": {
+      "value": "2020 deployment",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.2": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.3": {
+      "value": "SmartNIC",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.4": {
+      "value": "n/d",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.6": {
+      "value": "PCIe; n/d",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.7": {
+      "value": "Programmable offload",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.10": {
+      "value": "n/d",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.11": {
+      "value": "n/d",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.12": {
+      "value": "Cloud infrastructure",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "network.st.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "st"
+    },
+    "cpu.none.0": {
+      "value": "No in-scope merchant host CPU",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.1": {
+      "value": "n/a",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.2": {
+      "value": "n/a",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.3": {
+      "value": "n/a",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.4": {
+      "value": "n/a",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.5": {
+      "value": "n/a",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.6": {
+      "value": "n/a",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.7": {
+      "value": "n/a",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.8": {
+      "value": "n/a",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.9": {
+      "value": "n/a",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.10": {
+      "value": "n/a",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.11": {
+      "value": "n/a",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.12": {
+      "value": "n/a",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.13": {
+      "value": "n/a",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "cpu.none.14": {
+      "value": "n/a",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "none"
+    },
+    "gpu.mt.0": {
+      "value": "MTIA collaboration",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.1": {
+      "value": "Customer-specific",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.2": {
+      "value": "n/d",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.3": {
+      "value": "See Meta report",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.6": {
+      "value": "n/d",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.7": {
+      "value": "n/d",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.8": {
+      "value": "n/d",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.9": {
+      "value": "n/d",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.11": {
+      "value": "n/d",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.12": {
+      "value": "n/d",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.13": {
+      "value": "n/d",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.mt.16": {
+      "value": "n/d",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "customer program",
+      "scope": "mt"
+    },
+    "gpu.ja.0": {
+      "value": "Jalapeño",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.1": {
+      "value": "OpenAI inference",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.2": {
+      "value": "n/d",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.3": {
+      "value": "Sampling; GA n/d",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.4": {
+      "value": "n/d",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.5": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.6": {
+      "value": "n/d",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.7": {
+      "value": "n/d",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.8": {
+      "value": "n/d",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.9": {
+      "value": "n/d",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.11": {
+      "value": "n/d",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.12": {
+      "value": "n/d",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.13": {
+      "value": "n/d",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.14": {
+      "value": "n/d",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.15": {
+      "value": "n/d",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "gpu.ja.16": {
+      "value": "n/d",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E12"
+      ],
+      "disclosure_date": "2026-06-24",
+      "status": "engineering samples",
+      "scope": "ja"
+    },
+    "interconnect.eth.0": {
+      "value": "Ethernet / SUE",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.1": {
+      "value": "2025-2026",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.2": {
+      "value": "100G / 200G class",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.4": {
+      "value": "n/d",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.6": {
+      "value": "Switched",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.7": {
+      "value": "Topology-dependent",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.eth.8": {
+      "value": "Transport does not establish CPU coherence",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E01",
+        "C02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "eth"
+    },
+    "interconnect.hyp.0": {
+      "value": "HyperPort",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.1": {
+      "value": "2025",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.2": {
+      "value": "n/d",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.3": {
+      "value": "4 × 800GbE",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.4": {
+      "value": "400 GB/s nominal",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.5": {
+      "value": "n/d",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.6": {
+      "value": "Logical grouped port",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.7": {
+      "value": "n/d",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "interconnect.hyp.8": {
+      "value": "Ethernet / RoCE",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2025",
+      "status": "sampling",
+      "scope": "hyp"
+    },
+    "systems.oem.0": {
+      "value": "OEM switch platforms",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.1": {
+      "value": "2015-2026",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.2": {
+      "value": "External CPUs / XPUs",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.3": {
+      "value": "Topology-dependent",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.4": {
+      "value": "n/d",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "systems.oem.6": {
+      "value": "Platform-dependent",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "oem"
+    },
+    "ratios.a.0": {
+      "value": "800GbE",
+      "field": "Quantity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.a.1": {
+      "value": "800/8 = 100 GB/s",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.a.2": {
+      "value": "Per direction before overhead",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.b.0": {
+      "value": "3.2T HyperPort",
+      "field": "Quantity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.b.1": {
+      "value": "4×800/8 = 400 GB/s",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.b.2": {
+      "value": "Logical port; not chip total",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.c.0": {
+      "value": "Tomahawk1 → 6",
+      "field": "Quantity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.c.1": {
+      "value": "102.4/3.2 = 32×",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.c.2": {
+      "value": "Native switch-capacity convention",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03",
+        "E01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.d.0": {
+      "value": "HBM / FLOP; performance / W",
+      "field": "Quantity",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "d"
+    },
+    "ratios.d.1": {
+      "value": "n/a; n/d",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "d"
+    },
+    "ratios.d.2": {
+      "value": "No uniform compute SKU / power basis",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E11",
+        "E12"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "not applicable",
+      "scope": "d"
+    },
+    "conf.i.0": {
+      "value": "ISSCC",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.1": {
+      "value": "2025",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.2": {
+      "value": "16.1 Tomahawk5: 51.2Tb/s 5nm Monolithic Switch Chip for AI/ML Networking",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.3": {
+      "value": "Broadcom",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.4": {
+      "value": "Tomahawk5",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.5": {
+      "value": "Implementation; press kit reviewed",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.i.6": {
+      "value": "C01",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "i"
+    },
+    "conf.h.0": {
+      "value": "Hot Chips",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.1": {
+      "value": "2025",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.2": {
+      "value": "Tomahawk Ultra",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.3": {
+      "value": "Broadcom",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.4": {
+      "value": "Tomahawk Ultra",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.5": {
+      "value": "Architecture slides",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h.6": {
+      "value": "C02",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C02"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "h"
+    },
+    "conf.h6.0": {
+      "value": "Hot Chips",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.1": {
+      "value": "2026",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.2": {
+      "value": "Thor Ultra: An Ethernet NIC Chip Optimized for AI & HPC",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.3": {
+      "value": "Hemal Shah",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.4": {
+      "value": "Thor Ultra",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.5": {
+      "value": "Program verified; vendor specs used",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.h6.6": {
+      "value": "C03 E03",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "E03"
+      ],
+      "disclosure_date": "2026",
+      "status": "program",
+      "scope": "h6"
+    },
+    "conf.o.0": {
+      "value": "OCP Global Summit",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.1": {
+      "value": "2025",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.2": {
+      "value": "End-to-end AI networking",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.3": {
+      "value": "Broadcom",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.4": {
+      "value": "Switch / NIC / CPO",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.5": {
+      "value": "System demonstrations",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "conf.o.6": {
+      "value": "E04",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E04"
+      ],
+      "disclosure_date": "2025",
+      "status": "published",
+      "scope": "o"
+    },
+    "cross.a.0": {
+      "value": "Tomahawk1",
+      "field": "Marketing family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "historical",
+      "scope": "a"
+    },
+    "cross.a.1": {
+      "value": "BCM56960",
+      "field": "Product identifier",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "historical",
+      "scope": "a"
+    },
+    "cross.a.2": {
+      "value": "Cloud switch baseline",
+      "field": "Distinction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "historical",
+      "scope": "a"
+    },
+    "cross.b.0": {
+      "value": "Tomahawk5",
+      "field": "Marketing family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.b.1": {
+      "value": "BCM78900",
+      "field": "Product identifier",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.b.2": {
+      "value": "General high-radix switch",
+      "field": "Distinction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "b"
+    },
+    "cross.c.0": {
+      "value": "Tomahawk Ultra",
+      "field": "Marketing family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    },
+    "cross.c.1": {
+      "value": "BCM78920",
+      "field": "Product identifier",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    },
+    "cross.c.2": {
+      "value": "Scale-up specialization",
+      "field": "Distinction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "shipping",
+      "scope": "c"
+    },
+    "cross.d.0": {
+      "value": "Jericho3-AI",
+      "field": "Marketing family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "d"
+    },
+    "cross.d.1": {
+      "value": "BCM88890",
+      "field": "Product identifier",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "d"
+    },
+    "cross.d.2": {
+      "value": "Scheduled AI fabric",
+      "field": "Distinction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P05"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "d"
+    },
+    "cross.e.0": {
+      "value": "Thor Ultra",
+      "field": "Marketing family",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "e"
+    },
+    "cross.e.1": {
+      "value": "n/d",
+      "field": "Product identifier",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "e"
+    },
+    "cross.e.2": {
+      "value": "AI NIC; not Tomahawk Ultra",
+      "field": "Distinction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "announced",
+      "scope": "e"
+    },
+    "software.a.0": {
+      "value": "Switch control",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "software.a.1": {
+      "value": "SDK / supported open interfaces",
+      "field": "Interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "software.a.2": {
+      "value": "Forwarding and telemetry",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "software.a.3": {
+      "value": "ASIC-specific implementation",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "software.b.0": {
+      "value": "Infrastructure",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.1": {
+      "value": "Firmware / driver / acceleration APIs",
+      "field": "Interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.2": {
+      "value": "Packet, storage and security offload",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.3": {
+      "value": "SKU and platform dependent",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.c.0": {
+      "value": "System integration",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.1": {
+      "value": "Host software and partner stack",
+      "field": "Interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.2": {
+      "value": "Resource and traffic management",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.3": {
+      "value": "No single vendor-only AI framework",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "P02",
+        "E03",
+        "E10"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    }
+  },
+  "numeric_facts": {},
+  "sources": {
+    "P01": {
+      "id": "P01",
+      "title": "Tomahawk5 BCM78900",
+      "url": "https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78900-series",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 59,
+      "retrieved": "2026-09-28"
+    },
+    "P02": {
+      "id": "P02",
+      "title": "Tomahawk Ultra BCM78920",
+      "url": "https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78920-series",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 60,
+      "retrieved": "2026-09-28"
+    },
+    "E01": {
+      "id": "E01",
+      "title": "Tomahawk6 launch",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-tomahawk-6-worlds-first-1024-tbps-switch",
+      "access": "Accessible primary source",
+      "chars": 16418,
+      "retrieved": "2026-09-28"
+    },
+    "E02": {
+      "id": "E02",
+      "title": "Jericho4 launch",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-jericho4-enabling-distributed-ai-computing-across",
+      "access": "Accessible primary source",
+      "chars": 8538,
+      "retrieved": "2026-09-28"
+    },
+    "E03": {
+      "id": "E03",
+      "title": "Thor Ultra 800G AI Ethernet NIC",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-introduces-industrys-first-800g-ai-ethernet-nic",
+      "access": "Accessible primary source",
+      "chars": 11680,
+      "retrieved": "2026-09-28"
+    },
+    "E04": {
+      "id": "E04",
+      "title": "OCP 2025 end-to-end AI networking",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking",
+      "access": "Accessible primary source",
+      "chars": 8818,
+      "retrieved": "2026-09-28"
+    },
+    "C01": {
+      "id": "C01",
+      "title": "ISSCC 2025 press kit; paper 16.1 Tomahawk5",
+      "url": "https://submissions.mirasmart.com/ISSCC2025/PDF/ISSCC2025PressKit.pdf",
+      "access": "Accessible primary source",
+      "chars": 1479,
+      "retrieved": "2026-09-28"
+    },
+    "C02": {
+      "id": "C02",
+      "title": "Tomahawk Ultra, Hot Chips 2025",
+      "url": "https://hc2025.hotchips.org/assets/program/conference/day1/TU-HotChips-2025-Final-2025-08-25-v1.pdf",
+      "access": "Accessible primary source",
+      "chars": 29595,
+      "retrieved": "2026-09-28"
+    },
+    "C03": {
+      "id": "C03",
+      "title": "Thor Ultra, Hot Chips 2026 program",
+      "url": "https://hc2026.hotchips.org/program/conference/",
+      "access": "HTTP Error 406: Not Acceptable",
+      "retrieved": "2026-09-28"
+    },
+    "P03": {
+      "id": "P03",
+      "title": "Tomahawk1 BCM56960",
+      "url": "https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm56960-series",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 52,
+      "retrieved": "2026-09-28"
+    },
+    "P04": {
+      "id": "P04",
+      "title": "Jericho2 datasheet",
+      "url": "https://docs.broadcom.com/doc/BCM88690-9-6-Tb/s-Integrated-Packet-Processor-Traffic-Manager-and-Fabric-Interface-Single-Chip-Device-DS",
+      "access": "Accessible primary source",
+      "chars": 798487,
+      "retrieved": "2026-09-28"
+    },
+    "P05": {
+      "id": "P05",
+      "title": "Jericho3-AI product",
+      "url": "https://www.broadcom.com/products/ethernet-connectivity/switching/stratadnx/bcm88890",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 66,
+      "retrieved": "2026-09-28"
+    },
+    "E05": {
+      "id": "E05",
+      "title": "Tomahawk2 announcement",
+      "url": "https://www.broadcom.com/news/product-releases/broadcom-first-to-deliver-64-ports-of-100ge-with-tomahawk-ii-ethernet-switch",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 84,
+      "retrieved": "2026-09-28"
+    },
+    "E06": {
+      "id": "E06",
+      "title": "Tomahawk3 production",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-achieves-mass-production-industry-leading-128-tbps",
+      "access": "Accessible primary source",
+      "chars": 10085,
+      "retrieved": "2026-09-28"
+    },
+    "E07": {
+      "id": "E07",
+      "title": "Tomahawk4 production",
+      "url": "https://www.broadcom.com/company/news/product-releases/53966",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 113,
+      "retrieved": "2026-09-28"
+    },
+    "E08": {
+      "id": "E08",
+      "title": "Tomahawk5 production",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-now-shipping-worlds-first-512-tbps-switch-production",
+      "access": "Accessible primary source",
+      "chars": 3384,
+      "retrieved": "2026-09-28"
+    },
+    "E09": {
+      "id": "E09",
+      "title": "Tomahawk6 production",
+      "url": "https://www.broadcom.com/company/news/product-releases/64031",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 74,
+      "retrieved": "2026-09-28"
+    },
+    "E10": {
+      "id": "E10",
+      "title": "Stingray SmartNIC deployment",
+      "url": "https://www.broadcom.com/company/news/product-releases/53106",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 59,
+      "retrieved": "2026-09-28"
+    },
+    "E11": {
+      "id": "E11",
+      "title": "Meta custom silicon partnership",
+      "url": "https://www.broadcom.com/company/news/product-releases/64236",
+      "access": "Indexed official page; local response contained title only",
+      "chars": 128,
+      "retrieved": "2026-09-28"
+    },
+    "E12": {
+      "id": "E12",
+      "title": "OpenAI Jalapeno engineering samples",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/openai-and-broadcom-unveil-llm-optimized-intelligence-processor",
+      "access": "Accessible primary source",
+      "chars": 9481,
+      "retrieved": "2026-09-28"
+    },
+    "E13": {
+      "id": "E13",
+      "title": "Jericho3-AI scheduled fabric",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-unveils-industrys-highest-performance-fabric-ai",
+      "access": "Accessible primary source",
+      "chars": 7622,
+      "retrieved": "2026-09-28"
+    }
+  }
+}

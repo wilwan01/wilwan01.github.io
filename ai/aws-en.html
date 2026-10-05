@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>AWS · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="aws-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/AWS_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/AWS_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#aws-ai-infrastructure-architecture-evolution">AWS AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-numerical-and-availability-conventions">02 Numerical and availability conventions</a></li>
+<li><a href="#03-graviton1-and-graviton2-establishing-the-platform">03 Graviton1 and Graviton2: establishing the platform</a></li>
+<li><a href="#04-graviton3-5-vector-growth-and-a-new-chiplet-boundary">04 Graviton3-5: vector growth and a new chiplet boundary</a><ul>
+<li><a href="#graviton-generations">Graviton generations</a></li>
+</ul>
+</li>
+<li><a href="#05-inferentia-and-trainium1-the-neuroncore-foundation">05 Inferentia and Trainium1: the NeuronCore foundation</a></li>
+<li><a href="#06-trainium2-trainium3-and-the-trainium4-roadmap">06 Trainium2, Trainium3 and the Trainium4 roadmap</a></li>
+<li><a href="#07-accelerator-comparison">07 Accelerator comparison</a><ul>
+<li><a href="#inferentia-and-trainium">Inferentia and Trainium</a></li>
+</ul>
+</li>
+<li><a href="#08-nitro-and-efa-infrastructure-versus-ai-traffic">08 Nitro and EFA: infrastructure versus AI traffic</a><ul>
+<li><a href="#offload-and-network-families">Offload and network families</a></li>
+</ul>
+</li>
+<li><a href="#09-systems-software-and-bandwidth-hierarchy">09 Systems, software and bandwidth hierarchy</a><ul>
+<li><a href="#system-progression">System progression</a></li>
+<li><a href="#interconnect-lineage">Interconnect lineage</a></li>
+<li><a href="#2019-2022-integrated-stack">2019-2022 integrated stack</a></li>
+<li><a href="#2024-2026-integrated-stack">2024-2026 integrated stack</a></li>
+</ul>
+</li>
+<li><a href="#10-derived-balance-and-engineering-consequences">10 Derived balance and engineering consequences</a><ul>
+<li><a href="#per-device-derived-ratios">Per-device derived ratios</a></li>
+</ul>
+</li>
+<li><a href="#11-conference-map-software-timeline-and-naming">11 Conference map, software timeline and naming</a><ul>
+<li><a href="#verified-disclosure-channels">Verified disclosure channels</a></li>
+<li><a href="#hardware-and-software-alignment">Hardware and software alignment</a></li>
+<li><a href="#product-crosswalk">Product crosswalk</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="aws-ai-infrastructure-architecture-evolution">AWS AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Deep coverage: Graviton CPUs and Inferentia/Trainium accelerators. Full coverage: NeuronLink, UltraServer, Nitro, EFA and the Neuron software model. Period: 2015-28 September 2026; the CPU product sequence starts in 2018. FPGA instances and third-party GPUs are complementary context, not AWS-designed silicon. Reviewed milestones include re:Invent 2024/2025 materials, Graviton5 general availability in June 2026, and current Neuron architecture documentation.</p>
+<p>AWS’s architectural strategy is to make specialization deployable through a stable cloud service boundary. Graviton supplies general compute; Trainium and Inferentia supply model compute; Nitro supplies isolation and infrastructure offload; EFA supplies distributed communication. The economic unit is an instance or a tightly connected system with a supported software stack. The principal engineering question is how much specialized silicon can be exposed without forcing customers to operate a bespoke machine.</p>
+<h2 id="02-numerical-and-availability-conventions">02 Numerical and availability conventions</h2>
+<p>CPU counts are per package, not the largest multi-socket EC2 instance. A Graviton vCPU represents a physical core rather than an SMT thread. Accelerator figures are per physical device and dense; cFP8, FP8 and MXFP8 are not interchangeable formats. HBM GiB and GB are retained as published. NeuronLink totals whose direction is unspecified remain quoted totals rather than invented one-way bandwidth. Service GA, preview and future roadmap are separate statuses. n/d means not established; n/a means not applicable.</p>
+<h2 id="03-graviton1-and-graviton2-establishing-the-platform">03 Graviton1 and Graviton2: establishing the platform</h2>
+<p>The first Graviton A1 instances established an Arm64 deployment path in 2018. Graviton2 made that path a broad server platform through 64 Neoverse N1 cores, private L2 caches and an eight-channel memory interface. The move was more than an ISA substitution: software builds, native libraries, runtime optimization and instance sizing had to become routine. A single-thread-per-core model also changes the meaning of a vCPU when comparing against an SMT-based x86 instance.</p>
+<p>Architectural interpretation: the migration succeeds when an application’s dependency graph is portable and its working set fits the memory and cache envelope. The useful experiments are fleet-representative throughput and tail latency at a fixed service objective. Compiler-generated Arm code is necessary but insufficient: synchronization primitives, cryptography, compression and managed runtimes can determine whether silicon resources translate into service capacity.</p>
+<h2 id="04-graviton3-5-vector-growth-and-a-new-chiplet-boundary">04 Graviton3-5: vector growth and a new chiplet boundary</h2>
+<p>Graviton3 kept 64 cores while moving to Neoverse V1 and DDR5; Graviton3E is a related HPC-oriented variant rather than a separate ISA generation. Graviton4 increased the package to 96 Neoverse V2 cores and twelve DDR5 channels, with two-socket configurations exposed in selected large instances. Wider aggregate vector capability should not be confused with a fixed architectural SVE vector length: the V1 and V2 implementations organize their datapaths differently.</p>
+<p>Graviton5 changes the partitioning: four chiplets each integrate 48 cores, memory controllers and PCIe controllers. The package has 192 cores and 192 MB L3, supports DDR5-8800 and PCIe 6, and uses Neoverse V3. The previous separate I/O and memory-controller dies disappear from this organization. The vendor quotes up to 420 GB/s between chiplets without fully specifying the directional basis; it is retained as a quoted link figure. NUMA and cache partitioning must be interpreted at the selected VM size, not inferred from the package total.</p>
+<p>Architectural implication: placing memory controllers beside compute can reduce traffic that crosses a dedicated I/O boundary, but distributed controllers make locality and allocation policy more important. Doubling core count with twelve channels also means that per-core peak DRAM bandwidth need not rise with package bandwidth. Larger L3 can reduce traffic, but it cannot remove the streaming bandwidth limit. These two effects should be measured separately before attributing an application gain to core IPC.</p>
+<h3 id="graviton-generations">Graviton generations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graviton / A1</td>
+<td>n/d</td>
+<td>2018</td>
+<td>Historical shipping</td>
+<td>Arm64</td>
+<td>16 / 16</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Arm64</td>
+</tr>
+<tr>
+<td>Graviton2</td>
+<td>n/d</td>
+<td>2020</td>
+<td>Shipping / available</td>
+<td>Neoverse N1</td>
+<td>64 / 64</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>1 MB</td>
+<td>32 MB</td>
+<td>8 × DDR4; rate n/d</td>
+<td>1</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2 × 128-bit Neon</td>
+</tr>
+<tr>
+<td>Graviton3 / 3E</td>
+<td>n/d</td>
+<td>2022 / 2023</td>
+<td>Shipping / available</td>
+<td>Neoverse V1</td>
+<td>64 / 64</td>
+<td>n/d</td>
+<td>7 dies; split compute/memory/I/O</td>
+<td>1 MB</td>
+<td>32 MB</td>
+<td>8 × DDR5; rate n/d</td>
+<td>1</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2 × 256-bit SVE; BF16</td>
+</tr>
+<tr>
+<td>Graviton4</td>
+<td>n/d</td>
+<td>2024</td>
+<td>Shipping / available</td>
+<td>Neoverse V2</td>
+<td>96 / 96</td>
+<td>n/d</td>
+<td>Separate controller dies</td>
+<td>2 MB</td>
+<td>36 MB</td>
+<td>12 × DDR5-5600; 537.6 GB/s</td>
+<td>1-2; link n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>4 × 128-bit SVE; SVE2</td>
+</tr>
+<tr>
+<td>Graviton5</td>
+<td>n/d</td>
+<td>2026-06-10</td>
+<td>Shipping / available</td>
+<td>Neoverse V3</td>
+<td>192 / 192</td>
+<td>3 nm</td>
+<td>4 × 48-core chiplets</td>
+<td>2 MB</td>
+<td>192 MB package; VM partitioned</td>
+<td>12 × DDR5-8800; 844.8 GB/s</td>
+<td>NUMA 2/4 regions physical</td>
+<td>PCIe 6; CXL n/d</td>
+<td>n/d</td>
+<td>4 × 128-bit SVE; Armv9.2</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="05-inferentia-and-trainium1-the-neuroncore-foundation">05 Inferentia and Trainium1: the NeuronCore foundation</h2>
+<p>Inferentia1 combines four NeuronCore-v1 units with external DRAM. It targets inference and benefits from pipelining work through cores. Inferentia2 and Trainium1 use NeuronCore-v2, HBM, separate tensor/vector/scalar engines and programmable GPSIMD resources. This shared core lineage does not make the cloud products identical: Inf2 and Trn1 expose different chip counts, networking and intended workload envelopes. The move to HBM makes larger models practical while increasing the importance of explicit data movement.</p>
+<p>Software-managed SBUF and accumulation storage are architectural resources, not transparent caches. A kernel must arrange tensors to fit the array’s contraction dimension and the scratchpad’s partitioning. DMA overlap is therefore part of the algorithm. This is a useful distinction from a superficial “GPU alternative” description: the compiler and kernel author carry substantial responsibility for locality, even when a framework hides that responsibility from the model author.</p>
+<h2 id="06-trainium2-trainium3-and-the-trainium4-roadmap">06 Trainium2, Trainium3 and the Trainium4 roadmap</h2>
+<p>Trainium2 expands to eight NeuronCore-v3 units, larger on-chip storage and a 96 GiB HBM system. Logical NeuronCore configuration can combine physical resources behind a larger logical core. Dedicated collective-control cores support communication alongside computation. Trn2 UltraServers extend the directly connected resource pool beyond one conventional server, so both the physical core count and the logical execution mode matter when interpreting utilization.</p>
+<p>Trainium3 retains eight physical cores but changes the low-precision datapath. The NKI guide explains quad-packed microscaling inputs on a physical 128×128 array, presenting a larger logical contraction dimension. The overview gives 2,517 TFLOPS for MXFP8/MXFP4 and 671 TFLOPS for dense BF16. Thus the headline low-precision improvement is not a universal BF16 improvement. Trn3 UltraServers reach 144 chips and use NeuronSwitch-v1; their aggregate improvement also includes a larger chip count.</p>
+<p>Trainium4 remains a roadmap item in the reviewed disclosure. AWS states intended NVLink Fusion support alongside Graviton and EFA in MGX-based infrastructure. This is a future integration direction, not a reason to relabel existing NeuronLink systems as NVLink systems. Qualification must ultimately cover memory semantics, collective software, fault handling and topology as well as physical link compatibility.</p>
+<h2 id="07-accelerator-comparison">07 Accelerator comparison</h2>
+<h3 id="inferentia-and-trainium">Inferentia and Trainium</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inferentia1</td>
+<td>NeuronCore-v1</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>4</td>
+<td>64 TFLOPS</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>DRAM; 8 GiB; 50 GiB/s</td>
+<td>n/d</td>
+<td>NeuronLink; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+<tr>
+<td>Trainium1</td>
+<td>NeuronCore-v2</td>
+<td>2022</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2</td>
+<td>190 TFLOPS</td>
+<td>190 cFP8 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 32 GiB; 820 GiB/s</td>
+<td>48 MiB SBUF</td>
+<td>NeuronLink-v2; 16 chips</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+<tr>
+<td>Inferentia2</td>
+<td>NeuronCore-v2</td>
+<td>2023</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2</td>
+<td>190 TFLOPS</td>
+<td>190 cFP8 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 32 GiB; 820 GiB/s</td>
+<td>n/d</td>
+<td>NeuronLink-v2; ≤12 chips/instance</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+<tr>
+<td>Trainium2</td>
+<td>NeuronCore-v3</td>
+<td>2024-12</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>8</td>
+<td>667 TFLOPS</td>
+<td>1,299 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 96 GiB; 2.9 TB/s</td>
+<td>224 MiB SBUF</td>
+<td>1.28 TB/s quoted; 64 chips</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+<tr>
+<td>Trainium3</td>
+<td>NeuronCore-v4</td>
+<td>2025-12</td>
+<td>Shipping / available</td>
+<td>3 nm</td>
+<td>n/d</td>
+<td>8</td>
+<td>671 TFLOPS</td>
+<td>2,517 MXFP8 TFLOPS</td>
+<td>2,517 MXFP4 TFLOPS</td>
+<td>n/d</td>
+<td>HBM3e; 144 GiB; 4.9 TB/s</td>
+<td>256 MiB SBUF</td>
+<td>2.56 TB/s quoted; 144 chips</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+<tr>
+<td>Trainium4</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>NVLink Fusion planned</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AWS platform</td>
+</tr>
+</tbody>
+</table></div>
+<p>Source reconciliation: the current Trainium3 overview reports 4.9 TB/s HBM and 16 collective cores; the NKI guide gives 4.7 TB/s and 20 CC-Cores in its introductory list. The overview is used consistently for package comparison, while the guide supports datapath discussion. Likewise, Trainium1 is rounded to 190 TFLOPS in its own guide and 191 in a later comparison. These discrepancies are retained in the evidence record rather than silently combined.</p>
+<h2 id="08-nitro-and-efa-infrastructure-versus-ai-traffic">08 Nitro and EFA: infrastructure versus AI traffic</h2>
+<p>Nitro separates much of the networking, storage and management work from customer CPU execution. Its security chip, cards and minimal hypervisor form a system, not a single AI NIC. Successive Nitro versions appear across EC2 CPU and accelerator families; their network limits depend on the instance. Nitro v6 is publicly associated with the 2025 generation of network-optimized instances. The 2026 Nitro Isolation Engine adds a formally verified isolation component, which is a specific security property rather than proof that every part of the system is formally verified.</p>
+<p>EFA presents an application communication interface backed by AWS’s scalable reliable datagram transport. Multipath delivery and fast recovery address the variability of a shared datacenter network. The accelerator collective library, provider interface, EFA device and underlying fabric are separate layers. Their combined behavior determines job performance; a port line rate alone says little about small-message latency, tail behavior or communication-compute overlap. ENA front-end traffic and EFA collective traffic should also remain distinct in the system map.</p>
+<h3 id="offload-and-network-families">Offload and network families</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nitro System</td>
+<td>2017 onward</td>
+<td>Shipping / available</td>
+<td>Infrastructure offload / isolation</td>
+<td>Instance-dependent</td>
+<td>n/d</td>
+<td>PCIe; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>ENA / EBS</td>
+<td>n/d</td>
+<td>VPC, storage, management</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>EFA</td>
+<td>2019 onward</td>
+<td>Shipping / available</td>
+<td>AI / HPC network interface</td>
+<td>Instance-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>SRD / libfabric</td>
+<td>Multipath / recovery</td>
+<td>OS-bypass communication</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>NeuronSwitch-v1</td>
+<td>2025</td>
+<td>Shipping / available</td>
+<td>Scale-up switch</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>NeuronLink</td>
+<td>n/d</td>
+<td>Device fabric</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="09-systems-software-and-bandwidth-hierarchy">09 Systems, software and bandwidth hierarchy</h2>
+<p>Neuron provides graph compilation, runtime, libraries and framework integration. NKI exposes the hardware memory hierarchy to specialist kernel authors; logical-core configuration changes how physical resources are presented. A production migration should track supported operators, compilation cost, numerical behavior, profiling and collective overlap together. AWS FPGA instances remain a programmable acceleration option, while GPUs remain part of the same cloud portfolio; neither is evidence that AWS designed the underlying third-party silicon.</p>
+<h3 id="system-progression">System progression</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trn1</td>
+<td>2022</td>
+<td>16 Trainium1</td>
+<td>16</td>
+<td>Instance-dependent; n/d here</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Trn2 UltraServer</td>
+<td>2024</td>
+<td>64 Trainium2</td>
+<td>64</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Trn3 UltraServer</td>
+<td>2025</td>
+<td>144 Trainium3</td>
+<td>144</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="interconnect-lineage">Interconnect lineage</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NeuronLink-v2</td>
+<td>2022</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>16</td>
+<td>Device communication; not CPU coherence</td>
+</tr>
+<tr>
+<td>NeuronLink-v3</td>
+<td>2024</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>64</td>
+<td>Device communication; not CPU coherence</td>
+</tr>
+<tr>
+<td>NeuronLink-v4</td>
+<td>2025</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>NeuronSwitch-v1</td>
+<td>144</td>
+<td>Device communication; not CPU coherence</td>
+</tr>
+<tr>
+<td>NVLink Fusion</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Planned</td>
+<td>n/d</td>
+<td>Device communication; not CPU coherence</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2019-2022-integrated-stack">2019-2022 integrated stack</h3>
+<pre class="mermaid">flowchart TD
+  host["EC2 CPU host"]
+  gpu["Inferentia1 / Trainium1"]
+  domain["NeuronLink / instance"]
+  soft["Neuron / frameworks"]
+  net["Nitro + EFA"]
+  host ---|"host attach"| gpu
+  gpu ---|"scale-up"| domain
+  soft ---|"compile / map"| domain
+  gpu ---|"scale-out"| net
+</pre>
+<p>Logical data and control paths. Graviton is not assumed to host every historical accelerator instance.</p>
+<h3 id="2024-2026-integrated-stack">2024-2026 integrated stack</h3>
+<pre class="mermaid">flowchart TD
+  host["EC2 CPU host"]
+  gpu["Trainium2 / Trainium3"]
+  domain["UltraServer / NeuronSwitch"]
+  soft["Neuron / NKI / LNC"]
+  net["Nitro + EFA / UltraCluster"]
+  host ---|"host attach"| gpu
+  gpu ---|"scale-up"| domain
+  soft ---|"compile / map"| domain
+  gpu ---|"scale-out"| net
+</pre>
+<p>Logical data and control paths. Graviton is not assumed to host every historical accelerator instance.</p>
+<h2 id="10-derived-balance-and-engineering-consequences">10 Derived balance and engineering consequences</h2>
+<h3 id="per-device-derived-ratios">Per-device derived ratios</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Memory BW / BF16, B/FLOP</th>
+<th>BW / low-precision, B/FLOP</th>
+<th>Capacity / BF16, B·s/FLOP</th>
+<th>Performance / W</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trainium1</td>
+<td>0.004634</td>
+<td>0.004634</td>
+<td>0.0001808</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Trainium2</td>
+<td>0.004348</td>
+<td>0.002232</td>
+<td>0.0001545</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Trainium3</td>
+<td>0.007303</td>
+<td>0.001947</td>
+<td>0.0002304</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>Derived CPU balance: Graviton4 provides 537.6/96 = 5.6 GB/s per core; Graviton5 provides 844.8/192 = 4.4 GB/s per core, a 21.4% reduction in this theoretical streaming metric. Package L3 per core rises from 0.375 MB to 1 MB, before VM partitioning. The architectural bet is that improved cores, more cache and locality compensate for less bandwidth per core on enough real workloads. A streaming workload and a large instruction-footprint service can therefore move in opposite directions.</p>
+<p>For accelerators, Trainium3 improves memory bandwidth per BF16 FLOP substantially because BF16 compute remains nearly flat while memory bandwidth rises. Against its faster MX datapath, the bandwidth balance is tighter. This is why a procurement model should carry separate BF16 and microscaling rooflines, and why a token-throughput claim needs batch size and latency limits. System-level gains also depend on whether the model can exploit the enlarged scale-up domain without adding excessive communication or idle capacity.</p>
+<h2 id="11-conference-map-software-timeline-and-naming">11 Conference map, software timeline and naming</h2>
+<h3 id="verified-disclosure-channels">Verified disclosure channels</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>re:Invent</td>
+<td>2024</td>
+<td>CMP207 AWS accelerated computing</td>
+<td>AWS</td>
+<td>Trainium2 / Nitro / EFA</td>
+<td>Architecture and systems</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>re:Invent</td>
+<td>2025</td>
+<td>Trainium3 and Trainium4 outlook</td>
+<td>AWS</td>
+<td>Trainium3 / 4</td>
+<td>GA / roadmap</td>
+<td>E02 E04</td>
+</tr>
+<tr>
+<td>AWS Summit</td>
+<td>2022</td>
+<td>The journey of silicon innovation at AWS</td>
+<td>AWS</td>
+<td>Graviton / Nitro</td>
+<td>Portfolio and systems</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Amazon Science</td>
+<td>2026</td>
+<td>Graviton5 chiplet architecture</td>
+<td>Ali Saidi</td>
+<td>Graviton5</td>
+<td>Vendor technical disclosure; not conference paper</td>
+<td>E01</td>
+</tr>
+</tbody>
+</table></div>
+<p>The reviewed corpus supports stronger implementation coverage through AWS architecture guides than through a verified ISCA/MICRO/HPCA/ASPLOS or ISSCC product-paper sequence. No such sequence is invented. Hot Chips was searched, but no specific AWS generation talk is used as an implementation source in this edition. This is a disclosure-channel difference from Google, not evidence of less architectural sophistication. re:Invent materials establish deployment and system context; Neuron and Graviton guides supply the detailed programming-visible architecture.</p>
+<h3 id="hardware-and-software-alignment">Hardware and software alignment</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Date</th>
+<th>Hardware</th>
+<th>Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NeuronCore-v1 support</td>
+<td>2019</td>
+<td>Inferentia1</td>
+<td>Inference compilation / pipeline</td>
+</tr>
+<tr>
+<td>NeuronCore-v2 support</td>
+<td>2022-2023</td>
+<td>Trainium1 / Inferentia2</td>
+<td>Dynamic shapes; GPSIMD operators</td>
+</tr>
+<tr>
+<td>NKI / LNC</td>
+<td>2024-2026</td>
+<td>Trainium2 / 3</td>
+<td>Explicit kernels / logical cores</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="product-crosswalk">Product crosswalk</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Silicon</th>
+<th>Service</th>
+<th>Core / fabric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inferentia1 / 2</td>
+<td>Inf1 / Inf2</td>
+<td>NeuronCore-v1 / v2</td>
+</tr>
+<tr>
+<td>Trainium1 / 2 / 3</td>
+<td>Trn1 / Trn2 / Trn3</td>
+<td>NeuronCore-v2 / v3 / v4</td>
+</tr>
+<tr>
+<td>Graviton5</td>
+<td>M9g / related families</td>
+<td>Neoverse V3; Nitro</td>
+</tr>
+</tbody>
+</table></div>
+<p>Open implementation fields include package power, precise per-die process and packaging information for several accelerator generations, and fully directional NeuronLink electrical specifications. The system tables keep rack power and per-accelerator EFA bandwidth n/d when the selected configuration is not fixed. The next decision-relevant evidence is a matched workload comparison with compilation and communication costs included, rather than an extrapolation from chip peak to fleet efficiency.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C01, E01, E02, E03, P01, P02, P03, P04, P07, P08</p>
+<p>02 Numerical and availability conventions — P01, P02, P03, P04, P06</p>
+<p>03 Graviton1 and Graviton2: establishing the platform — C01, P01</p>
+<p>04 Graviton3-5: vector growth and a new chiplet boundary — E01, E03, E05, E06, E07, P01</p>
+<p>05 Inferentia and Trainium1: the NeuronCore foundation — P02, P05, P06, P09</p>
+<p>06 Trainium2, Trainium3 and the Trainium4 roadmap — C01, E02, P03, P04, P09</p>
+<p>07 Accelerator comparison — E02, E04, E08, E09, P02, P03, P04, P05, P06, P09</p>
+<p>08 Nitro and EFA: infrastructure versus AI traffic — E01, E02, P07, P08, P10, P11</p>
+<p>09 Systems, software and bandwidth hierarchy — C01, E02, P02, P03, P04, P09</p>
+<p>10 Derived balance and engineering consequences — E01, E02, E05, P01, P02, P03, P04, P09</p>
+<p>11 Conference map, software timeline and naming — C01, C02, E01, E02, E03, E04, P01, P02, P03, P04, P05, P06, P08, P09</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] AWS Graviton technical guide. <a href="https://raw.githubusercontent.com/aws/aws-graviton-getting-started/main/README.md">https://raw.githubusercontent.com/aws/aws-graviton-getting-started/main/README.md</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Trainium architecture. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] Trainium2 architecture. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] Trainium3 architecture. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium3.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium3.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Inferentia architecture. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] Inferentia2 architecture. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] Security design of the AWS Nitro System. <a href="https://docs.aws.amazon.com/whitepapers/latest/security-design-of-aws-nitro-system/security-design-of-aws-nitro-system.html">https://docs.aws.amazon.com/whitepapers/latest/security-design-of-aws-nitro-system/security-design-of-aws-nitro-system.html</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P08] Elastic Fabric Adapter. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P09] Trainium3 NKI architecture guide. <a href="https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html">https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] EC2 Nitro versions. <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html">https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-nitro-instances.html</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P11] SRD transport. <a href="https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/perf_networking_choose_network_protocols_improve_performance.html">https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/perf_networking_choose_network_protocols_improve_performance.html</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] AWS accelerated computing, re:Invent 2024 CMP207. <a href="https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/events/approved/reinvent-2025/reinvent/2024/slides/cmp/CMP207_AWS-accelerated-computing-enables-customer-success-with-generative-AI.pdf">https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/events/approved/reinvent-2025/reinvent/2024/slides/cmp/CMP207_AWS-accelerated-computing-enables-customer-success-with-generative-AI.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] AWS Summit2022 silicon innovation. <a href="https://d1.awsstatic.com/events/Summits/aws-summits/The_journey_of_silicon_innovation_at_AWS_CMP201.pdf">https://d1.awsstatic.com/events/Summits/aws-summits/The_journey_of_silicon_innovation_at_AWS_CMP201.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Graviton5 chiplet architecture. <a href="https://www.amazon.science/blog/graviton5s-improved-design-increases-speed-and-energy-efficiency-beyond-moores-law">https://www.amazon.science/blog/graviton5s-improved-design-increases-speed-and-energy-efficiency-beyond-moores-law</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Trainium3 UltraServers and Trainium4 outlook. <a href="https://www.aboutamazon.com/news/aws/trainium-3-ultraserver-faster-ai-training-lower-cost">https://www.aboutamazon.com/news/aws/trainium-3-ultraserver-faster-ai-training-lower-cost</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Graviton5 M9g general availability. <a href="https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/">https://aws.amazon.com/blogs/aws/now-available-amazon-ec2-m9g-and-m9gd-instances-powered-by-new-aws-graviton5-processors/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E04] Trainium3 general availability. <a href="https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/">https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E05] Graviton4 memory architecture. <a href="https://aws.amazon.com/blogs/aws/join-the-preview-for-new-memory-optimized-aws-graviton4-powered-amazon-ec2-instances-r8g/">https://aws.amazon.com/blogs/aws/join-the-preview-for-new-memory-optimized-aws-graviton4-powered-amazon-ec2-instances-r8g/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E06] Graviton3 C7g GA. <a href="https://aws.amazon.com/blogs/aws/new-amazon-ec2-c7g-instances-powered-by-aws-graviton3-processors/">https://aws.amazon.com/blogs/aws/new-amazon-ec2-c7g-instances-powered-by-aws-graviton3-processors/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E07] Graviton A1 launch. <a href="https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/">https://aws.amazon.com/blogs/aws/new-ec2-instances-a1-powered-by-arm-based-aws-graviton-processors/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E08] Inferentia Inf1 launch. <a href="https://aws.amazon.com/blogs/aws/amazon-ec2-inf1-instances-with-aws-inferentia-chips-for-high-performance-cost-effective-machine-learning-inference/">https://aws.amazon.com/blogs/aws/amazon-ec2-inf1-instances-with-aws-inferentia-chips-for-high-performance-cost-effective-machine-learning-inference/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E09] Inf2 instances. <a href="https://aws.amazon.com/ec2/instance-types/inf2/">https://aws.amazon.com/ec2/instance-types/inf2/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p></article></div></main><script src="app.js"></script></body></html>

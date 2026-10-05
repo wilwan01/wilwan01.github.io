@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Broadcom · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="broadcom-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Broadcom_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Broadcom_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#broadcom-ai-infrastructure-architecture-evolution">Broadcom AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-bandwidth-status-and-topology-conventions">02 Bandwidth, status and topology conventions</a></li>
+<li><a href="#03-tomahawk1-4-radix-and-serdes-drive-the-system">03 Tomahawk1-4: radix and SerDes drive the system</a></li>
+<li><a href="#04-tomahawk5-tomahawk6-and-tomahawk-ultra">04 Tomahawk5, Tomahawk6 and Tomahawk Ultra</a></li>
+<li><a href="#05-jericho-scheduled-fabrics-and-regional-scale">05 Jericho: scheduled fabrics and regional scale</a></li>
+<li><a href="#06-nics-smartnics-and-complementary-connectivity">06 NICs, SmartNICs and complementary connectivity</a></li>
+<li><a href="#07-generation-and-network-comparison-tables">07 Generation and network comparison tables</a><ul>
+<li><a href="#switch-generations-and-capacity-basis">Switch generations and capacity basis</a></li>
+<li><a href="#networking-fixed-schema">Networking fixed schema</a></li>
+</ul>
+</li>
+<li><a href="#08-custom-xpus-and-portfolio-boundaries">08 Custom XPUs and portfolio boundaries</a><ul>
+<li><a href="#host-cpu-boundary">Host CPU boundary</a></li>
+<li><a href="#customer-owned-accelerator-programs">Customer-owned accelerator programs</a></li>
+</ul>
+</li>
+<li><a href="#09-integrated-stack-and-software">09 Integrated stack and software</a><ul>
+<li><a href="#2015-2020-network-stack">2015-2020 network stack</a></li>
+<li><a href="#2023-2026-network-stack">2023-2026 network stack</a></li>
+<li><a href="#interconnect-roles">Interconnect roles</a></li>
+<li><a href="#system-integration-boundary">System integration boundary</a></li>
+<li><a href="#software-integration-contracts">Software integration contracts</a></li>
+</ul>
+</li>
+<li><a href="#10-derived-metrics-and-architectural-trade-offs">10 Derived metrics and architectural trade-offs</a><ul>
+<li><a href="#nominal-bandwidth-normalization">Nominal bandwidth normalization</a></li>
+</ul>
+</li>
+<li><a href="#11-conference-index-and-naming-crosswalk">11 Conference index and naming crosswalk</a><ul>
+<li><a href="#verified-disclosure-map">Verified disclosure map</a></li>
+<li><a href="#product-names">Product names</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="broadcom-ai-infrastructure-architecture-evolution">Broadcom AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Deep coverage: Tomahawk, Jericho, AI Ethernet NICs and their system roles. Full coverage: SerDes, CPO and publicly named custom-XPU programs. CPU and accelerator schemas are retained, but Broadcom is not treated as a merchant server-CPU or general-purpose GPU vendor. Period: 2015-28 September 2026. The latest reviewed events include ISSCC 2025, Hot Chips 2025, the public Hot Chips 2026 program and 2026 partner announcements. Storage connectivity is proportional; VMware is outside the silicon architecture scope.</p>
+<p>Broadcom’s evolution is from supplying switch capacity to shaping the entire communication path of an AI system. High radix reduces network tiers; NIC transport handles path diversity and recovery; scheduled fabrics control contention; optics changes physical reach and power. The custom-XPU business connects these technologies to customer-specific compute. The important architectural comparison is not simply Ethernet versus a proprietary fabric, but which layer owns scheduling, ordering, congestion and failure recovery.</p>
+<h2 id="02-bandwidth-status-and-topology-conventions">02 Bandwidth, status and topology conventions</h2>
+<p>Switch capacity is quoted in the vendor’s native convention and is not automatically the sum of both directions. Endpoint Ethernet rates are line rates; dividing Gb/s by eight gives nominal GB/s before protocol overhead. Jericho front-panel bandwidth and fabric-interface bandwidth must be separated: adding them can produce a headline that is not usable endpoint injection bandwidth. Chip availability, OEM switch qualification and deployed system scale are separate milestones. n/d means not established in reviewed sources; n/a means not applicable.</p>
+<h2 id="03-tomahawk1-4-radix-and-serdes-drive-the-system">03 Tomahawk1-4: radix and SerDes drive the system</h2>
+<p>Tomahawk established the high-bandwidth cloud-switch line in the 2015-era baseline. Tomahawk2 doubled capacity to 6.4 Tb/s; Tomahawk3 doubled it again to 12.8 Tb/s and enabled dense 400GbE configurations through 50G PAM4 signaling. Tomahawk4 reached 25.6 Tb/s and subsequently entered production. These transitions are not just larger crossbars: each changes the number of endpoints that can be connected at a fixed radix, the number of tiers, cable count and optical power.</p>
+<p>Architectural interpretation: at fixed total switching bandwidth, increasing endpoint speed reduces the number of endpoint-facing ports. Capacity doubling can therefore be consumed entirely by speed doubling, leaving radix unchanged. A system designer should ask whether a new generation buys more nodes per tier, higher bandwidth per node or lower oversubscription. Those are different benefits. Port counts must also reserve uplinks; a 64-port switch is not automatically a nonblocking 64-endpoint leaf.</p>
+<h2 id="04-tomahawk5-tomahawk6-and-tomahawk-ultra">04 Tomahawk5, Tomahawk6 and Tomahawk Ultra</h2>
+<p>Tomahawk5 couples 51.2 Tb/s switching with 100G-class PAM4 lanes. The ISSCC 2025 paper 16.1 identifies a monolithic 5 nm implementation with 512 PAM4 SerDes lanes; the reviewed press kit establishes that implementation mapping, while product documents establish supported port configurations. This is a useful example of conference synthesis: the circuit venue explains realization and power-management concerns, while the product source explains the network building block. The press kit is not treated as the full paper.</p>
+<p>Tomahawk6 reaches 102.4 Tb/s and offers 100G- and 200G-class SerDes configurations. Its architecture combines higher radix with routing, congestion and telemetry functions for AI. The 2025 announcement and the 2026 production announcement are recorded separately. CPO variants are not automatically identical to the electrical package: optical-engine integration changes the package, cooling, serviceability and link-budget problem even when the logical switch capacity remains the same.</p>
+<p>Tomahawk Ultra is a specialization branch, not simply the next numbered Tomahawk. The Hot Chips 2025 presentation emphasizes 51.2 Tb/s operation for small packets, roughly 250 ns switching latency, link-level retry, shortened headers and in-network collectives. These features address scale-up traffic where transaction overhead and latency can dominate. A small-packet throughput claim and a bulk-bandwidth claim are different tests; full-size frame line rate cannot establish the former.</p>
+<h2 id="05-jericho-scheduled-fabrics-and-regional-scale">05 Jericho: scheduled fabrics and regional scale</h2>
+<p>The Jericho lineage targets richer traffic management and modular fabric construction. Jericho2 combines packet processing, buffering and fabric attachment; its 9.6 Tb/s headline includes interfaces that must not all be counted as endpoint traffic. Jericho3-AI extends this approach to AI fabrics using coordinated scheduling and a separate fabric element. Its significance is contention management across a distributed switch system, rather than a claim that every individual chip has the capacity of the whole cluster.</p>
+<p>Jericho4 adds 3 nm implementation, 200G PAM4, MACsec and the 3.2 Tb/s HyperPort abstraction formed from four 800GbE links. The launch discusses RoCE over regional distances beyond 100 km. The availability paragraph says sampling, despite a headline using “ships”; this report uses sampling unless a later production source establishes otherwise. Longer reach expands placement freedom but cannot remove propagation latency, so the suitable parallelism and synchronization cadence remain workload-dependent.</p>
+<h2 id="06-nics-smartnics-and-complementary-connectivity">06 NICs, SmartNICs and complementary connectivity</h2>
+<p>Stingray represents infrastructure offload: programmable processing moves cloud services away from the host CPU. Thor and Thor Ultra represent the endpoint communication path. Thor Ultra’s PCIe 6 ×16 interface, 800G Ethernet, multipath delivery, out-of-order placement, selective retransmission and programmable congestion control target AI collective traffic. PSP offload and device security complement transport. These functions do not make it interchangeable with a DPU running arbitrary infrastructure services.</p>
+<p>SerDes, retimers, optical DSPs, CPO, PCIe switches and storage connectivity are adjacent but distinct product layers. A retimer restores an electrical link; an optical DSP conditions a modulated optical channel; a switch routes traffic. Their power and latency belong in the end-to-end path rather than being hidden in a switch-chip number. OCP and OFC disclosures are especially relevant for these integration boundaries, while OEM demonstrations establish system compatibility rather than universal deployment.</p>
+<h2 id="07-generation-and-network-comparison-tables">07 Generation and network comparison tables</h2>
+<h3 id="switch-generations-and-capacity-basis">Switch generations and capacity basis</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Family</th>
+<th>First disclosure / production</th>
+<th>Capacity</th>
+<th>Implementation / role</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomahawk1</td>
+<td>2014-2015</td>
+<td>3.2 Tb/s</td>
+<td>Cloud Ethernet</td>
+<td>Historical shipping</td>
+</tr>
+<tr>
+<td>Tomahawk2</td>
+<td>2016</td>
+<td>6.4 Tb/s</td>
+<td>64 × 100GbE</td>
+<td>Historical shipping</td>
+</tr>
+<tr>
+<td>Tomahawk3</td>
+<td>2017 / 2018</td>
+<td>12.8 Tb/s</td>
+<td>50G PAM4</td>
+<td>Historical shipping</td>
+</tr>
+<tr>
+<td>Tomahawk4</td>
+<td>2019 / 2020</td>
+<td>25.6 Tb/s</td>
+<td>High-radix Ethernet</td>
+<td>Shipping / available</td>
+</tr>
+<tr>
+<td>Tomahawk5</td>
+<td>2022 / 2023</td>
+<td>51.2 Tb/s</td>
+<td>5 nm; 512 PAM4 lanes</td>
+<td>Shipping / available</td>
+</tr>
+<tr>
+<td>Tomahawk6</td>
+<td>2025 / 2026</td>
+<td>102.4 Tb/s</td>
+<td>100G / 200G PAM4</td>
+<td>Shipping / available</td>
+</tr>
+<tr>
+<td>Tomahawk Ultra</td>
+<td>2025</td>
+<td>51.2 Tb/s</td>
+<td>Small-packet / low latency</td>
+<td>Shipping / available</td>
+</tr>
+<tr>
+<td>Jericho2</td>
+<td>2018 / 2019</td>
+<td>4.8 Tb/s packet path; separate fabric I/O</td>
+<td>Buffered modular switch</td>
+<td>Historical shipping</td>
+</tr>
+<tr>
+<td>Jericho3-AI</td>
+<td>2023</td>
+<td>28.8 Tb/s vendor combined basis</td>
+<td>Scheduled AI fabric</td>
+<td>Announced; GA n/d</td>
+</tr>
+<tr>
+<td>Jericho4</td>
+<td>2025</td>
+<td>3.2 Tb/s per HyperPort; chip total n/d</td>
+<td>3 nm; 200G PAM4</td>
+<td>Sampling; GA n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="networking-fixed-schema">Networking fixed schema</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomahawk5</td>
+<td>2023</td>
+<td>Shipping / available</td>
+<td>Scale-out switch</td>
+<td>64 × 800GbE</td>
+<td>100G PAM4</td>
+<td>n/a</td>
+<td>Switch pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>Cognitive Routing</td>
+<td>L2/L3 / telemetry</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Tomahawk Ultra</td>
+<td>2025</td>
+<td>Shipping / available</td>
+<td>Scale-up switch</td>
+<td>64 × 800GbE</td>
+<td>100G PAM4</td>
+<td>n/a</td>
+<td>Switch / collectives</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet / LLR</td>
+<td>Adaptive routing</td>
+<td>Header reduction / collectives</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Tomahawk6</td>
+<td>2026 production</td>
+<td>Shipping / available</td>
+<td>Scale-up / out switch</td>
+<td>102.4 Tb/s total</td>
+<td>100G / 200G PAM4</td>
+<td>n/a</td>
+<td>Switch pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>Cognitive Routing 2.0</td>
+<td>Telemetry / CPO option</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Jericho4</td>
+<td>2025 sampling</td>
+<td>Sampling; GA n/d</td>
+<td>Fabric router</td>
+<td>HyperPort 4 × 800G</td>
+<td>200G PAM4</td>
+<td>n/a</td>
+<td>Traffic manager</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet / RoCE</td>
+<td>Deep-buffer fabric</td>
+<td>MACsec</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Thor Ultra</td>
+<td>2025 announced</td>
+<td>Announced; GA n/d</td>
+<td>AI NIC</td>
+<td>800 Gb/s</td>
+<td>100G / 200G PAM4</td>
+<td>PCIe 6 ×16</td>
+<td>Programmable congestion pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>RoCE / UEC</td>
+<td>Sender / receiver programmable</td>
+<td>PSP / OOO / retry</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Stingray</td>
+<td>2020 deployment</td>
+<td>Historical shipping</td>
+<td>SmartNIC</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe; n/d</td>
+<td>Programmable offload</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Cloud infrastructure</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08-custom-xpus-and-portfolio-boundaries">08 Custom XPUs and portfolio boundaries</h2>
+<p>Publicly named collaborations establish Broadcom’s role in customer-specific accelerators. Meta identifies the MTIA collaboration, and the June 2026 OpenAI announcement identifies Jalapeño engineering samples and Broadcom’s implementation and networking contribution. Customer architecture ownership and supplier implementation responsibility must remain distinct. There is no single public Broadcom XPU instruction set or uniform accelerator specification that can be assigned to every customer.</p>
+<p>Architectural interpretation: reusable SerDes, memory interfaces, die-to-die links and physical-design capabilities can shorten implementation without making customer compute architectures identical. The software burden remains attached to the customer’s compiler, runtime and model kernels. A useful cross-vendor comparison should place MTIA specifications in the Meta report and only documented supplier contributions here, preventing double counting of both engineering claims and installed capacity.</p>
+<h3 id="host-cpu-boundary">Host CPU boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No in-scope merchant host CPU</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="customer-owned-accelerator-programs">Customer-owned accelerator programs</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA collaboration</td>
+<td>Customer-specific</td>
+<td>n/d</td>
+<td>See Meta report</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Jalapeño</td>
+<td>OpenAI inference</td>
+<td>n/d</td>
+<td>Sampling; GA n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="09-integrated-stack-and-software">09 Integrated stack and software</h2>
+<p>The deployed network combines silicon SDKs, operating systems such as SONiC in supported platforms, management and telemetry, and endpoint transport software. Open protocols do not guarantee identical behavior across vendors: feature negotiation, congestion tuning and firmware maturity can dominate interoperability. UEC compliance, RoCE compatibility and scale-up memory semantics are separate questions. Network software must be qualified with the target accelerator collective library and failure scenarios.</p>
+<h3 id="2015-2020-network-stack">2015-2020 network stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["CPU / customer XPU"]
+  gpu["NIC / Stingray"]
+  leaf["Tomahawk1-4"]
+  sw["SDK / NOS / telemetry"]
+  spine["Jericho2 / fabric"]
+  io["Storage / front-end"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"Ethernet"| leaf
+  leaf ---|"fabric"| spine
+  sw ---|"control"| leaf
+  gpu ---|"services"| io
+</pre>
+<p>Product roles, not a claim that all families are required in one deployment.</p>
+<h3 id="2023-2026-network-stack">2023-2026 network stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["CPU / customer XPU"]
+  gpu["Thor / Thor Ultra"]
+  leaf["Tomahawk5-6 / Ultra"]
+  sw["SDK / NOS / telemetry"]
+  spine["Jericho3-AI / Jericho4"]
+  io["Storage / front-end"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"Ethernet"| leaf
+  leaf ---|"fabric"| spine
+  sw ---|"control"| leaf
+  gpu ---|"services"| io
+</pre>
+<p>Product roles, not a claim that all families are required in one deployment.</p>
+<h3 id="interconnect-roles">Interconnect roles</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet / SUE</td>
+<td>2025-2026</td>
+<td>100G / 200G class</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Switched</td>
+<td>Topology-dependent</td>
+<td>Transport does not establish CPU coherence</td>
+</tr>
+<tr>
+<td>HyperPort</td>
+<td>2025</td>
+<td>n/d</td>
+<td>4 × 800GbE</td>
+<td>400 GB/s nominal</td>
+<td>n/d</td>
+<td>Logical grouped port</td>
+<td>n/d</td>
+<td>Ethernet / RoCE</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="system-integration-boundary">System integration boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OEM switch platforms</td>
+<td>2015-2026</td>
+<td>External CPUs / XPUs</td>
+<td>Topology-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Platform-dependent</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="software-integration-contracts">Software integration contracts</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Interface</th>
+<th>Function</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Switch control</td>
+<td>SDK / supported open interfaces</td>
+<td>Forwarding and telemetry</td>
+<td>ASIC-specific implementation</td>
+</tr>
+<tr>
+<td>Infrastructure</td>
+<td>Firmware / driver / acceleration APIs</td>
+<td>Packet, storage and security offload</td>
+<td>SKU and platform dependent</td>
+</tr>
+<tr>
+<td>System integration</td>
+<td>Host software and partner stack</td>
+<td>Resource and traffic management</td>
+<td>No single vendor-only AI framework</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-derived-metrics-and-architectural-trade-offs">10 Derived metrics and architectural trade-offs</h2>
+<h3 id="nominal-bandwidth-normalization">Nominal bandwidth normalization</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Calculation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>800GbE</td>
+<td>800/8 = 100 GB/s</td>
+<td>Per direction before overhead</td>
+</tr>
+<tr>
+<td>3.2T HyperPort</td>
+<td>4×800/8 = 400 GB/s</td>
+<td>Logical port; not chip total</td>
+</tr>
+<tr>
+<td>Tomahawk1 → 6</td>
+<td>102.4/3.2 = 32×</td>
+<td>Native switch-capacity convention</td>
+</tr>
+<tr>
+<td>HBM / FLOP; performance / W</td>
+<td>n/a; n/d</td>
+<td>No uniform compute SKU / power basis</td>
+</tr>
+</tbody>
+</table></div>
+<p>The main trade-off is where complexity sits. An endpoint-scheduled fabric places congestion response in NICs and hosts; a fabric-scheduled design moves more coordination into the network. Low-latency scale-up adds requirements for small packets, retry and collective support that differ from conventional cloud forwarding. CPO shortens electrical reach and can reduce I/O energy, but places optical reliability and maintenance closer to expensive switch silicon. None of these choices eliminates the need to measure job completion time under contention and failure.</p>
+<h2 id="11-conference-index-and-naming-crosswalk">11 Conference index and naming crosswalk</h2>
+<h3 id="verified-disclosure-map">Verified disclosure map</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISSCC</td>
+<td>2025</td>
+<td>16.1 Tomahawk5: 51.2Tb/s 5nm Monolithic Switch Chip for AI/ML Networking</td>
+<td>Broadcom</td>
+<td>Tomahawk5</td>
+<td>Implementation; press kit reviewed</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>Tomahawk Ultra</td>
+<td>Broadcom</td>
+<td>Tomahawk Ultra</td>
+<td>Architecture slides</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Thor Ultra: An Ethernet NIC Chip Optimized for AI &amp; HPC</td>
+<td>Hemal Shah</td>
+<td>Thor Ultra</td>
+<td>Program verified; vendor specs used</td>
+<td>C03 E03</td>
+</tr>
+<tr>
+<td>OCP Global Summit</td>
+<td>2025</td>
+<td>End-to-end AI networking</td>
+<td>Broadcom</td>
+<td>Switch / NIC / CPO</td>
+<td>System demonstrations</td>
+<td>E04</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISCA, MICRO, HPCA and ASPLOS are not used here to manufacture a nonexistent product-paper lineage. For this portfolio, the strongest identified bridge is Hot Chips architecture plus ISSCC implementation and vendor/OCP system documentation. OFC is a natural follow-up channel for optics; the present bibliography does not claim exhaustive coverage of every OFC or DAC session. Product names and codenames are crosswalked only where the vendor identifies them.</p>
+<h3 id="product-names">Product names</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Marketing family</th>
+<th>Product identifier</th>
+<th>Distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomahawk1</td>
+<td>BCM56960</td>
+<td>Cloud switch baseline</td>
+</tr>
+<tr>
+<td>Tomahawk5</td>
+<td>BCM78900</td>
+<td>General high-radix switch</td>
+</tr>
+<tr>
+<td>Tomahawk Ultra</td>
+<td>BCM78920</td>
+<td>Scale-up specialization</td>
+</tr>
+<tr>
+<td>Jericho3-AI</td>
+<td>BCM88890</td>
+<td>Scheduled AI fabric</td>
+</tr>
+<tr>
+<td>Thor Ultra</td>
+<td>n/d</td>
+<td>AI NIC; not Tomahawk Ultra</td>
+</tr>
+</tbody>
+</table></div>
+<p>The remaining gaps are quantitative power at a fixed port configuration, full buffer organization for every generation, per-lane electrical detail and customer-XPU implementation specifications. These constrain direct energy comparisons. The most useful next tests would hold endpoint count, port speed, oversubscription, collective mix and failure load constant, then measure delivered bandwidth and tail job latency across endpoint- and fabric-scheduled alternatives.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C01, C02, C03, E01, E02, E03, E11, E12</p>
+<p>02 Bandwidth, status and topology conventions — E01, E03, P04, P05</p>
+<p>03 Tomahawk1-4: radix and SerDes drive the system — E01, E05, E06, E07, P01, P03</p>
+<p>04 Tomahawk5, Tomahawk6 and Tomahawk Ultra — C01, C02, E01, E04, E08, E09, P01, P02</p>
+<p>05 Jericho: scheduled fabrics and regional scale — E02, E13, P04, P05</p>
+<p>06 NICs, SmartNICs and complementary connectivity — E03, E04, E10</p>
+<p>07 Generation and network comparison tables — C01, C02, E01, E02, E03, E05, E06, E07, E08, E09, E10, E13, P01, P03, P04, P05</p>
+<p>08 Custom XPUs and portfolio boundaries — E11, E12</p>
+<p>09 Integrated stack and software — C02, E01, E02, E03, E04, E10, P01, P02</p>
+<p>10 Derived metrics and architectural trade-offs — C02, E01, E02, E03, E04, E11, E12, E13, P03</p>
+<p>11 Conference index and naming crosswalk — C01, C02, C03, E03, E04, E13, P01, P02, P03, P05</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] Tomahawk5 BCM78900. <a href="https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78900-series">https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78900-series</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P02] Tomahawk Ultra BCM78920. <a href="https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78920-series">https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78920-series</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P03] Tomahawk1 BCM56960. <a href="https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm56960-series">https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm56960-series</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[P04] Jericho2 datasheet. <a href="https://docs.broadcom.com/doc/BCM88690-9-6-Tb/s-Integrated-Packet-Processor-Traffic-Manager-and-Fabric-Interface-Single-Chip-Device-DS">https://docs.broadcom.com/doc/BCM88690-9-6-Tb/s-Integrated-Packet-Processor-Traffic-Manager-and-Fabric-Interface-Single-Chip-Device-DS</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Jericho3-AI product. <a href="https://www.broadcom.com/products/ethernet-connectivity/switching/stratadnx/bcm88890">https://www.broadcom.com/products/ethernet-connectivity/switching/stratadnx/bcm88890</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] ISSCC 2025 press kit; paper 16.1 Tomahawk5. <a href="https://submissions.mirasmart.com/ISSCC2025/PDF/ISSCC2025PressKit.pdf">https://submissions.mirasmart.com/ISSCC2025/PDF/ISSCC2025PressKit.pdf</a>. Official conference program or press material; not the full paper.</p>
+<p>[C02] Tomahawk Ultra, Hot Chips 2025. <a href="https://hc2025.hotchips.org/assets/program/conference/day1/TU-HotChips-2025-Final-2025-08-25-v1.pdf">https://hc2025.hotchips.org/assets/program/conference/day1/TU-HotChips-2025-Final-2025-08-25-v1.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C03] Thor Ultra, Hot Chips 2026 program. <a href="https://hc2026.hotchips.org/program/conference/">https://hc2026.hotchips.org/program/conference/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Tomahawk6 launch. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-tomahawk-6-worlds-first-1024-tbps-switch">https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-tomahawk-6-worlds-first-1024-tbps-switch</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Jericho4 launch. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-jericho4-enabling-distributed-ai-computing-across">https://investors.broadcom.com/news-releases/news-release-details/broadcom-ships-jericho4-enabling-distributed-ai-computing-across</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Thor Ultra 800G AI Ethernet NIC. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-introduces-industrys-first-800g-ai-ethernet-nic">https://investors.broadcom.com/news-releases/news-release-details/broadcom-introduces-industrys-first-800g-ai-ethernet-nic</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] OCP 2025 end-to-end AI networking. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking">https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Tomahawk2 announcement. <a href="https://www.broadcom.com/news/product-releases/broadcom-first-to-deliver-64-ports-of-100ge-with-tomahawk-ii-ethernet-switch">https://www.broadcom.com/news/product-releases/broadcom-first-to-deliver-64-ports-of-100ge-with-tomahawk-ii-ethernet-switch</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E06] Tomahawk3 production. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-achieves-mass-production-industry-leading-128-tbps">https://investors.broadcom.com/news-releases/news-release-details/broadcom-achieves-mass-production-industry-leading-128-tbps</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Tomahawk4 production. <a href="https://www.broadcom.com/company/news/product-releases/53966">https://www.broadcom.com/company/news/product-releases/53966</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E08] Tomahawk5 production. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-now-shipping-worlds-first-512-tbps-switch-production">https://investors.broadcom.com/news-releases/news-release-details/broadcom-now-shipping-worlds-first-512-tbps-switch-production</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] Tomahawk6 production. <a href="https://www.broadcom.com/company/news/product-releases/64031">https://www.broadcom.com/company/news/product-releases/64031</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E10] Stingray SmartNIC deployment. <a href="https://www.broadcom.com/company/news/product-releases/53106">https://www.broadcom.com/company/news/product-releases/53106</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E11] Meta custom silicon partnership. <a href="https://www.broadcom.com/company/news/product-releases/64236">https://www.broadcom.com/company/news/product-releases/64236</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E12] OpenAI Jalapeno engineering samples. <a href="https://investors.broadcom.com/news-releases/news-release-details/openai-and-broadcom-unveil-llm-optimized-intelligence-processor">https://investors.broadcom.com/news-releases/news-release-details/openai-and-broadcom-unveil-llm-optimized-intelligence-processor</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E13] Jericho3-AI scheduled fabric. <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-unveils-industrys-highest-performance-fabric-ai">https://investors.broadcom.com/news-releases/news-release-details/broadcom-unveils-industrys-highest-performance-fabric-ai</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>NVIDIA · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="nvidia-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/NVIDIA_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/NVIDIA_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#nvidia-ai">NVIDIA AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 执行摘要</a><ul>
+<li><a href="#_1">主要架构转折</a></li>
+</ul>
+</li>
+<li><a href="#02">02 规格口径与比较方法</a></li>
+<li><a href="#03-gpu">03 GPU 规格总览</a><ul>
+<li><a href="#gpu">数据中心 GPU 代际：代表性配置</a></li>
+</ul>
+</li>
+<li><a href="#04-maxwell-pascal">04 Maxwell 与 Pascal：形成加速器系统</a></li>
+<li><a href="#05-volta">05 Volta：矩阵执行与交换式纵向扩展</a></li>
+<li><a href="#06-ampere">06 Ampere：数值格式、隔离与实现</a></li>
+<li><a href="#07-hopper-h200">07 Hopper 与 H200：异步计算与内存</a></li>
+<li><a href="#08-blackwell-ultra">08 Blackwell 与 Ultra：跨越裸片与机架边界</a></li>
+<li><a href="#09-rubin">09 Rubin：平台代际与配置约束</a></li>
+<li><a href="#10-grace-vera-cpu">10 Grace 与 Vera CPU：主机进入协同架构</a><ul>
+<li><a href="#cpu-cpu">CPU 代际：除注明外按单颗 CPU</a></li>
+</ul>
+</li>
+<li><a href="#11">11 推理、工作站与边缘分支</a><ul>
+<li><a href="#_2">相关产品分支</a></li>
+</ul>
+</li>
+<li><a href="#12-nvlinknvswitch-c2c">12 NVLink、NVSwitch 与一致性 C2C</a><ul>
+<li><a href="#_3">互联代际</a></li>
+</ul>
+</li>
+<li><a href="#13-connectx-bluefield">13 ConnectX 与 BlueField：端点与基础设施</a><ul>
+<li><a href="#nic-dpu">NIC 与 DPU 演进</a></li>
+</ul>
+</li>
+<li><a href="#14-spectrumquantum">14 Spectrum、Quantum 与光互联</a><ul>
+<li><a href="#_4">交换芯片与网络演进</a></li>
+</ul>
+</li>
+<li><a href="#15-groq-3-lpx">15 Groq 3 LPX 与专用推理</a></li>
+<li><a href="#16">16 集成系统与带宽层次</a><ul>
+<li><a href="#_5">系统参考配置</a></li>
+<li><a href="#2016-2020gpu">2016-2020：GPU 服务器形成互联域</a></li>
+<li><a href="#2023-2024-cpu-gpu">2023-2024：一致性 CPU-GPU 内存</a></li>
+<li><a href="#2025nvl72">2025：NVL72 机架成为纵向扩展单元</a></li>
+<li><a href="#2026">2026：异构服务与基础设施</a></li>
+<li><a href="#_6">归一化比较与推导</a></li>
+</ul>
+</li>
+<li><a href="#17">17 软件将硬件层次变为可用能力</a><ul>
+<li><a href="#_7">软件与编程里程碑</a></li>
+</ul>
+</li>
+<li><a href="#18">18 架构会议究竟证明了什么</a></li>
+<li><a href="#19-">19 会议-产品索引</a><ul>
+<li><a href="#_8">精选披露及其证据作用</a></li>
+</ul>
+</li>
+<li><a href="#20">20 跨代结论与尚未披露事项</a></li>
+<li><a href="#21">21 代号对照与来源指南</a><ul>
+<li><a href="#_9">架构、芯片与产品名称</a></li>
+</ul>
+</li>
+<li><a href="#_10">来源映射</a></li>
+<li><a href="#_11">参考资料</a><ul>
+<li><a href="#_12">产品与技术文档</a></li>
+<li><a href="#_13">会议记录与实现披露</a></li>
+<li><a href="#_14">研究论文与出版目录</a></li>
+<li><a href="#_15">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="nvidia-ai">NVIDIA AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 执行摘要</h2>
+<p>理解 NVIDIA 过去十余年的演进，关键是观察架构设计单元的变化：从 PCIe 加速卡，到通过 NVLink 连接的服务器，再到具有缓存一致性的 CPU-GPU 模块，最终扩展到机架级计算与网络平台。Tensor Core 算术单元只是其中一环。内存容量、数据搬移、同步、网络拥塞、供电和软件调度，日益决定实际系统能够利用多少标称算力。</p>
+<p>产品史中有五项关键变化。Pascal 将 HBM 和 GPU 间高速互联确立为数据中心 GPU 的核心。Volta 建立了可编程矩阵加速路径。Ampere 扩展数值格式，并引入实用的多实例分区。Hopper 围绕异步张量计算和数据搬移重新组织执行，Grace 则提供高带宽且具有缓存一致性的 CPU 内存层。Blackwell 跨越光刻掩模尺寸限制，把主要的纵向扩展域推进到机架。Rubin 延续这一系统路线，引入新的 CPU 核心、HBM4、更快互联，并进一步区分 GPU 计算、基础设施处理与低延迟推理。</p>
+<p>本报告覆盖 2015 年至 2026 年 9 月 28 日，按产品代际而非会议时间编排。Hot Chips 提供高层架构信息；ISSCC 提供部分实现细节；ISCA、MICRO、HPCA 和 ASPLOS 提供研究机制及其背景。厂商规格、调优指南与合作伙伴商用公告，将这些披露与商业产品连接起来。研究提案不被视为已经应用于产品的证据。会议索引筛选最有价值的披露，并非穷尽 NVIDIA 参与的全部论文与活动。</p>
+<h3 id="_1">主要架构转折</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>时期</th>
+<th>代表产品</th>
+<th>架构变化</th>
+<th>系统意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-2016</td>
+<td>M40 → P100</td>
+<td>HBM2；NVLink 1</td>
+<td>减少依赖主机中转的 PCIe 数据搬移</td>
+</tr>
+<tr>
+<td>2017-2019</td>
+<td>V100 / DGX-2</td>
+<td>Tensor Core；NVSwitch</td>
+<td>矩阵加速与交换式 GPU 域结合</td>
+</tr>
+<tr>
+<td>2020-2021</td>
+<td>A100</td>
+<td>BF16／TF32／FP64 Tensor Core；MIG</td>
+<td>同一架构覆盖 AI、HPC 和隔离实例</td>
+</tr>
+<tr>
+<td>2022-2024</td>
+<td>H100 / H200 / GH200</td>
+<td>FP8；TMA；线程块集群；一致性 C2C</td>
+<td>隐藏数据搬移开销并扩展内存层次</td>
+</tr>
+<tr>
+<td>2024-2025</td>
+<td>B200 / B300 / GB200 / GB300</td>
+<td>双计算裸片；FP4；NVL72</td>
+<td>封装与机架成为协同设计单元</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>Vera Rubin / BlueField-4 / LPX</td>
+<td>HBM4；Olympus；NVLink 6；推理专用化</td>
+<td>计算、互联、存储与服务调度协同设计</td>
+</tr>
+</tbody>
+</table></div>
+<p>可用性必须落实到具体产品。量产公告、OEM 出货、云服务正式商用，以及 MLPerf 预览提交，是不同里程碑。Blackwell 在 2025 年已有直接的云服务正式商用证据。Rubin 已有量产披露和 2026 年 9 月预览结果，但这些证据本身不能证明广泛的云端正式商用。因此，报告将已公布能力与部署里程碑分别记录，并把路线图产品与已出货产品比较分开。</p>
+<h2 id="02">02 规格口径与比较方法</h2>
+<p>除明确标为实测结果外，算力均为理论峰值；一次乘加计为两次运算。稠密与结构化稀疏吞吐量分开记录，不能将稀疏宣传值当作稠密能力。FP16 不等于 BF16，INT8 TOPS 不等于浮点 TFLOPS，模拟 FP64 也不等于原生 FP64。接口带宽采用十进制 GB/s 和 TB/s。仅当来源明确给出对称的双向聚合速率时，才除以二得到单方向值。交换容量、端点注入带宽、二分带宽与所有链路带宽之和是不同指标。</p>
+<p>SKU 身份与架构身份同样重要。PCIe 与 SXM GPU 的启用 SM 数量、频率、HBM 速度、功耗和 NVLink 支持可能不同。不能把 B200 HGX 规格直接套用到 GB200。Blackwell Ultra 的稠密与稀疏 FP4 模式并不存在通用的 2:1 比例。HGX 页面中，B200 与 B300 的稀疏标称值相同，但稠密 FP4 不同。同样，Rubin 的芯片峰值与受功率管理约束的 NVL72 配置具有不同 HBM 和 NVLink 带宽。报告保留各自的配置标签，而非一律采用较大数字。</p>
+<p>n/d 表示已审阅的一手资料未能在要求的产品范围内确定该值，并不代表零；n/a 表示不适用。“历史已商用”表示曾有商业部署，不意味着所有旧型号目前仍可订购。GA 栏在证据明确时采用首次商用年份；明确标注的发布或预览时间不是正式商用日期。分面表格保留完整的产品族字段。文末按章节汇总来源编号，避免打断技术叙述。</p>
+<h2 id="03-gpu">03 GPU 规格总览</h2>
+<h3 id="gpu">数据中心 GPU 代际：代表性配置</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际</th>
+<th>代号／架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片与封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>HBM：代际；堆栈；GB；TB/s</th>
+<th>末级缓存</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>板级功耗与散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M40</td>
+<td>GM200 / Maxwell</td>
+<td>2015</td>
+<td>历史已商用</td>
+<td>28 nm</td>
+<td>单裸片；GDDR 板卡</td>
+<td>24 SM / 3072 CUDA</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d / n/a</td>
+<td>n/a；GDDR5 24 GB；0.288 TB/s</td>
+<td>3 MB</td>
+<td>n/a</td>
+<td>PCIe 3 x16</td>
+<td>250 W；风冷</td>
+<td>PCIe</td>
+</tr>
+<tr>
+<td>P100 SXM2</td>
+<td>GP100 / Pascal</td>
+<td>2016</td>
+<td>历史已商用</td>
+<td>16 nm</td>
+<td>单裸片＋HBM 中介层</td>
+<td>56 SM / 3584 CUDA</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>5.3 TF / n/a</td>
+<td>HBM2; 4; 16; 0.732</td>
+<td>4 MB</td>
+<td>4；80；服务器拓扑</td>
+<td>PCIe 3</td>
+<td>300 W；依平台</td>
+<td>SXM2</td>
+</tr>
+<tr>
+<td>V100 SXM2</td>
+<td>GV100 / Volta</td>
+<td>2017</td>
+<td>历史已商用</td>
+<td>12 nm</td>
+<td>单裸片＋HBM 中介层</td>
+<td>80 SM / 640 TC</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>7.8 TF / n/a</td>
+<td>HBM2; 4; 16/32; 0.900</td>
+<td>6 MB</td>
+<td>6；150；NVSwitch 可连接 16 个 GPU</td>
+<td>PCIe 3</td>
+<td>300 W；依平台</td>
+<td>SXM2</td>
+</tr>
+<tr>
+<td>A100 SXM 80 GB</td>
+<td>GA100 / Ampere</td>
+<td>2020</td>
+<td>历史已商用</td>
+<td>7 nm</td>
+<td>单裸片＋HBM 中介层</td>
+<td>108 SM / 432 TC</td>
+<td>312 TF</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>9.7 / 19.5 TF</td>
+<td>HBM2e; 5 启用; 80; 2.039</td>
+<td>40 MB</td>
+<td>12；300；8 GPU HGX</td>
+<td>PCIe 4</td>
+<td>400 W；依平台</td>
+<td>SXM4</td>
+</tr>
+<tr>
+<td>H100 SXM</td>
+<td>GH100 / Hopper</td>
+<td>2022</td>
+<td>已商用</td>
+<td>4N</td>
+<td>单裸片＋HBM 中介层</td>
+<td>132 SM / 528 TC</td>
+<td>989 TF</td>
+<td>1.979 PF</td>
+<td>n/a</td>
+<td>34 / 67 TF</td>
+<td>HBM3; 5 启用; 80; 3.35</td>
+<td>50 MB</td>
+<td>18；450；8 GPU HGX</td>
+<td>PCIe 5</td>
+<td>700 W；依平台</td>
+<td>SXM5</td>
+</tr>
+<tr>
+<td>H200 SXM</td>
+<td>GH100 / Hopper</td>
+<td>2024</td>
+<td>已商用</td>
+<td>4N</td>
+<td>Hopper＋HBM3e</td>
+<td>132 SM / 528 TC</td>
+<td>989 TF</td>
+<td>1.979 PF</td>
+<td>n/a</td>
+<td>34 / 67 TF</td>
+<td>HBM3e; n/d; 141; 4.8</td>
+<td>50 MB</td>
+<td>18；450；8 GPU HGX</td>
+<td>PCIe 5</td>
+<td>700 W；依平台</td>
+<td>SXM5</td>
+</tr>
+<tr>
+<td>B200 / HGX basis</td>
+<td>Blackwell</td>
+<td>2024-2025</td>
+<td>已商用</td>
+<td>4NP</td>
+<td>双计算裸片；NV-HBI；HBM</td>
+<td>依 SKU</td>
+<td>2.25 PF</td>
+<td>4.5 PF</td>
+<td>4.5 / 9 PF</td>
+<td>公布 FP64 37 TF；向量／矩阵拆分 n/d</td>
+<td>HBM3e; 8; 180; 8</td>
+<td>GB200 参考值 126 MB；依 SKU</td>
+<td>18；900；8 GPU HGX</td>
+<td>PCIe 6</td>
+<td>模块最高 1000 W；散热依系统</td>
+<td>SXM</td>
+</tr>
+<tr>
+<td>B300 / HGX basis</td>
+<td>Blackwell Ultra</td>
+<td>2025</td>
+<td>已商用</td>
+<td>4NP</td>
+<td>双计算裸片；NV-HBI；HBM</td>
+<td>最高 160 SM／640 TC；依 SKU</td>
+<td>2.25 PF</td>
+<td>4.5 PF</td>
+<td>4.5 / 13.5 PF</td>
+<td>公布 FP64 1.25 TF；向量／矩阵拆分 n/d</td>
+<td>HBM3e；8；最高 288；8</td>
+<td>n/d</td>
+<td>18；900；8 GPU HGX</td>
+<td>PCIe 6</td>
+<td>统一模块口径 n/d</td>
+<td>SXM</td>
+</tr>
+<tr>
+<td>Rubin / chip peak</td>
+<td>Rubin</td>
+<td>2026 预览；GA n/d</td>
+<td>量产／预览</td>
+<td>n/d</td>
+<td>双计算裸片；NV-HBI；HBM4</td>
+<td>224 SM / 896 TC</td>
+<td>4 PF</td>
+<td>训练 17.5 PF</td>
+<td>训练 17.5／35 PF</td>
+<td>原生 33 TF；模拟 DGEMM 200 TF</td>
+<td>HBM4; 8; 288; 22</td>
+<td>n/d</td>
+<td>n/d；峰值 1800；NVL72</td>
+<td>PCIe 6</td>
+<td>依配置；液冷</td>
+<td>NVL / HGX</td>
+</tr>
+</tbody>
+</table></div>
+<p>总览表选择代表性配置，而不混合所有变体。P100 和 V100 可以加速 FP16，但没有原生 BF16 Tensor Core。A100 最初的 40 GB 版本具有 1.555 TB/s HBM 带宽；表中使用后续 80 GB SXM 版本。B200／B300 算力由 HGX 八 GPU 聚合值归一化得到。DGX 指南列出的 B300 单 GPU 标称内存最高为 288 GB，而 HGX 页面列出八 GPU 平台共 2.1 TB；报告不将两者悄然视为相同值。容量规划前应核对具体产品的内存统计口径。Rubin 行为初步的芯片峰值参考，不代表机架能同时持续达到所有峰值。</p>
+<h2 id="04-maxwell-pascal">04 Maxwell 与 Pascal：形成加速器系统</h2>
+<p>Tesla M40 是理解 2015 年起点的合适参照：它将源于图形处理的 Maxwell GPU 用于数据中心深度学习，采用 GDDR5、PCIe 主机连接和常规 CUDA 算术。其价值在于并行 FP32 吞吐量与成熟编程平台，而不是专用张量硬件。因此，如果产品史从 Tensor Core 才开始，就会遗漏一次重要转变：在优化矩阵指令之前，NVIDIA 首先需要改善处理器周边的带宽与拓扑。</p>
+<p>P100 的 GP100 裸片结合了面向计算的 SM、更强的 FP64 能力、打包 FP16 运算、HBM2 与第一代 NVLink。四个 HBM 堆栈将内存搬到先进封装上，在获得带宽的同时引入封装复杂性、堆栈容量限制和热耦合。四条 NVLink 的聚合单方向带宽为 80 GB/s。这是对等互联预算，不是额外的 HBM 带宽。主机仍通过 PCIe 连接，NVLink 的实际价值取决于服务器将哪些 GPU 对直接连接。</p>
+<p>Pascal 也说明，仅凭架构名称无法比较产品。P4 和 P40 采用 GDDR 内存，侧重包括 INT8 在内的高效推理，而非复制 GP100 的 HBM 与 HPC 配比。P4 面向低矮、低功耗部署，P40 则是更大规模的推理卡，它们是同一市场图谱中的不同分支。因此，系统架构师应分别追踪训练／HPC 与推理／图形衍生线，而不应将所有 Pascal 产品看成缩小版 P100。Hot Chips 2016 解释 P100／NVLink 的系统方向，产品资料则区分其商业分支。</p>
+<h2 id="05-volta">05 Volta：矩阵执行与交换式纵向扩展</h2>
+<p>Volta 的标志性变化是 Tensor Core：通过 CUDA 编程抽象和库向软件开放的矩阵乘加数据通路。V100 的 FP16 张量峰值并不能替代常规 FP32 或 FP64 指标；它对应特定输入格式、累加行为和矩阵执行路径。算法必须组织合适的矩阵分块并持续供数。SM 还分离了整数与浮点执行资源，并引入独立线程调度，从而改变了依赖 warp 同步执行的代码能够安全工作的条件。</p>
+<p>第二代 NVLink 将 V100 的聚合单方向对等带宽提高到 150 GB/s。随后，NVSwitch 将服务器从若干特定直连链路组成的集合，变为交换式 GPU 网络，16 GPU 的 DGX-2 域是典型例子。其收益不只是链路速度：更规则的拓扑更利于全互联通信和集合通信调度。但它不会消除集合算法开销、同步或内存放置决策。即使可以寻址远端数据，HBM 在物理上仍属于各自 GPU。</p>
+<p>Turing 的 T4 是并行发展的推理分支。它将 Tensor Core、低精度推理支持、视频能力与 70 W PCIe 形态结合，采用 GDDR6 而非 HBM。这一组合利于广泛的服务器部署与推理密度，而不是构建大型 NVLink 训练域。类似区分延续到 L4、L40S 和 RTX PRO Blackwell：共享数值计算或着色器技术血缘，并不意味着内存带宽、FP64 能力或纵向扩展连接相同。</p>
+<h2 id="06-ampere">06 Ampere：数值格式、隔离与实现</h2>
+<p>A100 将张量路径扩展到更广泛的负载。BF16 为训练保留较大的指数范围；TF32 为面向 FP32 的负载提供尾数精度降低的张量执行选项；FP64 Tensor Core 则将矩阵加速延伸至 HPC。结构化稀疏只有在满足规定稀疏模式和软件路径时才能提升吞吐量。这是算法与硬件之间的约定，并非芯片在所有情况下都翻倍。40 MB L2 缓存以及软件管理的数据搬移，有助于在再次访问 HBM 前复用操作数。</p>
+<p>Multi-Instance GPU（MIG，多实例 GPU）可将 A100 划分为最多七个硬件隔离实例，为各实例分配计算与内存系统资源。这与仅在时间上共享进程上下文有本质区别：较小服务可以只占用昂贵加速器的一部分，同时获得更强的性能隔离。代价是碎片化：当请求与可用分区不匹配时，固定配置和内存容量可能导致资源闲置。因此，集群放置、模型规模选择与调度仍是必需的软件配套。</p>
+<p>ISSCC 2021 的 A100 披露提供了一条少见的、从产品架构通向实现的直接证据链：7 nm 工艺、约 540 亿晶体管、826 mm² 的数据中心 GPU。结合 Ampere 白皮书和 Hot Chips 资料，可以将算术单元、分区与 I/O 对应到一颗极大的单片裸片。后续 80 GB HBM2e 版本在未改变 SM 代际的情况下，同时提高容量与带宽。这体现了此后反复出现的模式：即使标称算力变化很小，内存升级也可能明显改善模型容纳能力与利用率。</p>
+<h2 id="07-hopper-h200">07 Hopper 与 H200：异步计算与内存</h2>
+<p>Hopper 重点降低维持张量算术单元繁忙所需的开销。Tensor Memory Accelerator（TMA，张量内存加速器）以更少线程参与完成多维数据块搬移。Warp-group 矩阵指令协同的执行组比先前 warp 级路径更大。线程块集群与分布式共享内存，使协作线程块可以在规定的局部域内共享数据并同步。这些机制共同支持流水化内核：一个阶段准备数据，另一个阶段执行计算。但资源约束不会消失；寄存器、共享内存、屏障与集群占用率仍限制有效流水深度。</p>
+<p>Transformer Engine 将 FP8 硬件与软件管理的缩放、精度选择结合。E4M3 与 E5M2 对应不同数值需求，因此，没有格式与精度条件的吞吐量是不完整的。Hopper 还为动态规划增加 DPX 指令，并强化机密计算支持。这些能力扩展了 GPU 的负载和部署范围，不能将 Hopper 仅描述为 LLM 芯片。H100 的第四代 NVLink 提供 900 GB/s 双向聚合带宽，即单方向 450 GB/s；八 GPU 的 HGX 互联仍是独立于外部网络的一层资源。</p>
+<p>H200 保留 Hopper 计算结构，但重新平衡内存：141 GB HBM3e、4.8 TB/s，而 H100 SXM 为 80 GB、3.35 TB/s。容量约增至 1.76 倍，带宽约增至 1.43 倍，所选稠密 BF16 峰值不变。这对于受权重或 KV 缓存流量限制、而非受算术限制的推理尤为有价值。它还可能减少仅为容纳模型所需的设备数，从而降低通信。GH200 是另一种产品构造：Grace CPU 与 Hopper GPU 通过一致性互联相连，并具有自己的 HBM 配置。不能将 H200 的 141 GB 套用到所有 GH200。</p>
+<h2 id="08-blackwell-ultra">08 Blackwell 与 Ultra：跨越裸片与机架边界</h2>
+<p>Blackwell 通过 10 TB/s 的 NV-HBI 连接两颗大型计算裸片，并向 CUDA 呈现为一个 GPU。这与通过 NVLink 连接两个独立 GPU 有本质区别。封装内互联必须支撑单个处理器的内部行为，包括计算与分布式内存层次之间的交互。该设计约有 2080 亿晶体管，采用 TSMC 4NP。封装技术使更大的逻辑处理器成为可能，但裸片间通信并非没有成本：局部性、缓冲、功耗与物理布线仍是架构代价。</p>
+<p>第五代 Tensor Core 通过细粒度缩放，将低精度执行扩展到 FP4 和 FP6。NVFP4 将分块缩放与张量级缩放结合，改善四位数值的可用数值范围。Tensor Memory 为张量执行提供专用存储，缓解常规寄存器路径的压力；两个 SM 的协同改变矩阵工作的分配方式。这些特性需要编译器、内核与量化软件配合。是否采用 FP4，取决于模型质量与延迟目标，而不只是硬件支持多少位。</p>
+<p>GB200 将 Grace 与两颗 Blackwell GPU 组合，NVL72 则将 72 个 GPU 封装连接为机架级 NVLink 域。GB300 用 Blackwell Ultra 升级这一构造。机架并非九台互不相关的八 GPU 服务器：通信拓扑、散热、维护、供电与调度围绕更大的域协同设计。另一方面，NVL72 也不等于具有统一延迟的 72 GPU 内存池。软件仍需决定张量、流水线、专家与数据并行的放置，跨机架通信则进入另一种互联与拥塞环境。</p>
+<p>Ultra 提高内存容量和稠密 FP4 能力，但并不是每条数据通路都按同一比例提升。HGX 对比中，B300 的原生 FP64 吞吐量显著低于 B200。这对混合 AI／HPC 采购，以及不能用模拟计算替代原生 FP64 的数值算法非常重要。云端部署也体现出配置差异：AWS P6e GB200 将 GPU 纵向扩展域与 EFA 结合，其他部署则使用 NVIDIA 网络。因此，GPU 厂商的参考平台是重要基线，而不是所有超大规模云部署的通用描述。</p>
+<h2 id="09-rubin">09 Rubin：平台代际与配置约束</h2>
+<p>Rubin 将新 GPU 代际与 Vera、NVLink 6、ConnectX-9、BlueField-4 及 Spectrum 网络结合。GPU 转向 HBM4，并扩大张量计算预算；Vera 则改变主机 CPU 微架构，而非仅提高 Grace 频率。这使均衡供给更加重要：更多张量计算需要更多操作数带宽、集合通信带宽和调度能力。平台还明确支持基础设施侧上下文存储及互补的低延迟推理，而非要求所有任务占用同一种 GPU 资源。</p>
+<p>已公布的两种 Rubin 配置必须分开。面向芯片的 HGX 规格列出 288 GB HBM4、22 TB/s 带宽和 3.6 TB/s 双向聚合 NVLink。NVL72 页面在采用 DSX／MaxLPS 的大规模配置下，列出单 GPU 的 HBM 带宽为 19.2 TB/s、双向 NVLink 为 3 TB/s；其单 GPU 双向横向扩展带宽为 0.45 TB/s。这些是不同工作点与系统范围的披露，不能互换为一颗无约束芯片的描述。功率管理可以牺牲瞬时峰值，换取整个设施更高的有效吞吐量。</p>
+<p>算力表同样需要标明执行模式。已公布的 Rubin 训练指标包括稠密 FP4 35 PFLOPS、稠密 FP8／FP6 17.5 PFLOPS；50 PFLOPS 的 NVFP4 推理标称值采用稀疏口径。不能将每个宣传值一律除以二，得到所谓统一稠密值。原生 FP64 的 33 TFLOPS 与模拟 FP64 DGEMM 的 200 TFLOPS 是不同机制。HPC 应用在把模拟速率纳入性能模型前，必须验证精度、问题条件性和库行为。</p>
+<p>Hot Chips 2026 及相关技术披露深化了公开架构记录。2026 年 9 月的 MLPerf 结果属于预览提交，其中包括合作伙伴提交；它们证明系统已经运行，却不代表统一的正式商用日期。在本报告审阅的证据中，Rubin CPX 仍是独立发布的长上下文分支：2025 年最初披露采用 GDDR7，并计划在 2026 年末推出；报告不会依据后续材料未提及它，就推断最终配置或取消。Rubin Ultra 与 Feynman 属于路线图，不进入已商用规格比较。</p>
+<h2 id="10-grace-vera-cpu">10 Grace 与 Vera CPU：主机进入协同架构</h2>
+<h3 id="cpu-cpu">CPU 代际：除注明外按单颗 CPU</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际</th>
+<th>代号</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>最大核心／线程</th>
+<th>各裸片工艺</th>
+<th>芯粒与封装</th>
+<th>每核 L2</th>
+<th>L3 总量／共享域</th>
+<th>内存：类型／通道／速率／GB/s</th>
+<th>插槽与插槽互联</th>
+<th>PCIe／CXL</th>
+<th>最大 TDP</th>
+<th>矩阵／向量 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grace</td>
+<td>Grace</td>
+<td>2023</td>
+<td>已商用</td>
+<td>Arm Neoverse V2</td>
+<td>72 / 72</td>
+<td>4N</td>
+<td>CPU＋LPDDR；双 CPU 或 CPU-GPU C2C</td>
+<td>1 MB</td>
+<td>114 MB / chip</td>
+<td>LPDDR5X；最高 480 GB；512 GB/s；通道／速率依 SKU</td>
+<td>1 或 2；C2C 双向 900 GB/s</td>
+<td>64 lanes PCIe 5; CXL n/d</td>
+<td>双 CPU Superchip 含内存 500 W；单芯片 n/d</td>
+<td>Armv9.0-A; 4 × 128-bit SVE2</td>
+</tr>
+<tr>
+<td>Vera</td>
+<td>Olympus</td>
+<td>2026 量产／预览</td>
+<td>GA n/d</td>
+<td>NVIDIA Olympus</td>
+<td>88 / 176</td>
+<td>n/d</td>
+<td>CPU＋SOCAMM2；C2C 平台</td>
+<td>2 MB</td>
+<td>164 MB / chip</td>
+<td>LPDDR5X SOCAMM2；最高 1.5 TB；1200 GB/s；通道／速率 n/d</td>
+<td>1 或 2；C2C 双向 1800 GB/s</td>
+<td>PCIe 6 / CXL 3.1; lane count n/d</td>
+<td>n/d</td>
+<td>Armv9.2; 6 × 128-bit SVE2; FP8</td>
+</tr>
+</tbody>
+</table></div>
+<p>Grace 的价值在于 CPU 内存系统及其与加速器的连接。72 个 Neoverse V2 核心共享网格互联和较大的系统缓存；LPDDR5X 以不同于传统 DIMM 的功耗与维护取舍提供高带宽。双 CPU Grace Superchip 将核心和内存资源翻倍，GH200 则将 Grace 与 Hopper 组合。一致性 C2C 支持细粒度 CPU-GPU 共享，以及对更大内存容量的访问，无需把每次传输都处理成显式的大块拷贝。但对 GPU 而言，远端 CPU 内存仍慢于本地 HBM，因此一致性简化了编程，却没有消除局部性。</p>
+<p>ISSCC 2023 的 NVLink-C2C 披露为这一连接提供了具体实现证据：每引脚 40 Gb/s 的单端、跨封装一致性接口，包括 5 nm PHY 以及时钟与偏斜处理技术。十条链路支撑所披露的 900 GB/s 双向接口。ISSCC 2018 的地参考信号研究与其电路技术演进相关，但其每引脚 25 Gb/s 的测试载体并不是 Grace 的量产接口。会议综合的价值正在于此：Hot Chips 解释内存系统目的，ISSCC 则揭示如何实现电气要求很高的封装边界。</p>
+<p>Vera 用 NVIDIA 自研 Olympus 取代授权的 Neoverse 核心。88 个核心提供 176 个空间线程；已披露机制包括十宽前端、先进预测、内存重命名、值预测及面向图的预取。该架构面向无法简单转换为大型矩阵运算的主机侧工作，例如调度、不规则访问、图遍历和智能体执行。公开资料未确定所有队列规模或执行延迟，因此报告不从营销对比中反推这些数值。</p>
+<p>Vera 的内存变化同样重要：采用可更换的 SOCAMM2 LPDDR5X，最高 1.5 TB、1.2 TB/s，扩大私有与共享缓存，并将 C2C 双向速率提升到 Grace 的两倍。按峰值规格计算，每核内存带宽从约 7.1 提高到 13.6 GB/s。空间线程并未将内存系统翻倍，因此每线程带宽是另一种比例。CXL 3.1 与 Arm 机密计算机制扩展了部署选择。整体轨迹是从高带宽的加速器伴随处理器，走向作为 AI 服务系统核心组成部分而设计的 CPU。</p>
+<h2 id="11">11 推理、工作站与边缘分支</h2>
+<h3 id="_2">相关产品分支</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>时期</th>
+<th>内存</th>
+<th>部署区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P4 / P40</td>
+<td>2016</td>
+<td>GDDR5</td>
+<td>Pascal INT8 推理；不等同于 GP100 的 HBM／NVLink</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>2018</td>
+<td>16 GB GDDR6; 320 GB/s</td>
+<td>70 W PCIe；推理与视频；无 NVLink</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>2023</td>
+<td>24 GB GDDR6; 300 GB/s</td>
+<td>72 W Ada 推理／视频；无 NVLink</td>
+</tr>
+<tr>
+<td>L40S</td>
+<td>2023</td>
+<td>48 GB GDDR6; 864 GB/s</td>
+<td>350 W；图形与 AI；无 NVLink</td>
+</tr>
+<tr>
+<td>RTX PRO 6000 Blackwell Server Edition</td>
+<td>2025</td>
+<td>96 GB GDDR7; 1597 GB/s</td>
+<td>最高 600 W；图形、AI 与分区服务</td>
+</tr>
+<tr>
+<td>GB10 / DGX Spark</td>
+<td>2025-2026</td>
+<td>128 GB LPDDR5X; 273 GB/s</td>
+<td>20 个 Arm 核心；一致性共享内存；桌面 AI；SoC TDP 140 W</td>
+</tr>
+<tr>
+<td>Jetson AGX Thor</td>
+<td>2025-2026</td>
+<td>边缘配置；不等同于服务器 HBM</td>
+<td>源于 Blackwell 的边缘／机器人分支；基准范围不同</td>
+</tr>
+</tbody>
+</table></div>
+<p>这些分支与数据中心加速器共享编程工具和部分架构机制，但优化的约束不同。采用 GDDR 的板卡可以适配既有风冷服务器，同时承载图形、媒体和推理。采用 HBM 的 GPU 则侧重带宽与大规模计算互联。GB10 使用具有缓存一致性的统一 LPDDR 内存系统：128 GB 容量有利于本地模型开发，但 273 GB/s 远低于旗舰 HBM GPU 带宽。其 1 PFLOPS FP4 标称值不应被理解为稠密训练保证值。240 W 电源额定功率也不等于 140 W SoC TDP。</p>
+<h2 id="12-nvlinknvswitch-c2c">12 NVLink、NVSwitch 与一致性 C2C</h2>
+<h3 id="_3">互联代际</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称／版本</th>
+<th>年份</th>
+<th>通道速率</th>
+<th>每链路通道数</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路数</th>
+<th>拓扑</th>
+<th>最大／参考域</th>
+<th>一致性／内存语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVLink 1</td>
+<td>2016</td>
+<td>20 Gb/s</td>
+<td>8</td>
+<td>20</td>
+<td>4</td>
+<td>对等直连</td>
+<td>依服务器布线</td>
+<td>GPU 对等访问；非统一内存</td>
+</tr>
+<tr>
+<td>NVLink 2</td>
+<td>2017-2018</td>
+<td>25 Gb/s</td>
+<td>8</td>
+<td>25</td>
+<td>6</td>
+<td>直连＋NVSwitch</td>
+<td>16 GPUs (DGX-2)</td>
+<td>对等内存；CPU 一致性依平台</td>
+</tr>
+<tr>
+<td>NVLink 3</td>
+<td>2020</td>
+<td>50 Gb/s</td>
+<td>4</td>
+<td>25</td>
+<td>12</td>
+<td>NVSwitch</td>
+<td>8 GPUs (HGX)</td>
+<td>GPU 对等内存</td>
+</tr>
+<tr>
+<td>NVLink 4</td>
+<td>2022</td>
+<td>100 Gb/s</td>
+<td>2</td>
+<td>25</td>
+<td>18</td>
+<td>NVSwitch</td>
+<td>HGX 8 个；外部交换可扩展</td>
+<td>GPU 对等内存／集合通信</td>
+</tr>
+<tr>
+<td>NVLink 5</td>
+<td>2024-2025</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>50</td>
+<td>18</td>
+<td>NVSwitch</td>
+<td>72 GPUs (NVL72)</td>
+<td>机架对等域；非统一延迟</td>
+</tr>
+<tr>
+<td>NVLink 6</td>
+<td>2026</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>NVSwitch</td>
+<td>72 GPUs (NVL72)</td>
+<td>单 GPU 双向峰值 3600 GB/s；配置值 3000</td>
+</tr>
+<tr>
+<td>NVLink-C2C / Grace</td>
+<td>2023</td>
+<td>40 Gb/s/pin</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>10</td>
+<td>CPU-CPU／CPU-GPU</td>
+<td>一致性模块</td>
+<td>双向 900 GB/s；一致性访问</td>
+</tr>
+<tr>
+<td>NVLink-C2C / Vera</td>
+<td>2026</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>CPU-GPU／CPU-CPU</td>
+<td>一致性平台</td>
+<td>双向 1800 GB/s</td>
+</tr>
+</tbody>
+</table></div>
+<p>NVLink Fusion 向定制 CPU 和加速器开放部分 NVLink 系统集成路径。应将其理解为集成与生态计划，而不是所有参与芯片都实现 Grace-Hopper 相同一致性语义的证据。定制处理器仍需满足接口、交换、软件与平台要求。其系统意义在于，即使某个计算组件由其他厂商提供，纵向扩展网络仍可能以 NVIDIA 为中心。这不意味着以太网或 InfiniBand 消失；它们仍承担横向扩展与基础设施任务。</p>
+<h2 id="13-connectx-bluefield">13 ConnectX 与 BlueField：端点与基础设施</h2>
+<p>NVIDIA 在 2020 年完成对 Mellanox 的收购，将成熟的网络端点、交换与软件产品纳入计算平台。应区分三种角色：ConnectX 网卡是带有传输与卸载引擎的高效网络端点；SuperNIC 是面向 GPU 后端互联的 AI 网络产品角色，并不自动意味着可替代通用主机 CPU；BlueField DPU 则加入可独立管理的 CPU 与基础设施处理能力，承担网络、存储和安全任务。NVLink 仍是另一层纵向扩展网络。混淆这些角色会掩盖信任边界和带宽瓶颈。</p>
+<h3 id="nic-dpu">NIC 与 DPU 演进</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ConnectX-4 Lx</td>
+<td>2015-2016 时期</td>
+<td>历史已商用</td>
+<td>NIC</td>
+<td>25／50 GbE 变体</td>
+<td>25G NRZ</td>
+<td>PCIe 3 x8/x16</td>
+<td>eSwitch／流量引导</td>
+<td>n/a</td>
+<td>网卡缓冲；容量 n/d</td>
+<td>Ethernet / RoCE</td>
+<td>ECN / PFC</td>
+<td>覆盖网络、虚拟化、RDMA</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>ConnectX-5 / Ex</td>
+<td>2017 时期</td>
+<td>历史已商用</td>
+<td>NIC</td>
+<td>最高 2 × 100 Gb/s</td>
+<td>25G NRZ</td>
+<td>PCIe 3 x16; Ex PCIe 4</td>
+<td>eSwitch／流量引导</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet / IB / RoCE</td>
+<td>ECN / PFC</td>
+<td>GPUDirect RDMA；存储；交换</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>ConnectX-6</td>
+<td>2019 时期</td>
+<td>历史已商用</td>
+<td>NIC</td>
+<td>最高 200 Gb/s</td>
+<td>50G PAM4</td>
+<td>PCIe 4 x16</td>
+<td>传输／流量引导</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet / HDR IB / RoCE</td>
+<td>ECN / PFC</td>
+<td>GPUDirect RDMA；加密依变体</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>ConnectX-7</td>
+<td>2022 时期</td>
+<td>已商用</td>
+<td>NIC / SuperNIC</td>
+<td>1 × 400 / 2 × 200 Gb/s</td>
+<td>100G PAM4</td>
+<td>PCIe 5 x16; Socket Direct</td>
+<td>传输／流量引导</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet / NDR IB / RoCE</td>
+<td>按网络采用自适应路由／ECN</td>
+<td>GPUDirect；虚拟化；加密</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>ConnectX-8</td>
+<td>2025</td>
+<td>已商用平台代际</td>
+<td>SuperNIC</td>
+<td>800 Gb/s 级</td>
+<td>n/d</td>
+<td>PCIe 6 + integrated switch</td>
+<td>可编程传输／流量引导</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet / IB / RoCE</td>
+<td>AI 自适应路由／拥塞控制</td>
+<td>GPU／NIC PCIe 交换；GPUDirect</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>ConnectX-9</td>
+<td>2026</td>
+<td>量产；依配置</td>
+<td>SuperNIC</td>
+<td>800 Gb/s 网卡；平台单 GPU 最高 1600 Gb/s</td>
+<td>200G 级</td>
+<td>PCIe 6 x16 / Socket Direct x32</td>
+<td>AI 传输／流量引导</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet / XDR IB / RoCE</td>
+<td>Spectrum-X 多平面／自适应路由</td>
+<td>GPUDirect；PCIe 互联；安全</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>BlueField</td>
+<td>2020 年前；确切 GA n/d</td>
+<td>历史已商用</td>
+<td>DPU</td>
+<td>最高 2 × 100 Gb/s</td>
+<td>25G 级</td>
+<td>最高 32 lanes PCIe 3/4</td>
+<td>ConnectX-5 eSwitch</td>
+<td>最高 16 Arm A72</td>
+<td>DDR4; capacity 依 SKU</td>
+<td>Ethernet / IB / RoCE</td>
+<td>ECN / PFC</td>
+<td>NVMe-oF；交换；虚拟化</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>BlueField-2</td>
+<td>2020-2021 代际</td>
+<td>已商用</td>
+<td>DPU</td>
+<td>最高 200 Gb/s</td>
+<td>50G 级</td>
+<td>PCIe 4 x16</td>
+<td>ConnectX-6 Dx + Arm</td>
+<td>8 Arm A72</td>
+<td>DDR4; 依 SKU</td>
+<td>Ethernet / RoCE; variants</td>
+<td>ECN / PFC</td>
+<td>DOCA；存储；加密；虚拟交换</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>BlueField-3</td>
+<td>2023 代际</td>
+<td>已商用</td>
+<td>DPU / SuperNIC</td>
+<td>最高 400 Gb/s</td>
+<td>100G 级</td>
+<td>最高 32 lanes PCIe 5</td>
+<td>ConnectX-7 + DPA + Arm</td>
+<td>最高 16 Arm A78</td>
+<td>16/32 GB DDR5; 依 SKU</td>
+<td>Ethernet / NDR IB / RoCE</td>
+<td>Spectrum-X／自适应拥塞控制</td>
+<td>DOCA；存储／安全；异步卸载</td>
+<td>依 SKU</td>
+</tr>
+<tr>
+<td>BlueField-4</td>
+<td>2026</td>
+<td>已披露量产</td>
+<td>DPU</td>
+<td>800 Gb/s</td>
+<td>200G 级</td>
+<td>PCIe 6</td>
+<td>ConnectX-9 + Grace</td>
+<td>64 Neoverse V2</td>
+<td>LPDDR5X; 250 GB/s</td>
+<td>Ethernet / RDMA</td>
+<td>依平台</td>
+<td>基础设施操作系统；STX／上下文存储；安全</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>ConnectX 的演进同时受网络 SerDes 与主机接口影响。从 100 提升到 200、400 和 800 Gb/s，需要足够的 PCIe 带宽及合适的服务器布线。Socket Direct 可以把连接分配到两个 CPU 根端；宣传的聚合端口速率并不保证单条较旧 PCIe 链路能够持续承载。因此，ConnectX-8 集成 PCIe Gen6 交换机是一项系统特性，而不仅是更快的 MAC：它改变 GPU 到 NIC 的连接方式，在不要求所有 CPU 根端都采用最新 PCIe 代际的条件下，提供高带宽本地路径。</p>
+<p>BlueField 从 Arm 与 ConnectX 结合的存储／网络处理器，演进为可独立管理的基础设施子系统。BlueField-3 在 Arm 控制核心与固定功能报文引擎旁加入可编程数据路径加速器。不能假设 Arm 核心通过软件以线速转发每个报文。BlueField-4 将 Grace 级 CPU 资源与 ConnectX-9 结合，面向包括 AI 上下文存储在内的基础设施服务。把 KV 缓存或上下文移出 GPU HBM 可能改善容量成本，但同时引入新的层次：存储／网络带宽和访问粒度必须与服务调度器的决策匹配。</p>
+<h2 id="14-spectrumquantum">14 Spectrum、Quantum 与光互联</h2>
+<h3 id="_4">交换芯片与网络演进</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品族</th>
+<th>里程碑</th>
+<th>公布容量</th>
+<th>架构／部署意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spectrum-1</td>
+<td>2015 代际</td>
+<td>3.2 Tb/s</td>
+<td>以太网交换起点</td>
+</tr>
+<tr>
+<td>Spectrum-2</td>
+<td>2018-2019 代际</td>
+<td>6.4 Tb/s</td>
+<td>50G 级通道；200GbE 端口</td>
+</tr>
+<tr>
+<td>Spectrum-3</td>
+<td>2020 代际</td>
+<td>12.8 Tb/s</td>
+<td>400GbE 代际</td>
+</tr>
+<tr>
+<td>Spectrum-4 / Spectrum-X</td>
+<td>2022 芯片；2023 平台</td>
+<td>51.2 Tb/s</td>
+<td>400／800GbE；交换机＋SuperNIC＋软件协同</td>
+</tr>
+<tr>
+<td>Spectrum-6</td>
+<td>2026 量产／采用</td>
+<td>102.4 Tb/s ASIC</td>
+<td>多平面 AI 以太网；Vera Rubin 生态</td>
+</tr>
+<tr>
+<td>Spectrum-X / Quantum-X photonics</td>
+<td>2025-2026 披露</td>
+<td>Spectrum-X 组件最高 409.6 Tb/s；不是单颗 ASIC</td>
+<td>共封装光学；配置与推出节奏因产品而异</td>
+</tr>
+<tr>
+<td>Quantum-X800 / Q3450-LD</td>
+<td>2025-2026 披露</td>
+<td>144 × 800 Gb/s</td>
+<td>基于 CPO 的 InfiniBand 交换机；200G SerDes；液冷</td>
+</tr>
+<tr>
+<td>Quantum-2</td>
+<td>2021 发布；2022 代际</td>
+<td>64 × 400 Gb/s = 25.6 Tb/s 单向</td>
+<td>NDR InfiniBand；自适应路由；SHARP 集合通信</td>
+</tr>
+</tbody>
+</table></div>
+<p>Spectrum-X 是协同设计的以太网平台，而不是给交换 ASIC 加上 AI 名称。其价值来自自适应报文路由、端点拥塞响应、遥测、顺序处理支持与集合通信软件之间的配合。多平面设计将流量分散到并行网络平面，并利用端点智能避免热点。这些机制针对分布式训练和混合专家推理中常见的同步突发与全互联交换。即使拓扑在标称上无阻塞，如果拥塞控制响应过慢或租户流量相互干扰，性能仍可能较差。</p>
+<p>Quantum 对应 InfiniBand 分支，其传输与管理模型面向紧密耦合的集群。SHARP 将部分集合归约操作移入网络，而不是在交换机内执行任意 GPU 内核。因此，比较 Quantum 与 Spectrum 必须匹配集合通信、拓扑、软件及运维模型，不能只比较端口速度。Quantum-2 展示了常见统计陷阱：64 个 400 Gb/s 端口的单方向总量为 25.6 Tb/s；51.2 Tb/s 的全双工总值，并不代表单方向交换能力翻倍。</p>
+<p>共封装光学缩短交换芯片与光电转换之间的电气路径。在极高聚合带宽下，其系统目标是降低电气 I/O 功耗并改善传输距离，但也改变了封装、激光源、光纤连接、维修与认证要求。光子交换组件可能包含多个交换单元，不能把组件总容量归给单颗 ASIC。ISSCC 光链路研究与产品 CPO 披露属于同一技术图谱，但研究测试芯片不能证明量产光学实现与其完全相同。</p>
+<h2 id="15-groq-3-lpx">15 Groq 3 LPX 与专用推理</h2>
+<p>Groq 与 NVIDIA 在 2025 年达成的是非独家推理技术许可协议，而不是 NVIDIA 收购 Groq 公司。随后，Groq 3 LPX 作为 NVIDIA 的互补推理平台出现，并在 2026 年 8 月披露量产。这改变了产品组合图谱：NVIDIA 无需拥有通用 FPGA 产品线，也可以拥有非 GPU 推理架构。正确比较对象是执行与内存组织方式，而不只是两家厂商的 TOPS 数字。</p>
+<p>LPX 围绕编译器调度的执行和大量片上 SRAM 组织计算。披露的 LP30 LPU 约有 500 MB SRAM 和 150 TB/s 本地 SRAM 带宽；256 LPU 机架聚合为 128 GB SRAM、约 40 PB/s 本地带宽。但这些总和不是任意算子都能以 40 PB/s 访问的统一 128 GB 缓存。编译器必须在设备及其互联之间放置、流送模型状态。小而可预测的工作集能够利用低延迟本地访问；大模型仍受分布式容量与通信约束。</p>
+<p>其架构吸引力在于异构服务。HBM GPU 提供较大容量和灵活计算，SRAM 型 LPU 则提供另一种延迟／带宽工作点。服务系统可以将合适的工作分配给两者，但划分必须考虑传输成本、批处理、KV 缓存位置和端到端延迟。如果接口或其他阶段成为关键路径，仅让某个前馈阶段更快并不足够。因此，LPX 应作为互补执行层，与 GPU 和 DPU 并列讨论，而不应被放进一张将其假装成另一款 CUDA GPU 的表格。</p>
+<h2 id="16">16 集成系统与带宽层次</h2>
+<h3 id="_5">系统参考配置</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份</th>
+<th>CPU／加速器</th>
+<th>纵向扩展域</th>
+<th>每加速器横向扩展</th>
+<th>机架／系统功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DGX-1 / P100</td>
+<td>2016</td>
+<td>x86 + 8 P100</td>
+<td>8 GPU；非均匀直连拓扑</td>
+<td>依配置</td>
+<td>n/d</td>
+<td>风冷</td>
+</tr>
+<tr>
+<td>DGX-2 / V100</td>
+<td>2018</td>
+<td>x86 + 16 V100</td>
+<td>16 GPUs / NVSwitch</td>
+<td>依配置</td>
+<td>n/d</td>
+<td>风冷</td>
+</tr>
+<tr>
+<td>HGX / DGX A100</td>
+<td>2020</td>
+<td>x86 + 8 A100</td>
+<td>8 GPUs / NVSwitch</td>
+<td>依配置</td>
+<td>n/d</td>
+<td>依平台</td>
+</tr>
+<tr>
+<td>HGX H100 / H200</td>
+<td>2022-2024</td>
+<td>x86 + 8 GPUs</td>
+<td>8 GPUs / NVSwitch</td>
+<td>依配置</td>
+<td>n/d</td>
+<td>按系统采用风冷／液冷</td>
+</tr>
+<tr>
+<td>GH200 systems</td>
+<td>2023-2024</td>
+<td>Grace + Hopper</td>
+<td>一致性模块；更大拓扑依系统</td>
+<td>依配置</td>
+<td>n/d</td>
+<td>依平台</td>
+</tr>
+<tr>
+<td>GB200 NVL72</td>
+<td>2025</td>
+<td>36 Grace + 72 Blackwell</td>
+<td>72 GPU packages</td>
+<td>依参考／云配置；AWS 单 GPU 400 Gb/s EFA</td>
+<td>依配置</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>GB300 NVL72</td>
+<td>2025</td>
+<td>36 Grace + 72 Blackwell Ultra</td>
+<td>72 GPU packages</td>
+<td>依配置</td>
+<td>依配置</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>Vera Rubin NVL72</td>
+<td>2026</td>
+<td>36 Vera + 72 Rubin</td>
+<td>72 GPU packages</td>
+<td>参考单向 200 GB/s；MaxLPS 页面 225 GB/s</td>
+<td>依配置</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>Groq 3 LPX</td>
+<td>2026</td>
+<td>256 LPUs; 32 trays</td>
+<td>LPU 互联；非 NVLink GPU 域</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+</tbody>
+</table></div>
+<p>DGX 是集成系统产品；HGX 是 GPU 基板／平台构件；MGX 是模块化服务器与机架设计生态；NVL 描述以 NVLink 为中心的系统配置。这些名称不能互换。OEM 可以围绕相同 GPU 构件改变 CPU、网络、存储、散热与供电。机架功耗还包括 CPU、交换机、风扇或水泵、内存及电源转换损耗，因此 GPU TDP 乘以数量并不是机架功耗规格。受功率限制的工作点进一步使这一捷径失效。</p>
+<h3 id="2016-2020gpu">2016-2020：GPU 服务器形成互联域</h3>
+<pre class="mermaid">flowchart TD
+  cpu["x86 主机"]
+  gpus["P100／V100／A100 / 本地 HBM"]
+  peer["NVLink／NVSwitch / GPU 对等域"]
+  nic["ConnectX 网卡"]
+  net["InfiniBand／以太网 / 集群网络"]
+  cpu ---|"PCIe"| gpus
+  gpus ---|"纵向扩展"| peer
+  gpus ---|"GPUDirect RDMA"| nic
+  nic ---|"横向扩展"| net
+</pre>
+<p>逻辑连接图，并非板级布线图。GPU 本地 HBM 与外部网络仍是不同带宽域。</p>
+<h3 id="2023-2024-cpu-gpu">2023-2024：一致性 CPU-GPU 内存</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Grace＋LPDDR5X"]
+  gpu["Hopper＋HBM"]
+  nv["NVLink／NVSwitch / GPU 纵向扩展"]
+  nic["ConnectX／SuperNIC"]
+  dpu["BlueField / 基础设施服务"]
+  net["Quantum／Spectrum / 横向扩展网络"]
+  cpu ---|"C2C 900 GB/s ↔"| gpu
+  gpu ---|"NVLink"| nv
+  gpu ---|"RDMA"| nic
+  dpu ---|"基础设施"| net
+  nic ---|"网络"| net
+</pre>
+<p>C2C 支持缓存一致性，但不会使 LPDDR 的延迟或带宽等同本地 HBM。箭头表示连接关系，而非流量方向。</p>
+<h3 id="2025nvl72">2025：NVL72 机架成为纵向扩展单元</h3>
+<pre class="mermaid">flowchart TD
+  cpu["36 颗 Grace CPU"]
+  gpu["72 个 Blackwell GPU 封装 / 每个含 2 颗计算裸片"]
+  nv["NVLink 5／NVSwitch / 72 GPU 域"]
+  dpu["BlueField / 存储／安全"]
+  nic["ConnectX／云厂商 NIC"]
+  net["横向扩展网络 / Spectrum／Quantum／EFA"]
+  cpu ---|"C2C"| gpu
+  gpu ---|"每 GPU 双向 1.8 TB/s"| nv
+  gpu ---|"RDMA"| nic
+  nic ---|"横向扩展"| net
+  dpu ---|"服务"| net
+</pre>
+<p>云厂商网络表示可选实现，并非声称三种网络同时安装。</p>
+<h3 id="2026">2026：异构服务与基础设施</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Vera＋SOCAMM2"]
+  gpu["Rubin＋HBM4 / NVLink 6／NVL72"]
+  dpu["BlueField-4／STX / 上下文存储"]
+  nic["ConnectX-9 / Spectrum-X／Quantum"]
+  lpu["Groq 3 LPX / SRAM 型执行"]
+  sw["Dynamo／服务调度器 / 放置与数据搬移"]
+  cpu ---|"C2C 1.8 TB/s ↔"| gpu
+  gpu ---|"横向扩展"| nic
+  dpu ---|"上下文流量"| nic
+  lpu ---|"互补执行层"| nic
+  sw ---|"调度"| lpu
+  sw ---|"放置"| dpu
+</pre>
+<p>概念性放置图；LPX 连线并不表示其与 Rubin 存在直接 NVLink 或一致性内存连接。</p>
+<h3 id="_6">归一化比较与推导</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>计算</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H200／H100 容量</td>
+<td>141 / 80 = 1.76×</td>
+<td>不改变 SM 代际即可增加模型／KV 容量</td>
+</tr>
+<tr>
+<td>H200／H100 HBM 带宽</td>
+<td>4.8 / 3.35 = 1.43×</td>
+<td>带宽增幅不同于容量增幅</td>
+</tr>
+<tr>
+<td>Grace 每核峰值内存带宽</td>
+<td>512 / 72 = 7.11 GB/s</td>
+<td>总量除以核心数；非每核保证值</td>
+</tr>
+<tr>
+<td>Vera 每核峰值内存带宽</td>
+<td>1200 / 88 = 13.64 GB/s</td>
+<td>此口径约为 Grace 的 1.92 倍</td>
+</tr>
+<tr>
+<td>Rubin HBM／NVLink，MaxLPS</td>
+<td>19.2 / (3 / 2) = 12.8×</td>
+<td>本地 HBM 带宽高于单向对等注入带宽</td>
+</tr>
+<tr>
+<td>Rubin NVLink／横向扩展，MaxLPS</td>
+<td>(3 / 2) / (0.45 / 2) = 6.67×</td>
+<td>机架内放置可避免较慢的网络层</td>
+</tr>
+<tr>
+<td>800 Gb/s 网络换算</td>
+<td>800 / 8 = 100 GB/s</td>
+<td>未扣除协议与 PCIe 开销的线速</td>
+</tr>
+</tbody>
+</table></div>
+<p>这些比例揭示层次关系，但不直接预测应用速度。内核的 Roofline 上限由计算吞吐量与“运算强度乘以相关内存带宽”两者的较小值决定；分布式执行还受到通信与同步上限约束。从 HBM 转向对等 GPU 内存、CPU 内存、网络上下文存储或 LPX SRAM，会同时改变带宽与数据归属。架构任务是把数据复用放在成本最低且容量足够的层次，而不是把各层宣传带宽相加。</p>
+<h2 id="17">17 软件将硬件层次变为可用能力</h2>
+<h3 id="_7">软件与编程里程碑</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>版本／产品族</th>
+<th>日期／时期</th>
+<th>关联硬件</th>
+<th>关键能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CUDA / Pascal</td>
+<td>2016</td>
+<td>P100</td>
+<td>统一内存演进；Pascal 编程</td>
+</tr>
+<tr>
+<td>CUDA / Volta</td>
+<td>2017</td>
+<td>V100</td>
+<td>张量编程；独立线程调度</td>
+</tr>
+<tr>
+<td>Ampere software generation</td>
+<td>2020</td>
+<td>A100</td>
+<td>TF32／BF16 库；MIG；稀疏支持</td>
+</tr>
+<tr>
+<td>Hopper software generation</td>
+<td>2022-2024</td>
+<td>H100 / H200 / GH200</td>
+<td>Transformer Engine；TMA；集群；FP8</td>
+</tr>
+<tr>
+<td>Blackwell software generation</td>
+<td>2024-2026</td>
+<td>B200 / B300 / GB200 / GB300</td>
+<td>FP4／FP6；Tensor Memory；新内核</td>
+</tr>
+<tr>
+<td>NCCL / NVSHMEM ecosystem</td>
+<td>跨代</td>
+<td>GPU fabrics</td>
+<td>集合通信与面向 GPU 的通信；拓扑感知算法</td>
+</tr>
+<tr>
+<td>DOCA</td>
+<td>BlueField 时期</td>
+<td>BlueField / ConnectX</td>
+<td>基础设施卸载 API 与服务</td>
+</tr>
+<tr>
+<td>Dynamo</td>
+<td>2025 onward</td>
+<td>Distributed inference</td>
+<td>分离式服务；调度与数据搬移</td>
+</tr>
+</tbody>
+</table></div>
+<p>CUDA 提供执行与内存模型，cuBLAS、cuDNN、CUTLASS 等库将架构特性转化为优化内核。TensorRT 与 TensorRT-LLM 专门优化推理执行，NCCL 则针对实际拓扑协调集合通信。这些层次不能互换。某种 Tensor Core 格式可以先存在于芯片中，而框架或模型尚未充分利用它。同样，新网卡不会自动加速集合通信，传输机制、拓扑发现与算法必须能够利用其能力。</p>
+<p>Dynamo 体现了优化对象从单次模型调用转向分布式服务流水线。预填充、解码、专家放置和 KV 缓存搬移具有不同资源特征。分离这些工作可能提高利用率，但也产生网络流量和调度依赖。BlueField 上下文存储与 LPX 增加了放置选择，使调度器成为架构的一部分。因此，在将性能收益归因于新 GPU 代际之前，应固定模型、精度、质量目标、输入／输出长度、批处理方式与延迟目标。</p>
+<h2 id="18">18 架构会议究竟证明了什么</h2>
+<p>ISCA 2017 的 MCM-GPU 研究多个 GPU 模块如何组成可扩展的逻辑加速器，以及模块间局部性为何重要。MICRO 2017 的 Beyond the Socket 研究 NUMA 感知 GPU，Fine-Grained DRAM 研究高能效内存组织。HPCA 2015 与 ASPLOS 2015 探讨异构一致性内存系统中的带宽和页面放置。这些论文解释了后来在 Blackwell 与 Grace 中仍可见的设计压力：封装边界、非均匀带宽、放置与局部性。但它们不能证明后续商业产品实现了论文中的同一机制。</p>
+<p>MICRO 2019 的 Simba 是理解通用 GPU 之外设计空间的重要参照：它研究多芯片推理加速器，采用分布式本地存储及明确组织的通信层次。其电路实现通过 VLSI 和期刊工作披露，不应误标为 ISSCC 2019 的 GPU 产品论文。发表于 ACM TACO 系列的 COPA-GPU 探讨针对不同领域组合不同内存与计算组织。二者扩展了设计空间讨论，但不是 Blackwell 或 LPX 的隐含规格说明。</p>
+<p>来源明确点名产品时，产品关联证据最强。ISSCC 的 A100 与 NVLink-C2C 披露是相应产品的实现证据。NVIDIA 对 PrefixRL 的介绍称，Hopper 包含数千个利用该方法设计的算术电路；这支持具体设计工具已被采用的说法，而不是“整个 GPU 由 AI 设计”。Hot Chips 2026 列出了 Vera、Rubin、BlueField-4 和 LPU 演讲，但会议程序只能证明演讲安排与发生，不能证明所有幻灯片或未公开微架构细节都已被审阅。</p>
+<h2 id="19-">19 会议-产品索引</h2>
+<h3 id="_8">精选披露及其证据作用</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议</th>
+<th>年份</th>
+<th>论文／演讲</th>
+<th>演讲者／作者</th>
+<th>产品／代际</th>
+<th>披露类型</th>
+<th>来源／链接编号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2016</td>
+<td>Ultra-Performance Pascal GPU and NVLink Interconnect</td>
+<td>Denis Foley</td>
+<td>P100 / NVLink 1</td>
+<td>产品架构</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2017</td>
+<td>NVIDIA’s Volta GPU: Programmability and Performance for GPU Computing</td>
+<td>Jack Choquette</td>
+<td>V100</td>
+<td>产品架构</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2020</td>
+<td>A100 / Ampere architecture</td>
+<td>NVIDIA</td>
+<td>A100</td>
+<td>产品架构</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2022</td>
+<td>NVIDIA’s Hopper GPU: Scaling Performance</td>
+<td>Jack Choquette</td>
+<td>H100</td>
+<td>产品架构</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2022</td>
+<td>NVIDIA’s Grace CPU</td>
+<td>NVIDIA</td>
+<td>Grace</td>
+<td>CPU／内存系统</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2022</td>
+<td>NVLink-Network Switch</td>
+<td>NVIDIA</td>
+<td>NVLink switch</td>
+<td>纵向扩展架构</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2024</td>
+<td>NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing</td>
+<td>Ajay Tirumala; Raymond Wong</td>
+<td>Blackwell / GB200</td>
+<td>产品与系统架构</td>
+<td>C05 C11</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>GB200 NVL72 case study</td>
+<td>John Norton</td>
+<td>GB200 NVL72</td>
+<td>系统教程</td>
+<td>C06</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>ConnectX-8 SuperNIC: A Programmable RoCE Architecture for AI Data Centers</td>
+<td>Idan Burstein</td>
+<td>ConnectX-8</td>
+<td>网络端点架构</td>
+<td>C06 P19</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>Co-Packaged Silicon Photonics Switches for Gigawatt AI Factories</td>
+<td>Gilad Shainer</td>
+<td>Photonics</td>
+<td>光网络</td>
+<td>C06 P23</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>NVIDIA’s GB10 SoC: AI Supercomputer On Your Desk</td>
+<td>Andi Skende</td>
+<td>GB10</td>
+<td>SoC 架构</td>
+<td>C06</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>RTX 5090: Designed for the Age of Neural Rendering</td>
+<td>Marc Blackstein</td>
+<td>Client Blackwell</td>
+<td>相关图形分支</td>
+<td>C06</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Vera CPU</td>
+<td>Jonathon Evans; Polychronis Xekalakis</td>
+<td>Vera</td>
+<td>程序＋厂商技术披露</td>
+<td>C07 P10</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Rubin GPU: Driving the Era of Agentic AI</td>
+<td>Manas Mandal; Rajballav Dash; Rouslan Dimitrov</td>
+<td>Rubin</td>
+<td>程序＋厂商技术披露</td>
+<td>C07 P07</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>BlueField-4 Processor Powers the AI Factory Operating System</td>
+<td>Idan Burstein</td>
+<td>BlueField-4</td>
+<td>程序＋厂商技术披露</td>
+<td>C07 P20</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Spectrum-X Multiplane Network Architecture</td>
+<td>Gilad Shainer</td>
+<td>Spectrum-X</td>
+<td>程序＋厂商技术披露</td>
+<td>C07 P39</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Think Fast: LPU Accelerator for Heterogeneous Compute</td>
+<td>Igor Arsovski; Santosh Raghavan</td>
+<td>LPX</td>
+<td>程序＋厂商技术披露</td>
+<td>C07 P12</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2018</td>
+<td>1.17pJ/b 25Gb/s/pin Ground-Referenced Single-Ended Serial Link</td>
+<td>NVIDIA research team</td>
+<td>信号研究</td>
+<td>研究电路；非 Grace 量产 PHY</td>
+<td>R07</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2021</td>
+<td>3.2 The A100 Datacenter GPU and Ampere Architecture</td>
+<td>Jack Choquette et al.</td>
+<td>A100</td>
+<td>官方新闻资料；直接实现披露</td>
+<td>C08</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2023</td>
+<td>9.3 NVLink-C2C: A Coherent Off-Package Chip-to-Chip Interconnect with 40Gbps/pin Single-Ended Signaling</td>
+<td>Ying Wei et al.</td>
+<td>Grace / Hopper C2C</td>
+<td>官方新闻资料；PHY 实现</td>
+<td>C09</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2026</td>
+<td>17.1 GB10 SoC Built for AI Acceleration</td>
+<td>Andi Skende; G. Rosseel; N. Pinckney</td>
+<td>GB10</td>
+<td>官方程序；未审阅论文全文</td>
+<td>C10</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2017</td>
+<td>MCM-GPU: Multi-Chip-Module GPUs for Continued Performance Scalability</td>
+<td>NVIDIA research collaborators</td>
+<td>多芯片 GPU 研究</td>
+<td>研究；不自动归因于 Blackwell</td>
+<td>R01</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2017</td>
+<td>Beyond the Socket: NUMA-Aware GPUs</td>
+<td>Ugljesa Milic et al.</td>
+<td>NUMA GPU 研究</td>
+<td>研究机制</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2017</td>
+<td>Fine-Grained DRAM: Energy-Efficient DRAM for Extreme Bandwidth Systems</td>
+<td>Mike O’Connor et al.</td>
+<td>内存研究</td>
+<td>研究机制</td>
+<td>R03</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2019</td>
+<td>Simba: Scaling Deep-Learning Inference with Multi-Chip-Module-Based Architecture</td>
+<td>Yakun Sophia Shao et al.</td>
+<td>Simba</td>
+<td>研究加速器</td>
+<td>R10</td>
+</tr>
+<tr>
+<td>HPCA</td>
+<td>2015</td>
+<td>Unlocking Bandwidth for GPUs in CC-NUMA Systems</td>
+<td>Neha Agarwal et al.</td>
+<td>一致性内存放置</td>
+<td>研究；非 Grace 规格</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2015</td>
+<td>Page Placement Strategies for GPUs within Heterogeneous Memory Systems</td>
+<td>Neha Agarwal et al.</td>
+<td>页面放置</td>
+<td>研究；非 Grace 规格</td>
+<td>R05</td>
+</tr>
+<tr>
+<td>ACM TACO</td>
+<td>2021</td>
+<td>GPU Domain Specialization via Composable On-Package Architecture</td>
+<td>NVIDIA research collaborators</td>
+<td>COPA-GPU</td>
+<td>研究；期刊，非四大会演讲</td>
+<td>R06</td>
+</tr>
+<tr>
+<td>DAC / follow-up</td>
+<td>2021-2022</td>
+<td>PrefixRL / arithmetic circuit design</td>
+<td>NVIDIA research team</td>
+<td>Hopper design flow</td>
+<td>后续资料明确产品采用</td>
+<td>P41</td>
+</tr>
+<tr>
+<td>GTC</td>
+<td>2016-2026</td>
+<td>P100 → Volta → Ampere → Hopper → Blackwell → Rubin</td>
+<td>NVIDIA</td>
+<td>完整平台</td>
+<td>发布、架构、软件、路线图</td>
+<td>P01 P02 P03 P04 E03 E07</td>
+</tr>
+<tr>
+<td>Computex</td>
+<td>2025</td>
+<td>ConnectX-8 与 NVLink Fusion</td>
+<td>NVIDIA</td>
+<td>网络与生态</td>
+<td>产品／生态</td>
+<td>P19 P27</td>
+</tr>
+<tr>
+<td>SC20</td>
+<td>2020</td>
+<td>A100 80 GB</td>
+<td>NVIDIA</td>
+<td>A100 / HGX</td>
+<td>内存升级发布</td>
+<td>E20 P15</td>
+</tr>
+<tr>
+<td>OCP Global Summit</td>
+<td>2025</td>
+<td>MGX、供电与 AI 工厂基础设施</td>
+<td>NVIDIA / partners</td>
+<td>机架生态；未来供电设计</td>
+<td>系统集成／路线图</td>
+<td>E12</td>
+</tr>
+<tr>
+<td>AWS re:Invent</td>
+<td>2025</td>
+<td>NVIDIA 平台与 NVLink Fusion 合作</td>
+<td>AWS / NVIDIA</td>
+<td>Blackwell / Fusion</td>
+<td>生态；另行核对 GA</td>
+<td>E13 E16</td>
+</tr>
+<tr>
+<td>Microsoft Ignite</td>
+<td>2025</td>
+<td>Azure ND GB300 v6 GA</td>
+<td>Microsoft</td>
+<td>GB300 NVL72</td>
+<td>云服务正式商用</td>
+<td>E15</td>
+</tr>
+<tr>
+<td>Google Cloud Next / update</td>
+<td>2025</td>
+<td>A4X / GB200</td>
+<td>Google Cloud</td>
+<td>GB200</td>
+<td>云产品；5 月 GA 更新</td>
+<td>E14</td>
+</tr>
+<tr>
+<td>MWC / AI-RAN</td>
+<td>2025</td>
+<td>Aerial AI-RAN 架构</td>
+<td>NVIDIA / telecom partners</td>
+<td>Grace Hopper / Blackwell / BlueField</td>
+<td>部署架构；非 GPU 核心披露</td>
+<td>E19</td>
+</tr>
+<tr>
+<td>AI Infra Summit</td>
+<td>2026</td>
+<td>Vera Rubin／DSX 能效</td>
+<td>NVIDIA</td>
+<td>Rubin</td>
+<td>系统功耗与效率</td>
+<td>E11</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="20">20 跨代结论与尚未披露事项</h2>
+<p>核心趋势是在可编程系统内部进行专用化，而不是简单用固定功能替代可编程性。Tensor Core 专用化算术，TMA 专用化数据搬移，NVSwitch 专用化纵向扩展通信，SHARP 专用化部分归约，BlueField 专用化基础设施，LPX 则专用化另一种推理执行方式。CUDA 与服务软件栈将这些资源连接起来。系统能力增强的同时，也更加依赖数据放置、数值选择和软件协同。</p>
+<p>长期工程约束十分清晰。HBM 容量与带宽决定模型能否容纳及数据复用。裸片间接口允许处理器扩大，但引入局部性成本。机架级互联降低部分通信代价，同时提高供电、散热与维护要求。更高网络线速需要主机接口带宽和拥塞控制配合。一致性 CPU 内存与外部上下文存储扩展容量，却不能替代本地 HBM 性能。每代产品都在移动这些边界，而非消除它们。</p>
+<p>公开资料仍存在重要缺口：完整 CPU 队列与流水线参数、部分 Blackwell SKU 的启用单元数量与功耗工作点、DGX 与 HGX 页面可用内存统计的统一解释、Rubin 最终配置与广泛正式商用里程碑、量产光学实现细节，以及 CPX 最终商业配置。报告将这些缺口集中列于此处，而不是在全文反复标注置信度。后续应通过有日期的一手披露补全，而非平均不一致的规格或把传闻写入产品表。</p>
+<h2 id="21">21 代号对照与来源指南</h2>
+<h3 id="_9">架构、芯片与产品名称</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>架构／芯片</th>
+<th>产品</th>
+<th>重要区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maxwell / GM200</td>
+<td>M40</td>
+<td>无 Tensor Core</td>
+</tr>
+<tr>
+<td>Pascal / GP100</td>
+<td>P100</td>
+<td>GP100 不同于 P4／P40 推理芯片</td>
+</tr>
+<tr>
+<td>Volta / GV100</td>
+<td>V100</td>
+<td>Turing T4 是另一分支</td>
+</tr>
+<tr>
+<td>Ampere / GA100</td>
+<td>A100</td>
+<td>GA100 不同于图形 Ampere</td>
+</tr>
+<tr>
+<td>Hopper / GH100</td>
+<td>H100 / H200</td>
+<td>GH200 表示 Grace-Hopper 组合</td>
+</tr>
+<tr>
+<td>Datacenter Blackwell</td>
+<td>B200 / GB200</td>
+<td>B200 GPU 与 GB200 CPU-GPU 构造不同</td>
+</tr>
+<tr>
+<td>Blackwell Ultra</td>
+<td>B300 / GB300</td>
+<td>FP64 配比不同于 B200</td>
+</tr>
+<tr>
+<td>Rubin + Vera</td>
+<td>Vera Rubin NVL72</td>
+<td>Rubin GPU 与 Vera CPU 是不同芯片</td>
+</tr>
+<tr>
+<td>Grace-derived + ConnectX-9</td>
+<td>BlueField-4</td>
+<td>DPU 的 CPU 不是 Vera</td>
+</tr>
+<tr>
+<td>LP30 / LPU</td>
+<td>Groq 3 LPX</td>
+<td>获许可的推理技术；非 CUDA GPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>下列来源分为产品文档、会议记录、研究论文和活动／部署披露。来源映射将报告各章节与证据关联。配套规范数据文件保留表格单元格事实、口径、产品范围、来源编号与日期，便于后续更新。会议程序和新闻资料均按其实际类型标识；报告不暗示已访问付费论文或受限录像。规格是截止日期时的快照，在线产品页面此后可能变化。</p>
+<h2 id="_10">来源映射</h2>
+<p>01 执行摘要 — C01, C04, C08, C09, E01, E08, E09, E14, E15, E16, P01, P02, P03, P04, P05, P06, P07, P08, P10, P11, P12, P14, P37, P42, R01, R04, R05</p>
+<p>02 规格口径与比较方法 — E08, E14, E15, E16, P01, P02, P03, P06, P11, P13, P15, P37, P38</p>
+<p>03 GPU 规格总览 — E08, E18, P01, P02, P03, P04, P05, P06, P07, P11, P13, P14, P15, P16, P17, P32, P33, P34, P35, P36, P37, P42</p>
+<p>04 Maxwell 与 Pascal：形成加速器系统 — C01, E18, P01, P36, P42</p>
+<p>05 Volta：矩阵执行与交换式纵向扩展 — C02, P02, P18, P28, P29, P30, P31, P35</p>
+<p>06 Ampere：数值格式、隔离与实现 — C03, C08, P03, P15, P34</p>
+<p>07 Hopper 与 H200：异步计算与内存 — C04, P04, P08, P13, P14, P18, P33</p>
+<p>08 Blackwell 与 Ultra：跨越裸片与机架边界 — C11, E14, E15, E16, P05, P06, P18, P27, P32, P37</p>
+<p>09 Rubin：平台代际与配置约束 — C07, E03, E04, E08, E11, P07, P10, P11, P12, P20, P37, P38</p>
+<p>10 Grace 与 Vera CPU：主机进入协同架构 — C07, C09, E08, P08, P09, P10, P11, R07</p>
+<p>11 推理、工作站与边缘分支 — C10, E08, E18, P28, P29, P30, P31, P46</p>
+<p>12 NVLink、NVSwitch 与一致性 C2C — C09, E13, P01, P02, P03, P04, P05, P08, P10, P11, P18, P27, P38</p>
+<p>13 ConnectX 与 BlueField：端点与基础设施 — C06, E01, E05, E09, P11, P19, P20, P21, P22, P24, P25, P26, P43, P48, P49, P50</p>
+<p>14 Spectrum、Quantum 与光互联 — C06, E02, E09, E10, P23, P39, P40, P44, P47, P51, R08</p>
+<p>15 Groq 3 LPX 与专用推理 — E06, E09, E17, P12</p>
+<p>16 集成系统与带宽层次 — E08, E09, E12, E15, E16, P01, P02, P03, P06, P08, P09, P10, P11, P12, P13, P14, P16, P17, P18, P19, P20, P21, P27, P38</p>
+<p>17 软件将硬件层次变为可用能力 — E08, E17, P01, P02, P03, P04, P06, P12, P20, P24, P25, P32, P33, P34, P35, P36, P39, P44</p>
+<p>18 架构会议究竟证明了什么 — C07, C08, C09, P41, R01, R02, R03, R04, R05, R06, R10</p>
+<p>19 会议-产品索引 — C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, E03, E07, E11, E12, E13, E14, E15, E16, E19, E20, P01, P02, P03, P04, P07, P10, P12, P15, P19, P20, P23, P27, P39, P41, R01, R02, R03, R04, R05, R06, R07, R10</p>
+<p>20 跨代结论与尚未披露事项 — E04, E08, E17, P01, P03, P04, P08, P10, P12, P17, P18, P19, P20, P23, P32, P37, P38, P40</p>
+<p>21 代号对照与来源指南 — C08, C09, C10, E06, E18, P01, P02, P03, P04, P05, P06, P08, P11, P12, P14, P16, P20, P28, P37, P38, P42</p>
+<h2 id="_11">参考资料</h2>
+<h3 id="_12">产品与技术文档</h3>
+<p>[P01] Pascal architecture whitepaper. <a href="https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf">https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P02] Volta architecture whitepaper. <a href="https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/tesla-product-literature/volta-architecture-whitepaper.pdf">https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/tesla-product-literature/volta-architecture-whitepaper.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P03] Ampere architecture whitepaper. <a href="https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf">https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P04] Hopper architecture in depth. <a href="https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/">https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P05] Blackwell architecture overview. <a href="https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/">https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P06] Blackwell Ultra architecture. <a href="https://developer.nvidia.com/blog/inside-nvidia-blackwell-ultra-the-chip-powering-the-ai-factory-era/">https://developer.nvidia.com/blog/inside-nvidia-blackwell-ultra-the-chip-powering-the-ai-factory-era/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P07] Rubin GPU architecture. <a href="https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/">https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P08] Grace Hopper architecture. <a href="https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/">https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P09] Grace CPU tuning guide. <a href="https://docs.nvidia.com/grace-perf-tuning-guide/index.html">https://docs.nvidia.com/grace-perf-tuning-guide/index.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P10] Vera Olympus core. <a href="https://developer.nvidia.com/blog/inside-nvidia-vera-cpu-olympus-cores-built-for-maximum-single-threaded-performance-in-agentic-ai/">https://developer.nvidia.com/blog/inside-nvidia-vera-cpu-olympus-cores-built-for-maximum-single-threaded-performance-in-agentic-ai/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P11] Vera Rubin platform. <a href="https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/">https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P12] Groq 3 LPX architecture. <a href="https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/">https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P13] H100 specifications. <a href="https://www.nvidia.com/en-us/data-center/h100/">https://www.nvidia.com/en-us/data-center/h100/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P14] H200 specifications. <a href="https://www.nvidia.com/en-us/data-center/h200/">https://www.nvidia.com/en-us/data-center/h200/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P15] A100 specifications. <a href="https://www.nvidia.com/en-us/data-center/a100/">https://www.nvidia.com/en-us/data-center/a100/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P16] DGX B200 user guide. <a href="https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html">https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P17] DGX B300 user guide. <a href="https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html">https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P18] NVLink specifications. <a href="https://www.nvidia.com/en-us/data-center/nvlink/">https://www.nvidia.com/en-us/data-center/nvlink/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P19] ConnectX-8 integrated PCIe switch. <a href="https://developer.nvidia.com/blog/nvidia-connectx-8-supernics-advance-ai-platform-architecture-with-pcie-gen6-connectivity/">https://developer.nvidia.com/blog/nvidia-connectx-8-supernics-advance-ai-platform-architecture-with-pcie-gen6-connectivity/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P20] BlueField-4 architecture. <a href="https://developer.nvidia.com/blog/scaling-agentic-ai-factories-through-extreme-co-design-with-nvidia-bluefield/">https://developer.nvidia.com/blog/scaling-agentic-ai-factories-through-extreme-co-design-with-nvidia-bluefield/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P21] ConnectX-9 manual. <a href="https://networking-docs.nvidia.com/connectx9hw/introduction">https://networking-docs.nvidia.com/connectx9hw/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P22] Ethernet SuperNIC portfolio. <a href="https://www.nvidia.com/en-us/networking/products/ethernet/supernic/">https://www.nvidia.com/en-us/networking/products/ethernet/supernic/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P23] Silicon photonics networking. <a href="https://www.nvidia.com/en-us/networking/products/silicon-photonics/">https://www.nvidia.com/en-us/networking/products/silicon-photonics/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P24] BlueField-3 hardware. <a href="https://networking-docs.nvidia.com/bf3dpu/introduction">https://networking-docs.nvidia.com/bf3dpu/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P25] BlueField-2 hardware. <a href="https://docs.nvidia.com/networking/display/BlueField2DPUENUG/Introduction">https://docs.nvidia.com/networking/display/BlueField2DPUENUG/Introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P26] ConnectX-6 hardware. <a href="https://networking-docs.nvidia.com/connectx6vpihw/introduction">https://networking-docs.nvidia.com/connectx6vpihw/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P27] NVLink Fusion architecture. <a href="https://developer.nvidia.com/blog/integrating-custom-compute-into-rack-scale-architecture-with-nvidia-nvlink-fusion/">https://developer.nvidia.com/blog/integrating-custom-compute-into-rack-scale-architecture-with-nvidia-nvlink-fusion/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P28] T4 specifications. <a href="https://www.nvidia.com/en-us/data-center/tesla-t4/">https://www.nvidia.com/en-us/data-center/tesla-t4/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P29] L4 specifications. <a href="https://www.nvidia.com/en-us/data-center/l4/">https://www.nvidia.com/en-us/data-center/l4/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P30] L40S specifications. <a href="https://www.nvidia.com/en-us/data-center/l40s/">https://www.nvidia.com/en-us/data-center/l40s/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P31] RTX PRO 6000 Blackwell Server Edition. <a href="https://www.nvidia.com/en-us/data-center/rtx-pro-6000-blackwell-server-edition/">https://www.nvidia.com/en-us/data-center/rtx-pro-6000-blackwell-server-edition/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P32] Blackwell tuning guide. <a href="https://docs.nvidia.com/cuda/blackwell-tuning-guide/">https://docs.nvidia.com/cuda/blackwell-tuning-guide/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P33] Hopper tuning guide. <a href="https://docs.nvidia.com/cuda/hopper-tuning-guide/">https://docs.nvidia.com/cuda/hopper-tuning-guide/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P34] Ampere tuning guide. <a href="https://docs.nvidia.com/cuda/ampere-tuning-guide/">https://docs.nvidia.com/cuda/ampere-tuning-guide/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P35] Volta tuning guide. <a href="https://docs.nvidia.com/cuda/volta-tuning-guide/">https://docs.nvidia.com/cuda/volta-tuning-guide/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P36] Pascal tuning guide. <a href="https://docs.nvidia.com/cuda/pascal-tuning-guide/">https://docs.nvidia.com/cuda/pascal-tuning-guide/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P37] HGX GPU specifications. <a href="https://www.nvidia.com/en-us/data-center/hgx/">https://www.nvidia.com/en-us/data-center/hgx/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P38] Vera Rubin NVL72 specifications. <a href="https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/">https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P39] Spectrum-X multiplane architecture. <a href="https://developer.nvidia.com/blog/giga-scale-ai-ethernet-evolution-spectrum-x-ethernet-rewrites-rules/">https://developer.nvidia.com/blog/giga-scale-ai-ethernet-evolution-spectrum-x-ethernet-rewrites-rules/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P40] Quantum-2 architecture. <a href="https://nvidianews.nvidia.com/news/nvidia-quantum-2-takes-supercomputing-to-new-heights-into-the-cloud">https://nvidianews.nvidia.com/news/nvidia-quantum-2-takes-supercomputing-to-new-heights-into-the-cloud</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P41] PrefixRL product adoption. <a href="https://developer.nvidia.com/blog/designing-arithmetic-circuits-with-deep-reinforcement-learning/">https://developer.nvidia.com/blog/designing-arithmetic-circuits-with-deep-reinforcement-learning/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P42] M40 24 GB data sheet. <a href="https://images.nvidia.com/content/tesla/pdf/78071_Tesla_M40_24GB_Print_Datasheet_LR.PDF">https://images.nvidia.com/content/tesla/pdf/78071_Tesla_M40_24GB_Print_Datasheet_LR.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P43] ConnectX-4 Lx brief. <a href="https://network.nvidia.com/files/doc-2020/pb-connectx-4-lx-en-card.pdf">https://network.nvidia.com/files/doc-2020/pb-connectx-4-lx-en-card.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P44] NCCL documentation. <a href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html">https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P46] DGX Spark specifications. <a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">https://www.nvidia.com/en-us/products/workstations/dgx-spark/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P47] Ethernet switch family specifications. <a href="https://www.nvidia.com/en-us/networking/ethernet-switching/">https://www.nvidia.com/en-us/networking/ethernet-switching/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P48] BlueField first-generation DPU brief. <a href="https://network.nvidia.com/sites/default/files/doc-2020/pb-bluefield-dpu.pdf">https://network.nvidia.com/sites/default/files/doc-2020/pb-bluefield-dpu.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P49] ConnectX-5 hardware. <a href="https://networking-docs.nvidia.com/connectx5enhw/introduction">https://networking-docs.nvidia.com/connectx5enhw/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P50] ConnectX-7 hardware. <a href="https://networking-docs.nvidia.com/connectx7hw/introduction">https://networking-docs.nvidia.com/connectx7hw/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P51] Spectrum-2 hardware. <a href="https://networking-docs.nvidia.com/sn3000hw/introduction">https://networking-docs.nvidia.com/sn3000hw/introduction</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_13">会议记录与实现披露</h3>
+<p>[C01] Hot Chips 28 program. <a href="https://hc28.hotchips.org/">https://hc28.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C02] Hot Chips 29 program. <a href="https://hc29.hotchips.org/">https://hc29.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C03] Hot Chips 32 program. <a href="https://hc32.hotchips.org/">https://hc32.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C04] Hot Chips 34 program. <a href="https://hc34.hotchips.org/program/conference/">https://hc34.hotchips.org/program/conference/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C05] Hot Chips 2024 program. <a href="https://hc2024.hotchips.org/">https://hc2024.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C06] Hot Chips 2025 program. <a href="https://hc2025.hotchips.org/">https://hc2025.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C07] Hot Chips 2026 program. <a href="https://hc2026.hotchips.org/">https://hc2026.hotchips.org/</a>. 会议程序；经网页索引核对；不代表已审阅全部演讲材料。</p>
+<p>[C08] ISSCC 2021 A100 press-kit disclosure. <a href="https://static1.squarespace.com/static/6130ef779c7a2574bd4b8888/t/616c79ed5a30e36825f47818/1634499069232/isscc2021.press_kit_110620.pdf">https://static1.squarespace.com/static/6130ef779c7a2574bd4b8888/t/616c79ed5a30e36825f47818/1634499069232/isscc2021.press_kit_110620.pdf</a>. 官方新闻资料，不是论文全文。</p>
+<p>[C09] ISSCC 2023 NVLink-C2C press-kit disclosure. <a href="https://www.isscc.org/s/ISSCC2023-PressKit.pdf">https://www.isscc.org/s/ISSCC2023-PressKit.pdf</a>. 官方新闻资料，不是论文全文。</p>
+<p>[C10] ISSCC 2026 advance program. <a href="https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf">https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf</a>. 官方会议程序；未审阅论文全文。</p>
+<p>[C11] Hot Chips 2024 Blackwell presentation, Tirumala and Wong. <a href="https://hc2024.hotchips.org/assets/program/conference/day1/64_HC2024.NVIDIA.TirumalaWong.pdf">https://hc2024.hotchips.org/assets/program/conference/day1/64_HC2024.NVIDIA.TirumalaWong.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_14">研究论文与出版目录</h3>
+<p>[R01] MCM-GPU: Multi-Chip-Module GPUs for Continued Performance Scalability. <a href="https://research.nvidia.com/sites/default/files/publications/ISCA_2017_MCMGPU.pdf">https://research.nvidia.com/sites/default/files/publications/ISCA_2017_MCMGPU.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R02] Beyond the Socket: NUMA-Aware GPUs. <a href="https://research.nvidia.com/sites/default/files/pubs/2017-10_Beyond-the-socket%3A/milic_micro17.pdf">https://research.nvidia.com/sites/default/files/pubs/2017-10_Beyond-the-socket%3A/milic_micro17.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R03] Fine-Grained DRAM: Energy-Efficient DRAM for Extreme Bandwidth Systems. <a href="https://research.nvidia.com/sites/default/files/pubs/2017-10_Fine-Grained-DRAM%3A-Energy-Efficient/oconnor_and_chatterjee.micro2017.pdf">https://research.nvidia.com/sites/default/files/pubs/2017-10_Fine-Grained-DRAM%3A-Energy-Efficient/oconnor_and_chatterjee.micro2017.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R04] Unlocking Bandwidth for GPUs in CC-NUMA Systems. <a href="https://research.nvidia.com/publication/2015-02_unlocking-bandwidth-gpus-cc-numa-systems">https://research.nvidia.com/publication/2015-02_unlocking-bandwidth-gpus-cc-numa-systems</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R05] Page Placement Strategies for GPUs within Heterogeneous Memory Systems. <a href="https://research.nvidia.com/publication/2015-03_page-placement-strategies-gpus-within-heterogeneous-memory-systems">https://research.nvidia.com/publication/2015-03_page-placement-strategies-gpus-within-heterogeneous-memory-systems</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R06] GPU Domain Specialization via Composable On-Package Architecture. <a href="https://research.nvidia.com/publication/2021-12_gpu-domain-specialization-composable-package-architecture">https://research.nvidia.com/publication/2021-12_gpu-domain-specialization-composable-package-architecture</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R07] 1.17pJ/b 25Gb/s/pin Ground-Referenced Single Ended Serial Link. <a href="https://research.nvidia.com/publication/2018-02_117pjb-25gbspin-ground-referenced-single-ended-serial-link-and-package">https://research.nvidia.com/publication/2018-02_117pjb-25gbspin-ground-referenced-single-ended-serial-link-and-package</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R08] NVIDIA circuits publication registry. <a href="https://research.nvidia.com/research-area/circuits-and-vlsi-design">https://research.nvidia.com/research-area/circuits-and-vlsi-design</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R10] Simba: Scaling Deep-Learning Inference with Multi-Chip-Module-Based Architecture. <a href="https://research.nvidia.com/sites/default/files/pubs/2019-10_Simba%3A-Scaling-Deep-Learning//shao2019-micro.pdf">https://research.nvidia.com/sites/default/files/pubs/2019-10_Simba%3A-Scaling-Deep-Learning//shao2019-micro.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_15">发布、生态与部署</h3>
+<p>[E01] Rubin GTC 2026 production disclosure. <a href="https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform">https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E02] Spectrum-4 announcement. <a href="https://nvidianews.nvidia.com/news/nvidia-announces-spectrum-high-performance-data-center-networking-infrastructure-platform">https://nvidianews.nvidia.com/news/nvidia-announces-spectrum-high-performance-data-center-networking-infrastructure-platform</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E03] GTC 2025 roadmap highlights. <a href="https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf">https://images.nvidia.com/nvimages/gtc/pdf/GTC2025_Highlights_v2.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E04] Rubin CPX original announcement. <a href="https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference">https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E05] Mellanox acquisition completion. <a href="https://nvidianews.nvidia.com/news/nvidia-completes-acquisition-of-mellanox-creating-major-force-driving-next-gen-data-centers">https://nvidianews.nvidia.com/news/nvidia-completes-acquisition-of-mellanox-creating-major-force-driving-next-gen-data-centers</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E06] Groq NVIDIA licensing agreement. <a href="https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale">https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E07] GTC 2026 highlights. <a href="https://s201.q4cdn.com/141608511/files/doc_events/2026/Mar/16/GTC26_San-Jose_Highlights_.pdf">https://s201.q4cdn.com/141608511/files/doc_events/2026/Mar/16/GTC26_San-Jose_Highlights_.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E08] Rubin MLPerf preview September 2026. <a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/">https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E09] Hot Chips 2026 LPX production and platform update. <a href="https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/">https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E10] Spectrum-6 deployments July 2026. <a href="https://blogs.nvidia.com/blog/nvidia-spectrum-six-arrives-in-gigascale-ai-factories/">https://blogs.nvidia.com/blog/nvidia-spectrum-six-arrives-in-gigascale-ai-factories/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E11] AI Infra Summit September 2026. <a href="https://blogs.nvidia.com/blog/ai-infra-summit-vera-rubin-dsx-energy-efficiencies-tokens-per-watt-ai-factories/">https://blogs.nvidia.com/blog/ai-infra-summit-vera-rubin-dsx-energy-efficiencies-tokens-per-watt-ai-factories/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E12] OCP 2025 power and MGX. <a href="https://blogs.nvidia.com/blog/gigawatt-ai-factories-ocp-vera-rubin/">https://blogs.nvidia.com/blog/gigawatt-ai-factories-ocp-vera-rubin/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E13] AWS re:Invent 2025 NVIDIA disclosures. <a href="https://www.nvidia.com/en-us/events/aws-reinvent/">https://www.nvidia.com/en-us/events/aws-reinvent/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E14] Google A4X GA update. <a href="https://cloud.google.com/blog/products/compute/new-a4x-vms-powered-by-nvidia-gb200-gpus">https://cloud.google.com/blog/products/compute/new-a4x-vms-powered-by-nvidia-gb200-gpus</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E15] Azure GB300 GA at Ignite 2025. <a href="https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/azure-nd-gb300-v6-now-generally-available---hyper-optimized-for-generative-and-a/4469475">https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/azure-nd-gb300-v6-now-generally-available---hyper-optimized-for-generative-and-a/4469475</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E16] AWS P6e GB200 GA. <a href="https://aws.amazon.com/about-aws/whats-new/2025/07/amazon-p6e-gb200-ultraservers-gpu-performance-ec2/">https://aws.amazon.com/about-aws/whats-new/2025/07/amazon-p6e-gb200-ultraservers-gpu-performance-ec2/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E17] Dynamo launch at GTC 2025. <a href="https://nvidianews.nvidia.com/news/nvidia-dynamo-open-source-library-accelerates-and-scales-ai-reasoning-models">https://nvidianews.nvidia.com/news/nvidia-dynamo-open-source-library-accelerates-and-scales-ai-reasoning-models</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E18] Pascal inference P4 P40 and Maxwell baseline. <a href="https://developer.nvidia.com/blog/new-pascal-gpus-accelerate-inference-in-the-data-center/">https://developer.nvidia.com/blog/new-pascal-gpus-accelerate-inference-in-the-data-center/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E19] AI-RAN reference architecture and FAQ. <a href="https://docs.nvidia.com/aerial-resources/2025_AI-RAN_FAQ.pdf">https://docs.nvidia.com/aerial-resources/2025_AI-RAN_FAQ.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E20] SC20: NVIDIA announces A100 80GB. <a href="https://nvidianews.nvidia.com/news/nvidia-doubles-down-announces-a100-80gb-gpu-supercharging-worlds-most-powerful-gpu-for-ai-supercomputing">https://nvidianews.nvidia.com/news/nvidia-doubles-down-announces-a100-80gb-gpu-supercharging-worlds-most-powerful-gpu-for-ai-supercomputing</a>. 一手资料；访问截止 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

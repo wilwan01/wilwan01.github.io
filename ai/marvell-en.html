@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Marvell · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="marvell-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Marvell_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Marvell_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#marvell-ai-infrastructure-architecture-evolution">Marvell AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-scope-and-numerical-conventions">02 Scope and numerical conventions</a></li>
+<li><a href="#03-thunderx-merchant-cpus-to-custom-compute">03 ThunderX: merchant CPUs to custom compute</a><ul>
+<li><a href="#historical-host-cpu-lineage">Historical host CPU lineage</a></li>
+</ul>
+</li>
+<li><a href="#04-octeon-infrastructure-execution-and-acceleration">04 OCTEON: infrastructure execution and acceleration</a></li>
+<li><a href="#05-teralynx-acquired-switching-architecture-at-ai-scale">05 Teralynx: acquired switching architecture at AI scale</a></li>
+<li><a href="#06-optical-dsps-cpo-and-photonic-fabric">06 Optical DSPs, CPO and Photonic Fabric</a></li>
+<li><a href="#07-structera-alaska-p-and-the-memory-hierarchy">07 Structera, Alaska P and the memory hierarchy</a></li>
+<li><a href="#08-fixed-schema-product-comparisons">08 Fixed-schema product comparisons</a><ul>
+<li><a href="#dpu-and-switch-families">DPU and switch families</a></li>
+<li><a href="#accelerator-boundary">Accelerator boundary</a></li>
+<li><a href="#connectivity-products">Connectivity products</a></li>
+</ul>
+</li>
+<li><a href="#09-integrated-systems-and-software">09 Integrated systems and software</a><ul>
+<li><a href="#2015-2020-integrated-roles">2015-2020 integrated roles</a></li>
+<li><a href="#2021-2026-integrated-roles">2021-2026 integrated roles</a></li>
+<li><a href="#system-boundary">System boundary</a></li>
+<li><a href="#software-integration-contracts">Software integration contracts</a></li>
+</ul>
+</li>
+<li><a href="#10-derived-balance-and-engineering-implications">10 Derived balance and engineering implications</a><ul>
+<li><a href="#derived-bandwidth-hierarchy">Derived bandwidth hierarchy</a></li>
+</ul>
+</li>
+<li><a href="#11-conference-index-and-product-crosswalk">11 Conference index and product crosswalk</a><ul>
+<li><a href="#disclosure-map">Disclosure map</a></li>
+<li><a href="#names-and-roles">Names and roles</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="marvell-ai-infrastructure-architecture-evolution">Marvell AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Deep coverage: OCTEON, Teralynx, optical connectivity and memory/scale-up interconnect. Historical ThunderX CPUs are covered through their move toward custom solutions. Custom XPUs are covered only where implementation capabilities or customer links are public. Period: 2015-28 September 2026. Celestial AI and XConn are included with their pre-acquisition lineage because both acquisitions closed in February 2026. Storage and security controllers are proportional; enterprise access switching and wireless RF are outside the deep scope.</p>
+<p>Marvell is best understood as a supplier of the data-movement and implementation substrate surrounding compute. Its CPU history matters because processor and SoC capability reappears in DPUs, near-memory acceleration and custom silicon. Its optical and electrical portfolio spans distances from a package boundary to a datacenter interconnect. The architectural question is how these components change the cost of placing compute, memory and network endpoints apart, and which software layer can exploit that freedom.</p>
+<h2 id="02-scope-and-numerical-conventions">02 Scope and numerical conventions</h2>
+<p>A DPU core count is not a server-CPU product, and a near-memory accelerator is not a general AI training GPU. Switch bandwidth, optical-module capacity, SerDes lane rate and CXL payload bandwidth describe different resources. Lane GT/s, coded Gb/s and useful GB/s are retained separately. Product announcements and sampling targets do not establish volume availability. n/d denotes an unestablished field and n/a a nonapplicable field. Demonstrations announced for a future event are not treated as completed deployments.</p>
+<h2 id="03-thunderx-merchant-cpus-to-custom-compute">03 ThunderX: merchant CPUs to custom compute</h2>
+<p>ThunderX originated at Cavium, which joined Marvell in 2018. ThunderX2 established a dual-socket Arm server platform and reached production deployments including Microsoft’s internal Azure development servers. ThunderX3 was disclosed as a 96-core, four-thread-per-core design with eight DDR4-3200 channels and PCIe 4. The subsequent strategy statement shifted emphasis to hyperscaler-specific solutions. The 2020 ThunderX3 disclosure is therefore recorded as announced/repositioned, not proof of a continuing mass-market CPU roadmap.</p>
+<p>Architectural interpretation: four-way SMT increases the number of runnable contexts without multiplying memory channels or execution units by four. Its benefit depends on latency hiding, instruction supply and interference. For a buy-side comparison, threads must not be compared directly with single-threaded Arm cores. The useful continuity is expertise in coherent fabrics, RAS and memory systems; it does not imply that current OCTEON cores are the same microarchitecture as ThunderX.</p>
+<h3 id="historical-host-cpu-lineage">Historical host CPU lineage</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ThunderX</td>
+<td>n/d</td>
+<td>2015-era</td>
+<td>Historical shipping</td>
+<td>Custom Armv8</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Armv8</td>
+</tr>
+<tr>
+<td>ThunderX2</td>
+<td>n/d</td>
+<td>2018-era</td>
+<td>Historical shipping</td>
+<td>Custom Armv8</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4; n/d</td>
+<td>2; links n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Armv8</td>
+</tr>
+<tr>
+<td>ThunderX3</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Announced / repositioned</td>
+<td>Custom Armv8</td>
+<td>96 / 384</td>
+<td>TSMC 7P</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>8 × DDR4-3200; 204.8 GB/s</td>
+<td>1-2; links n/d</td>
+<td>PCIe 4; 64 lanes</td>
+<td>n/d</td>
+<td>4 × 128-bit Neon</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-octeon-infrastructure-execution-and-acceleration">04 OCTEON: infrastructure execution and acceleration</h2>
+<p>OCTEON’s historical MIPS and subsequent Arm families target packet processing, security and storage rather than generic host replacement. OCTEON TX and TX2 carry that infrastructure lineage into Arm-based SoCs. OCTEON10 moves to 5 nm and Neoverse N2, combining CPU execution with packet, crypto and machine-learning engines. The platform whitepaper describes a coherent cache and memory system around those engines, making it an integrated data-plane computer rather than a NIC with only fixed offloads.</p>
+<p>The integrated ML engine serves inline or near-data inference, including infrastructure and networking workloads. Its presence does not make OCTEON a direct substitute for an HBM training accelerator. OCTEON10 Fusion adds radio-oriented acceleration and belongs to the 5G/vRAN branch; MWC disclosures help explain that branch but should not be allowed to dominate the AI datacenter narrative. SKU-specific CPU count, memory interface and port configuration must remain separate rather than assembled into an imaginary maximum device.</p>
+<h2 id="05-teralynx-acquired-switching-architecture-at-ai-scale">05 Teralynx: acquired switching architecture at AI scale</h2>
+<p>The Teralynx line came through Innovium and complements Marvell’s other switching families. Teralynx7 provides a 12.8 Tb/s baseline. Teralynx10 moves to 51.2 Tb/s and entered production in 2024. The 2026 T100 announcement describes 102.4 Tb/s on a monolithic 3 nm die and a sampling target. Low latency, telemetry and congestion management matter because a training job exposes synchronized bursts rather than only independent cloud flows.</p>
+<p>Architectural interpretation: a monolithic switch avoids some internal die-to-die crossings, but still faces a perimeter, SerDes and power-delivery budget. A faster switch can reduce fabric tiers only if its port configuration matches endpoint speed and required uplinks. The relevant comparison against Tomahawk is therefore a topology at a fixed traffic matrix, including small-packet rate, buffer pressure, congestion response and optical power, not a single aggregate Tb/s label.</p>
+<h2 id="06-optical-dsps-cpo-and-photonic-fabric">06 Optical DSPs, CPO and Photonic Fabric</h2>
+<p>Marvell’s optical DSP progression includes the 5 nm Nova 1.6T platform, the 3 nm Ara platform and later use-case-specific derivatives. The 2026 connectivity disclosures add 2 nm demonstrations and products such as Libra; the ECOC announcement is recorded as an announced demonstration at this cutoff. DSP specialization reflects the fact that reach, modulation, equalization and power budgets differ across intra-datacenter and longer-distance links. A transmit-only design changes the module partition rather than eliminating all signal-processing requirements.</p>
+<p>Celestial AI’s Photonic Fabric, disclosed at Hot Chips 2025 before the acquisition, targets optical connectivity closer to compute and memory. Marvell completed the acquisition on 2 February 2026. The acquisition announcement anticipates revenue contribution in later fiscal periods, so the technology should not be described as broadly deployed merely because the transaction closed. The slides provide an architectural direction and module concepts; they do not establish every proposed memory configuration as a shipping product.</p>
+<p>Architectural interpretation: optics addresses distance and bandwidth density; it does not make remote memory equivalent to local HBM. Serialization, protocol traversal, endpoint buffering and software placement remain. An optical memory fabric needs a precise contract for addressability, consistency, latency, failure isolation and allocation. The power saved in electrical reach must be balanced against lasers, thermal control, packaging yield and repair strategy.</p>
+<h2 id="07-structera-alaska-p-and-the-memory-hierarchy">07 Structera, Alaska P and the memory hierarchy</h2>
+<p>Structera X expands memory; Structera A adds near-memory compute. The A 2504 disclosure combines sixteen Neoverse V2 cores with four DDR5-6400 channels and a CXL2.0/PCIe5 ×16 host interface. This distinction is fundamental: attached DRAM bandwidth can exceed the host link, while local compute can operate on data without sending every byte back to the CPU. Compression may reduce traffic for compressible data but is not a fixed bandwidth multiplier for all workloads.</p>
+<p>XConn closed on 10 February 2026 and adds PCIe/CXL switching. Subsequent Structera S announcements include a 260-lane PCIe6 switch and a CXL switch with Q3 2026 sampling targets. Alaska P retimers support the electrical reach between endpoints and these switches. A retimer, a switch, a memory expander and a near-memory processor occupy four different positions in the path; combining their headline bandwidths would be meaningless.</p>
+<h2 id="08-fixed-schema-product-comparisons">08 Fixed-schema product comparisons</h2>
+<h3 id="dpu-and-switch-families">DPU and switch families</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCTEON TX2</td>
+<td>2020-era</td>
+<td>Historical shipping</td>
+<td>DPU</td>
+<td>≤200G datapath</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Packet / crypto engines</td>
+<td>12-36 Armv8</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>n/d</td>
+<td>Security / storage</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>OCTEON10</td>
+<td>2021 announced</td>
+<td>Shipping / available</td>
+<td>DPU</td>
+<td>SKU-dependent</td>
+<td>56G class; SKU-dependent</td>
+<td>PCIe 5</td>
+<td>Packet / crypto / ML</td>
+<td>Neoverse N2</td>
+<td>DDR5; SKU-dependent</td>
+<td>Ethernet</td>
+<td>n/d</td>
+<td>Infrastructure / inline ML</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Teralynx7</td>
+<td>pre-2021</td>
+<td>Historical shipping</td>
+<td>Switch</td>
+<td>12.8 Tb/s</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>Switch pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>Telemetry</td>
+<td>L2/L3</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Teralynx10</td>
+<td>2024 production</td>
+<td>Shipping / available</td>
+<td>Switch</td>
+<td>51.2 Tb/s</td>
+<td>100G class</td>
+<td>n/a</td>
+<td>Switch pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>Congestion-aware routing</td>
+<td>L2/L3 / telemetry</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Teralynx T100</td>
+<td>2026 sampling target</td>
+<td>Announced; GA n/d</td>
+<td>Switch</td>
+<td>102.4 Tb/s</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>Switch pipeline</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>AI congestion control</td>
+<td>BGA / CPC / CPO</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="accelerator-boundary">Accelerator boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structera A 2504</td>
+<td>Near-memory Arm compute</td>
+<td>n/d</td>
+<td>Announced; GA n/d</td>
+<td>5 nm</td>
+<td>n/d</td>
+<td>16 Neoverse V2</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5; 4 channels; 6400 MT/s; 204.8 GB/s</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>CXL2.0 / PCIe5 ×16</td>
+<td>n/d</td>
+<td>CXL device</td>
+</tr>
+<tr>
+<td>Customer custom XPU</td>
+<td>Customer-specific</td>
+<td>n/d</td>
+<td>Per customer program</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="connectivity-products">Connectivity products</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alaska P</td>
+<td>2024-2026</td>
+<td>PCIe6: 64 GT/s</td>
+<td>16</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Retimed point-to-point</td>
+<td>n/a</td>
+<td>Protocol-aware retimer</td>
+</tr>
+<tr>
+<td>Structera S PCIe 60260</td>
+<td>2026</td>
+<td>PCIe6: 64 GT/s</td>
+<td>260 lanes / switch</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Switched PCIe</td>
+<td>n/d</td>
+<td>PCIe</td>
+</tr>
+<tr>
+<td>Structera X / A</td>
+<td>2024</td>
+<td>PCIe5: 32 GT/s</td>
+<td>16</td>
+<td>~63 before protocol overhead</td>
+<td>1</td>
+<td>CXL attachment</td>
+<td>n/d</td>
+<td>CXL memory; nonuniform latency</td>
+</tr>
+<tr>
+<td>Photonic Fabric</td>
+<td>2025-2026</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Optical fabric</td>
+<td>n/d</td>
+<td>Module-specific; not assumed coherent</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="09-integrated-systems-and-software">09 Integrated systems and software</h2>
+<p>Marvell’s custom-silicon offering brings compute, packaging and interface IP together, but a customer program is not a public merchant accelerator SKU. The NVIDIA collaboration establishes an integration direction for custom platforms without proving that every custom XPU uses NVLink. System diagrams therefore show functional interfaces, not an invented Marvell-only rack. Storage controllers and cryptographic engines remain important for data ingestion, persistence and trust, even when they do not execute model layers.</p>
+<p>OCTEON uses infrastructure software and acceleration APIs, Teralynx uses a switch SDK and supported SAI/SONiC integration, and CXL products depend on host firmware and operating-system memory management. These are separate software contracts. An open interface helps integration but does not automatically solve placement, paging or fault containment. Near-memory compute additionally needs an offload mechanism with a measured break-even point between moving data and moving work.</p>
+<h3 id="2015-2020-integrated-roles">2015-2020 integrated roles</h3>
+<pre class="mermaid">flowchart TD
+  cpu["ThunderX / host CPU"]
+  gpu["DDR4 / storage"]
+  net["OCTEON / Ethernet"]
+  sw["Firmware / SDK / OS"]
+  opt["Electrical / pluggable optics"]
+  cpu ---|"memory / CXL"| gpu
+  cpu ---|"I/O"| net
+  net ---|"link"| opt
+  sw ---|"control"| net
+</pre>
+<p>The second era includes announced and roadmap components; it is not a shipping rack bill of materials.</p>
+<h3 id="2021-2026-integrated-roles">2021-2026 integrated roles</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Customer CPU / XPU"]
+  gpu["Structera A/X/S / DDR"]
+  net["OCTEON10 / Teralynx"]
+  sw["Firmware / SDK / OS"]
+  opt["Alaska P / optical DSP / PF"]
+  cpu ---|"memory / CXL"| gpu
+  cpu ---|"I/O"| net
+  net ---|"link"| opt
+  sw ---|"control"| net
+</pre>
+<p>The second era includes announced and roadmap components; it is not a shipping rack bill of materials.</p>
+<h3 id="system-boundary">System boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partner/custom platforms</td>
+<td>2015-2026</td>
+<td>Customer-specific</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="software-integration-contracts">Software integration contracts</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Interface</th>
+<th>Function</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Switch control</td>
+<td>SDK / supported open interfaces</td>
+<td>Forwarding and telemetry</td>
+<td>ASIC-specific implementation</td>
+</tr>
+<tr>
+<td>Infrastructure</td>
+<td>Firmware / driver / acceleration APIs</td>
+<td>Packet, storage and security offload</td>
+<td>SKU and platform dependent</td>
+</tr>
+<tr>
+<td>System integration</td>
+<td>Host software and partner stack</td>
+<td>Resource and traffic management</td>
+<td>No single vendor-only AI framework</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-derived-balance-and-engineering-implications">10 Derived balance and engineering implications</h2>
+<h3 id="derived-bandwidth-hierarchy">Derived bandwidth hierarchy</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Peak calculation</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ThunderX3 DRAM/core</td>
+<td>8×3200×8/1000/96 = 2.133 GB/s</td>
+<td>Per core; not per SMT thread</td>
+</tr>
+<tr>
+<td>Structera A local DRAM</td>
+<td>4×6400×8/1000 = 204.8 GB/s</td>
+<td>Local memory-controller peak</td>
+</tr>
+<tr>
+<td>PCIe5 ×16</td>
+<td>~63 GB/s each direction</td>
+<td>Coding-adjusted; packet overhead extra</td>
+</tr>
+<tr>
+<td>Local DRAM / host-link ratio</td>
+<td>204.8/63 ≈ 3.25</td>
+<td>Local compute can avoid host-link bottleneck</td>
+</tr>
+<tr>
+<td>Custom-XPU HBM / FLOP / W</td>
+<td>n/d</td>
+<td>Customer specifications not public</td>
+</tr>
+</tbody>
+</table></div>
+<p>The strongest cross-generation trend is separation of concerns: host compute, infrastructure compute, near-memory compute and transport each acquire specialized silicon. This can improve efficiency but adds integration boundaries and failure domains. Memory expansion should be evaluated as a tier with latency and bandwidth asymmetry; optical scale-up should be evaluated as a system with endpoint and control overhead. The decisive measurements are workload-level traffic avoided, tail latency, recovery behavior and power for the complete link, not isolated component peaks.</p>
+<h2 id="11-conference-index-and-product-crosswalk">11 Conference index and product crosswalk</h2>
+<h3 id="disclosure-map">Disclosure map</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2020</td>
+<td>ThunderX3</td>
+<td>Marvell</td>
+<td>ThunderX3</td>
+<td>Vendor confirmation of presentation</td>
+<td>E09 E08</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2025</td>
+<td>Photonic Fabric Module</td>
+<td>Phil Winterbottom</td>
+<td>Celestial AI</td>
+<td>Architecture; pre-acquisition</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>ISSCC / VLSI</td>
+<td>2022-2025</td>
+<td>SerDes disclosures indexed by vendor</td>
+<td>Marvell</td>
+<td>SerDes IP</td>
+<td>Vendor index; not product-wide attribution</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>OFC / company events</td>
+<td>2023-2026</td>
+<td>Optical DSP evolution</td>
+<td>Marvell</td>
+<td>Nova / Ara</td>
+<td>Implementation platform / launch</td>
+<td>E10 E14</td>
+</tr>
+<tr>
+<td>ECOC</td>
+<td>2026</td>
+<td>2nm optical demonstrations</td>
+<td>Marvell</td>
+<td>Optical connectivity</td>
+<td>Announcement; event completion not asserted</td>
+<td>E15</td>
+</tr>
+</tbody>
+</table></div>
+<p>No direct ISCA/MICRO/HPCA/ASPLOS product-paper chain is asserted for current Marvell DPUs and switches in this edition. The conference emphasis shifts appropriately toward Hot Chips, ISSCC/VLSI signaling and OFC/ECOC integration. A SerDes test-chip result must not be copied into a product table without a documented implementation link. The appendix preserves the vendor’s conference index as a research lead, not as a substitute for reading each circuit paper.</p>
+<h3 id="names-and-roles">Names and roles</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Lineage</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ThunderX</td>
+<td>Cavium → Marvell</td>
+<td>Historical server CPU / custom transition</td>
+</tr>
+<tr>
+<td>Teralynx</td>
+<td>Innovium → Marvell</td>
+<td>Datacenter switches</td>
+</tr>
+<tr>
+<td>Photonic Fabric</td>
+<td>Celestial AI → Marvell</td>
+<td>Optical scale-up platform</td>
+</tr>
+<tr>
+<td>Structera S</td>
+<td>XConn integration</td>
+<td>PCIe / CXL switching</td>
+</tr>
+<tr>
+<td>Structera A / X</td>
+<td>Marvell</td>
+<td>Near-memory compute / expansion</td>
+</tr>
+</tbody>
+</table></div>
+<p>The material gaps are customer-XPU compute specifications, matched DPU power/SKU tables, confirmed volume availability of the newest switches, and fully measured optical-memory access behavior. Public information is sufficient to reconstruct portfolio direction, but not to rank a custom Marvell accelerator against a GPU on dense BF16 or performance per watt. That comparison requires the named customer system and its actual software configuration.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — E04, E06, E07, E09, E11, P02</p>
+<p>02 Scope and numerical conventions — E11, E12, E15, P01, P03</p>
+<p>03 ThunderX: merchant CPUs to custom compute — E08, E09, E17, P01, P05</p>
+<p>04 OCTEON: infrastructure execution and acceleration — E01, P01, P02</p>
+<p>05 Teralynx: acquired switching architecture at AI scale — E02, E03, P03</p>
+<p>06 Optical DSPs, CPO and Photonic Fabric — C01, E06, E10, E14, E15</p>
+<p>07 Structera, Alaska P and the memory hierarchy — E07, E11, E12, E13, E16, P06</p>
+<p>08 Fixed-schema product comparisons — C01, E01, E02, E03, E04, E05, E06, E11, E12, E16, P01, P02, P03</p>
+<p>09 Integrated systems and software — E03, E04, E05, E11, P02</p>
+<p>10 Derived balance and engineering implications — C01, E04, E08, E11</p>
+<p>11 Conference index and product crosswalk — C01, C02, E03, E04, E05, E06, E07, E08, E09, E10, E11, E12, E13, E14, E15, P03</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] OCTEON10 DPU platform whitepaper. <a href="https://www.marvell.com/content/dam/marvell/en/public-collateral/embedded-processors/marvell-octeon-10-dpu-platform-white-paper.pdf">https://www.marvell.com/content/dam/marvell/en/public-collateral/embedded-processors/marvell-octeon-10-dpu-platform-white-paper.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Data processing units. <a href="https://www.marvell.com/products/data-processing-units.html">https://www.marvell.com/products/data-processing-units.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] Teralynx switching portfolio. <a href="https://www.marvell.com/products/data-center-switches.html">https://www.marvell.com/products/data-center-switches.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Product selector guide July2020. <a href="https://www.marvell.com/content/dam/marvell/en/psg/marvell_psg.pdf">https://www.marvell.com/content/dam/marvell/en/psg/marvell_psg.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] Structera CXL products. <a href="https://www.marvell.com/products/cxl.html">https://www.marvell.com/products/cxl.html</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] Celestial AI Photonic Fabric Module, Hot Chips2025. <a href="https://hc2025.hotchips.org/assets/program/conference/day2/76-Hotchips_25_Celestial_AI_v4.pdf">https://hc2025.hotchips.org/assets/program/conference/day2/76-Hotchips_25_Celestial_AI_v4.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] Custom AI investor event2025; SerDes conference index. <a href="https://www.marvell.com/content/dam/marvell/en/company/assets/marvell-custom-ai-investor-event-2025.pdf">https://www.marvell.com/content/dam/marvell/en/company/assets/marvell-custom-ai-investor-event-2025.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] OCTEON10 introduction, 2021. <a href="https://www.marvell.com/company/newsroom/marvell-extends-octeon-leadership-industry-first-5nm-dpu.html">https://www.marvell.com/company/newsroom/marvell-extends-octeon-leadership-industry-first-5nm-dpu.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Teralynx10 51.2T production. <a href="https://www.marvell.com/company/newsroom/marvell-teralynx-512t-ethernet-switch-enters-volume-production-for-global-ai-cloud-deployments.html">https://www.marvell.com/company/newsroom/marvell-teralynx-512t-ethernet-switch-enters-volume-production-for-global-ai-cloud-deployments.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Teralynx T100 102.4T. <a href="https://investor.marvell.com/news-events/press-releases/detail/1024/marvell-announces-availability-of-industrys-first-102-4-tbps-switch-purpose-built-for-ai-and-cloud-data-center-infrastructure">https://investor.marvell.com/news-events/press-releases/detail/1024/marvell-announces-availability-of-industrys-first-102-4-tbps-switch-purpose-built-for-ai-and-cloud-data-center-infrastructure</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] Accelerated infrastructure for the AI era, 2025. <a href="https://www.marvell.com/content/dam/marvell/en/company/assets/marvell-accelerated-infrastructure-for-the-ai-era-event.pdf">https://www.marvell.com/content/dam/marvell/en/company/assets/marvell-accelerated-infrastructure-for-the-ai-era-event.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Custom AI infrastructure with NVIDIA. <a href="https://investor.marvell.com/news-events/press-releases/detail/97/marvell-and-nvidia-to-provide-custom-solutions-for-advanced-ai-infrastructure">https://investor.marvell.com/news-events/press-releases/detail/97/marvell-and-nvidia-to-provide-custom-solutions-for-advanced-ai-infrastructure</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] Celestial AI acquisition completion. <a href="https://www.marvell.com/company/newsroom/marvell-completes-acquisition-of-celestial-ai.html">https://www.marvell.com/company/newsroom/marvell-completes-acquisition-of-celestial-ai.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] XConn acquisition completion. <a href="https://investor.marvell.com/news-events/press-releases/detail/1007/marvell-completes-acquisition-of-xconn-technologies">https://investor.marvell.com/news-events/press-releases/detail/1007/marvell-completes-acquisition-of-xconn-technologies</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E08] ThunderX3 architecture. <a href="https://www.marvell.com/blogs/the-next-generation-of-thunderx-delivers-performance-and-power-advantages-to-cloud-and-hpc-server-markets.html">https://www.marvell.com/blogs/the-next-generation-of-thunderx-delivers-performance-and-power-advantages-to-cloud-and-hpc-server-markets.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] ThunderX strategy change. <a href="https://www.marvell.com/blogs/arm-processors-in-the-data-center.html">https://www.marvell.com/blogs/arm-processors-in-the-data-center.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E10] Teralynx10 and Nova platform. <a href="https://investor.marvell.com/news-events/press-releases/detail/188/marvell-announces-cloud-optimized-51-2-tbps-networking-platform-for-aiml-and-data-center-networks">https://investor.marvell.com/news-events/press-releases/detail/188/marvell-announces-cloud-optimized-51-2-tbps-networking-platform-for-aiml-and-data-center-networks</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] Structera A and X launch. <a href="https://www.marvell.com/company/newsroom/marvell-introduces-breakthrough-structera-cxl-product-line-to-address-server-memory-bandwidth-and-capacity-challenges-in-cloud-data-centers.html">https://www.marvell.com/company/newsroom/marvell-introduces-breakthrough-structera-cxl-product-line-to-address-server-memory-bandwidth-and-capacity-challenges-in-cloud-data-centers.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Structera S PCIe6 260-lane switch. <a href="https://www.marvell.com/company/newsroom/marvell-260-lane-pcie-6-switch-ai-data-center-scale-up.html">https://www.marvell.com/company/newsroom/marvell-260-lane-pcie-6-switch-ai-data-center-scale-up.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E13] Structera S CXL switch. <a href="https://investor.marvell.com/news-events/press-releases/detail/1017/marvell-launches-next-generation-cxl-switch-enabling-memory-pooling-to-break-through-the-ai-memory-wall">https://investor.marvell.com/news-events/press-releases/detail/1017/marvell-launches-next-generation-cxl-switch-enabling-memory-pooling-to-break-through-the-ai-memory-wall</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E14] Optical DSP platform evolution. <a href="https://www.marvell.com/company/newsroom/marvell-1-6t-optical-dsp-ai-data-center-connectivity.html">https://www.marvell.com/company/newsroom/marvell-1-6t-optical-dsp-ai-data-center-connectivity.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E15] ECOC2026 demonstration announcement. <a href="https://www.marvell.com/company/newsroom/marvell-industry-first-2nm-optical-technology-ai-data-center-infrastructure-ecoc-2026.html">https://www.marvell.com/company/newsroom/marvell-industry-first-2nm-optical-technology-ai-data-center-infrastructure-ecoc-2026.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E16] Alaska P adoption. <a href="https://investor.marvell.com/news-events/press-releases/detail/1001/marvell-announces-adoption-of-its-pcie-retimers-by-leading-ai-and-data-center-infrastructure-providers">https://investor.marvell.com/news-events/press-releases/detail/1001/marvell-announces-adoption-of-its-pcie-retimers-by-leading-ai-and-data-center-infrastructure-providers</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E17] ThunderX2 deployment. <a href="https://www.marvell.com/company/newsroom/marvells-thunderx2-solution-now-deployed-for-microsoft-azure-development.html">https://www.marvell.com/company/newsroom/marvells-thunderx2-solution-now-deployed-for-microsoft-azure-development.html</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>海光 · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="hygon-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Hygon_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Hygon_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#hygon-ai">Hygon AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 研究范围与核心结论</a><ul>
+<li><a href="#_1">各代际的关键技术锚点</a></li>
+</ul>
+</li>
+<li><a href="#02">02 证据与数值口径</a></li>
+<li><a href="#03-cpu-2015-2018-dhyana">03 CPU 技术起点：2015-2018 与 Dhyana</a></li>
+<li><a href="#04-720052003200">04 第二代：7200／5200／3200 平台</a></li>
+<li><a href="#05-ddr5">05 第三代：DDR5 之前的平台更新</a></li>
+<li><a href="#06">06 第四代与当前主机平台</a></li>
+<li><a href="#07-cpu">07 CPU 代际对照</a><ul>
+<li><a href="#cpu-zen">CPU 对照：以海光参考产品为准，不推定对应 Zen 代际</a></li>
+</ul>
+</li>
+<li><a href="#08">08 工作站与边缘衍生产品</a></li>
+<li><a href="#09-2021">09 深算一号：2021 年加速器基线</a></li>
+<li><a href="#10-k100">10 深算二号与 K100 系列部署</a></li>
+<li><a href="#11">11 深算三号与实现技术方向</a></li>
+<li><a href="#12">12 加速器对照与软件可见型号</a><ul>
+<li><a href="#dcu">DCU 对照</a></li>
+</ul>
+</li>
+<li><a href="#13-hslxgmi">13 HSL、xGMI 与网络产品边界</a><ul>
+<li><a href="#_2">互联技术表</a></li>
+<li><a href="#_3">网络覆盖范围</a></li>
+</ul>
+</li>
+<li><a href="#14">14 系统：商用主机与八卡部署</a><ul>
+<li><a href="#_4">参考系统</a></li>
+</ul>
+</li>
+<li><a href="#15-rocmhip-dtk">15 软件：从 ROCm／HIP 支持到 DTK</a><ul>
+<li><a href="#_5">软件里程碑</a></li>
+</ul>
+</li>
+<li><a href="#16">16 实现技术趋势与架构权衡</a></li>
+<li><a href="#17">17 三个阶段的完整基础设施视图</a><ul>
+<li><a href="#dcu2018-2022">阶段一：企业主机与早期 DCU，2018-2022</a></li>
+<li><a href="#2023-2025">阶段二：实际多卡系统，2023-2025</a></li>
+<li><a href="#cpu-dcu-2025-2026">阶段三：CPU-DCU 平台方向，2025-2026</a></li>
+</ul>
+</li>
+<li><a href="#18">18 带宽层次与推算比值</a><ul>
+<li><a href="#_6">按证据阶段整理的带宽层次</a></li>
+<li><a href="#_7">可复算比值及适用范围</a></li>
+</ul>
+</li>
+<li><a href="#19">19 会议到产品索引与检索覆盖</a><ul>
+<li><a href="#_8">已核实披露与研究锚点</a></li>
+</ul>
+</li>
+<li><a href="#20">20 命名、产品边界与待补披露</a><ul>
+<li><a href="#_9">产品与技术名称对照</a></li>
+</ul>
+</li>
+<li><a href="#_10">来源映射</a></li>
+<li><a href="#_11">参考资料</a><ul>
+<li><a href="#_12">产品与技术文档</a></li>
+<li><a href="#_13">会议记录与实现披露</a></li>
+<li><a href="#_14">研究论文与出版目录</a></li>
+<li><a href="#_15">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="hygon-ai">Hygon AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 研究范围与核心结论</h2>
+<p>研究对象为海光信息技术股份有限公司（688041）。时间范围：2015 年至 2026 年 9 月 28 日。深度覆盖 C86 服务器 CPU 与深算 DCU；按相关性覆盖工作站衍生产品、HSL、系统及软件。网络作为系统集成层纳入；本次未查到具有独立技术资料的海光自有商用 DPU 或 AI 网卡产品线。完整审阅的最新公司技术披露为 2026 年 8 月 14 日发布的半年度报告；活动索引覆盖 HAIC 2025 和 IHEP 2025。研究截止日期不代表已核实海光在所有 2026 年会议上的报告。</p>
+<p>海光从获得授权的 x86 技术起点，发展为 CPU 与加速器协同的平台。贯穿其中的架构选择是主机软件的连续性、DCU 的通用并行执行能力，以及不断加强的双芯互联。商用平台呈现出明确的 CPU 演进：第二代 7200 系列最高 32 核、八通道 DDR4 和 PCIe 3.0；第四代 C86 平台最高每颗 64 核，并支持 DDR5 与 PCIe 5.0。关键变化是更能承担内存与 I/O 密集型任务的主机平台，而不仅是核心数量增长。</p>
+<p>DCU 的商业化时间线比公开峰值性能表更完整：深算一号于 2021 年实现商业化，深算二号于 2023 年销售给商业客户，深算三号于 2025 年实现商业化。Z100、K100／K100-AI 是软件与部署资料中有用的板卡标识，但公开资料不足以把所有板卡名称与芯片代际建立一致的一一对应关系。本报告保留两套命名，不擅自合并。</p>
+<p>HSL 使平台战略更加具体：海光于 2025 年 9 月开放系统互联方案，并在同年 12 月 HAIC 发布 HSL 1.0 规范，目标是与生态伙伴实现更紧密的 CPU-xPU 集成。物理带宽、交换芯片端口数和最大一致性域属于进一步的实现问题；已审阅的公开披露尚不足以建立这些参数的统一规格表。</p>
+<h3 id="_1">各代际的关键技术锚点</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>锚点</th>
+<th>CPU／主机</th>
+<th>加速器／内存</th>
+<th>集成方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018-2020 基线</td>
+<td>Dhyana：32 核；4 裸片</td>
+<td>早期异构研究系统</td>
+<td>PCIe；感知 NUMA 的部署</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>7200：DDR 理论峰值推算为 170.624 GB/s</td>
+<td>深算一号：32 GB HBM2；1.024 TB/s</td>
+<td>DCU 端 PCIe 4.0 x16；速率仍受主机限制</td>
+</tr>
+<tr>
+<td>2024-2025 部署</td>
+<td>第三代；DDR4 主机生态</td>
+<td>高能所：6 节点×8 张 K100-AI；每卡 64 GB</td>
+<td>实际八卡服务器；互联域上限 n/d</td>
+</tr>
+<tr>
+<td>2025-2026 平台</td>
+<td>C86-4G：每颗 64 核；DDR5-5600 平台</td>
+<td>深算三号已商用；稠密 BF16／FP8 n/d</td>
+<td>HSL 1.0；DTK；CPU-DCU 安全协同</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="02">02 证据与数值口径</h2>
+<p>报告综合公司技术披露、整机文档、上游软件记录、部署报告及同行评审研究。产品事实与实验配置分别处理。论文能够说明所测 Dhyana 系统的拓扑或 DCU 的调度模型，但不能据此确定所有后续海光产品的实现。本次会议检索取得了有价值的系统资料和相关研究，但未核实到海光在 Hot Chips 或 ISSCC 上逐代披露产品的完整序列。缺失的电路细节保留为披露缺口。</p>
+<p>n/d 表示已审阅公开资料未能确定；n/a 表示不适用。带宽采用十进制 GB/s、TB/s。DDR 峰值按通道数×传输速率×8 字节计算，不计 ECC 位和协议影响。PCIe 示例是扣除编码开销后、尚未扣除分组开销的链路上限。只有明确依据时才填写稠密 FLOP/s；FP16 不能自动等同于 BF16。加速器互联的聚合值如未说明方向，不能直接折算为单向值。</p>
+<p>日期分别记录研发启动、量产及已观察到的商业可用性。产品若没有带日期的正式商用公告，部署记录只能证明当时已可获取，不能替代精确发布日期。XCD／MID 划分、HIG 虚拟化、堆叠缓存 IP 或 PCIe 6.0 储备等研发披露，不倒推为某个已上市 SKU 的规格。参考资料集中置于文末，附章节来源映射及共享事实数据。</p>
+<h2 id="03-cpu-2015-2018-dhyana">03 CPU 技术起点：2015-2018 与 Dhyana</h2>
+<p>AMD 于 2016 年 4 月宣布与 THATIC 的合资安排，为中国服务器产品授权处理器及 SoC 技术。海光招股书记载，第一代产品于 2016 年 3 月启动设计，2018 年 4 月量产。2018 年上游 Dhyana 支持补丁明确第一代来自 AMD 技术，并引入 Hygon Family 18h 标识。这构成可靠的技术谱系起点，但不能据此把后续海光产品标成 Zen 2、Zen 3 或 Zen 4。</p>
+<p>《软件学报》研究描述了一个 32 核 Dhyana 封装：四个裸片，每个裸片含两个四核 CCX。每核独享 64 KB 指令 L1、32 KB 数据 L1 和 512 KB L2；四核共享 8 MB L3。因此总 L3 为 64 MB，但访问局部性以 CCX 为单位，不能视为均匀的 64 MB 缓存。论文记录的平台采用 14 nm 工艺，支持双线程 SMT 和 AVX／AVX2。</p>
+<p>这种结构使局部性直接影响软件：线程绑定、首次触碰内存分配及加速器缓冲区位置，决定数据是就近访问还是经过封装内互联。HygonBLIS 研究说明了异构求解器中优化主机算子的价值：即使大部分运算由加速器完成，CPU 端优化仍会改变负载均衡和面板处理效率。这是特定系统上的应用结果，不是普遍的 IPC 结论。</p>
+<h2 id="04-720052003200">04 第二代：7200／5200／3200 平台</h2>
+<p>第二代于 2020 年 1 月量产。其市场分层体现了设计上的经济性：7200 面向高端服务器，5200 面向较小规模服务器及工作站，3200 面向工作站或边缘场景。这是同一代内的档次划分，不是三种连续演进的架构。7200 最高支持 32 核／64 线程、八通道 DDR4-2666 和 128 条 PCIe 3.0 通道。通道可用于 PCIe、存储或处理器一致性互联，因此不能把 128 理解为所有多路主板都能对外提供的可用通道数。</p>
+<p>较低档产品在最大核心数下保持了近似一致的内存配比：5200 为 16 核配四通道，3200 为八核配双通道。按 DDR4-2666 推算，三档均为每核 5.332 GB/s。招股书明确每核 L2 为 512 KB，L3 容量随档次变化。这为带宽敏感型工作负载提供了比较基线，但持续带宽还取决于 NUMA 局部性、DIMM 配置和访问模式。</p>
+<p>平台还集成安全处理器、安全启动、国密算法及可信计算支持，这些能力构成企业部署中的平台价值。它们不能直接等同于某一代 AMD SEV；实际安全模式仍须按处理器、固件和虚拟机监控器版本核对。</p>
+<h2 id="05-ddr5">05 第三代：DDR5 之前的平台更新</h2>
+<p>海光于 2022 年 6 月发布第三代 CPU，并展示 CPU-DCU 异构平台。2022 年年报记录了当年的小批量销售。新华三 R4930 G5 文档覆盖第二、第三代处理器，最高每颗 32 核，双路服务器最多 32 根 DDR4 DIMM，平台内存速率最高 3200 MT/s；PCIe 插槽标为 4.0／3.0，具体能力取决于配置。</p>
+<p>现有证据能够说明平台层面的更新，尚不能完整重建核心框图。内存传输速率提高，可以在核心数不增加时提高带宽上限；更新的 PCIe 通路则有助于缓解 DCU 和高速网卡的主机传输瓶颈。已审阅资料未确定本代统一的 ROB 大小、前端宽度、向量数据通路宽度或完整缓存共享关系，因此不借用同期 AMD 核心参数补齐。</p>
+<h2 id="06">06 第四代与当前主机平台</h2>
+<p>新华三 R4930 G7 是具体的第四代参考平台。其 C86-4G 处理器最高每颗 64 核并支持 SMT，最高主频 2.7 GHz，列明的处理器最大功率为 400 W。双路整机最高 128 个物理核心，提供 24 个 DDR5 DIMM 插槽，速率依 CPU 最高达 5600 MT/s，并最多提供十个 PCIe 5.0 插槽。128 核属于双路整机口径。</p>
+<p>核心数、内存代际与 I/O 代际同步提升，改变了主机资源配比。更多 CPU 线程可以供给数据流水线，也会竞争内存与功率预算。仅凭 DDR5 插槽数量，不能确定独立活跃通道数或每通道 DIMM 数；严谨的每核带宽比较需要通道拓扑。同样，PCIe 插槽数量也不能说明每颗 CPU 的通道数，或加速器与网卡之间是否具有无阻塞连接。</p>
+<p>公司披露涉及后续 CPU 研发，但本次资料未能确定具名第五代服务器产品的正式商用状态，因此保留为路线图项。当前技术方向包括更大的缓存与更好的管理算法、分支预测优化、模块化芯粒、安全及一致性 I/O。这些属于已披露的研发方向，具体已上市功能仍需 SKU 级文档确认。</p>
+<h2 id="07-cpu">07 CPU 代际对照</h2>
+<h3 id="cpu-zen">CPU 对照：以海光参考产品为准，不推定对应 Zen 代际</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>海光一号／7100</td>
+<td>Dhyana</td>
+<td>2018-04 量产</td>
+<td>历史已商用</td>
+<td>授权起点；Hygon Family 18h</td>
+<td>32 / 64</td>
+<td>14 nm</td>
+<td>4 裸片；每裸片 2 CCX</td>
+<td>512 KB</td>
+<td>64 MB；每 4 核 8 MB</td>
+<td>n/d</td>
+<td>多路；链路速率 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AVX / AVX2</td>
+</tr>
+<tr>
+<td>海光二号／7200</td>
+<td>n/d</td>
+<td>2020-01 量产</td>
+<td>历史已商用</td>
+<td>海光 C86；细节 n/d</td>
+<td>32 / 64</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>512 KB</td>
+<td>32／64 MB；共享域 n/d</td>
+<td>DDR4; 8; 2666 MT/s; 170.624 GB/s</td>
+<td>已验证双路；链路 n/d</td>
+<td>128 条 PCIe 3.0 通道，多用途；CXL n/d</td>
+<td>典型功耗上限值 225 W</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>海光三号／7300 平台</td>
+<td>n/d</td>
+<td>2022 小批量销售</td>
+<td>已商用／可获取</td>
+<td>海光 C86；细节 n/d</td>
+<td>32 核；整机简表线程数 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4；通道 n/d；最高 3200 MT/s；GB/s n/d</td>
+<td>双路平台；链路 n/d</td>
+<td>PCIe 4.0／3.0 平台；CXL n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>海光四号／C86-4G</td>
+<td>n/d</td>
+<td>截至资料截止已可获取；精确 GA n/d</td>
+<td>已商用／可获取</td>
+<td>海光 C86；细节 n/d</td>
+<td>64 核；SMT；最高线程数 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5；通道 n/d；最高 5600 MT/s；GB/s n/d</td>
+<td>双路；链路 n/d</td>
+<td>PCIe 5.0 平台；CXL SKU 映射 n/d</td>
+<td>处理器最大 400 W</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>海光五号</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>路线图</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08">08 工作站与边缘衍生产品</h2>
+<p>3000 与 5000 系列体现服务器技术如何缩放到较小的封装及平台。第二代 5200 配八核或十六核、四通道 DDR4、64 条 PCIe 3.0 通道；3200 配四核或八核、双通道 DDR4、32 条 PCIe 3.0 通道。招股书列出的典型功耗分别为 90-135 W 和 45-105 W。这些产品把同一软件环境扩展到工作站、边缘及较小规模服务器。</p>
+<p>复用优势主要体现在兼容性与部署工具，代价是内存容量及连接通道减少。使用同系列 CPU 的工作站主板，不会自动成为等效的 AI 主机：插槽供电、固件支持、内存配置及网卡位置仍会限制系统。本次证据中，无需引入独立的海光消费级图形架构来解释 DCU 产品线。</p>
+<h2 id="09-2021">09 深算一号：2021 年加速器基线</h2>
+<p>招股书为第一代提供了较为完整的参考配置：7 nm FinFET、64 个计算单元及 4,096 个处理单元、4,096 位接口的 32 GB HBM2、1,024 GB/s 内存带宽、350 W TDP，以及 PCIe 4.0 x16。资料列出两条 xGMI 链路和最高 184 GB/s，但未明确方向口径。因此报告保留该原始聚合值，不把它写成单向带宽。</p>
+<p>深度可分离卷积论文描述了所测 64-CU DCU：每个 CU 有四组 SIMD16，采用 64 线程波前，每个 CU 配 64 KB 共享内存。其算子分析揭示了迁移的核心问题：类似 CUDA 的源代码结构可以迁到 HIP，但启动配置、寄存器使用和共享内存分块仍需针对目标硬件重新调优。这些结论针对测试设备，不扩展为所有后续 DCU 的统一规格。</p>
+<p>第一代商业产品建立了可用的软件基础。百度于 2021 年记录飞桨在海光 7000 CPU 和 Z100 DCU 上的验证；后续 Paddle Inference 编译文档列明 Z100 使用 ROCm 4.0.1，并通过源码构建。这证明框架支持与软件技术来源，不能据此认定 Z100 与 NVIDIA CUDA 二进制兼容，或与某款 AMD 加速器相同。</p>
+<h2 id="10-k100">10 深算二号与 K100 系列部署</h2>
+<p>2023 年 11 月，海光确认深算二号已向商业客户销售。公司将其描述为支持浮点及整型运算的通用并行计算产品，但未给出完整的稠密算力与内存规格表。泛化的性能提升描述，在缺少工作负载和数值格式时，不能代替 BF16、FP8 或 FP64 的具体速率。</p>
+<p>K100 与 K100-AI 已出现在实际研究及系统部署中。高能所 2025 年 8 月报告记录了六台八卡 K100-AI 服务器，每张 PCIe 卡为 64 GB。东南大学设备资料也记录了搭载海光 7491 的系统以及 64 GB、400 W K100 AI 卡。这些资料确定了具体板卡容量与部署规模，但不足以建立适用于全部 K100-AI 的峰值算力、显存类型，或其与深算二号、三号的权威对应关系。</p>
+<p>架构问题从应用能否运行，转向能利用多少系统资源。八张卡提高了总显存容量，但张量并行也引入通信与同步。分布在多卡上的容量，不会自动成为缓存一致的共享内存池。模型部署必须考虑每卡容量、数据复制、集合通信和主机中转，因此实际部署记录比把不确定的单卡峰值乘以八更有价值。</p>
+<h2 id="11">11 深算三号与实现技术方向</h2>
+<p>海光对 2025 年的回顾明确深算三号在当年实现商业化。这推进了产品时间线，但已审阅公开资料尚不足以重建其计算单元数量、裸片数、HBM 组织、稠密 BF16／FP8 算力或板卡功耗。因此本代记为已商用，相关参数保留 n/d，不使用未经核实的 KW 系列别名补齐。</p>
+<p>2026 年半年度报告描述了物理分离的计算芯粒 XCD 与内存／I/O 芯粒 MID、高速裸片互联、HIG 资源划分、分布式 SDMA，以及 CPU-DCU 安全协同，并披露 2.5D 封装和 3D 集成研发。这些信息表明实现重点正转向计算与 I/O 的独立扩展、共享加速器资源隔离，以及减少异构部件间的数据搬运；其与具体商业 DCU 代际的对应尚未披露。</p>
+<p>架构解读：把计算与内存／I/O 分离，可使不同模块按各自节奏演进，但会引入裸片互联的带宽和功率预算。资源划分有助于提高共享利用率，实际隔离能力却取决于调度、内存带宽、缓存及 DMA 的共同表现。缺少封装拓扑和分区实测时，仅凭芯粒化或虚拟化功能名称，无法估计应用扩展效率。</p>
+<p>2026 年 4 月，有投资者询问海光五号 CPU 与深算四号 DCU 的发布及交付进展。公司回答称 CPU、DCU 正按规划推进研发与客户验证，未确认上述具名产品已发布或交付。因此本报告不把拟议的第四代 DCU 提升为已商用状态。</p>
+<h2 id="12">12 加速器对照与软件可见型号</h2>
+<h3 id="dcu">DCU 对照</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>深算一号</td>
+<td>GPGPU；商业代号 n/d</td>
+<td>2021 商用</td>
+<td>历史已商用</td>
+<td>7 nm FinFET</td>
+<td>裸片数 n/d；HBM 封装</td>
+<td>64 CUs / 4096</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM2; stacks n/d; 32 GB; 1.024 TB/s</td>
+<td>n/d</td>
+<td>2 条 xGMI；原值 184 GB/s，方向 n/d；域 n/d</td>
+<td>PCIe 4.0 x16</td>
+<td>350 W TDP；散热 n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>深算二号</td>
+<td>GPGPU</td>
+<td>截至 2023-11 已商用</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>深算三号</td>
+<td>GPGPU</td>
+<td>2025 商用</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>K100-AI 部署参考</td>
+<td>代际映射 n/d</td>
+<td>2024-2025 已部署</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>64 GB；类型、堆栈及带宽 n/d</td>
+<td>n/d</td>
+<td>观察到八卡服务器；链路／域上限 n/d</td>
+<td>PCIe</td>
+<td>P08 配置为 400 W；散热 n/d</td>
+<td>PCIe 板卡</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-hslxgmi">13 HSL、xGMI 与网络产品边界</h2>
+<p>必须区分三类连接：PCIe 将 DCU 接到主机根复合体；第一代招股书用 xGMI 描述 DCU 对等互联；HSL 则是后续面向 CPU-xPU、与生态伙伴共同开放的系统互联方案。用途相近，并不意味着它们具有相同的线协议、一致性模型或物理通道速率。</p>
+<p>公司 2025 年回顾说明，HSL 1.0 开放内容包括协议栈、IP 参考设计和指令集材料。这里的开放首先是生态设计与授权安排，不能自动等同于参与 UALink、UEC，或通过 CXL 一致性测试。每种实现的缓存一致性、DMA 可达性及互操作性仍需分别核实。</p>
+<h3 id="_2">互联技术表</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCIe 主机通路</td>
+<td>Gen3 → Gen4 → Gen5 平台</td>
+<td>8 / 16 / 32 GT/s</td>
+<td>x16 参考</td>
+<td>15.754 / 31.508 / 63.015</td>
+<td>依主板</td>
+<td>根复合体／交换机</td>
+<td>n/a</td>
+<td>I/O 传输；不默认缓存一致性</td>
+</tr>
+<tr>
+<td>深算一号 xGMI</td>
+<td>2021</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>对等连接语义 n/d</td>
+</tr>
+<tr>
+<td>HSL 1.0</td>
+<td>2025-12</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>CPU-xPU 生态</td>
+<td>n/d</td>
+<td>紧耦合集成；公开协议细节 n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>本次未查到具备独立型号和数据手册的海光商用 DPU、可编程 SmartNIC 或 AI 网卡。可以核实的是第三方网络集成：新华三平台支持 PCIe 网卡，G5 另提供 OCP 选项。端口速率、RDMA 行为、集合通信流量路径及拥塞控制，因而属于所选网卡和网络，而不会仅因与海光 CPU／DCU 同机就成为海光芯片能力。存储控制器与光模块同理。</p>
+<h3 id="_3">网络覆盖范围</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>海光服务器中的伙伴网卡</td>
+<td>依平台</td>
+<td>已商用／可获取</td>
+<td>集成层；非海光自有 SKU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe / OCP</td>
+<td>依网卡</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>依网卡／网络</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14">14 系统：商用主机与八卡部署</h2>
+<p>系统证据覆盖两种有用尺度：整机规格确定插槽数、内存代际、I/O 扩展和处理器功率；高能所资料则确定多节点 DCU 部署及其应用工作。六节点、每节点八卡的集群证明一种部署配置，不能证明存在 48 设备的硬件纵向扩展域。网络拓扑、集合通信实现和扩展实测仍需单独提供。</p>
+<h3 id="_4">参考系统</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H3C R4930 G5</td>
+<td>现行文档</td>
+<td>2 颗第二／三代 CPU；可选加速器</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>平台风扇；依配置</td>
+</tr>
+<tr>
+<td>H3C R4930 G7</td>
+<td>现行文档</td>
+<td>2 颗 C86-4G；最高 128 CPU 核</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>依服务器配置</td>
+</tr>
+<tr>
+<td>高能所 AI DCU 部署</td>
+<td>2024-2025</td>
+<td>6×8 张 K100-AI；此处 CPU 型号 n/d</td>
+<td>每节点 8 卡；协议域 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>东南大学设备参考</td>
+<td>截至资料截止已可获取</td>
+<td>2 颗海光 7491；1 张 64 GB K100 AI</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>N+1 散热；双电源</td>
+</tr>
+</tbody>
+</table></div>
+<p>功率预算必须与容量采用相同范围。若采用八张 400 W 卡，仅板卡就需推算 3.2 kW，但这是使用 P08 单卡功率的示例配置，不是高能所节点的实测额定功率。CPU、DIMM、网卡、风扇和电源转换损耗还需另计。板卡 TDP 或处理器最大功率，都不能直接确定机架功率或液冷要求。</p>
+<h2 id="15-rocmhip-dtk">15 软件：从 ROCm／HIP 支持到 DTK</h2>
+<p>DTK 是海光加速器生态的软件基础。应按层次理解：驱动与运行时、编译器及编程模型、数学与神经网络算子、框架集成，以及应用服务。飞桨早期 Z100 文档展示了 ROCm／HIP 基础，后续公司披露则覆盖 DTK、应用组件和模型适配。框架能够成功加载只是第一步；算子覆盖、数值行为与分布式执行能力，才决定生产负载是否实用。</p>
+<p>HIP 可以保留大量 CUDA 风格的主机／设备编程结构，但不会保留所有库 ABI、内联 PTX、warp 级假设或算子调优参数。卷积研究提供了重新优化数据复用、占用率和内存分块的具体依据。2025 年不同精度卷积论文的摘要分别报告 FP16、FP32 及端到端网络效果；这些是应用优化证据，不是芯片峰值算力规格。</p>
+<p>安全能力从主机安全启动与加密，扩展到 CPU-DCU 协同保护。CSV 3.0 与 HIG 出现在 2026 年技术披露中。部署时应区分功能名称与已验证的隔离边界：证明机制、可信固件、内存保护、DMA 访问和分区调度都需要兼容版本。HYGON-AI 公开仓库包括 vLLM、SGLang、Mooncake 和 Megatron-LM 的 DAS 适配。仓库描述使用 HCU 硬件名称；报告将其记录为软件可见标识，不据此虚构新的芯片代际映射。</p>
+<h3 id="_5">软件里程碑</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>版本／证据</th>
+<th>日期</th>
+<th>支持硬件</th>
+<th>主要内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>飞桨验证</td>
+<td>2021</td>
+<td>海光 7000 + Z100</td>
+<td>框架兼容性验证</td>
+</tr>
+<tr>
+<td>Paddle Inference 指南</td>
+<td>历史公开指南</td>
+<td>Z100 / ROCm 4.0.1</td>
+<td>源码构建；驱动／运行时环境</td>
+</tr>
+<tr>
+<td>研究算子优化</td>
+<td>2024-2025</td>
+<td>论文测试 DCU 配置</td>
+<td>HIP；MIOpen 基线；内存复用调优</td>
+</tr>
+<tr>
+<td>DTK 与生态披露</td>
+<td>2025-2026</td>
+<td>CPU + DCU 产品组合；精确版本矩阵 n/d</td>
+<td>编译器、算子、模型适配；安全与虚拟化研发</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="16">16 实现技术趋势与架构权衡</h2>
+<p>第一代 Dhyana 参考配置已采用多裸片，因此后续故事并非简单的单片到芯粒。演进方向是更专门化的芯粒角色、更复杂的封装及更广的系统接口。2025 年年报描述模块化芯粒设计、DDR／HBM 控制器 IP、一致性数据互联 IP，以及缓存和接口研发。未来封装可在良率、复用与互联延迟、能耗之间权衡，但公开证据尚未逐代量化这些成本。</p>
+<p>早期产品的内存扩展更容易量化。7200 提供明确的每核 DDR 基线，第一代 DCU 提供明确的 HBM 带宽基线。当前板卡容量可从部署资料核实，但可比的稠密 BF16／FP8 峰值尚不完整。因此不能绘制看似连续、实则混合不同 SKU 或精度的每 FLOP 字节数曲线；应保留缺失比值。</p>
+<p>CPU 在加速系统中仍然重要：它承担调度、数据准备、存储与网络服务，以及科学求解器中的串行部分。HSL 有望改变跨越 CPU-加速器边界的成本，但不会消除存储层次或资源竞争。最有价值的后续披露包括一致性拓扑图、单向链路速率、主机内存访问行为、受支持的分区矩阵，以及工作负载级扩展实测。</p>
+<h2 id="17">17 三个阶段的完整基础设施视图</h2>
+<p>下图表示有证据支持的架构关系，不推定未披露的实际布线。伙伴网络和存储仍置于海光已核实芯片产品组合之外。最后一图表示已披露的集成方向，具体部署细节依系统确定。</p>
+<h3 id="dcu2018-2022">阶段一：企业主机与早期 DCU，2018-2022</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86 CPU / CCX／NUMA"]
+  dram["主机 DDR4 / 重视局部性"]
+  gpu["深算一号／Z100 生态"]
+  hbm["DCU 本地内存"]
+  sw["HIP／ROCm / 飞桨支持"]
+  nic["伙伴网卡／存储 / 服务器集成"]
+  cpu ---|"内存"| dram
+  cpu ---|"PCIe"| gpu
+  gpu ---|"本地"| hbm
+  gpu ---|"运行时"| sw
+  sw ---|"系统服务"| nic
+</pre>
+<p>深算一号芯片规格与 Z100 软件支持是两类证据，图中不强制建立通用 SKU 对应关系。</p>
+<h3 id="2023-2025">阶段二：实际多卡系统，2023-2025</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86 服务器主机"]
+  dram["主机内存／存储"]
+  gpus["每节点 8 张 K100-AI / 高能所参考"]
+  mem["每卡 64 GB / 总计推算 512 GB"]
+  sw["框架／HIP／算子"]
+  net["部署共 6 节点 / 网络细节 n/d"]
+  cpu ---|"主机"| dram
+  cpu ---|"PCIe"| gpus
+  gpus ---|"本地内存"| mem
+  gpus ---|"执行"| sw
+  sw ---|"分布式运行时"| net
+</pre>
+<p>板卡容量相加不代表统一物理内存。每节点八卡及六节点是部署数量，不是链路域最大规模。</p>
+<h3 id="cpu-dcu-2025-2026">阶段三：CPU-DCU 平台方向，2025-2026</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86-4G 主机平台 / DDR5／PCIe 5.0"]
+  xpu["伙伴 xPU / HSL 生态"]
+  gpus["商业 DCU 代际 / 深算三号已商用"]
+  ip["XCD／MID／HIG / 研发至 SKU 映射 n/d"]
+  sw["DTK／应用工具 / 安全集成"]
+  net["伙伴网络／存储 / 未核实自有 DPU 系列"]
+  cpu ---|"HSL 方向"| xpu
+  cpu ---|"系统集成"| gpus
+  gpus ---|"研发方向"| ip
+  gpus ---|"软件支持"| sw
+  sw ---|"系统软件"| net
+</pre>
+<p>图中区分已商用主机／DCU、实现能力及伙伴网络，不声称某个具名 DCU SKU 已采用特定 HSL 链路。</p>
+<h2 id="18">18 带宽层次与推算比值</h2>
+<h3 id="_6">按证据阶段整理的带宽层次</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>阶段／参考</th>
+<th>片内／裸片互联</th>
+<th>内存</th>
+<th>CPU-DCU</th>
+<th>每加速器纵向扩展</th>
+<th>每加速器横向扩展</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7200 + 深算一号 DCU</td>
+<td>n/d</td>
+<td>CPU 170.624 GB/s；DCU 1024 GB/s</td>
+<td>DCU Gen4 x16 单向 31.508 GB/s；Gen3 主机上限 15.754</td>
+<td>原值 184 GB/s；方向 n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>K100-AI 部署</td>
+<td>n/d</td>
+<td>每卡 64 GB；带宽 n/d</td>
+<td>PCIe；协商速率 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>C86-4G／HSL 阶段</td>
+<td>n/d</td>
+<td>DDR5-5600 平台；通道图 n/d</td>
+<td>Gen5 x16 单向上限 63.015 GB/s；HSL n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_7">可复算比值及适用范围</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算</th>
+<th>结果</th>
+<th>范围／限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7200 每核 DDR 带宽</td>
+<td>8 × 2666 × 10^6 × 8 / 32</td>
+<td>5.332 GB/s/core</td>
+<td>推算；32 核 SKU 最高速率</td>
+</tr>
+<tr>
+<td>7200 每核 L3，64 MB SKU</td>
+<td>64 / 32</td>
+<td>2 MB/core</td>
+<td>算术平均；不是私有缓存</td>
+</tr>
+<tr>
+<td>深算一号 HBM／Gen4 x16</td>
+<td>1024 / 31.508</td>
+<td>32.50×</td>
+<td>内存带宽与单向链路上限之比</td>
+</tr>
+<tr>
+<td>八卡容量</td>
+<td>8 × 64 GB</td>
+<td>512 GB</td>
+<td>K100-AI 节点总量；不是统一内存</td>
+</tr>
+<tr>
+<td>HBM 字节／稠密 BF16 或 FP8 FLOP</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>缺少对应精度／算力分母</td>
+</tr>
+<tr>
+<td>纵向互联／HBM；横向带宽／卡；FLOP/W</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>缺少方向、网卡映射或算力／功耗配对</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="19">19 会议到产品索引与检索覆盖</h2>
+<h3 id="_8">已核实披露与研究锚点</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>海光春季发布会</td>
+<td>2022</td>
+<td>海光三号及异构平台发布</td>
+<td>海光；具名报告人 n/d</td>
+<td>海光三号 CPU + DCU</td>
+<td>公司产品活动</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>HAIC</td>
+<td>2025</td>
+<td>HSL 1.0 规范发布</td>
+<td>海光及生态伙伴</td>
+<td>HSL 1.0</td>
+<td>系统／互联；公司回顾</td>
+<td>E05</td>
+</tr>
+<tr>
+<td>高能所技术报告</td>
+<td>2025</td>
+<td>AI@IHEPCC</td>
+<td>高能所计算团队</td>
+<td>K100 / K100-AI</td>
+<td>部署系统／应用</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Journal of Software</td>
+<td>2021</td>
+<td>CPU-side High Performance BLAS Library Optimization in Heterogeneous HPL Algorithm</td>
+<td>Cai Y. et al.</td>
+<td>Dhyana</td>
+<td>相关研究；测试 CPU 拓扑</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>CCF Trans. HPC</td>
+<td>2024</td>
+<td>Optimizing depthwise separable convolution on DCU</td>
+<td>Liu Z. et al.</td>
+<td>64-CU 测试设备</td>
+<td>相关研究；算子／架构</td>
+<td>R01</td>
+</tr>
+<tr>
+<td>CCF Trans. HPC</td>
+<td>2025 / 2026</td>
+<td>Optimizing Standard Convolution for Diverse Precision on DCU</td>
+<td>Hua H. et al.</td>
+<td>DCU</td>
+<td>相关研究；仅审阅摘要</td>
+<td>R03</td>
+</tr>
+</tbody>
+</table></div>
+<p>检索组合覆盖 Hygon、Haiguang、Dhyana、C86、DCU 与 ISCA、MICRO、HPCA、ASPLOS、Hot Chips、ISSCC、DAC。本次未核实到这些会议中能够披露海光完整产品代际的一手架构或电路论文。命中项包括作者单位、引用会议工作的专利，以及引用海光相关研究的论文，均不能作为产品披露。这是本次来源核查结果，不代表海光从未参会。</p>
+<p>SC／ISC、互联与系统会议，以及 MWC、Computex、OCP、GTC、re:Invent、Ignite、Google Cloud Next 等产业活动，作为潜在部署披露渠道纳入考虑。本报告未使用这些活动中某个未经核实的海光产品演讲来确定规格。已核实的重点活动材料来自海光自身发布生态、HAIC 及高能所系统报告。缺失的 Hot Chips／ISSCC 层信息，不用后续 AMD Zen 或 CDNA 产品论文替代。</p>
+<h2 id="20">20 命名、产品边界与待补披露</h2>
+<h3 id="_9">产品与技术名称对照</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>含义</th>
+<th>对应身份</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dhyana</td>
+<td>初代 CPU 标识</td>
+<td>Hygon Family 18h</td>
+<td>不用于推定后续 Zen 代际</td>
+</tr>
+<tr>
+<td>7100 / 5100 / 3100</td>
+<td>第一代档次</td>
+<td>海光一号 CPU</td>
+<td>高端服务器／较小服务器／工作站档次</td>
+</tr>
+<tr>
+<td>7200 / 5200 / 3200</td>
+<td>第二代档次</td>
+<td>海光二号 CPU</td>
+<td>档次不等于代际</td>
+</tr>
+<tr>
+<td>C86-4G</td>
+<td>第四代主机平台</td>
+<td>海光四号 CPU；整机参考每颗 64 核</td>
+<td>P04 的 128 核是双路口径</td>
+</tr>
+<tr>
+<td>深算一号／二号／三号</td>
+<td>DCU 芯片代际</td>
+<td>商业里程碑 2021／2023／2025</td>
+<td>不是 CPU 系列编号</td>
+</tr>
+<tr>
+<td>Z100 / K100 / K100-AI</td>
+<td>软件及板卡身份</td>
+<td>实际验证／部署名称</td>
+<td>完整芯片代际映射 n/d</td>
+</tr>
+<tr>
+<td>XCD / MID / HIG</td>
+<td>芯粒与资源划分术语</td>
+<td>已披露研发能力</td>
+<td>商业 SKU 映射 n/d</td>
+</tr>
+<tr>
+<td>HSL / DTK</td>
+<td>系统互联／软件工具包</td>
+<td>平台集成／软件支持</td>
+<td>不是独立 DPU 或 AI 网卡产品</td>
+</tr>
+</tbody>
+</table></div>
+<p>关键披露缺口集中在若干方面：后续 CPU 核心与缓存组织、完整 DCU 代际到板卡映射、各数值格式的稠密算力、新芯片 HBM 堆栈和带宽、互联方向与域上限，以及封装、虚拟化、安全能力对应的商业 SKU。已确定的演进主线清晰：兼容服务器 CPU 基础扩展成通用加速器生态，再走向更紧密的 CPU-xPU 平台。下一步架构比较应在工作负载层面检验这种集成。</p>
+<h2 id="_10">来源映射</h2>
+<p>01 研究范围与核心结论 — C02, E01, E02, E03, E05, E11, P04, P07, R02</p>
+<p>02 证据与数值口径 — C02, E01, E03, E04, P04, P05, R01, R02</p>
+<p>03 CPU 技术起点：2015-2018 与 Dhyana — E03, E06, P05, R02</p>
+<p>04 第二代：7200／5200／3200 平台 — E03</p>
+<p>05 第三代：DDR5 之前的平台更新 — C03, E07, P07</p>
+<p>06 第四代与当前主机平台 — E01, E04, E07, E12, P04</p>
+<p>07 CPU 代际对照 — C03, E03, E07, P04, P05, P07, R02</p>
+<p>08 工作站与边缘衍生产品 — E03, E04</p>
+<p>09 深算一号：2021 年加速器基线 — E02, E03, P03, R01</p>
+<p>10 深算二号与 K100 系列部署 — C02, E11, P08</p>
+<p>11 深算三号与实现技术方向 — E01, E05, E12</p>
+<p>12 加速器对照与软件可见型号 — C02, E03, E05, E11, P08</p>
+<p>13 HSL、xGMI 与网络产品边界 — E03, E05, P04, P07</p>
+<p>14 系统：商用主机与八卡部署 — C02, P04, P07, P08</p>
+<p>15 软件：从 ROCm／HIP 支持到 DTK — E01, E02, E04, P03, P09, P10, R01, R03</p>
+<p>16 实现技术趋势与架构权衡 — C02, E03, E04, E05, R02</p>
+<p>17 三个阶段的完整基础设施视图 — C02, E01, E03, E05</p>
+<p>18 带宽层次与推算比值 — C02, E03, E05, P04, P08</p>
+<p>19 会议到产品索引与检索覆盖 — C02, C03, E05, P05, R01, R02, R03</p>
+<p>20 命名、产品边界与待补披露 — C02, E01, E02, E03, E04, E05, E11, P03, P04, P05, R02</p>
+<h2 id="_11">参考资料</h2>
+<h3 id="_12">产品与技术文档</h3>
+<p>[P03] PaddlePaddle Hygon DCU inference support. <a href="https://raw.githubusercontent.com/PaddlePaddle/Paddle-Inference-Demo/master/docs-official/guides/hardware_support/dcu_hygon_cn.md">https://raw.githubusercontent.com/PaddlePaddle/Paddle-Inference-Demo/master/docs-official/guides/hardware_support/dcu_hygon_cn.md</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P04] H3C UniServer R4930 G7 technical specifications. <a href="https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G7/">https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G7/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P05] Hygon Dhyana Xen support patch. <a href="https://old-list-archives.xen.org/archives/html/xen-devel/2018-09/msg01505.html">https://old-list-archives.xen.org/archives/html/xen-devel/2018-09/msg01505.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P07] H3C R4930 G5 specifications. <a href="https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G5/">https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G5/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P08] Southeast University deployed Hygon 7491 and K100 AI equipment. <a href="https://dxyq.seu.edu.cn/detail.action?equipDetail=true&amp;id=8ac0b1c19aa1a927019aa44e55e901ef">https://dxyq.seu.edu.cn/detail.action?equipDetail=true&amp;id=8ac0b1c19aa1a927019aa44e55e901ef</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P09] Hygon DCU and CUDA migration: PaddlePaddle documentation. <a href="https://paddlepaddle-static.cdn.bcebos.com/documentation/docs/zh/hardware_support/dcu/index_cn.html">https://paddlepaddle-static.cdn.bcebos.com/documentation/docs/zh/hardware_support/dcu/index_cn.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P10] HYGON-AI open source software organization. <a href="https://github.com/HYGON-AI">https://github.com/HYGON-AI</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_13">会议记录与实现披露</h3>
+<p>[C02] IHEP computing and AI infrastructure, August 2025. <a href="https://indico.ihep.ac.cn/event/26373/contributions/198403/attachments/93861/122983/AI%40IHEPCC-20250825-v5.pdf">https://indico.ihep.ac.cn/event/26373/contributions/198403/attachments/93861/122983/AI%40IHEPCC-20250825-v5.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C03] Hygon 2022 spring product launch. <a href="https://www.hygon.cn/news?newsid=102">https://www.hygon.cn/news?newsid=102</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<h3 id="_14">研究论文与出版目录</h3>
+<p>[R01] Optimizing depthwise separable convolution on DCU. <a href="https://link.springer.com/article/10.1007/s42514-024-00200-3">https://link.springer.com/article/10.1007/s42514-024-00200-3</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R02] High-performance BLAS optimization on CPU in heterogeneous HPL. <a href="https://jos.org.cn/html/2021/8/6002.htm">https://jos.org.cn/html/2021/8/6002.htm</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R03] Optimizing Standard Convolution for Diverse Precision on DCU (abstract). <a href="https://link.springer.com/article/10.1007/s42514-025-00253-y">https://link.springer.com/article/10.1007/s42514-025-00253-y</a>. 仅审阅出版方摘要；未使用正文规格。</p>
+<h3 id="_15">发布、生态与部署</h3>
+<p>[E01] Hygon Information 2026 interim report. <a href="https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF">https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E02] PaddlePaddle and Hygon DCU Z100 validation, 2021. <a href="https://ai.baidu.com/support/news?action=detail&amp;id=2619">https://ai.baidu.com/support/news?action=detail&amp;id=2619</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E03] Hygon IPO prospectus 2022. <a href="https://static.cninfo.com.cn/finalpage/2022-08-09/1214251824.PDF">https://static.cninfo.com.cn/finalpage/2022-08-09/1214251824.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E04] Hygon 2025 annual report. <a href="https://static.cninfo.com.cn/finalpage/2026-04-08/1225083088.PDF">https://static.cninfo.com.cn/finalpage/2026-04-08/1225083088.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E05] Hygon 2026 action plan and 2025 review. <a href="https://static.cninfo.com.cn/finalpage/2026-04-08/1225083107.PDF">https://static.cninfo.com.cn/finalpage/2026-04-08/1225083107.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E06] AMD Q1 2016 results and THATIC joint venture. <a href="https://ir.amd.com/financial-information/sec-filings/content/0000002488-16-000118/q116991.htm">https://ir.amd.com/financial-information/sec-filings/content/0000002488-16-000118/q116991.htm</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E07] Hygon 2022 annual report. <a href="https://static.cninfo.com.cn/finalpage/2023-04-18/1216442414.PDF">https://static.cninfo.com.cn/finalpage/2023-04-18/1216442414.PDF</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E11] Hygon investor response: Deep Computing No. 2 commercial sales, 22 November 2023 (issuer statement reproduced). <a href="https://yuanchuang.10jqka.com.cn/20231122/c652443688.shtml">https://yuanchuang.10jqka.com.cn/20231122/c652443688.shtml</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E12] Hygon investor response on CPU/DCU development and customer validation, 21 April 2026. <a href="https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml">https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml</a>. 一手资料；访问截止 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

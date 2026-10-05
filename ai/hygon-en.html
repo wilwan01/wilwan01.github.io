@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Hygon · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="hygon-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Hygon_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Hygon_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#hygon-ai-infrastructure-architecture-evolution">Hygon AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a><ul>
+<li><a href="#selected-anchors-across-generations">Selected anchors across generations</a></li>
+</ul>
+</li>
+<li><a href="#02-evidence-and-numerical-conventions">02 Evidence and numerical conventions</a></li>
+<li><a href="#03-cpu-lineage-2015-2018-and-dhyana">03 CPU lineage: 2015-2018 and Dhyana</a></li>
+<li><a href="#04-generation-2-the-7200-5200-3200-platform">04 Generation 2: the 7200 / 5200 / 3200 platform</a></li>
+<li><a href="#05-generation-3-platform-renewal-before-the-ddr5-transition">05 Generation 3: platform renewal before the DDR5 transition</a></li>
+<li><a href="#06-generation-4-and-the-current-host-platform">06 Generation 4 and the current host platform</a></li>
+<li><a href="#07-cpu-generation-comparison">07 CPU generation comparison</a><ul>
+<li><a href="#cpu-comparison-reference-products-not-inferred-zen-equivalents">CPU comparison: reference products, not inferred Zen equivalents</a></li>
+</ul>
+</li>
+<li><a href="#08-workstation-and-edge-derivatives">08 Workstation and edge derivatives</a></li>
+<li><a href="#09-deep-computing-no-1-the-2021-accelerator-baseline">09 Deep Computing No. 1: the 2021 accelerator baseline</a></li>
+<li><a href="#10-deep-computing-no-2-and-k100-class-deployments">10 Deep Computing No. 2 and K100-class deployments</a></li>
+<li><a href="#11-deep-computing-no-3-and-implementation-direction">11 Deep Computing No. 3 and implementation direction</a></li>
+<li><a href="#12-accelerator-comparison-and-software-visible-identities">12 Accelerator comparison and software-visible identities</a><ul>
+<li><a href="#dcu-comparison">DCU comparison</a></li>
+</ul>
+</li>
+<li><a href="#13-hsl-xgmi-and-the-networking-boundary">13 HSL, xGMI and the networking boundary</a><ul>
+<li><a href="#interconnect-inventory">Interconnect inventory</a></li>
+<li><a href="#networking-scope">Networking scope</a></li>
+</ul>
+</li>
+<li><a href="#14-systems-commercial-hosts-and-eight-card-deployments">14 Systems: commercial hosts and eight-card deployments</a><ul>
+<li><a href="#reference-systems">Reference systems</a></li>
+</ul>
+</li>
+<li><a href="#15-software-from-rocmhip-enablement-to-dtk">15 Software: from ROCm/HIP enablement to DTK</a><ul>
+<li><a href="#software-milestones">Software milestones</a></li>
+</ul>
+</li>
+<li><a href="#16-implementation-trends-and-architectural-trade-offs">16 Implementation trends and architectural trade-offs</a></li>
+<li><a href="#17-integrated-stack-across-three-eras">17 Integrated stack across three eras</a><ul>
+<li><a href="#era-1-enterprise-host-and-early-dcu-2018-2022">Era 1: enterprise host and early DCU, 2018-2022</a></li>
+<li><a href="#era-2-operational-multi-card-systems-2023-2025">Era 2: operational multi-card systems, 2023-2025</a></li>
+<li><a href="#era-3-cpu-dcu-platform-direction-2025-2026">Era 3: CPU-DCU platform direction, 2025-2026</a></li>
+</ul>
+</li>
+<li><a href="#18-bandwidth-hierarchy-and-derived-ratios">18 Bandwidth hierarchy and derived ratios</a><ul>
+<li><a href="#bandwidth-hierarchy-by-evidence-era">Bandwidth hierarchy by evidence era</a></li>
+<li><a href="#reproducible-ratios-and-their-limits">Reproducible ratios and their limits</a></li>
+</ul>
+</li>
+<li><a href="#19-conference-to-product-index-and-search-coverage">19 Conference-to-product index and search coverage</a><ul>
+<li><a href="#verified-disclosures-and-research-anchors">Verified disclosures and research anchors</a></li>
+</ul>
+</li>
+<li><a href="#20-names-product-boundaries-and-remaining-disclosures">20 Names, product boundaries and remaining disclosures</a><ul>
+<li><a href="#product-and-technology-crosswalk">Product and technology crosswalk</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#research-papers-and-publication-registries">Research papers and publication registries</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="hygon-ai-infrastructure-architecture-evolution">Hygon AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Company: Hygon Information Technology (688041). Period: 2015-28 September 2026. Deep coverage: C86 server CPUs and Deep Computing Units (DCUs); proportional coverage: workstation derivatives, HSL, systems and software. Networking is covered as an integration layer; no separately documented Hygon merchant DPU or AI NIC family was identified. Latest fully reviewed company technical disclosure: the interim report published on 14 August 2026; the event index includes HAIC 2025 and IHEP 2025. The cutoff does not imply a verified presentation at every 2026 conference.</p>
+<p>Hygon evolved from a licensed x86 starting point into a CPU-accelerator platform. The durable architectural choices are software continuity on the host, general-purpose parallel execution on the DCU, and increasingly explicit investment in the connections between them. The CPU progression is visible in commercial platforms: the second-generation 7200 family offered up to 32 cores, eight DDR4 channels and PCIe 3.0; fourth-generation C86 platforms support up to 64 cores per socket, DDR5 and PCIe 5.0. The important transition is a better host for memory and I/O intensive work, not simply a larger core count.</p>
+<p>The DCU history has firmer commercial milestones than public peak-performance tables. Deep Computing No. 1 entered commercial use in 2021; No. 2 was sold to commercial customers in 2023; No. 3 entered commercial use in 2025. Z100 and K100/K100-AI are useful board-level identities in software and deployment records, but public material does not provide a sufficiently consistent one-to-one mapping from every board name to each silicon generation. This report preserves both naming systems without silently joining them.</p>
+<p>HSL makes the platform strategy concrete: Hygon opened its system-interconnect initiative in September 2025 and released the HSL 1.0 specification at HAIC that December. The engineering objective is tighter CPU-xPU integration with ecosystem partners. Physical bandwidth, switch radix and a maximum coherent domain are separate implementation questions; the reviewed public disclosures do not establish a normalized specification for them.</p>
+<h3 id="selected-anchors-across-generations">Selected anchors across generations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Anchor</th>
+<th>CPU / host</th>
+<th>Accelerator / memory</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018-2020 baseline</td>
+<td>Dhyana: 32 cores; 4 dies</td>
+<td>Early heterogeneous research systems</td>
+<td>PCIe; NUMA-aware placement</td>
+</tr>
+<tr>
+<td>2021-2022</td>
+<td>7200: 170.624 GB/s derived DDR peak</td>
+<td>No. 1: 32 GB HBM2; 1.024 TB/s</td>
+<td>PCIe 4.0 x16 on DCU; host may limit rate</td>
+</tr>
+<tr>
+<td>2024-2025 deployment</td>
+<td>Generation 3; DDR4 host ecosystem</td>
+<td>IHEP: 6 nodes × 8 K100-AI; 64 GB/card</td>
+<td>Actual eight-card servers; link-domain limit n/d</td>
+</tr>
+<tr>
+<td>2025-2026 platform</td>
+<td>C86-4G: 64 cores/socket; DDR5-5600 platform</td>
+<td>No. 3 commercial; dense BF16/FP8 n/d</td>
+<td>HSL 1.0; DTK; CPU-DCU security work</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="02-evidence-and-numerical-conventions">02 Evidence and numerical conventions</h2>
+<p>The report combines issuer technical disclosures, OEM documentation, upstream software records, deployment presentations and peer-reviewed research. Product facts and experimental configurations remain separate. A research paper can establish the topology of its tested Dhyana system or the scheduling model of its DCU; it cannot establish the implementation of every later Hygon product. The conference audit found useful systems evidence and related research, but no verified generation-by-generation Hygon product sequence at Hot Chips or ISSCC. Missing circuit details are retained as disclosure gaps.</p>
+<p>n/d means not established by the reviewed public sources; n/a means not applicable. Bandwidth uses decimal GB/s and TB/s. DDR peak equals channels × transfer rate × 8 bytes, excluding ECC bits and protocol effects. PCIe examples are encoding-adjusted link ceilings before packet overhead. FLOP/s values are dense only when explicitly established; FP16 does not automatically establish BF16 throughput. A quoted accelerator interconnect aggregate is not divided into a one-way figure unless directionality is known.</p>
+<p>Dates distinguish design start, production and observed commercial availability. For products without a dated general-availability announcement, a deployment establishes availability by that date rather than an exact launch day. R&amp;D disclosures of XCD/MID partitioning, HIG virtualization, stacked-cache IP or PCIe 6.0 readiness are not retroactively attached to a shipping SKU. References are consolidated at the end, with a section-to-source map and a shared claims dataset.</p>
+<h2 id="03-cpu-lineage-2015-2018-and-dhyana">03 CPU lineage: 2015-2018 and Dhyana</h2>
+<p>AMD announced the THATIC joint venture in April 2016, licensing processor and SoC technology for server products in China. Hygon’s prospectus dates first-generation design work to March 2016 and production to April 2018. The upstream 2018 Dhyana enablement patch identifies the first generation as originating from AMD technology and introduces the Hygon Family 18h identity. That is a firm lineage anchor; it is not a license to label subsequent Hygon generations Zen 2, Zen 3 or Zen 4.</p>
+<p>A Journal of Software study describes a 32-core Dhyana package built from four dies, each with two four-core CCXs. Each core has private 64 KB instruction and 32 KB data L1 caches and 512 KB L2; four cores share 8 MB L3. This produces 64 MB aggregate L3, with locality organized around the CCX rather than a uniform 64 MB cache. The study reports a 14 nm implementation, two-way SMT and AVX/AVX2 support on its platform.</p>
+<p>The consequence is software-visible locality. Thread placement, first-touch allocation and the placement of accelerator buffers matter because computation can be close to one die’s memory or traverse the package fabric. HygonBLIS research demonstrates why host-side kernels remain relevant in a heterogeneous solver: improving the CPU portion changes load balance and panel work even when the accelerator performs most arithmetic. This is an application result on a specific system, not a universal IPC claim.</p>
+<h2 id="04-generation-2-the-7200-5200-3200-platform">04 Generation 2: the 7200 / 5200 / 3200 platform</h2>
+<p>Generation 2 entered production in January 2020. Its market tiers make the design economics clear: 7200 targets large servers, 5200 smaller servers and workstations, and 3200 workstation or edge roles. These are tiers within a generation, not three successive architectures. The 7200 family supports up to 32 cores/64 threads, eight DDR4-2666 channels and 128 PCIe 3.0 lanes. The lanes can serve PCIe, storage or coherent processor connections, so 128 should not be read as a guaranteed count of externally free lanes in every multi-socket board.</p>
+<p>The scaled-down families preserve a roughly balanced memory interface at their maximum core counts: 5200 pairs 16 cores with four channels; 3200 pairs eight with two. At DDR4-2666, all three yield a derived 5.332 GB/s per core. The prospectus specifies 512 KB L2 per core and tier-dependent L3 capacity. This gives architects a useful baseline for bandwidth-sensitive work, although sustained bandwidth depends on NUMA locality, DIMM population and access pattern.</p>
+<p>The platform also includes a security processor, secure boot, domestic cryptographic algorithms and trusted-computing support. These are part of the processor’s platform value in enterprise deployment. They do not establish equivalence to any particular AMD SEV generation, and the exact security mode must be checked against processor, firmware and hypervisor versions.</p>
+<h2 id="05-generation-3-platform-renewal-before-the-ddr5-transition">05 Generation 3: platform renewal before the DDR5 transition</h2>
+<p>Hygon’s June 2022 launch presented the third-generation CPU and a CPU-DCU heterogeneous platform. The 2022 annual report records small-volume sales that year. H3C’s R4930 G5 documentation supports second- and third-generation CPUs, up to 32 cores per processor, up to 32 DDR4 DIMMs per two-socket server and platform rates up to 3200 MT/s. PCIe slots are listed as 4.0/3.0, so exact capability is configuration-dependent.</p>
+<p>The available evidence supports a platform-level transition rather than a complete reconstructed core block diagram. Higher memory transfer rates can raise the bandwidth ceiling without more cores, while a newer PCIe path reduces the host-transfer bottleneck for DCUs and fast NICs. Public documents reviewed here do not establish a generation-wide ROB size, front-end width, vector datapath width or complete cache-sharing map. The report therefore does not borrow those values from contemporary AMD cores.</p>
+<h2 id="06-generation-4-and-the-current-host-platform">06 Generation 4 and the current host platform</h2>
+<p>H3C’s R4930 G7 is a concrete fourth-generation reference. Its C86-4G processors reach 64 cores per socket with SMT, up to 2.7 GHz and a listed maximum processor power of 400 W. The two-socket server reaches 128 physical cores, supports 24 DDR5 DIMM slots at up to 5600 MT/s depending on CPU, and offers up to ten PCIe 5.0 slots. The 128-core number belongs to the two-socket system.</p>
+<p>The simultaneous increase in core count, memory generation and I/O generation changes the host’s budget. More CPU threads can feed data pipelines, but they also compete for memory and power. DDR5 DIMM-slot count alone does not prove the number of independently active channels or DIMMs per channel; a defensible per-core bandwidth comparison needs the channel map. Likewise, a count of PCIe slots does not establish lanes per socket or nonblocking connectivity among accelerators and NICs.</p>
+<p>Later CPU development is discussed in company disclosures, but this source set does not establish general availability for a named fifth-generation server product. It is retained as a roadmap entry. The current technical direction includes larger and better-managed caches, stronger branch prediction, modular chiplets, security and coherent I/O. These are documented development themes; shipping feature attribution still requires a SKU-level document.</p>
+<h2 id="07-cpu-generation-comparison">07 CPU generation comparison</h2>
+<h3 id="cpu-comparison-reference-products-not-inferred-zen-equivalents">CPU comparison: reference products, not inferred Zen equivalents</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No. 1 / 7100</td>
+<td>Dhyana</td>
+<td>2018-04 production</td>
+<td>Historical shipping</td>
+<td>Licensed origin; Hygon Family 18h</td>
+<td>32 / 64</td>
+<td>14 nm</td>
+<td>4 dies; 2 CCX/die</td>
+<td>512 KB</td>
+<td>64 MB; 8 MB / 4 cores</td>
+<td>n/d</td>
+<td>Multi-socket; link rate n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>AVX / AVX2</td>
+</tr>
+<tr>
+<td>No. 2 / 7200</td>
+<td>n/d</td>
+<td>2020-01 production</td>
+<td>Historical shipping</td>
+<td>Hygon C86; details n/d</td>
+<td>32 / 64</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>512 KB</td>
+<td>32 / 64 MB; domain n/d</td>
+<td>DDR4; 8; 2666 MT/s; 170.624 GB/s</td>
+<td>2P observed; links n/d</td>
+<td>128 PCIe 3.0 lanes, shared uses; CXL n/d</td>
+<td>225 W typical upper value</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>No. 3 / 7300 platform</td>
+<td>n/d</td>
+<td>2022 small-volume sales</td>
+<td>Shipping / available</td>
+<td>Hygon C86; details n/d</td>
+<td>32 cores; threads n/d in OEM brief</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4; channels n/d; up to 3200 MT/s; GB/s n/d</td>
+<td>2P platform; links n/d</td>
+<td>PCIe 4.0/3.0 platform; CXL n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>No. 4 / C86-4G</td>
+<td>n/d</td>
+<td>Available by cutoff; exact GA n/d</td>
+<td>Shipping / available</td>
+<td>Hygon C86; details n/d</td>
+<td>64 cores; SMT; max threads n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5; channels n/d; up to 5600 MT/s; GB/s n/d</td>
+<td>2P; links n/d</td>
+<td>PCIe 5.0 platform; CXL SKU mapping n/d</td>
+<td>400 W processor maximum</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>No. 5</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08-workstation-and-edge-derivatives">08 Workstation and edge derivatives</h2>
+<p>The 3000 and 5000 families matter because they expose how the server technology is scaled into smaller packages and platforms. In the second generation, the 5200 family has eight or sixteen cores, four DDR4 channels and 64 PCIe 3.0 lanes; the 3200 has four or eight cores, two channels and 32 lanes. Typical power ranges in the prospectus are 90-135 W and 45-105 W, respectively. These products extend the same software environment into workstation, edge and smaller-server deployments.</p>
+<p>The reuse advantage is compatibility and deployment tooling; the trade-off is less memory capacity and fewer attachment lanes. A workstation board using the same CPU family is not automatically an equivalent AI host: slot power, firmware support, memory population and NIC placement still constrain the system. No separate Hygon consumer graphics architecture is needed to explain the DCU line in the evidence reviewed here.</p>
+<h2 id="09-deep-computing-no-1-the-2021-accelerator-baseline">09 Deep Computing No. 1: the 2021 accelerator baseline</h2>
+<p>The IPO prospectus supplies an unusually concrete first-generation reference: 7 nm FinFET, 64 compute units containing 4,096 processing elements, 32 GB HBM2 on a 4,096-bit interface, 1,024 GB/s memory bandwidth, a 350 W TDP and PCIe 4.0 x16. It quotes two xGMI links and up to 184 GB/s, without a clear direction convention. That figure is preserved as an unnormalized vendor aggregate, not entered as a one-way bandwidth.</p>
+<p>The peer-reviewed depthwise-convolution study documents a 64-CU DCU with four SIMD16 units per CU, 64-thread wavefronts and 64 KB of shared memory per CU. Its kernel analysis explains the main portability issue: CUDA-like source structure can survive a move to HIP, but launch geometry, register use and shared-memory tiling must be retuned for the target. These observations apply to the tested device, not every later DCU.</p>
+<p>The first commercial generation established a practical software foothold. Baidu documented PaddlePaddle validation on Hygon 7000 CPUs and Z100 DCUs in 2021. Paddle Inference’s build guide subsequently identifies a Z100 configuration using ROCm 4.0.1 and source compilation. This is evidence of framework enablement and the software lineage; it does not make Z100 binary-compatible with NVIDIA CUDA or make the chip identical to an AMD accelerator.</p>
+<h2 id="10-deep-computing-no-2-and-k100-class-deployments">10 Deep Computing No. 2 and K100-class deployments</h2>
+<p>In November 2023 Hygon confirmed that Deep Computing No. 2 had been sold to commercial customers. Its statement describes general-purpose parallel computation with floating-point and integer support, but does not supply a complete dense-throughput and memory table. Claims of a broad performance uplift cannot be substituted for BF16, FP8 or FP64 rates without the workload and numerical format.</p>
+<p>K100 and K100-AI appear in real research and system deployments. IHEP’s August 2025 presentation records six eight-card K100-AI servers, with 64 GB per PCIe card. Southeast University also documents a 64 GB, 400 W K100 AI card in a Hygon 7491 system. These establish useful board capacities and deployment scale. They do not establish a universal K100-AI peak compute rate, memory technology, or an authoritative mapping to Deep Computing No. 2 versus No. 3.</p>
+<p>The architectural question shifts from whether an application runs to how much of the available system it uses. Eight cards increase aggregate memory capacity, but tensor parallelism also adds communication and synchronization. Capacity divided across devices is not automatically a coherent shared memory pool. Model placement must account for per-card capacity, replication, collective traffic and host staging. Deployment records are therefore more useful than multiplying an uncertain card peak by eight.</p>
+<h2 id="11-deep-computing-no-3-and-implementation-direction">11 Deep Computing No. 3 and implementation direction</h2>
+<p>Hygon’s review of 2025 states that Deep Computing No. 3 entered commercial use during that year. This advances the product timeline, but the public documents reviewed do not disclose enough silicon-level detail to reconstruct its compute-unit count, die count, HBM organization, dense BF16/FP8 rates or board power. The generation is included as shipping, while those fields remain n/d. The report does not use unverified KW-series aliases to fill them.</p>
+<p>The 2026 interim report describes physically separated compute chiplets (XCD) and memory/I/O chiplets (MID), high-speed die-to-die interfaces, HIG resource partitioning, distributed SDMA and work on CPU-DCU security. It also records 2.5D packaging and 3D integration development. These disclosures show where the implementation effort is moving: separate compute scaling from I/O, isolate shared accelerator resources, and reduce movement across heterogeneous components. Their exact mapping to a commercial DCU generation is not disclosed.</p>
+<p>Interpretation: separating compute and memory/I/O can allow different blocks to evolve at different rates, but introduces a die-to-die bandwidth and power budget. Resource partitioning can improve consolidation, yet usable isolation depends on scheduling, memory bandwidth, cache and DMA behavior together. Without package topology and measured partition behavior, neither the chiplet label nor a virtualization feature name is sufficient to estimate application scaling.</p>
+<p>An April 2026 investor question asked about CPU No. 5 and DCU No. 4. Hygon answered that CPU and DCU development and customer validation were proceeding according to plan, without confirming launch or delivery of either named item. This report therefore does not promote the proposed fourth DCU generation to shipping status.</p>
+<h2 id="12-accelerator-comparison-and-software-visible-identities">12 Accelerator comparison and software-visible identities</h2>
+<h3 id="dcu-comparison">DCU comparison</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deep Computing No. 1</td>
+<td>GPGPU; commercial codename n/d</td>
+<td>2021 commercial</td>
+<td>Historical shipping</td>
+<td>7 nm FinFET</td>
+<td>Die count n/d; HBM package</td>
+<td>64 CUs / 4096</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM2; stacks n/d; 32 GB; 1.024 TB/s</td>
+<td>n/d</td>
+<td>2 xGMI; 184 GB/s quoted, direction n/d; domain n/d</td>
+<td>PCIe 4.0 x16</td>
+<td>350 W TDP; cooling n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Deep Computing No. 2</td>
+<td>GPGPU</td>
+<td>By 2023-11 commercial</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Deep Computing No. 3</td>
+<td>GPGPU</td>
+<td>2025 commercial</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>K100-AI deployment reference</td>
+<td>Generation crosswalk n/d</td>
+<td>2024-2025 deployed</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>64 GB; type, stacks, bandwidth n/d</td>
+<td>n/d</td>
+<td>8-card servers observed; link/domain maximum n/d</td>
+<td>PCIe</td>
+<td>400 W in P08 configuration; cooling n/d</td>
+<td>PCIe card</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-hsl-xgmi-and-the-networking-boundary">13 HSL, xGMI and the networking boundary</h2>
+<p>Three links must be kept distinct. PCIe connects a DCU to its host root complex. The first-generation prospectus names xGMI for DCU peer connections. HSL is the later CPU-xPU system-interconnect initiative, opened with ecosystem partners. Sharing a high-level purpose does not establish an identical wire protocol, coherence model or physical lane rate among these links.</p>
+<p>The HSL 1.0 release includes a protocol stack, IP reference design and instruction-set material according to the company’s 2025 review. Openness here is an ecosystem design and licensing proposition; it does not by itself establish membership in UALink, UEC or CXL compliance programs. Actual coherence, DMA reachability and interoperability need to be established for each implementation.</p>
+<h3 id="interconnect-inventory">Interconnect inventory</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCIe host path</td>
+<td>Gen3 → Gen4 → Gen5 platforms</td>
+<td>8 / 16 / 32 GT/s</td>
+<td>x16 reference</td>
+<td>15.754 / 31.508 / 63.015</td>
+<td>Board dependent</td>
+<td>Root complex / switch</td>
+<td>n/a</td>
+<td>I/O transport; no assumed cache coherence</td>
+</tr>
+<tr>
+<td>xGMI, No. 1</td>
+<td>2021</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>2</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Peer-link semantics n/d</td>
+</tr>
+<tr>
+<td>HSL 1.0</td>
+<td>2025-12</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>CPU-xPU ecosystem</td>
+<td>n/d</td>
+<td>Tightly coupled integration; exact public protocol details n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>No merchant Hygon DPU, programmable SmartNIC or AI NIC with a separate model and datasheet was identified. The supported system boundary is third-party networking: H3C provides PCIe network-adapter attachment and an OCP option on the G5 platform. Port speeds, RDMA behavior, collective traffic placement and congestion control therefore belong to the selected NIC and fabric, not to the Hygon CPU or DCU merely because they share a server. The same applies to storage controllers and optics.</p>
+<h3 id="networking-scope">Networking scope</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partner NICs in Hygon servers</td>
+<td>Platform-dependent</td>
+<td>Shipping / available</td>
+<td>Integration layer; not Hygon-owned SKU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe / OCP</td>
+<td>Adapter-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Adapter/fabric-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-systems-commercial-hosts-and-eight-card-deployments">14 Systems: commercial hosts and eight-card deployments</h2>
+<p>The system evidence spans two useful scales. OEM host specifications establish socket count, memory generation, I/O expansion and processor power. IHEP establishes an operational multi-node DCU installation and its application work. A six-node installation with eight accelerators per node proves a deployment configuration, but does not prove a 48-device hardware scale-up domain. Network topology, collective implementation and measured scaling must be provided separately.</p>
+<h3 id="reference-systems">Reference systems</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H3C R4930 G5</td>
+<td>Current documentation</td>
+<td>2 × generation 2/3 CPUs; accelerator options</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Platform fans; configuration dependent</td>
+</tr>
+<tr>
+<td>H3C R4930 G7</td>
+<td>Current documentation</td>
+<td>2 × C86-4G; up to 128 CPU cores</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Server configuration dependent</td>
+</tr>
+<tr>
+<td>IHEP AI DCU installation</td>
+<td>2024-2025</td>
+<td>6 × 8 K100-AI; CPU model n/d here</td>
+<td>8 cards/node; protocol domain n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SEU equipment reference</td>
+<td>Available by cutoff</td>
+<td>2 × Hygon 7491; 1 × K100 AI 64 GB</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>N+1 cooling; dual PSU</td>
+</tr>
+</tbody>
+</table></div>
+<p>Power must be budgeted at the same scope as capacity. Eight 400 W cards would alone require a derived 3.2 kW, but that calculation is an illustrative configuration using P08’s card power, not a measured IHEP node rating. CPU packages, DIMMs, NICs, fans and power-conversion losses add to the node budget. Neither card TDP nor processor maximum power establishes rack power or liquid-cooling requirements.</p>
+<h2 id="15-software-from-rocmhip-enablement-to-dtk">15 Software: from ROCm/HIP enablement to DTK</h2>
+<p>DTK is the software foundation for Hygon’s accelerator ecosystem. The useful abstraction is a stack: driver and runtime, compiler and programming model, mathematical and neural-network kernels, framework integration, and application serving. Paddle’s early Z100 instructions expose the ROCm/HIP foundation; later company disclosures describe DTK, application components and model-adaptation work. A framework importing successfully is only the first stage: operator coverage, numerical behavior and distributed execution determine whether production workloads are practical.</p>
+<p>HIP can preserve much of a CUDA-style host/device programming structure. It does not preserve every library ABI, inline PTX fragment, warp-level assumption or kernel tuning choice. The convolution studies give concrete reasons to revisit data reuse, occupancy and memory tiling. The 2025 diverse-precision paper’s abstract reports separate FP16 and FP32 results and end-to-end network effects; this is application optimization evidence, not a chip peak-throughput specification.</p>
+<p>The security trajectory extends from host secure boot and encryption toward CPU-DCU coordinated protection. CSV 3.0 and HIG appear in the 2026 technical disclosures. For deployment, the important distinction is between a named capability and a verified isolation boundary: attestation, trusted firmware, memory protection, DMA access and partition scheduling all need compatible versions. HYGON-AI’s public repositories include DAS adaptations of vLLM, SGLang, Mooncake and Megatron-LM. Their descriptions use the HCU hardware label; this is recorded as a software-visible identity without inventing a mapping to a new silicon generation.</p>
+<h3 id="software-milestones">Software milestones</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Release / evidence</th>
+<th>Date</th>
+<th>Hardware enabled</th>
+<th>Key features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paddle validation</td>
+<td>2021</td>
+<td>Hygon 7000 + Z100</td>
+<td>Framework compatibility validation</td>
+</tr>
+<tr>
+<td>Paddle Inference guide</td>
+<td>Historical published guide</td>
+<td>Z100 / ROCm 4.0.1</td>
+<td>Source build; driver/runtime environment</td>
+</tr>
+<tr>
+<td>Research kernel optimization</td>
+<td>2024-2025</td>
+<td>Tested DCU configurations</td>
+<td>HIP; MIOpen baseline; tuned memory reuse</td>
+</tr>
+<tr>
+<td>DTK and ecosystem disclosure</td>
+<td>2025-2026</td>
+<td>CPU + DCU portfolio; exact version matrix n/d</td>
+<td>Compilers, kernels, model adaptation; security and virtualization development</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="16-implementation-trends-and-architectural-trade-offs">16 Implementation trends and architectural trade-offs</h2>
+<p>The first-generation Dhyana reference already uses multiple dies. The later development story is therefore not simply a move from monolithic to chiplet. It is a move toward more specialized chiplet roles, richer packaging and a broader system interface. The 2025 annual report describes modular chiplet design, DDR/HBM controller IP, coherent data-fabric IP and advanced cache and interface work. A future package can trade yield and reuse against fabric latency and energy, but the public evidence does not quantify those costs per generation.</p>
+<p>Memory scaling is more measurable in early products than current DCUs. The 7200 reference gives a clean per-core DDR baseline; the first DCU gives a clean HBM-bandwidth baseline. Current board capacity is visible in deployment records, while comparable dense BF16/FP8 peaks are not. Consequently, a purported generational bytes-per-FLOP curve would be misleading. The correct comparison retains missing ratios rather than combining unrelated SKUs or numerical formats.</p>
+<p>The CPU remains consequential in accelerator systems. It handles scheduling, data preparation, storage and network services, and often the serial portion of scientific solvers. HSL potentially changes the cost of crossing the CPU-accelerator boundary; it does not eliminate memory hierarchy or contention. The highest-value next disclosures would be a coherent topology diagram, per-direction link rates, host-memory access behavior, a supported partition matrix and workload-level scaling measurements.</p>
+<h2 id="17-integrated-stack-across-three-eras">17 Integrated stack across three eras</h2>
+<p>The figures describe supported architectural relationships, not undocumented product wiring. Partner networking and storage remain outside Hygon’s documented chip portfolio. The last figure is the disclosed integration direction, with deployment details left to specific systems.</p>
+<h3 id="era-1-enterprise-host-and-early-dcu-2018-2022">Era 1: enterprise host and early DCU, 2018-2022</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86 CPU / CCX / NUMA"]
+  dram["Host DDR4 / Locality-sensitive"]
+  gpu["No. 1 DCU / Z100 ecosystem"]
+  hbm["DCU-local memory"]
+  sw["HIP / ROCm / Paddle enablement"]
+  nic["Partner NIC / storage / Server integration"]
+  cpu ---|"Memory"| dram
+  cpu ---|"PCIe"| gpu
+  gpu ---|"Local"| hbm
+  gpu ---|"Runtime"| sw
+  sw ---|"System services"| nic
+</pre>
+<p>No. 1 silicon specifications and Z100 software support are separate evidence anchors; the figure does not force a universal SKU mapping.</p>
+<h3 id="era-2-operational-multi-card-systems-2023-2025">Era 2: operational multi-card systems, 2023-2025</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86 server host"]
+  dram["Host memory / storage"]
+  gpus["8 × K100-AI per node / IHEP reference"]
+  mem["64 GB per card / 512 GB total, derived"]
+  sw["Frameworks / HIP / kernels"]
+  net["6 nodes in installation / Fabric details n/d"]
+  cpu ---|"Host"| dram
+  cpu ---|"PCIe"| gpus
+  gpus ---|"Local memory"| mem
+  gpus ---|"Execution"| sw
+  sw ---|"Distributed runtime"| net
+</pre>
+<p>Aggregate card capacity is not a unified physical-memory guarantee. Eight cards per node and six nodes are deployment counts, not maximum link-domain sizes.</p>
+<h3 id="era-3-cpu-dcu-platform-direction-2025-2026">Era 3: CPU-DCU platform direction, 2025-2026</h3>
+<pre class="mermaid">flowchart TD
+  cpu["C86-4G host platform / DDR5 / PCIe 5.0"]
+  xpu["Partner xPUs / HSL ecosystem"]
+  gpus["Commercial DCU generations / No. 3 shipping"]
+  ip["XCD / MID / HIG / R&amp;D-to-SKU map n/d"]
+  sw["DTK / application tools / Security integration"]
+  net["Partner fabric / storage / No verified owned DPU line"]
+  cpu ---|"HSL direction"| xpu
+  cpu ---|"System integration"| gpus
+  gpus ---|"Development themes"| ip
+  gpus ---|"Enablement"| sw
+  sw ---|"System software"| net
+</pre>
+<p>The diagram separates shipping host/DCU products from implementation capabilities and partner fabric. It does not claim a particular HSL link on an identified DCU SKU.</p>
+<h2 id="18-bandwidth-hierarchy-and-derived-ratios">18 Bandwidth hierarchy and derived ratios</h2>
+<h3 id="bandwidth-hierarchy-by-evidence-era">Bandwidth hierarchy by evidence era</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Era / reference</th>
+<th>On-die / die-to-die</th>
+<th>Memory</th>
+<th>CPU-DCU</th>
+<th>Scale-up / accelerator</th>
+<th>Scale-out / accelerator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7200 + No. 1 DCU</td>
+<td>n/d</td>
+<td>CPU 170.624 GB/s; DCU 1024 GB/s</td>
+<td>DCU Gen4 x16 31.508 GB/s/direction; Gen3 host caps at 15.754</td>
+<td>184 GB/s quoted; direction n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>K100-AI deployment</td>
+<td>n/d</td>
+<td>64 GB/card; bandwidth n/d</td>
+<td>PCIe; negotiated rate n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>C86-4G / HSL era</td>
+<td>n/d</td>
+<td>DDR5-5600 platform; channel map n/d</td>
+<td>Gen5 x16 ceiling 63.015 GB/s/direction; HSL n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="reproducible-ratios-and-their-limits">Reproducible ratios and their limits</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Calculation</th>
+<th>Result</th>
+<th>Scope / limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7200 DDR bandwidth/core</td>
+<td>8 × 2666 × 10^6 × 8 / 32</td>
+<td>5.332 GB/s/core</td>
+<td>Derived; 32-core SKU at peak rate</td>
+</tr>
+<tr>
+<td>7200 L3/core, 64 MB SKU</td>
+<td>64 / 32</td>
+<td>2 MB/core</td>
+<td>Arithmetic average; not private cache</td>
+</tr>
+<tr>
+<td>No. 1 HBM / Gen4 x16</td>
+<td>1024 / 31.508</td>
+<td>32.50×</td>
+<td>Memory bandwidth vs one-way link ceiling</td>
+</tr>
+<tr>
+<td>8-card capacity</td>
+<td>8 × 64 GB</td>
+<td>512 GB</td>
+<td>K100-AI node aggregate; not unified memory</td>
+</tr>
+<tr>
+<td>HBM bytes / dense BF16 or FP8 FLOP</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>No matched format/throughput denominator</td>
+</tr>
+<tr>
+<td>Scale-up/HBM; scale-out/card; FLOP/W</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Direction, NIC mapping or compute/power pair missing</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="19-conference-to-product-index-and-search-coverage">19 Conference-to-product index and search coverage</h2>
+<h3 id="verified-disclosures-and-research-anchors">Verified disclosures and research anchors</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hygon spring launch</td>
+<td>2022</td>
+<td>CPU No. 3 and heterogeneous platform launch</td>
+<td>Hygon; named speaker n/d</td>
+<td>No. 3 CPU + DCU</td>
+<td>Company product event</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>HAIC</td>
+<td>2025</td>
+<td>HSL 1.0 specification release</td>
+<td>Hygon and ecosystem partners</td>
+<td>HSL 1.0</td>
+<td>System / interconnect; issuer recap</td>
+<td>E05</td>
+</tr>
+<tr>
+<td>IHEP technical presentation</td>
+<td>2025</td>
+<td>AI@IHEPCC</td>
+<td>IHEP computing team</td>
+<td>K100 / K100-AI</td>
+<td>Deployed systems / applications</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Journal of Software</td>
+<td>2021</td>
+<td>CPU-side High Performance BLAS Library Optimization in Heterogeneous HPL Algorithm</td>
+<td>Cai Y. et al.</td>
+<td>Dhyana</td>
+<td>Related research; tested CPU topology</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>CCF Trans. HPC</td>
+<td>2024</td>
+<td>Optimizing depthwise separable convolution on DCU</td>
+<td>Liu Z. et al.</td>
+<td>64-CU test device</td>
+<td>Related research; kernels / architecture</td>
+<td>R01</td>
+</tr>
+<tr>
+<td>CCF Trans. HPC</td>
+<td>2025 / 2026</td>
+<td>Optimizing Standard Convolution for Diverse Precision on DCU</td>
+<td>Hua H. et al.</td>
+<td>DCU</td>
+<td>Related research; abstract read only</td>
+<td>R03</td>
+</tr>
+</tbody>
+</table></div>
+<p>Searches covered Hygon, Haiguang, Dhyana, C86 and DCU with ISCA, MICRO, HPCA, ASPLOS, Hot Chips, ISSCC and DAC. No primary product-architecture or circuit paper was verified for a complete Hygon generation in those venues. Search hits included author affiliations, patents citing conference work and papers referencing Hygon research; these are not product disclosures. This is a result of this source audit, not a claim that Hygon has never participated.</p>
+<p>SC/ISC, interconnect and systems venues, and industry events such as MWC, Computex, OCP, GTC, re:Invent, Ignite and Google Cloud Next were considered as possible deployment channels. No specific Hygon product talk at these events was used to establish a specification. The strongest verified event material here comes from Hygon’s own launch ecosystem, HAIC and the IHEP system presentation. The missing Hot Chips/ISSCC layer is not replaced with AMD papers about later Zen or CDNA products.</p>
+<h2 id="20-names-product-boundaries-and-remaining-disclosures">20 Names, product boundaries and remaining disclosures</h2>
+<h3 id="product-and-technology-crosswalk">Product and technology crosswalk</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>Mapped identity</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dhyana</td>
+<td>Initial CPU identity</td>
+<td>Hygon Family 18h</td>
+<td>Do not reuse as a later Zen-generation mapping</td>
+</tr>
+<tr>
+<td>7100 / 5100 / 3100</td>
+<td>Generation 1 tiers</td>
+<td>No. 1 CPU</td>
+<td>Server / smaller server / workstation tiers</td>
+</tr>
+<tr>
+<td>7200 / 5200 / 3200</td>
+<td>Generation 2 tiers</td>
+<td>No. 2 CPU</td>
+<td>Tier is not a generation</td>
+</tr>
+<tr>
+<td>C86-4G</td>
+<td>Fourth-generation host platform</td>
+<td>No. 4 CPU; 64-core/socket OEM reference</td>
+<td>128 cores means two sockets in P04</td>
+</tr>
+<tr>
+<td>Deep Computing No. 1/2/3</td>
+<td>DCU silicon generations</td>
+<td>Commercial milestones 2021/2023/2025</td>
+<td>Not CPU family numbering</td>
+</tr>
+<tr>
+<td>Z100 / K100 / K100-AI</td>
+<td>Software and board identities</td>
+<td>Actual validation / deployment names</td>
+<td>Full silicon-generation crosswalk n/d</td>
+</tr>
+<tr>
+<td>XCD / MID / HIG</td>
+<td>Chiplet and partitioning terminology</td>
+<td>Disclosed development capabilities</td>
+<td>Commercial SKU mapping n/d</td>
+</tr>
+<tr>
+<td>HSL / DTK</td>
+<td>System Link / software toolkit</td>
+<td>Platform integration / enablement</td>
+<td>Not independent DPU or AI NIC products</td>
+</tr>
+</tbody>
+</table></div>
+<p>The highest-impact disclosure gaps are concentrated, not universal: later CPU core and cache organization; a complete DCU generation-to-board map; dense numerical-format throughput; HBM stacks and bandwidth on newer silicon; link direction and domain limits; and the association of packaging, virtualization and security features with commercial SKUs. The established story is already clear: a compatible server CPU base expanded into a general-purpose accelerator ecosystem, then toward a more tightly integrated CPU-xPU platform. The next architecture comparison should test that integration at the workload level.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C02, E01, E02, E03, E05, E11, P04, P07, R02</p>
+<p>02 Evidence and numerical conventions — C02, E01, E03, E04, P04, P05, R01, R02</p>
+<p>03 CPU lineage: 2015-2018 and Dhyana — E03, E06, P05, R02</p>
+<p>04 Generation 2: the 7200 / 5200 / 3200 platform — E03</p>
+<p>05 Generation 3: platform renewal before the DDR5 transition — C03, E07, P07</p>
+<p>06 Generation 4 and the current host platform — E01, E04, E07, E12, P04</p>
+<p>07 CPU generation comparison — C03, E03, E07, P04, P05, P07, R02</p>
+<p>08 Workstation and edge derivatives — E03, E04</p>
+<p>09 Deep Computing No. 1: the 2021 accelerator baseline — E02, E03, P03, R01</p>
+<p>10 Deep Computing No. 2 and K100-class deployments — C02, E11, P08</p>
+<p>11 Deep Computing No. 3 and implementation direction — E01, E05, E12</p>
+<p>12 Accelerator comparison and software-visible identities — C02, E03, E05, E11, P08</p>
+<p>13 HSL, xGMI and the networking boundary — E03, E05, P04, P07</p>
+<p>14 Systems: commercial hosts and eight-card deployments — C02, P04, P07, P08</p>
+<p>15 Software: from ROCm/HIP enablement to DTK — E01, E02, E04, P03, P09, P10, R01, R03</p>
+<p>16 Implementation trends and architectural trade-offs — C02, E03, E04, E05, R02</p>
+<p>17 Integrated stack across three eras — C02, E01, E03, E05</p>
+<p>18 Bandwidth hierarchy and derived ratios — C02, E03, E05, P04, P08</p>
+<p>19 Conference-to-product index and search coverage — C02, C03, E05, P05, R01, R02, R03</p>
+<p>20 Names, product boundaries and remaining disclosures — C02, E01, E02, E03, E04, E05, E11, P03, P04, P05, R02</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P03] PaddlePaddle Hygon DCU inference support. <a href="https://raw.githubusercontent.com/PaddlePaddle/Paddle-Inference-Demo/master/docs-official/guides/hardware_support/dcu_hygon_cn.md">https://raw.githubusercontent.com/PaddlePaddle/Paddle-Inference-Demo/master/docs-official/guides/hardware_support/dcu_hygon_cn.md</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] H3C UniServer R4930 G7 technical specifications. <a href="https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G7/">https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G7/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Hygon Dhyana Xen support patch. <a href="https://old-list-archives.xen.org/archives/html/xen-devel/2018-09/msg01505.html">https://old-list-archives.xen.org/archives/html/xen-devel/2018-09/msg01505.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] H3C R4930 G5 specifications. <a href="https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G5/">https://www.h3c.com/cn/Products_And_Solution/Server/H3C/Products/RackServer/Products_Series/Dualway_Server/R4930_G5/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P08] Southeast University deployed Hygon 7491 and K100 AI equipment. <a href="https://dxyq.seu.edu.cn/detail.action?equipDetail=true&amp;id=8ac0b1c19aa1a927019aa44e55e901ef">https://dxyq.seu.edu.cn/detail.action?equipDetail=true&amp;id=8ac0b1c19aa1a927019aa44e55e901ef</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P09] Hygon DCU and CUDA migration: PaddlePaddle documentation. <a href="https://paddlepaddle-static.cdn.bcebos.com/documentation/docs/zh/hardware_support/dcu/index_cn.html">https://paddlepaddle-static.cdn.bcebos.com/documentation/docs/zh/hardware_support/dcu/index_cn.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] HYGON-AI open source software organization. <a href="https://github.com/HYGON-AI">https://github.com/HYGON-AI</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C02] IHEP computing and AI infrastructure, August 2025. <a href="https://indico.ihep.ac.cn/event/26373/contributions/198403/attachments/93861/122983/AI%40IHEPCC-20250825-v5.pdf">https://indico.ihep.ac.cn/event/26373/contributions/198403/attachments/93861/122983/AI%40IHEPCC-20250825-v5.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C03] Hygon 2022 spring product launch. <a href="https://www.hygon.cn/news?newsid=102">https://www.hygon.cn/news?newsid=102</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<h3 id="research-papers-and-publication-registries">Research papers and publication registries</h3>
+<p>[R01] Optimizing depthwise separable convolution on DCU. <a href="https://link.springer.com/article/10.1007/s42514-024-00200-3">https://link.springer.com/article/10.1007/s42514-024-00200-3</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R02] High-performance BLAS optimization on CPU in heterogeneous HPL. <a href="https://jos.org.cn/html/2021/8/6002.htm">https://jos.org.cn/html/2021/8/6002.htm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R03] Optimizing Standard Convolution for Diverse Precision on DCU (abstract). <a href="https://link.springer.com/article/10.1007/s42514-025-00253-y">https://link.springer.com/article/10.1007/s42514-025-00253-y</a>. Publisher abstract reviewed; no full-text specifications used.</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Hygon Information 2026 interim report. <a href="https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF">https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] PaddlePaddle and Hygon DCU Z100 validation, 2021. <a href="https://ai.baidu.com/support/news?action=detail&amp;id=2619">https://ai.baidu.com/support/news?action=detail&amp;id=2619</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Hygon IPO prospectus 2022. <a href="https://static.cninfo.com.cn/finalpage/2022-08-09/1214251824.PDF">https://static.cninfo.com.cn/finalpage/2022-08-09/1214251824.PDF</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] Hygon 2025 annual report. <a href="https://static.cninfo.com.cn/finalpage/2026-04-08/1225083088.PDF">https://static.cninfo.com.cn/finalpage/2026-04-08/1225083088.PDF</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Hygon 2026 action plan and 2025 review. <a href="https://static.cninfo.com.cn/finalpage/2026-04-08/1225083107.PDF">https://static.cninfo.com.cn/finalpage/2026-04-08/1225083107.PDF</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] AMD Q1 2016 results and THATIC joint venture. <a href="https://ir.amd.com/financial-information/sec-filings/content/0000002488-16-000118/q116991.htm">https://ir.amd.com/financial-information/sec-filings/content/0000002488-16-000118/q116991.htm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Hygon 2022 annual report. <a href="https://static.cninfo.com.cn/finalpage/2023-04-18/1216442414.PDF">https://static.cninfo.com.cn/finalpage/2023-04-18/1216442414.PDF</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] Hygon investor response: Deep Computing No. 2 commercial sales, 22 November 2023 (issuer statement reproduced). <a href="https://yuanchuang.10jqka.com.cn/20231122/c652443688.shtml">https://yuanchuang.10jqka.com.cn/20231122/c652443688.shtml</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Hygon investor response on CPU/DCU development and customer validation, 21 April 2026. <a href="https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml">https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

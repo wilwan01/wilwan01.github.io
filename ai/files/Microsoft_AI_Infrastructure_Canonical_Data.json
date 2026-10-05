@@ -1,0 +1,5412 @@
+{
+  "vendor": "Microsoft",
+  "cutoff": "2026-09-28",
+  "sections": [
+    {
+      "id": "01",
+      "title": [
+        "Scope and architectural synthesis",
+        "范围与架构主线"
+      ],
+      "blocks": [
+        {
+          "id": "01.scope",
+          "type": "prose",
+          "text": [
+            "This report follows Microsoft-owned cloud silicon from the FPGA era to Cobalt CPUs, Maia accelerators and Azure Boost infrastructure offload, covering 2015–28 September 2026 with a 2014 Catapult baseline. AMD, Intel and NVIDIA systems in Azure provide deployment context; they are not relabelled Microsoft silicon. Xbox and client devices are outside the deep scope. Internal production, customer preview and public VM general availability are distinct milestones.",
+            "本报告沿微软自研云端芯片，从 FPGA 时代追踪至 Cobalt CPU、Maia 加速器及 Azure Boost 基础设施卸载，覆盖 2015 年至 2026 年 9 月 28 日，并以 2014 年 Catapult 为基线。Azure 中的 AMD、Intel 和 NVIDIA 系统提供部署背景，不改称微软芯片。Xbox 与客户端设备不作深入覆盖。内部生产部署、客户预览与公共虚拟机正式商用分别记录。"
+          ],
+          "sources": [
+            "C04",
+            "P03",
+            "E03",
+            "E02"
+          ]
+        },
+        {
+          "id": "01.thesis",
+          "type": "prose",
+          "text": [
+            "The continuity is explicit control over data movement. Catapult moved services into a reconfigurable network path; Maia exposes a hierarchy of scratchpads, DMA and synchronization; Boost removes infrastructure work from host CPUs. Cobalt supplies the general-purpose execution plane. These are complementary machines with different programming contracts. Their joint value depends on resource isolation and utilization across the service, rather than the largest accelerator FLOPS number.",
+            "贯穿各代的是对数据搬移的显式控制。Catapult 把服务放入可重构网络路径；Maia 暴露分层暂存器、DMA 和同步机制；Boost 把基础设施工作从主机 CPU 卸载。Cobalt 提供通用执行平面。这些互补机器具有不同编程契约，整体价值取决于服务层面的资源隔离与利用率，而非最大的加速器 FLOPS 数字。"
+          ],
+          "sources": [
+            "C01",
+            "C06",
+            "P03",
+            "P04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": [
+        "The FPGA foundation: Catapult and Brainwave",
+        "FPGA 基础：Catapult 与 Brainwave"
+      ],
+      "blocks": [
+        {
+          "id": "02.history",
+          "type": "prose",
+          "text": [
+            "The ISCA 2014 Catapult paper is a pre-period baseline for accelerating Bing ranking with distributed FPGAs. The MICRO 2016 configurable-cloud work shifts the emphasis toward a datacenter-wide reconfigurable fabric integrated with networking. Brainwave, described at ISCA 2018, maps real-time neural inference onto FPGAs. The progression matters: an accelerator becomes a service and network resource, not merely a peripheral attached to one application process.",
+            "ISCA 2014 的 Catapult 论文是时期之前的基线，使用分布式 FPGA 加速 Bing 排序。MICRO 2016 的可配置云工作，把重点移向与网络集成的数据中心级可重构网络。ISCA 2018 披露的 Brainwave 把实时神经网络推理映射到 FPGA。该演进的重要之处是：加速器成为服务和网络资源，而不只是挂在一个应用进程旁的外设。"
+          ],
+          "sources": [
+            "C04",
+            "P03",
+            "C05"
+          ]
+        },
+        {
+          "id": "02.lessons",
+          "type": "prose",
+          "text": [
+            "Reconfigurability lets the operator move functions as protocols and models change, but consumes area and energy compared with dedicated logic. A later ASIC can harden stable operations while retaining programmable control. This is an architectural lineage, not evidence that Maia reuses a particular Catapult RTL block or that every Boost generation is an FPGA. Research prototypes, production infrastructure and public VM products must remain separate in the timeline.",
+            "可重构性允许运营方随协议和模型变化迁移功能，但相比专用逻辑会付出面积与能耗成本。后续 ASIC 可以固化稳定操作，同时保留可编程控制。这是架构思路的延续，不证明 Maia 复用某个 Catapult RTL 模块，也不意味着每一代 Boost 都是 FPGA。研究原型、生产基础设施与公共虚拟机产品在时间线上分别处理。"
+          ],
+          "sources": [
+            "P03",
+            "C05",
+            "E06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": [
+        "Cobalt: general-purpose cloud compute",
+        "Cobalt：通用云计算"
+      ],
+      "blocks": [
+        {
+          "id": "03.c100",
+          "type": "prose",
+          "text": [
+            "Cobalt 100 establishes Microsoft’s own Arm server-CPU line with 128 Neoverse N2 cores. Its VMs became generally available in October 2024. The relevant comparison is a matched VM and service workload, including memory, storage and network limits; a processor core count alone does not describe the customer-visible machine.",
+            "Cobalt 100 以 128 个 Neoverse N2 核心建立微软自有 Arm 服务器 CPU 产品线，其虚拟机于 2024 年 10 月正式商用。有效比较应匹配虚拟机配置及服务负载，包括内存、存储和网络限制；处理器核心数本身不能描述客户可见的机器。"
+          ],
+          "sources": [
+            "E07",
+            "E08",
+            "P01"
+          ]
+        },
+        {
+          "id": "03.c200",
+          "type": "prose",
+          "text": [
+            "Cobalt 200 moves to Neoverse CSS V3 and a chiplet implementation. Microsoft discloses 132 active cores, 3 MB L2 per core and 192 MB shared system cache. The June 2026 VM milestone is early-access preview, with VM sizes up to 128 vCPUs. The difference between 132 physical active cores and 128 customer vCPUs should be preserved. Larger caches target the cost of bringing data to the core; advertised service gains are not a universal IPC multiplier.",
+            "Cobalt 200 转向 Neoverse CSS V3 和小芯片实现。微软披露 132 个启用核心、每核 3 MB L2 及 192 MB 共享系统缓存。2026 年 6 月的虚拟机里程碑为早期访问预览，虚拟机规格最高 128 vCPU。132 个物理启用核心与 128 个客户 vCPU 的区别应保留。更大缓存针对数据送至核心的成本，厂商公布的服务收益不代表通用 IPC 倍增。"
+          ],
+          "sources": [
+            "P01",
+            "E02"
+          ]
+        },
+        {
+          "id": "cpu",
+          "type": "table",
+          "table": "cpu"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": [
+        "Maia 100: building a software-defined machine",
+        "Maia 100：建立软件定义机器"
+      ],
+      "blocks": [
+        {
+          "id": "04.m100",
+          "type": "prose",
+          "text": [
+            "Hot Chips 2024 supplies the implementation picture missing from the original launch: an approximately 820 mm² N5 die, CoWoS-S packaging, 64 GB HBM2e at 1.8 TB/s and roughly 500 MB of local SRAM. Sixteen clusters each contain four tiles, with tensor, vector, data-movement and control functions. The slide specification separates a 700 W design target from 500 W provisioned power. Those are not interchangeable operating points.",
+            "Hot Chips 2024 补上最初发布所缺的实现细节：约 820 mm² 的 N5 裸片、CoWoS-S 封装、64 GB HBM2e、1.8 TB/s 带宽，以及约 500 MB 本地 SRAM。十六个集群各含四个计算块，分别提供张量、向量、数据搬移与控制功能。幻灯片规格区分 700 W 设计目标与 500 W 配置功耗，两者不能作为可互换工作点。"
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "04.m100prog",
+          "type": "prose",
+          "text": [
+            "The compiler orchestrates asynchronous engines using semaphores. Triton offers a higher-level route, while the Maia API exposes explicit placement and scheduling. This trades automatic cache management for control over reuse and overlap. A good schedule can fuse elementwise work with matrix operations and communication; a poor schedule can stall a large tensor engine despite abundant peak compute. Six- and nine-bit tensor formats in the slides must not be renamed FP4 and FP8.",
+            "编译器使用信号量协调异步引擎。Triton 提供较高层路径，Maia API 则显式暴露放置与调度。这以自动缓存管理换取对复用和重叠执行的控制。良好调度可以融合逐元素运算、矩阵计算和通信；不良调度则可能让大规模张量引擎在峰值算力充裕时仍然停顿。幻灯片中的六位、九位张量格式不能改称 FP4 和 FP8。"
+          ],
+          "sources": [
+            "C06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": [
+        "Maia 200: dataflow extends through the network",
+        "Maia 200：数据流延伸至网络"
+      ],
+      "blocks": [
+        {
+          "id": "05.m200",
+          "type": "prose",
+          "text": [
+            "The 2026 technical paper makes Maia 200 a software-defined dataflow system rather than a matrix engine with an attached NIC. A monolithic 3 nm compute die uses six HBM3e stacks, 216 GB capacity and 7 TB/s bandwidth. Four clusters contain nine or ten tiles each. Separate data and control networks, specialized SRAM, DMA and synchronization engines let software describe when data is ready and where it must move. The published peak is 10,145 TFLOP/s FP4 and 5,072 TFLOP/s FP8 within a 750 W TDP.",
+            "2026 年技术论文将 Maia 200 描述为软件定义数据流系统，而不是外接网卡的矩阵引擎。单片 3 nm 计算裸片配六堆栈 HBM3e，容量 216 GB、带宽 7 TB/s。四个集群各含九或十个计算块。分离的数据与控制网络、专用 SRAM、DMA 和同步引擎，让软件描述数据何时就绪及其目标位置。公布峰值为 FP4 10,145 TFLOP/s、FP8 5,072 TFLOP/s，TDP 为 750 W。"
+          ],
+          "sources": [
+            "C01",
+            "P02"
+          ]
+        },
+        {
+          "id": "05.m200net",
+          "type": "prose",
+          "text": [
+            "Twenty-eight integrated 400 Gb/s controllers supply 1.4 TB/s in each direction. Twenty ports use fixed links and eight feed four switched planes. The described deployment design point is 6,144 chips with oversubscription in the external fabric; it is not a fully connected 6,144-chip memory domain. ATLv2 provides transport, encryption, selective retransmission and congestion control. Remote SRAM access uses explicit send/receive and synchronization, not CPU-style transparent cache coherence.",
+            "二十八个集成 400 Gb/s 控制器提供每方向 1.4 TB/s。二十个端口连接固定链路，八个端口接入四个交换平面。论文描述的部署设计点为 6,144 芯片，外部网络存在超额订阅，并非 6,144 芯片全互联内存域。ATLv2 提供传输、加密、选择性重传与拥塞控制。远端 SRAM 访问使用显式发送／接收及同步，不是 CPU 式透明缓存一致性。"
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "05.implication",
+          "type": "prose",
+          "text": [
+            "Architectural interpretation: integrating communication into the dataflow contract can reduce launch and host-interface overhead, but transfers scheduling responsibility into the compiler and runtime. The practical test is whether compute, memory traffic and collectives overlap for the actual model shape. More low-precision arithmetic increases the reuse required to remain compute-bound; it does not remove the HBM or network roofline.",
+            "架构解读：把通信纳入数据流契约，可以降低启动与主机接口开销，但也把调度责任交给编译器及运行时。实际检验是计算、存储流量与集合通信能否在真实模型形状下重叠。更多低精度算术提高了保持计算受限所需的复用程度，并未消除 HBM 或网络上限。"
+          ],
+          "sources": [
+            "C01",
+            "C06"
+          ]
+        },
+        {
+          "id": "gpu",
+          "type": "table",
+          "table": "gpu"
+        },
+        {
+          "id": "05.units",
+          "type": "prose",
+          "text": [
+            "The Maia 100 slide block diagram contains an older PCIe label, while its specification table states PCIe5 ×8; this report uses the specification table and preserves the discrepancy. Maia 200’s paper uses both TB/s and TiB/s wording for memory bandwidth; the main specification and vendor architecture disclosure use 7 TB/s, the basis for calculations here. No measured application efficiency is inferred from TDP and peak FLOPS.",
+            "Maia 100 幻灯片框图包含较旧 PCIe 标注，而规格表写 PCIe5 ×8；本报告采用规格表，并保留该差异。Maia 200 论文对内存带宽同时出现 TB/s 与 TiB/s 表述；主要规格及厂商架构披露采用 7 TB/s，本报告据此计算。不根据 TDP 与峰值 FLOPS 推定实测应用效率。"
+          ],
+          "sources": [
+            "C06",
+            "C01",
+            "P02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": [
+        "Azure Boost, AI NICs and security",
+        "Azure Boost、AI NIC 与安全"
+      ],
+      "blocks": [
+        {
+          "id": "06.boost",
+          "type": "prose",
+          "text": [
+            "Azure Boost is an infrastructure system; the Azure Boost DPU is a silicon component in that evolution. The 2024 DPU announcement and the 2026 general availability of a newer Boost generation describe hardening more storage and networking functions into dedicated hardware. MANA supplies the guest-facing network interface. Up to 400 Gb/s is a supported platform/VM ceiling, not evidence that every VM receives that rate. Cerberus anchors the hardware trust boundary.",
+            "Azure Boost 是基础设施系统，Azure Boost DPU 是其演进中的芯片组件。2024 年 DPU 发布及 2026 年新一代 Boost 正式商用，描述将更多存储与网络功能固化到专用硬件。MANA 提供客户机可见网络接口。最高 400 Gb/s 是支持的平台／虚拟机上限，不证明每个虚拟机都获得该速率。Cerberus 提供硬件信任边界。"
+          ],
+          "sources": [
+            "E05",
+            "E06",
+            "P04"
+          ]
+        },
+        {
+          "id": "nic",
+          "type": "table",
+          "table": "nic"
+        },
+        {
+          "id": "links",
+          "type": "table",
+          "table": "links"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": [
+        "Systems and programming stack",
+        "系统与编程栈"
+      ],
+      "blocks": [
+        {
+          "id": "early",
+          "type": "figure",
+          "figure": "early"
+        },
+        {
+          "id": "late",
+          "type": "figure",
+          "figure": "late"
+        },
+        {
+          "id": "system",
+          "type": "table",
+          "table": "system"
+        },
+        {
+          "id": "software",
+          "type": "table",
+          "table": "software"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": [
+        "Normalized balance and trends",
+        "归一化平衡与趋势"
+      ],
+      "blocks": [
+        {
+          "id": "ratios",
+          "type": "table",
+          "table": "ratios"
+        },
+        {
+          "id": "08.trend",
+          "type": "prose",
+          "text": [
+            "The Maia transition increases HBM capacity by 3.375× and bandwidth by 3.89×, while total integrated network bandwidth grows 2.33×. It also changes numerical formats and the on-chip memory organization, so a single compute-growth ratio would hide important differences. For deployment decisions, measure latency under realistic batching, scratchpad occupancy, communication overlap and failure recovery. These expose whether the custom architecture improves a service rather than only a kernel.",
+            "Maia 换代使 HBM 容量增加至 3.375 倍、带宽增至 3.89 倍，集成网络总带宽增至 2.33 倍。同时数值格式与片上存储组织也改变，因此单一算力增长比会掩盖重要差异。部署决策应测量真实批处理下的延迟、暂存器占用、通信重叠及故障恢复，以判断定制架构提升的是完整服务还是仅某个算子。"
+          ],
+          "sources": [
+            "C06",
+            "C01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": [
+        "Conference-to-product index",
+        "会议与产品索引"
+      ],
+      "blocks": [
+        {
+          "id": "conference",
+          "type": "table",
+          "table": "conference"
+        },
+        {
+          "id": "09.limits",
+          "type": "prose",
+          "text": [
+            "ISCA and MICRO establish the FPGA lineage; Hot Chips supplies the Maia block and implementation views. ISSCC2026 paper 17.4 establishes an additional Maia implementation disclosure; the official program does not specify a generation suffix. This edition does not establish a Cobalt/Maia product-specific HPCA or ASPLOS paper. A conference program proves a presentation exists; detailed specifications here come from the slides, technical paper and product documentation. The main remaining gaps are complete Cobalt memory/PCIe specifications, matched Maia operating points and SKU-level Boost implementation details.",
+            "ISCA 与 MICRO 建立 FPGA 谱系，Hot Chips 提供 Maia 的模块及实现视图。ISSCC2026 论文 17.4 增加了 Maia 实现披露；官方议程未注明代际后缀。本版未建立 Cobalt／Maia 对应的产品级 HPCA 或 ASPLOS 论文。会议议程证明演讲存在；本文详细规格来自幻灯片、技术论文及产品文档。主要缺口是完整 Cobalt 内存／PCIe 规格、匹配的 Maia 工作点及 SKU 级 Boost 实现细节。"
+          ],
+          "sources": [
+            "P03",
+            "C06",
+            "C01",
+            "P01",
+            "P04"
+          ]
+        },
+        {
+          "id": "isscc",
+          "type": "table",
+          "table": "isscc"
+        },
+        {
+          "id": "09.issccscope",
+          "type": "prose",
+          "text": [
+            "The ISSCC record establishes a circuit/implementation disclosure alongside the Hot Chips architectural chain. Because the full digest was not accessible in this review, its title is not used to assign undisclosed clocking, voltage-regulator or SRAM-circuit details to Maia100 or Maia200. The full Hot Chips slides and the Maia200 technical paper remain the quantitative implementation sources.",
+            "ISSCC 记录在 Hot Chips 架构链之外，建立电路／实现披露入口。由于本次未获取完整文集，不能仅根据题目把未披露时钟、电压调节器或 SRAM 电路细节分配给 Maia100 或 Maia200。完整 Hot Chips 幻灯片与 Maia200 技术论文仍是定量实现依据。"
+          ],
+          "sources": [
+            "C07",
+            "C06",
+            "C01"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": [
+        "Naming crosswalk",
+        "命名对照"
+      ],
+      "blocks": [
+        {
+          "id": "cross",
+          "type": "table",
+          "table": "cross"
+        }
+      ]
+    }
+  ],
+  "tables": {
+    "cpu": {
+      "id": "cpu",
+      "title": [
+        "CPU generations",
+        "CPU 代际"
+      ],
+      "headers": [
+        [
+          "Generation / reference SKU",
+          "代际／参考 SKU"
+        ],
+        [
+          "Codename",
+          "代号"
+        ],
+        [
+          "GA",
+          "正式商用"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Core µarch",
+          "核心微架构"
+        ],
+        [
+          "Cores / threads",
+          "核心／线程"
+        ],
+        [
+          "Process per die",
+          "各裸片工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "L2 per core",
+          "每核 L2"
+        ],
+        [
+          "L3 / domain",
+          "L3／共享域"
+        ],
+        [
+          "Memory: channels; rate; GB/s",
+          "内存：通道；速率；GB/s"
+        ],
+        [
+          "Sockets / links",
+          "插槽／互联"
+        ],
+        [
+          "PCIe / CXL",
+          "PCIe／CXL"
+        ],
+        [
+          "TDP",
+          "TDP"
+        ],
+        [
+          "Vector / matrix ISA",
+          "向量／矩阵 ISA"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "c100",
+          "values": [
+            [
+              "Cobalt 100",
+              "Cobalt 100"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2024-10",
+              "2024-10"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Neoverse N2",
+              "Neoverse N2"
+            ],
+            [
+              "128 / 128",
+              "128 / 128"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "DDR5; channels/rate n/d",
+              "DDR5; channels/rate n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Armv9",
+              "Armv9"
+            ]
+          ],
+          "sources": [
+            "E07",
+            "E08"
+          ]
+        },
+        {
+          "id": "c200",
+          "values": [
+            [
+              "Cobalt 200",
+              "Cobalt 200"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "2026-06 preview",
+              "2026-06 预览"
+            ],
+            [
+              "Early-access preview",
+              "早期访问预览"
+            ],
+            [
+              "Neoverse CSS V3",
+              "Neoverse CSS V3"
+            ],
+            [
+              "132 / 132",
+              "132 / 132"
+            ],
+            [
+              "3 nm",
+              "3 nm"
+            ],
+            [
+              "Chiplets; count n/d",
+              "小芯片；数量 n/d"
+            ],
+            [
+              "3 MB",
+              "3 MB"
+            ],
+            [
+              "192 MB / SoC",
+              "192 MB / SoC"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Armv9",
+              "Armv9"
+            ]
+          ],
+          "sources": [
+            "P01",
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          0,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "gpu": {
+      "id": "gpu",
+      "title": [
+        "Accelerator generations",
+        "加速器代际"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Architecture",
+          "架构"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Process",
+          "工艺"
+        ],
+        [
+          "Dies / packaging",
+          "裸片／封装"
+        ],
+        [
+          "Compute units",
+          "计算单元"
+        ],
+        [
+          "Dense BF16",
+          "稠密 BF16"
+        ],
+        [
+          "Dense FP8",
+          "稠密 FP8"
+        ],
+        [
+          "Dense FP6 / FP4",
+          "稠密 FP6／FP4"
+        ],
+        [
+          "FP64 vector / matrix",
+          "FP64 向量／矩阵"
+        ],
+        [
+          "Memory: type; stacks; GB; TB/s",
+          "内存：类型；堆栈；GB；TB/s"
+        ],
+        [
+          "LLC / SRAM",
+          "末级缓存／SRAM"
+        ],
+        [
+          "Scale-up: links; GB/s per direction; domain",
+          "纵向扩展：链路；单向 GB/s；域"
+        ],
+        [
+          "Host link",
+          "主机连接"
+        ],
+        [
+          "Power / cooling",
+          "功耗／散热"
+        ],
+        [
+          "Form factor",
+          "形态"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "m100",
+          "values": [
+            [
+              "Maia 100",
+              "Maia 100"
+            ],
+            [
+              "Software-defined dataflow",
+              "Software-defined dataflow"
+            ],
+            [
+              "2023 launch; HC2024",
+              "2023 launch; HC2024"
+            ],
+            [
+              "Historical shipping",
+              "历史已商用"
+            ],
+            [
+              "TSMC N5",
+              "TSMC N5"
+            ],
+            [
+              "1 logic die; CoWoS-S",
+              "1 logic die; CoWoS-S"
+            ],
+            [
+              "64 tiles / 16 clusters",
+              "64 tiles / 16 clusters"
+            ],
+            [
+              "800 TFLOP/s",
+              "800 TFLOP/s"
+            ],
+            [
+              "n/a; 9-bit: 1.5 POPS",
+              "n/a; 9-bit: 1.5 POPS"
+            ],
+            [
+              "6-bit: 3 POPS; FP4 n/d",
+              "6-bit: 3 POPS; FP4 n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM2e; stacks n/d; 64 GB; 1.8 TB/s",
+              "HBM2e; stacks n/d; 64 GB; 1.8 TB/s"
+            ],
+            [
+              "~500 MB",
+              "~500 MB"
+            ],
+            [
+              "12×400G; 600 GB/s one-way; domain n/d",
+              "12×400G; 600 GB/s one-way; domain n/d"
+            ],
+            [
+              "PCIe5 ×8 (spec table)",
+              "PCIe5 ×8 (spec table)"
+            ],
+            [
+              "700 W design / 500 W provision",
+              "700 W design / 500 W provision"
+            ],
+            [
+              "Azure module",
+              "Azure 模块"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "m200",
+          "values": [
+            [
+              "Maia 200",
+              "Maia 200"
+            ],
+            [
+              "SDLA",
+              "SDLA"
+            ],
+            [
+              "2026 deployment",
+              "2026 deployment"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "3 nm",
+              "3 nm"
+            ],
+            [
+              "1 logic die; 75×75 mm package",
+              "1 logic die; 75×75 mm package"
+            ],
+            [
+              "4 clusters; 9-10 tiles/cluster",
+              "4 clusters; 9-10 tiles/cluster"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "5072 TFLOP/s",
+              "5072 TFLOP/s"
+            ],
+            [
+              "FP4: 10145 TFLOP/s",
+              "FP4: 10145 TFLOP/s"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "HBM3e; 6; 216 GB; 7 TB/s",
+              "HBM3e; 6; 216 GB; 7 TB/s"
+            ],
+            [
+              "272 MB",
+              "272 MB"
+            ],
+            [
+              "28×400G; 1400 GB/s one-way; topology-specific",
+              "28×400G; 1400 GB/s one-way; topology-specific"
+            ],
+            [
+              "PCIe6 ×8",
+              "PCIe6 ×8"
+            ],
+            [
+              "750 W; liquid",
+              "750 W; liquid"
+            ],
+            [
+              "Azure module",
+              "Azure 模块"
+            ]
+          ],
+          "sources": [
+            "C01",
+            "P02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [
+          0,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          11,
+          12
+        ],
+        [
+          0,
+          13,
+          14,
+          15,
+          16
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "nic": {
+      "id": "nic",
+      "title": [
+        "Infrastructure and integrated NICs",
+        "基础设施与集成 NIC"
+      ],
+      "headers": [
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "GA / milestone",
+          "商用／里程碑"
+        ],
+        [
+          "Status",
+          "状态"
+        ],
+        [
+          "Class",
+          "类别"
+        ],
+        [
+          "Ports × speed",
+          "端口×速率"
+        ],
+        [
+          "SerDes",
+          "SerDes"
+        ],
+        [
+          "Host interface",
+          "主机接口"
+        ],
+        [
+          "Programmable engine",
+          "可编程引擎"
+        ],
+        [
+          "Embedded CPU",
+          "嵌入式 CPU"
+        ],
+        [
+          "On-card memory",
+          "板载内存"
+        ],
+        [
+          "Transport / RDMA",
+          "传输／RDMA"
+        ],
+        [
+          "Congestion control",
+          "拥塞控制"
+        ],
+        [
+          "Key offloads",
+          "主要卸载"
+        ],
+        [
+          "Power",
+          "功耗"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "boost",
+          "values": [
+            [
+              "Azure Boost / DPU",
+              "Azure Boost / DPU"
+            ],
+            [
+              "2024 announcement; 2026 system GA",
+              "2024 announcement; 2026 system GA"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Infrastructure offload",
+              "Infrastructure offload"
+            ],
+            [
+              "Up to 400 Gb/s platform",
+              "Up to 400 Gb/s platform"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Dedicated offload logic",
+              "Dedicated offload logic"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "MANA / RDMA",
+              "MANA / RDMA"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Network; storage; virtualization; trust",
+              "Network; storage; virtualization; trust"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E05",
+            "E06",
+            "P04"
+          ]
+        },
+        {
+          "id": "anc",
+          "values": [
+            [
+              "Maia 200 ANC",
+              "Maia 200 ANC"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "Shipping / available",
+              "已商用／可获取"
+            ],
+            [
+              "Integrated AI NIC",
+              "Integrated AI NIC"
+            ],
+            [
+              "28×400 Gb/s",
+              "28×400 Gb/s"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "On-chip NoC",
+              "On-chip NoC"
+            ],
+            [
+              "DMA / ATLv2",
+              "DMA / ATLv2"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "Shared chip memories",
+              "Shared chip memories"
+            ],
+            [
+              "ATLv2 / Ethernet",
+              "ATLv2 / Ethernet"
+            ],
+            [
+              "Window-based; ECMP / entropy",
+              "Window-based; ECMP / entropy"
+            ],
+            [
+              "Remote memory; encryption; retransmit",
+              "Remote memory; encryption; retransmit"
+            ],
+            [
+              "Included in SoC TDP",
+              "Included in SoC TDP"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          0,
+          8,
+          9,
+          10,
+          11
+        ],
+        [
+          0,
+          12,
+          13
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "links": {
+      "id": "links",
+      "title": [
+        "Interconnect hierarchy",
+        "互联层次"
+      ],
+      "headers": [
+        [
+          "Interconnect",
+          "互联"
+        ],
+        [
+          "Year / generation",
+          "年份／代际"
+        ],
+        [
+          "Lane rate",
+          "通道速率"
+        ],
+        [
+          "Lanes / link",
+          "每链路通道"
+        ],
+        [
+          "GB/s per link per direction",
+          "每链路单向 GB/s"
+        ],
+        [
+          "Links / device",
+          "每设备链路"
+        ],
+        [
+          "Topology",
+          "拓扑"
+        ],
+        [
+          "Domain limit",
+          "域规模"
+        ],
+        [
+          "Coherence / semantics",
+          "一致性／语义"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Maia100 Ethernet",
+              "Maia100 Ethernet"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "400 Gb/s port",
+              "400 Gb/s port"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "50",
+              "50"
+            ],
+            [
+              "12",
+              "12"
+            ],
+            [
+              "Direct + switched",
+              "Direct + switched"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Explicit transfer",
+              "Explicit transfer"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Maia200 fixed links",
+              "Maia200 fixed links"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "400 Gb/s port",
+              "400 Gb/s port"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "50",
+              "50"
+            ],
+            [
+              "20",
+              "20"
+            ],
+            [
+              "Tray fixed links",
+              "Tray fixed links"
+            ],
+            [
+              "4 chips/tray",
+              "4 chips/tray"
+            ],
+            [
+              "Explicit SDLA transfer",
+              "Explicit SDLA transfer"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Maia200 switched links",
+              "Maia200 switched links"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "400 Gb/s port",
+              "400 Gb/s port"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "50",
+              "50"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "4 planes; 2 tiers",
+              "4 planes; 2 tiers"
+            ],
+            [
+              "6144 design point",
+              "6144 design point"
+            ],
+            [
+              "Explicit transfer; not coherent",
+              "Explicit transfer; not coherent"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          5,
+          6,
+          7,
+          8
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "system": {
+      "id": "system",
+      "title": [
+        "System scope",
+        "系统范围"
+      ],
+      "headers": [
+        [
+          "Platform",
+          "平台"
+        ],
+        [
+          "Year / milestone",
+          "年份／里程碑"
+        ],
+        [
+          "CPU / accelerator count",
+          "CPU／加速器数量"
+        ],
+        [
+          "Scale-up domain",
+          "纵向扩展域"
+        ],
+        [
+          "Scale-out per accelerator",
+          "每加速器横向带宽"
+        ],
+        [
+          "Rack power",
+          "机架功耗"
+        ],
+        [
+          "Cooling",
+          "散热"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Maia100 Azure",
+              "Maia100 Azure"
+            ],
+            [
+              "2023-2024",
+              "2023-2024"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Topology-specific",
+              "Topology-specific"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Liquid",
+              "Liquid"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Maia200 deployment design",
+              "Maia200 deployment design"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "4 chips/tray; up to 6144",
+              "4 chips/tray; up to 6144"
+            ],
+            [
+              "Fixed links + switched planes",
+              "Fixed links + switched planes"
+            ],
+            [
+              "8×400G = 400 GB/s nominal",
+              "8×400G = 400 GB/s nominal"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Liquid",
+              "Liquid"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Cobalt200 VMs",
+              "Cobalt200 VMs"
+            ],
+            [
+              "2026 preview",
+              "2026 preview"
+            ],
+            [
+              "Up to 128 vCPUs",
+              "Up to 128 vCPUs"
+            ],
+            [
+              "n/a",
+              "n/a"
+            ],
+            [
+              "VM-specific",
+              "VM-specific"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "software": {
+      "id": "software",
+      "title": [
+        "Software contracts",
+        "软件契约"
+      ],
+      "headers": [
+        [
+          "Layer",
+          "层"
+        ],
+        [
+          "Component",
+          "组件"
+        ],
+        [
+          "Function",
+          "功能"
+        ],
+        [
+          "Boundary",
+          "边界"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Host",
+              "主机"
+            ],
+            [
+              "Arm Linux / Azure VMs",
+              "Arm Linux / Azure VMs"
+            ],
+            [
+              "General-purpose services",
+              "通用服务"
+            ],
+            [
+              "VM limits differ from SoC",
+              "VM 限额不同于 SoC"
+            ]
+          ],
+          "sources": [
+            "E02",
+            "E07"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Accelerator",
+              "加速器"
+            ],
+            [
+              "PyTorch / Triton / Maia API",
+              "PyTorch / Triton / Maia API"
+            ],
+            [
+              "Graph, kernels, placement",
+              "图、算子、放置"
+            ],
+            [
+              "Compiler-managed scratchpads",
+              "编译器管理暂存器"
+            ]
+          ],
+          "sources": [
+            "C06",
+            "C01"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Communication",
+              "通信"
+            ],
+            [
+              "Maia collectives / ATLv2",
+              "Maia collectives / ATLv2"
+            ],
+            [
+              "Collectives and transport",
+              "集合通信与传输"
+            ],
+            [
+              "Explicit remote data movement",
+              "显式远端数据搬移"
+            ]
+          ],
+          "sources": [
+            "C01",
+            "C06"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "Infrastructure",
+              "基础设施"
+            ],
+            [
+              "MANA / Boost / Cerberus",
+              "MANA / Boost / Cerberus"
+            ],
+            [
+              "Networking, storage, trust",
+              "网络、存储、信任"
+            ],
+            [
+              "Platform and guest drivers",
+              "平台与客户机驱动"
+            ]
+          ],
+          "sources": [
+            "E06",
+            "P04"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "ratios": {
+      "id": "ratios",
+      "title": [
+        "Derived metrics",
+        "推导指标"
+      ],
+      "headers": [
+        [
+          "Metric",
+          "指标"
+        ],
+        [
+          "Calculation",
+          "计算"
+        ],
+        [
+          "Meaning",
+          "含义"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Cobalt200 L3/core",
+              "Cobalt200 L3/core"
+            ],
+            [
+              "192/132 = 1.455 MB",
+              "192/132 = 1.455 MB"
+            ],
+            [
+              "Shared capacity / active core",
+              "共享容量／启用核心"
+            ]
+          ],
+          "sources": [
+            "P01"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Maia100 HBM/BF16",
+              "Maia100 HBM/BF16"
+            ],
+            [
+              "1.8e12/800e12 = 0.00225 B/FLOP",
+              "1.8e12/800e12 = 0.00225 B/FLOP"
+            ],
+            [
+              "Dense peak balance",
+              "稠密峰值平衡"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Maia100 capacity/BF16",
+              "Maia100 capacity/BF16"
+            ],
+            [
+              "64e9/800e12 = 8.0e-5 B·s/FLOP",
+              "64e9/800e12 = 8.0e-5 B·s/FLOP"
+            ],
+            [
+              "Capacity normalized by peak",
+              "容量除以峰值"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "Maia200 HBM/FP8",
+              "Maia200 HBM/FP8"
+            ],
+            [
+              "7e12/5072e12 = 0.00138 B/FLOP",
+              "7e12/5072e12 = 0.00138 B/FLOP"
+            ],
+            [
+              "Different format from row above",
+              "与上行格式不同"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "e",
+          "values": [
+            [
+              "Maia200 capacity/FP8",
+              "Maia200 capacity/FP8"
+            ],
+            [
+              "216e9/5072e12 = 4.26e-5 B·s/FLOP",
+              "216e9/5072e12 = 4.26e-5 B·s/FLOP"
+            ],
+            [
+              "Per chip; decimal bytes",
+              "每芯片；十进制字节"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "f",
+          "values": [
+            [
+              "Maia200 network/HBM",
+              "Maia200 network/HBM"
+            ],
+            [
+              "1.4/7 = 0.20",
+              "1.4/7 = 0.20"
+            ],
+            [
+              "All ports one-way; not all external",
+              "全部端口单向；并非全为外部链路"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "g",
+          "values": [
+            [
+              "Maia200 FP8/TDP",
+              "Maia200 FP8/TDP"
+            ],
+            [
+              "5072/750 = 6.763 TFLOP/s/W",
+              "5072/750 = 6.763 TFLOP/s/W"
+            ],
+            [
+              "Peak/TDP proxy; not measured efficiency",
+              "峰值／TDP 代理量；非实测效率"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "h",
+          "values": [
+            [
+              "Cobalt DDR bandwidth/core",
+              "Cobalt DDR bandwidth/core"
+            ],
+            [
+              "n/d",
+              "n/d"
+            ],
+            [
+              "Matched memory-controller data absent",
+              "缺匹配内存控制器数据"
+            ]
+          ],
+          "sources": [
+            "P01"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "conference": {
+      "id": "conference",
+      "title": [
+        "Primary disclosure map",
+        "一手披露映射"
+      ],
+      "headers": [
+        [
+          "Venue",
+          "会议／活动"
+        ],
+        [
+          "Year",
+          "年份"
+        ],
+        [
+          "Paper / talk / disclosure",
+          "论文／演讲／披露"
+        ],
+        [
+          "Presenter / authors",
+          "报告人／作者"
+        ],
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Evidence type",
+          "证据类型"
+        ],
+        [
+          "Source",
+          "来源"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "ISCA",
+              "ISCA"
+            ],
+            [
+              "2014",
+              "2014"
+            ],
+            [
+              "Catapult",
+              "Catapult"
+            ],
+            [
+              "Putnam et al.",
+              "Putnam et al."
+            ],
+            [
+              "FPGA infrastructure",
+              "FPGA infrastructure"
+            ],
+            [
+              "Pre-period research baseline",
+              "时期前研究基线"
+            ],
+            [
+              "C04",
+              "C04"
+            ]
+          ],
+          "sources": [
+            "C04"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "MICRO",
+              "MICRO"
+            ],
+            [
+              "2016",
+              "2016"
+            ],
+            [
+              "A Configurable Cloud",
+              "A Configurable Cloud"
+            ],
+            [
+              "Microsoft Research",
+              "Microsoft Research"
+            ],
+            [
+              "Catapult",
+              "Catapult"
+            ],
+            [
+              "Architecture / deployment",
+              "架构／部署"
+            ],
+            [
+              "P03",
+              "P03"
+            ]
+          ],
+          "sources": [
+            "P03"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "ISCA",
+              "ISCA"
+            ],
+            [
+              "2018",
+              "2018"
+            ],
+            [
+              "Brainwave",
+              "Brainwave"
+            ],
+            [
+              "Microsoft Research",
+              "Microsoft Research"
+            ],
+            [
+              "FPGA inference",
+              "FPGA inference"
+            ],
+            [
+              "Architecture paper",
+              "架构论文"
+            ],
+            [
+              "C05",
+              "C05"
+            ]
+          ],
+          "sources": [
+            "C05"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "Hot Chips",
+              "Hot Chips"
+            ],
+            [
+              "2024",
+              "2024"
+            ],
+            [
+              "Inside Maia100",
+              "Inside Maia100"
+            ],
+            [
+              "Sherry Xu; Chandru Ramakrishnan",
+              "Sherry Xu; Chandru Ramakrishnan"
+            ],
+            [
+              "Maia100",
+              "Maia100"
+            ],
+            [
+              "Full technical slides",
+              "完整技术幻灯片"
+            ],
+            [
+              "C06",
+              "C06"
+            ]
+          ],
+          "sources": [
+            "C06"
+          ]
+        },
+        {
+          "id": "e",
+          "values": [
+            [
+              "Hot Chips",
+              "Hot Chips"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "Maia200",
+              "Maia200"
+            ],
+            [
+              "Microsoft",
+              "Microsoft"
+            ],
+            [
+              "Maia200",
+              "Maia200"
+            ],
+            [
+              "Program plus companion technical paper",
+              "议程与配套技术论文"
+            ],
+            [
+              "C03 C01",
+              "C03 C01"
+            ]
+          ],
+          "sources": [
+            "C03",
+            "C01"
+          ]
+        },
+        {
+          "id": "f",
+          "values": [
+            [
+              "Ignite / Build",
+              "Ignite / Build"
+            ],
+            [
+              "2023-2026",
+              "2023-2026"
+            ],
+            [
+              "Cobalt / Maia / Boost",
+              "Cobalt / Maia / Boost"
+            ],
+            [
+              "Microsoft",
+              "Microsoft"
+            ],
+            [
+              "Cloud portfolio",
+              "Cloud portfolio"
+            ],
+            [
+              "Launch and availability",
+              "发布与可用性"
+            ],
+            [
+              "E03 E02 E05 E06",
+              "E03 E02 E05 E06"
+            ]
+          ],
+          "sources": [
+            "E03",
+            "E02",
+            "E05",
+            "E06"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          3,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "cross": {
+      "id": "cross",
+      "title": [
+        "Products and roles",
+        "产品与角色"
+      ],
+      "headers": [
+        [
+          "Name",
+          "名称"
+        ],
+        [
+          "Role",
+          "角色"
+        ],
+        [
+          "Do not conflate with",
+          "需区分"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "a",
+          "values": [
+            [
+              "Cobalt",
+              "Cobalt"
+            ],
+            [
+              "General-purpose host CPU",
+              "通用主机 CPU"
+            ],
+            [
+              "Maia",
+              "Maia"
+            ]
+          ],
+          "sources": [
+            "E02"
+          ]
+        },
+        {
+          "id": "b",
+          "values": [
+            [
+              "Maia / ANC",
+              "Maia / ANC"
+            ],
+            [
+              "AI accelerator / integrated network controller",
+              "AI 加速器／集成网络控制器"
+            ],
+            [
+              "Boost DPU",
+              "Boost DPU"
+            ]
+          ],
+          "sources": [
+            "C01"
+          ]
+        },
+        {
+          "id": "c",
+          "values": [
+            [
+              "Azure Boost",
+              "Azure Boost"
+            ],
+            [
+              "Infrastructure system including specialized hardware",
+              "含专用硬件的基础设施系统"
+            ],
+            [
+              "One fixed chip generation",
+              "单一固定芯片代际"
+            ]
+          ],
+          "sources": [
+            "P04",
+            "E06"
+          ]
+        },
+        {
+          "id": "d",
+          "values": [
+            [
+              "MANA",
+              "MANA"
+            ],
+            [
+              "Microsoft Azure Network Adapter",
+              "微软 Azure 网络适配器"
+            ],
+            [
+              "Maia backend fabric",
+              "Maia 后端网络"
+            ]
+          ],
+          "sources": [
+            "P04"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    },
+    "isscc": {
+      "id": "isscc",
+      "title": [
+        "ISSCC implementation disclosure",
+        "ISSCC 实现披露"
+      ],
+      "headers": [
+        [
+          "Venue",
+          "会议／活动"
+        ],
+        [
+          "Year",
+          "年份"
+        ],
+        [
+          "Paper / talk / disclosure",
+          "论文／演讲／披露"
+        ],
+        [
+          "Presenter / authors",
+          "报告人／作者"
+        ],
+        [
+          "Product",
+          "产品"
+        ],
+        [
+          "Evidence type",
+          "证据类型"
+        ],
+        [
+          "Source",
+          "来源"
+        ]
+      ],
+      "rows": [
+        {
+          "id": "maia",
+          "values": [
+            [
+              "ISSCC",
+              "ISSCC"
+            ],
+            [
+              "2026",
+              "2026"
+            ],
+            [
+              "17.4 MAIA: A Reticle-Scale AI Accelerator",
+              "17.4 MAIA: A Reticle-Scale AI Accelerator"
+            ],
+            [
+              "S. Xu et al.",
+              "S. Xu et al."
+            ],
+            [
+              "Maia; generation suffix not in program",
+              "Maia; generation suffix not in program"
+            ],
+            [
+              "Official program / published paper record; full digest not accessed",
+              "官方议程／已发表论文记录；未获取完整文集"
+            ],
+            [
+              "C07",
+              "C07"
+            ]
+          ],
+          "sources": [
+            "C07"
+          ]
+        }
+      ],
+      "panels": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          3,
+          4,
+          5,
+          6
+        ]
+      ],
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled"
+    }
+  },
+  "figures": {
+    "early": {
+      "id": "early",
+      "title": [
+        "2015-2018 system roles",
+        "2015-2018 系统角色"
+      ],
+      "nodes": [
+        [
+          "cpu",
+          [
+            "External host CPU",
+            "External host CPU"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "Catapult / Brainwave FPGA",
+            "Catapult / Brainwave FPGA"
+          ],
+          0,
+          1
+        ],
+        [
+          "mem",
+          [
+            "Local / attached memory",
+            "本地／附加内存"
+          ],
+          0,
+          2
+        ],
+        [
+          "sw",
+          [
+            "Compiler / runtime",
+            "编译器／运行时"
+          ],
+          1,
+          0
+        ],
+        [
+          "net",
+          [
+            "Datacenter network",
+            "Datacenter network"
+          ],
+          1,
+          1
+        ],
+        [
+          "off",
+          [
+            "Infrastructure offload",
+            "基础设施卸载"
+          ],
+          1,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "cpu",
+          "gpu",
+          [
+            "host control",
+            "主机控制"
+          ]
+        ],
+        [
+          "gpu",
+          "mem",
+          [
+            "data",
+            "数据"
+          ]
+        ],
+        [
+          "gpu",
+          "net",
+          [
+            "communication",
+            "通信"
+          ]
+        ],
+        [
+          "sw",
+          "net",
+          [
+            "schedule",
+            "调度"
+          ]
+        ]
+      ],
+      "caption": [
+        "Functional relationships; not a claim that every Maia host is Cobalt.",
+        "功能关系图；不意味着每台 Maia 主机均采用 Cobalt。"
+      ]
+    },
+    "late": {
+      "id": "late",
+      "title": [
+        "2024-2026 system roles",
+        "2024-2026 系统角色"
+      ],
+      "nodes": [
+        [
+          "cpu",
+          [
+            "Cobalt / external host",
+            "Cobalt / external host"
+          ],
+          0,
+          0
+        ],
+        [
+          "gpu",
+          [
+            "Maia100 / Maia200",
+            "Maia100 / Maia200"
+          ],
+          0,
+          1
+        ],
+        [
+          "mem",
+          [
+            "Local / attached memory",
+            "本地／附加内存"
+          ],
+          0,
+          2
+        ],
+        [
+          "sw",
+          [
+            "Compiler / runtime",
+            "编译器／运行时"
+          ],
+          1,
+          0
+        ],
+        [
+          "net",
+          [
+            "ANC / Ethernet fabric",
+            "ANC / Ethernet fabric"
+          ],
+          1,
+          1
+        ],
+        [
+          "off",
+          [
+            "Infrastructure offload",
+            "基础设施卸载"
+          ],
+          1,
+          2
+        ]
+      ],
+      "edges": [
+        [
+          "cpu",
+          "gpu",
+          [
+            "host control",
+            "主机控制"
+          ]
+        ],
+        [
+          "gpu",
+          "mem",
+          [
+            "data",
+            "数据"
+          ]
+        ],
+        [
+          "gpu",
+          "net",
+          [
+            "communication",
+            "通信"
+          ]
+        ],
+        [
+          "sw",
+          "net",
+          [
+            "schedule",
+            "调度"
+          ]
+        ]
+      ],
+      "caption": [
+        "Functional relationships; not a claim that every Maia host is Cobalt.",
+        "功能关系图；不意味着每台 Maia 主机均采用 Cobalt。"
+      ]
+    }
+  },
+  "claims": {
+    "cpu.c100.0": {
+      "value": "Cobalt 100",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.2": {
+      "value": "2024-10",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.4": {
+      "value": "Neoverse N2",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.5": {
+      "value": "128 / 128",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.6": {
+      "value": "n/d",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.7": {
+      "value": "n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.8": {
+      "value": "n/d",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.9": {
+      "value": "n/d",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.10": {
+      "value": "DDR5; channels/rate n/d",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.11": {
+      "value": "n/d",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c100.14": {
+      "value": "Armv9",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E07",
+        "E08"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "c100"
+    },
+    "cpu.c200.0": {
+      "value": "Cobalt 200",
+      "field": "Generation / reference SKU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.1": {
+      "value": "n/d",
+      "field": "Codename",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.2": {
+      "value": "2026-06 preview",
+      "field": "GA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.3": {
+      "value": "Early-access preview",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.4": {
+      "value": "Neoverse CSS V3",
+      "field": "Core µarch",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.5": {
+      "value": "132 / 132",
+      "field": "Cores / threads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.6": {
+      "value": "3 nm",
+      "field": "Process per die",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.7": {
+      "value": "Chiplets; count n/d",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.8": {
+      "value": "3 MB",
+      "field": "L2 per core",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.9": {
+      "value": "192 MB / SoC",
+      "field": "L3 / domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.10": {
+      "value": "n/d",
+      "field": "Memory: channels; rate; GB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.11": {
+      "value": "n/d",
+      "field": "Sockets / links",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.12": {
+      "value": "n/d",
+      "field": "PCIe / CXL",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.13": {
+      "value": "n/d",
+      "field": "TDP",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "cpu.c200.14": {
+      "value": "Armv9",
+      "field": "Vector / matrix ISA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01",
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "preview",
+      "scope": "c200"
+    },
+    "gpu.m100.0": {
+      "value": "Maia 100",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.1": {
+      "value": "Software-defined dataflow",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.2": {
+      "value": "2023 launch; HC2024",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.3": {
+      "value": "Historical shipping",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.4": {
+      "value": "TSMC N5",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.5": {
+      "value": "1 logic die; CoWoS-S",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.6": {
+      "value": "64 tiles / 16 clusters",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.7": {
+      "value": "800 TFLOP/s",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.8": {
+      "value": "n/a; 9-bit: 1.5 POPS",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.9": {
+      "value": "6-bit: 3 POPS; FP4 n/d",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.11": {
+      "value": "HBM2e; stacks n/d; 64 GB; 1.8 TB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.12": {
+      "value": "~500 MB",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.13": {
+      "value": "12×400G; 600 GB/s one-way; domain n/d",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.14": {
+      "value": "PCIe5 ×8 (spec table)",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.15": {
+      "value": "700 W design / 500 W provision",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m100.16": {
+      "value": "Azure module",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "m100"
+    },
+    "gpu.m200.0": {
+      "value": "Maia 200",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.1": {
+      "value": "SDLA",
+      "field": "Architecture",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.2": {
+      "value": "2026 deployment",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.3": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.4": {
+      "value": "3 nm",
+      "field": "Process",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.5": {
+      "value": "1 logic die; 75×75 mm package",
+      "field": "Dies / packaging",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.6": {
+      "value": "4 clusters; 9-10 tiles/cluster",
+      "field": "Compute units",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.7": {
+      "value": "n/d",
+      "field": "Dense BF16",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.8": {
+      "value": "5072 TFLOP/s",
+      "field": "Dense FP8",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.9": {
+      "value": "FP4: 10145 TFLOP/s",
+      "field": "Dense FP6 / FP4",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.10": {
+      "value": "n/d",
+      "field": "FP64 vector / matrix",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.11": {
+      "value": "HBM3e; 6; 216 GB; 7 TB/s",
+      "field": "Memory: type; stacks; GB; TB/s",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.12": {
+      "value": "272 MB",
+      "field": "LLC / SRAM",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.13": {
+      "value": "28×400G; 1400 GB/s one-way; topology-specific",
+      "field": "Scale-up: links; GB/s per direction; domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.14": {
+      "value": "PCIe6 ×8",
+      "field": "Host link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.15": {
+      "value": "750 W; liquid",
+      "field": "Power / cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "gpu.m200.16": {
+      "value": "Azure module",
+      "field": "Form factor",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "P02"
+      ],
+      "disclosure_date": "2026",
+      "status": "deployed",
+      "scope": "m200"
+    },
+    "nic.boost.0": {
+      "value": "Azure Boost / DPU",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.1": {
+      "value": "2024 announcement; 2026 system GA",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.3": {
+      "value": "Infrastructure offload",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.4": {
+      "value": "Up to 400 Gb/s platform",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.6": {
+      "value": "n/d",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.7": {
+      "value": "Dedicated offload logic",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.8": {
+      "value": "n/d",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.9": {
+      "value": "n/d",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.10": {
+      "value": "MANA / RDMA",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.11": {
+      "value": "n/d",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.12": {
+      "value": "Network; storage; virtualization; trust",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.boost.13": {
+      "value": "n/d",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E05",
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "boost"
+    },
+    "nic.anc.0": {
+      "value": "Maia 200 ANC",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.1": {
+      "value": "2026",
+      "field": "GA / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.2": {
+      "value": "Shipping / available",
+      "field": "Status",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.3": {
+      "value": "Integrated AI NIC",
+      "field": "Class",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.4": {
+      "value": "28×400 Gb/s",
+      "field": "Ports × speed",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.5": {
+      "value": "n/d",
+      "field": "SerDes",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.6": {
+      "value": "On-chip NoC",
+      "field": "Host interface",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.7": {
+      "value": "DMA / ATLv2",
+      "field": "Programmable engine",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.8": {
+      "value": "n/a",
+      "field": "Embedded CPU",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.9": {
+      "value": "Shared chip memories",
+      "field": "On-card memory",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.10": {
+      "value": "ATLv2 / Ethernet",
+      "field": "Transport / RDMA",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.11": {
+      "value": "Window-based; ECMP / entropy",
+      "field": "Congestion control",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.12": {
+      "value": "Remote memory; encryption; retransmit",
+      "field": "Key offloads",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "nic.anc.13": {
+      "value": "Included in SoC TDP",
+      "field": "Power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "deployed",
+      "scope": "anc"
+    },
+    "links.a.0": {
+      "value": "Maia100 Ethernet",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.1": {
+      "value": "2024",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.2": {
+      "value": "400 Gb/s port",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.4": {
+      "value": "50",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.5": {
+      "value": "12",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.6": {
+      "value": "Direct + switched",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.7": {
+      "value": "n/d",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.a.8": {
+      "value": "Explicit transfer",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "links.b.0": {
+      "value": "Maia200 fixed links",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.1": {
+      "value": "2026",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.2": {
+      "value": "400 Gb/s port",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.4": {
+      "value": "50",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.5": {
+      "value": "20",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.6": {
+      "value": "Tray fixed links",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.7": {
+      "value": "4 chips/tray",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.b.8": {
+      "value": "Explicit SDLA transfer",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "links.c.0": {
+      "value": "Maia200 switched links",
+      "field": "Interconnect",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.1": {
+      "value": "2026",
+      "field": "Year / generation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.2": {
+      "value": "400 Gb/s port",
+      "field": "Lane rate",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.3": {
+      "value": "n/d",
+      "field": "Lanes / link",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.4": {
+      "value": "50",
+      "field": "GB/s per link per direction",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.5": {
+      "value": "8",
+      "field": "Links / device",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.6": {
+      "value": "4 planes; 2 tiers",
+      "field": "Topology",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.7": {
+      "value": "6144 design point",
+      "field": "Domain limit",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "links.c.8": {
+      "value": "Explicit transfer; not coherent",
+      "field": "Coherence / semantics",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "system.a.0": {
+      "value": "Maia100 Azure",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.1": {
+      "value": "2023-2024",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.2": {
+      "value": "n/d",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.3": {
+      "value": "Topology-specific",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.4": {
+      "value": "n/d",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.a.6": {
+      "value": "Liquid",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "system.b.0": {
+      "value": "Maia200 deployment design",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.1": {
+      "value": "2026",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.2": {
+      "value": "4 chips/tray; up to 6144",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.3": {
+      "value": "Fixed links + switched planes",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.4": {
+      "value": "8×400G = 400 GB/s nominal",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.b.6": {
+      "value": "Liquid",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "system.c.0": {
+      "value": "Cobalt200 VMs",
+      "field": "Platform",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.1": {
+      "value": "2026 preview",
+      "field": "Year / milestone",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.2": {
+      "value": "Up to 128 vCPUs",
+      "field": "CPU / accelerator count",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.3": {
+      "value": "n/a",
+      "field": "Scale-up domain",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.4": {
+      "value": "VM-specific",
+      "field": "Scale-out per accelerator",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.5": {
+      "value": "n/d",
+      "field": "Rack power",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "system.c.6": {
+      "value": "n/d",
+      "field": "Cooling",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026",
+      "status": "preview",
+      "scope": "c"
+    },
+    "software.a.0": {
+      "value": "Host",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E07"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.1": {
+      "value": "Arm Linux / Azure VMs",
+      "field": "Component",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E07"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.2": {
+      "value": "General-purpose services",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E07"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.a.3": {
+      "value": "VM limits differ from SoC",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02",
+        "E07"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "a"
+    },
+    "software.b.0": {
+      "value": "Accelerator",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06",
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.1": {
+      "value": "PyTorch / Triton / Maia API",
+      "field": "Component",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06",
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.2": {
+      "value": "Graph, kernels, placement",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06",
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.b.3": {
+      "value": "Compiler-managed scratchpads",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06",
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "software.c.0": {
+      "value": "Communication",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.1": {
+      "value": "Maia collectives / ATLv2",
+      "field": "Component",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.2": {
+      "value": "Collectives and transport",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.c.3": {
+      "value": "Explicit remote data movement",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01",
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "software.d.0": {
+      "value": "Infrastructure",
+      "field": "Layer",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "d"
+    },
+    "software.d.1": {
+      "value": "MANA / Boost / Cerberus",
+      "field": "Component",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "d"
+    },
+    "software.d.2": {
+      "value": "Networking, storage, trust",
+      "field": "Function",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "d"
+    },
+    "software.d.3": {
+      "value": "Platform and guest drivers",
+      "field": "Boundary",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E06",
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "available",
+      "scope": "d"
+    },
+    "ratios.a.0": {
+      "value": "Cobalt200 L3/core",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.a.1": {
+      "value": "192/132 = 1.455 MB",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.a.2": {
+      "value": "Shared capacity / active core",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "a"
+    },
+    "ratios.b.0": {
+      "value": "Maia100 HBM/BF16",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.b.1": {
+      "value": "1.8e12/800e12 = 0.00225 B/FLOP",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.b.2": {
+      "value": "Dense peak balance",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "b"
+    },
+    "ratios.c.0": {
+      "value": "Maia100 capacity/BF16",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.c.1": {
+      "value": "64e9/800e12 = 8.0e-5 B·s/FLOP",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.c.2": {
+      "value": "Capacity normalized by peak",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "c"
+    },
+    "ratios.d.0": {
+      "value": "Maia200 HBM/FP8",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "d"
+    },
+    "ratios.d.1": {
+      "value": "7e12/5072e12 = 0.00138 B/FLOP",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "d"
+    },
+    "ratios.d.2": {
+      "value": "Different format from row above",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "d"
+    },
+    "ratios.e.0": {
+      "value": "Maia200 capacity/FP8",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "e"
+    },
+    "ratios.e.1": {
+      "value": "216e9/5072e12 = 4.26e-5 B·s/FLOP",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "e"
+    },
+    "ratios.e.2": {
+      "value": "Per chip; decimal bytes",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "e"
+    },
+    "ratios.f.0": {
+      "value": "Maia200 network/HBM",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "f"
+    },
+    "ratios.f.1": {
+      "value": "1.4/7 = 0.20",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "f"
+    },
+    "ratios.f.2": {
+      "value": "All ports one-way; not all external",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "f"
+    },
+    "ratios.g.0": {
+      "value": "Maia200 FP8/TDP",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "g"
+    },
+    "ratios.g.1": {
+      "value": "5072/750 = 6.763 TFLOP/s/W",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "g"
+    },
+    "ratios.g.2": {
+      "value": "Peak/TDP proxy; not measured efficiency",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "derived",
+      "scope": "g"
+    },
+    "ratios.h.0": {
+      "value": "Cobalt DDR bandwidth/core",
+      "field": "Metric",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "unknown",
+      "scope": "h"
+    },
+    "ratios.h.1": {
+      "value": "n/d",
+      "field": "Calculation",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "unknown",
+      "scope": "h"
+    },
+    "ratios.h.2": {
+      "value": "Matched memory-controller data absent",
+      "field": "Meaning",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "unknown",
+      "scope": "h"
+    },
+    "conference.a.0": {
+      "value": "ISCA",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.1": {
+      "value": "2014",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.2": {
+      "value": "Catapult",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.3": {
+      "value": "Putnam et al.",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.4": {
+      "value": "FPGA infrastructure",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.5": {
+      "value": "Pre-period research baseline",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.a.6": {
+      "value": "C04",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C04"
+      ],
+      "disclosure_date": "2014",
+      "status": "published",
+      "scope": "a"
+    },
+    "conference.b.0": {
+      "value": "MICRO",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.1": {
+      "value": "2016",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.2": {
+      "value": "A Configurable Cloud",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.3": {
+      "value": "Microsoft Research",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.4": {
+      "value": "Catapult",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.5": {
+      "value": "Architecture / deployment",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.b.6": {
+      "value": "P03",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P03"
+      ],
+      "disclosure_date": "2016",
+      "status": "published",
+      "scope": "b"
+    },
+    "conference.c.0": {
+      "value": "ISCA",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.1": {
+      "value": "2018",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.2": {
+      "value": "Brainwave",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.3": {
+      "value": "Microsoft Research",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.4": {
+      "value": "FPGA inference",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.5": {
+      "value": "Architecture paper",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.c.6": {
+      "value": "C05",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C05"
+      ],
+      "disclosure_date": "2018",
+      "status": "published",
+      "scope": "c"
+    },
+    "conference.d.0": {
+      "value": "Hot Chips",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.1": {
+      "value": "2024",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.2": {
+      "value": "Inside Maia100",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.3": {
+      "value": "Sherry Xu; Chandru Ramakrishnan",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.4": {
+      "value": "Maia100",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.5": {
+      "value": "Full technical slides",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.d.6": {
+      "value": "C06",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C06"
+      ],
+      "disclosure_date": "2024",
+      "status": "published",
+      "scope": "d"
+    },
+    "conference.e.0": {
+      "value": "Hot Chips",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.1": {
+      "value": "2026",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.2": {
+      "value": "Maia200",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.3": {
+      "value": "Microsoft",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.4": {
+      "value": "Maia200",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.5": {
+      "value": "Program plus companion technical paper",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.e.6": {
+      "value": "C03 C01",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C03",
+        "C01"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "e"
+    },
+    "conference.f.0": {
+      "value": "Ignite / Build",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.1": {
+      "value": "2023-2026",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.2": {
+      "value": "Cobalt / Maia / Boost",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.3": {
+      "value": "Microsoft",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.4": {
+      "value": "Cloud portfolio",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.5": {
+      "value": "Launch and availability",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "conference.f.6": {
+      "value": "E03 E02 E05 E06",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E03",
+        "E02",
+        "E05",
+        "E06"
+      ],
+      "disclosure_date": "2026",
+      "status": "published",
+      "scope": "f"
+    },
+    "cross.a.0": {
+      "value": "Cobalt",
+      "field": "Name",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "cross.a.1": {
+      "value": "General-purpose host CPU",
+      "field": "Role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "cross.a.2": {
+      "value": "Maia",
+      "field": "Do not conflate with",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "E02"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "a"
+    },
+    "cross.b.0": {
+      "value": "Maia / ANC",
+      "field": "Name",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "cross.b.1": {
+      "value": "AI accelerator / integrated network controller",
+      "field": "Role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "cross.b.2": {
+      "value": "Boost DPU",
+      "field": "Do not conflate with",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C01"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "b"
+    },
+    "cross.c.0": {
+      "value": "Azure Boost",
+      "field": "Name",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "cross.c.1": {
+      "value": "Infrastructure system including specialized hardware",
+      "field": "Role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "cross.c.2": {
+      "value": "One fixed chip generation",
+      "field": "Do not conflate with",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04",
+        "E06"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "c"
+    },
+    "cross.d.0": {
+      "value": "MANA",
+      "field": "Name",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "d"
+    },
+    "cross.d.1": {
+      "value": "Microsoft Azure Network Adapter",
+      "field": "Role",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "d"
+    },
+    "cross.d.2": {
+      "value": "Maia backend fabric",
+      "field": "Do not conflate with",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "P04"
+      ],
+      "disclosure_date": "2026-09-28",
+      "status": "disclosed",
+      "scope": "d"
+    },
+    "isscc.maia.0": {
+      "value": "ISSCC",
+      "field": "Venue",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.1": {
+      "value": "2026",
+      "field": "Year",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.2": {
+      "value": "17.4 MAIA: A Reticle-Scale AI Accelerator",
+      "field": "Paper / talk / disclosure",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.3": {
+      "value": "S. Xu et al.",
+      "field": "Presenter / authors",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.4": {
+      "value": "Maia; generation suffix not in program",
+      "field": "Product",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.5": {
+      "value": "Official program / published paper record; full digest not accessed",
+      "field": "Evidence type",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    },
+    "isscc.maia.6": {
+      "value": "C07",
+      "field": "Source",
+      "basis": "Per reference product; theoretical peak; decimal bandwidth; direction and format as labelled",
+      "source": [
+        "C07"
+      ],
+      "disclosure_date": "2026-02-17",
+      "status": "published",
+      "scope": "maia"
+    }
+  },
+  "numeric_facts": {
+    "maia200.hbm_bw": {
+      "value": 7,
+      "unit": "TB/s",
+      "scope": "per chip",
+      "source": [
+        "C01"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "n/a",
+      "date": "2026-09-28"
+    },
+    "maia200.fp8": {
+      "value": 5072,
+      "unit": "TFLOP/s",
+      "scope": "per chip",
+      "source": [
+        "C01"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "FP8",
+      "date": "2026-09-28"
+    },
+    "cobalt200.cores": {
+      "value": 132,
+      "unit": "cores",
+      "scope": "SoC",
+      "source": [
+        "P01"
+      ],
+      "status": "disclosed",
+      "basis": "theoretical peak",
+      "direction": "n/a",
+      "format": "n/a",
+      "date": "2026-09-28"
+    }
+  },
+  "sources": {
+    "P01": {
+      "id": "P01",
+      "title": "Cobalt200 architecture announcement",
+      "url": "https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807",
+      "access": "Indexed official page; full text unavailable",
+      "chars": 78,
+      "retrieved": "2026-09-28"
+    },
+    "P02": {
+      "id": "P02",
+      "title": "Maia200 architecture deep dive",
+      "url": "https://techcommunity.microsoft.com/blog/azureinfrastructureblog/deep-dive-into-the-maia-200-architecture/4489312/",
+      "access": "Indexed official page; full text unavailable",
+      "chars": 66,
+      "retrieved": "2026-09-28"
+    },
+    "E01": {
+      "id": "E01",
+      "title": "Maia100 silicon-to-systems",
+      "url": "https://azure.microsoft.com/en-us/blog/azure-maia-for-the-era-of-ai-from-silicon-to-software-to-systems/",
+      "access": "Indexed official page; full text unavailable",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E02": {
+      "id": "E02",
+      "title": "Cobalt200 early access preview, June2026",
+      "url": "https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/",
+      "access": "Indexed official page; full text unavailable",
+      "chars": 61,
+      "retrieved": "2026-09-28"
+    },
+    "E03": {
+      "id": "E03",
+      "title": "Ignite2023 Cobalt Maia Boost",
+      "url": "https://news.microsoft.com/source/features/ai/in-house-chips-silicon-to-service-to-meet-ai-demand/",
+      "access": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-09-28"
+    },
+    "E04": {
+      "id": "E04",
+      "title": "Silicon to systems, August2026",
+      "url": "https://techcommunity.microsoft.com/blog/azureinfrastructureblog/from-silicon-to-systems-bending-the-cost-and-complexity-curves-of-ai/4545207",
+      "access": "Indexed official page; full text unavailable",
+      "chars": 95,
+      "retrieved": "2026-09-28"
+    },
+    "C01": {
+      "id": "C01",
+      "title": "Maia200: A Software Defined Dataflow System, 2026",
+      "url": "https://arxiv.org/pdf/2608.24664",
+      "access": "Accessible primary source",
+      "chars": 134759,
+      "retrieved": "2026-09-28"
+    },
+    "C02": {
+      "id": "C02",
+      "title": "Hot Chips2024 program, Inside Maia100",
+      "url": "https://www.hc2024.hotchips.org/",
+      "access": "HTTP Error 406: Not Acceptable",
+      "retrieved": "2026-09-28"
+    },
+    "C03": {
+      "id": "C03",
+      "title": "Hot Chips2026 program, Maia200",
+      "url": "https://hc2026.hotchips.org/program/conference/",
+      "access": "HTTP Error 406: Not Acceptable",
+      "retrieved": "2026-09-28"
+    },
+    "C04": {
+      "id": "C04",
+      "title": "Catapult ISCA2014",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf",
+      "access": "HTTP Error 403: Forbidden",
+      "retrieved": "2026-09-28"
+    },
+    "C05": {
+      "id": "C05",
+      "title": "Brainwave ISCA2018",
+      "url": "https://www.microsoft.com/en-us/research/uploads/prod/2018/06/ISCA18-Brainwave-CameraReady.pdf",
+      "access": "The read operation timed out",
+      "retrieved": "2026-09-28"
+    },
+    "P03": {
+      "id": "P03",
+      "title": "Catapult publications and MICRO2016",
+      "url": "https://www.microsoft.com/en-us/research/project/project-catapult/publications/",
+      "access": "The read operation timed out",
+      "retrieved": "2026-09-28"
+    },
+    "C06": {
+      "id": "C06",
+      "title": "Inside Maia100, Hot Chips2024 slides",
+      "url": "https://hc2024.hotchips.org/assets/program/conference/day2/81_HC2024.Microsoft.Xu.Ramakrishnan.final.v2.pdf",
+      "access": "Accessible primary source",
+      "retrieved": "2026-09-28",
+      "chars": 14684
+    },
+    "E05": {
+      "id": "E05",
+      "title": "Azure Boost DPU, Ignite2024",
+      "url": "https://techcommunity.microsoft.com/blog/azureinfrastructureblog/enhancing-infrastructure-efficiency-with-azure-boost-dpu/4298901",
+      "access": "Indexed official page; full text unavailable",
+      "retrieved": "2026-09-28",
+      "chars": 82
+    },
+    "P04": {
+      "id": "P04",
+      "title": "Azure Boost overview",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-boost/overview",
+      "access": "Accessible primary source",
+      "retrieved": "2026-09-28",
+      "chars": 12760
+    },
+    "E06": {
+      "id": "E06",
+      "title": "Next generation Azure Boost GA, 2026",
+      "url": "https://techcommunity.microsoft.com/blog/azurecompute/announcing-the-general-availability-of-the-next-generation-of-azure-boost/4519136",
+      "access": "Indexed official page; full text unavailable",
+      "retrieved": "2026-09-28",
+      "chars": 99
+    },
+    "E07": {
+      "id": "E07",
+      "title": "Cobalt100 VM general availability, October2024",
+      "url": "https://azure.microsoft.com/en-us/blog/azure-cobalt-100-based-virtual-machines-are-now-generally-available/",
+      "access": "Indexed official page; full text unavailable",
+      "retrieved": "2026-09-28",
+      "chars": 61
+    },
+    "E08": {
+      "id": "E08",
+      "title": "Arm earnings disclosure: Cobalt N2 and V3",
+      "url": "https://investors.arm.com/static-files/941fd4cb-0027-4e81-9541-66dcd954a14a",
+      "access": "Accessible primary source",
+      "retrieved": "2026-09-28",
+      "chars": 91493
+    },
+    "C07": {
+      "id": "C07",
+      "title": "ISSCC2026 advance program; 17.4 MAIA: A Reticle-Scale AI Accelerator",
+      "url": "https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf",
+      "access": "Accessible primary source",
+      "retrieved": "2026-09-28",
+      "chars": 263857
+    }
+  }
+}

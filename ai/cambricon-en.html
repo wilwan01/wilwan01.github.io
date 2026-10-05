@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Cambricon · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="cambricon-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Cambricon_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Cambricon_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#cambricon-ai-infrastructure-architecture-evolution">Cambricon AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-architectural-synthesis">01 Scope and architectural synthesis</a></li>
+<li><a href="#02-research-lineage-what-the-architecture-conferences-establish">02 Research lineage: what the architecture conferences establish</a></li>
+<li><a href="#03-commercial-generations-mlu100-270-and-290">03 Commercial generations: MLU100, 270 and 290</a></li>
+<li><a href="#04-mlu370-chiplets-fusion-and-board-differentiation">04 MLU370: chiplets, fusion and board differentiation</a></li>
+<li><a href="#05-cloud-accelerator-and-board-tables">05 Cloud accelerator and board tables</a><ul>
+<li><a href="#commercial-reference-specifications">Commercial reference specifications</a></li>
+<li><a href="#host-cpu-boundary">Host CPU boundary</a></li>
+</ul>
+</li>
+<li><a href="#06-mlu-link-systems-and-the-networking-roadmap">06 MLU-Link, systems and the networking roadmap</a><ul>
+<li><a href="#networking-product-boundary">Networking product boundary</a></li>
+<li><a href="#mlu370-x8-links">MLU370-X8 links</a></li>
+<li><a href="#system-disclosures">System disclosures</a></li>
+</ul>
+</li>
+<li><a href="#07-terminal-ip-edge-products-and-software-continuity">07 Terminal IP, edge products and software continuity</a><ul>
+<li><a href="#software-contracts">Software contracts</a></li>
+<li><a href="#2018-2020-stack">2018-2020 stack</a></li>
+<li><a href="#2021-2026-disclosures-stack">2021-2026 disclosures stack</a></li>
+</ul>
+</li>
+<li><a href="#08-normalized-metrics-and-deployment-implications">08 Normalized metrics and deployment implications</a><ul>
+<li><a href="#board-level-balance">Board-level balance</a></li>
+</ul>
+</li>
+<li><a href="#09-conference-index-and-product-mapping">09 Conference index and product mapping</a><ul>
+<li><a href="#verified-disclosure-lineage">Verified disclosure lineage</a></li>
+<li><a href="#naming-boundaries">Naming boundaries</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="cambricon-ai-infrastructure-architecture-evolution">Cambricon AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-architectural-synthesis">01 Scope and architectural synthesis</h2>
+<p>The report covers Cambricon’s publicly documented AI infrastructure from 2015 to 28 September 2026, with DianNao-era research as a pre-company baseline. Deep coverage follows Siyuan/MLU cloud accelerators, memory, MLU-Link and NeuWare. Terminal IP and the MLU220 edge branch explain technology continuity. No proprietary server CPU, merchant DPU or shipping AI NIC is inferred merely from the company’s broader AI ambitions.</p>
+<p>The strongest continuity is programmable domain specialization: a machine-learning instruction interface, tensor execution, explicit data movement and a software platform spanning cloud and edge. Commercial evolution adds larger SoCs, training support, chiplets and multi-device communication. The public academic record is much richer than the disclosure of recent commercial implementations. Those two evidence streams should inform each other without being treated as an exact RTL lineage.</p>
+<h2 id="02-research-lineage-what-the-architecture-conferences-establish">02 Research lineage: what the architecture conferences establish</h2>
+<p>DianNao at ASPLOS 2014 and DaDianNao at MICRO 2014 established early neural-acceleration research. PuDianNao at ASPLOS 2015 broadens the machine-learning workload scope; ShiDianNao at ISCA 2015 moves vision processing toward the sensor. The author’s institutional page explicitly reserves the DianNao names for those academic designs. They are therefore recorded as research predecessors, not early commercial Siyuan SKUs.</p>
+<p>The ISCA 2016 Cambricon ISA paper addresses the gap between fixed-function neural engines and general-purpose instruction streams. A domain-specific ISA can express common neural operations while preserving programmability. That is a useful lens for understanding later MLU software, but the published prototype’s process, area and performance cannot be transplanted into a commercial MLU table without a documented mapping.</p>
+<p>Cambricon-X at MICRO 2016 and Cambricon-S at MICRO 2018 address sparse and irregular networks. Cambricon-F at ISCA 2019 studies a hierarchical, self-similar programming architecture; Cambricon-Q at ISCA 2021 targets efficient training. The research progression spans sparsity, programmability and training precision. It establishes engineering priorities, not proof that an identically named mechanism ships in every generation.</p>
+<p>Cambricon-F recursively decomposes operations through nodes sharing an instruction model and a hierarchical memory organization. The proposal aims to reduce the programming burden across scales. Architectural interpretation: a uniform interface does not eliminate placement, reduction or congestion costs; it changes where they are handled. The paper discusses those challenges explicitly. Its research instances F1/F100 are not MLU100 or MLU270 product names.</p>
+<p>The 2024 Cambricon-LLM research proposes an NPU plus specially designed flash with on-die processing for low-batch edge inference. It is a useful example of capacity/bandwidth co-design, but is not a disclosed production implementation of a Siyuan server accelerator. Flash capacity, DRAM KV storage and compute-side bandwidth are distinct resources.</p>
+<h2 id="03-commercial-generations-mlu100-270-and-290">03 Commercial generations: MLU100, 270 and 290</h2>
+<p>Siyuan100 introduced the cloud accelerator line in 2018. The 270 generation adds MLUv02, a NoC connecting up to sixteen tensor cores, hardware data compression and video/image functions. Its official page explicitly identifies 128 INT8 TOPS for nonsparse models, alongside 256 INT4 TOPS and 64 INT16 TOPS. Precision changes must not be described as architectural speedups on the same workload.</p>
+<p>Siyuan290 is the training-oriented branch, publicly exhibited with MLU290-M5 modules and the XuanSi1000/MLU-X1000 system at WAIC 2021. Its importance is the transition from a predominantly inference product story to multi-accelerator training and system software. This edition does not fill missing board-matched HBM, power or floating-point rates from secondary product lists. A training product’s existence and an exact implementation specification are separate claims.</p>
+<h2 id="04-mlu370-chiplets-fusion-and-board-differentiation">04 MLU370: chiplets, fusion and board differentiation</h2>
+<p>Siyuan370 combines two AI compute chiplets in a 7 nm product with 39 billion transistors. MLUarch03 adds tensor-unit improvements, the Supercharger convolution mechanism and hardware support for multi-operator fusion. LPDDR5 and MLU-Link expand the memory and multi-device design space. Chiplet integration is a packaging boundary within a chip; a dual-chip board is a separate boundary and must not be counted as the same thing.</p>
+<p>The current official specifications are particularly informative: X4 and X8 both list 96 TFLOP/s BF16 and 256 INT8 TOPS, while X8 doubles memory capacity and bandwidth to 48 GB and 614.4 GB/s. X8 uses two Siyuan370 chips and provides a dedicated MLU-Link interface. Thus two chips on a board do not justify doubling the published board compute rate. The S4/S8 branch trades peak compute for a 75 W, compact deployment envelope.</p>
+<p>Architectural interpretation: the X8 configuration targets data capacity, bandwidth, codec resources and multi-card communication as much as arithmetic density. This can favor larger or bandwidth-sensitive workloads even when peak BF16 matches X4. Fusion helps only when intermediate data and execution dependencies fit the supported mechanism. A portable model graph may still require layout, quantization and kernel tuning to exploit the hardware.</p>
+<h2 id="05-cloud-accelerator-and-board-tables">05 Cloud accelerator and board tables</h2>
+<h3 id="commercial-reference-specifications">Commercial reference specifications</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Siyuan100 / MLU100</td>
+<td>n/d</td>
+<td>2018</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Cloud accelerator</td>
+</tr>
+<tr>
+<td>Siyuan270 / MLU270</td>
+<td>MLUv02</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>16 tensor cores</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Cloud accelerator</td>
+</tr>
+<tr>
+<td>Siyuan290 / MLU290-M5</td>
+<td>n/d</td>
+<td>2021 public showcase</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Cloud accelerator</td>
+</tr>
+<tr>
+<td>MLU370-S4/S8</td>
+<td>MLUarch03</td>
+<td>2021-2022 product era</td>
+<td>Shipping / available</td>
+<td>7 nm</td>
+<td>SKU configuration</td>
+<td>n/d</td>
+<td>72 TFLOP/s advertised; dense basis n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 24/48 GB; 307.2 GB/s</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe4 ×16</td>
+<td>75 W; passive</td>
+<td>Half-height / half-length</td>
+</tr>
+<tr>
+<td>MLU370-X4</td>
+<td>MLUarch03</td>
+<td>2021-2022 product era</td>
+<td>Shipping / available</td>
+<td>7 nm</td>
+<td>Siyuan370 chip</td>
+<td>n/d</td>
+<td>96 TFLOP/s advertised; dense basis n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 24 GB; 307.2 GB/s</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe4 ×16</td>
+<td>150 W; passive</td>
+<td>Full-height full-length; 1 slot</td>
+</tr>
+<tr>
+<td>MLU370-X8</td>
+<td>MLUarch03</td>
+<td>2021-2022 product era</td>
+<td>Shipping / available</td>
+<td>7 nm</td>
+<td>2 Siyuan370 chips</td>
+<td>n/d</td>
+<td>96 TFLOP/s advertised; dense basis n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 48 GB; 614.4 GB/s</td>
+<td>n/d</td>
+<td>4 ports; 100 GB/s one-way aggregate; 8 cards supported</td>
+<td>PCIe4 ×16</td>
+<td>250 W; passive</td>
+<td>Full-height full-length; 2 slots</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="host-cpu-boundary">Host CPU boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No proprietary host CPU established</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="06-mlu-link-systems-and-the-networking-roadmap">06 MLU-Link, systems and the networking roadmap</h2>
+<p>The X8 board page resolves a key unit issue: 200 GB/s is aggregate bidirectional MLU-Link bandwidth, corresponding to 100 GB/s per direction when divided symmetrically. It lists four ports, sixteen lanes and 50 Gb/s signaling; the board-wide lane/port wording is retained rather than assuming sixteen lanes per port. The page supports an eight-card server configuration but does not establish transparent memory coherence or a fully connected topology.</p>
+<p>The 2025 annual report describes future chip platforms for training, language-model inference, multimodal inference and switching for large models. The switching item belongs in the roadmap, not a shipping AI-NIC or DPU table. No port speeds, SerDes generation or switch capacity are assigned without a named technical disclosure. External NICs and host CPUs remain system dependencies in the documented accelerator portfolio.</p>
+<h3 id="networking-product-boundary">Networking product boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large-model switch project</td>
+<td>2025 annual report</td>
+<td>Roadmap</td>
+<td>Switch R&amp;D</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Merchant DPU / AI NIC</td>
+<td>n/a</td>
+<td>No product established</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="mlu370-x8-links">MLU370-X8 links</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLU-Link</td>
+<td>MLU370-X8</td>
+<td>50 Gb/s</td>
+<td>16 total as listed</td>
+<td>100 aggregate/device</td>
+<td>4 ports</td>
+<td>n/d</td>
+<td>8-card server supported</td>
+<td>Explicit communication; coherence n/d</td>
+</tr>
+<tr>
+<td>Host PCIe</td>
+<td>MLU370</td>
+<td>16 GT/s</td>
+<td>16</td>
+<td>~31.5 before packet overhead</td>
+<td>1</td>
+<td>Point-to-point</td>
+<td>Host topology</td>
+<td>PCIe</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="system-disclosures">System disclosures</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XuanSi1000 / MLU-X1000</td>
+<td>WAIC2021</td>
+<td>MLU290; count n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>MLU370-X8 server</td>
+<td>Product documentation</td>
+<td>Up to 8 cards</td>
+<td>Topology n/d</td>
+<td>External NIC; n/d</td>
+<td>n/d</td>
+<td>Passive boards; server airflow</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="07-terminal-ip-edge-products-and-software-continuity">07 Terminal IP, edge products and software continuity</h2>
+<p>Cambricon1A, 1H and 1M are licensable terminal processor-IP branches, while Siyuan220/MLU220 supplies edge chips and M.2/SOM modules. An IP core inside another company’s SoC is not a Cambricon-owned complete SoC. These products share software and instruction-family continuity with cloud offerings, but their memory systems, power budgets and host integration differ. The annual report continues to describe cloud, edge and IP activities without publishing a complete new-generation server SKU matrix.</p>
+<p>NeuWare brings drivers, runtime, libraries and tools into a shared platform. CNNL implements neural operators, CNCL supplies collective communication and MagicMind provides an MLIR-based inference compilation path. Training supports data, model and hybrid parallelism. Framework support is a starting point: production readiness also requires operator coverage, numerical correctness, communication overlap, profiling and failure recovery at the intended scale.</p>
+<h3 id="software-contracts">Software contracts</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Product</th>
+<th>Function</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform</td>
+<td>NeuWare</td>
+<td>Driver / runtime / tools</td>
+<td>Cloud / edge / terminal</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td>CNNL / BANG</td>
+<td>Libraries and kernel programming</td>
+<td>Device-specific tuning</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>CNCL</td>
+<td>Distributed collectives</td>
+<td>Topology and configuration dependent</td>
+</tr>
+<tr>
+<td>Inference</td>
+<td>MagicMind / MLIR</td>
+<td>Graph compilation and optimization</td>
+<td>Model and operator coverage dependent</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2018-2020-stack">2018-2020 stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["External host CPU"]
+  gpu["MLU100 / MLU270"]
+  mem["Board memory / on-chip NoC"]
+  sw["NeuWare / framework"]
+  net["External NIC / network"]
+  rt["CNCL / runtime"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"data path"| mem
+  gpu ---|"system I/O"| net
+  net ---|"collectives"| rt
+</pre>
+<p>Functional stack; MLU290 and MLU370 are separate branches, not one combined configuration.</p>
+<h3 id="2021-2026-disclosures-stack">2021-2026 disclosures stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["External host CPU"]
+  gpu["MLU290 / MLU370"]
+  mem["LPDDR5 / MLU-Link"]
+  sw["NeuWare / framework"]
+  net["External NIC / network"]
+  rt["CNCL / runtime"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"data path"| mem
+  gpu ---|"system I/O"| net
+  net ---|"collectives"| rt
+</pre>
+<p>Functional stack; MLU290 and MLU370 are separate branches, not one combined configuration.</p>
+<h2 id="08-normalized-metrics-and-deployment-implications">08 Normalized metrics and deployment implications</h2>
+<h3 id="board-level-balance">Board-level balance</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Calculation</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X4 DRAM/BF16</td>
+<td>307.2e9/96e12 = 0.0032 B/FLOP</td>
+<td>Advertised peak; sparsity basis unstated</td>
+</tr>
+<tr>
+<td>X8 DRAM/BF16</td>
+<td>614.4e9/96e12 = 0.0064 B/FLOP</td>
+<td>Board-wide; not per chiplet</td>
+</tr>
+<tr>
+<td>X8 capacity/BF16</td>
+<td>48e9/96e12 = 5e-4 B·s/FLOP</td>
+<td>LPDDR, not HBM</td>
+</tr>
+<tr>
+<td>X8 MLU-Link/DRAM</td>
+<td>100/614.4 = 0.163</td>
+<td>One-way aggregate link rate</td>
+</tr>
+<tr>
+<td>X4 vs X8 BF16/TDP</td>
+<td>96/150=0.64; 96/250=0.384 TFLOP/s/W</td>
+<td>Peak/TDP proxy; workload benefit differs</td>
+</tr>
+<tr>
+<td>HBM/FLOP; host DDR/core; L3/core</td>
+<td>n/d / n/a</td>
+<td>No matched published data or own host CPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>The board comparison illustrates why peak performance per watt can mislead: X8 has a lower BF16/TDP ratio than X4 but twice the memory bandwidth and capacity plus direct multi-card communication. A bandwidth-bound or capacity-limited model can therefore favor X8. The correct evaluation includes achievable precision, model fit, host-to-device traffic, inter-card collectives and software versions. Dense floating-point comparisons with other vendors remain conditional where the source does not state the sparsity convention.</p>
+<h2 id="09-conference-index-and-product-mapping">09 Conference index and product mapping</h2>
+<h3 id="verified-disclosure-lineage">Verified disclosure lineage</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASPLOS / MICRO</td>
+<td>2014</td>
+<td>DianNao / DaDianNao</td>
+<td>Paper authors / company</td>
+<td>Research baseline</td>
+<td>Research record</td>
+<td>C01 C03</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2015</td>
+<td>PuDianNao</td>
+<td>Paper authors / company</td>
+<td>Research</td>
+<td>Research record</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2015</td>
+<td>ShiDianNao</td>
+<td>Paper authors / company</td>
+<td>Research</td>
+<td>Research record</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2016</td>
+<td>Cambricon ISA</td>
+<td>Paper authors / company</td>
+<td>Research ISA</td>
+<td>Research record</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2016</td>
+<td>Cambricon-X</td>
+<td>Paper authors / company</td>
+<td>Research sparsity</td>
+<td>Research record</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2018</td>
+<td>Cambricon-S</td>
+<td>Paper authors / company</td>
+<td>Research sparsity</td>
+<td>Research record</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2019</td>
+<td>Cambricon-F</td>
+<td>Paper authors / company</td>
+<td>Research programming architecture</td>
+<td>Research record</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2021</td>
+<td>Cambricon-Q</td>
+<td>Paper authors / company</td>
+<td>Research training</td>
+<td>Research record</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>WAIC</td>
+<td>2021-2022</td>
+<td>Cloud/edge product exhibitions</td>
+<td>Paper authors / company</td>
+<td>MLU220/270/290/370</td>
+<td>Product showcase</td>
+<td>E03 E04</td>
+</tr>
+</tbody>
+</table></div>
+<p>The big-four architecture record is strongest at ISCA, MICRO and ASPLOS. This edition does not establish a direct commercial MLU implementation paper at HPCA, ISSCC or Hot Chips. It also does not treat a same-name academic paper as proof of a commercial design. Recent annual reports describe large-model development and deployment but omit a full named implementation matrix. Accordingly, widely circulated newer model numbers are not assigned speculative process, memory or throughput specifications here; this does not imply that MLU370 is the company’s newest deployed silicon.</p>
+<h3 id="naming-boundaries">Naming boundaries</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DianNao family</td>
+<td>Academic designs</td>
+<td>Not commercial MLU SKUs</td>
+</tr>
+<tr>
+<td>Siyuan / MLU</td>
+<td>Chip and board families</td>
+<td>Always specify board suffix</td>
+</tr>
+<tr>
+<td>MLU370 chiplet / X8 dual-chip</td>
+<td>Package / board integration</td>
+<td>Different counting levels</td>
+</tr>
+<tr>
+<td>MLU-Link / CNCL</td>
+<td>Hardware links / collective library</td>
+<td>Bandwidth versus software behavior</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and architectural synthesis — C02, C03, E02, E03, P01, P02</p>
+<p>02 Research lineage: what the architecture conferences establish — C01, C02, C03, C04, C05</p>
+<p>03 Commercial generations: MLU100, 270 and 290 — E02, E03, E05, P01</p>
+<p>04 MLU370: chiplets, fusion and board differentiation — P02, P04, P05, P06, P07</p>
+<p>05 Cloud accelerator and board tables — E02, E03, E04, E05, P01, P02, P04, P05, P06</p>
+<p>06 MLU-Link, systems and the networking roadmap — E02, E03, P05, P06</p>
+<p>07 Terminal IP, edge products and software continuity — E02, E03, E05, P01, P02, P06, P07</p>
+<p>08 Normalized metrics and deployment implications — E02, P05, P06</p>
+<p>09 Conference index and product mapping — C01, C02, C03, C04, E02, E03, E04, P02, P06, P07</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] Siyuan270. <a href="https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=15&amp;m=content">https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=15&amp;m=content</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Siyuan370. <a href="https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=360&amp;m=content">https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=360&amp;m=content</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] MLU370-S4/S8 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=365">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=365</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] MLU370-X4 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=371">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=371</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] MLU370-X8 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=406">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=406</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] Cambricon NeuWare. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=71">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=71</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] DianNao project and publication lineage. <a href="https://novel.ict.ac.cn/diannao/">https://novel.ict.ac.cn/diannao/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] Cambricon ISA, ISCA2016 author record. <a href="https://researchportal.hkust.edu.hk/en/publications/cambricon-an-instruction-set-architecture-for-neural-networks/">https://researchportal.hkust.edu.hk/en/publications/cambricon-an-instruction-set-architecture-for-neural-networks/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C03] Tianshi Chen publications. <a href="https://novel.ict.ac.cn/tchen/">https://novel.ict.ac.cn/tchen/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C04] Cambricon-F, ISCA2019 full author paper. <a href="https://dl.yongwei.site/F.pdf">https://dl.yongwei.site/F.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C05] Cambricon-LLM research, 2024. <a href="https://arxiv.org/abs/2409.15654">https://arxiv.org/abs/2409.15654</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E02] Cambricon2025 annual report, company filing mirror. <a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11993143&amp;stockid=688256">https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11993143&amp;stockid=688256</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] WAIC2021 portfolio. <a href="https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=41&amp;m=content">https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=41&amp;m=content</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] WAIC2022 portfolio. <a href="https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=51&amp;m=content">https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=51&amp;m=content</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Siyuan220 launch. <a href="https://cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=11&amp;m=content">https://cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=11&amp;m=content</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Google · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="google-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Google_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Google_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#google-ai">Google AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 范围与核心判断</a></li>
+<li><a href="#02">02 规格口径</a></li>
+<li><a href="#03-axion">03 Axion：把主机纳入平台</a><ul>
+<li><a href="#cpu">主机 CPU 对照</a></li>
+</ul>
+</li>
+<li><a href="#04-tpu-v1">04 TPU v1 与独立推理分支</a></li>
+<li><a href="#05-tpu-v2-v4">05 TPU v2-v4：从芯片走向训练计算机</a></li>
+<li><a href="#06-v5ev5p-trillium">06 v5e、v5p 与 Trillium：两种扩展目标</a></li>
+<li><a href="#07-ironwood">07 Ironwood 与第八代分化</a></li>
+<li><a href="#08">08 加速器代际对照</a><ul>
+<li><a href="#tpu">TPU 家族</a></li>
+</ul>
+</li>
+<li><a href="#09-icijupitervirgo">09 ICI、Jupiter、Virgo 与基础设施卸载</a><ul>
+<li><a href="#_1">网络及卸载角色</a></li>
+<li><a href="#ici">ICI 演进</a></li>
+</ul>
+</li>
+<li><a href="#10">10 软件与集成系统</a><ul>
+<li><a href="#_2">软件演进</a></li>
+<li><a href="#2017-2020-pod">2017-2020：训练 Pod</a></li>
+<li><a href="#2021-2025">2021-2025：可重构扩展</a></li>
+<li><a href="#2026">2026：训练与服务系统分化</a></li>
+<li><a href="#_3">系统域</a></li>
+</ul>
+</li>
+<li><a href="#11">11 带宽平衡与架构取舍</a><ul>
+<li><a href="#_4">推导平衡指标</a></li>
+<li><a href="#_5">容量与主机平衡</a></li>
+</ul>
+</li>
+<li><a href="#12">12 会议与产品索引</a><ul>
+<li><a href="#_6">已核实披露映射</a></li>
+<li><a href="#isscc">ISSCC 背景与实现主题</a></li>
+</ul>
+</li>
+<li><a href="#13">13 命名对照与剩余披露缺口</a><ul>
+<li><a href="#_7">名称及边界</a></li>
+</ul>
+</li>
+<li><a href="#_8">来源映射</a></li>
+<li><a href="#_9">参考资料</a><ul>
+<li><a href="#_10">产品与技术文档</a></li>
+<li><a href="#_11">会议记录与实现披露</a></li>
+<li><a href="#_12">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="google-ai">Google AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 范围与核心判断</h2>
+<p>覆盖范围：深入分析 TPU 与 ICI；按公开披露深度完整覆盖 Axion、基础设施卸载及数据中心网络；按相关性覆盖视频加速。时间范围：2015 年至 2026 年 9 月 28 日。已审阅的最新架构资料包括 Cloud Next 2026、2026 年训练 TPU 回顾论文及 Hot Chips 2026 公开议程。不覆盖 Pixel Tensor 与边缘 Coral。下文分别标明内部部署与云服务正式商用。</p>
+<p>Google 的核心架构资产，是在持续变化的系统中保持编译器控制的张量计算模型。其演进从受延迟约束的推理协处理器，走向分布式训练计算机，再走向按训练与服务负载优化的系统。Axion 和 Titanium 把这种控制延伸至主机和基础设施路径。因此，与 GPU 厂商比较时，应考察从图编译到作业放置、数据搬移、集合通信和故障恢复的完整路径，而不只是矩阵算力。</p>
+<h2 id="02">02 规格口径</h2>
+<p>算力均以物理 TPU 封装为单位，除非另有说明均为稠密值；乘加按两次运算计。v3-8 等云端名称计算的是 TensorCore 数量，不能理解为八颗物理芯片。GB 与 GiB 保留原始资料口径。HBM 带宽与 ICI 双向带宽不同。完整 Pod 的物理规模、可用分配规模和单作业最大切片可能不同。首次内部部署时间不自动等于云端正式商用时间。n/d 表示已审阅一手资料未确定，n/a 表示不适用。</p>
+<h2 id="03-axion">03 Axion：把主机纳入平台</h2>
+<p>第一代 Axion C4A 服务于 2024 年 10 月正式商用，采用 Neoverse V2。N4A 于 2026 年 1 月 27 日正式商用，采用 N3 核心，侧重灵活的通用虚拟机配置。两者体现不同的负载定位，不能理解为所有 N 系列核心都全面替代 C 系列核心。公开虚拟机上限描述可购买的资源，并不直接确定物理裸片核心数、内存通道数或插槽拓扑。</p>
+<p>架构含义：即使不执行主要矩阵计算，主机仍可能限制 AI 系统。分词、输入准备、任务提交和检查点搬移均消耗 CPU 与 I/O；基础设施处理若不卸载，就会与这些任务竞争资源。Titanium 把部分网络和存储处理移出应用 CPU。第八代 TPU 披露明确采用 Axion 主机。这提供了协同设计机会，但不意味着 CPU 与 TPU 具有一致性共享物理内存或均匀访存延迟。</p>
+<h3 id="cpu">主机 CPU 对照</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Axion / C4A</td>
+<td>n/d</td>
+<td>2024-10</td>
+<td>已商用／可获取</td>
+<td>Neoverse V2</td>
+<td>物理 n/d；VM ≤72 vCPU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5；通道／速率 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Arm64; SVE2</td>
+</tr>
+<tr>
+<td>Axion / N4A</td>
+<td>n/d</td>
+<td>2026-01-27</td>
+<td>已商用／可获取</td>
+<td>Neoverse N3</td>
+<td>物理 n/d；VM ≤64 vCPU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5；VM ≤512 GB；峰值 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Arm64</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-tpu-v1">04 TPU v1 与独立推理分支</h2>
+<p>TPU v1 于 2015 年投入内部服务。整数脉动阵列、软件管理缓冲区和确定性执行，服务于严格响应时间限制下的推理。ISCA 2017 论文的价值在于把机器结构与生产负载测量相连，包括利用率和存储约束。算术阵列再大，也无法补偿不足的权重复用；34 GB/s 片外接口使这个限制十分具体。DDR 存储和缺少训练 Pod，使其明显区别于后续 HBM 系统。</p>
+<p>TPU v4i 是独立的推理设计，于 2020 年部署，在 ISCA 2021 披露。7 nm 实现与扩大的片上存储，体现了在控制服务功耗的同时保留有效工作集的设计目标。它不能合并到训练 TPU v4 的规格行中。更一般地，i、e、p 分支代表不同优化目标；仅凭代号较新，无法判断哪款设备更适合特定延迟、容量或扩展要求。</p>
+<h2 id="05-tpu-v2-v4">05 TPU v2-v4：从芯片走向训练计算机</h2>
+<p>TPU v2 引入 BF16 训练、HBM 和二维 ICI 环面。TPU v3 扩大矩阵资源及内存容量，并转向液冷。Hot Chips 2020 解释了架构组织，后续训练系统回顾论文进一步连接到更大系统及可靠性。关键实现后果是：在同一制造工艺代际中增加算力，并不只是芯片变化；供电、散热、网络规模和编译器分区策略都必须共同演进。</p>
+<p>TPU v4 将更强计算、面向嵌入表的 SparseCore 与可光学重构的互联结合。光路交换机在较粗时间尺度上改变物理连接，并不是为每个集合操作逐包转发的交换机。重构可帮助组成健康切片、调整拓扑，并绕过不可用组件。因此，4,096 芯片系统也是一种可用性架构：在这种规模下，恢复可用容量与减少集合通信时间同样重要。ISCA 2023 论文给出了明确的产品对应关系。</p>
+<h2 id="06-v5ev5p-trillium">06 v5e、v5p 与 Trillium：两种扩展目标</h2>
+<p>TPU v5e 是侧重成本的训练和推理平台，物理域较小；v5p 面向更大型训练系统，单芯片 HBM 更多。Trillium（v6e）继续推进效率分支，增加计算与存储带宽。e 分支不能简单理解为屏蔽部分资源的 p 芯片：其域规模、内存预算和部署经济性应独立评价。若模型能放入较小切片，为更大物理纵向扩展能力付费，未必带来相应收益。</p>
+<p>设计问题在于分区之后的瓶颈。稠密训练可能通过权重复用充分利用更多 MXU，而嵌入表流量、小批量和解码更容易暴露存储及通信限制。公平比较应固定模型、精度、批量、延迟目标和可用芯片数。把完整 v5p Pod 与较小 Trillium 切片比较，回答的是采购容量问题，并非单芯片架构效率问题。</p>
+<h2 id="07-ironwood">07 Ironwood 与第八代分化</h2>
+<p>Ironwood／TPU7x 引入两颗计算芯粒，各有本地内存空间。云端规格表给出的封装配置为两个 TensorCore、四个 SparseCore 和 192 GiB HBM。编译器可见的局部性与此前 MegaCore 抽象不同。更高封装算力不能消除跨芯粒搬移；分片与内核放置必须考虑新增的物理边界。云端文档列出 JAX 和 PyTorch 支持，并明确说明 TPU7x 不支持 TensorFlow。</p>
+<p>2026 年 4 月的 TPU 8 披露明确采用负载专用化。TPU 8t 为训练保留大规模环面；TPU 8i 使用 Boardfly 降低服务域的网络直径，并加入集合通信加速引擎。8i 公布的物理规模是 1,152 芯片，拓扑说明另外指出最多 1,024 个活跃芯片，两者必须分开记录。本报告把两款产品列为已公布；已审阅的架构发布资料不足以确定正式商用。</p>
+<p>架构解读：这种分化说明域规模与网络直径已成为独立的产品变量。训练系统的长集合传输可摊薄启动开销，因此可以接受更多跳数。自回归推理反复支付同步延迟，可能宁愿采用规模较小但跳数更少的域。更多 SRAM 只帮助真正能放入其中的工作集，不能推导出任意长上下文 KV 缓存都能驻留片上。</p>
+<h2 id="08">08 加速器代际对照</h2>
+<h3 id="tpu">TPU 家族</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPU v1</td>
+<td>INT8 systolic</td>
+<td>2015 Q2</td>
+<td>历史已商用</td>
+<td>28 nm</td>
+<td>1</td>
+<td>1 × 256×256</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>DDR3; 8 GB; 0.034 TB/s</td>
+<td>28 MB</td>
+<td>n/a</td>
+<td>PCIe; n/d</td>
+<td>75 W 芯片 TDP</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v2</td>
+<td>TensorCore</td>
+<td>2017 Q3</td>
+<td>历史已商用</td>
+<td>16 nm</td>
+<td>1</td>
+<td>2 TC</td>
+<td>46 TFLOPS</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM2; 16 GiB; 0.700 TB/s</td>
+<td>32 MiB</td>
+<td>二维环面；256 芯片；方向 n/d</td>
+<td>PCIe; n/d</td>
+<td>280 W 芯片 TDP; 风冷</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v3</td>
+<td>TensorCore</td>
+<td>2018 Q4</td>
+<td>历史已商用</td>
+<td>16 nm</td>
+<td>1</td>
+<td>2 TC</td>
+<td>123 TFLOPS</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM2; 4 堆栈; 32 GiB; 0.900 TB/s</td>
+<td>32 MiB</td>
+<td>二维环面；1,024 芯片</td>
+<td>PCIe; n/d</td>
+<td>450 W 芯片 TDP; 液冷</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v4i</td>
+<td>推理</td>
+<td>2020 Q1</td>
+<td>历史已商用</td>
+<td>7 nm</td>
+<td>1</td>
+<td>1 TC; 4 MXU</td>
+<td>138 TFLOPS</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 8 GB; 0.614 TB/s</td>
+<td>144 MB</td>
+<td>2 × 400 Gb/s；方向 n/d</td>
+<td>PCIe; n/d</td>
+<td>175 W 芯片 TDP</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v4</td>
+<td>TensorCore + SparseCore</td>
+<td>2021 部署</td>
+<td>历史已商用</td>
+<td>7 nm</td>
+<td>1</td>
+<td>2 TC; 4 SC</td>
+<td>275 TFLOPS</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM2; 4 堆栈; 32 GiB; 1.2 TB/s</td>
+<td>32 MiB</td>
+<td>6 × 50 GB/s/direction; 4,096</td>
+<td>PCIe; n/d</td>
+<td>液冷; TDP n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v5e</td>
+<td>效率</td>
+<td>2023</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>1 TC</td>
+<td>197 TFLOPS</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 堆栈 n/d; 16 GB; 0.819 TB/s</td>
+<td>n/d</td>
+<td>256 芯片; 400 GB/s 双向</td>
+<td>PCIe; n/d</td>
+<td>n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v5p</td>
+<td>性能</td>
+<td>2023 预览; GA n/d</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>1</td>
+<td>2 TC; 4 SC</td>
+<td>459 TFLOPS</td>
+<td>459 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM2e; 6 堆栈; 95 GiB 可用; 2.765 TB/s</td>
+<td>128 MiB</td>
+<td>6 × 100 GB/s/direction; 8,960</td>
+<td>PCIe; n/d</td>
+<td>液冷; TDP n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU v6e</td>
+<td>Trillium</td>
+<td>2024</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>1 TC; 2 SC</td>
+<td>918 TFLOPS</td>
+<td>918 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM; 堆栈 n/d; 32 GiB; 1.638 TB/s</td>
+<td>n/d</td>
+<td>256 芯片; 800 GB/s 双向</td>
+<td>PCIe; n/d</td>
+<td>n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU7x</td>
+<td>Ironwood</td>
+<td>2025</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>2 颗计算芯粒</td>
+<td>2 TC; 4 SC</td>
+<td>2,307 TFLOPS</td>
+<td>4,614 TFLOPS</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>HBM3e; 8 堆栈; 192 GiB; 7.380 TB/s</td>
+<td>128 MiB</td>
+<td>6 × 100 GB/s/direction; 9,216</td>
+<td>PCIe; n/d</td>
+<td>液冷; TDP n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU 8t</td>
+<td>训练</td>
+<td>2026-04-22</td>
+<td>已公布；GA n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>12.6 PFLOPS FP4；稠密口径 n/d</td>
+<td>n/d</td>
+<td>216 GB; 6.528 TB/s</td>
+<td>128 MB</td>
+<td>三维环面; 9,600</td>
+<td>PCIe; n/d</td>
+<td>液冷; TDP n/d</td>
+<td>Google 平台</td>
+</tr>
+<tr>
+<td>TPU 8i</td>
+<td>推理服务 / CAE</td>
+<td>2026-04-22</td>
+<td>已公布；GA n/d</td>
+<td>n/d</td>
+<td>计算 + CAE 芯粒</td>
+<td>2 TC; 1 CAE</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>10.1 PFLOPS FP4；稠密口径 n/d</td>
+<td>n/d</td>
+<td>288 GB; 8.601 TB/s</td>
+<td>384 MB</td>
+<td>Boardfly：1,152 物理／≤1,024 活跃</td>
+<td>PCIe; n/d</td>
+<td>液冷; TDP n/d</td>
+<td>Google 平台</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="09-icijupitervirgo">09 ICI、Jupiter、Virgo 与基础设施卸载</h2>
+<p>ICI 是加速器网络，Jupiter 是数据中心网络。Jupiter Rising 与 Jupiter Evolving 论文解释了从集中控制的 Clos 网络走向数据中心光学重构的过程，不能与 TPU 本地 ICI 拓扑混为一谈。TPU 8 时代的 Virgo 增加了面向训练的横向扩展网络。百万芯片分布式训练的表述指跨系统聚合，不是百万芯片的一致性内存域或单个 ICI Pod。</p>
+<p>Titanium 是基础设施卸载系统，不是具有完整单芯片数据表的公开商用 DPU SKU。Falcon 描述可靠硬件传输机制；传输规范本身不是 Google 品牌网卡产品。报告应映射功能和部署路径，对未披露的芯片实现保留 n/d。Argos 视频加速也应列入产品组合，因为它展示了相同的仓库级负载专用化思路，但视频引擎不等于 TPU 张量核心。</p>
+<h3 id="_1">网络及卸载角色</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Titanium</td>
+<td>n/d</td>
+<td>已商用／可获取</td>
+<td>基础设施卸载</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>网络／存储</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Jupiter</td>
+<td>n/d</td>
+<td>已商用／可获取</td>
+<td>数据中心网络</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>n/d</td>
+<td>网络控制</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Falcon</td>
+<td>n/d</td>
+<td>已商用／可获取</td>
+<td>传输；非网卡 SKU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>RDMA</td>
+<td>n/d</td>
+<td>可靠传输</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Virgo</td>
+<td>n/d</td>
+<td>已公布；GA n/d</td>
+<td>AI 横向扩展网络</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>训练网络</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="ici">ICI 演进</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ICI</td>
+<td>v2</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>二维环面</td>
+<td>256</td>
+<td>显式集合通信</td>
+</tr>
+<tr>
+<td>ICI</td>
+<td>v3</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>二维环面</td>
+<td>1024</td>
+<td>显式集合通信</td>
+</tr>
+<tr>
+<td>ICI</td>
+<td>v4</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>50</td>
+<td>6</td>
+<td>三维环面 / OCS</td>
+<td>4096</td>
+<td>显式集合通信</td>
+</tr>
+<tr>
+<td>ICI</td>
+<td>Ironwood</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>100</td>
+<td>6</td>
+<td>三维环面</td>
+<td>9216</td>
+<td>显式集合通信</td>
+</tr>
+<tr>
+<td>ICI / Boardfly</td>
+<td>TPU8i</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Boardfly</td>
+<td>1152 物理 / ≤1024 启用</td>
+<td>显式集合通信 / CAE</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10">10 软件与集成系统</h2>
+<p>XLA 在硬件变化时保持相对稳定的编程契约。JAX 表达分布式计算；Pallas 和 Mosaic 为数据搬移占主导的内核提供更低层控制。只有软件能够放置并调度相应工作时，SparseCore 与集合引擎才有价值。因此，可移植性与峰值利用率是两个不同里程碑：模型无修改地运行，并不说明其分区、融合和暂存区调度已发挥新一代硬件能力。</p>
+<h3 id="_2">软件演进</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>版本／层</th>
+<th>日期</th>
+<th>硬件</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XLA / TensorFlow</td>
+<td>2017-2020</td>
+<td>v2-v3</td>
+<td>图编译与放置</td>
+</tr>
+<tr>
+<td>JAX / XLA</td>
+<td>2021-2026</td>
+<td>v4 起</td>
+<td>分布式数组编程</td>
+</tr>
+<tr>
+<td>Pallas / Mosaic</td>
+<td>2025-2026</td>
+<td>Ironwood / TPU8</td>
+<td>内核级显式局部性</td>
+</tr>
+<tr>
+<td>Native PyTorch</td>
+<td>2026-04</td>
+<td>TPU8 stack</td>
+<td>披露时为预览</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2017-2020-pod">2017-2020：训练 Pod</h3>
+<pre class="mermaid">flowchart TD
+  host["CPU 主机"]
+  gpu["TPU v2／v3 + HBM"]
+  pod["二维 ICI 环面"]
+  sw["TensorFlow／XLA"]
+  net["数据中心网络"]
+  host ---|"PCIe"| gpu
+  gpu ---|"ICI"| pod
+  sw ---|"分区"| pod
+  gpu ---|"主机路径"| net
+</pre>
+<p>逻辑角色图，并非物理布线图。</p>
+<h3 id="2021-2025">2021-2025：可重构扩展</h3>
+<pre class="mermaid">flowchart TD
+  host["CPU 主机 + 卸载"]
+  gpu["v4／v5p／Ironwood"]
+  pod["ICI + 光路交换"]
+  sw["JAX／XLA／内核"]
+  net["Jupiter／存储"]
+  host ---|"PCIe"| gpu
+  gpu ---|"纵向扩展"| pod
+  sw ---|"放置"| pod
+  host ---|"DCN"| net
+</pre>
+<p>OCS 改变连接，计算仍在 TPU 中执行。</p>
+<h3 id="2026">2026：训练与服务系统分化</h3>
+<pre class="mermaid">flowchart TD
+  host["Axion 主机"]
+  gpu["TPU 8t／8i + HBM"]
+  pod["环面／Boardfly"]
+  sw["XLA／Pallas／Pathways"]
+  net["Virgo／Jupiter／存储"]
+  host ---|"主机连接"| gpu
+  gpu ---|"ICI"| pod
+  sw ---|"调度"| pod
+  gpu ---|"DCN／直接 I/O"| net
+</pre>
+<p>已公布架构；本图不推定已正式商用。</p>
+<h3 id="_3">系统域</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPUv4 pod</td>
+<td>2021</td>
+<td>4096 TPU 芯片</td>
+<td>4096</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>Ironwood pod</td>
+<td>2025</td>
+<td>9216 TPU 芯片</td>
+<td>9216</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>TPU8t</td>
+<td>2026 发布</td>
+<td>9600 TPU 芯片</td>
+<td>9600</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>TPU8i</td>
+<td>2026 发布</td>
+<td>1152 物理 / ≤1024 启用</td>
+<td>Boardfly</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11">11 带宽平衡与架构取舍</h2>
+<p>以下推导比值用存储带宽除以稠密算力，单位为 byte/FLOP。容量除以算力的单位是 byte·s/FLOP，在规范数据中单独记录。v5p 使用云端可用容量 95 GiB，而回顾论文给出物理容量 96 GiB。当前云端表中的 Ironwood 带宽为 7,380 GB/s，回顾论文采用不同舍入口径。这些是资料口径差异，不是新的硬件代际。</p>
+<h3 id="_4">推导平衡指标</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际</th>
+<th>HBM 带宽／BF16</th>
+<th>HBM 带宽／FP8</th>
+<th>单向 ICI／HBM</th>
+<th>性能／W</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2</td>
+<td>0.015217</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>0.007317</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>0.004364</td>
+<td>n/a</td>
+<td>0.250</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+<tr>
+<td>v5p</td>
+<td>0.006024</td>
+<td>0.006024</td>
+<td>0.217</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+<tr>
+<td>v6e</td>
+<td>0.001784</td>
+<td>0.001784</td>
+<td>0.244</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+<tr>
+<td>v7</td>
+<td>0.003199</td>
+<td>0.001599</td>
+<td>0.081</td>
+<td>n/d：缺少可比功耗口径</td>
+</tr>
+</tbody>
+</table></div>
+<p>架构解读：从 v2 到 Ironwood，BF16 算力约增长 50 倍，HBM 带宽约增长 10.5 倍，所需数据复用程度相应提高。更大阵列把更多责任交给编译器分块、融合及本地存储。在系统层面，光学重构以更复杂控制平面换取切片组装和故障容纳能力。在主机边界，直接 I/O 减少复制，却提高了端到端调度及访问保护的重要性。因此，实际评估应包含通信并发下的持续吞吐、故障恢复时间，以及重编译或调优模型的成本，而不只是独立 GEMM。</p>
+<h3 id="_5">容量与主机平衡</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值／计算</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPUv4 HBM 容量/BF16</td>
+<td>32×2^30/(275×10^12) = 1.249×10^-4 B·s/FLOP</td>
+<td>每芯片；GiB 换算为字节</td>
+</tr>
+<tr>
+<td>Ironwood HBM 容量/BF16</td>
+<td>192×2^30/(2307×10^12) = 8.936×10^-5 B·s/FLOP</td>
+<td>每封装；稠密 BF16</td>
+</tr>
+<tr>
+<td>Axion DDR/核心; L3/核心</td>
+<td>n/d</td>
+<td>物理 CPU 规格不完整</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12">12 会议与产品索引</h2>
+<h3 id="_6">已核实披露映射</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISCA</td>
+<td>2017</td>
+<td>In-Datacenter 性能 Analysis of a Tensor Processing Unit</td>
+<td>Jouppi et al.</td>
+<td>TPU v1</td>
+<td>产品架构与测量</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2021</td>
+<td>Ten Lessons From Three Generations Shaped Google’s TPUv4i</td>
+<td>Jouppi et al.</td>
+<td>TPU v4i</td>
+<td>产品实现与推理服务</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2023</td>
+<td>TPU v4: An Optically Reconfigurable Supercomputer</td>
+<td>Jouppi et al.</td>
+<td>TPU v4</td>
+<td>架构／系统</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2020</td>
+<td>Google 训练 芯片 TPUv2 and TPUv3</td>
+<td>Norrie / Patil</td>
+<td>v2-v3</td>
+<td>架构</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>IEEE Micro</td>
+<td>2026</td>
+<td>Google’s 训练 Supercomputers from TPU v2 to Ironwood</td>
+<td>Google authors</td>
+<td>v2-v7</td>
+<td>实现／系统回顾</td>
+<td>C05</td>
+</tr>
+<tr>
+<td>SIGCOMM</td>
+<td>2015 / 2022</td>
+<td>Jupiter Rising / Jupiter Evolving</td>
+<td>Google authors</td>
+<td>Jupiter</td>
+<td>网络系统</td>
+<td>C06 C07</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2021</td>
+<td>Warehouse-Scale Video Acceleration</td>
+<td>Ranganathan et al.</td>
+<td>Argos</td>
+<td>产品协同设计</td>
+<td>C08</td>
+</tr>
+<tr>
+<td>Cloud Next</td>
+<td>2026</td>
+<td>TPU 8t / 8i architecture</td>
+<td>Gupta / Mugazambi</td>
+<td>TPU8</td>
+<td>产品发布</td>
+<td>P08</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>The Eighth Generation TPU Family</td>
+<td>Google</td>
+<td>TPU8</td>
+<td>已核实议程；非录像分析</td>
+<td>C09</td>
+</tr>
+</tbody>
+</table></div>
+<p>所选资料中的 ISCA、ASPLOS、Hot Chips 与 IEEE Micro 提供直接产品披露。MICRO、HPCA 研究只有在文献明确建立产品联系时才可归入产品；本报告不作未经证实的归属。本次未建立 ISSCC／JSSC 电路论文与 TPU 的明确映射，因此电路参数采用已识别的产品论文，不把它们归因于 ISSCC。Cloud Next 与 OCP 适合补充发布和系统信息；MWC、Computex、GTC 及其他云活动并不自动构成 Google 自研芯片的独立证据。</p>
+<h3 id="isscc">ISSCC 背景与实现主题</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISSCC plenary</td>
+<td>2018</td>
+<td>50 Years of Computer Architecture: From Mainframe CPUs to Neural-Network TPUs</td>
+<td>David Patterson</td>
+<td>TPU / 域 specialization</td>
+<td>官方主旨报告记录</td>
+<td>C10</td>
+</tr>
+<tr>
+<td>ISSCC plenary</td>
+<td>2020</td>
+<td>The Deep Learning Revolution and Its Implications for Computer Architecture and Chip Design</td>
+<td>Jeff Dean</td>
+<td>TPU / 芯片-design context</td>
+<td>作者配套论文及官方记录</td>
+<td>C11 C10</td>
+</tr>
+<tr>
+<td>ISSCC Forum 3</td>
+<td>2026</td>
+<td>Power Delivery Trends and Demands in Data-Center AI Processors</td>
+<td>Houle Gan</td>
+<td>Google datacenter processors</td>
+<td>官方议程；非逐代电路数据表</td>
+<td>C12</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISSCC 同时提供领域专用化动机及供电实现视角。2026 年论坛条目证明 Google 参与该工程讨论，但其本身并不披露某代 TPU 的具体电压调节电路。这些记录补充 ISCA 产品论文与 Hot Chips 架构披露，不以推测电路规格替代它们。</p>
+<h2 id="13">13 命名对照与剩余披露缺口</h2>
+<h3 id="_7">名称及边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>对应</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trillium</td>
+<td>TPU v6e</td>
+<td>效率分支</td>
+</tr>
+<tr>
+<td>Ironwood</td>
+<td>TPU7x</td>
+<td>家族名与云端配置</td>
+</tr>
+<tr>
+<td>Axion</td>
+<td>C4A / N4A</td>
+<td>CPU 品牌与虚拟机系列</td>
+</tr>
+<tr>
+<td>TPU v4i</td>
+<td>推理 TPU</td>
+<td>区别于训练 TPU v4</td>
+</tr>
+<tr>
+<td>TPU 8t / 8i</td>
+<td>训练 / serving</td>
+<td>不同架构目标</td>
+</tr>
+</tbody>
+</table></div>
+<p>尚未确定的主要实现字段，是 Axion 的物理封装组织、近期 TPU 的准确 TDP 与逐裸片工艺，以及完整链路电气参数。这些缺口限制封装级功耗和面积比较，但不妨碍分析已披露的存储与网络层次。下一步最有价值的证据，是电路级实现论文、完整 TPU 8 服务规格，以及 Ironwood 跨芯粒边界的软件实测行为。</p>
+<h2 id="_8">来源映射</h2>
+<p>01 范围与核心判断 — C01, C03, C05, C09, P08, P10</p>
+<p>02 规格口径 — C02, P07, P09</p>
+<p>03 Axion：把主机纳入平台 — E01, P08, P10, P11</p>
+<p>04 TPU v1 与独立推理分支 — C01, C02</p>
+<p>05 TPU v2-v4：从芯片走向训练计算机 — C03, C04, C05</p>
+<p>06 v5e、v5p 与 Trillium：两种扩展目标 — P04, P05, P06</p>
+<p>07 Ironwood 与第八代分化 — E03, P07, P08, P13</p>
+<p>08 加速器代际对照 — C01, C02, C03, C04, C05, E02, E03, P04, P05, P06, P07, P08</p>
+<p>09 ICI、Jupiter、Virgo 与基础设施卸载 — C03, C04, C05, C06, C07, C08, E05, P07, P08, P10, P14</p>
+<p>10 软件与集成系统 — C03, C04, C05, P07, P08, P13</p>
+<p>11 带宽平衡与架构取舍 — C03, C04, C05, P05, P07, P08, P10</p>
+<p>12 会议与产品索引 — C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12, P08</p>
+<p>13 命名对照与剩余披露缺口 — C02, P06, P07, P08, P10</p>
+<h2 id="_9">参考资料</h2>
+<h3 id="_10">产品与技术文档</h3>
+<p>[P04] Cloud TPU v5e. <a href="https://docs.cloud.google.com/tpu/docs/v5e">https://docs.cloud.google.com/tpu/docs/v5e</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P05] Cloud TPU v5p. <a href="https://docs.cloud.google.com/tpu/docs/v5p">https://docs.cloud.google.com/tpu/docs/v5p</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P06] Cloud TPU v6e (Trillium). <a href="https://docs.cloud.google.com/tpu/docs/v6e">https://docs.cloud.google.com/tpu/docs/v6e</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P07] TPU7x (Ironwood). <a href="https://docs.cloud.google.com/tpu/docs/tpu7x">https://docs.cloud.google.com/tpu/docs/tpu7x</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P08] Inside the eighth-generation TPU: An architecture deep dive. <a href="https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive">https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P09] TPU architecture. <a href="https://docs.cloud.google.com/tpu/docs/system-architecture-tpu-vm">https://docs.cloud.google.com/tpu/docs/system-architecture-tpu-vm</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P10] Axion N4A generally available. <a href="https://cloud.google.com/blog/products/compute/axion-based-n4a-vms-now-in-preview">https://cloud.google.com/blog/products/compute/axion-based-n4a-vms-now-in-preview</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P11] Arm VMs on Compute. <a href="https://docs.cloud.google.com/compute/docs/instances/arm-on-compute">https://docs.cloud.google.com/compute/docs/instances/arm-on-compute</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P13] Inside the Ironwood codesigned AI stack. <a href="https://cloud.google.com/blog/products/compute/inside-the-ironwood-tpu-codesigned-ai-stack">https://cloud.google.com/blog/products/compute/inside-the-ironwood-tpu-codesigned-ai-stack</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P14] Falcon RDMA network profiles. <a href="https://docs.cloud.google.com/vpc/docs/rdma-network-profiles">https://docs.cloud.google.com/vpc/docs/rdma-network-profiles</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<h3 id="_11">会议记录与实现披露</h3>
+<p>[C01] In-Datacenter Performance Analysis of a Tensor Processing Unit, ISCA 2017. <a href="https://arxiv.org/pdf/1704.04760">https://arxiv.org/pdf/1704.04760</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C02] Ten Lessons From Three Generations Shaped Google’s TPUv4i, ISCA 2021. <a href="https://markgottscho.com/cv/papers/2021_NJouppi_ISCA.pdf">https://markgottscho.com/cv/papers/2021_NJouppi_ISCA.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C03] TPU v4, ISCA 2023. <a href="https://arxiv.org/pdf/2304.01433">https://arxiv.org/pdf/2304.01433</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C04] Google training chips TPUv2 and TPUv3, Hot Chips 2020. <a href="https://www.hc32.hotchips.org/assets/program/conference/day2/HotChips2020_ML_Training_Google_Norrie_Patil.v01.pdf">https://www.hc32.hotchips.org/assets/program/conference/day2/HotChips2020_ML_Training_Google_Norrie_Patil.v01.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C05] Google’s Training Supercomputers from TPU v2 to Ironwood, IEEE Micro 2026. <a href="https://arxiv.org/pdf/2606.15870">https://arxiv.org/pdf/2606.15870</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C06] Jupiter Rising, SIGCOMM 2015. <a href="https://research.google/pubs/jupiter-rising-a-decade-of-clos-topologies-and-centralized-control-in-googles-datacenter-network/">https://research.google/pubs/jupiter-rising-a-decade-of-clos-topologies-and-centralized-control-in-googles-datacenter-network/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C07] Jupiter Evolving, SIGCOMM 2022. <a href="https://research.google/pubs/jupiter-evolving-transforming-googles-datacenter-network-via-optical-circuit-switches-and-software-defined-networking/">https://research.google/pubs/jupiter-evolving-transforming-googles-datacenter-network-via-optical-circuit-switches-and-software-defined-networking/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C08] Warehouse-Scale Video Acceleration, ASPLOS 2021. <a href="https://research.google/pubs/warehouse-scale-video-acceleration-co-design-and-deployment-in-the-wild/">https://research.google/pubs/warehouse-scale-video-acceleration-co-design-and-deployment-in-the-wild/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C09] Hot Chips 2026 conference program. <a href="https://hc2026.hotchips.org/program/conference/">https://hc2026.hotchips.org/program/conference/</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C10] ISSCC plenary archive: Patterson2018 / Dean2020. <a href="https://www.isscc.org/isscc-plenary-videos">https://www.isscc.org/isscc-plenary-videos</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[C11] Dean ISSCC2020 companion paper. <a href="https://arxiv.org/abs/1911.05289">https://arxiv.org/abs/1911.05289</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[C12] ISSCC2026 Forum3: Google power delivery. <a href="https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf">https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<h3 id="_12">发布、生态与部署</h3>
+<p>[E01] First Axion C4A generally available. <a href="https://cloud.google.com/blog/products/compute/first-google-axion-processor-c4a-now-ga-with-titanium-ssd/">https://cloud.google.com/blog/products/compute/first-google-axion-processor-c4a-now-ga-with-titanium-ssd/</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E02] Ironwood and Axion portfolio, November 2025. <a href="https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads">https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E03] Two chips for the agentic era, Cloud Next 2026. <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/">https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E05] Data center and global networks built for the AI era. <a href="https://cloud.google.com/blog/products/networking/data-center-and-global-networks-built-for-ai-era">https://cloud.google.com/blog/products/networking/data-center-and-global-networks-built-for-ai-era</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p></article></div></main><script src="app.js"></script></body></html>

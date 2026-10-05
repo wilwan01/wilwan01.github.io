@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Meta · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="meta-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Meta_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Meta_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#meta-ai">Meta AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 范围与核心判断</a></li>
+<li><a href="#02-mtia100-mtia200">02 MTIA100 与 MTIA200：推荐推理</a></li>
+<li><a href="#03-mtia300">03 MTIA300：训练改变数据路径</a></li>
+<li><a href="#04-mtia400450-500">04 MTIA400、450 与 500：推理路线图</a></li>
+<li><a href="#05">05 代际规格与披露差异</a><ul>
+<li><a href="#mtia">MTIA 参考规格</a></li>
+<li><a href="#cpu">主机 CPU 边界</a></li>
+</ul>
+</li>
+<li><a href="#06-nic-msvp">06 集成 NIC、网络与 MSVP</a><ul>
+<li><a href="#mtia_1">MTIA 网络小芯片</a></li>
+<li><a href="#_1">互联演进</a></li>
+</ul>
+</li>
+<li><a href="#07">07 机架架构与软件</a><ul>
+<li><a href="#2023-2024">2023-2024 技术栈</a></li>
+<li><a href="#2026-roadmap">2026 roadmap 技术栈</a></li>
+<li><a href="#_2">系统代际</a></li>
+<li><a href="#_3">软件栈</a></li>
+</ul>
+</li>
+<li><a href="#08">08 归一化趋势与工程取舍</a><ul>
+<li><a href="#_4">存储与通信平衡</a></li>
+</ul>
+</li>
+<li><a href="#09">09 会议与产品对照</a><ul>
+<li><a href="#_5">披露映射</a></li>
+<li><a href="#_6">命名与归属</a></li>
+<li><a href="#isscc">ISSCC 背景</a></li>
+</ul>
+</li>
+<li><a href="#_7">来源映射</a></li>
+<li><a href="#_8">参考资料</a><ul>
+<li><a href="#_9">产品与技术文档</a></li>
+<li><a href="#_10">会议记录与实现披露</a></li>
+<li><a href="#_11">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="meta-ai">Meta AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 范围与核心判断</h2>
+<p>本报告覆盖 Meta 在 2015 年至 2026 年 9 月 28 日的 AI 基础设施：MTIA 加速器、集成 AI 网络、系统封装与软件，以及相关 MSVP 视频处理分支。商用 CPU、GPU 和交换 ASIC 与 Meta 设计芯片分别处理。早期年份用于建立基础设施背景，不虚构逐年自研芯片序列。</p>
+<p>MTIA 从低功耗推荐推理，演进到基于 HBM 的训练平台，再延伸至面向生成式 AI 推理的路线图。决定性转变不只是增加算术能力，还增加网络小芯片、近存归约与机架级通信，同时保持面向 PyTorch 的软件契约。Meta 掌握自身负载，可以比通用商用 GPU 更有针对性地优化，但可移植性、可靠性与模型变化仍是约束。</p>
+<h2 id="02-mtia100-mtia200">02 MTIA100 与 MTIA200：推荐推理</h2>
+<p>MTIA100 原名 MTIA v1，围绕推荐推理设计，于 ISCA 2023 披露。其 7 nm 实现结合 8×8 处理单元阵列、本地存储、较大共享 SRAM 层及 LPDDR5。核心平衡是为模型的稠密部分提供足够算术能力，同时保留稀疏特征需要的存储与访问能力。这与最大化大批量 Transformer 训练 FLOPS 的目标不同。</p>
+<p>MTIA200 原名 MTIA2i，保留 64 个处理单元的组织，转向 5 nm、更高频率、更大本地存储及 256 MB 共享 SRAM。稠密 FP16／BF16 从 51.2 提高到 177 TFLOP/s，而 LPDDR5 带宽仅从 176 提高到 204.8 GB/s。因此设计更依赖片上复用与稀疏负载调度。2024 年平台可在机架中容纳 72 个加速器，但这不同于 MTIA400 引入的 72 设备专用纵向扩展域。</p>
+<h2 id="03-mtia300">03 MTIA300：训练改变数据路径</h2>
+<p>ISCA 2026 论文描述一个计算小芯片、两个网络小芯片及六堆栈 HBM3e。12×6 启用处理单元阵列结合 RISC-V 向量控制、点积、特殊函数、归约与 DMA 引擎。存储系统提供 216 GB 和 6.1 TB/s，冗余处理单元用于良率与故障处理。从 LPDDR 转向 HBM，同时改变封装以及稠密层、嵌入表与集合通信之间的平衡。</p>
+<p>每个网络小芯片集成六个 800 Gb/s RDMA 控制器，总端点速率为每方向 1.2 TB/s。消息引擎与近存归约使集合通信无需占用主要计算引擎，也不必把载荷送过主机 PCIe 链路。论文部署配置采用 800 GB/s 纵向带宽，支持最高 1,000 GB/s；横向扩展为 200 GB/s。产品表采用支持上限，因此本报告保留两种配置，不将其静默合并。</p>
+<p>一对一主机 CPU／加速器关系支持优化器卸载。更大 HBM 容量可能允许更大本地批量并减少参与通信的训练设备，但收益取决于优化器状态、精度及收敛约束。HCCL 可融合通信与计算，公布的集合通信结果依赖具体负载与拓扑。集成 NIC 减少一种瓶颈，不会消除所有同步或网络瓶颈。</p>
+<h2 id="04-mtia400450-500">04 MTIA400、450 与 500：推理路线图</h2>
+<p>2026 年 3 月路线图将 MTIA300 列为已生产部署，MTIA400 列为已完成实验室测试、正在推进部署，MTIA450／500 列为计划于 2027 年部署。MTIA400 使用两个计算小芯片及 72 设备纵向扩展系统；MTIA450 优先提升内存带宽和低精度推理；MTIA500 转向四个计算小芯片，并分离网络与主机 I/O 功能。以上是披露状态，不推定公共云或商用芯片可获取性。</p>
+<p>架构解读：复用机箱与网络基础设施可以缩短部署周期，但当算力和 HBM 持续增长时，部分系统带宽预算被固定。从 400 到 500，每设备纵向扩展仍为 1.2 TB/s、横向扩展仍为 100 GB/s，而 HBM 带宽增加至三倍。因此编译器必须保留更多局部性或改变并行方式。MTIA300 MX8 至 MTIA500 MX4 的 25 倍比较跨越数值格式，不是同口径算术加速比。</p>
+<h2 id="05">05 代际规格与披露差异</h2>
+<h3 id="mtia">MTIA 参考规格</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100 / v1</td>
+<td>推荐推理</td>
+<td>2023 披露</td>
+<td>历史已商用</td>
+<td>7 nm</td>
+<td>1 逻辑裸片</td>
+<td>64 PEs</td>
+<td>51.2 TFLOP/s</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>LPDDR5; 64 GB; 0.176 TB/s</td>
+<td>128 MB; 128 KB/PE</td>
+<td>n/a</td>
+<td>PCIe4 ×8</td>
+<td>25 W</td>
+<td>加速板卡</td>
+</tr>
+<tr>
+<td>MTIA200 / 2i</td>
+<td>推荐推理</td>
+<td>2024 部署</td>
+<td>已商用／可获取</td>
+<td>5 nm</td>
+<td>1 逻辑裸片</td>
+<td>64 PEs</td>
+<td>177 TFLOP/s</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>LPDDR5; 64-128 GB; 0.2048 TB/s</td>
+<td>256 MB; 384 KB/PE</td>
+<td>PCIe 网络; 非专用纵向扩展</td>
+<td>PCIe5 ×8</td>
+<td>90 W 发布; 85 W 论文</td>
+<td>加速板卡</td>
+</tr>
+<tr>
+<td>MTIA300</td>
+<td>R&amp;R 训练</td>
+<td>2026 量产／生产部署</td>
+<td>已商用／可获取</td>
+<td>n/d</td>
+<td>1 计算＋ 2 网络; 中介层</td>
+<td>72 启用 PEs</td>
+<td>560 TFLOP/s (论文)</td>
+<td>1120 TFLOP/s (论文)</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM3e; 6; 216 GB; 6.1 TB/s</td>
+<td>192 MB; 512 KB/PE</td>
+<td>800-1000 GB/s 单向; 16 设备</td>
+<td>PCIe5 ×16</td>
+<td>912 W TDP / 667 W 典型 (论文)</td>
+<td>液冷模块</td>
+</tr>
+<tr>
+<td>MTIA400</td>
+<td>生成式 AI／推理</td>
+<td>2026 部署推进中</td>
+<td>已公布；GA n/d</td>
+<td>n/d</td>
+<td>2 计算小芯片</td>
+<td>n/d</td>
+<td>3 PFLOP/s 公布值; 稠密口径 n/d</td>
+<td>6 PFLOP/s FP8/MX8; 稠密口径 n/d</td>
+<td>12 PFLOP/s MX4; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>HBM; 堆栈 n/d; 288 GB; 9.2 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s 单向; 72 设备</td>
+<td>n/d</td>
+<td>1200 W 模块; 液冷/AALC</td>
+<td>机架模块</td>
+</tr>
+<tr>
+<td>MTIA450</td>
+<td>生成式 AI／推理</td>
+<td>年初 2027 目标</td>
+<td>路线图</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>3.5 PFLOP/s 公布值; 稠密口径 n/d</td>
+<td>7 PFLOP/s FP8/MX8; 稠密口径 n/d</td>
+<td>21 PFLOP/s MX4; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>HBM; 堆栈 n/d; 288 GB; 18.4 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s 单向; 72 设备</td>
+<td>n/d</td>
+<td>1400 W 模块; 液冷/AALC</td>
+<td>机架模块</td>
+</tr>
+<tr>
+<td>MTIA500</td>
+<td>生成式 AI／推理</td>
+<td>2027 目标</td>
+<td>路线图</td>
+<td>n/d</td>
+<td>4 计算＋ 2 网络＋ SoC</td>
+<td>n/d</td>
+<td>5 PFLOP/s 公布值; 稠密口径 n/d</td>
+<td>10 PFLOP/s FP8/MX8; 稠密口径 n/d</td>
+<td>30 PFLOP/s MX4; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>HBM; 堆栈 n/d; 384-512 GB; 27.6 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s 单向; 72 设备</td>
+<td>n/d</td>
+<td>1700 W 模块; 液冷/AALC</td>
+<td>机架模块</td>
+</tr>
+</tbody>
+</table></div>
+<p>3 月路线图将 MTIA300 列为 BF16 0.6 PFLOP/s、FP8／MX8 1.2 PFLOP/s、模块 TDP 800 W；ISCA 论文则列出 560／1,120 TFLOP/s、TDP 912 W、典型功耗 667 W。它们代表不同公开配置或测量口径，不强行作无依据统一。推导指标使用论文中相匹配的数值。同样，MTIA200 发布时写 90 W，后续比较表写 85 W。稀疏峰值与稠密数值分别处理。</p>
+<h3 id="cpu">主机 CPU 边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部主机 CPU</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>供应商产品</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="06-nic-msvp">06 集成 NIC、网络与 MSVP</h2>
+<h3 id="mtia_1">MTIA 网络小芯片</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA300 网络小芯片</td>
+<td>2026</td>
+<td>已商用／可获取</td>
+<td>集成 AI NIC</td>
+<td>2×6×800 Gb/s</td>
+<td>n/d</td>
+<td>裸片间</td>
+<td>消息引擎／近存归约</td>
+<td>RISC-V 控制</td>
+<td>共享加速器存储</td>
+<td>RDMA</td>
+<td>基于信用的网络机制</td>
+<td>集合通信；归约；直接数据路径</td>
+<td>包含在模块内</td>
+</tr>
+</tbody>
+</table></div>
+<p>MSVP 是 2023 年披露的专用视频转码 ASIC。视频处理消耗大量集群资源，因此应纳入基础设施组合，但它不是 MTIA 的一代，也不是通用神经网络加速器。同样，Meta 的 OCP 服务器及网络设计，包括交换软件与机架标准，不等于 Meta 自研其中全部商用 ASIC。</p>
+<h3 id="_1">互联演进</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA200 host 网络</td>
+<td>2024</td>
+<td>PCIe5 32 GT/s</td>
+<td>8</td>
+<td>~31.5 扣除包开销前</td>
+<td>n/d</td>
+<td>PCIe switching</td>
+<td>72/机架 is packaging count</td>
+<td>PCIe</td>
+</tr>
+<tr>
+<td>MTIA300 纵向扩展</td>
+<td>2026</td>
+<td>800 Gb/s 端口</td>
+<td>n/d</td>
+<td>100</td>
+<td>依配置</td>
+<td>机架网络</td>
+<td>16</td>
+<td>RDMA; explicit collectives</td>
+</tr>
+<tr>
+<td>MTIA400/450/500 纵向扩展</td>
+<td>2026 路线图</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>1200 每设备聚合</td>
+<td>n/d</td>
+<td>交换背板</td>
+<td>72</td>
+<td>显式通信</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="07">07 机架架构与软件</h2>
+<h3 id="2023-2024">2023-2024 技术栈</h3>
+<pre class="mermaid">flowchart TD
+  cpu["外部主机 CPU"]
+  gpu["MTIA 处理单元阵列"]
+  mem["LPDDR5 / SRAM"]
+  sw["PyTorch / compiler / HCCL"]
+  net["PCIe 网络 / optional RDMA"]
+  rack["机架／散热／运维"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"存储"| mem
+  gpu ---|"数据"| net
+  net ---|"集成"| rack
+</pre>
+<p>后期图包含已公布产品；芯片与机架可用性分别记录。</p>
+<h3 id="2026-roadmap">2026 roadmap 技术栈</h3>
+<pre class="mermaid">flowchart TD
+  cpu["外部主机 CPU"]
+  gpu["MTIA 处理单元阵列"]
+  mem["HBM3e / SRAM"]
+  sw["PyTorch / compiler / HCCL"]
+  net["Integrated NICs / backplane"]
+  rack["机架／散热／运维"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"存储"| mem
+  gpu ---|"数据"| net
+  net ---|"集成"| rack
+</pre>
+<p>后期图包含已公布产品；芯片与机架可用性分别记录。</p>
+<h3 id="_2">系统代际</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA200 机架</td>
+<td>2024</td>
+<td>72 加速器; 3 机箱</td>
+<td>PCIe topology</td>
+<td>可选外部 RDMA NIC</td>
+<td>n/d</td>
+<td>Air</td>
+</tr>
+<tr>
+<td>MTIA300 机架</td>
+<td>2026</td>
+<td>16 加速器; 1 CPU/加速器</td>
+<td>16</td>
+<td>200 GB/s 标称 单向</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>MTIA400/450/500 机架</td>
+<td>2026-2027 目标</td>
+<td>72 加速器</td>
+<td>72</td>
+<td>100 GB/s 标称 单向</td>
+<td>n/d</td>
+<td>AALC／设施液冷</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_3">软件栈</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>组件</th>
+<th>功能</th>
+<th>架构含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前端</td>
+<td>PyTorch / torch.compile / export</td>
+<td>模型捕获</td>
+<td>共享框架接口</td>
+</tr>
+<tr>
+<td>编译器</td>
+<td>TorchInductor / Triton / MLIR / LLVM</td>
+<td>图与算子编译</td>
+<td>调度本地存储与引擎</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>Hoot Collective Communications Library</td>
+<td>集合通信与归约卸载</td>
+<td>本文 HCCL 为 Meta Hoot</td>
+</tr>
+<tr>
+<td>运行时</td>
+<td>Rust 用户态驱动／固件</td>
+<td>存储、执行、可观测性</td>
+<td>主机与设备协同</td>
+</tr>
+<tr>
+<td>服务</td>
+<td>vLLM plugin</td>
+<td>推理服务集成</td>
+<td>后端专用优化算子</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08">08 归一化趋势与工程取舍</h2>
+<h3 id="_4">存储与通信平衡</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品／指标</th>
+<th>计算</th>
+<th>解读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100 DRAM/BF16</td>
+<td>176e9/51.2e12 = 0.00344 B/FLOP</td>
+<td>稠密峰值</td>
+</tr>
+<tr>
+<td>MTIA200 DRAM/BF16</td>
+<td>204.8e9/177e12 = 0.00116 B/FLOP</td>
+<td>比 MTIA100 更需要复用</td>
+</tr>
+<tr>
+<td>MTIA300 HBM/BF16</td>
+<td>6.1e12/560e12 = 0.0109 B/FLOP</td>
+<td>论文配置</td>
+</tr>
+<tr>
+<td>MTIA300 容量/BF16</td>
+<td>216e9/560e12 = 3.86e-4 B·s/FLOP</td>
+<td>每加速器</td>
+</tr>
+<tr>
+<td>MTIA300 纵向扩展/HBM</td>
+<td>0.8/6.1 = 0.131</td>
+<td>论文部署配置</td>
+</tr>
+<tr>
+<td>MTIA400→500 纵向扩展/HBM</td>
+<td>1.2/9.2=0.130 → 1.2/27.6=0.0435</td>
+<td>网络增长慢于 HBM</td>
+</tr>
+<tr>
+<td>MTIA300 BF16/TDP</td>
+<td>560/912 = 0.614 TFLOP/s/W</td>
+<td>峰值／TDP；非应用效率</td>
+</tr>
+<tr>
+<td>主机 DDR／核与 L3／核</td>
+<td>n/a</td>
+<td>不声称 Meta 主机 CPU SKU</td>
+</tr>
+</tbody>
+</table></div>
+<p>MTIA300 每 BF16 FLOP 对应字节的大幅提高，反映负载选择：推荐训练需要嵌入表容量与流量处理能力。后续推理产品同时提高 HBM 与低精度算力，但保持固定机架网络预算。其成功取决于模型放置、专家路由、KV 缓存行为及编译器利用率。比较时应匹配精度、质量、批量及服务延迟，并区分模块和机架功耗。</p>
+<h2 id="09">09 会议与产品对照</h2>
+<h3 id="_5">披露映射</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISCA</td>
+<td>2023</td>
+<td>MTIA v1</td>
+<td>Meta authors</td>
+<td>MTIA100</td>
+<td>架构论文；官方配套材料</td>
+<td>C02 P03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2025</td>
+<td>Second-generation MTIA</td>
+<td>Meta authors</td>
+<td>MTIA200 / 2i</td>
+<td>论文记录；官方架构</td>
+<td>C03 P04</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2026</td>
+<td>MTIA300 built-in NICs</td>
+<td>Meta authors</td>
+<td>MTIA300</td>
+<td>完整论文</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>AI Infra @Scale</td>
+<td>2024</td>
+<td>Hardware and co-design of MTIA</td>
+<td>Colburn; Lan; Montgomery</td>
+<td>MTIA200</td>
+<td>工程演讲</td>
+<td>P02</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>2026</td>
+<td>HCCL</td>
+<td>Meta authors</td>
+<td>MTIA communication</td>
+<td>预印本；11 月会议尚未举行</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>公司技术披露</td>
+<td>2026</td>
+<td>Four MTIA 芯片 in two years</td>
+<td>Meta</td>
+<td>300 / 400 / 450 / 500</td>
+<td>产品与路线图</td>
+<td>E01</td>
+</tr>
+</tbody>
+</table></div>
+<p>本版未建立 MTIA 对应的产品级 ISSCC、HPCA、MICRO 或 ASPLOS 电路／架构论文链。ISCA 提供最强的直接产品证据。公开路线图比可获取实现论文更广：400／450／500 的工艺、裸片细节与稠密／稀疏算术口径仍不完整。表中保留这些缺口，不从早期芯片外推。</p>
+<h3 id="_6">命名与归属</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>别名／角色</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100</td>
+<td>MTIA v1</td>
+<td>推理 ASIC</td>
+</tr>
+<tr>
+<td>MTIA200</td>
+<td>MTIA2i</td>
+<td>不同于 MTIA300 训练芯片</td>
+</tr>
+<tr>
+<td>HCCL</td>
+<td>Hoot</td>
+<td>不同于华为 HCCL</td>
+</tr>
+<tr>
+<td>MSVP</td>
+<td>视频转码</td>
+<td>独立 ASIC 分支</td>
+</tr>
+<tr>
+<td>Broadcom</td>
+<td>MTIA 开发伙伴</td>
+<td>不是商用 MTIA SKU</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="isscc">ISSCC 背景</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISSCC plenary</td>
+<td>2019</td>
+<td>Deep Learning Hardware: Past, Present, &amp; Future</td>
+<td>Yann LeCun</td>
+<td>研究 context; not MTIA implementation</td>
+<td>官方主旨报告记录</td>
+<td>C05</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="_7">来源映射</h2>
+<p>01 范围与核心判断 — C01, E01, E03, E04, P03, P04</p>
+<p>02 MTIA100 与 MTIA200：推荐推理 — C02, C03, P03, P04</p>
+<p>03 MTIA300：训练改变数据路径 — C01, C04, E01, P01</p>
+<p>04 MTIA400、450 与 500：推理路线图 — E01</p>
+<p>05 代际规格与披露差异 — C01, E01, E03, P03, P04</p>
+<p>06 集成 NIC、网络与 MSVP — C01, E01, E03, E04, P01, P04</p>
+<p>07 机架架构与软件 — C01, C04, E01, P01, P04</p>
+<p>08 归一化趋势与工程取舍 — C01, E01, P04</p>
+<p>09 会议与产品对照 — C01, C02, C03, C04, C05, E01, E04, P02, P03, P04</p>
+<h2 id="_8">参考资料</h2>
+<h3 id="_9">产品与技术文档</h3>
+<p>[P01] MTIA300 built-in NICs and collective offload. <a href="https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/">https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P02] Inside MTIA hardware co-design, 2024. <a href="https://engineering.fb.com/2024/08/22/ml-applications/meta-mtia-hardware-co-design/">https://engineering.fb.com/2024/08/22/ml-applications/meta-mtia-hardware-co-design/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P03] First generation MTIA architecture. <a href="https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/">https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P04] Second generation MTIA architecture. <a href="https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/">https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_10">会议记录与实现披露</h3>
+<p>[C01] MTIA300 ISCA2026 paper. <a href="https://aisystemcodesign.github.io/papers/MTIA300_ISCA2026.pdf">https://aisystemcodesign.github.io/papers/MTIA300_ISCA2026.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C02] MTIA v1, ISCA2023. <a href="https://dl.acm.org/doi/10.1145/3579371.3589348">https://dl.acm.org/doi/10.1145/3579371.3589348</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C03] Second generation MTIA, ISCA2025. <a href="https://dl.acm.org/doi/10.1145/3695053.3731409">https://dl.acm.org/doi/10.1145/3695053.3731409</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C04] HCCL collective communications, 2026 preprint. <a href="https://arxiv.org/pdf/2608.00358">https://arxiv.org/pdf/2608.00358</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C05] ISSCC2019 LeCun plenary record. <a href="https://www.isscc.org/isscc-plenary-videos">https://www.isscc.org/isscc-plenary-videos</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<h3 id="_11">发布、生态与部署</h3>
+<p>[E01] Four MTIA chips in two years, March2026. <a href="https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/">https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E03] Infrastructure evolution, 2025. <a href="https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/">https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E04] MSVP first video transcoding ASIC. <a href="https://ai.meta.com/blog/meta-scalable-video-processor-MSVP/">https://ai.meta.com/blog/meta-scalable-video-processor-MSVP/</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p></article></div></main><script src="app.js"></script></body></html>

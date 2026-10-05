@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Intel · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="intel-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Intel_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Intel_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#intel-ai-infrastructure-architecture-evolution">Intel AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-executive-synthesis-and-scope">01 Executive synthesis and scope</a><ul>
+<li><a href="#portfolio-map-at-the-cutoff">Portfolio map at the cutoff</a></li>
+</ul>
+</li>
+<li><a href="#02-how-to-read-the-numbers">02 How to read the numbers</a></li>
+<li><a href="#03-xeon-generation-atlas">03 Xeon generation atlas</a><ul>
+<li><a href="#cpu-reference-configurations">CPU reference configurations</a></li>
+</ul>
+</li>
+<li><a href="#04-haswell-and-broadwell-the-monolithic-baseline">04 Haswell and Broadwell: the monolithic baseline</a></li>
+<li><a href="#05-skylake-cascade-lake-and-cooper-lake">05 Skylake, Cascade Lake and Cooper Lake</a></li>
+<li><a href="#06-ice-lake-a-wider-core-and-a-wider-server">06 Ice Lake: a wider core and a wider server</a></li>
+<li><a href="#07-sapphire-rapids-and-xeon-max-tiles-and-engines">07 Sapphire Rapids and Xeon Max: tiles and engines</a></li>
+<li><a href="#08-emerald-rapids-cache-and-integration-efficiency">08 Emerald Rapids: cache and integration efficiency</a></li>
+<li><a href="#09-xeon-6-separating-performance-and-density">09 Xeon 6: separating performance and density</a></li>
+<li><a href="#10-clearwater-forest-and-diamond-rapids">10 Clearwater Forest and Diamond Rapids</a></li>
+<li><a href="#11-accelerator-generation-atlas">11 Accelerator generation atlas</a><ul>
+<li><a href="#accelerator-reference-configurations">Accelerator reference configurations</a></li>
+</ul>
+</li>
+<li><a href="#12-xeon-phi-and-nervana-earlier-parallel-compute-paths">12 Xeon Phi and Nervana: earlier parallel-compute paths</a></li>
+<li><a href="#13-gaudi-1-2-and-3-ethernet-inside-the-accelerator">13 Gaudi 1, 2 and 3: Ethernet inside the accelerator</a></li>
+<li><a href="#14-ponte-vecchio-a-heterogeneous-hpc-package">14 Ponte Vecchio: a heterogeneous HPC package</a></li>
+<li><a href="#15-flex-arc-and-crescent-island-inference-branches">15 Flex, Arc and Crescent Island: inference branches</a></li>
+<li><a href="#16-ethernet-nics-ipus-and-programmable-networks">16 Ethernet NICs, IPUs and programmable networks</a><ul>
+<li><a href="#network-and-infrastructure-devices">Network and infrastructure devices</a></li>
+</ul>
+</li>
+<li><a href="#17-interconnect-memory-optics-and-programmable-logic">17 Interconnect, memory, optics and programmable logic</a><ul>
+<li><a href="#separate-bandwidth-domains">Separate bandwidth domains</a></li>
+</ul>
+</li>
+<li><a href="#18-systems-and-software-the-usable-architecture">18 Systems and software: the usable architecture</a><ul>
+<li><a href="#representative-deployed-or-documented-systems">Representative deployed or documented systems</a></li>
+<li><a href="#software-milestones-and-hardware-relationship">Software milestones and hardware relationship</a></li>
+</ul>
+</li>
+<li><a href="#19-four-system-views">19 Four system views</a><ul>
+<li><a href="#2015-2016-host-cpu-and-self-hosted-many-core">2015-2016: host CPU and self-hosted many-core</a></li>
+<li><a href="#2019-2021-cpu-plus-ethernet-connected-ai-devices">2019-2021: CPU plus Ethernet-connected AI devices</a></li>
+<li><a href="#2023-2024-auroras-heterogeneous-memory-hierarchy">2023-2024: Aurora’s heterogeneous memory hierarchy</a></li>
+<li><a href="#2024-2026-specialized-compute-and-infrastructure-paths">2024-2026: specialized compute and infrastructure paths</a></li>
+</ul>
+</li>
+<li><a href="#20-normalized-ratios-and-design-implications">20 Normalized ratios and design implications</a><ul>
+<li><a href="#derived-ratios-from-stated-reference-configurations">Derived ratios from stated reference configurations</a></li>
+<li><a href="#accelerator-balance-dense-bf16-basis">Accelerator balance, dense BF16 basis</a></li>
+</ul>
+</li>
+<li><a href="#21-what-the-major-architecture-conferences-add">21 What the major architecture conferences add</a><ul>
+<li><a href="#conference-to-product-index">Conference-to-product index</a></li>
+</ul>
+</li>
+<li><a href="#22-architecture-conclusions-and-remaining-gaps">22 Architecture conclusions and remaining gaps</a></li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#research-papers-and-publication-registries">Research papers and publication registries</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="intel-ai-infrastructure-architecture-evolution">Intel AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-executive-synthesis-and-scope">01 Executive synthesis and scope</h2>
+<p>Intel’s AI infrastructure history is a history of several interacting architectures, rather than a single accelerator succession. Xeon remains the general-purpose execution and orchestration layer. Gaudi builds a training system around matrix engines and integrated Ethernet. Ponte Vecchio pursues heterogeneous packaging and high-performance scientific computing. IPUs remove infrastructure work from tenant CPUs. The latest inference GPU direction emphasizes model capacity and deployment into air-cooled servers. The central architectural question is how these independently developed components form a useful system.</p>
+<p>Coverage runs from 2015 to 28 September 2026, with a short Haswell baseline. The organizing unit is the product generation. CPU and accelerator sections receive the greatest depth; networking, IPUs, packaging, optics, FPGA, memory, software and systems complete the portfolio. Client and edge products appear where they explain shared technology or a distinct deployment model. This is a curated technical history, not an inventory of every SKU or every Intel-affiliated conference paper.</p>
+<p>The most consequential CPU transitions are the move from ring to mesh, the separation of private-cache and last-level-cache roles, the arrival of AMX and integrated offload engines, and the split into performance-core and efficiency-core server products. Chiplets then change from a way to extend die area into a way to place cores, cache and I/O on different processes. Clearwater Forest makes that separation vertical; Diamond Rapids extends it into a new announced performance-core platform. On accelerators, continuity is weaker: technical achievement and commercial roadmap survival must be assessed separately.</p>
+<h3 id="portfolio-map-at-the-cutoff">Portfolio map at the cutoff</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Families</th>
+<th>Architectural role</th>
+<th>Status boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host compute</td>
+<td>Xeon Scalable / Xeon 6 / 6+</td>
+<td>General compute, AMX, orchestration</td>
+<td>Diamond Rapids disclosed; GA not established</td>
+</tr>
+<tr>
+<td>Accelerators</td>
+<td>Gaudi / GPU Max / Flex / Crescent Island</td>
+<td>Training, HPC, media and inference</td>
+<td>Crescent Island announced; Falcon Shores internal only</td>
+</tr>
+<tr>
+<td>Network / infrastructure</td>
+<td>E810 / E830 / E835; IPU E2000/E2100</td>
+<td>RDMA, packet processing, storage isolation</td>
+<td>NIC and IPU are different device classes</td>
+</tr>
+<tr>
+<td>Adjacent technology</td>
+<td>EMIB / Foveros / OCI / Altera / Optane</td>
+<td>Integration, optical links, programmable logic, memory</td>
+<td>OCI demonstration; Altera 49% retained; Optane exited</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="02-how-to-read-the-numbers">02 How to read the numbers</h2>
+<p>All bandwidths use decimal GB/s or TB/s. DRAM peak equals channels × transfer rate × eight data bytes; ECC bits do not add payload bandwidth. PCIe figures are per direction and precede protocol overhead. Ethernet Gb/s is divided by eight before comparison with memory bandwidth. A bidirectional aggregate is divided by two only when the source makes that convention explicit. HBM, package fabric, scale-up and scale-out bandwidth remain separate budgets.</p>
+<p>CPU rows use representative high-end shipping configurations, not a composite assembled from different SKUs. Accelerator arithmetic is dense peak, with multiply-add counted as two operations. Tensor BF16 is not vector BF16; emulated formats are not native formats. Historical shipping does not mean currently orderable. Announcement, sampling and general availability are distinct. n/d means the reviewed evidence did not establish the value; n/a means the field does not apply. Sources are collected in the final source map and bibliography so the narrative can remain readable.</p>
+<h2 id="03-xeon-generation-atlas">03 Xeon generation atlas</h2>
+<p>The table is a reference-SKU comparison: 8592+ is 350 W, while other Emerald Rapids SKUs have different power limits. Cooper Lake and Ice Lake are both called third-generation Xeon Scalable but address different socket segments and use different cores. Sierra Forest’s shipping 144-core reference must not be silently replaced by an earlier 288-core roadmap target. The Diamond Rapids row records the August 2026 disclosure, not final SKU specifications. Its memory figure is a channel-rate calculation; the reviewed announcement does not establish the final DIMM qualification matrix.</p>
+<h3 id="cpu-reference-configurations">CPU reference configurations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E5 v4 / 2699 v4</td>
+<td>Broadwell-EP</td>
+<td>2016</td>
+<td>Historical shipping</td>
+<td>Broadwell</td>
+<td>22 / 44</td>
+<td>14 nm</td>
+<td>Monolithic; ring</td>
+<td>256 KB</td>
+<td>55 MB inclusive</td>
+<td>DDR4; 4; 2400; 76.8</td>
+<td>2S; QPI 9.6 GT/s</td>
+<td>40 PCIe 3; CXL n/a</td>
+<td>145 W</td>
+<td>AVX2</td>
+</tr>
+<tr>
+<td>1st / 8180</td>
+<td>Skylake-SP</td>
+<td>2017</td>
+<td>Historical shipping</td>
+<td>Skylake</td>
+<td>28 / 56</td>
+<td>14 nm</td>
+<td>Monolithic; mesh</td>
+<td>1 MB</td>
+<td>38.5 MB non-inclusive</td>
+<td>DDR4; 6; 2666; ~128</td>
+<td>2/4/8S; 3 UPI 10.4 GT/s</td>
+<td>48 PCIe 3; CXL n/a</td>
+<td>205 W</td>
+<td>AVX-512</td>
+</tr>
+<tr>
+<td>2nd / 8280</td>
+<td>Cascade Lake</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>Skylake-derived</td>
+<td>28 / 56</td>
+<td>14 nm</td>
+<td>Monolithic; mesh</td>
+<td>1 MB</td>
+<td>38.5 MB</td>
+<td>DDR4; 6; 2933; ~140.8</td>
+<td>2/4/8S; 3 UPI 10.4 GT/s</td>
+<td>48 PCIe 3; CXL n/a</td>
+<td>205 W</td>
+<td>AVX-512; VNNI</td>
+</tr>
+<tr>
+<td>3rd / 8380HL</td>
+<td>Cooper Lake</td>
+<td>2020</td>
+<td>Historical shipping</td>
+<td>Skylake-derived</td>
+<td>28 / 56</td>
+<td>14 nm</td>
+<td>Monolithic; scale-up</td>
+<td>1 MB</td>
+<td>38.5 MB</td>
+<td>DDR4; 6; 3200; 153.6</td>
+<td>4/8S; 6 UPI 10.4 GT/s</td>
+<td>48 PCIe 3; CXL n/a</td>
+<td>250 W</td>
+<td>AVX-512; BF16; VNNI</td>
+</tr>
+<tr>
+<td>3rd / 8380</td>
+<td>Ice Lake-SP</td>
+<td>2021</td>
+<td>Historical shipping</td>
+<td>Sunny Cove</td>
+<td>40 / 80</td>
+<td>10 nm</td>
+<td>Monolithic; mesh</td>
+<td>1.25 MB</td>
+<td>60 MB</td>
+<td>DDR4; 8; 3200; 204.8</td>
+<td>2S; 3 UPI 11.2 GT/s</td>
+<td>64 PCIe 4; CXL n/a</td>
+<td>270 W</td>
+<td>AVX-512; VNNI</td>
+</tr>
+<tr>
+<td>4th / 8490H</td>
+<td>Sapphire Rapids</td>
+<td>2023</td>
+<td>Historical shipping</td>
+<td>Golden Cove</td>
+<td>60 / 120</td>
+<td>Intel 7</td>
+<td>4 compute tiles; EMIB</td>
+<td>2 MB</td>
+<td>112.5 MB</td>
+<td>DDR5; 8; 4800; 307.2</td>
+<td>up to 8S; 4 UPI 16 GT/s</td>
+<td>80 PCIe 5; CXL 1.1</td>
+<td>350 W</td>
+<td>AVX-512; AMX INT8/BF16</td>
+</tr>
+<tr>
+<td>Xeon Max / 9480</td>
+<td>Sapphire Rapids HBM</td>
+<td>2023</td>
+<td>Historical shipping</td>
+<td>Golden Cove</td>
+<td>56 / 112</td>
+<td>Intel 7</td>
+<td>4 tiles + 4 HBM stacks; EMIB</td>
+<td>2 MB</td>
+<td>112.5 MB</td>
+<td>DDR5; 8; 4800; 307.2 + HBM2e 64 GB ~1000</td>
+<td>2S; UPI 16 GT/s</td>
+<td>80 PCIe 5; CXL 1.1</td>
+<td>350 W</td>
+<td>AVX-512; AMX INT8/BF16</td>
+</tr>
+<tr>
+<td>5th / 8592+</td>
+<td>Emerald Rapids</td>
+<td>2023-12</td>
+<td>Historical shipping</td>
+<td>Raptor Cove</td>
+<td>64 / 128</td>
+<td>Intel 7</td>
+<td>2 tiles high-end; EMIB</td>
+<td>2 MB</td>
+<td>320 MB</td>
+<td>DDR5; 8; 5600; 358.4</td>
+<td>2S; 4 UPI 20 GT/s</td>
+<td>80 PCIe 5; CXL 1.1</td>
+<td>350 W</td>
+<td>AVX-512; AMX INT8/BF16</td>
+</tr>
+<tr>
+<td>6 E / 6780E</td>
+<td>Sierra Forest</td>
+<td>2024-06</td>
+<td>Shipping</td>
+<td>Crestmont</td>
+<td>144 / 144</td>
+<td>Intel 3 + Intel 7 I/O</td>
+<td>Compute + 2 I/O; EMIB</td>
+<td>4 MB / 4-core cluster</td>
+<td>108 MB</td>
+<td>DDR5; 8; 6400; 409.6</td>
+<td>2S; UPI 24 GT/s</td>
+<td>88 PCIe 5; CXL 2.0; shared lane budget</td>
+<td>330 W</td>
+<td>AVX2; VNNI; no AMX</td>
+</tr>
+<tr>
+<td>6 P / 6980P</td>
+<td>Granite Rapids</td>
+<td>2024-09</td>
+<td>Shipping</td>
+<td>Redwood Cove</td>
+<td>128 / 256</td>
+<td>Intel 3 + Intel 7 I/O</td>
+<td>3 compute + 2 I/O; EMIB</td>
+<td>2 MB</td>
+<td>504 MB</td>
+<td>DDR5; 12; 6400; 614.4 / MRDIMM 8800; 844.8</td>
+<td>2S; UPI 24 GT/s</td>
+<td>96 PCIe 5; CXL 2.0</td>
+<td>500 W</td>
+<td>AVX-512; AMX INT8/BF16/FP16</td>
+</tr>
+<tr>
+<td>6+ / 6990E+</td>
+<td>Clearwater Forest</td>
+<td>2026-06</td>
+<td>Shipping</td>
+<td>Darkmont</td>
+<td>288 / 288</td>
+<td>Intel 18A compute; Intel 3 base; Intel 7 I/O</td>
+<td>12 compute + 3 base + 2 I/O; 3D + EMIB</td>
+<td>n/d</td>
+<td>576 MB</td>
+<td>DDR5; 12; 8000; 768</td>
+<td>2S; link details n/d</td>
+<td>96 PCIe 5; CXL allocation n/d</td>
+<td>450 W</td>
+<td>AVX2; no AMX</td>
+</tr>
+<tr>
+<td>Next Xeon</td>
+<td>Diamond Rapids</td>
+<td>n/d</td>
+<td>Disclosed; GA n/d</td>
+<td>New performance core</td>
+<td>256 / n/d</td>
+<td>Intel 18A-P</td>
+<td>Foveros Direct 3D; UCIe-S</td>
+<td>n/d</td>
+<td>1.28 GB</td>
+<td>16; 12800 MT/s; 1638.4 derived</td>
+<td>n/d</td>
+<td>128 PCIe 6; CXL 3.0</td>
+<td>n/d</td>
+<td>APX; enhanced AMX</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-haswell-and-broadwell-the-monolithic-baseline">04 Haswell and Broadwell: the monolithic baseline</h2>
+<p>Haswell-EP established the 2015 starting point with AVX2, DDR4 and a ring-connected server die. Broadwell-EP’s 2016 shrink to 14 nm raised the high-end E5 core count to 22 while retaining a 256 KB private L2 and a large inclusive LLC. The important constraint is the balance among cores, four memory channels and the ring. More cores increase aggregate execution demand without proportionately increasing off-chip bandwidth. Even before dedicated AI hardware, streaming and sparse workloads could run out of memory bandwidth before they ran out of arithmetic.</p>
+<p>E5-2600 and E7 should be kept separate: E7 emphasized larger coherent socket domains and reliability, while E5 defined mainstream one- and two-socket servers. Xeon D brought related x86 technology into an integrated, lower-power SoC for network and edge systems. Desktop Core shared a core lineage but not the server’s memory-channel count, cache organization or socket interconnect. This distinction remains necessary throughout the report: core architecture is only one component of a server product.</p>
+<h2 id="05-skylake-cascade-lake-and-cooper-lake">05 Skylake, Cascade Lake and Cooper Lake</h2>
+<p>Skylake-SP’s 2017 change is architectural, not merely a core-count increment. A two-dimensional mesh replaces the ring. Private L2 grows from 256 KB to 1 MB, while the LLC becomes smaller per core and non-inclusive. Capacity comparisons that add or compare L3 alone therefore misread the hierarchy. The larger private cache retains active data closer to execution; the LLC can act more effectively as a shared capacity and victim resource. Mesh routing, directory behavior and sub-NUMA clustering make placement important even inside one socket.</p>
+<p>Six DDR4 channels, UPI and AVX-512 accompany the mesh. AVX-512 doubles vector width relative to AVX2, but supported execution resources and operating frequency depend on SKU and instruction mix. Sustained application gain cannot be inferred from width alone. Cascade Lake keeps this broad organization and adds VNNI to reduce the instruction work for low-precision dot products. Its Optane persistent-memory support changes capacity and persistence semantics, not simply memory speed. The 9200-series Cascade Lake AP places two dies in one package; its 56-core headline is a separate product construction.</p>
+<p>Cooper Lake adds AVX-512 BF16 and stronger multi-socket connectivity for scale-up systems. It is not the same silicon generation as Ice Lake, despite sharing the third-generation Xeon Scalable label. BF16 keeps FP32-like exponent range while shortening the significand, making it useful for neural-network arithmetic with appropriate accumulation. This is still vector execution, before AMX’s tile-based matrix datapath. Hot Chips’ Cascade Lake presentation supplies the feature transition; product and optimization documentation identify the actual deployment and programming constraints.</p>
+<h2 id="06-ice-lake-a-wider-core-and-a-wider-server">06 Ice Lake: a wider core and a wider server</h2>
+<p>Ice Lake-SP arrives in 2021 with Sunny Cove, up to 40 cores, eight DDR4 channels and PCIe 4. The core expands out-of-order resources and the memory subsystem relative to the Skylake family, while the server implementation supplies a 1.25 MB L2 per core. A client Sunny Cove block diagram is useful background but is not a substitute for server cache and uncore documentation. The shift to eight memory channels raises theoretical DDR bandwidth to 204.8 GB/s, a substantial system change alongside the process and core improvements.</p>
+<p>The server gains a more useful I/O budget for storage and accelerators, while SGX and memory-protection features address cloud isolation requirements. Yet it remains a monolithic CPU with a conventional external accelerator relationship. PCIe 4 x16 offers about 31.5 GB/s in one direction before higher-level overhead, far below the local memory bandwidth of contemporary HBM accelerators. Offloading a small kernel can therefore lose to keeping the computation on the CPU once transfer and synchronization are included. Xeon D derivatives adapt related technology to edge connectivity and long-lived platforms rather than reproducing the full server socket.</p>
+<h2 id="07-sapphire-rapids-and-xeon-max-tiles-and-engines">07 Sapphire Rapids and Xeon Max: tiles and engines</h2>
+<p>Sapphire Rapids, commercially launched in January 2023, combines Golden Cove cores with DDR5, PCIe 5, CXL 1.1 and a four-tile EMIB construction in its high-end configuration. Each tile participates in a package-wide coherent system rather than exposing four independent processors. The ISSCC 2022 disclosure describes a quasi-monolithic integration approach and 10 TB/s of total die-to-die bandwidth across 20 interfaces at 0.5 pJ/bit. Those are implementation-level aggregate figures; they are not socket DRAM bandwidth or a software-visible remote-memory guarantee. Intel 7 is the commercial process name despite differing terminology in some conference summaries.</p>
+<p>AMX changes CPU AI execution more fundamentally than another vector-width increase. Software configures tile registers and invokes matrix operations on blocks of INT8 or BF16 data. Libraries must select supported kernels, pack operands and manage tile state. Matrix peak rises faster than DRAM bandwidth, so cache reuse and batching become more valuable. AMX is therefore especially useful when a workload can retain data in cache or amortize weight reads; it does not make every inference workload compute-bound. CPU computation remains attractive for control-heavy operators and modest deployment sizes.</p>
+<p>DSA, IAA, QAT and DLB target different kinds of overhead: data movement, analytics/compression, cryptography/compression, and event distribution. Their value comes from removing work and cache pollution from cores, but queue submission, completion, data locality and minimum useful transfer sizes still matter. The ASPLOS 2024 DSA study measures these tradeoffs on actual hardware. A block appearing on the package is not evidence that an application automatically uses it; software enablement and SKU licensing/configuration must be checked.</p>
+<p>Xeon Max adds 64 GB of HBM2e around the CPU tiles, exposing HBM-only, flat and cache usage modes. This brings roughly 1 TB/s of local high-bandwidth memory to CPU code without converting the application to a GPU execution model. In flat mode, allocation policy determines which objects receive HBM service; in cache mode, locality and working-set behavior determine the benefit. HBM and DDR peaks cannot simply be added as the sustained bandwidth of one stream. Capacity-limited applications may still require DDR, while bandwidth-heavy scientific kernels can benefit substantially from the near-memory tier.</p>
+<h2 id="08-emerald-rapids-cache-and-integration-efficiency">08 Emerald Rapids: cache and integration efficiency</h2>
+<p>Emerald Rapids launches in December 2023 on the established platform, with up to 64 cores and 320 MB LLC. The high-end implementation uses two larger tiles rather than Sapphire Rapids’ four-tile arrangement. Reducing tile boundaries changes fabric traffic, physical integration and cache organization without requiring a wholesale platform replacement. ISSCC 2024 is the useful implementation anchor: the disclosure emphasizes the Intel 7 multichip construction and substantially larger shared cache. Its reported iso-power workload gains are measured comparisons, not a universal IPC multiplier.</p>
+<p>The representative 64-core part provides 5 MB of LLC per core, versus 1.875 MB for the 60-core Sapphire Rapids reference. That capacity increase can reduce expensive DRAM accesses for databases, graph structures and reused model data. DDR5-5600 also raises the channel peak, but the architectural gain depends on whether a workload was cache-capacity-limited, bandwidth-limited or compute-limited. This generation demonstrates why packaging and cache redesign can matter even when the process node and major matrix ISA remain unchanged.</p>
+<h2 id="09-xeon-6-separating-performance-and-density">09 Xeon 6: separating performance and density</h2>
+<p>Hot Chips 2023 disclosed the shared platform strategy behind Granite Rapids and Sierra Forest before their 2024 launches. Compute tiles and I/O tiles are separated, allowing Intel 3 cores to be combined with Intel 7 I/O. The server family offers common infrastructure with different compute choices; it is not a hybrid desktop CPU mixing P-cores and E-cores in one socket. DDR5, CXL 2.0 and built-in accelerators belong to the platform story, while vector capability, cache organization and thread behavior remain core-family-specific.</p>
+<p>Granite Rapids’ high-end 6900P configuration reaches 128 Redwood Cove cores, three compute tiles, twelve memory channels and 500 W on the 6980P reference. MRDIMM raises the qualified memory data rate to 8800 MT/s, yielding 844.8 GB/s of theoretical channel bandwidth. AMX adds FP16 support. The engineering point is balanced throughput: a much larger core complex needs more memory bandwidth and package connectivity, not just faster cores. The 6700P expansion in 2025 serves a different platform and channel envelope; its specifications should not be mixed with 6900P.</p>
+<p>Sierra Forest’s 144-core shipping reference uses Crestmont E-cores without SMT or AMX. Four-core clusters share L2. The intended gain is density for independent throughput-oriented services, not equivalence to 144 large vector cores. A cloud service with many small requests can exploit this configuration; a heavily vectorized AMX workload cannot assume the same instruction path as Granite Rapids. At full population, the reference has about 2.84 GB/s of DRAM channel bandwidth per core. Core count is therefore meaningful only alongside workload concurrency, cache behavior and memory demand.</p>
+<h2 id="10-clearwater-forest-and-diamond-rapids">10 Clearwater Forest and Diamond Rapids</h2>
+<p>Clearwater Forest was discussed at Hot Chips 2025 and MWC 2026, then launched as Xeon 6+ in June 2026. Its 288 Darkmont E-cores occupy twelve Intel 18A compute chiplets above three Intel 3 base dies, with Intel 7 I/O. Foveros Direct 3D and EMIB combine vertical and lateral integration. This separates dense compute from cache/fabric and I/O implementation. The architectural opportunity is process specialization and shorter dense vertical connections; the corresponding engineering burden includes assembly yield, thermal coupling, power delivery and fabric placement.</p>
+<p>The 6990E+ reference has 576 MB LLC and twelve DDR5-8000 channels. Compared with Sierra Forest’s reference, core count doubles while DRAM peak rises from 409.6 to 768 GB/s. Per-core channel bandwidth therefore changes from about 2.84 to 2.67 GB/s, while average LLC capacity rises from 0.75 to 2 MB per core. This is a cache-and-density design, not a claim that every core receives more external bandwidth. Its 288 cores are 288 hardware threads; multiplying by two would incorrectly apply P-core SMT behavior.</p>
+<p>At Hot Chips 2026, Intel disclosed Diamond Rapids with up to 256 new cores, 1.28 GB LLC, sixteen memory channels at 12800 MT/s, 128 PCIe 6 lanes and CXL 3.0. Intel 18A-P, Foveros Direct 3D, UCIe-S, a unified memory fabric, APX and enhanced AMX define the announced direction. The design moves performance-core Xeon toward a much larger distributed package. The public announcement establishes these headline parameters; it does not establish final SKU power, detailed queue sizes, thread count or commercial availability. Coral Rapids remains a subsequent roadmap name rather than a table of shipping specifications.</p>
+<h2 id="11-accelerator-generation-atlas">11 Accelerator generation atlas</h2>
+<h3 id="accelerator-reference-configurations">Accelerator reference configurations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xeon Phi 7290</td>
+<td>Knights Landing</td>
+<td>2016</td>
+<td>Historical shipping</td>
+<td>14 nm</td>
+<td>CPU + on-package MCDRAM</td>
+<td>72 cores / 288 threads</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>~3.46 TF / n/a</td>
+<td>MCDRAM; 8; 16; &gt;0.4 measured STREAM; DDR4 separate</td>
+<td>36 MB distributed L2</td>
+<td>n/a; optional Omni-Path fabric</td>
+<td>Self-hosted; PCIe 3</td>
+<td>245 W</td>
+<td>Socketed processor</td>
+</tr>
+<tr>
+<td>Gaudi / HL-205</td>
+<td>Gaudi</td>
+<td>2021 AWS DL1</td>
+<td>Historical shipping</td>
+<td>16 nm</td>
+<td>1 compute die + HBM</td>
+<td>8 TPC; MME</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>HBM2; n/d; 32; ~1</td>
+<td>n/d</td>
+<td>10 x 100GbE; 125 total; 8-device server</td>
+<td>PCIe 4</td>
+<td>n/d</td>
+<td>OAM</td>
+</tr>
+<tr>
+<td>Gaudi 2</td>
+<td>Gaudi 2</td>
+<td>2022</td>
+<td>Historical shipping</td>
+<td>7 nm</td>
+<td>1 compute die + HBM</td>
+<td>24 TPC / 2 MME</td>
+<td>432 TF</td>
+<td>865 TF</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>HBM2e; 6; 96; 2.46</td>
+<td>48 MB SRAM</td>
+<td>24 x 100GbE; 300 total; 8-device server</td>
+<td>PCIe 4 x16</td>
+<td>600 W</td>
+<td>OAM</td>
+</tr>
+<tr>
+<td>Gaudi 3 / HL-325L</td>
+<td>Gaudi 3</td>
+<td>2024</td>
+<td>Shipping</td>
+<td>5 nm</td>
+<td>2 compute dies + HBM</td>
+<td>64 TPC / 8 MME</td>
+<td>1678 TF</td>
+<td>1678 TF</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>HBM2e; 8; 128; 3.7</td>
+<td>96 MB SRAM</td>
+<td>24 x 200GbE; 600 total; 8-device server</td>
+<td>PCIe 5 x16</td>
+<td>Up to 900 W; air/liquid variants</td>
+<td>OAM</td>
+</tr>
+<tr>
+<td>GPU Max 1550</td>
+<td>Ponte Vecchio / Xe-HPC</td>
+<td>2023</td>
+<td>Historical shipping</td>
+<td>TSMC N5 compute; Intel 7 base; TSMC N7 link</td>
+<td>47-tile integration; EMIB + Foveros</td>
+<td>128 Xe cores / 1024 XMX</td>
+<td>839 TF</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>52 TF native; split n/d</td>
+<td>HBM2e; 8; 128; 3.2</td>
+<td>408 MB L2</td>
+<td>Xe Link; 318 on Lenovo reference; 4-GPU domain</td>
+<td>PCIe 5 x16</td>
+<td>600 W; platform-dependent</td>
+<td>OAM</td>
+</tr>
+<tr>
+<td>GPU Flex 170</td>
+<td>Xe-HPG</td>
+<td>2022</td>
+<td>Historical shipping</td>
+<td>TSMC N6</td>
+<td>Single GPU</td>
+<td>32 Xe cores</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>GDDR6; n/a; 16; 0.576</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>PCIe 4 x16</td>
+<td>150 W; passive air</td>
+<td>PCIe</td>
+</tr>
+<tr>
+<td>Crescent Island</td>
+<td>Xe3P</td>
+<td>n/d</td>
+<td>Disclosed; GA n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>32 Xe cores / 256 XMX</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5X; n/a; up to 480; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe; generation n/d</td>
+<td>350 W; air</td>
+<td>PCIe</td>
+</tr>
+</tbody>
+</table></div>
+<p>Gaudi 3 uses the retrieved architecture whitepaper’s 1678 TFLOPS BF16/FP8 values, not a mixture with other clock-point marketing figures. The 600 W HL-338 PCIe card is a separate configuration and should not inherit OAM peak numbers without verification. GPU Max’s 636 GB/s bidirectional Xe Link figure comes from the specific Lenovo system specification and is normalized to 318 GB/s per direction. It is not a claim that every Ponte Vecchio system exposes the same external link topology. Xeon Phi is included as a historical many-core accelerator lineage, although Knights Landing can boot its own operating system.</p>
+<h2 id="12-xeon-phi-and-nervana-earlier-parallel-compute-paths">12 Xeon Phi and Nervana: earlier parallel-compute paths</h2>
+<p>Knights Landing, disclosed at Hot Chips 2015 and commercialized in 2016, combines many small x86 cores, four hardware threads per core, wide vector execution, a mesh and 16 GB of on-package MCDRAM. It is more than a PCIe coprocessor: a self-hosted system can run a conventional operating system and use DDR4 for capacity. Cache, flat and hybrid memory modes expose an early version of the placement problem later revisited by Xeon Max. The software appeal is x86 and familiar parallel programming; achieving throughput still requires vectorization, many concurrent threads and careful memory use.</p>
+<p>Knights Mill redirected the many-core line toward deep learning with specialized vector instructions, but it did not become the AMX architecture used by later Xeons. Nervana’s NNP-T and NNP-I subsequently explored dedicated training and inference datapaths. Intel’s acquisition of Habana and the later concentration on Gaudi changed the commercial direction. These branches belong in the history because they reveal changing assumptions about programmability, numerical formats and interconnect, not because they form a continuous shipping sequence into current GPUs. A discontinued program’s projected successor must not appear as a delivered generation.</p>
+<h2 id="13-gaudi-1-2-and-3-ethernet-inside-the-accelerator">13 Gaudi 1, 2 and 3: Ethernet inside the accelerator</h2>
+<p>Gaudi begins with a different decomposition from a graphics-derived GPU. Matrix multiplication engines perform the dense linear algebra; programmable Tensor Processor Cores handle the surrounding operations; local HBM supplies capacity and bandwidth; integrated RoCE-capable Ethernet ports carry device communication. AWS DL1’s October 2021 general availability provides a concrete first-generation deployment milestone: eight Gaudi devices with 32 GB HBM each. Its 400 Gb/s instance networking is a cloud service limit and must not be confused with the sum of every on-chip Gaudi port.</p>
+<p>Gaudi 2 scales the design to 24 TPCs, two MMEs, 96 GB HBM2e and 24 × 100 GbE ports. The matrix path supports BF16 and FP8 at different peak rates. A large software-managed SRAM helps reuse data and reduce HBM traffic, but it is not automatically equivalent to a CPU’s coherent last-level cache. The architecture depends on compiler scheduling across matrix, vector, DMA and communication resources. Its main system distinction is the ability to build both the local accelerator group and the external fabric from Ethernet mechanisms.</p>
+<p>Gaudi 3 moves to two compute dies, eight MMEs, 64 TPCs, 128 GB HBM2e and 24 × 200 GbE. The two-die construction expands compute and memory interfaces, while communication must cross internal partitions when data is not local. On the eight-accelerator baseboard, 21 ports per device supply three links to each of seven peers, leaving three ports for scale-out. That partitions the 600 GB/s one-way all-port budget into 525 GB/s local peer traffic and 75 GB/s external traffic. The total cannot be counted independently in both directions and both roles.</p>
+<p>Integrated networking removes the need for a separate NIC for these accelerator links, but it does not remove the Ethernet switching fabric, congestion control, cabling or collective algorithms. HCCL, SynapseAI and framework integration determine whether the hardware overlaps communication with computation and supports the needed operators. Gaudi 3’s PCIe variant extends deployment into more conventional servers with a different power envelope. The practical comparison with a GPU system is therefore a complete supported training or inference configuration, including software and network topology, rather than a single peak-FLOPS column.</p>
+<h2 id="14-ponte-vecchio-a-heterogeneous-hpc-package">14 Ponte Vecchio: a heterogeneous HPC package</h2>
+<p>Ponte Vecchio’s ISSCC 2022 disclosure is one of the clearest examples of implementation driving architecture. The 47-tile integration includes sixteen 5 nm compute tiles and multiple process technologies, connected through Foveros and EMIB. The count is not 47 compute dies. Compute tiles, base/cache resources, link tiles and HBM perform different roles. This lets each function use a suitable manufacturing and integration choice, at the cost of complex assembly, testing, power delivery and thermal management. The conference prototype’s measured figures and the later GPU Max SKU peaks are different evidence points.</p>
+<p>The commercial Max 1550 combines 128 Xe-HPC cores, XMX matrix execution, strong native FP64, 128 GB HBM2e and a large distributed L2. Unlike an inference-only accelerator, it invests heavily in scientific arithmetic and HPC execution. Xe Link connects peer GPUs; PCIe connects the host. A unified programming abstraction does not make CPU DDR and GPU HBM physically uniform or equally fast. Aurora demonstrates a system built around CPU and GPU high-bandwidth memory, but its communication and placement costs still have to be managed by applications and runtimes.</p>
+<p>Ponte Vecchio’s technical success as an integration vehicle should be separated from the breadth and longevity of the commercial line. Lenovo’s SD650-I V3 product guide is explicitly marked withdrawn, despite documenting a real four-GPU system. Falcon Shores was later designated an internal test chip rather than a marketed successor. Consequently, it is misleading to draw an uninterrupted arrow from Xeon Phi through GPU Max to a shipping Falcon Shores platform. Product continuity, software support and deployable system supply are architecture constraints in their own right.</p>
+<h2 id="15-flex-arc-and-crescent-island-inference-branches">15 Flex, Arc and Crescent Island: inference branches</h2>
+<p>Flex 140 and Flex 170 serve media processing, cloud graphics, virtualization and visual inference with Xe-HPG technology and GDDR6. Flex 140 places two small GPUs on a 75 W card, with separate 6 GB memories; these are not one coherent 12 GB GPU. Flex 170 uses one 32-core GPU with 16 GB and a 150 W board envelope. Shared technology with Arc explains the graphics and media engines, but server drivers, virtualization, cooling and supported workloads determine the datacenter product. A graphics-derived matrix engine does not imply GPU Max’s FP64 or HBM characteristics.</p>
+<p>Crescent Island is a distinct inference-oriented direction. The October 2025 OCP announcement described 160 GB LPDDR5X and customer sampling targeted for the second half of 2026. By Computex and Hot Chips 2026, Intel described up to 480 GB, a 350 W air-cooled PCIe card, 32 Xe3P cores and 256 XMX engines. The later capacity disclosure supersedes the earlier headline rather than proving that every future SKU has 480 GB. Sampling expectations are not general availability. No unsupported memory-bandwidth or low-precision throughput figure is inferred from the core count.</p>
+<p>The architectural inference is that Intel is prioritizing resident model capacity, long contexts and installation in existing air-cooled facilities. Large memory can avoid model sharding and repeated host transfers, but capacity alone does not establish token latency. Decode may remain bandwidth-bound, while prefill demands matrix throughput; concurrency changes both. LPDDR and HBM therefore occupy different design points. The meaningful test is tokens per second at a specified latency, model, context length, precision and power limit, not whether one memory capacity number exceeds an HBM GPU’s capacity.</p>
+<p>Core Ultra extends the same heterogeneous-compute idea into the client and edge, combining CPU, integrated GPU and NPU. The NPU’s low-power inference role differs from a datacenter training accelerator, while Arc-derived graphics and media technology connects to the Flex lineage. OpenVINO provides an inference deployment layer across supported CPU, GPU and NPU devices. Model conversion and common APIs help portability, but device plugins, supported operators, memory limits and precision still differ. Shared branding or a common runtime must not be used to transfer server GPU bandwidth or matrix rates to a client part.</p>
+<h2 id="16-ethernet-nics-ipus-and-programmable-networks">16 Ethernet NICs, IPUs and programmable networks</h2>
+<h3 id="network-and-infrastructure-devices">Network and infrastructure devices</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E810</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>Ethernet NIC</td>
+<td>Up to 100GbE; card-dependent</td>
+<td>25G NRZ</td>
+<td>PCIe 4</td>
+<td>DDP pipeline profiles</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>iWARP / RoCEv2</td>
+<td>Protocol / driver-dependent</td>
+<td>Virtualization, RSS, timing</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>E830-CQDA2</td>
+<td>2025</td>
+<td>Shipping</td>
+<td>Ethernet NIC</td>
+<td>2 x 100GbE</td>
+<td>50G PAM4</td>
+<td>PCIe 5 x8 / PCIe 4 x16</td>
+<td>DDP / packet classification</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>Ethernet; RDMA SKU-dependent</td>
+<td>n/d</td>
+<td>Packet processing, timing, telemetry</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>E835</td>
+<td>2026-06</td>
+<td>Shipping</td>
+<td>Ethernet NIC</td>
+<td>1 x 200 / 2 x 100GbE; variants</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Configurable ports / packet processing</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>iWARP + RoCEv2</td>
+<td>n/d</td>
+<td>RDMA, timing, security</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>IPU E2100-CCQDA2</td>
+<td>2023-2024 documentation</td>
+<td>Shipping</td>
+<td>ASIC IPU</td>
+<td>1 x 200 / 2 x 100GbE</td>
+<td>50G PAM4 / 25G NRZ</td>
+<td>PCIe 4 x16</td>
+<td>P4 pipeline</td>
+<td>16 Arm Neoverse N1</td>
+<td>48 GB LPDDR4x; 32 MB SLC</td>
+<td>Ethernet; programmable storage transport</td>
+<td>Traffic shaping; implementation-specific</td>
+<td>NVMe, IPsec, crypto, compression, isolation</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Gaudi 3 integrated NIC</td>
+<td>2024</td>
+<td>Shipping</td>
+<td>On-accelerator fabric</td>
+<td>24 x 200GbE</td>
+<td>48 x 112G PAM4</td>
+<td>Internal to accelerator</td>
+<td>Communication engines</td>
+<td>n/a</td>
+<td>Uses accelerator memory</td>
+<td>RoCE</td>
+<td>Ethernet fabric configuration</td>
+<td>Device RDMA and collectives</td>
+<td>Included in accelerator power</td>
+</tr>
+</tbody>
+</table></div>
+<p>Intel’s conventional Ethernet controllers evolve from E810’s 100 GbE generation toward E830 and E835 configurations reaching 200 GbE. These products support general server networking, virtualization, timing and selected RDMA capabilities. They should not be relabeled as dedicated AI collective engines merely because they can carry AI traffic. The host link, port allocation and transport configuration limit delivered bandwidth. A 200 Gb/s port is 25 GB/s in one direction before overhead; two connectors do not necessarily mean two independently available 200 Gb/s ports.</p>
+<p>The IPU is a different architectural layer. Mount Evans/E2000 introduced an ASIC infrastructure processor co-developed with Google; E2100 adapter documentation specifies a 16-core Arm Neoverse N1 complex, a P4 packet pipeline, 48 GB LPDDR4x and hardware storage/security engines. The Arm cores run infrastructure software independently of the tenant host. The offload path can terminate virtual storage and networking while preserving a separate trust and management domain. E2000 denotes the family/architectural lineage; the E2100 adapter brief explicitly names an E2100 SoC, so those labels should not be collapsed into an unsupported silicon identity claim.</p>
+<p>Google Cloud Next 2022 connected the IPU architecture to a real service: C3 combined fourth-generation Xeon with Google’s custom Intel IPU, initially in private preview and generally available in May 2023. This is stronger deployment evidence than a generic roadmap slide. FPGA-based IPU and SmartNIC designs represent another implementation branch, trading reconfigurability for a different power, cost and software profile. Tofino’s P4-programmable switch datapath is yet another class: switching and stateful packet processing do not make it a host IPU. Intel’s discontinuation of the Tofino line limits its role to historical infrastructure and deployed systems.</p>
+<p>Architecture Day 2021 made the implementation branches explicit. Oak Springs Canyon combined Xeon D and Agilex FPGA as an IPU reference platform, while Arrow Creek became the N6000 FPGA-based acceleration development platform/SmartNIC. Mount Evans used an ASIC approach. The distinction matters when evaluating programmability: FPGA logic can change the datapath itself, whereas an ASIC packet pipeline exposes a bounded programming model and general-purpose cores handle exceptions and control. None of these names alone establishes a particular AI collective-offload capability.</p>
+<h2 id="17-interconnect-memory-optics-and-programmable-logic">17 Interconnect, memory, optics and programmable logic</h2>
+<h3 id="separate-bandwidth-domains">Separate bandwidth domains</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCIe 3</td>
+<td>2010s</td>
+<td>8 GT/s</td>
+<td>16</td>
+<td>15.75</td>
+<td>Platform-dependent</td>
+<td>Root / switch tree</td>
+<td>n/a</td>
+<td>I/O; no general cache coherence</td>
+</tr>
+<tr>
+<td>PCIe 4</td>
+<td>Ice Lake / Gaudi 2</td>
+<td>16 GT/s</td>
+<td>16</td>
+<td>31.51</td>
+<td>Platform-dependent</td>
+<td>Root / switch tree</td>
+<td>n/a</td>
+<td>I/O DMA</td>
+</tr>
+<tr>
+<td>PCIe 5</td>
+<td>Sapphire / Gaudi 3</td>
+<td>32 GT/s</td>
+<td>16</td>
+<td>63.02</td>
+<td>Platform-dependent</td>
+<td>Root / switch tree</td>
+<td>n/a</td>
+<td>I/O; CXL is a separate protocol</td>
+</tr>
+<tr>
+<td>CXL 1.1 → 2.0 → 3.0</td>
+<td>SPR → Xeon 6 → Diamond</td>
+<td>PCIe PHY generation-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Shared physical lane budget</td>
+<td>Direct / switched by version</td>
+<td>n/d</td>
+<td>Cache / memory semantics by device type</td>
+</tr>
+<tr>
+<td>Gaudi 3 Ethernet</td>
+<td>2024</td>
+<td>112G PAM4 SerDes</td>
+<td>2 per 200GbE</td>
+<td>25</td>
+<td>24</td>
+<td>3 links × 7 peers + 3 external</td>
+<td>8 local</td>
+<td>RDMA; not CPU cache coherence</td>
+</tr>
+<tr>
+<td>Xe Link / Max 1550</td>
+<td>2023</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>System-wired GPU graph</td>
+<td>4 GPU Lenovo reference</td>
+<td>Peer GPU memory traffic</td>
+</tr>
+<tr>
+<td>Optical compute interconnect</td>
+<td>2024 demo</td>
+<td>32 Gb/s optical channel</td>
+<td>n/a</td>
+<td>250 aggregate TX, derived</td>
+<td>n/a</td>
+<td>Optical chip-to-chip</td>
+<td>n/d</td>
+<td>Physical I/O demonstration, not a coherence protocol</td>
+</tr>
+</tbody>
+</table></div>
+<p>UPI maintains CPU socket coherence, whereas PCIe is primarily an I/O transport and CXL adds defined cache and memory protocols over related physical links. Version support alone does not prove that every device type, switching configuration or pooling mode is enabled in a server. Real CXL measurements on Sapphire Rapids at MICRO 2023 show why latency, bandwidth asymmetry, placement and device implementation matter. A larger addressable memory tier is useful only if software places the right data there. The same reasoning applies to Optane: persistence requires crash-consistency mechanisms and has different read/write behavior from DRAM.</p>
+<p>Intel’s OFC 2024 optical compute interconnect demonstration co-packaged an optical I/O chiplet with a CPU and carried live data. The disclosed 4 Tb/s bidirectional aggregate is 500 GB/s combined, or 250 GB/s per direction under the stated symmetric convention. Its purpose is to extend reach and improve electrical-to-optical integration as electrical package escape becomes expensive. It is a technology demonstration, not evidence that shipping Xeons already expose an optical coherent fabric. Optical I/O, Ethernet switching and memory coherence solve different layers of the system problem.</p>
+<p>Altera’s Stratix and Agilex families bring reconfigurable datapaths, hardened interfaces and packaging experience into Intel’s historical infrastructure portfolio. FPGA acceleration is attractive when a streaming pipeline, protocol or low-latency operation can be specialized; it is not interchangeable with a general training GPU. EMIB’s role in FPGA integration also helps explain its later use in Xeon and GPU packages. Ownership changes the current portfolio boundary: the sale of 51% of Altera closed on 12 September 2025, leaving Intel with 49%. Treating Altera as a wholly owned Intel product group in 2026 would therefore be incorrect.</p>
+<p>Optane was exited in 2022; a planned future persistent-memory module should not be counted as a shipped Sapphire Rapids feature. Omni-Path belongs to Intel’s earlier HPC fabric history, while subsequent Cornelis products belong to that company’s portfolio. Loihi 2 and Hala Point are neuromorphic research systems with event-driven computation and a different programming model, not drop-in datacenter GPUs. These technologies are important context, but none should be used to inflate the count of currently supported Intel AI training platforms.</p>
+<h2 id="18-systems-and-software-the-usable-architecture">18 Systems and software: the usable architecture</h2>
+<h3 id="representative-deployed-or-documented-systems">Representative deployed or documented systems</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS DL1</td>
+<td>2021 GA</td>
+<td>2 Xeon; 8 Gaudi</td>
+<td>8 Gaudi</td>
+<td>400Gb/s instance ÷ 8 = 6.25 GB/s average; shared</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Aurora</td>
+<td>2023 installation; later user service</td>
+<td>2 Xeon Max + 6 GPU Max / node</td>
+<td>6 GPU node; Xe Link topology</td>
+<td>8 x 200Gb/s NIC ÷ 6 = 33.3 GB/s average</td>
+<td>n/d</td>
+<td>Direct liquid</td>
+</tr>
+<tr>
+<td>Lenovo SD650-I V3</td>
+<td>2023; withdrawn 2024</td>
+<td>Up to 2 Xeon + 4 GPU Max</td>
+<td>4 GPU</td>
+<td>Adapter-dependent</td>
+<td>n/d</td>
+<td>Direct water cooling</td>
+</tr>
+<tr>
+<td>Gaudi 3 HLB-325</td>
+<td>2024</td>
+<td>Host CPUs + 8 Gaudi 3</td>
+<td>8 Gaudi</td>
+<td>3 x 200GbE = 75 GB/s one-way</td>
+<td>n/d</td>
+<td>Air / liquid variants</td>
+</tr>
+<tr>
+<td>Google C3</td>
+<td>2023 GA</td>
+<td>Xeon 4th gen + custom IPU</td>
+<td>CPU virtual machine</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>Aurora’s two CPU Max and six GPU Max devices per node demonstrate why system ratios matter. Eight Slingshot endpoints provide scale-out connectivity, but dividing their aggregate rate by six is an average budget, not six dedicated identical NIC paths. Affinity among CPU NUMA domains, GPU tiles and network endpoints affects real communication. Likewise, an eight-Gaudi baseboard’s local fully connected graph is not an entire datacenter fabric. Oversubscription, collective scheduling and failure recovery determine cluster behavior beyond the node.</p>
+<h3 id="software-milestones-and-hardware-relationship">Software milestones and hardware relationship</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Stack / release</th>
+<th>Date / era</th>
+<th>Hardware enabled</th>
+<th>Key features / constraint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oneDNN / CPU framework libraries</td>
+<td>2017-2026</td>
+<td>Xeon AVX-512 / VNNI / AMX</td>
+<td>ISA dispatch, packing and kernel selection; application must use enabled path</td>
+</tr>
+<tr>
+<td>oneAPI / SYCL / Level Zero</td>
+<td>2020s</td>
+<td>Xe GPU / CPU</td>
+<td>Shared programming model; placement and device-specific tuning remain</td>
+</tr>
+<tr>
+<td>SynapseAI / Gaudi software 1.24</td>
+<td>2026 documentation</td>
+<td>Gaudi 2 / Gaudi 3</td>
+<td>PyTorch integration, graph compilation, TPC kernels and HCCL</td>
+</tr>
+<tr>
+<td>IPU SDK</td>
+<td>2023-2024 documentation</td>
+<td>E2100 IPU</td>
+<td>P4 pipeline, infrastructure services and host integration</td>
+</tr>
+<tr>
+<td>DSA / IAA software interfaces</td>
+<td>2023 onward</td>
+<td>Xeon integrated engines</td>
+<td>Work queues, shared virtual addressing and asynchronous completion; overhead matters</td>
+</tr>
+</tbody>
+</table></div>
+<p>The software lines are related but not interchangeable. oneAPI/SYCL and Level Zero expose Intel GPU execution; Gaudi uses its own compiler/runtime and communication stack; Xeon libraries dispatch to vector or AMX kernels; IPU software manages infrastructure services. A common framework frontend does not guarantee equal operator coverage, numerical behavior or performance. Evaluate complete model graphs, fallback behavior, quantization, checkpoint portability and distributed communication. This is especially important when a hardware roadmap changes: a technically portable source program may still depend on a vendor-specific optimized kernel ecosystem.</p>
+<p>OpenVINO is the inference-oriented bridge across Intel’s CPU, GPU and NPU portfolio. It belongs alongside, rather than in place of, the lower-level compiler/runtime and mathematical libraries. For an enterprise inference deployment, supported model transformations, precision conversion, batching, device selection and profiling can matter more than the application seeing a particular instruction. Its hardware support matrix should be checked against the exact runtime release; a framework’s generic device name is not a promise that every older Intel accelerator remains supported.</p>
+<h2 id="19-four-system-views">19 Four system views</h2>
+<p>These diagrams summarize actual architectural relationships across four eras. Lines identify data paths, not necessarily coherent memory. A per-device bandwidth is not multiplied by device count unless an aggregate is explicitly requested. The drawings intentionally distinguish accelerator-local memory, host memory and external networking; none represents all memory as a uniform pool.</p>
+<h3 id="2015-2016-host-cpu-and-self-hosted-many-core">2015-2016: host CPU and self-hosted many-core</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Broadwell Xeon / 22 cores / socket"]
+  ddr["Host DDR4 / 4 channels"]
+  phi["Knights Landing / 72 cores; self-hosted"]
+  mc["MCDRAM 16 GB / local to Phi"]
+  fabric["HPC network / optional Omni-Path"]
+  far["Phi DDR4 / capacity tier"]
+  cpu ---|"76.8 GB/s"| ddr
+  phi ---|"400+ GB/s class"| mc
+  phi ---|"Separate DDR controllers"| far
+  phi ---|"Network endpoint"| fabric
+  cpu ---|"Server network adapter"| fabric
+</pre>
+<p>Xeon and Phi are alternative node constructions here; the diagram does not imply Knights Landing is attached to Broadwell as a mandatory coprocessor.</p>
+<h3 id="2019-2021-cpu-plus-ethernet-connected-ai-devices">2019-2021: CPU plus Ethernet-connected AI devices</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Cascade Lake host"]
+  ddr["DDR4 / optional Optane"]
+  gpus["8 Gaudi devices / AWS DL1 example"]
+  hbm["32 GB HBM per device"]
+  net["External network"]
+  peer["Integrated Ethernet / peer communication"]
+  cpu ---|"Memory channels"| ddr
+  cpu ---|"Host I/O path"| gpus
+  gpus ---|"Local memory"| hbm
+  gpus ---|"On-device RoCE ports"| peer
+  gpus ---|"DL1: 400 Gb/s instance"| net
+</pre>
+<p>DL1’s external service bandwidth differs from Gaudi’s on-chip aggregate network port bandwidth. Optane is a CPU platform option, not Gaudi HBM.</p>
+<h3 id="2023-2024-auroras-heterogeneous-memory-hierarchy">2023-2024: Aurora’s heterogeneous memory hierarchy</h3>
+<pre class="mermaid">flowchart TD
+  cpu["2 Xeon Max / node"]
+  ddr["CPU: HBM + DDR5"]
+  gpus["6 GPU Max / node / Xe Link peer graph"]
+  hbm["128 GB HBM / GPU"]
+  net["8 Slingshot endpoints"]
+  cluster["Dragonfly fabric"]
+  cpu ---|"CPU memory tiers"| ddr
+  cpu ---|"PCIe"| gpus
+  gpus ---|"Device-local bandwidth"| hbm
+  gpus ---|"Topology / affinity matter"| net
+  net ---|"8 x 200 Gb/s"| cluster
+</pre>
+<p>An average 33.3 GB/s scale-out budget per GPU follows from 8 × 200 Gb/s divided by six; it is not a uniform dedicated link allocation.</p>
+<h3 id="2024-2026-specialized-compute-and-infrastructure-paths">2024-2026: specialized compute and infrastructure paths</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Xeon 6 / 6+ / P-core or E-core host"]
+  mem["DDR5 / MRDIMM / CXL expansion by platform"]
+  gpus["8 Gaudi 3 / 21 local ports / device"]
+  hbm["128 GB HBM2e / device / 3.7 TB/s"]
+  net["3 x 200GbE / Gaudi / scale-out fabric"]
+  ipu["Host NIC / IPU / infrastructure services"]
+  cpu ---|"Platform-dependent"| mem
+  cpu ---|"PCIe 5 x16"| gpus
+  gpus ---|"Local HBM"| hbm
+  gpus ---|"75 GB/s one-way / device"| net
+  cpu ---|"Separate host I/O"| ipu
+</pre>
+<p>This is a role diagram, not a claim of one mandatory OEM configuration. Crescent Island is a separate announced PCIe inference branch with LPDDR5X; Diamond Rapids is a disclosed future host platform.</p>
+<h2 id="20-normalized-ratios-and-design-implications">20 Normalized ratios and design implications</h2>
+<h3 id="derived-ratios-from-stated-reference-configurations">Derived ratios from stated reference configurations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>DRAM GB/s per core</th>
+<th>L3 MB per core</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Broadwell 2699 v4</td>
+<td>3.49</td>
+<td>2.50</td>
+<td>22 cores share four channels</td>
+</tr>
+<tr>
+<td>Skylake 8180</td>
+<td>4.57</td>
+<td>1.375</td>
+<td>L2 grows; L3 changes inclusion policy</td>
+</tr>
+<tr>
+<td>Sapphire 8490H</td>
+<td>5.12</td>
+<td>1.875</td>
+<td>AMX raises arithmetic demand</td>
+</tr>
+<tr>
+<td>Emerald 8592+</td>
+<td>5.60</td>
+<td>5.00</td>
+<td>Large LLC capacity increase</td>
+</tr>
+<tr>
+<td>Sierra 6780E</td>
+<td>2.84</td>
+<td>0.75</td>
+<td>Density-oriented reference</td>
+</tr>
+<tr>
+<td>Granite 6980P / MRDIMM</td>
+<td>6.60</td>
+<td>3.9375</td>
+<td>12 channels at 8800 MT/s</td>
+</tr>
+<tr>
+<td>Clearwater 6990E+</td>
+<td>2.67</td>
+<td>2.00</td>
+<td>Double cores; more cache per core</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="accelerator-balance-dense-bf16-basis">Accelerator balance, dense BF16 basis</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>HBM bytes/FLOP</th>
+<th>All-port network / HBM BW</th>
+<th>External BW / device</th>
+<th>BF16 peak / device power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gaudi 2</td>
+<td>0.00569</td>
+<td>0.122</td>
+<td>37.5 GB/s, 3 x 100GbE allocation</td>
+<td>0.720 TF/W at 600 W</td>
+</tr>
+<tr>
+<td>Gaudi 3</td>
+<td>0.00221</td>
+<td>0.162</td>
+<td>75 GB/s, 3 x 200GbE allocation</td>
+<td>1.864 TF/W at 900 W</td>
+</tr>
+<tr>
+<td>GPU Max 1550</td>
+<td>0.00381</td>
+<td>0.0994 Xe Link / HBM, Lenovo basis</td>
+<td>System-dependent</td>
+<td>1.398 TF/W at 600 W</td>
+</tr>
+</tbody>
+</table></div>
+<p>Gaudi 3 increases matrix peak more quickly than HBM bandwidth relative to Gaudi 2: the HBM bytes available per peak BF16 operation fall by more than half on the selected whitepaper basis. More reuse, larger useful tiles or greater batching is needed to approach compute peak. Network bandwidth also remains a fraction of local HBM bandwidth. Communication-heavy parallelism cannot be judged by arithmetic scaling alone. These ratios describe resource balance; they do not predict a model benchmark without its arithmetic intensity and communication pattern.</p>
+<p>Peak FLOPS divided by board or device power is an upper-level arithmetic normalization, not measured energy efficiency. It omits host CPUs, DIMMs, switches, optics, cooling and utilization. No cross-vendor performance-per-watt ranking is inferred from this table. For CPUs, per-core memory bandwidth is similarly an equal-share budget, not a guaranteed allocation. The useful engineering question is which layer saturates first and whether software can increase locality or overlap before more hardware is added.</p>
+<h2 id="21-what-the-major-architecture-conferences-add">21 What the major architecture conferences add</h2>
+<p>Hot Chips and ISSCC answer complementary questions. Hot Chips usually exposes the block diagram, hierarchy, interfaces and product intent. ISSCC can explain the physical implementation that makes those blocks practical: multi-die signaling, energy per bit, package construction, clocking and power. The strongest examples here are Sapphire Rapids’ quasi-monolithic EMIB fabric, Ponte Vecchio’s multi-process 3D integration and Emerald Rapids’ cache-rich two-tile design. Conference numbers must remain attached to their prototype, measurement condition and disclosure date before being reconciled with commercial SKU data.</p>
+<p>ISCA, MICRO, HPCA and ASPLOS are particularly valuable for testing how product mechanisms behave. LIA at ISCA 2025 uses AMX-enabled Xeons and a GPU cooperatively, showing that CPU matrix execution can change offloading decisions. MICRO 2023’s real-device CXL study distinguishes actual memory expansion from software emulation. ASPLOS 2024’s DSA analysis identifies when asynchronous data movement pays for its submission and completion overhead. HPCA 2020’s persistent-memory keynote examines the programming consequences of capacity, persistence and asymmetric access. These are research or measurement results, not proof that Intel adopted every proposed mechanism in silicon.</p>
+<p>The conference index distinguishes direct product disclosure, implementation disclosure, independent measurement, and deployment evidence. DAC and Foundry Direct Connect are useful for design enablement, packaging and EDA context; MWC emphasizes telecom and edge; OCP emphasizes platform integration; Computex and Intel’s own launch events establish product positioning and availability. Cloud Next and AWS disclosures connect chips to services. No specific GTC, Microsoft Ignite or DAC product-architecture talk is asserted where a qualifying primary record was not established in this review. That is a bounded coverage gap, not evidence that Intel never participated.</p>
+<h3 id="conference-to-product-index">Conference-to-product index</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2015</td>
+<td>Knights Landing</td>
+<td>Avinash Sodani</td>
+<td>Xeon Phi</td>
+<td>Product architecture</td>
+<td>C13</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2018</td>
+<td>Cascade Lake</td>
+<td>Akhilesh Kumar</td>
+<td>Xeon 2nd gen</td>
+<td>Architecture / VNNI / memory</td>
+<td>C06</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2019</td>
+<td>Nervana; packaging; Optane</td>
+<td>Intel</td>
+<td>NNP-T / NNP-I</td>
+<td>Official press release</td>
+<td>C14</td>
+</tr>
+<tr>
+<td>HPCA</td>
+<td>2020</td>
+<td>Persistent Memory and the Path to Being Comfortably NUMB</td>
+<td>Steven Swanson</td>
+<td>Optane context</td>
+<td>Independent research keynote</td>
+<td>R05</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2022</td>
+<td>Ponte Vecchio: A Multi-Tile 3D Stacked Processor for Exascale Computing</td>
+<td>W. Gomes et al.</td>
+<td>Ponte Vecchio</td>
+<td>Implementation; paper 2.1 press kit</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2022</td>
+<td>Sapphire Rapids: Next-Generation Xeon</td>
+<td>Intel</td>
+<td>Sapphire Rapids</td>
+<td>Implementation; paper 2.2 press kit</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>Google Cloud Next</td>
+<td>2022</td>
+<td>C3 and custom Intel IPU</td>
+<td>Google / Intel</td>
+<td>Sapphire Rapids + IPU</td>
+<td>Preview; GA followed 2023</td>
+<td>E15</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2023</td>
+<td>Granite Rapids and Sierra Forest</td>
+<td>Intel</td>
+<td>Xeon 6</td>
+<td>Architecture briefing slides</td>
+<td>C12</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2023</td>
+<td>Demystifying CXL Memory with Genuine CXL-Ready Systems and Devices</td>
+<td>Yan Sun et al.</td>
+<td>Sapphire Rapids / CXL</td>
+<td>Real-device measurement</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2024</td>
+<td>Emerald Rapids: 5th-Generation Xeon Scalable</td>
+<td>Ashley O. Munch et al.</td>
+<td>Emerald Rapids</td>
+<td>Implementation; paper 2.3 press kit</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2024</td>
+<td>A Quantitative Analysis and Guidelines of Data Streaming Accelerator in Modern Intel Xeon Scalable Processors</td>
+<td>Reese Kuper et al.</td>
+<td>DSA / Sapphire Rapids</td>
+<td>Measured offload behavior</td>
+<td>R02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2024</td>
+<td>Gaudi 3; Xeon 6; optical I/O</td>
+<td>Intel</td>
+<td>Gaudi 3 / Xeon 6 / OCI</td>
+<td>Architecture and demo summary</td>
+<td>E13</td>
+</tr>
+<tr>
+<td>OFC</td>
+<td>2024</td>
+<td>Integrated optical compute interconnect</td>
+<td>Intel IPS</td>
+<td>OCI chiplet</td>
+<td>Live technology demonstration</td>
+<td>E12</td>
+</tr>
+<tr>
+<td>Intel Vision</td>
+<td>2024</td>
+<td>Gaudi 3 architecture and open systems</td>
+<td>Intel</td>
+<td>Gaudi 3</td>
+<td>Product announcement</td>
+<td>E20</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2025</td>
+<td>LIA: cooperative AMX CPU-GPU computation and CXL offloading</td>
+<td>Hyungyo Kim et al.</td>
+<td>Sapphire / Granite Rapids</td>
+<td>Independent system research</td>
+<td>R01</td>
+</tr>
+<tr>
+<td>Hot Chips / Tech Tour</td>
+<td>2025</td>
+<td>Clearwater Forest</td>
+<td>Intel</td>
+<td>Xeon 6+</td>
+<td>Architecture / packaging</td>
+<td>P08</td>
+</tr>
+<tr>
+<td>OCP Global Summit</td>
+<td>2025</td>
+<td>Crescent Island initial disclosure</td>
+<td>Intel</td>
+<td>Crescent Island</td>
+<td>Roadmap / sampling target</td>
+<td>E03</td>
+</tr>
+<tr>
+<td>MWC</td>
+<td>2026</td>
+<td>Xeon 6+ network and edge positioning</td>
+<td>Intel</td>
+<td>Clearwater Forest</td>
+<td>Platform demonstration</td>
+<td>E16</td>
+</tr>
+<tr>
+<td>Computex</td>
+<td>2026</td>
+<td>Xeon 6+ and E835 launch</td>
+<td>Intel</td>
+<td>Clearwater / E835 / Crescent</td>
+<td>Commercial launch / update</td>
+<td>E02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Diamond Rapids and Crescent Island</td>
+<td>Intel</td>
+<td>Diamond / Crescent</td>
+<td>Architecture announcement</td>
+<td>E01</td>
+</tr>
+<tr>
+<td>Foundry Direct Connect</td>
+<td>2024-2025</td>
+<td>Process and packaging enablement</td>
+<td>Intel / EDA partners</td>
+<td>18A / EMIB / Foveros</td>
+<td>Technology ecosystem</td>
+<td>E19</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="22-architecture-conclusions-and-remaining-gaps">22 Architecture conclusions and remaining gaps</h2>
+<p>Intel’s durable architectural assets are the CPU software base, increasingly specialized host execution, heterogeneous packaging, and infrastructure offload. Its accelerator history is more fragmented. Gaudi offers a distinctive Ethernet-centered system; GPU Max demonstrates ambitious HPC integration; Crescent Island pursues capacity-oriented inference economics. These are complementary design points, not interchangeable generations of one GPU. The correct unit of comparison is the deployable workload system: compute format, memory residence, locality, fabric, power envelope and maintained software path.</p>
+<p>The remaining material gaps are concentrated in final Diamond Rapids SKU and availability details, Crescent Island’s memory bandwidth and arithmetic rates, the precise shipping configuration matrix of newer NICs, and restricted conference slide or full-paper access. The report therefore uses official announcement-level claims for those products and leaves unsupported fields as n/d. Earlier packaging roadmaps are reconciled with later launch records rather than treated as actual shipment dates. The canonical data file preserves source IDs, claim scope, numerical basis and product status so these gaps can be updated without changing the report structure.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Executive synthesis and scope — C03, C12, E01, E02, E07, E11, E12, E17, P02, P03, P05, P06, P10, P14</p>
+<p>02 How to read the numbers — P02, P05, P09, P16, P17</p>
+<p>03 Xeon generation atlas — C03, C04, C06, C12, E01, E02, E16, P01, P03, P05, P06, P08, P13, P16, P17, P18, P19, P20, P21, P22, P23, P24, P25, P26, P35</p>
+<p>04 Haswell and Broadwell: the monolithic baseline — P05, P07, P20</p>
+<p>05 Skylake, Cascade Lake and Cooper Lake — C06, P05, P06, P22, P23</p>
+<p>06 Ice Lake: a wider core and a wider server — P05, P07, P24</p>
+<p>07 Sapphire Rapids and Xeon Max: tiles and engines — C03, P03, P05, P13, R01, R02</p>
+<p>08 Emerald Rapids: cache and integration efficiency — C04, P03, P26</p>
+<p>09 Xeon 6: separating performance and density — C12, E04, E06, P16, P17, P18</p>
+<p>10 Clearwater Forest and Diamond Rapids — E01, E02, E08, E16, P01, P08, P17, P19, P35</p>
+<p>11 Accelerator generation atlas — C03, C13, E01, E03, E05, E14, P02, P05, P09, P11, P27, P28, P29, P30, P37</p>
+<p>12 Xeon Phi and Nervana: earlier parallel-compute paths — C13, C14, E17, P05, P28, P30</p>
+<p>13 Gaudi 1, 2 and 3: Ethernet inside the accelerator — E09, E14, P02, P04, P09, P30</p>
+<p>14 Ponte Vecchio: a heterogeneous HPC package — C03, E17, P11, P27, P31</p>
+<p>15 Flex, Arc and Crescent Island: inference branches — E01, E02, E03, P11, P29, P38, R01</p>
+<p>16 Ethernet NICs, IPUs and programmable networks — E02, E15, E18, E21, P02, P10, P14, P15, P32</p>
+<p>17 Interconnect, memory, optics and programmable logic — C12, C14, E01, E07, E10, E11, E12, E13, E17, P02, P03, P05, P24, P27, P33, R04, R05</p>
+<p>18 Systems and software: the usable architecture — E14, E15, P02, P03, P05, P10, P11, P27, P30, P31, P34, P38, R02</p>
+<p>19 Four system views — E01, P02, P05, P31</p>
+<p>20 Normalized ratios and design implications — P01, P02, P03, P06, P16, P17, P18, P19, P20, P21, P25, P26, P27, P30</p>
+<p>21 What the major architecture conferences add — C03, C04, C06, C12, C13, C14, E01, E02, E03, E12, E13, E14, E15, E16, E19, E20, P08, R01, R02, R04, R05</p>
+<p>22 Architecture conclusions and remaining gaps — E01, E02, E03, E07, P02, P03, P10, P14</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] Xeon 6+ product family and SKUs. <a href="https://www.intel.com/content/www/us/en/products/details/processors/xeon/6-plus-series.html">https://www.intel.com/content/www/us/en/products/details/processors/xeon/6-plus-series.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Gaudi 3 architecture whitepaper. <a href="https://cdrdv2-public.intel.com/817486/gaudi-3-ai-accelerator-white-paper.pdf">https://cdrdv2-public.intel.com/817486/gaudi-3-ai-accelerator-white-paper.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] 4th generation Xeon architectural overview. <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/fourth-generation-xeon-scalable-family-overview.html">https://www.intel.com/content/www/us/en/developer/articles/technical/fourth-generation-xeon-scalable-family-overview.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] Intel internal Gaudi deployment. <a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-03/it-training-ml-on-gaudi-paper.pdf">https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-03/it-training-ml-on-gaudi-paper.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] Intel optimization reference manual Volume 1. <a href="https://cdrdv2-public.intel.com/814198/248966-Optimization-Reference-Manual-V1-049.pdf">https://cdrdv2-public.intel.com/814198/248966-Optimization-Reference-Manual-V1-049.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] Skylake-SP architecture overview. <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/xeon-processor-scalable-family-technical-overview.html">https://www.intel.com/content/www/us/en/developer/articles/technical/xeon-processor-scalable-family-technical-overview.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] Xeon D-2100 architecture. <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-xeon-processor-d-2100-product-family-technical-overview.html">https://www.intel.com/content/www/us/en/developer/articles/technical/intel-xeon-processor-d-2100-product-family-technical-overview.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P08] Xeon 6+ product architecture deck. <a href="https://cdrdv2-public.intel.com/866623/xeon-6-plus-product-deck.pdf">https://cdrdv2-public.intel.com/866623/xeon-6-plus-product-deck.pdf</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[P09] Gaudi 3 PCIe product brief. <a href="https://cdrdv2-public.intel.com/817488/Gaudi%203%20PCIe%20Product%20Brief_RB_1_V6.pdf">https://cdrdv2-public.intel.com/817488/Gaudi%203%20PCIe%20Product%20Brief_RB_1_V6.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] IPU E2100-CCQDA2 product brief. <a href="https://cdrdv2-public.intel.com/816692/Intel%20Infrastructure%20Processing%20Unit%20Adapter%20E2100-CCQDA2.pdf">https://cdrdv2-public.intel.com/816692/Intel%20Infrastructure%20Processing%20Unit%20Adapter%20E2100-CCQDA2.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P11] Xe GPU architecture optimization guide. <a href="https://www.intel.com/content/www/us/en/docs/oneapi/optimization-guide-gpu/2024-1/xe-arch.html">https://www.intel.com/content/www/us/en/docs/oneapi/optimization-guide-gpu/2024-1/xe-arch.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P13] Xeon CPU Max product brief. <a href="https://www.intel.co.uk/content/dam/www/central-libraries/us/en/documents/2023-01/xeon-cpu-max-series-product-brief.pdf">https://www.intel.co.uk/content/dam/www/central-libraries/us/en/documents/2023-01/xeon-cpu-max-series-product-brief.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P14] Ethernet 800 Series product guide. <a href="https://cdrdv2-public.intel.com/709766/Intel%20Ethernet%20800%20Series%20Product%20Guide.pdf">https://cdrdv2-public.intel.com/709766/Intel%20Ethernet%20800%20Series%20Product%20Guide.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P15] E830 OCP adapter product brief. <a href="https://cdrdv2-public.intel.com/855027/Intel%20Ethernet%20Network%20Adapter%20E830-CQDA2%20for%20OCP%203.pdf">https://cdrdv2-public.intel.com/855027/Intel%20Ethernet%20Network%20Adapter%20E830-CQDA2%20for%20OCP%203.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P16] Xeon 6980P specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/240777/intel-xeon-6980p-processor-504m-cache-2-00-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/240777/intel-xeon-6980p-processor-504m-cache-2-00-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P17] Xeon 6780E specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/240362/intel-xeon-6780e-processor-108m-cache-2-20-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/240362/intel-xeon-6780e-processor-108m-cache-2-20-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P18] Xeon 6 P-core SKU stack summary. <a href="https://cdrdv2-public.intel.com/860027/IntelXeon6withPcores_SKUStackSummary.pdf">https://cdrdv2-public.intel.com/860027/IntelXeon6withPcores_SKUStackSummary.pdf</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[P19] Xeon 6+ product brief. <a href="https://www.intel.com/content/www/us/en/content-details/918009/intel-xeon-6-product-brief-formerly-codenamed-clearwater-forest.html">https://www.intel.com/content/www/us/en/content-details/918009/intel-xeon-6-product-brief-formerly-codenamed-clearwater-forest.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P20] Xeon E5-2699 v4 specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/91317/intel-xeon-processor-e52699-v4-55m-cache-2-20-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/91317/intel-xeon-processor-e52699-v4-55m-cache-2-20-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P21] Xeon 8180 specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/120496/intel-xeon-platinum-8180-processor-38-5m-cache-2-50-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/120496/intel-xeon-platinum-8180-processor-38-5m-cache-2-50-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P22] Xeon 8280 specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/192478/intel-xeon-platinum-8280-processor-38-5m-cache-2-70-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/192478/intel-xeon-platinum-8280-processor-38-5m-cache-2-70-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P23] Xeon 8380HL specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/205684/intel-xeon-platinum-8380hl-processor-38-5m-cache-2-90-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/205684/intel-xeon-platinum-8380hl-processor-38-5m-cache-2-90-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P24] Xeon 8380 specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/212287/intel-xeon-platinum-8380-processor-60m-cache-2-30-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/212287/intel-xeon-platinum-8380-processor-60m-cache-2-30-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P25] Intel Xeon family SKU registry. <a href="https://www.intel.com/content/www/us/en/ark/products/series/595/intel-xeon-processors.html">https://www.intel.com/content/www/us/en/ark/products/series/595/intel-xeon-processors.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P26] Xeon 8592+ specifications. <a href="https://www.intel.com/content/www/us/en/products/sku/237261/intel-xeon-platinum-8592-processor-320m-cache-1-90-ghz/specifications.html">https://www.intel.com/content/www/us/en/products/sku/237261/intel-xeon-platinum-8592-processor-320m-cache-1-90-ghz/specifications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P27] Lenovo SD650-I V3 GPU Max system specifications. <a href="https://lenovopress.lenovo.com/lp1602-thinksystem-sd650-i-v3-server">https://lenovopress.lenovo.com/lp1602-thinksystem-sd650-i-v3-server</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P28] Xeon Phi Knights Landing product registry. <a href="https://www.intel.de/content/www/de/de/ark/products/codename/48999/products-formerly-knights-landing.html">https://www.intel.de/content/www/de/de/ark/products/codename/48999/products-formerly-knights-landing.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P29] Data Center GPU Flex product brief. <a href="https://cdrdv2-public.intel.com/768797/intel-data-center-gpu-flex-series-product-brief-final.pdf">https://cdrdv2-public.intel.com/768797/intel-data-center-gpu-flex-series-product-brief-final.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P30] Gaudi architecture documentation. <a href="https://docs.habana.ai/en/latest/Gaudi_Overview/Gaudi_Architecture.html">https://docs.habana.ai/en/latest/Gaudi_Overview/Gaudi_Architecture.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P31] Aurora machine overview, Argonne. <a href="https://docs.alcf.anl.gov/aurora/">https://docs.alcf.anl.gov/aurora/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[P32] Intel IPU E2100 product and architecture documentation. <a href="https://www.intel.com/content/www/us/en/products/details/network-io/ipu/adapter-e2100.html">https://www.intel.com/content/www/us/en/products/details/network-io/ipu/adapter-e2100.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P33] Cornelis TACC case study and Omni-Path acquisition history. <a href="https://www.cornelis.com/pdf-archive/2023/10/TACC-Case-Study.pdf">https://www.cornelis.com/pdf-archive/2023/10/TACC-Case-Study.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P34] Gaudi software documentation 1.24. <a href="https://docs.habana.ai/en/latest/">https://docs.habana.ai/en/latest/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P35] Intel Clearwater Forest process and packaging whitepaper. <a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2024-02/intel-tech-clearwater-wp.pdf">https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2024-02/intel-tech-clearwater-wp.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P37] Gaudi 2 original architecture whitepaper. <a href="https://habana.ai/wp-content/uploads/pdf/2021/gaudi2-whitepaper.pdf">https://habana.ai/wp-content/uploads/pdf/2021/gaudi2-whitepaper.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P38] OpenVINO CPU, GPU and NPU deployment product brief. <a href="https://cdrdv2-public.intel.com/671060/OpenVINO-product-brief-2024.3-671060.pdf">https://cdrdv2-public.intel.com/671060/OpenVINO-product-brief-2024.3-671060.pdf</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C03] ISSCC 2022 press kit: Ponte Vecchio and Sapphire Rapids. <a href="https://www.isscc.org/s/ISSCC2022PressKit.pdf">https://www.isscc.org/s/ISSCC2022PressKit.pdf</a>. Official conference press kit; not the full paper.</p>
+<p>[C04] ISSCC 2024 press kit: Emerald Rapids. <a href="https://static1.squarespace.com/static/6130ef779c7a2574bd4b8888/t/683f410397a851776dcd8fe3/1748975883344/ISSCC2024PressKit.pdf">https://static1.squarespace.com/static/6130ef779c7a2574bd4b8888/t/683f410397a851776dcd8fe3/1748975883344/ISSCC2024PressKit.pdf</a>. Official conference press kit; not the full paper.</p>
+<p>[C06] Cascade Lake Hot Chips 2018 slides. <a href="https://old.hotchips.org/hc30/2conf/2.15_Intel_Cascade_Lake_HC30.Intel.Akhilesh.CLXCPU.Final.pdf">https://old.hotchips.org/hc30/2conf/2.15_Intel_Cascade_Lake_HC30.Intel.Akhilesh.CLXCPU.Final.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C12] Granite Rapids and Sierra Forest Hot Chips 2023. <a href="https://download.intel.com/newsroom/2023/data-center-hpc/Hot_Chips_23_Granite_Rapids_Sierra_Forest_Xeon_Press_Briefing.pdf">https://download.intel.com/newsroom/2023/data-center-hpc/Hot_Chips_23_Granite_Rapids_Sierra_Forest_Xeon_Press_Briefing.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C13] Knights Landing, Avinash Sodani, Hot Chips 2015. <a href="https://old.hotchips.org/wp-content/uploads/hc_archives/hc27/HC27.25-Tuesday-Epub/HC27.25.70-Processors-Epub/HC27.25.710-Knights-Landing-Sodani-Intel.pdf">https://old.hotchips.org/wp-content/uploads/hc_archives/hc27/HC27.25-Tuesday-Epub/HC27.25.70-Processors-Epub/HC27.25.710-Knights-Landing-Sodani-Intel.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C14] Intel press release: Nervana, packaging and Optane at Hot Chips 2019. <a href="https://www.hpcwire.com/off-the-wire/intel-presents-on-nervana-packaging-and-optane-memory-at-hot-chips-2019/">https://www.hpcwire.com/off-the-wire/intel-presents-on-nervana-packaging-and-optane-memory-at-hot-chips-2019/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<h3 id="research-papers-and-publication-registries">Research papers and publication registries</h3>
+<p>[R01] LIA: cooperative AMX CPU-GPU inference, ISCA 2025. <a href="https://experts.illinois.edu/en/publications/lia-a-single-gpu-llm-inference-acceleration-with-cooperative-amx-/">https://experts.illinois.edu/en/publications/lia-a-single-gpu-llm-inference-acceleration-with-cooperative-amx-/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R02] Quantitative Analysis and Guidelines of DSA, ASPLOS 2024. <a href="https://arxiv.org/pdf/2305.02480">https://arxiv.org/pdf/2305.02480</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R04] Demystifying CXL Memory, MICRO 2023. <a href="https://hxji.github.io/assets/pdf/cxl-micro23.pdf">https://hxji.github.io/assets/pdf/cxl-micro23.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R05] HPCA 2020 persistent-memory keynote. <a href="https://www.hpca-conf.org/2020/persistent-memory-and-the-path-to-being-comfortably-numb/">https://www.hpca-conf.org/2020/persistent-memory-and-the-path-to-being-comfortably-numb/</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Intel Hot Chips 2026 architecture disclosures. <a href="https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-outlines-architectures-for-agentic-ai-at-hot-chips-2026.html">https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-outlines-architectures-for-agentic-ai-at-hot-chips-2026.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Computex 2026 Xeon 6+, E835 and Crescent Island. <a href="https://www.intel.com/content/www/us/en/newsroom/news/data-center/intel-puts-agentic-ai-xeon-6-networking-ai-systems.html">https://www.intel.com/content/www/us/en/newsroom/news/data-center/intel-puts-agentic-ai-xeon-6-networking-ai-systems.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Crescent Island initial OCP announcement. <a href="https://www.intel.com/content/www/us/en/newsroom/news/artificial-intelligence/intel-to-expand-ai-accelerator-portfolio-with-new-gpu.html">https://www.intel.com/content/www/us/en/newsroom/news/artificial-intelligence/intel-to-expand-ai-accelerator-portfolio-with-new-gpu.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] Xeon 6 press kit. <a href="https://newsroom.intel.com/press-kit/press-kit-intel-xeon-6-processors">https://newsroom.intel.com/press-kit/press-kit-intel-xeon-6-processors</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Xeon 6 P-core and Gaudi 3 launch. <a href="https://www.intc.com/news-events/press-releases/detail/1713/intel-unveils-next-generation-ai-solutions-with-the-launch">https://www.intc.com/news-events/press-releases/detail/1713/intel-unveils-next-generation-ai-solutions-with-the-launch</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] Xeon 6 February 2025 expansion. <a href="https://newsroom.intel.com/data-center/intel-unveils-leadership-ai-networking-solutions-xeon-6-processors">https://newsroom.intel.com/data-center/intel-unveils-leadership-ai-networking-solutions-xeon-6-processors</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Intel 2025 annual report: product and ownership changes. <a href="https://www.intc.com/filings-reports/annual-reports/content/0000050863-26-000011/0000050863-26-000011.pdf">https://www.intc.com/filings-reports/annual-reports/content/0000050863-26-000011/0000050863-26-000011.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E08] Intel Q4 2025 prepared earnings remarks. <a href="https://download.intel.com/newsroom/2026/earnings/Intel-4Q2025-Earnings-Call.pdf">https://download.intel.com/newsroom/2026/earnings/Intel-4Q2025-Earnings-Call.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] Gaudi 3 availability expansion 2025. <a href="https://www.intel.com/content/www/us/en/newsroom/news/artificial-intelligence/intel-gaudi-3-expands-availability-drive-ai-innovation-scale.html">https://www.intel.com/content/www/us/en/newsroom/news/artificial-intelligence/intel-gaudi-3-expands-availability-drive-ai-innovation-scale.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E10] Loihi 2 Hala Point research system. <a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-builds-worlds-largest-neuromorphic-system.html">https://www.intel.com/content/www/us/en/newsroom/news/intel-builds-worlds-largest-neuromorphic-system.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] Altera majority investment closes. <a href="https://www.altera.com/newsroom/news/press-release/altera-silver-lake">https://www.altera.com/newsroom/news/press-release/altera-silver-lake</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Intel optical compute interconnect demonstration. <a href="https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html">https://www.intel.com/content/www/us/en/newsroom/news/intel-unveils-first-integrated-optical-io-chiplet.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E13] Hot Chips 2024: Xeon 6, Gaudi 3 and optical I/O. <a href="https://www.intel.com/content/www/us/en/newsroom/news/hot-chips-2024-ai-architectural-expertise.html">https://www.intel.com/content/www/us/en/newsroom/news/hot-chips-2024-ai-architectural-expertise.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E14] AWS DL1 general availability. <a href="https://aws.amazon.com/about-aws/whats-new/2021/10/amazon-ec2-dl1-instances-cost-efficient-training-deep-learning-models/">https://aws.amazon.com/about-aws/whats-new/2021/10/amazon-ec2-dl1-instances-cost-efficient-training-deep-learning-models/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E15] Google Next 2022 C3 and co-developed Intel IPU. <a href="https://cloud.google.com/blog/products/compute/introducing-c3-machines-with-googles-custom-intel-ipu">https://cloud.google.com/blog/products/compute/introducing-c3-machines-with-googles-custom-intel-ipu</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E16] Intel at MWC 2026. <a href="https://newsroom.intel.com/press-kit/press-kit-intel-at-mwc-barcelona-2026">https://newsroom.intel.com/press-kit/press-kit-intel-at-mwc-barcelona-2026</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E17] Intel 2024 annual report: Falcon Shores and Optane exits. <a href="https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-25-000009/intc-20241228.htm">https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-25-000009/intc-20241228.htm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E18] Intel support statement on Tofino discontinuation. <a href="https://community.intel.com/t5/Ethernet-Products/Setup-Tofino-Switch/m-p/1539149">https://community.intel.com/t5/Ethernet-Products/Setup-Tofino-Switch/m-p/1539149</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[E19] Intel Foundry Direct Connect 2025 technology disclosures. <a href="https://www.intel.com/content/www/us/en/newsroom/news/corporate/intel-foundry-gathers-customers-partners-outlines-priorities.html">https://www.intel.com/content/www/us/en/newsroom/news/corporate/intel-foundry-gathers-customers-partners-outlines-priorities.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E20] Intel Vision 2024 Gaudi 3 announcement. <a href="https://newsroom.intel.com/artificial-intelligence/vision-2024-gaudi-3-ai-accelerator">https://newsroom.intel.com/artificial-intelligence/vision-2024-gaudi-3-ai-accelerator</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E21] Intel Architecture Day 2021 official press release. <a href="https://download.intel.com/newsroom/archive/2025/en-us-2021-08-19-intel-architecture-day-2021.pdf">https://download.intel.com/newsroom/archive/2025/en-us-2021-08-19-intel-architecture-day-2021.pdf</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

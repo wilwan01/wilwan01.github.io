@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Microsoft · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="microsoft-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Microsoft_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Microsoft_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#microsoft-ai">Microsoft AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 范围与架构主线</a></li>
+<li><a href="#02-fpga-catapult-brainwave">02 FPGA 基础：Catapult 与 Brainwave</a></li>
+<li><a href="#03-cobalt">03 Cobalt：通用云计算</a><ul>
+<li><a href="#cpu">CPU 代际</a></li>
+</ul>
+</li>
+<li><a href="#04-maia-100">04 Maia 100：建立软件定义机器</a></li>
+<li><a href="#05-maia-200">05 Maia 200：数据流延伸至网络</a><ul>
+<li><a href="#_1">加速器代际</a></li>
+</ul>
+</li>
+<li><a href="#06-azure-boostai-nic">06 Azure Boost、AI NIC 与安全</a><ul>
+<li><a href="#nic">基础设施与集成 NIC</a></li>
+<li><a href="#_2">互联层次</a></li>
+</ul>
+</li>
+<li><a href="#07">07 系统与编程栈</a><ul>
+<li><a href="#2015-2018">2015-2018 系统角色</a></li>
+<li><a href="#2024-2026">2024-2026 系统角色</a></li>
+<li><a href="#_3">系统范围</a></li>
+<li><a href="#_4">软件契约</a></li>
+</ul>
+</li>
+<li><a href="#08">08 归一化平衡与趋势</a><ul>
+<li><a href="#_5">推导指标</a></li>
+</ul>
+</li>
+<li><a href="#09">09 会议与产品索引</a><ul>
+<li><a href="#_6">一手披露映射</a></li>
+<li><a href="#isscc">ISSCC 实现披露</a></li>
+</ul>
+</li>
+<li><a href="#10">10 命名对照</a><ul>
+<li><a href="#_7">产品与角色</a></li>
+</ul>
+</li>
+<li><a href="#_8">来源映射</a></li>
+<li><a href="#_9">参考资料</a><ul>
+<li><a href="#_10">产品与技术文档</a></li>
+<li><a href="#_11">会议记录与实现披露</a></li>
+<li><a href="#_12">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="microsoft-ai">Microsoft AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 范围与架构主线</h2>
+<p>本报告沿微软自研云端芯片，从 FPGA 时代追踪至 Cobalt CPU、Maia 加速器及 Azure Boost 基础设施卸载，覆盖 2015 年至 2026 年 9 月 28 日，并以 2014 年 Catapult 为基线。Azure 中的 AMD、Intel 和 NVIDIA 系统提供部署背景，不改称微软芯片。Xbox 与客户端设备不作深入覆盖。内部生产部署、客户预览与公共虚拟机正式商用分别记录。</p>
+<p>贯穿各代的是对数据搬移的显式控制。Catapult 把服务放入可重构网络路径；Maia 暴露分层暂存器、DMA 和同步机制；Boost 把基础设施工作从主机 CPU 卸载。Cobalt 提供通用执行平面。这些互补机器具有不同编程契约，整体价值取决于服务层面的资源隔离与利用率，而非最大的加速器 FLOPS 数字。</p>
+<h2 id="02-fpga-catapult-brainwave">02 FPGA 基础：Catapult 与 Brainwave</h2>
+<p>ISCA 2014 的 Catapult 论文是时期之前的基线，使用分布式 FPGA 加速 Bing 排序。MICRO 2016 的可配置云工作，把重点移向与网络集成的数据中心级可重构网络。ISCA 2018 披露的 Brainwave 把实时神经网络推理映射到 FPGA。该演进的重要之处是：加速器成为服务和网络资源，而不只是挂在一个应用进程旁的外设。</p>
+<p>可重构性允许运营方随协议和模型变化迁移功能，但相比专用逻辑会付出面积与能耗成本。后续 ASIC 可以固化稳定操作，同时保留可编程控制。这是架构思路的延续，不证明 Maia 复用某个 Catapult RTL 模块，也不意味着每一代 Boost 都是 FPGA。研究原型、生产基础设施与公共虚拟机产品在时间线上分别处理。</p>
+<h2 id="03-cobalt">03 Cobalt：通用云计算</h2>
+<p>Cobalt 100 以 128 个 Neoverse N2 核心建立微软自有 Arm 服务器 CPU 产品线，其虚拟机于 2024 年 10 月正式商用。有效比较应匹配虚拟机配置及服务负载，包括内存、存储和网络限制；处理器核心数本身不能描述客户可见的机器。</p>
+<p>Cobalt 200 转向 Neoverse CSS V3 和小芯片实现。微软披露 132 个启用核心、每核 3 MB L2 及 192 MB 共享系统缓存。2026 年 6 月的虚拟机里程碑为早期访问预览，虚拟机规格最高 128 vCPU。132 个物理启用核心与 128 个客户 vCPU 的区别应保留。更大缓存针对数据送至核心的成本，厂商公布的服务收益不代表通用 IPC 倍增。</p>
+<h3 id="cpu">CPU 代际</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cobalt 100</td>
+<td>n/d</td>
+<td>2024-10</td>
+<td>已商用／可获取</td>
+<td>Neoverse N2</td>
+<td>128 / 128</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5; 通道/速率 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Armv9</td>
+</tr>
+<tr>
+<td>Cobalt 200</td>
+<td>n/d</td>
+<td>2026-06 预览</td>
+<td>早期访问预览</td>
+<td>Neoverse CSS V3</td>
+<td>132 / 132</td>
+<td>3 nm</td>
+<td>小芯片；数量 n/d</td>
+<td>3 MB</td>
+<td>192 MB / SoC</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Armv9</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-maia-100">04 Maia 100：建立软件定义机器</h2>
+<p>Hot Chips 2024 补上最初发布所缺的实现细节：约 820 mm² 的 N5 裸片、CoWoS-S 封装、64 GB HBM2e、1.8 TB/s 带宽，以及约 500 MB 本地 SRAM。十六个集群各含四个计算块，分别提供张量、向量、数据搬移与控制功能。幻灯片规格区分 700 W 设计目标与 500 W 配置功耗，两者不能作为可互换工作点。</p>
+<p>编译器使用信号量协调异步引擎。Triton 提供较高层路径，Maia API 则显式暴露放置与调度。这以自动缓存管理换取对复用和重叠执行的控制。良好调度可以融合逐元素运算、矩阵计算和通信；不良调度则可能让大规模张量引擎在峰值算力充裕时仍然停顿。幻灯片中的六位、九位张量格式不能改称 FP4 和 FP8。</p>
+<h2 id="05-maia-200">05 Maia 200：数据流延伸至网络</h2>
+<p>2026 年技术论文将 Maia 200 描述为软件定义数据流系统，而不是外接网卡的矩阵引擎。单片 3 nm 计算裸片配六堆栈 HBM3e，容量 216 GB、带宽 7 TB/s。四个集群各含九或十个计算块。分离的数据与控制网络、专用 SRAM、DMA 和同步引擎，让软件描述数据何时就绪及其目标位置。公布峰值为 FP4 10,145 TFLOP/s、FP8 5,072 TFLOP/s，TDP 为 750 W。</p>
+<p>二十八个集成 400 Gb/s 控制器提供每方向 1.4 TB/s。二十个端口连接固定链路，八个端口接入四个交换平面。论文描述的部署设计点为 6,144 芯片，外部网络存在超额订阅，并非 6,144 芯片全互联内存域。ATLv2 提供传输、加密、选择性重传与拥塞控制。远端 SRAM 访问使用显式发送／接收及同步，不是 CPU 式透明缓存一致性。</p>
+<p>架构解读：把通信纳入数据流契约，可以降低启动与主机接口开销，但也把调度责任交给编译器及运行时。实际检验是计算、存储流量与集合通信能否在真实模型形状下重叠。更多低精度算术提高了保持计算受限所需的复用程度，并未消除 HBM 或网络上限。</p>
+<h3 id="_1">加速器代际</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maia 100</td>
+<td>软件定义数据流</td>
+<td>2023 发布; HC2024</td>
+<td>历史已商用</td>
+<td>TSMC N5</td>
+<td>1 逻辑裸片; CoWoS-S</td>
+<td>64 计算块 / 16 集群</td>
+<td>800 TFLOP/s</td>
+<td>n/a; 9-bit: 1.5 POPS</td>
+<td>6-bit: 3 POPS; FP4 n/d</td>
+<td>n/d</td>
+<td>HBM2e; 堆栈 n/d; 64 GB; 1.8 TB/s</td>
+<td>~500 MB</td>
+<td>12×400G; 600 GB/s 单向; 域 n/d</td>
+<td>PCIe5 ×8 (规格表)</td>
+<td>700 W 设计／ 500 W 配置</td>
+<td>Azure 模块</td>
+</tr>
+<tr>
+<td>Maia 200</td>
+<td>SDLA</td>
+<td>2026 部署</td>
+<td>已商用／可获取</td>
+<td>3 nm</td>
+<td>1 逻辑裸片; 75×75 mm package</td>
+<td>4 集群; 9-10 计算块/集群</td>
+<td>n/d</td>
+<td>5072 TFLOP/s</td>
+<td>FP4: 10145 TFLOP/s</td>
+<td>n/d</td>
+<td>HBM3e; 6; 216 GB; 7 TB/s</td>
+<td>272 MB</td>
+<td>28×400G; 1400 GB/s 单向; topology-specific</td>
+<td>PCIe6 ×8</td>
+<td>750 W; 液冷</td>
+<td>Azure 模块</td>
+</tr>
+</tbody>
+</table></div>
+<p>Maia 100 幻灯片框图包含较旧 PCIe 标注，而规格表写 PCIe5 ×8；本报告采用规格表，并保留该差异。Maia 200 论文对内存带宽同时出现 TB/s 与 TiB/s 表述；主要规格及厂商架构披露采用 7 TB/s，本报告据此计算。不根据 TDP 与峰值 FLOPS 推定实测应用效率。</p>
+<h2 id="06-azure-boostai-nic">06 Azure Boost、AI NIC 与安全</h2>
+<p>Azure Boost 是基础设施系统，Azure Boost DPU 是其演进中的芯片组件。2024 年 DPU 发布及 2026 年新一代 Boost 正式商用，描述将更多存储与网络功能固化到专用硬件。MANA 提供客户机可见网络接口。最高 400 Gb/s 是支持的平台／虚拟机上限，不证明每个虚拟机都获得该速率。Cerberus 提供硬件信任边界。</p>
+<h3 id="nic">基础设施与集成 NIC</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Boost / DPU</td>
+<td>2024 发布; 2026 系统正式商用</td>
+<td>已商用／可获取</td>
+<td>基础设施卸载</td>
+<td>最高 400 Gb/s platform</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>专用卸载逻辑</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>MANA / RDMA</td>
+<td>n/d</td>
+<td>网络；存储；虚拟化；信任</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Maia 200 ANC</td>
+<td>2026</td>
+<td>已商用／可获取</td>
+<td>集成 AI NIC</td>
+<td>28×400 Gb/s</td>
+<td>n/d</td>
+<td>片上 NoC</td>
+<td>DMA / ATLv2</td>
+<td>n/a</td>
+<td>共享芯片存储</td>
+<td>ATLv2 / Ethernet</td>
+<td>Window-based; ECMP / entropy</td>
+<td>远端存储；加密；重传</td>
+<td>包含在 SoC TDP 内</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_2">互联层次</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maia100 Ethernet</td>
+<td>2024</td>
+<td>400 Gb/s 端口</td>
+<td>n/d</td>
+<td>50</td>
+<td>12</td>
+<td>直连＋交换</td>
+<td>n/d</td>
+<td>显式传输</td>
+</tr>
+<tr>
+<td>Maia200 固定 链路</td>
+<td>2026</td>
+<td>400 Gb/s 端口</td>
+<td>n/d</td>
+<td>50</td>
+<td>20</td>
+<td>托盘固定链路</td>
+<td>4 芯片/tray</td>
+<td>显式 SDLA 传输</td>
+</tr>
+<tr>
+<td>Maia200 交换式 链路</td>
+<td>2026</td>
+<td>400 Gb/s 端口</td>
+<td>n/d</td>
+<td>50</td>
+<td>8</td>
+<td>4 planes; 2 tiers</td>
+<td>6144 设计点</td>
+<td>显式传输；非一致性</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="07">07 系统与编程栈</h2>
+<h3 id="2015-2018">2015-2018 系统角色</h3>
+<pre class="mermaid">flowchart TD
+  cpu["External host CPU"]
+  gpu["Catapult / Brainwave FPGA"]
+  mem["本地／附加内存"]
+  sw["编译器／运行时"]
+  net["Datacenter 网络"]
+  off["基础设施卸载"]
+  cpu ---|"主机控制"| gpu
+  gpu ---|"数据"| mem
+  gpu ---|"通信"| net
+  sw ---|"调度"| net
+</pre>
+<p>功能关系图；不意味着每台 Maia 主机均采用 Cobalt。</p>
+<h3 id="2024-2026">2024-2026 系统角色</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Cobalt / external host"]
+  gpu["Maia100 / Maia200"]
+  mem["本地／附加内存"]
+  sw["编译器／运行时"]
+  net["ANC / Ethernet 网络"]
+  off["基础设施卸载"]
+  cpu ---|"主机控制"| gpu
+  gpu ---|"数据"| mem
+  gpu ---|"通信"| net
+  sw ---|"调度"| net
+</pre>
+<p>功能关系图；不意味着每台 Maia 主机均采用 Cobalt。</p>
+<h3 id="_3">系统范围</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maia100 Azure</td>
+<td>2023-2024</td>
+<td>n/d</td>
+<td>依拓扑</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>Maia200 部署 design</td>
+<td>2026</td>
+<td>4 芯片/tray; 最高 6144</td>
+<td>固定链路＋交换平面</td>
+<td>8×400G = 400 GB/s 标称</td>
+<td>n/d</td>
+<td>液冷</td>
+</tr>
+<tr>
+<td>Cobalt200 VMs</td>
+<td>2026 预览</td>
+<td>最高 128 vCPUs</td>
+<td>n/a</td>
+<td>VM-specific</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_4">软件契约</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>组件</th>
+<th>功能</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主机</td>
+<td>Arm Linux / Azure VMs</td>
+<td>通用服务</td>
+<td>VM 限额不同于 SoC</td>
+</tr>
+<tr>
+<td>加速器</td>
+<td>PyTorch / Triton / Maia API</td>
+<td>图、算子、放置</td>
+<td>编译器管理暂存器</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>Maia collectives / ATLv2</td>
+<td>集合通信与传输</td>
+<td>显式远端数据搬移</td>
+</tr>
+<tr>
+<td>基础设施</td>
+<td>MANA / Boost / Cerberus</td>
+<td>网络、存储、信任</td>
+<td>平台与客户机驱动</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08">08 归一化平衡与趋势</h2>
+<h3 id="_5">推导指标</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cobalt200 L3/核心</td>
+<td>192/132 = 1.455 MB</td>
+<td>共享容量／启用核心</td>
+</tr>
+<tr>
+<td>Maia100 HBM/BF16</td>
+<td>1.8e12/800e12 = 0.00225 B/FLOP</td>
+<td>稠密峰值平衡</td>
+</tr>
+<tr>
+<td>Maia100 容量/BF16</td>
+<td>64e9/800e12 = 8.0e-5 B·s/FLOP</td>
+<td>容量除以峰值</td>
+</tr>
+<tr>
+<td>Maia200 HBM/FP8</td>
+<td>7e12/5072e12 = 0.00138 B/FLOP</td>
+<td>与上行格式不同</td>
+</tr>
+<tr>
+<td>Maia200 容量/FP8</td>
+<td>216e9/5072e12 = 4.26e-5 B·s/FLOP</td>
+<td>每芯片；十进制字节</td>
+</tr>
+<tr>
+<td>Maia200 网络/HBM</td>
+<td>1.4/7 = 0.20</td>
+<td>全部端口单向；并非全为外部链路</td>
+</tr>
+<tr>
+<td>Maia200 FP8/TDP</td>
+<td>5072/750 = 6.763 TFLOP/s/W</td>
+<td>峰值／TDP 代理量；非实测效率</td>
+</tr>
+<tr>
+<td>Cobalt DDR 带宽/核心</td>
+<td>n/d</td>
+<td>缺匹配内存控制器数据</td>
+</tr>
+</tbody>
+</table></div>
+<p>Maia 换代使 HBM 容量增加至 3.375 倍、带宽增至 3.89 倍，集成网络总带宽增至 2.33 倍。同时数值格式与片上存储组织也改变，因此单一算力增长比会掩盖重要差异。部署决策应测量真实批处理下的延迟、暂存器占用、通信重叠及故障恢复，以判断定制架构提升的是完整服务还是仅某个算子。</p>
+<h2 id="09">09 会议与产品索引</h2>
+<h3 id="_6">一手披露映射</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISCA</td>
+<td>2014</td>
+<td>Catapult</td>
+<td>Putnam et al.</td>
+<td>FPGA infrastructure</td>
+<td>时期前研究基线</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2016</td>
+<td>A 可配置 Cloud</td>
+<td>Microsoft 研究</td>
+<td>Catapult</td>
+<td>架构／部署</td>
+<td>P03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2018</td>
+<td>Brainwave</td>
+<td>Microsoft 研究</td>
+<td>FPGA inference</td>
+<td>架构论文</td>
+<td>C05</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2024</td>
+<td>Inside Maia100</td>
+<td>Sherry Xu; Chandru Ramakrishnan</td>
+<td>Maia100</td>
+<td>完整技术幻灯片</td>
+<td>C06</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Maia200</td>
+<td>Microsoft</td>
+<td>Maia200</td>
+<td>议程与配套技术论文</td>
+<td>C03 C01</td>
+</tr>
+<tr>
+<td>Ignite / Build</td>
+<td>2023-2026</td>
+<td>Cobalt / Maia / Boost</td>
+<td>Microsoft</td>
+<td>云端产品组合</td>
+<td>发布与可用性</td>
+<td>E03 E02 E05 E06</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISCA 与 MICRO 建立 FPGA 谱系，Hot Chips 提供 Maia 的模块及实现视图。ISSCC2026 论文 17.4 增加了 Maia 实现披露；官方议程未注明代际后缀。本版未建立 Cobalt／Maia 对应的产品级 HPCA 或 ASPLOS 论文。会议议程证明演讲存在；本文详细规格来自幻灯片、技术论文及产品文档。主要缺口是完整 Cobalt 内存／PCIe 规格、匹配的 Maia 工作点及 SKU 级 Boost 实现细节。</p>
+<h3 id="isscc">ISSCC 实现披露</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISSCC</td>
+<td>2026</td>
+<td>17.4 MAIA: A Reticle-Scale AI Accelerator</td>
+<td>S. Xu et al.</td>
+<td>Maia; generation suffix not in program</td>
+<td>官方议程／已发表论文记录；未获取完整文集</td>
+<td>C07</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISSCC 记录在 Hot Chips 架构链之外，建立电路／实现披露入口。由于本次未获取完整文集，不能仅根据题目把未披露时钟、电压调节器或 SRAM 电路细节分配给 Maia100 或 Maia200。完整 Hot Chips 幻灯片与 Maia200 技术论文仍是定量实现依据。</p>
+<h2 id="10">10 命名对照</h2>
+<h3 id="_7">产品与角色</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>角色</th>
+<th>需区分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cobalt</td>
+<td>通用主机 CPU</td>
+<td>Maia</td>
+</tr>
+<tr>
+<td>Maia / ANC</td>
+<td>AI 加速器／集成网络控制器</td>
+<td>Boost DPU</td>
+</tr>
+<tr>
+<td>Azure Boost</td>
+<td>含专用硬件的基础设施系统</td>
+<td>单一固定芯片代际</td>
+</tr>
+<tr>
+<td>MANA</td>
+<td>微软 Azure 网络适配器</td>
+<td>Maia 后端网络</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="_8">来源映射</h2>
+<p>01 范围与架构主线 — C01, C04, C06, E02, E03, P03, P04</p>
+<p>02 FPGA 基础：Catapult 与 Brainwave — C04, C05, E06, P03</p>
+<p>03 Cobalt：通用云计算 — E02, E07, E08, P01</p>
+<p>04 Maia 100：建立软件定义机器 — C06</p>
+<p>05 Maia 200：数据流延伸至网络 — C01, C06, P02</p>
+<p>06 Azure Boost、AI NIC 与安全 — C01, C06, E05, E06, P04</p>
+<p>07 系统与编程栈 — C01, C06, E02, E06, E07, P04</p>
+<p>08 归一化平衡与趋势 — C01, C06, P01</p>
+<p>09 会议与产品索引 — C01, C03, C04, C05, C06, C07, E02, E03, E05, E06, P01, P03, P04</p>
+<p>10 命名对照 — C01, E02, E06, P04</p>
+<h2 id="_9">参考资料</h2>
+<h3 id="_10">产品与技术文档</h3>
+<p>[P01] Cobalt200 architecture announcement. <a href="https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807">https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P02] Maia200 architecture deep dive. <a href="https://techcommunity.microsoft.com/blog/azureinfrastructureblog/deep-dive-into-the-maia-200-architecture/4489312/">https://techcommunity.microsoft.com/blog/azureinfrastructureblog/deep-dive-into-the-maia-200-architecture/4489312/</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[P03] Catapult publications and MICRO2016. <a href="https://www.microsoft.com/en-us/research/project/project-catapult/publications/">https://www.microsoft.com/en-us/research/project/project-catapult/publications/</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[P04] Azure Boost overview. <a href="https://learn.microsoft.com/en-us/azure/azure-boost/overview">https://learn.microsoft.com/en-us/azure/azure-boost/overview</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_11">会议记录与实现披露</h3>
+<p>[C01] Maia200: A Software Defined Dataflow System, 2026. <a href="https://arxiv.org/pdf/2608.24664">https://arxiv.org/pdf/2608.24664</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C03] Hot Chips2026 program, Maia200. <a href="https://hc2026.hotchips.org/program/conference/">https://hc2026.hotchips.org/program/conference/</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C04] Catapult ISCA2014. <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C05] Brainwave ISCA2018. <a href="https://www.microsoft.com/en-us/research/uploads/prod/2018/06/ISCA18-Brainwave-CameraReady.pdf">https://www.microsoft.com/en-us/research/uploads/prod/2018/06/ISCA18-Brainwave-CameraReady.pdf</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[C06] Inside Maia100, Hot Chips2024 slides. <a href="https://hc2024.hotchips.org/assets/program/conference/day2/81_HC2024.Microsoft.Xu.Ramakrishnan.final.v2.pdf">https://hc2024.hotchips.org/assets/program/conference/day2/81_HC2024.Microsoft.Xu.Ramakrishnan.final.v2.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C07] ISSCC2026 advance program; 17.4 MAIA: A Reticle-Scale AI Accelerator. <a href="https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf">https://submissions.mirasmart.com/ISSCC2026/PDF/ISSCC2026AdvanceProgram.pdf</a>. 官方会议议程或新闻资料；不是论文全文。</p>
+<h3 id="_12">发布、生态与部署</h3>
+<p>[E02] Cobalt200 early access preview, June2026. <a href="https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/">https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E03] Ignite2023 Cobalt Maia Boost. <a href="https://news.microsoft.com/source/features/ai/in-house-chips-silicon-to-service-to-meet-ai-demand/">https://news.microsoft.com/source/features/ai/in-house-chips-silicon-to-service-to-meet-ai-demand/</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[E05] Azure Boost DPU, Ignite2024. <a href="https://techcommunity.microsoft.com/blog/azureinfrastructureblog/enhancing-infrastructure-efficiency-with-azure-boost-dpu/4298901">https://techcommunity.microsoft.com/blog/azureinfrastructureblog/enhancing-infrastructure-efficiency-with-azure-boost-dpu/4298901</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E06] Next generation Azure Boost GA, 2026. <a href="https://techcommunity.microsoft.com/blog/azurecompute/announcing-the-general-availability-of-the-next-generation-of-azure-boost/4519136">https://techcommunity.microsoft.com/blog/azurecompute/announcing-the-general-availability-of-the-next-generation-of-azure-boost/4519136</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E07] Cobalt100 VM general availability, October2024. <a href="https://azure.microsoft.com/en-us/blog/azure-cobalt-100-based-virtual-machines-are-now-generally-available/">https://azure.microsoft.com/en-us/blog/azure-cobalt-100-based-virtual-machines-are-now-generally-available/</a>. 索引或可检索官方页面；产品细节同时参照对应技术文档。</p>
+<p>[E08] Arm earnings disclosure: Cobalt N2 and V3. <a href="https://investors.arm.com/static-files/941fd4cb-0027-4e81-9541-66dcd954a14a">https://investors.arm.com/static-files/941fd4cb-0027-4e81-9541-66dcd954a14a</a>. 一手资料；访问截止 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

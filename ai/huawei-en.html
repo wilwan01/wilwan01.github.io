@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Huawei · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="huawei-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Huawei_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Huawei_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#huawei-ai-infrastructure-architecture-evolution">Huawei AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a><ul>
+<li><a href="#flagship-milestones-and-comparable-quantities">Flagship milestones and comparable quantities</a></li>
+</ul>
+</li>
+<li><a href="#02-reading-the-numbers-and-product-names">02 Reading the numbers and product names</a></li>
+<li><a href="#03-host-cpu-generations">03 Host CPU generations</a><ul>
+<li><a href="#kunpeng-reference-configurations-and-disclosure-boundaries">Kunpeng: reference configurations and disclosure boundaries</a></li>
+</ul>
+</li>
+<li><a href="#04-2015-2019-from-server-arm-to-kunpeng-920">04 2015-2019: from server Arm to Kunpeng 920</a></li>
+<li><a href="#05-updated-920-and-kunpeng-950-platform-evolution">05 Updated 920 and Kunpeng 950: platform evolution</a></li>
+<li><a href="#06-ascend-generation-comparison">06 Ascend generation comparison</a><ul>
+<li><a href="#ascend-npus-chip-and-card-scopes-are-explicit">Ascend NPUs: chip and card scopes are explicit</a></li>
+</ul>
+</li>
+<li><a href="#07-2018-2021-davinci-and-the-first-ascend-systems">07 2018-2021: DaVinci and the first Ascend systems</a></li>
+<li><a href="#08-a2-to-a3-accelerator-nodes-become-a-compute-pool">08 A2 to A3: accelerator nodes become a compute pool</a></li>
+<li><a href="#09-ascend-950-computation-memory-and-communication-co-design">09 Ascend 950: computation, memory and communication co-design</a></li>
+<li><a href="#10-960-and-later-roadmap-revisions-and-optical-systems">10 960 and later: roadmap revisions and optical systems</a></li>
+<li><a href="#11-scale-up-links-and-memory-semantics">11 Scale-up links and memory semantics</a><ul>
+<li><a href="#interconnect-lineage-and-normalized-directions">Interconnect lineage and normalized directions</a></li>
+</ul>
+</li>
+<li><a href="#12-dpus-nics-and-the-ai-communication-path">12 DPUs, NICs and the AI communication path</a><ul>
+<li><a href="#network-products-and-infrastructure-offload">Network products and infrastructure offload</a></li>
+</ul>
+</li>
+<li><a href="#13-ethernet-switching-optics-and-kv-storage">13 Ethernet switching, optics and KV storage</a></li>
+<li><a href="#14-system-generations-and-deployment-boundaries">14 System generations and deployment boundaries</a><ul>
+<li><a href="#from-server-nodes-to-superpod-and-supercluster">From server nodes to SuperPoD and SuperCluster</a></li>
+</ul>
+</li>
+<li><a href="#15-software-evolution-and-research-feedback">15 Software evolution and research feedback</a><ul>
+<li><a href="#software-capabilities-aligned-with-hardware">Software capabilities aligned with hardware</a></li>
+</ul>
+</li>
+<li><a href="#16-bandwidth-hierarchy-and-derived-ratios">16 Bandwidth hierarchy and derived ratios</a><ul>
+<li><a href="#bandwidth-by-era-scopes-are-intentionally-separate">Bandwidth by era: scopes are intentionally separate</a></li>
+<li><a href="#derived-balance-metrics-not-measured-application-performance">Derived balance metrics, not measured application performance</a></li>
+</ul>
+</li>
+<li><a href="#17-integrated-stack-across-four-eras">17 Integrated stack across four eras</a><ul>
+<li><a href="#2015-2018-host-led-inference">2015-2018: host-led inference</a></li>
+<li><a href="#2019-2022-chiplets-and-accelerator-nodes">2019-2022: chiplets and accelerator nodes</a></li>
+<li><a href="#2023-2025-cloudmatrix384-resource-pooling">2023-2025: CloudMatrix384 resource pooling</a></li>
+<li><a href="#2026-disclosures-differentiated-npus-and-optical-scale">2026 disclosures: differentiated NPUs and optical scale</a></li>
+</ul>
+</li>
+<li><a href="#18-engineering-trends-and-disclosure-gaps">18 Engineering trends and disclosure gaps</a></li>
+<li><a href="#19-conference-to-product-index">19 Conference-to-product index</a><ul>
+<li><a href="#verified-disclosures-and-related-research">Verified disclosures and related research</a></li>
+</ul>
+</li>
+<li><a href="#20-names-reuse-and-items-that-must-not-be-merged">20 Names, reuse and items that must not be merged</a><ul>
+<li><a href="#product-and-architecture-crosswalk">Product and architecture crosswalk</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#research-papers-and-publication-registries">Research papers and publication registries</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="huawei-ai-infrastructure-architecture-evolution">Huawei AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Coverage: Kunpeng host CPUs and Ascend NPUs receive deep coverage; UnifiedBus, DPUs, AI NICs, systems and software receive full generation-level coverage.
+Period: 2015-28 September 2026; latest verified event: HUAWEI CONNECT 2026.
+Focus: architecture, implementation and the balance between compute, memory and communication.
+Related lines: Atlas edge inference, HiSilicon networking, optical engines and KV-cache storage where they explain the server stack.
+Exclusions: an exhaustive Kirin smartphone, consumer GPU, telecom baseband or storage-drive catalogue; unverified manufacturing and capacity estimates.</p>
+<p>Huawei’s infrastructure evolved through three architectural commitments. First, it built custom Arm server cores and reusable compute/I/O dies, culminating in the 2019 Kunpeng 920. Second, Ascend separated matrix, vector and scalar work and made explicit data movement central to performance. Third, the system boundary expanded from a server to a switched pool of CPUs, NPUs and memory. CloudMatrix384 made that third commitment concrete; Ascend 950 and UnifiedBus 2.0 extend it with dedicated communication engines and more flexible memory semantics.</p>
+<p>The strongest current technical disclosure is the Ascend 950 architecture white paper. It describes two compute dies, two I/O dies, up to 36 matrix cores and 72 vector cores, a coherent on-package memory organization and up to 128 MB of accelerator L2. The PR and DT branches explicitly trade memory cost and bandwidth against workload needs. PR targets prefill and recommendation; DT targets training and complex inference. Atlas 350 is a concrete 950PR card configuration, not the maximum specification of the entire chip family.</p>
+<p>The September 2026 roadmap brings Ascend 960DT readiness forward to Q1 2027 and 960PR to Q3 2027. Atlas 960E is an announced 4,096-NPU, liquid-cooled NPO system; its launch is not evidence that 960 silicon is already generally available. The engineering direction is clear: optical reach, collective offload and a hierarchy of HBM, CPU memory and KV storage increasingly determine usable model throughput. At the same time, the public record remains thinner on recent Kunpeng core internals, foundry processes and measured system power than on Ascend programming and system topology.</p>
+<h3 id="flagship-milestones-and-comparable-quantities">Flagship milestones and comparable quantities</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>CPU / memory</th>
+<th>Accelerator matrix BF16 / FP8</th>
+<th>Accelerator memory</th>
+<th>Scale-up scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>Kunpeng 920: 64 cores; 187.7 GB/s DDR4</td>
+<td>Ascend 910: BF16 n/d; FP16 256 TFLOPS</td>
+<td>4 HBM2 stacks; ~1.2 TB/s</td>
+<td>HCCS-connected accelerator nodes</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>CloudMatrix384: 192 Kunpeng CPUs</td>
+<td>910C reference: BF16 supported; peak n/d in reviewed system paper</td>
+<td>2 compute dies, 8 memory stacks per NPU</td>
+<td>384 NPUs</td>
+</tr>
+<tr>
+<td>950PR</td>
+<td>8C/16T Linx816 on maximum NPU configuration</td>
+<td>432 / 865 TFLOPS</td>
+<td>128 GB; 1.6 TB/s maximum</td>
+<td>8,192 architectural domain; products vary</td>
+</tr>
+<tr>
+<td>950DT</td>
+<td>Host Kunpeng 950: 64/96-core server configurations</td>
+<td>486 / 973 TFLOPS</td>
+<td>144 GB; 4 TB/s</td>
+<td>8,192 architectural domain; products vary</td>
+</tr>
+<tr>
+<td>960 / 960E</td>
+<td>Kunpeng memory pools accompany NPU domains</td>
+<td>8 EFLOPS FP8 per announced 960E system</td>
+<td>Up to 1 PB per system</td>
+<td>4,096 NPUs</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="02-reading-the-numbers-and-product-names">02 Reading the numbers and product names</h2>
+<p>Bandwidth uses decimal GB/s and TB/s. Ethernet Gb/s is divided by eight for a raw one-direction byte rate; packet, encoding and protocol overheads remain. A full-duplex total is halved only when the source explicitly identifies it as bidirectional. Peak compute counts a multiply-add as two operations. Matrix-only throughput is kept separate from the sum of Cube and Vector throughput. No sparse multiplier is applied. Precision labels remain exact: FP16 is not BF16, INT8 is not FP8, and MXFP4 is not a generic interchangeable four-bit format.</p>
+<p>Ascend names a processor family, DaVinci an architecture, Atlas hardware products, and CloudMatrix a system/cloud architecture. Kunpeng is the CPU family; TaiShan is also used for server products, while TaiShan V110 denotes the 920 core. Unified Buffer and UnifiedBus both abbreviate to UB: the former is local AI-core storage and the latter is the system interconnect. A product marked n/d has a material specification absent from the reviewed evidence; this is not a zero or proof that the feature does not exist.</p>
+<p>The bibliography is connected to chapters through a compact source map. Hot Chips 2019 supplies the original DaVinci organization; the HPCA 2021 industry paper and Huawei’s published technical collection add programming and implementation context. IEEE Micro’s Kunpeng paper supplies CPU internals. IEEE Micro is a journal, not the MICRO conference. Related ASPLOS, MICRO and ISCA research is included without treating experimental proposals as shipping circuitry. Announced capabilities, architectural maxima and measured deployments retain their separate scopes.</p>
+<h2 id="03-host-cpu-generations">03 Host CPU generations</h2>
+<h3 id="kunpeng-reference-configurations-and-disclosure-boundaries">Kunpeng: reference configurations and disclosure boundaries</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hi1610 / Hi1612 baseline</td>
+<td>Hi1610 / Hi1612</td>
+<td>2015 driver record; GA n/d</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Kunpeng 916</td>
+<td>Hi1616</td>
+<td>Pre-2019 generation</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>32 / 32</td>
+<td>16 nm</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR4; 4 channels; 2400 MT/s; 76.8 GB/s</td>
+<td>2P boards</td>
+<td>PCIe 3.0; CXL n/a</td>
+<td>n/d</td>
+<td>Arm NEON</td>
+</tr>
+<tr>
+<td>Kunpeng 920</td>
+<td>Hi1620</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>TaiShan V110</td>
+<td>64 / 64</td>
+<td>Compute 7 nm; I/O 16 nm</td>
+<td>2 compute + 1 I/O; CoWoS reference</td>
+<td>512 KiB</td>
+<td>64 MB; sliced, ~1 MB/core</td>
+<td>DDR4; 8 channels; 2933 MT/s; 187.7 GB/s</td>
+<td>2P / 4P; HCCS</td>
+<td>PCIe 4.0 ×40; CXL n/a</td>
+<td>200 W paper reference</td>
+<td>128-bit NEON</td>
+</tr>
+<tr>
+<td>Kunpeng 920 new models</td>
+<td>n/d</td>
+<td>Current motherboard portfolio; GA n/d</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>SMT2; SKU core count n/d here</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5; channels / bandwidth n/d</td>
+<td>2P / 4P boards</td>
+<td>PCIe 5.0; CXL n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Kunpeng 950</td>
+<td>n/d</td>
+<td>2026 H1 server brief</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>64 / 96 cores per socket; SMT2</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>DDR5 RDIMM 7200 / MRDIMM 8800; channels n/d</td>
+<td>2P reference board</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>Kunpeng 950 larger configuration</td>
+<td>n/d</td>
+<td>2025 roadmap; GA n/d</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>192 / 384</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-2015-2019-from-server-arm-to-kunpeng-920">04 2015-2019: from server Arm to Kunpeng 920</h2>
+<p>The 2015 Linux HNS driver submission establishes Hi1610 and Hi1612 as an early server-platform baseline. Kunpeng 916 then used 32 Arm cores and a DDR4 platform. That generation’s significance was platform integration: boot firmware, network drivers, memory validation and operating-system enablement made the later custom-core server product practical. It is useful context, but the reviewed platform documents do not establish the same core implementation as the custom V110 introduced with Kunpeng 920.</p>
+<p>Kunpeng 920’s TaiShan V110 is an out-of-order Arm core with a four-instruction front end/dispatch organization and a multilevel branch-prediction structure. The published design provides separate 64 KiB instruction and data L1 caches and 512 KiB of private L2. Its floating-point/vector units implement 128-bit NEON operations; it should not be assigned Neoverse or SVE characteristics merely because it executes the Arm ISA. Public detail does not establish a complete reorder-buffer, scheduler, load/store queue or branch-predictor capacity inventory.</p>
+<p>The LLC averages about 1 MB per core in the 64-core configuration. Tags and distributed data slices connect through the on-die fabric; the paper organizes coherence around home agents rather than a single large centralized cache. The dual-ring fabric emphasizes predictable service and throughput. These details matter because a server’s sustainable performance depends on where a cache miss is resolved and how memory traffic crosses compute-die boundaries, not simply on the sum of cache capacity.</p>
+<p>The high-end reference combines two 32-core 7 nm compute dies with a 16 nm compute-I/O die. The paper describes CoWoS assembly and a roughly 400 GB/s coherent die-to-die connection; its bandwidth direction is not specified and is therefore not halved in this report. A single-compute-die Lite configuration demonstrates the reuse strategy. Compute and I/O technology can be selected separately, and the same I/O building blocks feed other HiSilicon products. The cost is that package links, memory placement and NUMA policy become first-class design choices.</p>
+<p>Eight 64-bit DDR4-2933 channels yield a theoretical 187.7 GB/s, or 2.93 GB/s per core at 64 cores. The CPU also offers PCIe 4.0 and integrated high-speed Ethernet options. UMA and NUMA presentation modes are both discussed in the technical record; one address space should not be read as identical physical latency to every memory location. The practical AI-host role is data preparation, orchestration, networking and memory staging, while dense matrix work belongs on Ascend.</p>
+<h2 id="05-updated-920-and-kunpeng-950-platform-evolution">05 Updated 920 and Kunpeng 950: platform evolution</h2>
+<p>The current motherboard portfolio explicitly distinguishes “new-model Kunpeng 920” from the original DDR4 product. New-model boards support simultaneous multithreading, DDR5 and PCIe 5.0, including two- and four-socket configurations. The 920 brand therefore spans materially different platforms. It would be incorrect to combine the original V110 core/cache disclosure with the newer board’s memory and I/O and call that a fully documented single SKU.</p>
+<p>The 2026 H1 Kunpeng 950 board brief is more concrete than the earlier roadmap: it specifies two processors with 64- or 96-core options, a 2.3 GHz base clock with Turbo, up to 24 DIMMs, DDR5 RDIMM operation up to 7200 MT/s and MRDIMM operation up to 8800 MT/s. Its 3 TB capacity is a two-socket system configuration. Twenty-four DIMM sockets do not establish twelve memory channels per processor; the document does not disclose the necessary channel-to-slot mapping.</p>
+<p>The platform emphasizes Arm CCA, secure device access, trusted measurement and RAS, including online handling of faulty cores. These are important when a CPU hosts multi-tenant AI services or provides memory to other processors. They do not establish a confidential-computing guarantee for every external NPU, NIC and software path. The earlier 192-core/384-thread 950 configuration remains separately identified as a roadmap item unless a matching shipping SKU and system are documented.</p>
+<p>Kunpeng’s emerging role extends beyond feeding an accelerator over PCIe. CloudMatrix and the later Peerium architecture expose CPU-attached memory as a resource for the wider compute domain. This can improve capacity efficiency for embedding tables, KV state and agent sandboxes, but locality still matters: remote bandwidth, synchronization, ownership and failure recovery have to be handled by the runtime. A large pool is a capacity resource before it is a substitute for local HBM bandwidth.</p>
+<h2 id="06-ascend-generation-comparison">06 Ascend generation comparison</h2>
+<h3 id="ascend-npus-chip-and-card-scopes-are-explicit">Ascend NPUs: chip and card scopes are explicit</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ascend 310</td>
+<td>DaVinci</td>
+<td>2018</td>
+<td>Historical shipping</td>
+<td>12 nm</td>
+<td>n/d</td>
+<td>2 AI cores</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>External LPDDR; board-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe</td>
+<td>8 W chip</td>
+<td>Chip / Atlas modules</td>
+</tr>
+<tr>
+<td>Ascend 910</td>
+<td>DaVinci</td>
+<td>2019</td>
+<td>Historical shipping</td>
+<td>Compute N7+; other die nodes n/d</td>
+<td>Compute + Nimbus I/O + 4 HBM2 + dummy dies</td>
+<td>32 AI cores</td>
+<td>n/d; FP16 256 TFLOPS</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM2; 4 stacks; capacity SKU-dependent; ~1.2 TB/s</td>
+<td>L2 fabric 4 TB/s in HC talk</td>
+<td>3 × 240 Gb/s HCCS; direction n/d</td>
+<td>PCIe 4.0</td>
+<td>350 W HC target; launch 310 W</td>
+<td>Atlas accelerator / server</td>
+</tr>
+<tr>
+<td>Ascend 310P</td>
+<td>Inference branch</td>
+<td>Atlas 300I Pro / Duo generation</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR; configuration-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe</td>
+<td>n/d</td>
+<td>Inference cards / edge systems</td>
+</tr>
+<tr>
+<td>Ascend 910B2 / A2</td>
+<td>DaVinci</td>
+<td>2023-era A2 systems</td>
+<td>Historical shipping</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>24 AIC + 48 AIV</td>
+<td>Supported; SKU peak n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>64 GB HBM in ENEC 910B2 test system; rate n/d</td>
+<td>n/d</td>
+<td>HCCS; configuration-dependent</td>
+<td>PCIe</td>
+<td>n/d</td>
+<td>Atlas A2 servers / modules</td>
+</tr>
+<tr>
+<td>Ascend 910C / A3</td>
+<td>DaVinci</td>
+<td>2025-03</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>2 compute dies; 8 memory stacks</td>
+<td>48 AIC + 96 AIV</td>
+<td>Supported; peak n/d in R02</td>
+<td>INT8 path; native FP8 not established</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>8 stacks; capacity / rate n/d in R02</td>
+<td>n/d</td>
+<td>7 UB transceivers per die; 384-NPU domain</td>
+<td>Kunpeng / UB system</td>
+<td>n/d</td>
+<td>Atlas 900 A3 / CloudMatrix384</td>
+</tr>
+<tr>
+<td>Ascend 950PR</td>
+<td>DaVinci 3</td>
+<td>2026; Atlas 350 product</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>2 AI + 2 I/O dies; 8 memory modules</td>
+<td>32 AIC + 64 AIV</td>
+<td>432 TFLOPS</td>
+<td>865 TFLOPS</td>
+<td>MXFP4 1730 TFLOPS; FP6 n/d</td>
+<td>n/d</td>
+<td>128 GB; 1.6 TB/s; stack generation n/d</td>
+<td>128 MB</td>
+<td>18 ×4 ports; 56 GB/s raw/link/direction; 1008 GB/s total/direction before port reuse</td>
+<td>PCIe 5.0 ×16</td>
+<td>n/d</td>
+<td>Chip; several bins</td>
+</tr>
+<tr>
+<td>Atlas 350</td>
+<td>950PR / DaVinci 3</td>
+<td>2026 product listing</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>950PR card configuration</td>
+<td>28 AIC + 56 AIV</td>
+<td>378 TFLOPS</td>
+<td>756 TFLOPS</td>
+<td>MXFP4 1513 TFLOPS</td>
+<td>n/d</td>
+<td>112 GB HBM; 1.4 TB/s</td>
+<td>112 MB</td>
+<td>4 cards: 159 GB/s/direction/card; 2 cards: 212 GB/s/direction/card</td>
+<td>PCIe 5.0 ×16</td>
+<td>≤600 W; passive heatsink</td>
+<td>PCIe OH FL DW</td>
+</tr>
+<tr>
+<td>Ascend 950DT</td>
+<td>DaVinci 3</td>
+<td>2026 systems listed; earlier Q4 target</td>
+<td>Product-listed; chip GA date n/d</td>
+<td>n/d</td>
+<td>2 AI + 2 I/O dies; 4 memory modules</td>
+<td>36 AIC + 72 AIV</td>
+<td>486 TFLOPS</td>
+<td>973 TFLOPS</td>
+<td>MXFP4 1946 TFLOPS</td>
+<td>n/d</td>
+<td>144 GB max; 4 TB/s; 96 GB variant</td>
+<td>128 MB</td>
+<td>18 ×4 ports; 56 GB/s raw/link/direction; 1008 GB/s total/direction before port reuse</td>
+<td>PCIe 5.0 ×16</td>
+<td>n/d</td>
+<td>Chip; several bins</td>
+</tr>
+<tr>
+<td>Ascend 960DT / PR</td>
+<td>n/d</td>
+<td>DT Q1 2027; PR Q3 2027 readiness</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Future chips; Atlas 960E system announced</td>
+</tr>
+</tbody>
+</table></div>
+<p>The 950 table uses Cube-only throughput, at the largest disclosed bin for each chip and the actual 28-Cube bin for Atlas 350. The Atlas 350 product page instead advertises 425 TFLOPS BF16, 804 TFLOPS MXFP8/HiF8 and 1,561 TFLOPS MXFP4 by combining Cube and Vector capability. The white paper gives 378, 756 and 1,513 TFLOPS respectively for its Cube engines. These are different accounting bases, not a contradiction. A quoted mixed-engine peak is not necessarily simultaneously attainable by one GEMM kernel.</p>
+<h2 id="07-2018-2021-davinci-and-the-first-ascend-systems">07 2018-2021: DaVinci and the first Ascend systems</h2>
+<p>DaVinci’s original design separates scalar control, vector operations and a Cube matrix engine. A 16×16×16 FP16 multiplication produces 4,096 multiply-accumulates, conventionally counted as 8,192 floating-point operations per cycle. That headline rate requires operands to be tiled and reused through local buffers. MTE data-movement engines, L1 storage, L0 operand/result buffers and the Unified Buffer form an explicitly managed hierarchy. Overlapping transfer, matrix work and vector epilogues is the central programming task.</p>
+<p>Ascend 310 put that architecture into an approximately 8 W inference chip with two AI cores, up to 16 TOPS INT8 or 8 TFLOPS FP16. Atlas modules and cards coupled inference with video preprocessing and host integration. The point of covering 310 alongside a datacenter product is architectural continuity: the local-buffer and operator-programming model scales across power envelopes. Mobile SoCs using DaVinci blocks and later 310P edge products extend this lineage, but their CPU and memory subsystems are different products.</p>
+<p>Ascend 910 scaled to 32 AI cores and a package combining a 456 mm² compute die, an I/O die and four HBM2 stacks. The Hot Chips talk shows a 6×4 on-chip mesh, roughly 1.2 TB/s external memory bandwidth and HCCS plus Ethernet interfaces. Its compute-die area must not be confused with the sum of all die areas in the package. Likewise, the same talk’s concept combining logic, 3D SRAM and twelve HBM stacks is a forward-looking packaging illustration, not the shipping 910 configuration.</p>
+<p>Hot Chips used a 350 W design target, while the August 2019 launch reported a maximum of 310 W for 256 TFLOPS FP16 and 512 TOPS INT8. The difference is a disclosure update, not permission to apply 310 W to every later 910 board. The HPCA 2021 industry account explains how the hardware and software stack serve multiple AI scenarios. Taken together, these disclosures establish a complete early architecture story: specialized execution, explicitly controlled storage, heterogeneous packaging and a compiler/runtime that must schedule the resulting parallel engines.</p>
+<h2 id="08-a2-to-a3-accelerator-nodes-become-a-compute-pool">08 A2 to A3: accelerator nodes become a compute pool</h2>
+<p>Atlas A2 products and the 910B family represent the intermediate server generation. Processor suffixes, enabled cores, memory configurations and server names vary; a single enthusiast specification table is not a safe substitute for an exact product document. The ISCA 2026 ENEC paper identifies its 910B2 test device as 24 Cube and 48 Vector units with 64 GB HBM, a useful fixed reference within that broader family. The ASPLOS 2025 study is valuable because it measures Ascend operator behavior and develops a component-level roofline model. It shows why peak matrix throughput alone misses serial execution phases, pipeline imbalance and interference between computation and data movement. That is product characterization and optimization research, not a disclosure of an unrelated next-generation chip.</p>
+<p>Huawei dates Atlas 900 A3 delivery to March 2025 and identifies its accelerators as Ascend 910C. The CloudMatrix384 paper describes the corresponding dual-compute-die NPU package with eight memory stacks. Each die has 24 matrix cores and 48 vector cores, seven scale-up transceivers and a separate scale-out interface. The package-level count is therefore 48 matrix and 96 vector cores. This is an important hierarchy change: matrix engines, compute dies, NPU packages and server nodes are four different counting units.</p>
+<p>CloudMatrix384 contains 48 compute nodes, each with eight NPUs, four Kunpeng CPUs and seven on-board UB switches: 384 NPUs and 192 CPUs in total. Twelve compute racks and four communication racks house a two-tier fabric. Seven independent switching subplanes connect the nodes without L2 oversubscription in the published topology. The CPU and NPU resources share the UB scale-up plane; NPU scale-out uses a separate RoCE plane; a QingTian DPU provides the VPC and storage-facing plane. The published system does not collapse all three into one physical network.</p>
+<p>CloudMatrix-Infer separates prefill, decode and cache resources and uses large expert-parallel domains for mixture-of-experts serving. The paper reports DeepSeek-R1 results including 6,688 prefill tokens/s/NPU for a 4K prompt and 1,943 decode tokens/s/NPU with a 4K cache and time per output token below 50 ms. A tighter 15 ms constraint gives 538 decode tokens/s/NPU. These are vendor-reported end-to-end measurements with specific quantization and scheduling choices. They demonstrate the importance of the throughput/latency operating point; they are not interchangeable with a chip’s FLOPS or an uncontrolled GPU comparison.</p>
+<h2 id="09-ascend-950-computation-memory-and-communication-co-design">09 Ascend 950: computation, memory and communication co-design</h2>
+<p>The 950 package separates two AI dies from two I/O dies. PR uses eight memory modules; DT uses four higher-bandwidth modules. The maximum physical organization has 36 AI subsystems, each containing one Cube and two Vector cores, while commercial bins disable different amounts of compute and memory. Eight Linx816 Armv8-A CPU cores with two threads each supply local control and CPU operators. Their own caches are distinct from accelerator L2; hardware coherence connects the CPU and AI-core memory views inside the package.</p>
+<p>DaVinci 3 strengthens work around the matrix multiply. Register-based vector execution, dual issue and SIMD/SIMT function blocks address elementwise arithmetic, gather/scatter and branch-heavy code. SIMD remains the principal throughput mode; SIMT improves irregular kernels rather than turning the entire NPU into a conventional GPU. A direct Cube-to-Vector path and conversions during result movement reduce round trips through shared memory. N-dimensional DMA performs layout-aware transfers, easing the cost of tensor tiling and rearrangement.</p>
+<p>The disclosed per-AI-core storage includes 512 KB L1, 64 KB each for L0A and L0B, 256 KB L0C and 512 KB Unified Buffer. Global accelerator L2 reaches 128 MB. Its 512-byte lines are divided into 128-byte sectors, allowing small irregular accesses without always moving a full line. Software can use allocation hints and residency controls. Coherence across the two dies does not eliminate locality: the white paper explicitly preserves local affinity, so scheduling and tiling should still avoid unnecessary cross-die movement.</p>
+<p>Seventy-two 112 Gb/s SerDes lanes form eighteen ×4 ports. This is 56 GB/s raw per port per direction, or 1,008 GB/s across all ports; Huawei quotes 2,016 GB/s bidirectional. Four ports can instead implement PCIe 5.0 ×16, and two ports can implement two 400 Gb/s UBoE interfaces. Those modes consume shared physical resources. A design cannot add maximum UB, PCIe and Ethernet figures as if each came from a separate set of pins. Optics may further constrain off-enclosure speed.</p>
+<p>STARS 2.0 schedules heterogeneous engines and synchronizes their work. The CCU executes collective-communication tasks without dedicating the same AI cores to every transfer and reduction. URMA provides asynchronous remote-memory/message operations; UB Memory provides synchronous load/store/atomic semantics. These are complementary mechanisms. The published 128 TB access capability of a chip interface, the 8,192-card architectural domain and a particular SuperPoD’s advertised address space are separate limits with separate scopes.</p>
+<p>Atlas 350 demonstrates why chip maxima must be translated into board topology. Its 112 GB HBM runs at 1.4 TB/s, and its board power is at most 600 W. A four-card full mesh uses three ×4 UB ports per card and advertises 318 GB/s bidirectional; a two-card arrangement uses four ports for 424 GB/s. Their one-direction equivalents are 159 and 212 GB/s. Both are much smaller than the full chip I/O maximum, because the card exposes a different port allocation and physical link configuration.</p>
+<h2 id="10-960-and-later-roadmap-revisions-and-optical-systems">10 960 and later: roadmap revisions and optical systems</h2>
+<p>The 2025 announcement named 950PR for Q1 2026, 950DT for Q4 2026, and a later 960 generation. It described an Atlas 950 design point of 8,192 accelerators across 160 cabinets. The July 2026 WAIC disclosure instead describes a particular 1,024-card Atlas 950 with 1 EFLOPS FP8, 2 EFLOPS FP4 and a 256 TB unified address space. The later white paper still supports an 8,192-card architectural domain. These numbers describe a roadmap design point, a concrete system configuration and an architecture limit; they need not be forced into one product row.</p>
+<p>At HUAWEI CONNECT 2026, 960DT readiness moved forward by three quarters to Q1 2027, and 960PR by one quarter to Q3 2027. The company also named 970 and 980 for 2028 and 2029. Atlas 960E couples 4,096 NPUs with Hi-ONE near-packaged optical engines and liquid cooling. Its advertised system peaks are 8 EFLOPS FP8 and 16 EFLOPS FP4 with up to 1 PB of HBM. A system announcement and testing milestone should be tracked separately from silicon readiness and broad customer availability.</p>
+<h2 id="11-scale-up-links-and-memory-semantics">11 Scale-up links and memory semantics</h2>
+<h3 id="interconnect-lineage-and-normalized-directions">Interconnect lineage and normalized directions</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kunpeng 920 D2D</td>
+<td>2019</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>400 GB/s quoted aggregate; direction n/d</td>
+<td>n/d</td>
+<td>Compute / I/O chiplet links</td>
+<td>Processor package</td>
+<td>Coherent on-package fabric</td>
+</tr>
+<tr>
+<td>Ascend 910 HCCS</td>
+<td>2019</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>240 Gb/s = 30 GB/s quoted link; direction n/d</td>
+<td>3</td>
+<td>Board/system dependent</td>
+<td>n/d</td>
+<td>Accelerator communication; do not assume general CPU coherence</td>
+</tr>
+<tr>
+<td>UnifiedBus 1.0</td>
+<td>2025</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>7 transceivers per 910C die</td>
+<td>Two-tier switched; 7 subplanes</td>
+<td>384 NPUs</td>
+<td>Peer access; pooled CPU/NPU memory</td>
+</tr>
+<tr>
+<td>UnifiedBus 2.0 / 950</td>
+<td>2026</td>
+<td>112 Gb/s</td>
+<td>4</td>
+<td>56 raw; 1008 aggregate/device</td>
+<td>18</td>
+<td>nD mesh / Clos</td>
+<td>8,192 NPUs</td>
+<td>URMA; load/store/atomic; on-package coherence separately documented</td>
+</tr>
+<tr>
+<td>Atlas 350 UB</td>
+<td>2026</td>
+<td>n/d</td>
+<td>4</td>
+<td>53 from card bidirectional rating</td>
+<td>3 in 4-card mesh; 4 in 2-card mode</td>
+<td>Full mesh / paired</td>
+<td>4 / 2 cards</td>
+<td>Card UB links</td>
+</tr>
+<tr>
+<td>950 UBoE</td>
+<td>2026</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>50 raw per 400G port</td>
+<td>2</td>
+<td>Ethernet fabric</td>
+<td>Cluster architecture &gt;128K cards</td>
+<td>UB over Ethernet; consumes shared ports</td>
+</tr>
+<tr>
+<td>2026 UB optical device</td>
+<td>2026</td>
+<td>1.6 Tb/s per port</td>
+<td>n/d</td>
+<td>200 raw/port; direction basis of 280T total unspecified</td>
+<td>176</td>
+<td>Inter-cabinet optical fabric</td>
+<td>System-dependent</td>
+<td>UnifiedBus; advertised RTT 2 µs</td>
+</tr>
+</tbody>
+</table></div>
+<p>A shared address range is only one part of a memory system. The protocol must also define ordering, atomics, cacheability, synchronization, permissions and failure behavior. Ascend 950 explicitly documents coherent caches across its compute dies and CPU/AI subsystem; that does not establish uniform CPU-style cache coherence across every SuperPoD endpoint. URMA, UB Memory and UBoE should be evaluated by their own semantics and the software paths that use them.</p>
+<h2 id="12-dpus-nics-and-the-ai-communication-path">12 DPUs, NICs and the AI communication path</h2>
+<h3 id="network-products-and-infrastructure-offload">Network products and infrastructure offload</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SP681</td>
+<td>Current portfolio; GA n/d</td>
+<td>Shipping / available</td>
+<td>NIC</td>
+<td>2 ×25GE</td>
+<td>n/d</td>
+<td>PCIe 3.0 ×8</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>RoCE v2</td>
+<td>PFC / ETS</td>
+<td>Checksum; virtualization; network offload</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SP670</td>
+<td>Current portfolio; GA n/d</td>
+<td>Shipping / available</td>
+<td>NIC</td>
+<td>2 ×100GE</td>
+<td>n/d</td>
+<td>PCIe 4.0 ×16</td>
+<td>Hi1822; engine ISA n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>RoCE v2</td>
+<td>PFC / ETS</td>
+<td>Virtualization and network offload</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SP680 / SP623Q</td>
+<td>Current portfolio; GA n/d</td>
+<td>Shipping / available</td>
+<td>NIC / SmartNIC</td>
+<td>4 ×25GE</td>
+<td>n/d</td>
+<td>PCIe 4.0 ×16</td>
+<td>Hi1822; DPU Solution ecosystem</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet; RoCE depends on model</td>
+<td>PFC / ETS</td>
+<td>OVS / DPI / virtualization ecosystem</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SP923Q / SP900</td>
+<td>Current product brief; GA n/d</td>
+<td>Shipping / available</td>
+<td>DPU</td>
+<td>4 ×25GE</td>
+<td>n/d</td>
+<td>PCIe 4.0 ×16</td>
+<td>DPAK</td>
+<td>Hi1822; 24 cores</td>
+<td>32 GB DDR4-2400; 4 channels</td>
+<td>Ethernet; storage/network offload</td>
+<td>PFC / ETS</td>
+<td>Bare-metal network/storage; management</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>QingTian card</td>
+<td>2025 documented system</td>
+<td>Shipping / available</td>
+<td>Cloud infrastructure DPU</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>VPC / Ethernet; UB integration by platform</td>
+<td>n/d</td>
+<td>Virtualization, I/O offload, isolation, trust</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SP230</td>
+<td>WAIC 2026</td>
+<td>Announced; GA n/d</td>
+<td>Standard NIC</td>
+<td>25-200GE family; port count n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Ethernet</td>
+<td>n/d</td>
+<td>Host networking</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>SP560 AI NIC</td>
+<td>WAIC 2026</td>
+<td>Announced; GA n/d</td>
+<td>AI NIC</td>
+<td>800G advertised; port mapping n/d</td>
+<td>n/d</td>
+<td>UnifiedBus + PCIe</td>
+<td>Programmable protocol; ISA n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>RDMA</td>
+<td>n/d</td>
+<td>Direct NPU/GPU memory access; collective submission</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>Huawei has three distinct networking roles. A conventional or smart NIC connects a host and may offload packet processing. A DPU moves infrastructure services and trust boundaries away from the tenant CPU. An AI NIC prioritizes accelerator communication, direct memory access and collective submission. A network switch and a UB scale-up switch are separate products again. Sharing HiSilicon IP or software interfaces does not make these categories interchangeable.</p>
+<p>The SP923Q is a concrete SP900-family DPU: a 24-core Hi1822, four DDR4-2400 channels with 32 GB ECC memory, PCIe 4.0 ×16 and four 25GE ports. Two small M.2 drives support the local operating environment; DPAK exposes network, storage and compute acceleration. The brief specifies an 8 A at 12 V supply requirement, which is not a declared 96 W TDP. Its host link also has more raw capacity than four 25GE ports, illustrating that PCIe provision and external network throughput are different constraints.</p>
+<p>The 2026 SP560 announcement adds an 800G AI NIC with UnifiedBus and PCIe host attachment. Direct access to accelerator memory and programmable protocol handling are the disclosed differentiators; the public event record does not provide a full port map, SerDes inventory, embedded-core count or board power. Its 800G label therefore remains a family-level advertised rate, not an invented two-port or four-port configuration. It is also distinct from storage products that happen to reuse the SP560 identifier.</p>
+<h2 id="13-ethernet-switching-optics-and-kv-storage">13 Ethernet switching, optics and KV storage</h2>
+<p>CloudEngine 16800 introduced a high-density 400GE datacenter platform in 2019; the 2023 CloudEngine 16800-X disclosure advanced the portfolio toward 800GE. Current XH16800 documentation describes a chassis fabric, cell switching, ECMP, AI ECN and PFC deadlock prevention. These functions manage congestion and forwarding across an Ethernet fabric. They should not be confused with the number of ports on one switch ASIC or with the bandwidth of a UB accelerator domain. The XH16800 document’s “evolution to 800GE” wording is retained rather than treating every listed line card as already 800GE.</p>
+<p>The September 2026 UnifiedBus system announcement introduces a 176-port, 1.6T-per-port optical interconnect device and a UBG switch with radix up to 1,024. The first multiplication yields 281.6 Tbit/s of advertised port rate, consistent with the rounded “280T” claim; it does not define bidirectional payload switching capacity. Nor should the second number be read as 1,024 such ports on one monolithic ASIC. Cabinet, chassis, chip and network topology remain separate accounting levels.</p>
+<p>Hi-ONE is specified at 7.2 Tbit/s per optical engine with an integrated light source. The 960E comparison replaces 48,000 conventional 800G optical modules with 5,500 engines and claims more than 550 kW of savings. This is Huawei’s topology-level comparison, not a measured per-NPU TDP improvement. NPO places optics near the package; it should not automatically be renamed co-packaged optics. The design motivation is to shorten high-speed electrical reach and reduce cabling and power while preserving a large switched domain.</p>
+<p>OceanStor M900 adds a PB-scale KV-cache tier, described by Huawei as L3.5 and reachable in one UnifiedBus hop. “L3.5” is a system-tier label, not a CPU cache level. A useful mental model is local HBM for active execution, CPU memory for larger working sets, and a shared persistent or semi-persistent KV tier for reusable context. Storage can avoid recomputation and improve capacity economics, but latency-sensitive decoding still depends on how much useful state reaches HBM on time.</p>
+<h2 id="14-system-generations-and-deployment-boundaries">14 System generations and deployment boundaries</h2>
+<h3 id="from-server-nodes-to-superpod-and-supercluster">From server nodes to SuperPoD and SuperCluster</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atlas 2019 systems</td>
+<td>2019</td>
+<td>Configuration-dependent Ascend nodes</td>
+<td>HCCS-connected nodes</td>
+<td>910 integrates 2 ×100Gb/s Ethernet; 25 GB/s raw aggregate</td>
+<td>n/d</td>
+<td>System-dependent</td>
+</tr>
+<tr>
+<td>Atlas A2</td>
+<td>2023-era</td>
+<td>Server/module-dependent</td>
+<td>HCCS; system-dependent</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Air / liquid by product</td>
+</tr>
+<tr>
+<td>CloudMatrix384 / Atlas 900 A3</td>
+<td>2025</td>
+<td>192 CPUs + 384 NPUs; 48 nodes</td>
+<td>384 NPUs</td>
+<td>Dedicated RoCE per NPU die; rate n/d</td>
+<td>n/d</td>
+<td>Liquid-cooled SuperPoD</td>
+</tr>
+<tr>
+<td>Atlas 950 2025 design point</td>
+<td>2025 roadmap for 2026</td>
+<td>8,192 NPUs; 160 cabinets</td>
+<td>8,192 NPUs</td>
+<td>UBoE / RoCE; port allocation dependent</td>
+<td>n/d</td>
+<td>Liquid</td>
+</tr>
+<tr>
+<td>Atlas 950 WAIC configuration</td>
+<td>2026-07</td>
+<td>1,024 NPUs</td>
+<td>1,024 NPUs</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Liquid</td>
+</tr>
+<tr>
+<td>Atlas 850E</td>
+<td>2026-07</td>
+<td>Up to 96 cards</td>
+<td>96 cards</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Air; VCE phase-change technology</td>
+</tr>
+<tr>
+<td>Atlas 960E</td>
+<td>2026 announcement; 960 chips 2027</td>
+<td>4,096 NPUs</td>
+<td>4,096 NPUs</td>
+<td>UB network / RoCE; per-NPU rate n/d</td>
+<td>n/d</td>
+<td>Full liquid; NPO</td>
+</tr>
+<tr>
+<td>Kunpeng SuperPoD update</td>
+<td>2026-09</td>
+<td>Up to 4,096 nodes</td>
+<td>256 TB unified pool disclosed</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+</tbody>
+</table></div>
+<p>A maximum supported cluster is not an installed cluster. The 2026 disclosures describe very large scale-out topologies, including hundreds of thousands of NPUs and a multi-rail path to one million. Their engineering significance is the hierarchy and reach of the interconnect; the report does not treat those limits as verified customer installations. Likewise, an addressable memory pool is not necessarily the sum of all physical DRAM in every node.</p>
+<h2 id="15-software-evolution-and-research-feedback">15 Software evolution and research feedback</h2>
+<h3 id="software-capabilities-aligned-with-hardware">Software capabilities aligned with hardware</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Release / layer</th>
+<th>Date</th>
+<th>Hardware enabled</th>
+<th>Key features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CANN / MindSpore launch</td>
+<td>2019</td>
+<td>Ascend 310 / 910</td>
+<td>Graph compilation, operators, runtime and framework</td>
+</tr>
+<tr>
+<td>CANN 3.0</td>
+<td>2020</td>
+<td>Ascend</td>
+<td>Broader developer interfaces and operator optimization</td>
+</tr>
+<tr>
+<td>Ascend C</td>
+<td>Current documentation</td>
+<td>Ascend AI cores</td>
+<td>Explicit tiling, queue/buffer management, pipelined compute and transfer</td>
+</tr>
+<tr>
+<td>CloudMatrix-Infer</td>
+<td>2025</td>
+<td>CloudMatrix384</td>
+<td>Prefill/decode/cache separation; expert parallelism; INT8 kernels</td>
+</tr>
+<tr>
+<td>CANN / Mind open source</td>
+<td>2025-2026</td>
+<td>Ascend</td>
+<td>Compiler/runtime/kernel ecosystem opening; framework integration</td>
+</tr>
+<tr>
+<td>DaVinci 3 / STARS 2.0 / CCU</td>
+<td>2026</td>
+<td>Ascend 950</td>
+<td>SIMD/SIMT; NDDMA; collective offload; cache hints; low-precision formats</td>
+</tr>
+<tr>
+<td>DPAK / QingTian / openEuler</td>
+<td>Generation-dependent</td>
+<td>Kunpeng / SP900 / cloud</td>
+<td>Host OS, network/storage offload and tenant isolation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ascend C exposes the machine’s memory hierarchy directly enough that kernel authors must understand tiling, buffer lifetime, queues and synchronization. The payoff is precise overlap between data movement and compute; the cost is that porting an operator may involve more than translating its arithmetic. A framework adapter alone does not guarantee equivalent scheduling, collective behavior or quantization quality. CANN, optimized kernels, HCCL-style collectives and inference-serving software have to mature together.</p>
+<p>The academic record adds mechanisms rather than a second marketing timeline. ASPLOS 2025’s component roofline explains operator bottlenecks. ISCA 2026’s ENEC optimizes lossless weight compression for Ascend, including vector-friendly decoding and dependency reduction. MICRO 2025’s RICH Prefetcher explores storing richer prefetch information in memory to trade capacity and bandwidth for latency hiding. ENEC is software/research on Ascend; RICH is related CPU research. Neither establishes that a specific new decompressor or prefetcher shipped in Kunpeng or Ascend.</p>
+<h2 id="16-bandwidth-hierarchy-and-derived-ratios">16 Bandwidth hierarchy and derived ratios</h2>
+<h3 id="bandwidth-by-era-scopes-are-intentionally-separate">Bandwidth by era: scopes are intentionally separate</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Era / reference</th>
+<th>On die / die-to-die</th>
+<th>Memory</th>
+<th>Host attachment</th>
+<th>Scale-up per accelerator</th>
+<th>Scale-out per accelerator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-2018 / 310</td>
+<td>Explicit local buffers; numeric rate n/d</td>
+<td>LPDDR; board-dependent</td>
+<td>PCIe; n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>2019-2022 / 910</td>
+<td>L2 fabric 4 TB/s; per-AI-core 128 GB/s read + 128 GB/s write</td>
+<td>~1.2 TB/s HBM2</td>
+<td>PCIe 4.0</td>
+<td>3 ×240 Gb/s HCCS; direction n/d</td>
+<td>2 ×100 Gb/s Ethernet = 25 GB/s raw aggregate</td>
+</tr>
+<tr>
+<td>2023-2025 / 910C</td>
+<td>Dual compute die; D2D rate n/d</td>
+<td>8 memory stacks; R02 rate n/d</td>
+<td>Kunpeng / UB</td>
+<td>7 UB transceivers per die; rate n/d</td>
+<td>Separate RoCE interface per die; rate n/d</td>
+</tr>
+<tr>
+<td>2026 / maximum 950</td>
+<td>2 AI + 2 I/O; D2D rate n/d</td>
+<td>PR 1.6; DT 4 TB/s</td>
+<td>PCIe 5.0 ×16: nominal 64 GB/s/direction</td>
+<td>1008 GB/s raw/direction before port reuse</td>
+<td>2 ×400G UBoE: 100 GB/s raw aggregate; shared ports</td>
+</tr>
+<tr>
+<td>2026 / Atlas 350 card</td>
+<td>28-Cube bin; D2D rate n/d</td>
+<td>1.4 TB/s</td>
+<td>PCIe 5.0 ×16: nominal 64 GB/s/direction</td>
+<td>159 GB/s/direction at 4 cards; 212 at 2 cards</td>
+<td>Server NIC-dependent</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="derived-balance-metrics-not-measured-application-performance">Derived balance metrics, not measured application performance</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Calculation</th>
+<th>Result</th>
+<th>Interpretation / boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kunpeng 920</td>
+<td>8 × 8 × 2.933 / 64</td>
+<td>2.933 GB/s/core</td>
+<td>Theoretical DDR4 payload; controller/workload efficiency excluded</td>
+</tr>
+<tr>
+<td>Kunpeng 920</td>
+<td>64 MB / 64</td>
+<td>1 MB/core</td>
+<td>Average shared LLC budget, not private allocation</td>
+</tr>
+<tr>
+<td>Ascend 910</td>
+<td>1.2e12 / 256e12</td>
+<td>0.00469 byte/FP16 FLOP</td>
+<td>FP16; not a BF16 comparison</td>
+</tr>
+<tr>
+<td>950PR max</td>
+<td>1.6e12 / 432e12</td>
+<td>0.00370 byte/BF16 FLOP</td>
+<td>Cube-only dense peak</td>
+</tr>
+<tr>
+<td>950PR max</td>
+<td>1.6e12 / 865e12</td>
+<td>0.00185 byte/FP8 FLOP</td>
+<td>Cube-only dense peak</td>
+</tr>
+<tr>
+<td>950DT max</td>
+<td>4e12 / 486e12</td>
+<td>0.00823 byte/BF16 FLOP</td>
+<td>2.22× PR bandwidth per BF16 FLOP</td>
+</tr>
+<tr>
+<td>950DT max</td>
+<td>4e12 / 973e12</td>
+<td>0.00411 byte/FP8 FLOP</td>
+<td>Cube-only dense peak</td>
+</tr>
+<tr>
+<td>Atlas 350, 4 cards</td>
+<td>159 / 1400</td>
+<td>0.114</td>
+<td>One-way card scale-up / HBM; ~11.4%</td>
+</tr>
+<tr>
+<td>Atlas 350</td>
+<td>378 TFLOPS / 600 W</td>
+<td>0.630 TFLOPS/W</td>
+<td>BF16 Cube peak / maximum board power; not measured efficiency</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="17-integrated-stack-across-four-eras">17 Integrated stack across four eras</h2>
+<p>The diagrams show deployment roles and traffic paths. Lines indicate connectivity, not equal bandwidth, universal coherence or simultaneous use of every optional interface. Source coverage follows the preceding family chapters.</p>
+<h3 id="2015-2018-host-led-inference">2015-2018: host-led inference</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Hi161x / Kunpeng 916 / Host software"]
+  memory["DDR memory / CPU working set"]
+  gpu["Ascend 310 / Atlas / DaVinci inference"]
+  local["LPDDR + local buffers / Video preprocessing"]
+  nic["Host Ethernet / Network / storage"]
+  sw["Drivers + AI runtime / Operator compilation"]
+  cpu ---|"DDR"| memory
+  cpu ---|"PCIe"| gpu
+  gpu ---|"local"| local
+  gpu ---|"via host"| nic
+  nic ---|"system"| sw
+</pre>
+<p>A small NPU augments a server or edge host; this is not yet a large shared accelerator domain.</p>
+<h3 id="2019-2022-chiplets-and-accelerator-nodes">2019-2022: chiplets and accelerator nodes</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Kunpeng 920 / Compute + I/O dies"]
+  memory["8-channel DDR4 / 187.7 GB/s reference"]
+  gpu["Ascend 910 node / Cube / Vector / Scalar"]
+  local["HBM2 + local buffers / HCCS peer links"]
+  nic["RoCE / Ethernet / CloudEngine fabric"]
+  sw["CANN + MindSpore / Atlas system integration"]
+  cpu ---|"DDR4"| memory
+  cpu ---|"PCIe"| gpu
+  gpu ---|"memory / peers"| local
+  gpu ---|"network"| nic
+  nic ---|"runtime"| sw
+</pre>
+<p>Reusable silicon blocks coexist with explicit accelerator data movement; scale-out remains a network problem.</p>
+<h3 id="2023-2025-cloudmatrix384-resource-pooling">2023-2025: CloudMatrix384 resource pooling</h3>
+<pre class="mermaid">flowchart TD
+  cpu["192 Kunpeng CPUs / Host DRAM pools"]
+  fabric["UB two-tier fabric / 7 switching subplanes"]
+  gpu["384 Ascend 910C NPUs / 48 nodes; dual-die NPUs"]
+  local["HBM per package / Prefill / decode / cache"]
+  nic["Separate RoCE plane / NPU scale-out"]
+  dpu["QingTian DPU / VPC / Storage + control"]
+  cpu ---|"UB"| fabric
+  cpu ---|"shared domain"| gpu
+  fabric ---|"peer access"| local
+  gpu ---|"local / pooled"| local
+  gpu ---|"RDMA"| nic
+  local ---|"system I/O"| dpu
+</pre>
+<p>The UB, RoCE and VPC planes have different roles; CloudMatrix-Infer maps serving stages across the pooled resources.</p>
+<h3 id="2026-disclosures-differentiated-npus-and-optical-scale">2026 disclosures: differentiated NPUs and optical scale</h3>
+<pre class="mermaid">flowchart TD
+  cpu["Kunpeng 950 / CPU memory pools"]
+  fabric["UnifiedBus 2.0 / UBG / Hi-ONE for 960E"]
+  gpu["950PR / 950DT / 960E: announced system"]
+  local["Package memory + L2 / M900 KV tier"]
+  nic["UBoE / RoCE / SP560 / Ethernet scale-out"]
+  sw["CANN / STARS / CCU / SIMD + SIMT + collectives"]
+  cpu ---|"UB"| fabric
+  cpu ---|"host / peer"| gpu
+  fabric ---|"memory tiers"| local
+  gpu ---|"local / remote"| local
+  gpu ---|"shared ports"| nic
+  nic ---|"schedule"| sw
+</pre>
+<p>This combines product roles, not a claim that every listed component ships in one SKU. 960 chips remain on the 2027 roadmap.</p>
+<h2 id="18-engineering-trends-and-disclosure-gaps">18 Engineering trends and disclosure gaps</h2>
+<p>Chiplet reuse predates the current AI boom in Huawei’s portfolio. Kunpeng 920 used separate compute and I/O dies; the first 910 paired a large compute die with I/O and HBM; 950 makes the compute/I/O partition more explicit while varying its memory subsystem by workload. The benefit is modularity and the ability to optimize different die functions separately. The cost is package wiring, coherent data movement and another layer of placement sensitivity. No public source reviewed here establishes a universal 3D-stacked SRAM design across these shipping products.</p>
+<p>Low precision raises compute faster than it raises the supply of useful bytes. The 950 matrix path doubles throughput from BF16 to FP8 and approximately doubles it again to MXFP4. Quantization, vector processing and data layout become increasingly important as the arithmetic gets cheaper. More HBM bandwidth helps memory-bound phases, but operator fusion and keeping intermediate data in L0/L1/Unified Buffer can remove transfers altogether. The next bottleneck may therefore be vector work, synchronization or communication rather than the Cube array.</p>
+<p>The PR/DT split is quantitatively meaningful. DT’s maximum matrix BF16 throughput is only about 12.5% above PR’s, but its memory bandwidth is 2.5 times as large. It therefore offers roughly 2.22 times the memory bandwidth per BF16 FLOP. That is consistent with a training/decoding branch that must sustain more movement per unit of arithmetic. It is an architectural interpretation of the disclosed ratios, not a guarantee that every decode workload runs 2.22 times faster.</p>
+<p>Larger scale-up domains give mixture-of-experts models more aggregate memory and more choices for expert placement. They also increase the importance of fabric bisection bandwidth, tail latency, optics reliability and failure containment. A domain of thousands of NPUs cannot be judged by multiplying chip peak alone. The strongest evidence would combine measured model throughput and latency, full system power, recovery behavior and the exact topology under the same workload. These measurements are not uniformly disclosed across Huawei’s generations.</p>
+<p>The architecture gains more from avoiding unnecessary movement than from renaming all resources “memory.” Pooling expands capacity and creates another scheduler’s degree of freedom, while also introducing queueing, placement, durability and recovery concerns. Optical integration reduces electrical reach and cable burden, but requires thermal, mechanical and serviceability engineering. These are system-level trade-offs, and should be evaluated with workload traces and failure behavior rather than a single aggregate bandwidth number.</p>
+<p>The implementation record is asymmetric. Early Hot Chips and the Kunpeng technical paper reveal die partitioning and core details. ISSCC provides independently identifiable wireline circuit disclosures, including a Huawei 60 Gb/s PAM4 ADC-DSP transceiver, but no reviewed primary link proves that exact circuit is the SerDes in a named Kunpeng or Ascend product. Recent NPU documentation exposes programming and memory mechanisms well, while foundry nodes, yield, package capacity, transistor counts and many power figures remain undisclosed. Manufacturing constraints should therefore be discussed as constraints, not filled with unattributed die-analysis claims.</p>
+<p>Opening software and publishing a protocol can broaden adoption, but ecosystem compatibility remains an engineering property. Kernel coverage, compiler quality, collective behavior, device management and the licensing/implementation status of an interconnect all matter. Huawei’s combination of CANN, its own system fabric, cloud services and partner boards supplies an increasingly complete stack. Its differentiation is the coordination of these layers; the unresolved comparison is how much useful workload performance and operational resilience that coordination delivers per unit of cost and power.</p>
+<h2 id="19-conference-to-product-index">19 Conference-to-product index</h2>
+<h3 id="verified-disclosures-and-related-research">Verified disclosures and related research</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips 31</td>
+<td>2019</td>
+<td>DaVinci: A Scalable Architecture for Neural Network Computing</td>
+<td>Heng Liao; Jiajin Tu; Jing Xia; Xiping Zhou</td>
+<td>Ascend 310 / 910</td>
+<td>Architecture, die/package, memory, links</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>HPCA industry track</td>
+<td>2021</td>
+<td>Ascend: a scalable and unified architecture for ubiquitous deep neural network computing</td>
+<td>Heng Liao et al.</td>
+<td>Ascend / DaVinci</td>
+<td>Product architecture; vendor reprint read</td>
+<td>C04 / P01</td>
+</tr>
+<tr>
+<td>IEEE Micro journal</td>
+<td>2021</td>
+<td>HiSilicon Kunpeng 920: First 7-nm Chiplet-Based 64-Core Server CPU With Arm Ecosystem</td>
+<td>Jing Xia; Chuanning Cheng; Xiping Zhou; Yuxing Hu; Peter Chun</td>
+<td>Kunpeng 920</td>
+<td>Core, cache, die partitioning; journal, not MICRO conference</td>
+<td>P01 / C02</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2019</td>
+<td>6.2: 60Gb/s PAM-4 ADC-DSP Transceiver; 7nm; adaptive power scaling</td>
+<td>M.-A. LaCroix et al., Huawei Ottawa</td>
+<td>Wireline IP; product adoption unproven</td>
+<td>Circuit; program reports 6.9 pJ/b at 32 dB loss</td>
+<td>C05</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2025</td>
+<td>Squeezing Operator Performance Potential for the Ascend Architecture</td>
+<td>Yuhang Zhou et al.</td>
+<td>Ascend</td>
+<td>Operator characterization and optimization research</td>
+<td>R01</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2025</td>
+<td>RICH Prefetcher: Storing Rich Information in Memory to Trade Capacity and Bandwidth for Latency Hiding</td>
+<td>Ningzhi Ai et al.</td>
+<td>Related CPU research</td>
+<td>Research; no confirmed Kunpeng adoption</td>
+<td>R06</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2026</td>
+<td>ENEC: A Lossless AI Model Compression Method Enabling Fast Inference on Ascend NPUs</td>
+<td>Jinwu Yang et al.</td>
+<td>Ascend 910B2 study</td>
+<td>Model compression research</td>
+<td>R03 / R05</td>
+</tr>
+<tr>
+<td>R-CCS Symposium</td>
+<td>2020</td>
+<td>Kunpeng platform presentation</td>
+<td>Zhaohui</td>
+<td>Hi161x / Kunpeng 916 / 920</td>
+<td>CPU roadmap and platform; historical future targets</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>Huawei Developer Conference</td>
+<td>2025</td>
+<td>CloudMatrix384 cloud service</td>
+<td>Huawei Cloud</td>
+<td>CloudMatrix384</td>
+<td>Cloud/system availability</td>
+<td>E17 / R02</td>
+</tr>
+<tr>
+<td>HUAWEI CONNECT</td>
+<td>2025</td>
+<td>SuperPoD, 950/960 roadmap, UnifiedBus 2.0, CANN opening</td>
+<td>Eric Xu; Yang Chaobin; Zhang Dixuan</td>
+<td>Kunpeng / Ascend / UB</td>
+<td>Architecture roadmap and ecosystem</td>
+<td>E02 / E09 / E16</td>
+</tr>
+<tr>
+<td>MWC Barcelona</td>
+<td>2026</td>
+<td>SuperPoD and AI infrastructure showcase</td>
+<td>Huawei</td>
+<td>Atlas / Kunpeng</td>
+<td>System and industry deployment</td>
+<td>E05</td>
+</tr>
+<tr>
+<td>WAIC</td>
+<td>2026</td>
+<td>Atlas 950, Atlas 850E, SP560 AI NIC, compute modules</td>
+<td>Huawei</td>
+<td>Ascend / networking</td>
+<td>System and product launch</td>
+<td>E18 / E13</td>
+</tr>
+<tr>
+<td>IEEE ISCAS</td>
+<td>2026</td>
+<td>Tau scaling and logic folding</td>
+<td>Huawei researchers</td>
+<td>Related scaling research</td>
+<td>Research direction; not ISSCC or a product node disclosure</td>
+<td>E06</td>
+</tr>
+<tr>
+<td>HUAWEI CONNECT</td>
+<td>2026</td>
+<td>960E, Hi-ONE, Peerium, M900, Kunpeng pools</td>
+<td>David Wang; Huawei</td>
+<td>AI infrastructure stack</td>
+<td>System launch, roadmap update, optics/storage architecture</td>
+<td>E01 / E03 / E04 / E10 / E11 / E12</td>
+</tr>
+</tbody>
+</table></div>
+<p>The index is a verified conference-to-product map, not a claim to enumerate every Huawei-affiliated publication. No reviewed primary disclosure establishes a generation-by-generation Kunpeng/Ascend product paper at DAC, VLSI, IEDM, ECTC, OFC, SC or ISC. Likewise, Computex, OCP, GTC, re:Invent, Ignite and Google Cloud Next are not automatically Huawei product disclosure channels. They remain search targets rather than invented entries. MWC, WAIC, HUAWEI CONNECT and Huawei’s developer events have direct, useful records for this portfolio.</p>
+<h2 id="20-names-reuse-and-items-that-must-not-be-merged">20 Names, reuse and items that must not be merged</h2>
+<h3 id="product-and-architecture-crosswalk">Product and architecture crosswalk</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name / identifier</th>
+<th>Meaning</th>
+<th>Important boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hi1620 / Kunpeng 920 / TaiShan V110</td>
+<td>Original 2019 CPU / product / core</td>
+<td>New-model 920 platforms have separate specifications</td>
+</tr>
+<tr>
+<td>Kunpeng 950 / Linx816</td>
+<td>Host CPU family / embedded Ascend CPU core</td>
+<td>Do not equate the two microarchitectures</td>
+</tr>
+<tr>
+<td>DaVinci / Ascend / Atlas</td>
+<td>Architecture / processor / hardware system</td>
+<td>One architecture spans multiple chips and boards</td>
+</tr>
+<tr>
+<td>910C / Atlas 900 A3 / CloudMatrix384</td>
+<td>NPU / SuperPoD product / cloud-system architecture</td>
+<td>The paper abbreviates the processor to Ascend 910; launch identifies 910C</td>
+</tr>
+<tr>
+<td>950PR / Atlas 350</td>
+<td>Prefill/recommendation processor / 28-Cube PCIe card</td>
+<td>128 GB chip maximum vs 112 GB card configuration</td>
+</tr>
+<tr>
+<td>UB buffer / UnifiedBus</td>
+<td>AI-core local memory / system interconnect</td>
+<td>Same acronym, different layers</td>
+</tr>
+<tr>
+<td>HCCS / HCCL</td>
+<td>Hardware interconnect / collective software library</td>
+<td>A library name does not specify link bandwidth</td>
+</tr>
+<tr>
+<td>SP600 / SP900 / SP560 AI NIC</td>
+<td>NIC family / DPU family / AI NIC</td>
+<td>Do not infer the AI NIC from a similarly named SSD</td>
+</tr>
+<tr>
+<td>Hi-ONE / NPO</td>
+<td>Optical engine / near-packaged optics</td>
+<td>Not a blanket synonym for CPO</td>
+</tr>
+<tr>
+<td>OceanStor M900 / L3.5</td>
+<td>KV storage system / system-tier label</td>
+<td>Not a CPU L3 cache or on-chip SRAM</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C01, E01, E02, E03, E11, P01, P08, P14, P15, R02</p>
+<p>02 Reading the numbers and product names — C01, C04, P01, P14, P15, R01, R02, R03, R05, R06</p>
+<p>03 Host CPU generations — C03, E02, P01, P08, P09, P10, P13, P16, R07</p>
+<p>04 2015-2019: from server Arm to Kunpeng 920 — C03, P01, P10, P16, R04, R07</p>
+<p>05 Updated 920 and Kunpeng 950: platform evolution — E02, E11, E12, P08, P09, R02</p>
+<p>06 Ascend generation comparison — C01, E02, E03, E07, E11, E18, E20, P01, P12, P14, P15, R01, R02, R05</p>
+<p>07 2018-2021: DaVinci and the first Ascend systems — C01, C04, E07, E20, P01, P12</p>
+<p>08 A2 to A3: accelerator nodes become a compute pool — E02, P12, R01, R02, R05</p>
+<p>09 Ascend 950: computation, memory and communication co-design — P14, P15</p>
+<p>10 960 and later: roadmap revisions and optical systems — E02, E03, E11, E12, E18, P15</p>
+<p>11 Scale-up links and memory semantics — C01, E02, E04, P01, P14, P15, R02</p>
+<p>12 DPUs, NICs and the AI communication path — E13, P04, P05, P06, P07, P15, R02</p>
+<p>13 Ethernet switching, optics and KV storage — E03, E04, E10, E11, E14, E15, P11</p>
+<p>14 System generations and deployment boundaries — C01, E02, E03, E05, E07, E11, E12, E18, P12, R02</p>
+<p>15 Software evolution and research feedback — E08, E09, E18, E20, P01, P03, P04, P07, P08, P15, R01, R02, R03, R05, R06</p>
+<p>16 Bandwidth hierarchy and derived ratios — C01, P01, P14, P15, R02</p>
+<p>17 Integrated stack across four eras — C01, E03, E11, E13, P01, P15, R02</p>
+<p>18 Engineering trends and disclosure gaps — C01, C05, E03, E09, E11, E12, E17, P01, P08, P15, R01, R02</p>
+<p>19 Conference-to-product index — C01, C02, C03, C04, C05, E01, E02, E03, E04, E05, E06, E09, E10, E11, E12, E13, E16, E17, E18, P01, R01, R02, R03, R05, R06</p>
+<p>20 Names, reuse and items that must not be merged — C01, E02, E03, E11, E13, P01, P04, P06, P08, P09, P12, P14, P15, R02</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] Huawei Research, June 2022: Ascend architecture. <a href="https://www-file.huawei.com/admin/asset/v1/pro/view/6ca306adab0a4852bacffce25f5573ec.pdf">https://www-file.huawei.com/admin/asset/v1/pro/view/6ca306adab0a4852bacffce25f5573ec.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] Ascend C overview, CANN 9.1. <a href="https://www.hiascend.com/document/detail/en/CANNCommunityEdition/910/programug/Ascendcopdevg/docs/en/guide/getting_started/ascend_c_overview_and_learning_path.md">https://www.hiascend.com/document/detail/en/CANNCommunityEdition/910/programug/Ascendcopdevg/docs/en/guide/getting_started/ascend_c_overview_and_learning_path.md</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] SP900 DPU cards product brief. <a href="https://www.hikunpeng.com/s/kunpengstatic/lst/files/pdf/SP900_series_DPU_card_2.pdf">https://www.hikunpeng.com/s/kunpengstatic/lst/files/pdf/SP900_series_DPU_card_2.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P05] SP900 DPU current portfolio. <a href="https://e.huawei.com/cn/products/computing/kunpeng/components/dpu">https://e.huawei.com/cn/products/computing/kunpeng/components/dpu</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] SP600 NIC and Hi1822 portfolio. <a href="https://e.huawei.com/cn/products/computing/kunpeng/components/nic">https://e.huawei.com/cn/products/computing/kunpeng/components/nic</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] QingTian System Security Technical White Paper, November 2025. <a href="https://support.huaweicloud.com/intl/en-us/twp-ecs/twp-ecs-pdf.pdf">https://support.huaweicloud.com/intl/en-us/twp-ecs/twp-ecs-pdf.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P08] Kunpeng 950 server motherboard brief, 2026 H1. <a href="https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/1dd095dc1b3b4c76813b0571ce367c54/M3T1A669N1234186214628368617/%E9%B2%B2%E9%B9%8F%E7%B3%BB%E5%88%97%E4%B8%BB%E6%9D%BFR25-%E5%BD%A9%E9%A1%B5_26H1_-Kunpeng%20950.pdf">https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/1dd095dc1b3b4c76813b0571ce367c54/M3T1A669N1234186214628368617/%E9%B2%B2%E9%B9%8F%E7%B3%BB%E5%88%97%E4%B8%BB%E6%9D%BFR25-%E5%BD%A9%E9%A1%B5_26H1_-Kunpeng%20950.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P09] Kunpeng server motherboard generation portfolio. <a href="https://e.huawei.com/cn/products/computing/kunpeng/server-board">https://e.huawei.com/cn/products/computing/kunpeng/server-board</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] Kunpeng 916 S916X00 motherboard. <a href="https://e.huawei.com/cn/products/computing/kunpeng/server-board/s916x00">https://e.huawei.com/cn/products/computing/kunpeng/server-board/s916x00</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P11] CloudEngine XH16800 datasheet. <a href="https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/4df3ccbe52fa406f8bc5a43654b0849c/M3T1A590N1245485026104709135/Huawei%20CloudEngine%20XH16800%20Data%20Center%20Switch%20Datasheet.pdf">https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/4df3ccbe52fa406f8bc5a43654b0849c/M3T1A590N1245485026104709135/Huawei%20CloudEngine%20XH16800%20Data%20Center%20Switch%20Datasheet.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P12] Ascend processor to hardware product mapping. <a href="https://www.hiascend.com/document/detail/en/AscendFAQ/ProduTech/productform/hardwaredesc_0001.html">https://www.hiascend.com/document/detail/en/AscendFAQ/ProduTech/productform/hardwaredesc_0001.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P13] Kunpeng hardware FAQ. <a href="https://www.hikunpeng.com/document/detail/en/kunpengfaq/productfaq/hardwarefaq/hardware_faq_0001.html">https://www.hikunpeng.com/document/detail/en/kunpengfaq/productfaq/hardwarefaq/hardware_faq_0001.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P14] Atlas 350 accelerator card current specifications. <a href="https://www.hiascend.com/hardware/accelerator-card">https://www.hiascend.com/hardware/accelerator-card</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P15] Ascend 950 NPU architecture white paper, 2026. <a href="https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf">https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P16] Kunpeng motherboard portfolio brief, 2025 H2. <a href="https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/3fac6f690c044894af93b7177cce7c07/M3T1A669N1174649161251803199/%E9%B2%B2%E9%B9%8F%E4%B8%BB%E6%9D%BF_Kunpeng%20Board%20R25-%E5%BD%A9%E9%A1%B5_25H2_.pdf">https://e.huawei.com/marketingcloud/pep/asset/20000001/Material/3fac6f690c044894af93b7177cce7c07/M3T1A669N1174649161251803199/%E9%B2%B2%E9%B9%8F%E4%B8%BB%E6%9D%BF_Kunpeng%20Board%20R25-%E5%BD%A9%E9%A1%B5_25H2_.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] DaVinci: A Scalable Architecture for Neural Network Computing, Hot Chips 2019. <a href="https://old.hotchips.org/hc31/HC31_1.11_Huawei.Davinci.HengLiao_v4.0.pdf">https://old.hotchips.org/hc31/HC31_1.11_Huawei.Davinci.HengLiao_v4.0.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] HiSilicon Kunpeng 920: First 7-nm Chiplet-Based 64-Core Server CPU With Arm Ecosystem, IEEE Micro 2021. <a href="https://ieeexplore.ieee.org/document/9444893">https://ieeexplore.ieee.org/document/9444893</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[C03] Huawei Kunpeng Computing, R-CCS Symposium 2020. <a href="https://www.r-ccs.riken.jp/R-CCS-Symposium/2020/shared/images/under/program/2-03_Zhaohui.pdf">https://www.r-ccs.riken.jp/R-CCS-Symposium/2020/shared/images/under/program/2-03_Zhaohui.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C04] Ascend: a Scalable and Unified Architecture for Ubiquitous Deep Neural Network Computing, HPCA 2021. <a href="https://doi.org/10.1109/HPCA51647.2021.00071">https://doi.org/10.1109/HPCA51647.2021.00071</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[C05] ISSCC 2019 advance program, paper 6.2: 60Gb/s PAM4 ADC-DSP transceiver. <a href="https://www.isscc.org/s/ISSCC-2019-Advance-Program.pdf">https://www.isscc.org/s/ISSCC-2019-Advance-Program.pdf</a>. Official conference press kit; not the full paper.</p>
+<h3 id="research-papers-and-publication-registries">Research papers and publication registries</h3>
+<p>[R01] Squeezing Operator Performance Potential for the Ascend Architecture, ASPLOS 2025. <a href="https://cs.nju.edu.cn/tianchen/lunwen/2025/asplos25-yuhang.pdf">https://cs.nju.edu.cn/tianchen/lunwen/2025/asplos25-yuhang.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R02] Serving Large Language Models on Huawei CloudMatrix384, 2025. <a href="https://arxiv.org/pdf/2506.12708">https://arxiv.org/pdf/2506.12708</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R03] ISCA 2026 official conference program. <a href="https://www.iscaconf.org/isca2026/program/">https://www.iscaconf.org/isca2026/program/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R04] NUMA-Aware DGEMM Based on 64-Bit ARMv8 Multicore Processors Architecture, 2021. <a href="https://www.mdpi.com/2079-9292/10/16/1984">https://www.mdpi.com/2079-9292/10/16/1984</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R05] ENEC: A Lossless AI Model Compression Method Enabling Fast Inference on Ascend NPUs, ISCA 2026. <a href="https://arxiv.org/pdf/2604.03298">https://arxiv.org/pdf/2604.03298</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R06] MICRO 2025 official program: RICH Prefetcher. <a href="https://microarch.org/micro58/program/index.php">https://microarch.org/micro58/program/index.php</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R07] HiSilicon HNS network driver submission, September 2015. <a href="https://lists.openwall.net/netdev/2015/09/17/36">https://lists.openwall.net/netdev/2015/09/17/36</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Advancing the Agentic World, Building a Solid Silicon Foundation, HUAWEI CONNECT 2026. <a href="https://www.huawei.com/en/news/2026/9/hc-wang-keynote">https://www.huawei.com/en/news/2026/9/hc-wang-keynote</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Groundbreaking SuperPoD Interconnect, HUAWEI CONNECT 2025. <a href="https://www.huawei.com/en/news/2025/9/hc-xu-keynote-speech">https://www.huawei.com/en/news/2025/9/hc-xu-keynote-speech</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Huawei Launches Atlas 960E SuperPoD, September 2026. <a href="https://www.huawei.com/en/news/2026/9/hc-ascend960-supernode">https://www.huawei.com/en/news/2026/9/hc-ascend960-supernode</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] 以灵衢互联为核心，打造集群与超节点协同的新计算架构, 2026. <a href="https://e.huawei.com/cn/news/2026/solutions/computing/hc-lingqu-agent-ai">https://e.huawei.com/cn/news/2026/solutions/computing/hc-lingqu-agent-ai</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Huawei SuperPoD global debut, MWC 2026. <a href="https://www.huawei.com/en/news/2026/3/mwc-superpod-ai">https://www.huawei.com/en/news/2026/3/mwc-superpod-ai</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] Tau Scaling Law and LogicFolding, ISCAS 2026 keynote. <a href="https://www.huawei.com/en/news/2026/5/ieee-iscas-tau-scaling">https://www.huawei.com/en/news/2026/5/ieee-iscas-tau-scaling</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Atlas AI Computing Platform commercially available, April 2019. <a href="https://www.huawei.com/en/news/2019/4/huawei-atlas-intelligent-computing-launch">https://www.huawei.com/en/news/2019/4/huawei-atlas-intelligent-computing-launch</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E08] Full-stack Ascend AI software, CANN 3.0, 2020. <a href="https://www.huawei.com/en/news/2020/8/huawei-hai-ascend">https://www.huawei.com/en/news/2020/8/huawei-hai-ascend</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] Ascend: Open for All, HUAWEI CONNECT 2025. <a href="https://www.huawei.com/en/news/2025/9/hc-shengten-opensource">https://www.huawei.com/en/news/2025/9/hc-shengten-opensource</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E10] 华为发布围绕AI DC的系列创新方案与成果, 2026. <a href="https://www.huawei.com/cn/news/2026/9/hc-ai-dc-innovation-summit">https://www.huawei.com/cn/news/2026/9/hc-ai-dc-innovation-summit</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] 智启新未来，打造智能世界的硅基黑土地, 2026. <a href="https://www.huawei.com/cn/news/2026/9/hc-wang-keynote">https://www.huawei.com/cn/news/2026/9/hc-wang-keynote</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Peerium Computing Architecture, HUAWEI CONNECT 2026. <a href="https://www.huawei.com/en/news/2026/9/new-computing-architecture-peerium">https://www.huawei.com/en/news/2026/9/new-computing-architecture-peerium</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E13] 华为计算模组首次亮相WAIC大会, July 2026. <a href="https://jdc.huawei.com/jdc/refactor/viewthread?tid=1181426">https://jdc.huawei.com/jdc/refactor/viewthread?tid=1181426</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<p>[E14] CloudEngine 16800 launch, 2019. <a href="https://www.huawei.com/en/news/2019/1/huawei-data-center-switch-built-cloudengine-16800">https://www.huawei.com/en/news/2019/1/huawei-data-center-switch-built-cloudengine-16800</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E15] CloudEngine 16800-X 800GE launch, 2023. <a href="https://e.huawei.com/cn/news/2023/solutions/data-center/first-800ge-data-center-switch">https://e.huawei.com/cn/news/2023/solutions/data-center/first-800ge-data-center-switch</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E16] SuperPoD architecture and Atlas 350 launch, 2025. <a href="https://www.huawei.com/cn/news/2025/9/hc-superpod-innovation">https://www.huawei.com/cn/news/2025/9/hc-superpod-innovation</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E17] CloudMatrix384 cloud service, HDC 2025. <a href="https://www.huaweicloud.com/eu/news/20250620192415143.html">https://www.huaweicloud.com/eu/news/20250620192415143.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E18] Atlas 950 SuperPoD at WAIC 2026. <a href="https://www.huawei.com/cn/news/2026/7/atlas-950-superpod">https://www.huawei.com/cn/news/2026/7/atlas-950-superpod</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E20] Huawei launches Ascend 910 and MindSpore, 23 August 2019. <a href="https://www.mindspore.cn/news/en/172">https://www.mindspore.cn/news/en/172</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

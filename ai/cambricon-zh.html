@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>寒武纪 · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="cambricon-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Cambricon_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Cambricon_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#cambricon-ai">Cambricon AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 范围与架构主线</a></li>
+<li><a href="#02">02 研究谱系：架构会议能证明什么</a></li>
+<li><a href="#03-mlu100270-290">03 商业代际：MLU100、270 与 290</a></li>
+<li><a href="#04-mlu370">04 MLU370：小芯片、融合与板卡差异</a></li>
+<li><a href="#05">05 云端加速器与板卡规格</a><ul>
+<li><a href="#_1">商业参考规格</a></li>
+<li><a href="#cpu">主机 CPU 边界</a></li>
+</ul>
+</li>
+<li><a href="#06-mlu-link">06 MLU-Link、系统与网络路线图</a><ul>
+<li><a href="#_2">网络产品边界</a></li>
+<li><a href="#mlu370-x8">MLU370-X8 链路</a></li>
+<li><a href="#_3">系统披露</a></li>
+</ul>
+</li>
+<li><a href="#07-ip">07 终端 IP、边缘产品与软件延续</a><ul>
+<li><a href="#_4">软件契约</a></li>
+<li><a href="#2018-2020">2018-2020 技术栈</a></li>
+<li><a href="#2021-2026-disclosures">2021-2026 disclosures 技术栈</a></li>
+</ul>
+</li>
+<li><a href="#08">08 归一化指标与部署含义</a><ul>
+<li><a href="#_5">板级平衡</a></li>
+</ul>
+</li>
+<li><a href="#09">09 会议索引与产品映射</a><ul>
+<li><a href="#_6">已核实披露谱系</a></li>
+<li><a href="#_7">命名边界</a></li>
+</ul>
+</li>
+<li><a href="#_8">来源映射</a></li>
+<li><a href="#_9">参考资料</a><ul>
+<li><a href="#_10">产品与技术文档</a></li>
+<li><a href="#_11">会议记录与实现披露</a></li>
+<li><a href="#_12">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="cambricon-ai">Cambricon AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 范围与架构主线</h2>
+<p>本报告覆盖寒武纪在 2015 年至 2026 年 9 月 28 日公开记录的 AI 基础设施，并以前公司时期的 DianNao 研究为基线。深入梳理思元／MLU 云端加速器、存储、MLU-Link 与 NeuWare；终端 IP 和 MLU220 边缘分支用于解释技术延续。不因公司具有更广泛 AI 战略，就推定存在自研服务器 CPU、商用 DPU 或已交付 AI NIC。</p>
+<p>最强的技术延续是可编程领域专用化：机器学习指令接口、张量执行、显式数据搬移，以及横跨云边端的软件平台。商业演进逐步加入更大 SoC、训练支持、小芯片及多设备通信。公开学术记录远比近期商业实现披露丰富，两类证据可以相互解释，但不能视为精确 RTL 谱系。</p>
+<h2 id="02">02 研究谱系：架构会议能证明什么</h2>
+<p>ASPLOS 2014 的 DianNao 与 MICRO 2014 的 DaDianNao 建立早期神经网络加速研究。ASPLOS 2015 的 PuDianNao 扩展机器学习负载范围；ISCA 2015 的 ShiDianNao 把视觉处理推向传感器附近。作者机构主页明确将 DianNao 名称保留给这些学术设计。因此，本报告将其记录为研究前身，而不是早期商业思元 SKU。</p>
+<p>ISCA 2016 的 Cambricon ISA 论文针对固定功能神经网络引擎与通用指令流之间的缺口。领域专用 ISA 可以表达常见神经网络操作，同时保留可编程性。这有助于理解后续 MLU 软件，但若缺少明确对应关系，不能把论文原型的工艺、面积和性能移植到商业 MLU 规格表。</p>
+<p>MICRO 2016 的 Cambricon-X 与 MICRO 2018 的 Cambricon-S 研究稀疏及不规则网络。ISCA 2019 的 Cambricon-F 研究分层、自相似编程架构；ISCA 2021 的 Cambricon-Q 面向高效训练。研究主线覆盖稀疏性、可编程性和训练精度，建立工程关注点，但不证明同名机制在每代产品中交付。</p>
+<p>Cambricon-F 通过共享指令模型及分层存储组织的节点，递归分解操作，目标是降低不同规模下的编程负担。架构解读：统一接口并未消除放置、归约或拥塞成本，而是改变处理这些成本的位置。论文明确讨论这些挑战，其中研究实例 F1／F100 不等于 MLU100 或 MLU270 产品名称。</p>
+<p>2024 年 Cambricon-LLM 研究提出 NPU 配合具有片内处理能力的专用闪存，用于小批量边缘推理。这是容量与带宽协同设计的例子，但不是已披露的思元服务器加速器量产实现。闪存容量、DRAM 中的 KV 存储与计算侧带宽是不同资源。</p>
+<h2 id="03-mlu100270-290">03 商业代际：MLU100、270 与 290</h2>
+<p>思元100 于 2018 年建立云端加速器产品线。270 代增加 MLUv02、连接最多十六个张量核心的片上网络、硬件数据压缩及视频／图像功能。官方页面明确给出非稀疏模型的 INT8 128 TOPS，以及 INT4 256 TOPS 和 INT16 64 TOPS。精度变化不能描述为同一负载的架构加速比。</p>
+<p>思元290 是面向训练的分支，在 WAIC 2021 与 MLU290-M5 模块及玄思1000／MLU-X1000 系统一同公开展示。其重要性在于从以推理为主的产品叙事，转向多加速器训练与系统软件。本版不从二手产品列表补填缺少板卡匹配依据的 HBM、功耗或浮点速率。训练产品存在与精确实现规格是两种不同陈述。</p>
+<h2 id="04-mlu370">04 MLU370：小芯片、融合与板卡差异</h2>
+<p>思元370 采用 7 nm 工艺，将两个 AI 计算小芯片封装为产品，集成 390 亿晶体管。MLUarch03 增加张量单元改进、Supercharger 卷积机制及多算子硬件融合支持。LPDDR5 与 MLU-Link 扩展存储及多设备设计空间。小芯片集成是芯片内部封装边界，双芯板卡则是另一层边界，两者不能混为一谈。</p>
+<p>当前官方规格很有说明力：X4 与 X8 都列出 BF16 96 TFLOP/s 和 INT8 256 TOPS，而 X8 把内存容量及带宽加倍至 48 GB、614.4 GB/s。X8 使用两颗思元370，并提供专用 MLU-Link 接口。因此板上两颗芯片不意味着可以把公布的板卡算力再乘二。S4／S8 分支则以较低峰值算力换取 75 W 的紧凑部署条件。</p>
+<p>架构解读：X8 配置对数据容量、带宽、编解码资源及多卡通信的关注，不亚于算术密度。即使峰值 BF16 与 X4 相同，它仍可能更适合大型或带宽敏感负载。融合只有在中间数据及执行依赖适合支持机制时才有收益。模型图可移植，也可能仍需调整布局、量化和算子，才能发挥硬件能力。</p>
+<h2 id="05">05 云端加速器与板卡规格</h2>
+<h3 id="_1">商业参考规格</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>思元100 / MLU100</td>
+<td>n/d</td>
+<td>2018</td>
+<td>历史已商用</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>云端加速器</td>
+</tr>
+<tr>
+<td>思元270 / MLU270</td>
+<td>MLUv02</td>
+<td>2019</td>
+<td>历史已商用</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>16 张量核心</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>云端加速器</td>
+</tr>
+<tr>
+<td>思元290 / MLU290-M5</td>
+<td>n/d</td>
+<td>2021 公开展示</td>
+<td>历史已商用</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>云端加速器</td>
+</tr>
+<tr>
+<td>MLU370-S4/S8</td>
+<td>MLUarch03</td>
+<td>2021-2022 产品时期</td>
+<td>已商用／可获取</td>
+<td>7 nm</td>
+<td>SKU 配置</td>
+<td>n/d</td>
+<td>72 TFLOP/s 公布值; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 24/48 GB; 307.2 GB/s</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe4 ×16</td>
+<td>75 W; 被动散热</td>
+<td>半高／半长</td>
+</tr>
+<tr>
+<td>MLU370-X4</td>
+<td>MLUarch03</td>
+<td>2021-2022 产品时期</td>
+<td>已商用／可获取</td>
+<td>7 nm</td>
+<td>思元370 芯片</td>
+<td>n/d</td>
+<td>96 TFLOP/s 公布值; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 24 GB; 307.2 GB/s</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>PCIe4 ×16</td>
+<td>150 W; 被动散热</td>
+<td>全高全长；单槽</td>
+</tr>
+<tr>
+<td>MLU370-X8</td>
+<td>MLUarch03</td>
+<td>2021-2022 产品时期</td>
+<td>已商用／可获取</td>
+<td>7 nm</td>
+<td>2 思元370 芯片</td>
+<td>n/d</td>
+<td>96 TFLOP/s 公布值; 稠密口径 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>LPDDR5; 48 GB; 614.4 GB/s</td>
+<td>n/d</td>
+<td>4 端口; 100 GB/s 单向 聚合; 8 支持板卡</td>
+<td>PCIe4 ×16</td>
+<td>250 W; 被动散热</td>
+<td>全高全长；双槽</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="cpu">主机 CPU 边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未建立自研主机 CPU 产品</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="06-mlu-link">06 MLU-Link、系统与网络路线图</h2>
+<p>X8 板卡页面澄清一个关键口径：MLU-Link 的 200 GB/s 是聚合双向带宽，对称分配时对应每方向 100 GB/s。页面列出四端口、十六通道及 50 Gb/s 信号速率；本报告保留板级通道／端口表述，不假定每端口十六通道。页面支持八卡服务器配置，但未证明透明内存一致性或全互联拓扑。</p>
+<p>2025 年年报描述未来面向训练、语言模型推理、多模态推理及大模型交换的芯片平台。交换芯片项目应放入路线图，而非已交付 AI NIC 或 DPU 表。缺少具名技术披露时，不赋予端口速率、SerDes 代际或交换容量。在已记录的加速器组合中，外部 NIC 与主机 CPU 仍是系统依赖。</p>
+<h3 id="_2">网络产品边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大模型交换芯片项目</td>
+<td>2025 年报</td>
+<td>路线图</td>
+<td>交换芯片研发</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>商用 DPU／AI NIC</td>
+<td>n/a</td>
+<td>未建立产品</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="mlu370-x8">MLU370-X8 链路</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MLU-Link</td>
+<td>MLU370-X8</td>
+<td>50 Gb/s</td>
+<td>16 原文所列总量</td>
+<td>100 每设备聚合</td>
+<td>4 端口</td>
+<td>n/d</td>
+<td>8-card 支持服务器配置</td>
+<td>显式通信；一致性 n/d</td>
+</tr>
+<tr>
+<td>主机 PCIe</td>
+<td>MLU370</td>
+<td>16 GT/s</td>
+<td>16</td>
+<td>~31.5 扣除包开销前</td>
+<td>1</td>
+<td>点对点</td>
+<td>主机拓扑</td>
+<td>PCIe</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_3">系统披露</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>玄思1000 / MLU-X1000</td>
+<td>WAIC2021</td>
+<td>MLU290; 数量 n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>MLU370-X8 服务器</td>
+<td>产品文档</td>
+<td>最高 8 板卡</td>
+<td>拓扑 n/d</td>
+<td>外部 NIC；n/d</td>
+<td>n/d</td>
+<td>被动散热板卡；服务器气流</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="07-ip">07 终端 IP、边缘产品与软件延续</h2>
+<p>寒武纪1A、1H 和1M 属于可授权终端处理器 IP 分支，思元220／MLU220 则提供边缘芯片与 M.2／SOM 模组。集成于其他公司 SoC 的 IP 核，不等于寒武纪自有完整 SoC。这些产品与云端方案共享软件和指令家族延续，但存储系统、功耗预算及主机集成方式不同。年报继续描述云端、边缘及 IP 业务，但未公布完整新一代服务器 SKU 矩阵。</p>
+<p>NeuWare 将驱动、运行时、算子库及工具整合为共享平台。CNNL 实现神经网络算子，CNCL 提供集合通信，MagicMind 提供基于 MLIR 的推理编译路径。训练支持数据并行、模型并行及混合并行。框架支持只是起点：生产可用性还需要目标规模下的算子覆盖、数值正确性、通信重叠、性能分析与故障恢复。</p>
+<h3 id="_4">软件契约</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>产品</th>
+<th>功能</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>NeuWare</td>
+<td>驱动／运行时／工具</td>
+<td>云／边／端</td>
+</tr>
+<tr>
+<td>算子</td>
+<td>CNNL / BANG</td>
+<td>算子库与内核编程</td>
+<td>设备相关调优</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>CNCL</td>
+<td>分布式集合通信</td>
+<td>依赖拓扑与配置</td>
+</tr>
+<tr>
+<td>推理</td>
+<td>MagicMind / MLIR</td>
+<td>图编译与优化</td>
+<td>依赖模型及算子覆盖</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2018-2020">2018-2020 技术栈</h3>
+<pre class="mermaid">flowchart TD
+  cpu["外部主机 CPU"]
+  gpu["MLU100 / MLU270"]
+  mem["Board memory / on-芯片 NoC"]
+  sw["NeuWare／框架"]
+  net["外部 NIC／网络"]
+  rt["CNCL／运行时"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"数据路径"| mem
+  gpu ---|"系统 I/O"| net
+  net ---|"集合通信"| rt
+</pre>
+<p>功能技术栈；MLU290 与 MLU370 是不同分支，不是组合配置。</p>
+<h3 id="2021-2026-disclosures">2021-2026 disclosures 技术栈</h3>
+<pre class="mermaid">flowchart TD
+  cpu["外部主机 CPU"]
+  gpu["MLU290 / MLU370"]
+  mem["LPDDR5 / MLU-Link"]
+  sw["NeuWare／框架"]
+  net["外部 NIC／网络"]
+  rt["CNCL／运行时"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"数据路径"| mem
+  gpu ---|"系统 I/O"| net
+  net ---|"集合通信"| rt
+</pre>
+<p>功能技术栈；MLU290 与 MLU370 是不同分支，不是组合配置。</p>
+<h2 id="08">08 归一化指标与部署含义</h2>
+<h3 id="_5">板级平衡</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X4 DRAM/BF16</td>
+<td>307.2e9/96e12 = 0.0032 B/FLOP</td>
+<td>公布峰值；稀疏口径未明示</td>
+</tr>
+<tr>
+<td>X8 DRAM/BF16</td>
+<td>614.4e9/96e12 = 0.0064 B/FLOP</td>
+<td>整板；非每小芯片</td>
+</tr>
+<tr>
+<td>X8 容量/BF16</td>
+<td>48e9/96e12 = 5e-4 B·s/FLOP</td>
+<td>LPDDR，非 HBM</td>
+</tr>
+<tr>
+<td>X8 MLU-Link/DRAM</td>
+<td>100/614.4 = 0.163</td>
+<td>单向聚合链路速率</td>
+</tr>
+<tr>
+<td>X4 vs X8 BF16/TDP</td>
+<td>96/150=0.64; 96/250=0.384 TFLOP/s/W</td>
+<td>峰值／TDP 代理量；负载收益不同</td>
+</tr>
+<tr>
+<td>HBM/FLOP; 主机 DDR/核心; L3/核心</td>
+<td>n/d / n/a</td>
+<td>缺匹配公开数据或自有主机 CPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>板卡比较说明峰值每瓦性能为何可能误导：X8 的 BF16／TDP 比低于 X4，却拥有两倍内存带宽与容量，并具备直接多卡通信。带宽受限或容量受限模型因此可能更适合 X8。正确评估需涵盖可用精度、模型容纳能力、主机至设备流量、卡间集合通信及软件版本。来源未说明稀疏口径时，与其他厂商的稠密浮点比较仍需保留条件。</p>
+<h2 id="09">09 会议索引与产品映射</h2>
+<h3 id="_6">已核实披露谱系</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASPLOS / MICRO</td>
+<td>2014</td>
+<td>DianNao / DaDianNao</td>
+<td>论文作者／公司</td>
+<td>研究基线</td>
+<td>研究记录</td>
+<td>C01 C03</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2015</td>
+<td>PuDianNao</td>
+<td>论文作者／公司</td>
+<td>研究</td>
+<td>研究记录</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2015</td>
+<td>ShiDianNao</td>
+<td>论文作者／公司</td>
+<td>研究</td>
+<td>研究记录</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2016</td>
+<td>Cambricon ISA</td>
+<td>论文作者／公司</td>
+<td>研究 ISA</td>
+<td>研究记录</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2016</td>
+<td>Cambricon-X</td>
+<td>论文作者／公司</td>
+<td>稀疏性研究</td>
+<td>研究记录</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2018</td>
+<td>Cambricon-S</td>
+<td>论文作者／公司</td>
+<td>稀疏性研究</td>
+<td>研究记录</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2019</td>
+<td>Cambricon-F</td>
+<td>论文作者／公司</td>
+<td>研究编程架构</td>
+<td>研究记录</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2021</td>
+<td>Cambricon-Q</td>
+<td>论文作者／公司</td>
+<td>训练研究</td>
+<td>研究记录</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>WAIC</td>
+<td>2021-2022</td>
+<td>云端／边缘产品展示</td>
+<td>论文作者／公司</td>
+<td>MLU220/270/290/370</td>
+<td>产品展示</td>
+<td>E03 E04</td>
+</tr>
+</tbody>
+</table></div>
+<p>四大架构会议记录以 ISCA、MICRO 和 ASPLOS 最丰富。本版未建立商业 MLU 对应的 HPCA、ISSCC 或 Hot Chips 直接实现论文，也不把同名学术论文当作商业设计证明。近期年报描述大模型研发及部署，但未提供完整具名实现矩阵。因此本报告不为广泛流传的较新型号填入推测工艺、存储或算力；这并不意味着 MLU370 是公司最新部署芯片。</p>
+<h3 id="_7">命名边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>含义</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DianNao family</td>
+<td>学术设计</td>
+<td>不是商业 MLU SKU</td>
+</tr>
+<tr>
+<td>思元 / MLU</td>
+<td>芯片及板卡家族</td>
+<td>始终注明板卡后缀</td>
+</tr>
+<tr>
+<td>MLU370 chiplet / X8 双芯片</td>
+<td>封装／板级集成</td>
+<td>不同计数层级</td>
+</tr>
+<tr>
+<td>MLU-Link / CNCL</td>
+<td>硬件链路／集合通信库</td>
+<td>带宽与软件行为不同</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="_8">来源映射</h2>
+<p>01 范围与架构主线 — C02, C03, E02, E03, P01, P02</p>
+<p>02 研究谱系：架构会议能证明什么 — C01, C02, C03, C04, C05</p>
+<p>03 商业代际：MLU100、270 与 290 — E02, E03, E05, P01</p>
+<p>04 MLU370：小芯片、融合与板卡差异 — P02, P04, P05, P06, P07</p>
+<p>05 云端加速器与板卡规格 — E02, E03, E04, E05, P01, P02, P04, P05, P06</p>
+<p>06 MLU-Link、系统与网络路线图 — E02, E03, P05, P06</p>
+<p>07 终端 IP、边缘产品与软件延续 — E02, E03, E05, P01, P02, P06, P07</p>
+<p>08 归一化指标与部署含义 — E02, P05, P06</p>
+<p>09 会议索引与产品映射 — C01, C02, C03, C04, E02, E03, E04, P02, P06, P07</p>
+<h2 id="_9">参考资料</h2>
+<h3 id="_10">产品与技术文档</h3>
+<p>[P01] Siyuan270. <a href="https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=15&amp;m=content">https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=15&amp;m=content</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P02] Siyuan370. <a href="https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=360&amp;m=content">https://cambricon.com/index.php?a=lists&amp;c=index&amp;catid=360&amp;m=content</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P04] MLU370-S4/S8 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=365">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=365</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P05] MLU370-X4 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=371">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=371</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P06] MLU370-X8 board. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=406">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=406</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P07] Cambricon NeuWare. <a href="https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=71">https://www.cambricon.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=71</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_11">会议记录与实现披露</h3>
+<p>[C01] DianNao project and publication lineage. <a href="https://novel.ict.ac.cn/diannao/">https://novel.ict.ac.cn/diannao/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C02] Cambricon ISA, ISCA2016 author record. <a href="https://researchportal.hkust.edu.hk/en/publications/cambricon-an-instruction-set-architecture-for-neural-networks/">https://researchportal.hkust.edu.hk/en/publications/cambricon-an-instruction-set-architecture-for-neural-networks/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C03] Tianshi Chen publications. <a href="https://novel.ict.ac.cn/tchen/">https://novel.ict.ac.cn/tchen/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C04] Cambricon-F, ISCA2019 full author paper. <a href="https://dl.yongwei.site/F.pdf">https://dl.yongwei.site/F.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C05] Cambricon-LLM research, 2024. <a href="https://arxiv.org/abs/2409.15654">https://arxiv.org/abs/2409.15654</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_12">发布、生态与部署</h3>
+<p>[E02] Cambricon2025 annual report, company filing mirror. <a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11993143&amp;stockid=688256">https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=11993143&amp;stockid=688256</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E03] WAIC2021 portfolio. <a href="https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=41&amp;m=content">https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=41&amp;m=content</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E04] WAIC2022 portfolio. <a href="https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=51&amp;m=content">https://www.cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=51&amp;m=content</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E05] Siyuan220 launch. <a href="https://cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=11&amp;m=content">https://cambricon.com/index.php?a=show&amp;c=index&amp;catid=127&amp;id=11&amp;m=content</a>. 一手资料；访问截止 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Arm · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="arm-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Arm_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Arm_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#arm-ai-infrastructure-architecture-evolution">Arm AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-units-ownership-and-availability">02 Units, ownership and availability</a></li>
+<li><a href="#03-neoverse-and-css-generation-atlas">03 Neoverse and CSS generation atlas</a><ul>
+<li><a href="#cpu-ip-comparison-implementation-fields-remain-separate">CPU IP comparison: implementation fields remain separate</a></li>
+<li><a href="#subsystem-integration-envelope">Subsystem integration envelope</a></li>
+</ul>
+</li>
+<li><a href="#04-2015-2018-separating-isa-core-and-server">04 2015-2018: separating ISA, core and server</a></li>
+<li><a href="#05-n1-and-e1-cloud-cores-and-throughput-cores">05 N1 and E1: cloud cores and throughput cores</a></li>
+<li><a href="#06-v1-and-n2-vector-performance-versus-density">06 V1 and N2: vector performance versus density</a></li>
+<li><a href="#07-v2-width-memory-concurrency-and-coherent-hosts">07 V2: width, memory concurrency and coherent hosts</a></li>
+<li><a href="#08-v3-n3-and-css-moving-the-integration-boundary">08 V3, N3 and CSS: moving the integration boundary</a></li>
+<li><a href="#09-agi-cpu-arm-becomes-a-silicon-supplier">09 AGI CPU: Arm becomes a silicon supplier</a><ul>
+<li><a href="#arm-merchant-cpu-reference-skus">Arm merchant CPU reference SKUs</a></li>
+</ul>
+</li>
+<li><a href="#10-css-n4-and-the-current-roadmap">10 CSS N4 and the current roadmap</a></li>
+<li><a href="#11-cmn-chi-and-the-infrastructure-offload-boundary">11 CMN, CHI and the infrastructure offload boundary</a><ul>
+<li><a href="#interconnect-ownership-and-semantics">Interconnect ownership and semantics</a></li>
+<li><a href="#network-product-boundary">Network product boundary</a></li>
+</ul>
+</li>
+<li><a href="#12-gpu-and-npu-ip-complementary-edge-compute">12 GPU and NPU IP: complementary edge compute</a><ul>
+<li><a href="#complementary-accelerator-ip-in-the-common-schema">Complementary accelerator IP in the common schema</a></li>
+</ul>
+</li>
+<li><a href="#13-software-security-and-research-evidence">13 Software, security and research evidence</a><ul>
+<li><a href="#software-milestones">Software milestones</a></li>
+</ul>
+</li>
+<li><a href="#14-systems-and-quantitative-balance">14 Systems and quantitative balance</a><ul>
+<li><a href="#representative-system-boundaries">Representative system boundaries</a></li>
+<li><a href="#derived-bandwidth-and-cache-ratios">Derived bandwidth and cache ratios</a></li>
+</ul>
+</li>
+<li><a href="#15-conference-to-product-index">15 Conference-to-product index</a><ul>
+<li><a href="#verified-disclosure-anchors">Verified disclosure anchors</a></li>
+</ul>
+</li>
+<li><a href="#16-codename-and-ownership-crosswalk">16 Codename and ownership crosswalk</a><ul>
+<li><a href="#names-that-must-not-be-conflated">Names that must not be conflated</a></li>
+</ul>
+</li>
+<li><a href="#17-integrated-stack-across-four-eras">17 Integrated stack across four eras</a><ul>
+<li><a href="#2015-2018-isa-and-partner-integration">2015-2018: ISA and partner integration</a></li>
+<li><a href="#2019-2022-neoverse-platforms">2019-2022: Neoverse platforms</a></li>
+<li><a href="#2023-2025-css-and-heterogeneous-hosts">2023-2025: CSS and heterogeneous hosts</a></li>
+<li><a href="#2026-ip-and-merchant-silicon-coexist">2026: IP and merchant silicon coexist</a></li>
+<li><a href="#bandwidth-hierarchy-by-era">Bandwidth hierarchy by era</a></li>
+</ul>
+</li>
+<li><a href="#18-engineering-conclusions">18 Engineering conclusions</a></li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#research-papers-and-publication-registries">Research papers and publication registries</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="arm-ai-infrastructure-architecture-evolution">Arm AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>Families and weights: deep on Neoverse, CSS and AGI CPU; full on mesh/system IP; proportional on licensee silicon, GPU/NPU IP and software.
+Start: 2015, with Cortex-A server designs as the baseline.
+Cutoff: 28 September 2026; includes Hot Chips 2026 and the September CSS N4 announcement.
+Focus: core evolution, coherent memory systems, integration boundaries and the CPU role in AI infrastructure.
+Exclusions: exhaustive licensee SKUs and mobile generations; no Arm-branded datacenter training GPU or merchant AI NIC is established in the reviewed portfolio.</p>
+<p>Arm’s infrastructure evolution has three overlapping layers. Neoverse separates server-oriented core development from a mobile-led product story. Compute Subsystems move validation of the CPU, mesh, memory interfaces and platform software upstream into Arm. AGI CPU adds Arm-designed merchant silicon in 2026. The last transition changes the competitive boundary: Arm can now supply both the building blocks for a custom server and a finished CPU for organizations without a custom-silicon program.</p>
+<p>The important progression is not simply more cores. N1 establishes a scalable cloud core; V1 adds substantial vector capacity; N2 emphasizes density and Armv9; V2 widens the scalar machine and improves memory access; V3 and CSS bring confidential computing and more complete integration. CSS N4 then expands configuration and I/O headroom. The realized outcome still depends on the licensee’s memory channels, cache, physical design and software. A Neoverse name is therefore insufficient to predict socket performance.</p>
+<h2 id="02-units-ownership-and-availability">02 Units, ownership and availability</h2>
+<p>IP availability is not silicon general availability. A core does not have a universal foundry node, package power, socket count or DDR bandwidth. Those properties belong to an implementation. Tables retain the standard cross-vendor columns and use n/a for a field that does not apply, and n/d when reviewed sources do not disclose it. Cloud vCPU limits are not automatically physical core counts. Historical shipping does not imply current orderability.</p>
+<p>Memory bandwidth is decimal payload GB/s: channels × transfers per second × eight bytes for a conventional 64-bit DDR channel. Per-core bandwidth is a derived equal-share ratio, not a reservation. Link figures are per direction unless explicitly labelled otherwise. ISA vector length, number of execution pipelines and aggregate bytes processed per cycle are different quantities. A two-pipeline 256-bit SVE core must not be compared with a four-pipeline 128-bit core by vector length alone. Confidential-computing capability likewise requires system and software enablement, not just an ISA label.</p>
+<h2 id="03-neoverse-and-css-generation-atlas">03 Neoverse and CSS generation atlas</h2>
+<h3 id="cpu-ip-comparison-implementation-fields-remain-separate">CPU IP comparison: implementation fields remain separate</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neoverse N1 / Ares</td>
+<td>Ares</td>
+<td>2019 IP disclosure</td>
+<td>Licensable IP</td>
+<td>N1</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>512 KB / 1 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv8.2-A; NEON 128-bit</td>
+</tr>
+<tr>
+<td>Neoverse E1</td>
+<td>n/d</td>
+<td>2019 IP disclosure</td>
+<td>Licensable IP</td>
+<td>E1</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>n/d</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv8.2-A; NEON; SMT2</td>
+</tr>
+<tr>
+<td>Neoverse V1 / Zeus</td>
+<td>Zeus</td>
+<td>2020-2021 IP disclosure</td>
+<td>Licensable IP</td>
+<td>V1</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>512 KB / 1 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>SVE: 2 x 256-bit; BF16; INT8</td>
+</tr>
+<tr>
+<td>Neoverse N2 / Perseus</td>
+<td>Perseus</td>
+<td>2020-2021 IP disclosure</td>
+<td>Licensable IP</td>
+<td>N2</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>512 KB / 1 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv9; SVE2 128-bit; BF16</td>
+</tr>
+<tr>
+<td>Neoverse V2 / Demeter</td>
+<td>Demeter</td>
+<td>2022-2023 IP disclosure</td>
+<td>Licensable IP</td>
+<td>V2</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>1 / 2 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv9; SVE2 128-bit; 4 vector pipes</td>
+</tr>
+<tr>
+<td>Neoverse V3</td>
+<td>n/d</td>
+<td>2024 IP disclosure</td>
+<td>Licensable IP</td>
+<td>V3</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>2 / 3 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv9.2-A; SVE2; CCA</td>
+</tr>
+<tr>
+<td>Neoverse N3</td>
+<td>n/d</td>
+<td>2024 IP disclosure</td>
+<td>Licensable IP</td>
+<td>N3</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>128 KB - 2 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv9.2-A; SVE2</td>
+</tr>
+<tr>
+<td>CSS N4</td>
+<td>n/d</td>
+<td>2026-09 IP disclosure</td>
+<td>Licensable IP</td>
+<td>N4</td>
+<td>Configurable; E1 SMT2; N4 threads n/d; others single-threaded</td>
+<td>Licensee-defined; N4 targets 3 nm</td>
+<td>IP, not a packaged SKU</td>
+<td>up to 2 MB</td>
+<td>System configuration</td>
+<td>Implementation-defined</td>
+<td>n/a</td>
+<td>System integration</td>
+<td>n/a</td>
+<td>Armv9; details n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="subsystem-integration-envelope">Subsystem integration envelope</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Subsystem</th>
+<th>Disclosure</th>
+<th>Core envelope</th>
+<th>Memory / I/O</th>
+<th>Integration meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS N2</td>
+<td>2023</td>
+<td>Up to 64 N2</td>
+<td>DDR5/LPDDR5; PCIe 5 / CXL</td>
+<td>Prevalidated CPU and system design</td>
+</tr>
+<tr>
+<td>CSS V3</td>
+<td>2024</td>
+<td>Up to 64 V3 per subsystem</td>
+<td>up to 12 memory channels; 64 PCIe 5/CXL lanes</td>
+<td>Chiplet-ready; CCA support</td>
+</tr>
+<tr>
+<td>CSS N3</td>
+<td>2024</td>
+<td>Configurable N3 subsystem</td>
+<td>CMN S3; CHI C2C</td>
+<td>Cloud, networking, DPU and edge customization</td>
+</tr>
+<tr>
+<td>CSS N4</td>
+<td>2026-09</td>
+<td>Up to 128 N4 per die</td>
+<td>DDR5 / LPDDR6; PCIe 7 / CXL 4.0</td>
+<td>3 nm target; configurable compute foundation</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-2015-2018-separating-isa-core-and-server">04 2015-2018: separating ISA, core and server</h2>
+<p>Before Neoverse, an Arm server could use licensed Cortex cores or a custom Arm-compatible microarchitecture. These are different business and engineering paths. Cortex-A57/A72-era designs provided a baseline, while Qualcomm Falkor, Cavium/Marvell ThunderX and Fujitsu’s later A64FX demonstrate that an Arm ISA license does not imply a Neoverse core. That distinction remains essential for AmpereOne and NVIDIA Vera as well: their presence in the Arm ecosystem cannot be used as evidence about the internals of an Arm-designed core.</p>
+<p>A server platform requires much more than an instruction decoder. Coherent I/O, interrupt virtualization, page-table maintenance, RAS, firmware boot conventions and a stable operating-system environment all affect deployment cost. Neoverse’s 2018 branding and 2019 products made this infrastructure focus explicit. The lasting architectural advantage is the ability to assemble an application-specific balance of cores, caches, memory and accelerators, provided that integration and software costs remain manageable.</p>
+<h2 id="05-n1-and-e1-cloud-cores-and-throughput-cores">05 N1 and E1: cloud cores and throughput cores</h2>
+<p>N1 combines four-instruction decode with dispatch of up to eight internal micro-operations, a 128-entry commit queue, 64 KB instruction and data caches, and private L2. Its decoupled branch predictor runs ahead of instruction fetch; a 6K-entry main BTB helps large server code footprints. These widths describe different pipeline stages, not interchangeable measures of IPC. Direct attachment to CMN-600 lets designers grow the coherent system without imposing a fixed mobile cluster boundary. Server features include RAS, virtualization extensions and coherent instruction-cache behavior.</p>
+<p>Hot Chips 2019 explains the architecture; ISSCC 2020 paper 8.3 supplies a concrete 3 GHz, 7 nm implementation anchor. The ISSCC summary emphasizes a short, operation-dependent pipeline and a low-latency memory hierarchy. Its PPA comparisons belong to that implementation and baseline, not every N1 licensee. E1 instead targets data-plane throughput with two hardware threads per core. It should not be treated as a low-clocked N1 or used to infer SMT in N-series and V-series products.</p>
+<p>AWS Graviton2 and Ampere Altra turned N1 into commercial cloud and merchant-server products. Their usefulness comes from a complete platform and a large population of independent software threads, rather than from one universal Arm socket. Altra Max extends the density approach. Increasing cores while holding memory-channel count constant reduces the average external bandwidth budget per core; cache locality and workload consolidation determine whether that trade is productive.</p>
+<h2 id="06-v1-and-n2-vector-performance-versus-density">06 V1 and N2: vector performance versus density</h2>
+<p>V1 creates a performance-oriented branch rather than replacing N1 in every role. Its two 256-bit SVE pipelines, BF16 support and INT8 matrix instructions increase CPU-side scientific and ML capability. Decoupled prediction, an instruction-side operation cache and a wider machine aim to keep the execution units busy. Vector-length-agnostic programming protects software from assuming one implementation width. AWS Graviton3 is the important cloud realization, but its chiplets and DDR5 channels are AWS design choices, not intrinsic V1 properties.</p>
+<p>N2 takes Armv9 and 128-bit SVE2 into a more density-oriented core. The Hot Chips 2021 disclosure places the core together with CMN-700 and the wider system roadmap. The appropriate comparison with V1 is performance per area, per watt and per memory channel on the intended workload, not SVE width alone. Microsoft Cobalt 100 and networking implementations demonstrate how one core family can support different system balances. The CSS N2 offering in 2023 further reduces the amount of subsystem integration that a licensee must perform.</p>
+<h2 id="07-v2-width-memory-concurrency-and-coherent-hosts">07 V2: width, memory concurrency and coherent hosts</h2>
+<p>V2’s Hot Chips 2023 disclosure is unusually useful for reconstructing the whole core. It shows six-instruction decode, eight-wide dispatch and retirement, a 320-plus out-of-order window, six ALUs, two branch pipelines, and two load/store pipes plus one additional load pipe. Four 128-bit vector datapaths replace the V1 organization. The optional 2 MB private L2 retains a quoted ten-cycle load-to-use latency. Prefetch changes include indirect and page-table-walk handling, with lower priority for speculative prefetch traffic than demand requests. The design broadens useful concurrency while controlling memory interference.</p>
+<p>V2 appears in AWS Graviton4, Google Axion and NVIDIA Grace. These systems illustrate three different optimizations: general cloud throughput, a vertically integrated cloud platform, and a coherent accelerator host. Grace’s LPDDR5X and NVLink-C2C belong to NVIDIA’s CPU and superchip integration. They do not make NVLink an Arm interconnect. Conversely, a cloud processor’s DDR channels do not describe Grace. The common core provides software and implementation reuse; the system fabric and memory hierarchy determine the node-level behavior.</p>
+<h2 id="08-v3-n3-and-css-moving-the-integration-boundary">08 V3, N3 and CSS: moving the integration boundary</h2>
+<p>The 2024 generation makes a preintegrated subsystem a central product rather than a reference illustration. CSS V3 combines V3 cores, coherent fabric and platform IP, while CSS N3 serves a broader range of cloud, networking and edge configurations. V3 introduces Arm Confidential Computing Architecture support within the Neoverse family. CCA’s Realm isolation model is separate from Morello’s capability-based memory safety. Neither feature should be inferred merely because a chip implements some Armv9 instructions.</p>
+<p>CSS trades some integration freedom for a verified baseline and a shorter path to silicon. The licensee still owns choices in packaging, memory population, clocks, firmware policy and commercial qualification. Microsoft Cobalt 200 uses CSS V3, yet its complete SoC has 132 active cores, 3 MB L2 per core and 192 MB system cache. Cobalt 200 entered customer preview in 2026. This is why a subsystem’s core ceiling must not be mistaken for a package ceiling. AWS Graviton5 provides another V3-based cloud generation, reaching 192 cores per chip and becoming available through M9g/M9gd in June 2026.</p>
+<h2 id="09-agi-cpu-arm-becomes-a-silicon-supplier">09 AGI CPU: Arm becomes a silicon supplier</h2>
+<p>Announced in March 2026, AGI CPU turns the Neoverse platform into an Arm-designed server product. By the May shareholder update, commercial systems were available to order from named OEMs. Hot Chips 2026 adds the architecture context; the current product brief supplies SKU-level boundaries. The 136-core SP113012 has 2 MB L2 per core and 128 MB shared system cache, twelve DDR5-8800 channels, 96 PCIe 6 lanes and CXL 3.0 Type 3 support. Its maximum clock is 3.5 GHz; the 3.7 GHz headline belongs to the 64-core variant. All three listed variants have a 300 W base TDP setting.</p>
+<p>The design emphasizes feeding many independent CPU tasks and attaching external accelerators. A theoretical 844.8 GB/s channel sum yields 6.21 GB/s per core at 136 cores and 13.2 GB/s at 64 cores. Those derived ratios explain the memory-per-core variant without implying sustained application bandwidth. The CPU remains a host and an inference-capable general processor. It is not an HBM tensor accelerator, and the 300 W CPU rating cannot be multiplied into a complete rack power estimate without memory, storage, NICs, fans and power-conversion losses.</p>
+<h3 id="arm-merchant-cpu-reference-skus">Arm merchant CPU reference SKUs</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AGI CPU 136C</td>
+<td>SP113012</td>
+<td>2026</td>
+<td>Shipping / available</td>
+<td>Neoverse V3</td>
+<td>136 / 136</td>
+<td>3 nm</td>
+<td>Arm-designed server SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>2S; link rate n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2 x 128-bit SVE2; BF16; INT8 MMLA</td>
+</tr>
+<tr>
+<td>AGI CPU 128C</td>
+<td>SP113012S</td>
+<td>2026</td>
+<td>Shipping / available</td>
+<td>Neoverse V3</td>
+<td>128 / 128</td>
+<td>3 nm</td>
+<td>Arm-designed server SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>2S; link rate n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2 x 128-bit SVE2; BF16; INT8 MMLA</td>
+</tr>
+<tr>
+<td>AGI CPU 64C</td>
+<td>SP113012A</td>
+<td>2026</td>
+<td>Shipping / available</td>
+<td>Neoverse V3</td>
+<td>64 / 64</td>
+<td>3 nm</td>
+<td>Arm-designed server SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>2S; link rate n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2 x 128-bit SVE2; BF16; INT8 MMLA</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-css-n4-and-the-current-roadmap">10 CSS N4 and the current roadmap</h2>
+<p>September 2026 CSS N4 is a new IP/subsystem generation, not the core inside the first AGI CPU. Arm lists up to 128 N4 cores per die, private L2 configurable to 2 MB, a 3 nm implementation target, DDR5 or LPDDR6, and PCIe 7/CXL 4.0 I/O. These are subsystem capabilities; a licensee need not instantiate every maximum together. The architectural direction is a wider deployment envelope, including CPU hosts and infrastructure processors whose memory and I/O requirements differ.</p>
+<p>A public IP announcement does not establish final commercial silicon clocks, socket TDP, DDR qualification or deployment dates. The reviewed evidence does not provide a complete N4 core queue-and-port disclosure comparable with the V2 Hot Chips talk. The report therefore preserves the new generation and its verified interfaces without filling those fields from client-core analogies. Mobile CSS and automotive V3AE derivatives show reuse, but their safety, graphics and power domains remain distinct from the cloud subsystem.</p>
+<h2 id="11-cmn-chi-and-the-infrastructure-offload-boundary">11 CMN, CHI and the infrastructure offload boundary</h2>
+<p>CMN-600, CMN-700 and CMN S3 make coherence a configurable system resource. Request nodes inject CPU and I/O transactions; home nodes coordinate address ownership, directories and system cache; memory-facing nodes connect to controllers. CHI specifies transaction and coherence behavior, while the mesh implements routing and buffering. Consequently, a CHI data-channel width is not a SerDes lane rate and a mesh peak is not DRAM bandwidth. Chiplet crossings add a physical-link and latency problem beyond on-die coherence.</p>
+<p>Arm cores inside DPUs and IPUs provide a programmable control or service processor. Packet pipelines, RDMA engines, crypto, local memory and ports are supplied by the chip designer. Arm’s participation in a DPU therefore does not make that device an Arm-branded NIC. CSS N3 and the Alphawave collaboration show how a compute chiplet can be combined with a networking or acceleration die. The useful unit of comparison is the whole device: host interface, offload engines, transport semantics and software isolation.</p>
+<h3 id="interconnect-ownership-and-semantics">Interconnect ownership and semantics</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMN-600 / CHI</td>
+<td>N1</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Coherent on-die mesh</td>
+<td>Implementation-defined</td>
+<td>Cache coherence; system cache</td>
+</tr>
+<tr>
+<td>CMN-700</td>
+<td>N2 / V2</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Coherent mesh; multi-chip integration</td>
+<td>n/d</td>
+<td>CHI</td>
+</tr>
+<tr>
+<td>CMN S3 / CHI C2C</td>
+<td>V3 / N3</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Mesh and chiplet links</td>
+<td>n/d</td>
+<td>Coherent subsystem integration</td>
+</tr>
+<tr>
+<td>AGI CPU PCIe 6 / CXL 3</td>
+<td>2026</td>
+<td>64 GT/s</td>
+<td>up to x16</td>
+<td>~128 raw x16</td>
+<td>96 lanes total</td>
+<td>Host I/O fabric</td>
+<td>n/d</td>
+<td>PCIe I/O; CXL Type 3 memory</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="network-product-boundary">Network product boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No Arm-branded AI NIC established</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>IP supplier / CPU supplier</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Neoverse licensed to device vendors</td>
+<td>n/a</td>
+<td>Licensee-specific</td>
+<td>n/a</td>
+<td>CPU control; packet engines separate</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-gpu-and-npu-ip-complementary-edge-compute">12 GPU and NPU IP: complementary edge compute</h2>
+<p>Mali evolves through Midgard, Bifrost, Valhall and later graphics generations; Immortalis adds a premium graphics branch. These designs target integrated graphics and shared-memory SoCs. Their presence does not establish a merchant HBM GPU for distributed training. The 2026 Mali G2-Ultra NX adds dedicated neural acceleration within the mobile graphics platform, alongside the C2 CPU cluster and SME2. This is important convergence at the edge, while its bandwidth, power and software environment remain different from a datacenter accelerator card.</p>
+<p>Ethos-N77/N78 address application-processor and edge inference integration; Ethos-U55/U65/U85 address constrained embedded systems. U65 extends the U55 approach into Cortex-A, Cortex-R and Neoverse systems. U85 expands to 128-2048 MAC units and supports transformer-oriented operators. At 1 GHz, 2048 MACs correspond to 4.096 TOPS when one multiply-add counts as two integer operations; this is a configuration calculation, not BF16 throughput. Compiler partitioning, SRAM tiling and unsupported-operator fallback determine practical model coverage.</p>
+<h3 id="complementary-accelerator-ip-in-the-common-schema">Complementary accelerator IP in the common schema</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethos-N78</td>
+<td>Ethos-N</td>
+<td>2020 IP</td>
+<td>Licensable IP</td>
+<td>n/a</td>
+<td>Integrated IP</td>
+<td>configurable</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>HBM n/a; SoC memory</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC interconnect</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+<tr>
+<td>Ethos-U85</td>
+<td>Ethos-U</td>
+<td>2024 IP</td>
+<td>Licensable IP</td>
+<td>n/a</td>
+<td>Integrated IP</td>
+<td>128-2048 MACs</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>HBM n/a; system SRAM/DRAM</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC interconnect</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+<tr>
+<td>Mali G2-Ultra NX</td>
+<td>Mali</td>
+<td>2026 IP</td>
+<td>Announced; GA n/d</td>
+<td>n/a</td>
+<td>Mobile GPU IP</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM n/a; shared SoC memory</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC interconnect</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-software-security-and-research-evidence">13 Software, security and research evidence</h2>
+<p>Arm’s software advantage comes from a common AArch64 ecosystem combined with implementation-specific optimization. GCC/LLVM targets, Linux scheduling and NUMA placement, optimized math kernels, Compute Library and profiling tools must match the actual core and memory system. SVE-length-agnostic code still needs sensible blocking and cache reuse. CSS reference software supplies firmware and platform models; it does not automatically qualify a production server. In AI hosting, orchestration latency, tokenizer performance and communication progress can matter even when all large matrix operations run elsewhere.</p>
+<p>The academic record adds mechanisms and evaluation methods rather than a complete product roadmap. Arm-associated MISB at ISCA 2019 and temporal prefetching at MICRO 2019 study the storage and traffic cost of prediction metadata. Triangel at ISCA 2024 studies timeliness and accuracy; HPCA 2025 bandwidth-partitioning work evaluates resource interference; ASPLOS 2025 hierarchical prefetching addresses large instruction footprints. These help explain what designers are optimizing. They do not prove that a named production core implements the proposed mechanism. Morello is different: its documented N1-derived evaluation platform is an explicit research-to-hardware link, but remains a capability-security prototype rather than a standard Neoverse feature.</p>
+<h3 id="software-milestones">Software milestones</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Release / component</th>
+<th>Date</th>
+<th>Hardware enabled</th>
+<th>Key features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AArch64 Linux / GCC / LLVM</td>
+<td>2015-2026</td>
+<td>Cortex, Neoverse and custom cores</td>
+<td>Portable binaries; core-specific scheduling and ISA dispatch</td>
+</tr>
+<tr>
+<td>Arm Compute Library</td>
+<td>ongoing</td>
+<td>Arm CPU / Mali</td>
+<td>Optimized AI operators; feature-dependent paths</td>
+</tr>
+<tr>
+<td>Neoverse reference software</td>
+<td>2024 release</td>
+<td>RD-V3 and related platforms</td>
+<td>Firmware and fixed virtual platform integration</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-systems-and-quantitative-balance">14 Systems and quantitative balance</h2>
+<h3 id="representative-system-boundaries">Representative system boundaries</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Licensee cloud server</td>
+<td>2019-2026</td>
+<td>Graviton / Axion / Cobalt</td>
+<td>Provider-specific</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>AGI CPU 1OU dual-node reference</td>
+<td>2026</td>
+<td>2 x AGI CPU</td>
+<td>Two independent nodes</td>
+<td>n/d</td>
+<td>36 kW example; 8160 cores</td>
+<td>Air</td>
+</tr>
+<tr>
+<td>AGI CPU 2U2P reference</td>
+<td>2026</td>
+<td>2 x AGI CPU</td>
+<td>2-socket coherent server</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>Air</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="derived-bandwidth-and-cache-ratios">Derived bandwidth and cache ratios</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>DRAM peak GB/s</th>
+<th>GB/s/core</th>
+<th>SLC MB/core</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AGI 136C</td>
+<td>844.8</td>
+<td>6.21</td>
+<td>0.94</td>
+<td>Equal-share ratio; not a reservation</td>
+</tr>
+<tr>
+<td>AGI 128C</td>
+<td>844.8</td>
+<td>6.60</td>
+<td>1.00</td>
+<td>Same interface, fewer active cores</td>
+</tr>
+<tr>
+<td>AGI 64C</td>
+<td>844.8</td>
+<td>13.20</td>
+<td>2.00</td>
+<td>Memory and cache capacity per core increase</td>
+</tr>
+<tr>
+<td>Graviton4 96C</td>
+<td>537.6</td>
+<td>5.60</td>
+<td>n/d</td>
+<td>12 x DDR5-5600; AWS implementation</td>
+</tr>
+</tbody>
+</table></div>
+<p>HBM bytes per dense BF16/FP8 FLOP and accelerator scale-up/HBM ratios are n/a for the Arm-branded CPU/IP portfolio. Assigning a partner GPU’s HBM to Arm would corrupt a cross-vendor comparison. Likewise, no universal tokens/W number follows from core count or an IP efficiency projection. An end-to-end measurement needs the actual model, precision, latency target, memory configuration and system power boundary.</p>
+<h2 id="15-conference-to-product-index">15 Conference-to-product index</h2>
+<h3 id="verified-disclosure-anchors">Verified disclosure anchors</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2019</td>
+<td>Neoverse N1 Cloud-to-Edge Infrastructure SoCs</td>
+<td>Arm</td>
+<td>N1</td>
+<td>Architecture</td>
+<td>P01</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2020</td>
+<td>A 3GHz Arm Neoverse N1 CPU in 7nm FinFET for Infrastructure Applications</td>
+<td>R. Christy et al.</td>
+<td>N1</td>
+<td>Circuit / implementation</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2021</td>
+<td>Arm Neoverse N2: 2nd generation infrastructure CPUs and system IPs</td>
+<td>A. Pellegrini</td>
+<td>N2 / CMN-700</td>
+<td>Architecture</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2023</td>
+<td>Arm Neoverse V2 Platform</td>
+<td>Magnus Bruce</td>
+<td>V2</td>
+<td>Architecture</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2023</td>
+<td>Neoverse Compute Subsystems launch</td>
+<td>Arm</td>
+<td>CSS N2</td>
+<td>Subsystem</td>
+<td>E03</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Arm AGI CPU architecture disclosure</td>
+<td>Arm</td>
+<td>AGI CPU</td>
+<td>Architecture / system</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2019 / 2024</td>
+<td>MISB; Triangel</td>
+<td>Arm / academic researchers</td>
+<td>Related memory research</td>
+<td>Related research</td>
+<td>R06 R03</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2019</td>
+<td>Temporal Prefetching Without the Off-Chip Metadata</td>
+<td>Wu et al.</td>
+<td>Related memory research</td>
+<td>Related research</td>
+<td>R05</td>
+</tr>
+<tr>
+<td>HPCA</td>
+<td>2025</td>
+<td>Criticality-Aware Instruction-Centric Bandwidth Partitioning</td>
+<td>Paper authors</td>
+<td>Resource partitioning</td>
+<td>Related research</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2025</td>
+<td>Hierarchical Prefetching</td>
+<td>Zhang et al.</td>
+<td>Instruction supply</td>
+<td>Related research</td>
+<td>R07</td>
+</tr>
+<tr>
+<td>Microsoft Ignite / Build</td>
+<td>2025 / 2026</td>
+<td>Cobalt 200 disclosure and preview</td>
+<td>Microsoft</td>
+<td>CSS V3 implementation</td>
+<td>Partner deployment</td>
+<td>E07 E18 E20</td>
+</tr>
+<tr>
+<td>Google Cloud Next</td>
+<td>2024</td>
+<td>Google Axion introduction</td>
+<td>Google</td>
+<td>V2 implementation</td>
+<td>Partner deployment</td>
+<td>E17</td>
+</tr>
+<tr>
+<td>AWS re:Invent / EC2 launches</td>
+<td>2023-2026</td>
+<td>Graviton4 / Graviton5</td>
+<td>AWS</td>
+<td>V2 / V3 implementations</td>
+<td>Partner deployment</td>
+<td>E16 E19</td>
+</tr>
+<tr>
+<td>Arm Everywhere</td>
+<td>2026</td>
+<td>AGI CPU and CSS N4</td>
+<td>Arm</td>
+<td>Merchant CPU / IP</td>
+<td>Product launch</td>
+<td>E05 E06</td>
+</tr>
+</tbody>
+</table></div>
+<p>DAC, MWC, Computex, OCP, GTC, SC/ISC, VLSI and ISSCC/JSSC are complementary channels: design methodology, telecom deployments, ecosystem launches, racks, coherent GPU hosts, HPC systems and implementation technology. They are included when a specific disclosure is tied to a covered generation. The index is a verified selection, not a claim that Arm presented every product at every venue. The N1 ISSCC entry uses the conference’s published technical summary; it does not imply access to the complete paper.</p>
+<h2 id="16-codename-and-ownership-crosswalk">16 Codename and ownership crosswalk</h2>
+<h3 id="names-that-must-not-be-conflated">Names that must not be conflated</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+<th>Owner / boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ares / N1</td>
+<td>Core IP generation</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Zeus / V1</td>
+<td>Vector-oriented core IP</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Perseus / N2</td>
+<td>Density-oriented Armv9 core</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Demeter / V2</td>
+<td>Core used by Grace, Axion and Graviton4</td>
+<td>Arm core; partner SoCs</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Preintegrated compute subsystem</td>
+<td>Not a complete merchant chip</td>
+</tr>
+<tr>
+<td>AGI CPU</td>
+<td>Arm-designed server silicon</td>
+<td>V3-based; not CSS N4</td>
+</tr>
+<tr>
+<td>Falkor / Oryon / AmpereOne / Vera</td>
+<td>Custom Arm-compatible cores or products</td>
+<td>Licensee designs; not Neoverse aliases</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="17-integrated-stack-across-four-eras">17 Integrated stack across four eras</h2>
+<p>These figures show ownership and composition, not an assertion of a common physical fabric across all licensees. Connections indicate integration relationships. Exact bandwidth remains implementation-specific.</p>
+<h3 id="2015-2018-isa-and-partner-integration">2015-2018: ISA and partner integration</h3>
+<pre class="mermaid">flowchart TD
+  n0["Arm ISA / Cortex IP"]
+  n1["Custom Arm cores"]
+  n2["Partner server SoC"]
+  n3["DDR / PCIe / NIC"]
+  n4["Linux / firmware"]
+  n5["Cloud / edge services"]
+  n0 ---|"design"| n2
+  n1 ---|"integration"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"compose"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual ownership and integration map; partner GPU and network bandwidth is not attributed to Arm.</p>
+<h3 id="2019-2022-neoverse-platforms">2019-2022: Neoverse platforms</h3>
+<pre class="mermaid">flowchart TD
+  n0["N1 / V1 / N2"]
+  n1["CMN + system IP"]
+  n2["Graviton / Altra / partners"]
+  n3["DDR + external accelerators"]
+  n4["Linux / SVE libraries"]
+  n5["Cloud / HPC / networking"]
+  n0 ---|"design"| n2
+  n1 ---|"integration"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"compose"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual ownership and integration map; partner GPU and network bandwidth is not attributed to Arm.</p>
+<h3 id="2023-2025-css-and-heterogeneous-hosts">2023-2025: CSS and heterogeneous hosts</h3>
+<pre class="mermaid">flowchart TD
+  n0["V2 / V3 / N3 + CSS"]
+  n1["CMN / CHI C2C"]
+  n2["Grace / Axion / Cobalt"]
+  n3["Partner GPUs / DPUs"]
+  n4["Firmware / optimized kernels"]
+  n5["Cloud AI / coherent systems"]
+  n0 ---|"design"| n2
+  n1 ---|"integration"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"compose"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual ownership and integration map; partner GPU and network bandwidth is not attributed to Arm.</p>
+<h3 id="2026-ip-and-merchant-silicon-coexist">2026: IP and merchant silicon coexist</h3>
+<pre class="mermaid">flowchart TD
+  n0["CSS N4 licensable IP"]
+  n1["AGI CPU, V3-based"]
+  n2["Custom partner silicon"]
+  n3["DDR5 / PCIe 6 / CXL 3"]
+  n4["OS / runtimes / management"]
+  n5["OEM racks + partner XPUs"]
+  n0 ---|"design"| n2
+  n1 ---|"integration"| n3
+  n2 ---|"enable"| n4
+  n3 ---|"compose"| n5
+  n4 ---|"software"| n5
+</pre>
+<p>Conceptual ownership and integration map; partner GPU and network bandwidth is not attributed to Arm.</p>
+<h3 id="bandwidth-hierarchy-by-era">Bandwidth hierarchy by era</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Era</th>
+<th>On-die / die-to-die</th>
+<th>Memory</th>
+<th>Host attach</th>
+<th>Scale-up / scale-out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-2018</td>
+<td>Licensee fabric</td>
+<td>Licensee DDR</td>
+<td>PCIe; n/d</td>
+<td>Licensee network; n/d</td>
+</tr>
+<tr>
+<td>2019-2022</td>
+<td>CMN-600/700; n/d</td>
+<td>Partner-configured DDR; n/d</td>
+<td>PCIe / CCIX; n/d</td>
+<td>No universal Arm link</td>
+</tr>
+<tr>
+<td>2023-2025</td>
+<td>CMN / CHI C2C; n/d</td>
+<td>Graviton4: 537.6 GB/s peak</td>
+<td>Grace C2C is NVIDIA-owned</td>
+<td>Partner-specific</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>CMN; D2D n/d</td>
+<td>AGI: 844.8 GB/s derived peak</td>
+<td>PCIe 6 x16 ~128 GB/s raw</td>
+<td>External XPU/NIC; n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="18-engineering-conclusions">18 Engineering conclusions</h2>
+<p>Arm’s decade is best understood as the gradual productization of a configurable system. Core efficiency matters, but the larger gains come from pairing the right core with the right memory, coherence and deployment model. CSS reduces integration cost without removing implementation responsibility. Merchant AGI silicon widens access to the platform while introducing a second relationship with existing licensees. For AI infrastructure, the enduring CPU requirements are predictable service latency, memory capacity and bandwidth, accelerator I/O, isolation and mature software. Neither an Arm ISA label nor a maximum core count settles those questions.</p>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C02, E01, E03, E04, E05, E06, E15, P01, P02, P06</p>
+<p>02 Units, ownership and availability — C02, E08, P02, P04, P07, P08</p>
+<p>03 Neoverse and CSS generation atlas — C02, E01, E02, E03, E04, E06, E09, P01, P02, P03, P04, P06, P08, P09, P10</p>
+<p>04 2015-2018: separating ISA, core and server — C03, E01, E08, P01, P08</p>
+<p>05 N1 and E1: cloud cores and throughput cores — C01, E01, E08, P01, P08</p>
+<p>06 V1 and N2: vector performance versus density — C04, E02, E03, E08, P02, P03</p>
+<p>07 V2: width, memory concurrency and coherent hosts — C02, E08, E16, E17, P15</p>
+<p>08 V3, N3 and CSS: moving the integration boundary — E04, E07, E18, E19, E20, P04, P08, P09, R01</p>
+<p>09 AGI CPU: Arm becomes a silicon supplier — C03, E05, E13, E14, E15, P07</p>
+<p>10 CSS N4 and the current roadmap — E06, E10, P06, P10</p>
+<p>11 CMN, CHI and the infrastructure offload boundary — C02, C04, E09, P01, P07, P08, P09, P14</p>
+<p>12 GPU and NPU IP: complementary edge compute — E10, E11, E12, P11, P12</p>
+<p>13 Software, security and research evidence — P08, P13, P14, R01, R02, R03, R04, R05, R06, R07</p>
+<p>14 Systems and quantitative balance — E08, E13, E14, E16, E17, E18, E19, P07, P11</p>
+<p>15 Conference-to-product index — C01, C02, C03, C04, E03, E05, E06, E07, E09, E13, E16, E17, E18, E19, E20, P01, P15, R03, R04, R05, R06, R07</p>
+<p>16 Codename and ownership crosswalk — C02, C03, E01, E03, E06, E08, P01, P02, P07, P08</p>
+<p>17 Integrated stack across four eras — C04, E03, E06, E08, E09, E16, P01, P07, P15</p>
+<p>18 Engineering conclusions — E03, E06, P07, P13</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] The Arm Neoverse N1 Platform: Building Blocks for the Next-Gen Cloud-to-Edge Infrastructure SoC. <a href="https://www.arm.com/-/media/global/solutions/infrastructure/arm-neoverse-n1-platform.pdf">https://www.arm.com/-/media/global/solutions/infrastructure/arm-neoverse-n1-platform.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Neoverse V1 platform technical deep dive. <a href="https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/neoverse-v1-platform-a-new-performance-tier-for-arm">https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/neoverse-v1-platform-a-new-performance-tier-for-arm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] Neoverse N2 product support. <a href="https://support.arm.com/compute-ip/neoverse-n2">https://support.arm.com/compute-ip/neoverse-n2</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] Neoverse V3 product. <a href="https://www.arm.com/products/silicon-ip-cpu/neoverse/neoverse-v3">https://www.arm.com/products/silicon-ip-cpu/neoverse/neoverse-v3</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P06] Neoverse CSS N4 product support. <a href="https://support.arm.com/compute-subsystems/neoverse-css-n4">https://support.arm.com/compute-subsystems/neoverse-css-n4</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P07] Arm AGI CPU product brief. <a href="https://www.arm.com/static/az/pdf/product-brief/arm-agi-cpu-product-brief.pdf">https://www.arm.com/static/az/pdf/product-brief/arm-agi-cpu-product-brief.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P08] Introduction to Neoverse Cores: Arm Education. <a href="https://raw.githubusercontent.com/arm-education/Introduction-to-Cloud-Compute-on-Arm/main/Part%201%20-%20Introduction%20to%20Neoverse%20Cores.md">https://raw.githubusercontent.com/arm-education/Introduction-to-Cloud-Compute-on-Arm/main/Part%201%20-%20Introduction%20to%20Neoverse%20Cores.md</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P09] Neoverse CSS V3 specifications. <a href="https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-v3">https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-v3</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P10] Neoverse CSS N4 specifications. <a href="https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-n4">https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-n4</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P11] Ethos-U85 technical overview. <a href="https://documentation-service.arm.com/static/67b5b9e6fdbd9d54ee93e7d0">https://documentation-service.arm.com/static/67b5b9e6fdbd9d54ee93e7d0</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P12] Ethos-U65 product. <a href="https://www.arm.com/products/silicon-ip-cpu/ethos/ethos-u65">https://www.arm.com/products/silicon-ip-cpu/ethos/ethos-u65</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P13] Arm Compute Library. <a href="https://github.com/ARM-software/ComputeLibrary">https://github.com/ARM-software/ComputeLibrary</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P14] Arm Neoverse Reference Design software. <a href="https://neoverse-reference-design.docs.arm.com/en/rd-infra-2024.09.30/platforms/rdv3.html">https://neoverse-reference-design.docs.arm.com/en/rd-infra-2024.09.30/platforms/rdv3.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P15] NVIDIA Grace CPU Superchip architecture whitepaper. <a href="https://resources.nvidia.com/en-us-grace-cpu/nvidia-grace-cpu-superchip">https://resources.nvidia.com/en-us-grace-cpu/nvidia-grace-cpu-superchip</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] ISSCC 2020 press kit, paper 8.3: A 3GHz Arm Neoverse N1 CPU in 7nm FinFET for Infrastructure Applications. <a href="https://www.isscc.org/s/2020-Press-Kit.pdf">https://www.isscc.org/s/2020-Press-Kit.pdf</a>. Official conference press kit; not the full paper.</p>
+<p>[C02] Hot Chips 2023: Arm Neoverse V2 Platform. <a href="https://hc2023.hotchips.org/assets/program/conference/day1/CPU1/HC2023.Arm.MagnusBruce.v04.FINAL.pdf">https://hc2023.hotchips.org/assets/program/conference/day1/CPU1/HC2023.Arm.MagnusBruce.v04.FINAL.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C03] Hot Chips 2026: Arm CPU architecture recap. <a href="https://newsroom.arm.com/blog/hot-chips-2026-arm-cpu-agentic-ai">https://newsroom.arm.com/blog/hot-chips-2026-arm-cpu-agentic-ai</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C04] Hot Chips 2021 program: Neoverse N2 and Cloud AI 100. <a href="https://hc33.hotchips.org/">https://hc33.hotchips.org/</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<h3 id="research-papers-and-publication-registries">Research papers and publication registries</h3>
+<p>[R01] Verified Security for the Morello Capability-enhanced Prototype Arm Architecture. <a href="https://link.springer.com/chapter/10.1007/978-3-030-99336-8_7">https://link.springer.com/chapter/10.1007/978-3-030-99336-8_7</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R02] Cambridge CHERI and Morello publications. <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/publications.html">https://www.cl.cam.ac.uk/research/security/ctsrd/publications.html</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R03] A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher, ISCA 2024. <a href="https://dl.acm.org/doi/10.1109/ISCA59077.2024.00090">https://dl.acm.org/doi/10.1109/ISCA59077.2024.00090</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[R04] Criticality-Aware Instruction-Centric Bandwidth Partitioning for Data Center Servers, HPCA 2025. <a href="https://zhou-diyu.github.io/files/pivot-hpca25.pdf">https://zhou-diyu.github.io/files/pivot-hpca25.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R05] Temporal Prefetching Without the Off-Chip Metadata, MICRO 2019. <a href="https://www.cs.utexas.edu/~lin/papers/micro19m.pdf">https://www.cs.utexas.edu/~lin/papers/micro19m.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R06] Making Temporal Prefetchers Practical: The MISB Prefetcher, ISCA 2019. <a href="https://developer.arm.com/community/arm-research/b/articles/posts/making-temporal-prefetchers-practical--the-misb-prefetcher">https://developer.arm.com/community/arm-research/b/articles/posts/making-temporal-prefetchers-practical--the-misb-prefetcher</a>. Primary source; accessed by 2026-09-28</p>
+<p>[R07] Hierarchical Prefetching, ASPLOS 2025. <a href="https://www.research.ed.ac.uk/files/521674398/ZhangEtalASPLOS2025HierarchicalPrefetching.pdf">https://www.research.ed.ac.uk/files/521674398/ZhangEtalASPLOS2025HierarchicalPrefetching.pdf</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Neoverse N1 and E1 launch, 2019. <a href="https://newsroom.arm.com/news/our-next-step-in-preparing-the-cloud-for-1t-intelligent-devices">https://newsroom.arm.com/news/our-next-step-in-preparing-the-cloud-for-1t-intelligent-devices</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E02] Neoverse V1 and N2 launch, 2020. <a href="https://newsroom.arm.com/news/accelerating-the-next-generation-cloud-to-edge-infrastructure">https://newsroom.arm.com/news/accelerating-the-next-generation-cloud-to-edge-infrastructure</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Neoverse CSS introduction at Hot Chips 2023. <a href="https://newsroom.arm.com/news/arm-neoverse-subsystems">https://newsroom.arm.com/news/arm-neoverse-subsystems</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] Neoverse V3 and N3 launch, 2024. <a href="https://newsroom.arm.com/news/enabling-ai-infrastructure-on-arm">https://newsroom.arm.com/news/enabling-ai-infrastructure-on-arm</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E05] Introducing Arm AGI CPU, March 2026. <a href="https://newsroom.arm.com/blog/introducing-arm-agi-cpu">https://newsroom.arm.com/blog/introducing-arm-agi-cpu</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E06] AGI CPU and CSS N4 announcement, September 2026. <a href="https://www.arm.com/zh-cn/company/news/2026/09/arm-agi-cpu-neoverse-css-n4-agentic-ai">https://www.arm.com/zh-cn/company/news/2026/09/arm-agi-cpu-neoverse-css-n4-agentic-ai</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E07] Microsoft Azure Cobalt 200 uses Neoverse CSS V3. <a href="https://newsroom.arm.com/blog/microsoft-azure-cobalt-200-arm-neoverse-css-v3">https://newsroom.arm.com/blog/microsoft-azure-cobalt-200-arm-neoverse-css-v3</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E08] Neoverse deployment guide. <a href="https://newsroom.arm.com/blog/what-is-arm-neoverse">https://newsroom.arm.com/blog/what-is-arm-neoverse</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E09] Arm and Alphawave compute chiplets. <a href="https://newsroom.arm.com/blog/arm-and-alphawave-semi-unite-on-6g-chiplets">https://newsroom.arm.com/blog/arm-and-alphawave-semi-unite-on-6g-chiplets</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E10] CSS for Mobile 2 and Mali G2-Ultra NX, 2026. <a href="https://newsroom.arm.com/news/arm-css-for-mobile-2-agentic-ai-mobile-graphics">https://newsroom.arm.com/news/arm-css-for-mobile-2-agentic-ai-mobile-graphics</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E11] Ethos-U85 launch, 2024. <a href="https://newsroom.arm.com/blog/ethos-u85">https://newsroom.arm.com/blog/ethos-u85</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E12] Ethos-N78 and Mali-G78, 2020. <a href="https://newsroom.arm.com/news/new-arm-ip-delivers-true-digital-immersion-for-the-5g-era">https://newsroom.arm.com/news/new-arm-ip-delivers-true-digital-immersion-for-the-5g-era</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E13] Arm AGI CPU 1OU dual-node reference server. <a href="https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/introducing-the-arm-agi-cpu-1ou-dual-node-reference-server">https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/introducing-the-arm-agi-cpu-1ou-dual-node-reference-server</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E14] Supermicro Arm AGI CPU systems datasheet. <a href="https://www.supermicro.com/datasheet/datasheet_Supermicro_Arm_AGI.pdf">https://www.supermicro.com/datasheet/datasheet_Supermicro_Arm_AGI.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E15] Arm May 2026 shareholder update: AGI systems available to order. <a href="https://investors.arm.com/static-files/adf3bac7-1e91-442e-92e0-5f2d8f1b6a14">https://investors.arm.com/static-files/adf3bac7-1e91-442e-92e0-5f2d8f1b6a14</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E16] AWS Graviton4 memory and cores: DevitoPRO case study. <a href="https://aws.amazon.com/blogs/hpc/performance-gains-with-aws-graviton4-a-devitopro-case-study/">https://aws.amazon.com/blogs/hpc/performance-gains-with-aws-graviton4-a-devitopro-case-study/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E17] Google Axion announcement, Cloud Next 2024. <a href="https://cloud.google.com/blog/products/compute/introducing-googles-new-arm-based-cpu">https://cloud.google.com/blog/products/compute/introducing-googles-new-arm-based-cpu</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E18] Microsoft Cobalt 200 architecture disclosure. <a href="https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807">https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E19] AWS Graviton5 general availability, June 2026. <a href="https://www.aboutamazon.com/news/aws/aws-graviton-5-cpu-amazon-ec2">https://www.aboutamazon.com/news/aws/aws-graviton-5-cpu-amazon-ec2</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E20] Cobalt 200 early access preview, Build 2026. <a href="https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/">https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/</a>. Primary source; accessed by 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

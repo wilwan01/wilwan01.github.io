@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Arm · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a aria-current="page" href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI 基础设施研究文库</div></a><a class="lang" href="arm-en.html" lang="en">English</a></header><main><div class="readerbar"><a class="back" href="index.html">← 公司目录</a><a class="primary" download="" href="files/Arm_AI_Infrastructure_2015-2026_ZH.pdf">下载 PDF</a><a class="secondary" download="" href="files/Arm_AI_Infrastructure_2015-2026_ZH.md">可编辑正文</a></div><div class="reading"><nav aria-label="章节目录" class="toc"><div class="toc">
+<ul>
+<li><a href="#arm-ai">Arm AI 基础设施架构演进</a><ul>
+<li><a href="#01">01 研究范围与执行摘要</a></li>
+<li><a href="#02">02 数值、设计归属与可用性</a></li>
+<li><a href="#03-neoverse-css">03 Neoverse 与 CSS 代际总览</a><ul>
+<li><a href="#cpu-ip">CPU IP 对比：实现属性单独区分</a></li>
+<li><a href="#_1">子系统集成范围</a></li>
+</ul>
+</li>
+<li><a href="#04-2015-2018-isa">04 2015-2018：区分 ISA、核心与服务器</a></li>
+<li><a href="#05-n1-e1">05 N1 与 E1：云核心和吞吐型核心</a></li>
+<li><a href="#06-v1-n2">06 V1 与 N2：向量性能与密度分线</a></li>
+<li><a href="#07-v2">07 V2：执行宽度、访存并发与一致性主机</a></li>
+<li><a href="#08-v3n3-css">08 V3、N3 与 CSS：改变集成边界</a></li>
+<li><a href="#09-agi-cpuarm">09 AGI CPU：Arm 成为芯片供应商</a><ul>
+<li><a href="#arm-cpu">Arm 商用 CPU 参考型号</a></li>
+</ul>
+</li>
+<li><a href="#10-css-n4">10 CSS N4 与当前路线图</a></li>
+<li><a href="#11-cmnchi">11 CMN、CHI 与基础设施卸载边界</a><ul>
+<li><a href="#_2">互联归属与语义</a></li>
+<li><a href="#_3">网络产品边界</a></li>
+</ul>
+</li>
+<li><a href="#12-gpu-npu-ip">12 GPU 与 NPU IP：互补的边缘计算</a><ul>
+<li><a href="#ip">统一字段中的互补加速器 IP</a></li>
+</ul>
+</li>
+<li><a href="#13">13 软件、安全与研究证据</a><ul>
+<li><a href="#_4">软件里程碑</a></li>
+</ul>
+</li>
+<li><a href="#14">14 系统与定量配比</a><ul>
+<li><a href="#_5">代表性系统边界</a></li>
+<li><a href="#_6">带宽与缓存推导比例</a></li>
+</ul>
+</li>
+<li><a href="#15">15 会议与产品对应索引</a><ul>
+<li><a href="#_7">已核验披露依据</a></li>
+</ul>
+</li>
+<li><a href="#16">16 代号与设计归属对照</a><ul>
+<li><a href="#_8">需要区分的名称</a></li>
+</ul>
+</li>
+<li><a href="#17">17 四个时代的整体产品栈</a><ul>
+<li><a href="#2015-2018isa">2015-2018：ISA 与合作伙伴集成</a></li>
+<li><a href="#2019-2022neoverse">2019-2022：Neoverse 平台</a></li>
+<li><a href="#2023-2025css">2023-2025：CSS 与异构主机</a></li>
+<li><a href="#2026ip">2026：IP 与商用芯片并行</a></li>
+<li><a href="#_9">各时代带宽层次</a></li>
+</ul>
+</li>
+<li><a href="#18">18 工程结论</a></li>
+<li><a href="#_10">来源映射</a></li>
+<li><a href="#_11">参考资料</a><ul>
+<li><a href="#_12">产品与技术文档</a></li>
+<li><a href="#_13">会议记录与实现披露</a></li>
+<li><a href="#_14">研究论文与出版目录</a></li>
+<li><a href="#_15">发布、生态与部署</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="arm-ai">Arm AI 基础设施架构演进</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01">01 研究范围与执行摘要</h2>
+<p>产品权重：深入研究 Neoverse、CSS 和 AGI CPU；完整覆盖网格与系统 IP；适度覆盖被授权方芯片、GPU／NPU IP 和软件。
+起点：2015 年，以 Cortex-A 服务器设计为基线。
+截止：2026 年 9 月 28 日，覆盖 Hot Chips 2026 和 9 月 CSS N4 发布。
+重点：核心演进、一致性内存系统、集成边界，以及 CPU 在 AI 基础设施中的作用。
+不含：所有被授权方 SKU 和移动产品代际的穷尽清单；已审阅产品版图未确立 Arm 品牌的数据中心训练 GPU 或商用 AI NIC。</p>
+<p>Arm 的基础设施演进包含三个相互重叠的层次。Neoverse 将面向服务器的核心开发从以移动产品为中心的叙事中独立出来；计算子系统（Compute Subsystems，CSS）把 CPU、网格、内存接口和平台软件的验证工作上移到 Arm；2026 年 AGI CPU 又加入 Arm 自研商用芯片。最后这一步改变了竞争边界：Arm 既能为定制服务器提供构建模块，也能向没有自研芯片项目的机构提供完整 CPU。</p>
+<p>关键进步并非简单增加核心。N1 建立可扩展的云核心；V1 显著提高向量能力；N2 强调密度和 Armv9；V2 扩宽标量执行并改善访存；V3 与 CSS 引入机密计算和更完整的集成；CSS N4 进一步扩展配置与 I/O 空间。但最终结果仍取决于被授权方选择的内存通道、缓存、物理设计和软件。因此，仅凭 Neoverse 名称无法预测插槽性能。</p>
+<h2 id="02">02 数值、设计归属与可用性</h2>
+<p>IP 可获取不等于芯片正式商用。核心 IP 没有统一的代工节点、封装功耗、插槽数或 DDR 带宽；这些属性属于具体实现。表格保留跨厂商统一字段，不适用记为 n/a，已审阅资料未披露记为 n/d。云实例的 vCPU 上限不能自动当作芯片物理核心数。历史已商用也不代表当前仍可订购。</p>
+<p>内存带宽采用十进制有效载荷 GB/s：对常规 64 位 DDR 通道，通道数乘每秒传输次数，再乘八字节。每核带宽是均分推导值，不是预留保证。链路数值除非特别标注，否则按单方向计算。ISA 向量长度、执行流水线数量和每周期总处理字节数是不同指标；不能仅按向量长度比较双流水线 256 位 SVE 核心与四流水线 128 位核心。机密计算能力同样需要系统与软件启用，不能只看 ISA 名称。</p>
+<h2 id="03-neoverse-css">03 Neoverse 与 CSS 代际总览</h2>
+<h3 id="cpu-ip">CPU IP 对比：实现属性单独区分</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neoverse N1 / Ares</td>
+<td>Ares</td>
+<td>2019 IP 披露</td>
+<td>可授权 IP</td>
+<td>N1</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>512 KB / 1 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv8.2-A; NEON 128-bit</td>
+</tr>
+<tr>
+<td>Neoverse E1</td>
+<td>n/d</td>
+<td>2019 IP 披露</td>
+<td>可授权 IP</td>
+<td>E1</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>n/d</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv8.2-A; NEON; SMT2</td>
+</tr>
+<tr>
+<td>Neoverse V1 / Zeus</td>
+<td>Zeus</td>
+<td>2020-2021 IP 披露</td>
+<td>可授权 IP</td>
+<td>V1</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>512 KB / 1 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>SVE: 2 x 256-bit; BF16; INT8</td>
+</tr>
+<tr>
+<td>Neoverse N2 / Perseus</td>
+<td>Perseus</td>
+<td>2020-2021 IP 披露</td>
+<td>可授权 IP</td>
+<td>N2</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>512 KB / 1 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv9; SVE2 128-bit; BF16</td>
+</tr>
+<tr>
+<td>Neoverse V2 / Demeter</td>
+<td>Demeter</td>
+<td>2022-2023 IP 披露</td>
+<td>可授权 IP</td>
+<td>V2</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>1 / 2 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv9; SVE2 128-bit; 4 vector pipes</td>
+</tr>
+<tr>
+<td>Neoverse V3</td>
+<td>n/d</td>
+<td>2024 IP 披露</td>
+<td>可授权 IP</td>
+<td>V3</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>2 / 3 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv9.2-A; SVE2; CCA</td>
+</tr>
+<tr>
+<td>Neoverse N3</td>
+<td>n/d</td>
+<td>2024 IP 披露</td>
+<td>可授权 IP</td>
+<td>N3</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>128 KB - 2 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv9.2-A; SVE2</td>
+</tr>
+<tr>
+<td>CSS N4</td>
+<td>n/d</td>
+<td>2026-09 IP 披露</td>
+<td>可授权 IP</td>
+<td>N4</td>
+<td>可配置；E1 SMT2；N4 线程数 n/d；其余单线程</td>
+<td>由被授权方决定；N4 面向 3 nm</td>
+<td>IP，非封装 SKU</td>
+<td>最高 2 MB</td>
+<td>依系统配置</td>
+<td>依具体实现</td>
+<td>n/a</td>
+<td>依系统集成</td>
+<td>n/a</td>
+<td>Armv9; 细节 n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_1">子系统集成范围</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>子系统</th>
+<th>披露</th>
+<th>核心范围</th>
+<th>内存／I/O</th>
+<th>集成含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSS N2</td>
+<td>2023</td>
+<td>最高 64 个 N2</td>
+<td>DDR5/LPDDR5; PCIe 5 / CXL</td>
+<td>预验证 CPU 与系统设计</td>
+</tr>
+<tr>
+<td>CSS V3</td>
+<td>2024</td>
+<td>每子系统最高 64 个 V3</td>
+<td>最高 12 内存通道; 64 PCIe 5/CXL lanes</td>
+<td>支持芯粒集成与 CCA</td>
+</tr>
+<tr>
+<td>CSS N3</td>
+<td>2024</td>
+<td>可配置 N3 子系统</td>
+<td>CMN S3; CHI C2C</td>
+<td>云、网络、DPU 与边缘定制</td>
+</tr>
+<tr>
+<td>CSS N4</td>
+<td>2026-09</td>
+<td>每裸片最高 128 个 N4</td>
+<td>DDR5 / LPDDR6; PCIe 7 / CXL 4.0</td>
+<td>面向 3 nm；可配置计算基础</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="04-2015-2018-isa">04 2015-2018：区分 ISA、核心与服务器</h2>
+<p>Neoverse 出现之前，Arm 服务器既可以采用授权的 Cortex 核心，也可以采用自定义的 Arm 兼容微架构。这是两条不同的商业与工程路径。Cortex-A57／A72 时代的设计构成基线，而 Qualcomm Falkor、Cavium／Marvell ThunderX 以及后来的 Fujitsu A64FX 则说明，获得 Arm ISA 授权不等于采用 Neoverse 核心。对于 AmpereOne 和 NVIDIA Vera，这一区分依然重要：它们属于 Arm 生态，不能据此推断 Arm 自研核心的内部结构。</p>
+<p>服务器平台远不止指令译码器。一致性 I/O、中断虚拟化、页表维护、RAS、固件启动约定和稳定的操作系统环境都会影响部署成本。2018 年 Neoverse 品牌和 2019 年产品明确了这种基础设施定位。其长期架构优势在于按应用配置核心、缓存、内存与加速器比例，但前提是集成和软件成本可控。</p>
+<h2 id="05-n1-e1">05 N1 与 E1：云核心和吞吐型核心</h2>
+<p>N1 具有四指令译码、最多八个内部微操作分派、128 项提交队列、64 KB 指令和数据缓存，以及私有 L2。解耦分支预测器可以先于指令获取运行，6K 项主 BTB 服务于服务器的大代码工作集。上述宽度属于不同流水级，不能互换为 IPC 指标。直接连接 CMN-600 让设计者扩展一致性系统，而不必受固定移动核心簇边界限制。服务器功能包括 RAS、虚拟化扩展和指令缓存一致性。</p>
+<p>Hot Chips 2019 解释架构，ISSCC 2020 论文 8.3 则提供 3 GHz、7 nm 的具体实现依据。ISSCC 摘要强调随操作变化的短流水线和低延迟内存层次。其中的性能、功耗、面积比较属于该实现及其基线，不能套用到所有 N1 被授权方产品。E1 则通过每核两个硬件线程提高数据平面吞吐；它不是降低频率的 N1，也不能用来推断 N 系列和 V 系列具有 SMT。</p>
+<p>AWS Graviton2 和 Ampere Altra 将 N1 带入商业云和商用服务器，Altra Max 进一步提高密度。这些产品的价值来自完整平台和大量独立软件线程，而不是一个通用的“Arm 插槽”。当内存通道数保持不变时，增加核心会降低平均每核片外带宽预算；缓存局部性和工作负载整合效果决定这种取舍是否有利。</p>
+<h2 id="06-v1-n2">06 V1 与 N2：向量性能与密度分线</h2>
+<p>V1 建立面向性能的分支，而不是在所有场景替代 N1。双 256 位 SVE 流水线、BF16 支持和 INT8 矩阵指令提高 CPU 侧科学计算与机器学习能力。解耦预测、指令侧操作缓存和更宽的执行机器共同提高执行单元利用率。向量长度无关编程避免软件绑定某一种实现宽度。AWS Graviton3 是重要云端实现，但芯粒结构与 DDR5 通道属于 AWS 的设计选择，并非 V1 固有属性。</p>
+<p>N2 将 Armv9 和 128 位 SVE2 引入更强调密度的核心。Hot Chips 2021 将它与 CMN-700 及系统路线图一起披露。与 V1 比较时，应针对目标工作负载分析单位面积、单位功耗和每内存通道的性能，而不是只比较 SVE 位宽。Microsoft Cobalt 100 与网络领域的实现表明，同一核心家族可支持不同系统配比。2023 年 CSS N2 又减少了被授权方自行完成的子系统集成工作。</p>
+<h2 id="07-v2">07 V2：执行宽度、访存并发与一致性主机</h2>
+<p>V2 的 Hot Chips 2023 披露尤其有助于还原完整核心：六指令译码、八宽分派与退休、超过 320 项的乱序窗口、六个 ALU、两条分支流水线，以及两条读写流水线加一条额外读取流水线。四条 128 位向量数据通路取代 V1 的组织方式。可选 2 MB 私有 L2 保持标称十周期的 load-to-use 延迟。预取改进涉及间接访问和页表遍历，并让推测预取流量低于需求请求的优先级。设计目标是在控制访存干扰的同时扩展有效并发。</p>
+<p>V2 出现在 AWS Graviton4、Google Axion 和 NVIDIA Grace 中，分别体现通用云吞吐、垂直集成云平台和一致性加速器主机三种优化方向。Grace 的 LPDDR5X 与 NVLink-C2C 属于 NVIDIA 的 CPU 和超级芯片集成，不能因此将 NVLink 归为 Arm 互联。反过来，云处理器的 DDR 通道配置也不能描述 Grace。共享核心带来软件与实现复用，系统互联和内存层次决定节点行为。</p>
+<h2 id="08-v3n3-css">08 V3、N3 与 CSS：改变集成边界</h2>
+<p>2024 年这一代将预集成子系统变为核心产品，而不仅是参考示意。CSS V3 组合 V3 核心、一致性互联与平台 IP；CSS N3 面向更广泛的云、网络和边缘配置。V3 在 Neoverse 家族中引入 Arm 机密计算架构（CCA）支持。CCA 的 Realm 隔离模型与 Morello 的基于能力的内存安全不同。不能因为芯片实现了部分 Armv9 指令，就推断它具有其中任何一项功能。</p>
+<p>CSS 用一部分集成自由度换取预验证基线和更短的芯片开发路径。封装、内存配置、频率、固件策略和商业验证仍由被授权方决定。Microsoft Cobalt 200 使用 CSS V3，但完整 SoC 具有 132 个启用核心、每核 3 MB L2 和 192 MB 系统缓存。Cobalt 200 于 2026 年进入客户预览。因此，子系统核心上限不能误当作封装上限。AWS Graviton5 则提供另一种基于 V3 的云端实现，每颗芯片达到 192 核，并于 2026 年 6 月通过 M9g／M9gd 商用。</p>
+<h2 id="09-agi-cpuarm">09 AGI CPU：Arm 成为芯片供应商</h2>
+<p>AGI CPU 于 2026 年 3 月发布，将 Neoverse 平台转化为 Arm 自研服务器产品。5 月股东更新已说明，指定 OEM 的商业系统可以订购。Hot Chips 2026 补充架构背景，当前产品简介则确定 SKU 边界。136 核 SP113012 配备每核 2 MB L2、128 MB 共享系统缓存、十二通道 DDR5-8800、96 条 PCIe 6 通道及 CXL 3.0 Type 3 支持。其最高频率为 3.5 GHz，3.7 GHz 宣传值属于 64 核变体；所列三个变体的基础 TDP 均设为 300 W。</p>
+<p>该设计强调为大量独立 CPU 任务供给数据，并连接外部加速器。理论通道带宽合计为 844.8 GB/s，136 核时平均每核 6.21 GB/s，64 核时为 13.2 GB/s。这些推导比例解释了高每核内存配置的定位，但不代表应用持续带宽。该 CPU 仍是主机和具有推理能力的通用处理器，不是 HBM 张量加速器。也不能仅将 300 W CPU 功耗相乘得到完整机架功耗，还必须计入内存、存储、NIC、风扇与电源转换损耗。</p>
+<h3 id="arm-cpu">Arm 商用 CPU 参考型号</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>代际／参考 SKU</th>
+<th>代号</th>
+<th>正式商用</th>
+<th>状态</th>
+<th>核心微架构</th>
+<th>核心／线程</th>
+<th>各裸片工艺</th>
+<th>裸片／封装</th>
+<th>每核 L2</th>
+<th>L3／共享域</th>
+<th>内存：通道；速率；GB/s</th>
+<th>插槽／互联</th>
+<th>PCIe／CXL</th>
+<th>TDP</th>
+<th>向量／矩阵 ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AGI CPU 136C</td>
+<td>SP113012</td>
+<td>2026</td>
+<td>已商用／可获取</td>
+<td>Neoverse V3</td>
+<td>136 / 136</td>
+<td>3 nm</td>
+<td>Arm 自研服务器 SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>双路；链路速率 n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2×128 位 SVE2；BF16；INT8 MMLA</td>
+</tr>
+<tr>
+<td>AGI CPU 128C</td>
+<td>SP113012S</td>
+<td>2026</td>
+<td>已商用／可获取</td>
+<td>Neoverse V3</td>
+<td>128 / 128</td>
+<td>3 nm</td>
+<td>Arm 自研服务器 SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>双路；链路速率 n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2×128 位 SVE2；BF16；INT8 MMLA</td>
+</tr>
+<tr>
+<td>AGI CPU 64C</td>
+<td>SP113012A</td>
+<td>2026</td>
+<td>已商用／可获取</td>
+<td>Neoverse V3</td>
+<td>64 / 64</td>
+<td>3 nm</td>
+<td>Arm 自研服务器 SoC</td>
+<td>2 MB</td>
+<td>128 MB SLC</td>
+<td>DDR5; 12; 8800 MT/s; 844.8 GB/s</td>
+<td>双路；链路速率 n/d</td>
+<td>96 PCIe 6; CXL 3.0 Type 3</td>
+<td>300 W</td>
+<td>2×128 位 SVE2；BF16；INT8 MMLA</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-css-n4">10 CSS N4 与当前路线图</h2>
+<p>2026 年 9 月的 CSS N4 是新的 IP／子系统代际，并非首代 AGI CPU 内部的核心。Arm 列出每裸片最高 128 个 N4 核心、可配置到 2 MB 的私有 L2、3 nm 实现目标、DDR5 或 LPDDR6，以及 PCIe 7／CXL 4.0 I/O。这些属于子系统能力，被授权方不必同时实现所有最大配置。架构方向是扩大部署范围，覆盖内存和 I/O 需求各异的 CPU 主机及基础设施处理器。</p>
+<p>公开的 IP 发布不能确定最终商业芯片频率、插槽 TDP、DDR 验证范围或部署时间。已审阅证据尚未提供像 V2 Hot Chips 演讲那样完整的 N4 队列和执行端口披露。因此，本报告保留新代际和已确认接口，不从客户端核心类比补齐这些字段。移动 CSS 和汽车 V3AE 衍生产品体现技术复用，但它们的安全、图形与功耗域仍不同于云子系统。</p>
+<h2 id="11-cmnchi">11 CMN、CHI 与基础设施卸载边界</h2>
+<p>CMN-600、CMN-700 与 CMN S3 将一致性变成可配置的系统资源。请求节点注入 CPU 和 I/O 事务，归属节点协调地址所有权、目录与系统缓存，面向内存的节点连接控制器。CHI 规定事务和一致性行为，网格实现路由与缓冲。因此，CHI 数据通道宽度不是 SerDes 通道速率，网格峰值也不是 DRAM 带宽。跨芯粒连接在片上一致性之外，又增加了物理链路与延迟问题。</p>
+<p>DPU 和 IPU 内部的 Arm 核心承担可编程控制或服务处理。报文流水线、RDMA 引擎、密码模块、本地内存和端口由芯片设计者提供。因此，使用 Arm 核心的 DPU 并不是 Arm 品牌 NIC。CSS N3 与 Alphawave 合作展示了计算芯粒如何与网络或加速裸片组合。有效比较单位是完整设备：主机接口、卸载引擎、传输语义和软件隔离。</p>
+<h3 id="_2">互联归属与语义</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>互联</th>
+<th>年份／代际</th>
+<th>通道速率</th>
+<th>每链路通道</th>
+<th>每链路单向 GB/s</th>
+<th>每设备链路</th>
+<th>拓扑</th>
+<th>域规模</th>
+<th>一致性／语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMN-600 / CHI</td>
+<td>N1</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>片上一致性网格</td>
+<td>依实现</td>
+<td>缓存一致性；系统缓存</td>
+</tr>
+<tr>
+<td>CMN-700</td>
+<td>N2 / V2</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>一致性网格；多芯片集成</td>
+<td>n/d</td>
+<td>CHI</td>
+</tr>
+<tr>
+<td>CMN S3 / CHI C2C</td>
+<td>V3 / N3</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>网格与芯粒连接</td>
+<td>n/d</td>
+<td>一致性子系统集成</td>
+</tr>
+<tr>
+<td>AGI CPU PCIe 6 / CXL 3</td>
+<td>2026</td>
+<td>64 GT/s</td>
+<td>最高 x16</td>
+<td>~128 raw x16</td>
+<td>96 lanes total</td>
+<td>主机 I/O 互联</td>
+<td>n/d</td>
+<td>PCIe I/O；CXL Type 3 内存</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_3">网络产品边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>类别</th>
+<th>端口×速率</th>
+<th>SerDes</th>
+<th>主机接口</th>
+<th>可编程引擎</th>
+<th>嵌入式 CPU</th>
+<th>板载内存</th>
+<th>传输／RDMA</th>
+<th>拥塞控制</th>
+<th>主要卸载</th>
+<th>功耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未确立 Arm 品牌 AI NIC</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>IP／CPU 供应商</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Neoverse 授权给设备厂商</td>
+<td>n/a</td>
+<td>由被授权方决定</td>
+<td>n/a</td>
+<td>CPU 控制；报文引擎单独设计</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-gpu-npu-ip">12 GPU 与 NPU IP：互补的边缘计算</h2>
+<p>Mali 经历 Midgard、Bifrost、Valhall 及后续图形代际，Immortalis 增加高端图形分支。这些设计面向集成图形和共享内存 SoC，并不构成用于分布式训练的商用 HBM GPU。2026 年 Mali G2-Ultra NX 在移动图形平台内增加专用神经加速，与 C2 CPU 簇和 SME2 配合。这是边缘侧的重要融合，但带宽、功耗与软件环境仍不同于数据中心加速卡。</p>
+<p>Ethos-N77／N78 面向应用处理器和边缘推理集成，Ethos-U55／U65／U85 则服务资源受限的嵌入式系统。U65 将 U55 路线扩展到 Cortex-A、Cortex-R 和 Neoverse 系统；U85 扩展至 128-2048 个 MAC 单元，并支持面向 Transformer 的算子。在 1 GHz 下，2048 个 MAC 按每次乘加两次整数运算计算，对应 4.096 TOPS；这是配置推导，不是 BF16 吞吐。编译器划分、SRAM 分块和不支持算子的回退决定实际模型覆盖。</p>
+<h3 id="ip">统一字段中的互补加速器 IP</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>产品</th>
+<th>架构</th>
+<th>商用／里程碑</th>
+<th>状态</th>
+<th>工艺</th>
+<th>裸片／封装</th>
+<th>计算单元</th>
+<th>稠密 BF16</th>
+<th>稠密 FP8</th>
+<th>稠密 FP6／FP4</th>
+<th>FP64 向量／矩阵</th>
+<th>内存：类型；堆栈；GB；TB/s</th>
+<th>末级缓存／SRAM</th>
+<th>纵向扩展：链路；单向 GB/s；域</th>
+<th>主机连接</th>
+<th>功耗／散热</th>
+<th>形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethos-N78</td>
+<td>Ethos-N</td>
+<td>2020 IP</td>
+<td>可授权 IP</td>
+<td>n/a</td>
+<td>集成 IP</td>
+<td>可配置</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>HBM n/a；SoC 内存</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC 互联</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+<tr>
+<td>Ethos-U85</td>
+<td>Ethos-U</td>
+<td>2024 IP</td>
+<td>可授权 IP</td>
+<td>n/a</td>
+<td>集成 IP</td>
+<td>128-2048 MACs</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>HBM n/a；系统 SRAM／DRAM</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC 互联</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+<tr>
+<td>Mali G2-Ultra NX</td>
+<td>Mali</td>
+<td>2026 IP</td>
+<td>已公布；GA n/d</td>
+<td>n/a</td>
+<td>移动 GPU IP</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM n/a；共享 SoC 内存</td>
+<td>n/d</td>
+<td>n/a</td>
+<td>SoC 互联</td>
+<td>n/a</td>
+<td>IP</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13">13 软件、安全与研究证据</h2>
+<p>Arm 的软件优势来自共同的 AArch64 生态和针对实现的优化。GCC／LLVM 目标、Linux 调度与 NUMA 放置、优化数学内核、Compute Library 和性能分析工具必须匹配实际核心及内存系统。向量长度无关的 SVE 代码仍需要合理分块与缓存复用。CSS 参考软件提供固件和平台模型，并不自动完成生产服务器验证。即使大型矩阵运算全部在外部执行，AI 主机的编排延迟、分词性能和通信推进仍可能重要。</p>
+<p>学术记录补充机制和评估方法，而不是完整产品路线图。Arm 参与的 ISCA 2019 MISB 和 MICRO 2019 时间预取研究关注预测元数据的存储与流量成本；ISCA 2024 Triangel 研究及时性和准确率；HPCA 2025 带宽划分研究评估资源干扰；ASPLOS 2025 分层预取针对较大的指令工作集。这些工作有助于理解设计者优化的问题，但不能证明某量产核心采用了所提机制。Morello 则不同：文档明确说明其评估平台源自 N1，构成研究与硬件的直接联系；但它仍是能力安全原型，不是标准 Neoverse 功能。</p>
+<h3 id="_4">软件里程碑</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>版本／组件</th>
+<th>日期</th>
+<th>启用硬件</th>
+<th>主要功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AArch64 Linux / GCC / LLVM</td>
+<td>2015-2026</td>
+<td>Cortex、Neoverse 与定制核心</td>
+<td>可移植二进制；针对核心的调度与 ISA 分派</td>
+</tr>
+<tr>
+<td>Arm Compute Library</td>
+<td>持续更新</td>
+<td>Arm CPU／Mali</td>
+<td>优化 AI 算子；依硬件特性选择路径</td>
+</tr>
+<tr>
+<td>Neoverse 参考 software</td>
+<td>2024 年版本</td>
+<td>RD-V3 及相关平台</td>
+<td>固件与固定虚拟平台集成</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14">14 系统与定量配比</h2>
+<h3 id="_5">代表性系统边界</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>年份／里程碑</th>
+<th>CPU／加速器数量</th>
+<th>纵向扩展域</th>
+<th>每加速器横向带宽</th>
+<th>机架功耗</th>
+<th>散热</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>被授权方云服务器</td>
+<td>2019-2026</td>
+<td>Graviton／Axion／Cobalt</td>
+<td>依云厂商</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+</tr>
+<tr>
+<td>AGI CPU 1OU 双节点参考平台</td>
+<td>2026</td>
+<td>2 x AGI CPU</td>
+<td>两个独立节点</td>
+<td>n/d</td>
+<td>36 kW 示例；8160 核</td>
+<td>风冷</td>
+</tr>
+<tr>
+<td>AGI CPU 2U2P 参考平台</td>
+<td>2026</td>
+<td>2 x AGI CPU</td>
+<td>双插槽一致性服务器</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>风冷</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_6">带宽与缓存推导比例</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>配置</th>
+<th>DRAM 峰值 GB/s</th>
+<th>GB/s／核</th>
+<th>SLC MB／核</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AGI 136C</td>
+<td>844.8</td>
+<td>6.21</td>
+<td>0.94</td>
+<td>均分比例；非预留保证</td>
+</tr>
+<tr>
+<td>AGI 128C</td>
+<td>844.8</td>
+<td>6.60</td>
+<td>1.00</td>
+<td>相同接口，较少启用核心</td>
+</tr>
+<tr>
+<td>AGI 64C</td>
+<td>844.8</td>
+<td>13.20</td>
+<td>2.00</td>
+<td>每核内存与缓存资源增加</td>
+</tr>
+<tr>
+<td>Graviton4 96C</td>
+<td>537.6</td>
+<td>5.60</td>
+<td>n/d</td>
+<td>12×DDR5-5600；AWS 实现</td>
+</tr>
+</tbody>
+</table></div>
+<p>对于 Arm 品牌 CPU／IP 产品版图，HBM 字节数与稠密 BF16／FP8 FLOP 的比值，以及加速器纵向带宽与 HBM 的比值，均为 n/a。把合作伙伴 GPU 的 HBM 归到 Arm 会破坏跨厂商比较。同样，核心数或 IP 能效预测不能推出通用 tokens/W；端到端测量必须明确模型、精度、延迟目标、内存配置和系统功耗边界。</p>
+<h2 id="15">15 会议与产品对应索引</h2>
+<h3 id="_7">已核验披露依据</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>会议／活动</th>
+<th>年份</th>
+<th>论文／演讲／披露</th>
+<th>报告人／作者</th>
+<th>产品</th>
+<th>证据类型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hot Chips</td>
+<td>2019</td>
+<td>Neoverse N1 Cloud-to-Edge Infrastructure SoCs</td>
+<td>Arm</td>
+<td>N1</td>
+<td>架构</td>
+<td>P01</td>
+</tr>
+<tr>
+<td>ISSCC</td>
+<td>2020</td>
+<td>A 3GHz Arm Neoverse N1 CPU in 7nm FinFET for Infrastructure Applications</td>
+<td>R. Christy et al.</td>
+<td>N1</td>
+<td>电路／实现</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2021</td>
+<td>Arm Neoverse N2: 2nd generation infrastructure CPUs and system IPs</td>
+<td>A. Pellegrini</td>
+<td>N2 / CMN-700</td>
+<td>架构</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2023</td>
+<td>Arm Neoverse V2 Platform</td>
+<td>Magnus Bruce</td>
+<td>V2</td>
+<td>架构</td>
+<td>C02</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2023</td>
+<td>Neoverse Compute Subsystems launch</td>
+<td>Arm</td>
+<td>CSS N2</td>
+<td>子系统</td>
+<td>E03</td>
+</tr>
+<tr>
+<td>Hot Chips</td>
+<td>2026</td>
+<td>Arm AGI CPU architecture disclosure</td>
+<td>Arm</td>
+<td>AGI CPU</td>
+<td>架构／系统</td>
+<td>C03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2019 / 2024</td>
+<td>MISB; Triangel</td>
+<td>Arm / academic researchers</td>
+<td>相关内存研究</td>
+<td>相关研究</td>
+<td>R06 R03</td>
+</tr>
+<tr>
+<td>MICRO</td>
+<td>2019</td>
+<td>Temporal Prefetching Without the Off-Chip Metadata</td>
+<td>Wu et al.</td>
+<td>相关内存研究</td>
+<td>相关研究</td>
+<td>R05</td>
+</tr>
+<tr>
+<td>HPCA</td>
+<td>2025</td>
+<td>Criticality-Aware Instruction-Centric Bandwidth Partitioning</td>
+<td>论文作者</td>
+<td>资源划分</td>
+<td>相关研究</td>
+<td>R04</td>
+</tr>
+<tr>
+<td>ASPLOS</td>
+<td>2025</td>
+<td>Hierarchical Prefetching</td>
+<td>Zhang et al.</td>
+<td>指令供给</td>
+<td>相关研究</td>
+<td>R07</td>
+</tr>
+<tr>
+<td>Microsoft Ignite / Build</td>
+<td>2025 / 2026</td>
+<td>Cobalt 200 disclosure and preview</td>
+<td>Microsoft</td>
+<td>CSS V3 实现</td>
+<td>合作伙伴部署</td>
+<td>E07 E18 E20</td>
+</tr>
+<tr>
+<td>Google Cloud Next</td>
+<td>2024</td>
+<td>Google Axion introduction</td>
+<td>Google</td>
+<td>V2 实现</td>
+<td>合作伙伴部署</td>
+<td>E17</td>
+</tr>
+<tr>
+<td>AWS re:Invent / EC2 launches</td>
+<td>2023-2026</td>
+<td>Graviton4 / Graviton5</td>
+<td>AWS</td>
+<td>V2／V3 实现</td>
+<td>合作伙伴部署</td>
+<td>E16 E19</td>
+</tr>
+<tr>
+<td>Arm Everywhere</td>
+<td>2026</td>
+<td>AGI CPU and CSS N4</td>
+<td>Arm</td>
+<td>商用 CPU／IP</td>
+<td>产品发布</td>
+<td>E05 E06</td>
+</tr>
+</tbody>
+</table></div>
+<p>DAC、MWC、Computex、OCP、GTC、SC／ISC、VLSI 和 ISSCC／JSSC 是互补渠道，分别涉及设计方法、电信部署、生态发布、机架、一致性 GPU 主机、HPC 系统及实现技术。只有具体披露与所覆盖代际建立联系时，才作为产品证据列入。索引是核验后的精选，不表示 Arm 在每个会议展示了每款产品。N1 的 ISSCC 条目使用会议公开技术摘要，并不表示已获取论文全文。</p>
+<h2 id="16">16 代号与设计归属对照</h2>
+<h3 id="_8">需要区分的名称</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>含义</th>
+<th>归属／边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ares / N1</td>
+<td>核心 IP 代际</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Zeus / V1</td>
+<td>面向向量性能的核心 IP</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Perseus / N2</td>
+<td>面向密度的 Armv9 核心</td>
+<td>Arm</td>
+</tr>
+<tr>
+<td>Demeter / V2</td>
+<td>Grace、Axion、Graviton4 使用的核心</td>
+<td>Arm 核心；合作伙伴 SoC</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>预集成计算子系统</td>
+<td>不是完整商用芯片</td>
+</tr>
+<tr>
+<td>AGI CPU</td>
+<td>Arm 自研服务器芯片</td>
+<td>基于 V3；不是 CSS N4</td>
+</tr>
+<tr>
+<td>Falkor／Oryon／AmpereOne／Vera</td>
+<td>定制 Arm 兼容核心或产品</td>
+<td>被授权方设计；不是 Neoverse 别名</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="17">17 四个时代的整体产品栈</h2>
+<p>以下图示表达归属与组成关系，并不意味着所有被授权方使用共同物理互联。连接线表示集成关系，精确带宽仍取决于具体实现。</p>
+<h3 id="2015-2018isa">2015-2018：ISA 与合作伙伴集成</h3>
+<pre class="mermaid">flowchart TD
+  n0["Arm ISA／Cortex IP"]
+  n1["定制 Arm 核心"]
+  n2["合作伙伴服务器 SoC"]
+  n3["DDR／PCIe／NIC"]
+  n4["Linux／固件"]
+  n5["云／边缘服务"]
+  n0 ---|"设计"| n2
+  n1 ---|"集成"| n3
+  n2 ---|"启用"| n4
+  n3 ---|"组成"| n5
+  n4 ---|"软件"| n5
+</pre>
+<p>概念性归属与集成图；合作伙伴 GPU 和网络带宽不归入 Arm。</p>
+<h3 id="2019-2022neoverse">2019-2022：Neoverse 平台</h3>
+<pre class="mermaid">flowchart TD
+  n0["N1／V1／N2"]
+  n1["CMN＋系统 IP"]
+  n2["Graviton／Altra／合作伙伴"]
+  n3["DDR＋外部加速器"]
+  n4["Linux／SVE 库"]
+  n5["云／HPC／网络"]
+  n0 ---|"设计"| n2
+  n1 ---|"集成"| n3
+  n2 ---|"启用"| n4
+  n3 ---|"组成"| n5
+  n4 ---|"软件"| n5
+</pre>
+<p>概念性归属与集成图；合作伙伴 GPU 和网络带宽不归入 Arm。</p>
+<h3 id="2023-2025css">2023-2025：CSS 与异构主机</h3>
+<pre class="mermaid">flowchart TD
+  n0["V2／V3／N3＋CSS"]
+  n1["CMN／CHI C2C"]
+  n2["Grace／Axion／Cobalt"]
+  n3["合作伙伴 GPU／DPU"]
+  n4["固件／优化内核"]
+  n5["云 AI／一致性系统"]
+  n0 ---|"设计"| n2
+  n1 ---|"集成"| n3
+  n2 ---|"启用"| n4
+  n3 ---|"组成"| n5
+  n4 ---|"软件"| n5
+</pre>
+<p>概念性归属与集成图；合作伙伴 GPU 和网络带宽不归入 Arm。</p>
+<h3 id="2026ip">2026：IP 与商用芯片并行</h3>
+<pre class="mermaid">flowchart TD
+  n0["CSS N4 授权 IP"]
+  n1["基于 V3 的 AGI CPU"]
+  n2["合作伙伴定制芯片"]
+  n3["DDR5／PCIe 6／CXL 3"]
+  n4["操作系统／运行时／管理"]
+  n5["OEM 机架＋合作伙伴 XPU"]
+  n0 ---|"设计"| n2
+  n1 ---|"集成"| n3
+  n2 ---|"启用"| n4
+  n3 ---|"组成"| n5
+  n4 ---|"软件"| n5
+</pre>
+<p>概念性归属与集成图；合作伙伴 GPU 和网络带宽不归入 Arm。</p>
+<h3 id="_9">各时代带宽层次</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>时代</th>
+<th>片上／裸片间</th>
+<th>内存</th>
+<th>主机连接</th>
+<th>纵向／横向扩展</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015-2018</td>
+<td>被授权方互联</td>
+<td>被授权方 DDR</td>
+<td>PCIe; n/d</td>
+<td>被授权方网络；n/d</td>
+</tr>
+<tr>
+<td>2019-2022</td>
+<td>CMN-600/700; n/d</td>
+<td>合作伙伴配置 DDR；n/d</td>
+<td>PCIe / CCIX; n/d</td>
+<td>无通用 Arm 链路</td>
+</tr>
+<tr>
+<td>2023-2025</td>
+<td>CMN / CHI C2C; n/d</td>
+<td>Graviton4：537.6 GB/s 峰值</td>
+<td>Grace C2C 属于 NVIDIA</td>
+<td>依合作伙伴</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>CMN; D2D n/d</td>
+<td>AGI：844.8 GB/s 推导峰值</td>
+<td>PCIe 6 x16 ~128 GB/s raw</td>
+<td>外部 XPU／NIC；n/d</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="18">18 工程结论</h2>
+<p>Arm 的十年最适合被理解为可配置系统逐步产品化的过程。核心能效很重要，但更大的收益来自核心与内存、一致性和部署模型的匹配。CSS 降低集成成本，却没有消除实现责任。商用 AGI 芯片扩大平台的可用范围，也让 Arm 与既有被授权方形成第二种关系。对 AI 基础设施而言，CPU 的长期要求是可预测服务延迟、内存容量与带宽、加速器 I/O、隔离和成熟软件。Arm ISA 标签或最大核心数都不能单独回答这些问题。</p>
+<h2 id="_10">来源映射</h2>
+<p>01 研究范围与执行摘要 — C02, E01, E03, E04, E05, E06, E15, P01, P02, P06</p>
+<p>02 数值、设计归属与可用性 — C02, E08, P02, P04, P07, P08</p>
+<p>03 Neoverse 与 CSS 代际总览 — C02, E01, E02, E03, E04, E06, E09, P01, P02, P03, P04, P06, P08, P09, P10</p>
+<p>04 2015-2018：区分 ISA、核心与服务器 — C03, E01, E08, P01, P08</p>
+<p>05 N1 与 E1：云核心和吞吐型核心 — C01, E01, E08, P01, P08</p>
+<p>06 V1 与 N2：向量性能与密度分线 — C04, E02, E03, E08, P02, P03</p>
+<p>07 V2：执行宽度、访存并发与一致性主机 — C02, E08, E16, E17, P15</p>
+<p>08 V3、N3 与 CSS：改变集成边界 — E04, E07, E18, E19, E20, P04, P08, P09, R01</p>
+<p>09 AGI CPU：Arm 成为芯片供应商 — C03, E05, E13, E14, E15, P07</p>
+<p>10 CSS N4 与当前路线图 — E06, E10, P06, P10</p>
+<p>11 CMN、CHI 与基础设施卸载边界 — C02, C04, E09, P01, P07, P08, P09, P14</p>
+<p>12 GPU 与 NPU IP：互补的边缘计算 — E10, E11, E12, P11, P12</p>
+<p>13 软件、安全与研究证据 — P08, P13, P14, R01, R02, R03, R04, R05, R06, R07</p>
+<p>14 系统与定量配比 — E08, E13, E14, E16, E17, E18, E19, P07, P11</p>
+<p>15 会议与产品对应索引 — C01, C02, C03, C04, E03, E05, E06, E07, E09, E13, E16, E17, E18, E19, E20, P01, P15, R03, R04, R05, R06, R07</p>
+<p>16 代号与设计归属对照 — C02, C03, E01, E03, E06, E08, P01, P02, P07, P08</p>
+<p>17 四个时代的整体产品栈 — C04, E03, E06, E08, E09, E16, P01, P07, P15</p>
+<p>18 工程结论 — E03, E06, P07, P13</p>
+<h2 id="_11">参考资料</h2>
+<h3 id="_12">产品与技术文档</h3>
+<p>[P01] The Arm Neoverse N1 Platform: Building Blocks for the Next-Gen Cloud-to-Edge Infrastructure SoC. <a href="https://www.arm.com/-/media/global/solutions/infrastructure/arm-neoverse-n1-platform.pdf">https://www.arm.com/-/media/global/solutions/infrastructure/arm-neoverse-n1-platform.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P02] Neoverse V1 platform technical deep dive. <a href="https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/neoverse-v1-platform-a-new-performance-tier-for-arm">https://community.arm.com/developer/ip-products/processors/b/processors-ip-blog/posts/neoverse-v1-platform-a-new-performance-tier-for-arm</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P03] Neoverse N2 product support. <a href="https://support.arm.com/compute-ip/neoverse-n2">https://support.arm.com/compute-ip/neoverse-n2</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P04] Neoverse V3 product. <a href="https://www.arm.com/products/silicon-ip-cpu/neoverse/neoverse-v3">https://www.arm.com/products/silicon-ip-cpu/neoverse/neoverse-v3</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P06] Neoverse CSS N4 product support. <a href="https://support.arm.com/compute-subsystems/neoverse-css-n4">https://support.arm.com/compute-subsystems/neoverse-css-n4</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P07] Arm AGI CPU product brief. <a href="https://www.arm.com/static/az/pdf/product-brief/arm-agi-cpu-product-brief.pdf">https://www.arm.com/static/az/pdf/product-brief/arm-agi-cpu-product-brief.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P08] Introduction to Neoverse Cores: Arm Education. <a href="https://raw.githubusercontent.com/arm-education/Introduction-to-Cloud-Compute-on-Arm/main/Part%201%20-%20Introduction%20to%20Neoverse%20Cores.md">https://raw.githubusercontent.com/arm-education/Introduction-to-Cloud-Compute-on-Arm/main/Part%201%20-%20Introduction%20to%20Neoverse%20Cores.md</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P09] Neoverse CSS V3 specifications. <a href="https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-v3">https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-v3</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P10] Neoverse CSS N4 specifications. <a href="https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-n4">https://www.arm.com/products/cloud-datacenter/neoverse-compute-subsystems/css-n4</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P11] Ethos-U85 technical overview. <a href="https://documentation-service.arm.com/static/67b5b9e6fdbd9d54ee93e7d0">https://documentation-service.arm.com/static/67b5b9e6fdbd9d54ee93e7d0</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P12] Ethos-U65 product. <a href="https://www.arm.com/products/silicon-ip-cpu/ethos/ethos-u65">https://www.arm.com/products/silicon-ip-cpu/ethos/ethos-u65</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P13] Arm Compute Library. <a href="https://github.com/ARM-software/ComputeLibrary">https://github.com/ARM-software/ComputeLibrary</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P14] Arm Neoverse Reference Design software. <a href="https://neoverse-reference-design.docs.arm.com/en/rd-infra-2024.09.30/platforms/rdv3.html">https://neoverse-reference-design.docs.arm.com/en/rd-infra-2024.09.30/platforms/rdv3.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[P15] NVIDIA Grace CPU Superchip architecture whitepaper. <a href="https://resources.nvidia.com/en-us-grace-cpu/nvidia-grace-cpu-superchip">https://resources.nvidia.com/en-us-grace-cpu/nvidia-grace-cpu-superchip</a>. 一手资料；访问截止 2026-09-28</p>
+<h3 id="_13">会议记录与实现披露</h3>
+<p>[C01] ISSCC 2020 press kit, paper 8.3: A 3GHz Arm Neoverse N1 CPU in 7nm FinFET for Infrastructure Applications. <a href="https://www.isscc.org/s/2020-Press-Kit.pdf">https://www.isscc.org/s/2020-Press-Kit.pdf</a>. 官方会议新闻资料；不是论文全文。</p>
+<p>[C02] Hot Chips 2023: Arm Neoverse V2 Platform. <a href="https://hc2023.hotchips.org/assets/program/conference/day1/CPU1/HC2023.Arm.MagnusBruce.v04.FINAL.pdf">https://hc2023.hotchips.org/assets/program/conference/day1/CPU1/HC2023.Arm.MagnusBruce.v04.FINAL.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C03] Hot Chips 2026: Arm CPU architecture recap. <a href="https://newsroom.arm.com/blog/hot-chips-2026-arm-cpu-agentic-ai">https://newsroom.arm.com/blog/hot-chips-2026-arm-cpu-agentic-ai</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[C04] Hot Chips 2021 program: Neoverse N2 and Cloud AI 100. <a href="https://hc33.hotchips.org/">https://hc33.hotchips.org/</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<h3 id="_14">研究论文与出版目录</h3>
+<p>[R01] Verified Security for the Morello Capability-enhanced Prototype Arm Architecture. <a href="https://link.springer.com/chapter/10.1007/978-3-030-99336-8_7">https://link.springer.com/chapter/10.1007/978-3-030-99336-8_7</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R02] Cambridge CHERI and Morello publications. <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/publications.html">https://www.cl.cam.ac.uk/research/security/ctsrd/publications.html</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R03] A High-Performance, Accurate, Timely On-Chip Temporal Prefetcher, ISCA 2024. <a href="https://dl.acm.org/doi/10.1109/ISCA59077.2024.00090">https://dl.acm.org/doi/10.1109/ISCA59077.2024.00090</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<p>[R04] Criticality-Aware Instruction-Centric Bandwidth Partitioning for Data Center Servers, HPCA 2025. <a href="https://zhou-diyu.github.io/files/pivot-hpca25.pdf">https://zhou-diyu.github.io/files/pivot-hpca25.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R05] Temporal Prefetching Without the Off-Chip Metadata, MICRO 2019. <a href="https://www.cs.utexas.edu/~lin/papers/micro19m.pdf">https://www.cs.utexas.edu/~lin/papers/micro19m.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R06] Making Temporal Prefetchers Practical: The MISB Prefetcher, ISCA 2019. <a href="https://developer.arm.com/community/arm-research/b/articles/posts/making-temporal-prefetchers-practical--the-misb-prefetcher">https://developer.arm.com/community/arm-research/b/articles/posts/making-temporal-prefetchers-practical--the-misb-prefetcher</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[R07] Hierarchical Prefetching, ASPLOS 2025. <a href="https://www.research.ed.ac.uk/files/521674398/ZhangEtalASPLOS2025HierarchicalPrefetching.pdf">https://www.research.ed.ac.uk/files/521674398/ZhangEtalASPLOS2025HierarchicalPrefetching.pdf</a>. 官方索引或相关发布资料；完整文档未能下载。</p>
+<h3 id="_15">发布、生态与部署</h3>
+<p>[E01] Neoverse N1 and E1 launch, 2019. <a href="https://newsroom.arm.com/news/our-next-step-in-preparing-the-cloud-for-1t-intelligent-devices">https://newsroom.arm.com/news/our-next-step-in-preparing-the-cloud-for-1t-intelligent-devices</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E02] Neoverse V1 and N2 launch, 2020. <a href="https://newsroom.arm.com/news/accelerating-the-next-generation-cloud-to-edge-infrastructure">https://newsroom.arm.com/news/accelerating-the-next-generation-cloud-to-edge-infrastructure</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E03] Neoverse CSS introduction at Hot Chips 2023. <a href="https://newsroom.arm.com/news/arm-neoverse-subsystems">https://newsroom.arm.com/news/arm-neoverse-subsystems</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E04] Neoverse V3 and N3 launch, 2024. <a href="https://newsroom.arm.com/news/enabling-ai-infrastructure-on-arm">https://newsroom.arm.com/news/enabling-ai-infrastructure-on-arm</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E05] Introducing Arm AGI CPU, March 2026. <a href="https://newsroom.arm.com/blog/introducing-arm-agi-cpu">https://newsroom.arm.com/blog/introducing-arm-agi-cpu</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E06] AGI CPU and CSS N4 announcement, September 2026. <a href="https://www.arm.com/zh-cn/company/news/2026/09/arm-agi-cpu-neoverse-css-n4-agentic-ai">https://www.arm.com/zh-cn/company/news/2026/09/arm-agi-cpu-neoverse-css-n4-agentic-ai</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E07] Microsoft Azure Cobalt 200 uses Neoverse CSS V3. <a href="https://newsroom.arm.com/blog/microsoft-azure-cobalt-200-arm-neoverse-css-v3">https://newsroom.arm.com/blog/microsoft-azure-cobalt-200-arm-neoverse-css-v3</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E08] Neoverse deployment guide. <a href="https://newsroom.arm.com/blog/what-is-arm-neoverse">https://newsroom.arm.com/blog/what-is-arm-neoverse</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E09] Arm and Alphawave compute chiplets. <a href="https://newsroom.arm.com/blog/arm-and-alphawave-semi-unite-on-6g-chiplets">https://newsroom.arm.com/blog/arm-and-alphawave-semi-unite-on-6g-chiplets</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E10] CSS for Mobile 2 and Mali G2-Ultra NX, 2026. <a href="https://newsroom.arm.com/news/arm-css-for-mobile-2-agentic-ai-mobile-graphics">https://newsroom.arm.com/news/arm-css-for-mobile-2-agentic-ai-mobile-graphics</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E11] Ethos-U85 launch, 2024. <a href="https://newsroom.arm.com/blog/ethos-u85">https://newsroom.arm.com/blog/ethos-u85</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E12] Ethos-N78 and Mali-G78, 2020. <a href="https://newsroom.arm.com/news/new-arm-ip-delivers-true-digital-immersion-for-the-5g-era">https://newsroom.arm.com/news/new-arm-ip-delivers-true-digital-immersion-for-the-5g-era</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E13] Arm AGI CPU 1OU dual-node reference server. <a href="https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/introducing-the-arm-agi-cpu-1ou-dual-node-reference-server">https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/introducing-the-arm-agi-cpu-1ou-dual-node-reference-server</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E14] Supermicro Arm AGI CPU systems datasheet. <a href="https://www.supermicro.com/datasheet/datasheet_Supermicro_Arm_AGI.pdf">https://www.supermicro.com/datasheet/datasheet_Supermicro_Arm_AGI.pdf</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E15] Arm May 2026 shareholder update: AGI systems available to order. <a href="https://investors.arm.com/static-files/adf3bac7-1e91-442e-92e0-5f2d8f1b6a14">https://investors.arm.com/static-files/adf3bac7-1e91-442e-92e0-5f2d8f1b6a14</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E16] AWS Graviton4 memory and cores: DevitoPRO case study. <a href="https://aws.amazon.com/blogs/hpc/performance-gains-with-aws-graviton4-a-devitopro-case-study/">https://aws.amazon.com/blogs/hpc/performance-gains-with-aws-graviton4-a-devitopro-case-study/</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E17] Google Axion announcement, Cloud Next 2024. <a href="https://cloud.google.com/blog/products/compute/introducing-googles-new-arm-based-cpu">https://cloud.google.com/blog/products/compute/introducing-googles-new-arm-based-cpu</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E18] Microsoft Cobalt 200 architecture disclosure. <a href="https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807">https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/announcing-cobalt-200-azure%E2%80%99s-next-cloud-native-cpu/4469807</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E19] AWS Graviton5 general availability, June 2026. <a href="https://www.aboutamazon.com/news/aws/aws-graviton-5-cpu-amazon-ec2">https://www.aboutamazon.com/news/aws/aws-graviton-5-cpu-amazon-ec2</a>. 一手资料；访问截止 2026-09-28</p>
+<p>[E20] Cobalt 200 early access preview, Build 2026. <a href="https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/">https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/</a>. 一手资料；访问截止 2026-09-28</p></article></div></main><script src="app.js"></script></body></html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/ai/><meta content="width=device-width,initial-scale=1" name="viewport"/ai/><title>Meta · AI Infrastructure</title><meta content="Generation-by-generation AI infrastructure architecture reports, 2015–2026. CPU, accelerators, memory, networking and systems." name="description"/ai/><link href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23102c3b%22/%3E%3Cpath d=%22M7 8h18v5H7zm0 8h8v8H7zm11 0h7v8h-7z%22 fill=%22%239bd9dc%22/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/ai/><link href="style.css" rel="stylesheet"/ai/><link href="/ai/research-nav.css" rel="stylesheet"/ai/></head><body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI Infrastructure Research</a><a aria-current="page" href="/ai/index-en.html">Company architecture</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">Earnings analysis</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a></nav><header><a href="index-en.html"><div class="eyebrow">ARCHITECTURE / 2015—2026</div><div class="brand">AI Infrastructure Library</div></a><a class="lang" href="meta-zh.html" lang="zh-CN">中文</a></header><main><div class="readerbar"><a class="back" href="index-en.html">← All companies</a><a class="primary" download="" href="files/Meta_AI_Infrastructure_2015-2026_EN.pdf">Download PDF</a><a class="secondary" download="" href="files/Meta_AI_Infrastructure_2015-2026_EN.md">Markdown</a></div><div class="reading"><nav aria-label="Contents" class="toc"><div class="toc">
+<ul>
+<li><a href="#meta-ai-infrastructure-architecture-evolution">Meta AI Infrastructure Architecture Evolution</a><ul>
+<li><a href="#01-scope-and-executive-synthesis">01 Scope and executive synthesis</a></li>
+<li><a href="#02-mtia100-and-mtia200-recommendation-inference">02 MTIA100 and MTIA200: recommendation inference</a></li>
+<li><a href="#03-mtia300-training-changes-the-data-path">03 MTIA300: training changes the data path</a></li>
+<li><a href="#04-mtia400-450-and-500-the-inference-roadmap">04 MTIA400, 450 and 500: the inference roadmap</a></li>
+<li><a href="#05-generation-specifications-and-disclosure-reconciliation">05 Generation specifications and disclosure reconciliation</a><ul>
+<li><a href="#mtia-reference-specifications">MTIA reference specifications</a></li>
+<li><a href="#host-cpu-boundary">Host CPU boundary</a></li>
+</ul>
+</li>
+<li><a href="#06-integrated-nics-networking-and-msvp">06 Integrated NICs, networking and MSVP</a><ul>
+<li><a href="#mtia-network-chiplets">MTIA network chiplets</a></li>
+<li><a href="#interconnect-evolution">Interconnect evolution</a></li>
+</ul>
+</li>
+<li><a href="#07-rack-architecture-and-software">07 Rack architecture and software</a><ul>
+<li><a href="#2023-2024-stack">2023-2024 stack</a></li>
+<li><a href="#2026-roadmap-stack">2026 roadmap stack</a></li>
+<li><a href="#system-generations">System generations</a></li>
+<li><a href="#software-stack">Software stack</a></li>
+</ul>
+</li>
+<li><a href="#08-normalized-trends-and-engineering-tradeoffs">08 Normalized trends and engineering tradeoffs</a><ul>
+<li><a href="#memory-and-communication-balance">Memory and communication balance</a></li>
+</ul>
+</li>
+<li><a href="#09-conference-and-product-crosswalk">09 Conference and product crosswalk</a><ul>
+<li><a href="#disclosure-map">Disclosure map</a></li>
+<li><a href="#naming-and-ownership">Naming and ownership</a></li>
+<li><a href="#isscc-background">ISSCC background</a></li>
+</ul>
+</li>
+<li><a href="#source-map">Source map</a></li>
+<li><a href="#references">References</a><ul>
+<li><a href="#product-and-technical-documentation">Product and technical documentation</a></li>
+<li><a href="#conference-records-and-implementation-disclosures">Conference records and implementation disclosures</a></li>
+<li><a href="#launches-ecosystem-and-deployment">Launches, ecosystem and deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><article><h1 id="meta-ai-infrastructure-architecture-evolution">Meta AI Infrastructure Architecture Evolution</h1>
+<p>2015-2026 | 2026-09-28</p>
+<h2 id="01-scope-and-executive-synthesis">01 Scope and executive synthesis</h2>
+<p>This report covers Meta’s AI infrastructure from 2015 to 28 September 2026: MTIA accelerators, their integrated AI networking, system packaging and software, plus the related MSVP video-processing branch. Merchant CPUs, GPUs and switch ASICs are distinguished from Meta-designed silicon. Earlier years establish infrastructure context rather than an invented annual sequence of custom chips.</p>
+<p>MTIA evolves from low-power recommendation inference into an HBM-based training platform and then an inference-oriented generative-AI roadmap. The decisive transition is not merely more arithmetic: it adds network chiplets, near-memory reduction and rack-scale communication while preserving a PyTorch-facing software contract. Meta’s workload ownership allows narrower optimization than a merchant GPU, but portability, reliability and model evolution remain constraints.</p>
+<h2 id="02-mtia100-and-mtia200-recommendation-inference">02 MTIA100 and MTIA200: recommendation inference</h2>
+<p>MTIA100, originally MTIA v1, was designed around recommendation inference and disclosed at ISCA 2023. Its 7 nm implementation combines an 8×8 processing-element grid, local memories and a larger shared SRAM tier with LPDDR5. The key architectural balance is enough arithmetic for dense portions of the model without sacrificing the storage and access behavior needed by sparse features. This is a different objective from maximizing large-batch transformer training FLOPS.</p>
+<p>MTIA200, originally MTIA2i, retains the 64-PE organization while moving to 5 nm, higher frequency, more local storage and 256 MB shared SRAM. Dense FP16/BF16 rises from 51.2 to 177 TFLOP/s, while LPDDR5 bandwidth increases only from 176 to 204.8 GB/s. The design therefore relies increasingly on on-chip reuse and sparse-workload scheduling. The 2024 platform fits 72 accelerators in a rack, but this is not the same as the 72-device dedicated scale-up domain introduced with MTIA400.</p>
+<h2 id="03-mtia300-training-changes-the-data-path">03 MTIA300: training changes the data path</h2>
+<p>The ISCA 2026 paper describes one compute chiplet, two network chiplets and six HBM3e stacks. A 12×6 active PE array combines RISC-V vector control, dot-product, special-function, reduction and DMA engines. The memory system provides 216 GB and 6.1 TB/s. Redundant PE resources address yield and faults. Moving from LPDDR to HBM changes both packaging and the balance between dense layers, embeddings and collective traffic.</p>
+<p>Each network chiplet integrates six 800 Gb/s RDMA controllers. The aggregate endpoint rate is 1.2 TB/s in each direction. Message engines and near-memory reduction let collectives progress without occupying the principal compute engines or passing the payload through the host PCIe link. The paper’s deployed scale-up configuration uses 800 GB/s, with support up to 1,000 GB/s; scale-out is 200 GB/s. The marketing table uses the supported maximum. Both configurations are retained rather than silently merged.</p>
+<p>A one-to-one host-CPU/accelerator relationship supports optimizer offload. Large HBM capacity can permit larger local batches and fewer communicating trainers, but the benefit depends on optimizer state, precision and convergence constraints. HCCL can fuse communication and computation; the reported collective results are workload- and topology-specific. Integrated NICs reduce one bottleneck, not every synchronization or network bottleneck.</p>
+<h2 id="04-mtia400-450-and-500-the-inference-roadmap">04 MTIA400, 450 and 500: the inference roadmap</h2>
+<p>The March 2026 roadmap identifies MTIA300 as in production, MTIA400 as laboratory-tested and moving toward deployment, and MTIA450/500 as planned for 2027. MTIA400 uses two compute chiplets and a 72-device scale-up system. MTIA450 prioritizes memory bandwidth and low-precision inference. MTIA500 moves to four compute chiplets plus separate network and host-I/O functions. These are disclosure statuses, not assumed public-cloud or merchant availability.</p>
+<p>Architectural interpretation: reusing chassis and network infrastructure can shorten deployment cycles, but it fixes parts of the system bandwidth budget while compute and HBM continue to grow. From 400 to 500, scale-up remains 1.2 TB/s and scale-out 100 GB/s per device, while HBM bandwidth triples. The compiler must consequently preserve more locality or change parallelization. A 25× comparison from MTIA300 MX8 to MTIA500 MX4 crosses numerical formats and is not a like-for-like arithmetic speedup.</p>
+<h2 id="05-generation-specifications-and-disclosure-reconciliation">05 Generation specifications and disclosure reconciliation</h2>
+<h3 id="mtia-reference-specifications">MTIA reference specifications</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Architecture</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Process</th>
+<th>Dies / packaging</th>
+<th>Compute units</th>
+<th>Dense BF16</th>
+<th>Dense FP8</th>
+<th>Dense FP6 / FP4</th>
+<th>FP64 vector / matrix</th>
+<th>Memory: type; stacks; GB; TB/s</th>
+<th>LLC / SRAM</th>
+<th>Scale-up: links; GB/s per direction; domain</th>
+<th>Host link</th>
+<th>Power / cooling</th>
+<th>Form factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100 / v1</td>
+<td>Recommendation inference</td>
+<td>2023 disclosure</td>
+<td>Historical shipping</td>
+<td>7 nm</td>
+<td>1 logic die</td>
+<td>64 PEs</td>
+<td>51.2 TFLOP/s</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>LPDDR5; 64 GB; 0.176 TB/s</td>
+<td>128 MB; 128 KB/PE</td>
+<td>n/a</td>
+<td>PCIe4 ×8</td>
+<td>25 W</td>
+<td>Accelerator board</td>
+</tr>
+<tr>
+<td>MTIA200 / 2i</td>
+<td>Recommendation inference</td>
+<td>2024 deployment</td>
+<td>Shipping / available</td>
+<td>5 nm</td>
+<td>1 logic die</td>
+<td>64 PEs</td>
+<td>177 TFLOP/s</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/d</td>
+<td>LPDDR5; 64-128 GB; 0.2048 TB/s</td>
+<td>256 MB; 384 KB/PE</td>
+<td>PCIe fabric; not dedicated scale-up</td>
+<td>PCIe5 ×8</td>
+<td>90 W launch; 85 W paper</td>
+<td>Accelerator board</td>
+</tr>
+<tr>
+<td>MTIA300</td>
+<td>R&amp;R training</td>
+<td>2026 production</td>
+<td>Shipping / available</td>
+<td>n/d</td>
+<td>1 compute + 2 network; interposer</td>
+<td>72 active PEs</td>
+<td>560 TFLOP/s (paper)</td>
+<td>1120 TFLOP/s (paper)</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>HBM3e; 6; 216 GB; 6.1 TB/s</td>
+<td>192 MB; 512 KB/PE</td>
+<td>800-1000 GB/s one-way; 16 devices</td>
+<td>PCIe5 ×16</td>
+<td>912 W TDP / 667 W typical (paper)</td>
+<td>Liquid-cooled module</td>
+</tr>
+<tr>
+<td>MTIA400</td>
+<td>GenAI / inference</td>
+<td>2026 deployment path</td>
+<td>Announced; GA n/d</td>
+<td>n/d</td>
+<td>2 compute chiplets</td>
+<td>n/d</td>
+<td>3 PFLOP/s advertised; dense basis n/d</td>
+<td>6 PFLOP/s FP8/MX8; dense basis n/d</td>
+<td>12 PFLOP/s MX4; dense basis n/d</td>
+<td>n/d</td>
+<td>HBM; stacks n/d; 288 GB; 9.2 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s one-way; 72 devices</td>
+<td>n/d</td>
+<td>1200 W module; liquid/AALC</td>
+<td>Rack module</td>
+</tr>
+<tr>
+<td>MTIA450</td>
+<td>GenAI / inference</td>
+<td>early 2027 target</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>3.5 PFLOP/s advertised; dense basis n/d</td>
+<td>7 PFLOP/s FP8/MX8; dense basis n/d</td>
+<td>21 PFLOP/s MX4; dense basis n/d</td>
+<td>n/d</td>
+<td>HBM; stacks n/d; 288 GB; 18.4 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s one-way; 72 devices</td>
+<td>n/d</td>
+<td>1400 W module; liquid/AALC</td>
+<td>Rack module</td>
+</tr>
+<tr>
+<td>MTIA500</td>
+<td>GenAI / inference</td>
+<td>2027 target</td>
+<td>Roadmap</td>
+<td>n/d</td>
+<td>4 compute + 2 network + SoC</td>
+<td>n/d</td>
+<td>5 PFLOP/s advertised; dense basis n/d</td>
+<td>10 PFLOP/s FP8/MX8; dense basis n/d</td>
+<td>30 PFLOP/s MX4; dense basis n/d</td>
+<td>n/d</td>
+<td>HBM; stacks n/d; 384-512 GB; 27.6 TB/s</td>
+<td>n/d</td>
+<td>1200 GB/s one-way; 72 devices</td>
+<td>n/d</td>
+<td>1700 W module; liquid/AALC</td>
+<td>Rack module</td>
+</tr>
+</tbody>
+</table></div>
+<p>The March roadmap lists MTIA300 at 0.6 PFLOP/s BF16, 1.2 PFLOP/s FP8/MX8 and 800 W module TDP. The ISCA paper lists 560/1,120 TFLOP/s and 912 W TDP with 667 W typical power. These represent different published configurations or measurement bases; no undocumented reconciliation is imposed. For derived ratios, the paper’s matched values are used. Likewise, MTIA200’s launch states 90 W while the later comparison table states 85 W. Sparse peaks are kept separate from dense values.</p>
+<h3 id="host-cpu-boundary">Host CPU boundary</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Generation / reference SKU</th>
+<th>Codename</th>
+<th>GA</th>
+<th>Status</th>
+<th>Core µarch</th>
+<th>Cores / threads</th>
+<th>Process per die</th>
+<th>Dies / packaging</th>
+<th>L2 per core</th>
+<th>L3 / domain</th>
+<th>Memory: channels; rate; GB/s</th>
+<th>Sockets / links</th>
+<th>PCIe / CXL</th>
+<th>TDP</th>
+<th>Vector / matrix ISA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External host CPUs</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Supplier products</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="06-integrated-nics-networking-and-msvp">06 Integrated NICs, networking and MSVP</h2>
+<h3 id="mtia-network-chiplets">MTIA network chiplets</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product</th>
+<th>GA / milestone</th>
+<th>Status</th>
+<th>Class</th>
+<th>Ports × speed</th>
+<th>SerDes</th>
+<th>Host interface</th>
+<th>Programmable engine</th>
+<th>Embedded CPU</th>
+<th>On-card memory</th>
+<th>Transport / RDMA</th>
+<th>Congestion control</th>
+<th>Key offloads</th>
+<th>Power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA300 network chiplets</td>
+<td>2026</td>
+<td>Shipping / available</td>
+<td>Integrated AI NIC</td>
+<td>2×6×800 Gb/s</td>
+<td>n/d</td>
+<td>Die-to-die</td>
+<td>Message engines / near-memory reduction</td>
+<td>RISC-V control</td>
+<td>Shared accelerator memory</td>
+<td>RDMA</td>
+<td>Credit-based fabric mechanisms</td>
+<td>Collectives; reductions; direct data path</td>
+<td>Within module</td>
+</tr>
+</tbody>
+</table></div>
+<p>MSVP is a dedicated video-transcoding ASIC disclosed in 2023. It belongs in the infrastructure portfolio because video processing consumes substantial fleet resources, but it is not an MTIA generation or a general neural-network accelerator. Likewise, Meta’s OCP server and networking designs, including switch software and rack standards, should not be confused with ownership of every merchant ASIC they contain.</p>
+<h3 id="interconnect-evolution">Interconnect evolution</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interconnect</th>
+<th>Year / generation</th>
+<th>Lane rate</th>
+<th>Lanes / link</th>
+<th>GB/s per link per direction</th>
+<th>Links / device</th>
+<th>Topology</th>
+<th>Domain limit</th>
+<th>Coherence / semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA200 host fabric</td>
+<td>2024</td>
+<td>PCIe5 32 GT/s</td>
+<td>8</td>
+<td>~31.5 before packet overhead</td>
+<td>n/d</td>
+<td>PCIe switching</td>
+<td>72/rack is packaging count</td>
+<td>PCIe</td>
+</tr>
+<tr>
+<td>MTIA300 scale-up</td>
+<td>2026</td>
+<td>800 Gb/s port</td>
+<td>n/d</td>
+<td>100</td>
+<td>Configuration-specific</td>
+<td>Rack fabric</td>
+<td>16</td>
+<td>RDMA; explicit collectives</td>
+</tr>
+<tr>
+<td>MTIA400/450/500 scale-up</td>
+<td>2026 roadmap</td>
+<td>n/d</td>
+<td>n/d</td>
+<td>1200 aggregate/device</td>
+<td>n/d</td>
+<td>Switched backplane</td>
+<td>72</td>
+<td>Explicit communication</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="07-rack-architecture-and-software">07 Rack architecture and software</h2>
+<h3 id="2023-2024-stack">2023-2024 stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["External host CPU"]
+  gpu["MTIA PE array"]
+  mem["LPDDR5 / SRAM"]
+  sw["PyTorch / compiler / HCCL"]
+  net["PCIe fabric / optional RDMA"]
+  rack["Rack / cooling / operations"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"memory"| mem
+  gpu ---|"data"| net
+  net ---|"integration"| rack
+</pre>
+<p>Later diagram includes announced products; silicon and rack availability are tracked separately.</p>
+<h3 id="2026-roadmap-stack">2026 roadmap stack</h3>
+<pre class="mermaid">flowchart TD
+  cpu["External host CPU"]
+  gpu["MTIA PE array"]
+  mem["HBM3e / SRAM"]
+  sw["PyTorch / compiler / HCCL"]
+  net["Integrated NICs / backplane"]
+  rack["Rack / cooling / operations"]
+  cpu ---|"PCIe"| gpu
+  gpu ---|"memory"| mem
+  gpu ---|"data"| net
+  net ---|"integration"| rack
+</pre>
+<p>Later diagram includes announced products; silicon and rack availability are tracked separately.</p>
+<h3 id="system-generations">System generations</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Year / milestone</th>
+<th>CPU / accelerator count</th>
+<th>Scale-up domain</th>
+<th>Scale-out per accelerator</th>
+<th>Rack power</th>
+<th>Cooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA200 rack</td>
+<td>2024</td>
+<td>72 accelerators; 3 chassis</td>
+<td>PCIe topology</td>
+<td>Optional external RDMA NIC</td>
+<td>n/d</td>
+<td>Air</td>
+</tr>
+<tr>
+<td>MTIA300 rack</td>
+<td>2026</td>
+<td>16 accelerators; 1 CPU/accelerator</td>
+<td>16</td>
+<td>200 GB/s nominal one-way</td>
+<td>n/d</td>
+<td>Liquid</td>
+</tr>
+<tr>
+<td>MTIA400/450/500 rack</td>
+<td>2026-2027 targets</td>
+<td>72 accelerators</td>
+<td>72</td>
+<td>100 GB/s nominal one-way</td>
+<td>n/d</td>
+<td>AALC / facility liquid</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="software-stack">Software stack</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Component</th>
+<th>Function</th>
+<th>Architectural implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>PyTorch / torch.compile / export</td>
+<td>Model capture</td>
+<td>Shared framework interface</td>
+</tr>
+<tr>
+<td>Compiler</td>
+<td>TorchInductor / Triton / MLIR / LLVM</td>
+<td>Graph and kernel lowering</td>
+<td>Schedule local memories and engines</td>
+</tr>
+<tr>
+<td>Communication</td>
+<td>Hoot Collective Communications Library</td>
+<td>Collectives and reduction offload</td>
+<td>HCCL here is Meta Hoot</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Rust user-space driver / firmware</td>
+<td>Memory, execution, observability</td>
+<td>Host and device coordination</td>
+</tr>
+<tr>
+<td>Serving</td>
+<td>vLLM plugin</td>
+<td>Serving integration</td>
+<td>Backend-specific optimized kernels</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="08-normalized-trends-and-engineering-tradeoffs">08 Normalized trends and engineering tradeoffs</h2>
+<h3 id="memory-and-communication-balance">Memory and communication balance</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Product / metric</th>
+<th>Calculation</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100 DRAM/BF16</td>
+<td>176e9/51.2e12 = 0.00344 B/FLOP</td>
+<td>Dense peak</td>
+</tr>
+<tr>
+<td>MTIA200 DRAM/BF16</td>
+<td>204.8e9/177e12 = 0.00116 B/FLOP</td>
+<td>More reuse required than MTIA100</td>
+</tr>
+<tr>
+<td>MTIA300 HBM/BF16</td>
+<td>6.1e12/560e12 = 0.0109 B/FLOP</td>
+<td>Paper configuration</td>
+</tr>
+<tr>
+<td>MTIA300 capacity/BF16</td>
+<td>216e9/560e12 = 3.86e-4 B·s/FLOP</td>
+<td>Per accelerator</td>
+</tr>
+<tr>
+<td>MTIA300 scale-up/HBM</td>
+<td>0.8/6.1 = 0.131</td>
+<td>Deployed paper configuration</td>
+</tr>
+<tr>
+<td>MTIA400→500 scale-up/HBM</td>
+<td>1.2/9.2=0.130 → 1.2/27.6=0.0435</td>
+<td>Network grows slower than HBM</td>
+</tr>
+<tr>
+<td>MTIA300 BF16/TDP</td>
+<td>560/912 = 0.614 TFLOP/s/W</td>
+<td>Peak/TDP; not application efficiency</td>
+</tr>
+<tr>
+<td>Host DDR/core and L3/core</td>
+<td>n/a</td>
+<td>No Meta host-CPU SKU asserted</td>
+</tr>
+</tbody>
+</table></div>
+<p>The large increase in bytes per BF16 FLOP at MTIA300 reflects a workload choice: recommendation training needs embedding capacity and traffic handling. Subsequent inference products raise both HBM and low-precision compute but retain a fixed rack network budget. Their success depends on model placement, expert routing, KV-cache behavior and compiler utilization. Compare at matched precision, quality, batch size and service-level latency, with module and rack power kept separate.</p>
+<h2 id="09-conference-and-product-crosswalk">09 Conference and product crosswalk</h2>
+<h3 id="disclosure-map">Disclosure map</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISCA</td>
+<td>2023</td>
+<td>MTIA v1</td>
+<td>Meta authors</td>
+<td>MTIA100</td>
+<td>Architecture paper; official companion</td>
+<td>C02 P03</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2025</td>
+<td>Second-generation MTIA</td>
+<td>Meta authors</td>
+<td>MTIA200 / 2i</td>
+<td>Paper record; official architecture</td>
+<td>C03 P04</td>
+</tr>
+<tr>
+<td>ISCA</td>
+<td>2026</td>
+<td>MTIA300 built-in NICs</td>
+<td>Meta authors</td>
+<td>MTIA300</td>
+<td>Full paper</td>
+<td>C01</td>
+</tr>
+<tr>
+<td>AI Infra @Scale</td>
+<td>2024</td>
+<td>Hardware and co-design of MTIA</td>
+<td>Colburn; Lan; Montgomery</td>
+<td>MTIA200</td>
+<td>Engineering presentation</td>
+<td>P02</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>2026</td>
+<td>HCCL</td>
+<td>Meta authors</td>
+<td>MTIA communication</td>
+<td>Preprint; November event still future</td>
+<td>C04</td>
+</tr>
+<tr>
+<td>Company technical disclosure</td>
+<td>2026</td>
+<td>Four MTIA chips in two years</td>
+<td>Meta</td>
+<td>300 / 400 / 450 / 500</td>
+<td>Product and roadmap</td>
+<td>E01</td>
+</tr>
+</tbody>
+</table></div>
+<p>No product-specific ISSCC, HPCA, MICRO or ASPLOS circuit/architecture chain is established here for MTIA. ISCA provides the strongest direct product evidence. The public roadmap is broader than the available implementation papers: process, die details and dense/sparse arithmetic basis remain incomplete for 400/450/500. The report retains those gaps in the tables rather than extrapolating earlier silicon details.</p>
+<h3 id="naming-and-ownership">Naming and ownership</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Alias / role</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MTIA100</td>
+<td>MTIA v1</td>
+<td>Inference ASIC</td>
+</tr>
+<tr>
+<td>MTIA200</td>
+<td>MTIA2i</td>
+<td>Not MTIA300 training chip</td>
+</tr>
+<tr>
+<td>HCCL</td>
+<td>Hoot</td>
+<td>Not Huawei HCCL</td>
+</tr>
+<tr>
+<td>MSVP</td>
+<td>Video transcoding</td>
+<td>Separate ASIC branch</td>
+</tr>
+<tr>
+<td>Broadcom</td>
+<td>MTIA development partner</td>
+<td>Not a merchant MTIA SKU</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="isscc-background">ISSCC background</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Venue</th>
+<th>Year</th>
+<th>Paper / talk / disclosure</th>
+<th>Presenter / authors</th>
+<th>Product</th>
+<th>Evidence type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISSCC plenary</td>
+<td>2019</td>
+<td>Deep Learning Hardware: Past, Present, &amp; Future</td>
+<td>Yann LeCun</td>
+<td>Research context; not MTIA implementation</td>
+<td>Official plenary record</td>
+<td>C05</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="source-map">Source map</h2>
+<p>01 Scope and executive synthesis — C01, E01, E03, E04, P03, P04</p>
+<p>02 MTIA100 and MTIA200: recommendation inference — C02, C03, P03, P04</p>
+<p>03 MTIA300: training changes the data path — C01, C04, E01, P01</p>
+<p>04 MTIA400, 450 and 500: the inference roadmap — E01</p>
+<p>05 Generation specifications and disclosure reconciliation — C01, E01, E03, P03, P04</p>
+<p>06 Integrated NICs, networking and MSVP — C01, E01, E03, E04, P01, P04</p>
+<p>07 Rack architecture and software — C01, C04, E01, P01, P04</p>
+<p>08 Normalized trends and engineering tradeoffs — C01, E01, P04</p>
+<p>09 Conference and product crosswalk — C01, C02, C03, C04, C05, E01, E04, P02, P03, P04</p>
+<h2 id="references">References</h2>
+<h3 id="product-and-technical-documentation">Product and technical documentation</h3>
+<p>[P01] MTIA300 built-in NICs and collective offload. <a href="https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/">https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P02] Inside MTIA hardware co-design, 2024. <a href="https://engineering.fb.com/2024/08/22/ml-applications/meta-mtia-hardware-co-design/">https://engineering.fb.com/2024/08/22/ml-applications/meta-mtia-hardware-co-design/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P03] First generation MTIA architecture. <a href="https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/">https://ai.meta.com/blog/meta-training-inference-accelerator-AI-MTIA/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[P04] Second generation MTIA architecture. <a href="https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/">https://ai.meta.com/blog/next-generation-meta-training-inference-accelerator-AI-MTIA/</a>. Primary source; accessed by 2026-09-28</p>
+<h3 id="conference-records-and-implementation-disclosures">Conference records and implementation disclosures</h3>
+<p>[C01] MTIA300 ISCA2026 paper. <a href="https://aisystemcodesign.github.io/papers/MTIA300_ISCA2026.pdf">https://aisystemcodesign.github.io/papers/MTIA300_ISCA2026.pdf</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C02] MTIA v1, ISCA2023. <a href="https://dl.acm.org/doi/10.1145/3579371.3589348">https://dl.acm.org/doi/10.1145/3579371.3589348</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[C03] Second generation MTIA, ISCA2025. <a href="https://dl.acm.org/doi/10.1145/3695053.3731409">https://dl.acm.org/doi/10.1145/3695053.3731409</a>. Official indexed record or related announcement; full document download unavailable.</p>
+<p>[C04] HCCL collective communications, 2026 preprint. <a href="https://arxiv.org/pdf/2608.00358">https://arxiv.org/pdf/2608.00358</a>. Primary source; accessed by 2026-09-28</p>
+<p>[C05] ISSCC2019 LeCun plenary record. <a href="https://www.isscc.org/isscc-plenary-videos">https://www.isscc.org/isscc-plenary-videos</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p>
+<h3 id="launches-ecosystem-and-deployment">Launches, ecosystem and deployment</h3>
+<p>[E01] Four MTIA chips in two years, March2026. <a href="https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/">https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E03] Infrastructure evolution, 2025. <a href="https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/">https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/</a>. Primary source; accessed by 2026-09-28</p>
+<p>[E04] MSVP first video transcoding ASIC. <a href="https://ai.meta.com/blog/meta-scalable-video-processor-MSVP/">https://ai.meta.com/blog/meta-scalable-video-processor-MSVP/</a>. Indexed record or searchable official page; product details cross-checked with the associated technical document.</p></article></div></main><script src="app.js"></script></body></html>
