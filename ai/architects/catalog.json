@@ -11537,21 +11537,21 @@
     {
       "id": "thomas-wenisch",
       "name": "Thomas Wenisch",
-      "field": "微秒级服务与数据中心效率",
-      "core": "在硬件和 OS 时间尺度之间，识别被遗漏的服务等待与调度机会。",
-      "evidence": "Michigan 微服务架构公开报告与本人研究资料连接微秒服务、处理器、IT 能量和数据中心；成果为合作研究。",
+      "field": "内存持久性、能效与微秒级服务",
+      "core": "把持久化顺序、能耗和微秒级等待放进同一条服务代价核算，识别被遗漏的等待与调度机会。",
+      "evidence": "ACM SIGARCH 2021 Maurice Wilkes Award 贡献说明为“For contributions to memory persistency and energy-efficient systems”。Michigan 微服务架构公开报告另连接微秒服务、处理器、IT 能量和数据中心；成果为合作研究，此处的阅读视角为教学归纳，不是对具体论文结论的转述。",
       "habits": [
-        "按服务阶段分解等待。",
-        "检查时间尺度错配。",
-        "联合看调度与微架构。",
+        "把持久化顺序、恢复点与性能代价分开核算。",
+        "按服务阶段分解等待与能耗。",
+        "检查硬件与 OS 时间尺度错配。",
         "关联 IT 与设施资源。"
       ],
       "questions": [
-        "微秒任务的调度是否比有用计算更贵？",
-        "哪个等待可以被重新安排？",
-        "改进能否保住服务尾部？"
+        "持久化顺序约束带来的额外等待，是否比恢复或重算更贵？",
+        "节能机制是否保住完整服务的尾部？",
+        "哪个等待可以被重新安排？"
       ],
-      "boundary": "平均微任务加速不保证端到端 P99，必须保留依赖与排队。",
+      "boundary": "获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。平均微任务加速不保证端到端 P99，必须保留依赖与排队。",
       "diagnostic": "用逐请求 trace 分解调度、排队、运行和 RPC，扫描并发与突发。",
       "notes": [
         [
@@ -11564,6 +11564,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2021 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Michigan：微服务时代的数据中心架构报告",
           "https://eecs.engin.umich.edu/event/datacenter-architectures-for-the-microservices-era/",
@@ -11588,6 +11593,7 @@
       "domain": "datacenter",
       "relatedDomains": [
         "cpu",
+        "memory",
         "physical-energy"
       ]
     },
