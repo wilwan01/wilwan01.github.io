@@ -63,16 +63,18 @@
     "id": "S5",
     "name": "Second Derivative",
     "zh": "增长二阶变化",
-    "question": "收入序列 100→150→195，同比可比条件下，增长率和变化是多少？是否足以判定周期拐点？",
-    "solution": "增长率 50%→30%，减速20个百分点。基数、季节性、订单、价格与容量需对齐；增长减速本身不能证明投资需求下降。",
-    "transfer": "CapEx 仍增长，但 equipment bookings 下滑；解释可能的传导滞后。",
+    "question": "合成情景：CapEx从100升至140，bit supply增长从25%降至20%。其中新增支出70%用于两年后可用的建筑。为什么这组数字不必矛盾？",
+    "solution": "投入增40%不是当期产出增40%。按建筑、工具、调试滞后建模；供给增长降5pp表示减速，不表示bit产出下降。",
+    "transfer": "转到云业务：CapEx增50%，上线MW增20%，使用量增10%，分别检验时滞、利用率和每MW效率。",
     "rubric": [
       "计算增长与百分点",
       "对齐可比期间",
       "区分水平与斜率",
       "提出独立先行证据"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-05",
+    "inspiration": "Micron FY2026 Q4; all exercise numbers are synthetic, not issuer estimates"
   },
   {
     "id": "S6",
@@ -93,16 +95,18 @@
     "id": "S7",
     "name": "Supply/Demand",
     "zh": "供需侦探",
-    "question": "订单 150，合格组件 130，机架集成 110，通电容量支持 90，验收 80。收入应绑定哪个环节？",
-    "solution": "可交付链最小值 80，但收入依据合同控制权/验收条款；订单与收入不能混同。缓解通电后也可能转移到验收。",
-    "transfer": "HBM 宣称售罄，若先进封装受限，会出现怎样的库存与收入？",
+    "question": "合成情景：总晶圆100，HBM占20且每单位bit需3倍晶圆资源。若HBM占比升至30，总等价bit产出怎样变化？",
+    "solution": "等价产出先为80+20/3=86.67，后为70+30/3=80，下降7.69%；这是固定总晶圆、固定良率的假设模型，不能当作真实trade ratio。",
+    "transfer": "转到AI网络：增加高价值定制芯片占比会怎样影响晶圆利用率和交付量？",
     "rubric": [
       "区分供应链阶段",
       "识别最窄环节",
       "连接合同收入确认",
       "预测瓶颈转移"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-05",
+    "inspiration": "Micron FY2026 Q4; all exercise numbers are synthetic, not issuer estimates"
   },
   {
     "id": "S8",
@@ -123,16 +127,18 @@
     "id": "S9",
     "name": "CapEx Transmission",
     "zh": "资本开支传导",
-    "question": "现金设备支出80，新增融资租赁30，建设支出20。设备内容占一半时，能直接算出GPU需求吗？",
-    "solution": "先定义80是否含20及租赁是否重复；若80为独立设备现金支出，经济新增设备可为110，仍需内容系数、价格、支付/交付滞后。建设不能直接当GPU。",
-    "transfer": "客户预付款支持扩产，但运营CFO未增长，周期持续性如何检验？",
+    "question": "合成情景：投资增加40，其中建筑28，两年后完工；工具12，需两个季度资格验证。给出未来四季供给修正的方法。",
+    "solution": "区分支出、安装、资格验证、爬坡与客户接受；建筑本身不产bits。工具还需已有洁净室、产品资格与良率；不给缺证据的单点产量。",
+    "transfer": "迁移到数据中心：购买GPU与energized MW不同时，哪一项先进入可收费capacity？",
     "rubric": [
       "定义现金与经济CapEx",
       "去除租赁重复",
       "区分建设与设备",
       "建交付及融资传导"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-05",
+    "inspiration": "Micron FY2026 Q4; all exercise numbers are synthetic, not issuer estimates"
   },
   {
     "id": "S10",
@@ -153,16 +159,18 @@
     "id": "S11",
     "name": "Accounting Reality",
     "zh": "会计与现金核验",
-    "question": "CFO100，现金CapEx80，新租赁30，融资活动收客户可退押金20。FCF是多少？能把押金当盈利吗？",
-    "solution": "标准简化 FCF=CFO−现金CapEx=20；租赁调整经济现金负担需另列。融资押金不进收入或CFO，需列返还义务，不能加到FCF。",
-    "transfer": "资产寿命延长降低折旧，利润上升时现金创造有何变化？",
+    "question": "合成情景：CFO44、净CapEx11、客户押金12列入financing activities。FCF是多少？若押金日后需返还，怎样分析cash return？",
+    "solution": "FCF=44−11=33；不能加12再称经营FCF，也不能从已排除押金的CFO再扣12。现金分配还需客户负债、未来返还与现金安全垫。",
+    "transfer": "迁移到云服务预收款：若其在CFO内，如何建立可比的deposit-adjusted cash flow？",
     "rubric": [
       "利润与现金分开",
       "标准FCF口径",
       "租赁和押金义务",
       "避免新增重复计算"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-05",
+    "inspiration": "Micron FY2026 Q4; all exercise numbers are synthetic, not issuer estimates"
   },
   {
     "id": "S12",
@@ -198,15 +206,17 @@
     "id": "S14",
     "name": "Thesis Falsification",
     "zh": "论点证伪",
-    "question": "论点：受电力限制，合格订单将在两季后转成收入。请给可观测的否决条件与下一次检查。",
-    "solution": "定义订单取消率、通电/验收里程碑和同 cohort 转化阈值与两季期限；失败时下调哪个预测。区分可证伪证据与股价波动。",
-    "transfer": "将相同证伪框架转到 HBM 新工艺爬坡，保留机制但改指标。",
+    "question": "合成情景：SCA覆盖收入40%，其中75%有定价框架、多数为floor/ceiling；其余价格定期谈判。怎样证伪“协议消灭周期”？",
+    "solution": "有定价框架的覆盖收入为30%，并不代表固定价或固定数量；检验价格带、take-or-pay执行、信用、返还义务、需求变动和产能时滞。",
+    "transfer": "迁移到AI云backlog：哪些合同条款会使签约额无法按预期转为收入？",
     "rubric": [
       "写机制与时限",
       "给可测阈值",
       "说明预测修正动作",
       "迁移到陌生公司"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-05",
+    "inspiration": "Micron FY2026 Q4; all exercise numbers are synthetic, not issuer estimates"
   }
 ]
