@@ -5015,21 +5015,23 @@
     {
       "id": "bill-dally",
       "name": "Bill Dally",
-      "field": "能效、数据搬运与专用计算",
+      "field": "互连网络、能效、数据搬运与专用计算",
       "core": "先拆解有用工作的物理成本，再决定哪些工作不必发生。",
-      "evidence": "Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
+      "evidence": "ACM SIGARCH 2000 Maurice Wilkes Award 说明为“For contributions in the design of multiprocessor interconnection networks and parallel computer architectures.”。Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
       "habits": [
         "先把算术、控制、存储访问和通信分开记账，不默认算术是主要开销。",
         "质疑精度、零值运算和重复搬运是否真的必要，再考虑扩大执行资源。",
         "观察数据跨越片上、片外和远端边界时的成本变化，寻找低成本域中的复用。",
-        "把压缩解码、元数据和负载不均等新增开销与节省放在同一比较边界内。"
+        "把压缩解码、元数据和负载不均等新增开销与节省放在同一比较边界内。",
+        "把互连网络的拓扑、带宽与通信能耗和计算成本放在同一比较边界内。"
       ],
       "questions": [
         "哪些位、字节和运算实际上不必发生？",
         "可以用多少额外计算，换掉一次昂贵的数据访问？",
-        "压缩、复用或低精度在什么条件下开始失去优势？"
+        "压缩、复用或低精度在什么条件下开始失去优势？",
+        "通信拓扑改变后，哪些数据搬运可以被消除，而不只是被加速？"
       ],
-      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。",
+      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。 获奖说明只概括贡献方向；下文能效与专用计算的论述来自较新的公开资料，不是该说明的内容。",
       "diagnostic": "记录每单位合格输出的访存字节、通信字节和能耗，比较重算、复用与压缩的交叉点。",
       "notes": [
         [
@@ -5042,6 +5044,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2000 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Hot Chips 2023 演讲官方摘要",
           "https://blogs.nvidia.com/blog/hot-chips-dally-research/",
@@ -5413,21 +5420,23 @@
     {
       "id": "doug-burger",
       "name": "Doug Burger",
-      "field": "可重构计算、云加速与部署协同",
+      "field": "空间分布式处理与存储、可重构计算与云加速",
       "core": "加速器必须嵌入服务与基础设施，才会兑现专用化收益。",
-      "evidence": "Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
+      "evidence": "ACM SIGARCH 2006 Maurice Wilkes Award 说明为“For contributions to spatially distributed processor and memory systems architecture.”。Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
       "habits": [
         "从服务中的可加速部分选择机制。",
         "把数据传输和主机交互纳入比较。",
         "让编程与部署支持硬件演进。",
-        "评估云中共享资源与多种工作负载。"
+        "评估云中共享资源与多种工作负载。",
+        "检查计算与存储单元在空间上的分布与通信距离，是否匹配任务结构。"
       ],
       "questions": [
         "加速部分能否覆盖搬运与调度成本？",
         "软件工具链限制了多少收益？",
-        "固定硬件和可重构路线在哪些条件下反转？"
+        "固定硬件和可重构路线在哪些条件下反转？",
+        "空间分布的处理与存储单元之间的通信成本，何时超过并行收益？"
       ],
-      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。",
+      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。 获奖说明只概括贡献方向，不等同于下文 Catapult 的论述，具体机制须读原文。",
       "diagnostic": "用强软件基线做端到端 offload A/B；分解传输、等待、执行与回传，测量开发、部署和运行成本。",
       "notes": [
         [
@@ -5440,6 +5449,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2006 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services",
           "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf",
@@ -5469,7 +5483,8 @@
       },
       "domain": "gpu-ai",
       "relatedDomains": [
-        "datacenter"
+        "datacenter",
+        "memory"
       ]
     },
     {
@@ -7090,21 +7105,23 @@
     {
       "id": "onur-mutlu",
       "name": "Onur Mutlu",
-      "field": "以数据为中心的计算",
-      "core": "当数据移动成为主成本，重审计算与存储的组织边界。",
-      "evidence": "本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
+      "field": "高效、安全的 DRAM 与以数据为中心的计算",
+      "core": "当数据移动与 DRAM 的效率、可靠和安全问题成为主成本，重审计算、存储与保护机制的边界。",
+      "evidence": "ACM SIGARCH 2019 Maurice Wilkes Award 说明为“For innovative contributions to efficient and secure DRAM systems.”。本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
       "habits": [
         "先核算数据移动。",
         "区分带宽、容量和干扰。",
         "检查处理位置。",
-        "用负载证明新组织。"
+        "用负载证明新组织。",
+        "把 DRAM 的效率、可靠性与安全作为同一设计约束核算。"
       ],
       "questions": [
         "移动计算能否比移动数据更便宜？",
         "哪部分流量可真正消除？",
-        "新增一致性与控制成本是多少？"
+        "新增一致性与控制成本是多少？",
+        "效率机制是否同时扩大了 DRAM 的攻击面或降低了可靠性？"
       ],
-      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。",
+      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。 获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。",
       "diagnostic": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。",
       "notes": [
         [
@@ -7117,6 +7134,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2019 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "ETH：本人研究项目",
           "https://people.inf.ethz.ch/omutlu/projects.htm",
@@ -7140,7 +7162,8 @@
       },
       "domain": "memory",
       "relatedDomains": [
-        "physical-energy"
+        "physical-energy",
+        "correctness"
       ]
     },
     {
@@ -12510,7 +12533,7 @@
       "name": "Carole-Jean Wu",
       "field": "真实 AI 工作流的端到端效率",
       "core": "把数据预处理、训练与服务纳入同一任务账。",
-      "evidence": "HC 2021 AI at Scale tutorial 联合讲者。",
+      "evidence": "ACM SIGARCH 2025 Maurice Wilkes Award 说明为“For pioneering computer architecture research to enable efficient, scalable, and sustainable machine learning”。HC 2021 AI at Scale tutorial 联合讲者。",
       "habits": [
         "把数据预处理、训练与服务纳入同一任务账。",
         "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
@@ -12530,6 +12553,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2025 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Hot Chips 2021 官方议程",
           "https://hc33.hotchips.org/",
@@ -13222,21 +13250,23 @@
     {
       "id": "anant-agarwal",
       "name": "Anant Agarwal",
-      "field": "可编程空间并行",
+      "field": "多线程延迟容忍、缓存一致性与可编程空间并行",
       "core": "显式组织计算与通信，让软件和硬件共同承担并行结构。",
-      "evidence": "MIT Raw 项目原始文档提供编译、互连和原型依据；具体成果来自团队。",
+      "evidence": "ACM SIGARCH 2001 Maurice Wilkes Award 说明为“For the first complete exploration of multithreading as a latency-tolerating technique for nondeterministic memory systems and software-assisted cache coherence.”。MIT Raw 项目原始文档提供编译、互连和原型依据；具体成果来自团队。",
       "habits": [
         "将通信纳入算法。",
         "明确计算的空间放置。",
         "比较静态与动态安排。",
-        "检查编译可实现性。"
+        "检查编译可实现性。",
+        "区分延迟容忍（切换线程）与消除延迟（改变数据放置或一致性）。"
       ],
       "questions": [
         "显式放置节省的控制开销是否超过通信与编译代价？",
         "拓扑改变哪条依赖？",
-        "不规则任务怎样处理？"
+        "不规则任务怎样处理？",
+        "多线程隐藏的等待，是否被额外的缓存压力和一致性流量抵消？"
       ],
-      "boundary": "静态组织不保证适合动态、稀疏或突发负载。",
+      "boundary": "静态组织不保证适合动态、稀疏或突发负载。 获奖说明只概括贡献方向，具体机制须读原文；Raw 项目是另一条阅读线索。",
       "diagnostic": "扫描映射与输入变化，测跳数、同步、负载偏斜及端到端时间。",
       "notes": [
         [
@@ -13249,6 +13279,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2001 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "MIT Raw：原始研究文档",
           "https://groups.csail.mit.edu/cag/raw/documents/",
@@ -13272,7 +13307,8 @@
       },
       "domain": "hpc",
       "relatedDomains": [
-        "compiler-runtime"
+        "compiler-runtime",
+        "memory"
       ]
     },
     {
