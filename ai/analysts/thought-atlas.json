@@ -1,0 +1,341 @@
+{
+  "version": 1,
+  "as_of": "2026-10-05",
+  "method": "跨材料的编辑思想地图；人物/机构归属分开，不是私人思想或预测排名",
+  "sources": [
+    {
+      "id": "D01",
+      "title": "ARK Investment Process",
+      "date": null,
+      "url": "https://www.ark-invest.com/investment-process",
+      "access": "官方流程页；无发布日期，2026-10-05读取。不是某次真实投资决策。",
+      "authors": "ARK institutional team",
+      "summary": "连接成本、需求分析与公司估值；公开说明组合研究与调整流程。"
+    },
+    {
+      "id": "D02",
+      "title": "Big Ideas: Investment Opportunity Report 2026 Summary",
+      "date": "2026-09-10",
+      "url": "https://www.ark-funds.com/articles/etf/big-ideas-the-investment-opportunity-report-2026-summary",
+      "access": "官方摘要；未声称审阅完整报告或独立核验底层数据。",
+      "authors": "ARK Invest",
+      "summary": "从技术变化延伸到可投资机会，比较历史投资周期并讨论组合情景。"
+    },
+    {
+      "id": "D03",
+      "title": "Morgan Stanley Mobile Internet Report release",
+      "date": "2009-12-16",
+      "url": "https://www.morganstanley.com/press-releases/morgan-stanley-releases-the-mobile-internet-report_4659e2f5-ea51-11de-aec2-33992aa82cc2",
+      "access": "官方发布说明，非完整长篇研报。",
+      "authors": "Morgan Stanley technology/telecom team; Mary Meeker named",
+      "summary": "结合技术融合、区域经验与使用扩散分析移动互联网。"
+    },
+    {
+      "id": "D04",
+      "title": "Trends — Artificial Intelligence",
+      "date": "2025-05-30",
+      "url": "https://bondcap.relayto.com/e/2025-trends-in-artificial-intelligence-tn9e6r7a9i24j",
+      "access": "BOND署名的托管文本；核查选定段落，非逐图/逐数字全审计。官方PDF超出检索大小。",
+      "authors": "Mary Meeker / Jay Simons / Daegwon Chae / Alexander Krey",
+      "summary": "并置使用、成本、资本投入与商业化问题，讨论平台和专业化路径。"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "wood-ark",
+      "name": "Cathie Wood / ARK",
+      "role": "买方基金管理；此处主要归纳ARK团队公开研究",
+      "scope": "技术创新 → 成本/需求 → 公司价值捕获 → 组合与估值",
+      "focus": [
+        "成本曲线与弹性",
+        "技术融合",
+        "公司与股东",
+        "信念与证伪"
+      ],
+      "boundary": "不是Cathie Wood私有思想的完整复刻。机构流程无日期，未满足个人跨两份 dated 材料的稳定方法认证。",
+      "timeline": [
+        {
+          "date": "undated",
+          "text": "公开流程连接主题筛选、公司模型与组合监测。来源日期未知，不能定位方法形成时间。",
+          "source_ids": [
+            "D01"
+          ]
+        },
+        {
+          "date": "2026-09-10",
+          "text": "公开摘要延伸到投资周期及组合情景；这是材料范围变化，不证明个人观点转向。",
+          "source_ids": [
+            "D02"
+          ]
+        }
+      ],
+      "gaps": [
+        "完整报告和底层模型未全审阅",
+        "个人与团队贡献不能混同",
+        "没有基金业绩/预测命中率审计"
+      ],
+      "comparison": "更侧重从技术机制到机会与估值；这是本次样本的编辑比较，不是永久人格。"
+    },
+    {
+      "id": "meeker-bond",
+      "name": "Mary Meeker / BOND",
+      "role": "历史卖方研究 → 创投/成长投资；保留BOND共著归属",
+      "scope": "扩散数据 → 使用/商业化 → 平台/专业化 → 资本与价值捕获",
+      "focus": [
+        "采用曲线与区域类比",
+        "平台与专业化",
+        "增长与利润张力",
+        "数据口径审查"
+      ],
+      "boundary": "两份 dated 团队材料可做纵向比较，不足以覆盖全部职业思想；未将团队观点全部归为本人。",
+      "timeline": [
+        {
+          "date": "2009-12-16",
+          "text": "移动互联网发布说明强调技术组合、区域经验与扩散。未审阅完整旧研报。",
+          "source_ids": [
+            "D03"
+          ]
+        },
+        {
+          "date": "2025-05-30",
+          "text": "AI共著报告样本增加成本、资本回收及竞争视角。不是证明旧观点被放弃。",
+          "source_ids": [
+            "D04"
+          ]
+        }
+      ],
+      "gaps": [
+        "2009完整研报未审阅",
+        "2025仅核查指定文本与部分脚注",
+        "没有逐预测结果或投资业绩审计"
+      ],
+      "comparison": "更侧重跨时段趋势证据与商业化路径；只代表选定材料。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "CW01",
+      "profile": "wood-ark",
+      "title": "成本下降，需求与支出会怎样变化？",
+      "source_ids": [
+        "D01"
+      ],
+      "locator": "Sizing the Opportunity",
+      "source_paraphrase": "研究成本曲线与需求弹性。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "合成模型：Q∝P^(−ε)，支出=P×Q；成本≠售价。",
+      "boundary": "在可比质量、价格传导与弹性成立时，降价推动支出增加需要ε>1。",
+      "counterexample": "新增调用主要免费，或效率提升减少每任务资源。",
+      "test": "同质量付费成功任务、实现价格、资源/任务、贡献与采购。",
+      "question": "合成：售价下降50%，付费成功任务增70%；哪些结论可以推出，哪些不可以？",
+      "constraint": "新增负载先由原有闲置容量承接；修改采购模型。",
+      "transfer": "迁移到SSD承接DRAM：容量节省与新增CPU/I/O成本怎样分开？",
+      "evaluator_key": "服务支出=0.5×1.7=0.85，降15%。不直接决定供应商收入或基金收益。",
+      "tags": [
+        "S6",
+        "S10",
+        "S14",
+        "T2"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "CW02",
+      "profile": "wood-ark",
+      "title": "大市场怎样落到公司与股东？",
+      "source_ids": [
+        "D01",
+        "D02"
+      ],
+      "locator": "Stock Selection and Valuation; FAQs on investable opportunities",
+      "source_paraphrase": "把技术机会进一步转为公司和估值研究。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "收入=可服务市场×渗透×内容×份额；EPS与现金独立闭合。",
+      "boundary": "TAM只是上界，需容量、资格、竞争、融资与稀释。",
+      "counterexample": "市场扩大但份额流失，利润由买方获取。",
+      "test": "同口径市场分层、单位利润、竞争响应、股数与现金融资。",
+      "question": "合成：市场增50%，份额20%→12%，收入一定增吗？",
+      "constraint": "增发使股数增加20%；从收入继续推到每股回报，列出缺口。",
+      "transfer": "迁移HBM到光模块，重建内容、端口数与资格变量。",
+      "evaluator_key": "收入代理1.5×12/20=0.9。EPS缺成本税费；收益缺买入估值与持有期。",
+      "tags": [
+        "S4",
+        "S6",
+        "S12",
+        "T4"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "CW03",
+      "profile": "wood-ark",
+      "title": "跨技术融合：累加还是相互依赖？",
+      "source_ids": [
+        "D01",
+        "D02"
+      ],
+      "locator": "Cross-theme collaboration; technology convergence section",
+      "source_paraphrase": "强调跨技术主题相互作用。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "端到端成功概率/产出由依赖链决定；比较独立、互补与替代。",
+      "boundary": "只有明确接口、瓶颈与去重边界后才能量化。",
+      "counterexample": "两个大市场其实是同一笔客户预算；一项延迟拖累全部。",
+      "test": "依赖里程碑、边界BOM、预算重叠、强相关风险。",
+      "question": "AI、机器人、能源三项改善各20%，能否推导系统改善60%？",
+      "constraint": "能源供应延迟一年；重建可用产出而非相加主题。",
+      "transfer": "迁移机架中的CPU、HBM、网络、冷却互补性。",
+      "evaluator_key": "不能线性相加；乘法也需明确可乘独立关系，关键瓶颈可能吞掉收益。",
+      "tags": [
+        "S6",
+        "S7",
+        "S9",
+        "T3"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "CW04",
+      "profile": "wood-ark",
+      "title": "长周期信念怎样接受证伪？",
+      "source_ids": [
+        "D01",
+        "D02"
+      ],
+      "locator": "Portfolio and Risk Management; efficient-frontier discussion",
+      "source_paraphrase": "公开说明监测投资论点，并讨论组合情景。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "区分业务论点、估值、时间、流动性与组合共同因子。",
+      "boundary": "模拟组合不证明未来分散效果；公开信不暴露完整决策。",
+      "counterexample": "多家公司主题不同，但共享利率、融资、同一客户风险。",
+      "test": "事前条件、现金跑道、集中度、因子暴露与修改日志。",
+      "question": "两个主题基金相关性过去很低，能否证明融资冲击时仍分散？",
+      "constraint": "两者客户都靠融资扩容；提出压力场景与止错证据。",
+      "transfer": "迁移周期性内存供应商与数据中心经营者的共同融资风险。",
+      "evaluator_key": "历史相关不能证明极端状态分散；需共同现金/客户/融资链，不能编造实际仓位。",
+      "tags": [
+        "S11",
+        "S12",
+        "S14",
+        "T5"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "MM01",
+      "profile": "meeker-bond",
+      "title": "区域先行者能否作为全球模板？",
+      "source_ids": [
+        "D03",
+        "D04"
+      ],
+      "locator": "2009 key takeaways; 2025 overview/usage sections",
+      "source_paraphrase": "用采用与使用经验观察技术扩散。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "分解人群、地区、分发、付费转化与单位服务经济性。",
+      "boundary": "跨地域比较先统一用户、时间起点、可获得性与付费口径。",
+      "counterexample": "早期地区收入高、受补贴或基础设施更好。",
+      "test": "匹配用户群、持续留存、付费成功任务和渠道成本。",
+      "question": "一个地区agent月活翻倍，怎样检验全球会复制其采用曲线？",
+      "constraint": "新增用户主要免费；设定两个季度的推翻条件。",
+      "transfer": "从mobile到agentic，再到企业工作流，说明不能迁移的变量。",
+      "evaluator_key": "采用曲线不自动推出付费/利润/采购；需要匹配队列与相反样本。",
+      "tags": [
+        "S1",
+        "S6",
+        "S10",
+        "T3"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "MM02",
+      "profile": "meeker-bond",
+      "title": "技术汇合不等于赢家已经确定",
+      "source_ids": [
+        "D03",
+        "D04"
+      ],
+      "locator": "2009 technology convergence; 2025 slides213–214",
+      "source_paraphrase": "比较技术组合及平台/专业化的潜在商业路径。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "比较平台广度、专业深度、分发、数据和工作流控制。",
+      "boundary": "主题成立仍需市场份额与付费转化；不把报告写成单一推荐。",
+      "counterexample": "专业厂商保有合规工作流，平台未能捕获利润。",
+      "test": "部署留存、采购主体、切换成本、合同净价与实施成本。",
+      "question": "通用平台用户是专业工具的10倍，能否断言平台利润池更大？",
+      "constraint": "专业工具每用户毛利20倍；重新比较可服务客户。",
+      "transfer": "迁移通用GPU与定制ASIC，加入软件迁移/资格成本。",
+      "evaluator_key": "客户数×单位毛利还需口径一致；大用户基数不是护城河或利润的证明。",
+      "tags": [
+        "S2",
+        "S6",
+        "S12",
+        "T4"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "MM03",
+      "profile": "meeker-bond",
+      "title": "使用、成本与利润可以反向变化",
+      "source_ids": [
+        "D04"
+      ],
+      "locator": "slides116–119 and130",
+      "source_paraphrase": "把AI使用扩张与商业化、成本问题并列。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "成功任务×收入/任务−变动成本−固定成本−资本负担。",
+      "boundary": "成本降低不必转化为价格权；需要付费与现金回收。",
+      "counterexample": "供应商被竞争压价，或债务扩容闲置。",
+      "test": "付费贡献、可用容量、净采购、融资期限与合同返还义务。",
+      "question": "AI使用翻倍，成本/次下降40%，为什么公司利润可能下降？",
+      "constraint": "价格降60%，新容量借款融资；重算贡献与现金缺口。",
+      "transfer": "迁移云模型服务到内存供应，考虑成本库存确认与售价合同。",
+      "evaluator_key": "必须区分价格、成本、数量、固定支出；无初始价格成本不能给利润点估计。",
+      "tags": [
+        "S9",
+        "S10",
+        "S11",
+        "T2"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    },
+    {
+      "id": "MM04",
+      "profile": "meeker-bond",
+      "title": "图表密集：如何避免数据制造确定性？",
+      "source_ids": [
+        "D03",
+        "D04"
+      ],
+      "locator": "2009 data-rich framework; 2025 chart/source notes",
+      "source_paraphrase": "以多指标呈现技术趋势。",
+      "attribution": "团队/材料层面的转述；模型、边界、挑战均为我们的编辑归纳，不冒充本人。",
+      "model": "先统一口径与来源，再构造竞争解释；不按图表数投票。",
+      "boundary": "来源复用不是独立信号；峰值与典型、估计与实测分开。",
+      "counterexample": "多个图都来自同一个估计，或算法/精度/任务变化造成效率跳跃。",
+      "test": "每个决定性指标追溯原始单位、任务、时间与误差。",
+      "question": "五张图都显示AI效率跃升，怎样判断它们是否构成独立证据？",
+      "constraint": "都引用同一厂商演示且质量条件不同；设计可比测试。",
+      "transfer": "迁移财报增长图到CPU benchmark与机架节能，追踪被转移成本。",
+      "evaluator_key": "至少核对原始来源与匹配服务质量，不能把相关图数当置信度。",
+      "tags": [
+        "S1",
+        "S10",
+        "S13",
+        "T6"
+      ],
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "未进行预测结果/投资业绩审计"
+    }
+  ],
+  "comparison": "ARK样本从成本与技术机会进入公司/组合；Meeker/BOND样本从采用与数据进入商业化/资本约束。两者都需要补上价值捕获与估值桥。",
+  "coverage": "首批2个人物/机构档案、4份方法材料、8张挑战卡；不是全分析师目录的深度覆盖。材料转述、编辑模型与合成训练分开；不增加178条真实QA。"
+}
