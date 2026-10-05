@@ -130,7 +130,8 @@
         "paulius-micikevicius",
         "pradeep-dubey",
         "ralph-wittig",
-        "dennis-abts"
+        "dennis-abts",
+        "tushar-krishna"
       ]
     },
     {
@@ -15472,6 +15473,73 @@
         "method": "Inferred editorial synthesis",
         "challenge": "Inferred conditional model; no experiment executed"
       }
+    },
+    {
+      "id": "tushar-krishna",
+      "name": "Tushar Krishna",
+      "field": "大规模 AI 系统的架构与建模工具",
+      "core": "把大规模 AI 任务写成可复现的轨迹与成本模型，再决定架构取舍。",
+      "evidence": "ACM SIGARCH 2026 Maurice Wilkes Award 说明为“For outstanding contributions to architectures and modeling tools for large-scale AI systems”。Georgia Tech 公告提到其团队的开源工具 ASTRA-sim（大规模 AI 系统模拟）与 Chakra（AI 执行轨迹，MLCommons），用于建模、基准测试与优化大规模 AI 平台；本人研究页另列 SCALE-sim、MAESTRO、STONNE 等加速器工具。成果为团队与产业合作，以下阅读视角为教学归纳。",
+      "habits": [
+        "先把工作负载写成可复现的执行轨迹，再讨论架构。",
+        "把算子、数据流与集合通信放进同一条完整任务时间线。",
+        "区分模型预测与真实系统测量，并用后者校准前者。",
+        "检查结论对拓扑、重叠与批大小假设的敏感性。"
+      ],
+      "questions": [
+        "仿真排序的结论，换一个拓扑或重叠假设后还成立吗？",
+        "扩大加速器数量后，通信与同步是否先成为瓶颈？",
+        "哪份真实执行轨迹能校准这个成本模型？"
+      ],
+      "boundary": "模型与仿真器是决策工具，不是测量；排序结论必须用真实系统轨迹校准。获奖说明只概括贡献方向，具体工具能力以其公开文档为准。",
+      "diagnostic": "采集真实训练或推理执行轨迹，在仿真器中复现，核对迭代时间、通信占比与拓扑敏感性。",
+      "notes": [
+        [
+          "e14",
+          "GPU 小时与交付服务"
+        ],
+        [
+          "e05",
+          "设施电力与有效吞吐"
+        ]
+      ],
+      "sources": [
+        [
+          "Georgia Tech ECE：Krishna 获 Maurice Wilkes Award 公告",
+          "https://ece.gatech.edu/news/2026/08/krishna-earns-one-computer-architectures-highest-mid-career-honors",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2026 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "Tushar Krishna：研究与开源工具页",
+          "https://tushar-krishna.github.io/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "仿真与真实系统的校准挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "variables": "T_comp、T_comm、T_overlap：同任务秒；N：加速器数量。",
+        "model": "单次迭代时间 ≈ T_comp + T_comm − T_overlap；随 N 增大，通信项的增长决定扩展是否值得。",
+        "crossover": "当增加 N 使 T_comm 的增量超过 T_comp 的节省时，继续扩大规模不再值得。",
+        "counterexample": "仿真假设的重叠或拓扑与真实系统的拥塞、故障不符，方案排序可能反转。",
+        "transfer": "迁移到推理 decode 的 KV 传输与长上下文服务。",
+        "question": "增加加速器数量后，通信与同步是否先成为瓶颈？",
+        "validation": "用真实执行轨迹校准仿真，核对关键结论对拓扑、重叠与批大小假设的敏感性。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "datacenter"
+      ]
     }
   ]
 }
