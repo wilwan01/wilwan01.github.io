@@ -1,0 +1,15 @@
+.skill-index{margin-bottom:32px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.reasoning-skill{padding:20px;border:1px solid #d8e1e8;border-radius:10px;background:#fff;scroll-margin-top:90px}
+.reasoning-skill h3{margin:0;font-size:1.125rem;line-height:1.5}
+.skill-code{display:inline-block;margin-right:7px;color:#176171}
+.reasoning-skill .skill-english{margin:5px 0 14px;color:#586977;font-size:.875rem}
+.reasoning-skill p{font-size:1rem;line-height:1.7}
+.skill-question{padding-top:12px;border-top:1px solid #e5ebef}
+.skill-link{display:inline-block;margin:3px 1px;padding:2px 8px;border:1px solid #bad4d9;border-radius:5px;color:#125261;background:#f0f8fa;text-decoration:none}
+.skill-link:hover{background:#dceff2}
+.skill-link:focus-visible{outline:3px solid #d69b37;outline-offset:2px}
+.reasoning-skill:target{border-color:#176171;box-shadow:0 0 0 2px #c6e3e8}
+.skill-return{margin-top:18px}
+@media(max-width:1050px){.skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.skills-grid{grid-template-columns:1fr}.reasoning-skill{padding:18px}}
