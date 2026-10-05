@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LINKS = (
-    ("/ai/index.html", "AI 基础设施研究产品分析"),
+    ("/ai/index.html", "产品分析"),
     ("/ai/earnings/", "财报分析"),
     ("/ai/analysts/", "分析师训练"),
     ("/ai/hot-chips/", "Hot Chips"),
@@ -15,7 +15,7 @@ LINKS = (
     ("/ai/bridge/", "技术 × 投资"),
 )
 ENGLISH = (
-    "AI Infrastructure Research & Product Analysis", "Earnings Analysis",
+    "Product Analysis", "Earnings Analysis",
     "Analyst Mode", "Hot Chips", "Architect Mode", "Architecture Notes", "Tech x Invest",
 )
 NAV = re.compile(r'<nav\b(?=[^>]*\bclass\s*=\s*[\"\'][^\"\']*\bresearch-nav\b)[^>]*>.*?</nav\s*>', re.I | re.S)
@@ -33,7 +33,9 @@ def render(path, english=False):
         attrs = ' aria-current="page"' if href == current else ""
         links.append(f'<a href="{href}"{attrs}>{html.escape(label)}</a>')
     label = 'AI research navigation' if english else 'AI 研究导航'
-    return f'<nav class="research-nav" aria-label="{label}">' + "".join(links) + '</nav>'
+    theme = 'AI Infrastructure Research' if english else 'AI 基础设施研究'
+    brand = f'<span class="research-name">{theme}</span>'
+    return f'<nav class="research-nav" aria-label="{label}">' + brand + "".join(links) + '</nav>'
 
 def update(path):
     before = path.read_text(encoding="utf-8")
@@ -45,7 +47,7 @@ def update(path):
     english = bool(language and language.group(1).lower().startswith("en"))
     after = after[:body.end()] + render(path, english) + after[body.end():]
     after = STYLE.sub("", after)
-    after, head_count = re.subn(r'</head\s*>', '<link rel="stylesheet" href="/ai/research-nav.css?v=20261005-nav-i18n"></head>', after, count=1, flags=re.I)
+    after, head_count = re.subn(r'</head\s*>', '<link rel="stylesheet" href="/ai/research-nav.css?v=20261005-nav-theme"></head>', after, count=1, flags=re.I)
     if head_count != 1:
         raise ValueError(f"Missing head: {path}")
     if after != before:
