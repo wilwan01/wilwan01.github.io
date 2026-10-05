@@ -1,0 +1,325 @@
+{
+  "date": "2026-10-05",
+  "round": "Annual-Census-12",
+  "baseline": 238,
+  "total": 250,
+  "cards": 250,
+  "skill_associations": 764,
+  "existing_profiles_preserved": true,
+  "identity_notes": [
+    "Richard Uhlig / Richard (Rich) A. Uhlig: Intel official biography.",
+    "Ron Ho / Ronald Ho: Oracle institutional source; distinct from Richard Ho."
+  ],
+  "limitations": [
+    "HC2008 John Shalf and Katherine Yelick are listed coauthors; actual presenter unknown.",
+    "HC2000 Scott Rixner is a title-page contributor; actual presenter unknown.",
+    "All reasoning methods, questions and models are editorial synthesis, not quotations.",
+    "No validation experiments have been executed."
+  ],
+  "additions": [
+    {
+      "id": "richard-uhlig",
+      "name": "Richard Uhlig",
+      "domain": "correctness",
+      "skills": [
+        "S1",
+        "S3",
+        "S8"
+      ],
+      "sources": [
+        [
+          "Intel官方履历：Richard (Rich) A. Uhlig",
+          "https://www.intel.com/content/www/us/en/newsroom/biographies/biography-richard-a-uhlig.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] 系统虚拟机教程列名；不证明实际出席"
+        ],
+        [
+          "Intel Technology Journal 2010 Vol.14 Issue3，VT-x章节及致谢",
+          "https://www.intel.com/content/dam/www/public/us/en/documents/research/2010-vol14-iss-3-intel-technology-journal.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ]
+    },
+    {
+      "id": "pradip-bose",
+      "name": "Pradip Bose",
+      "domain": "physical-energy",
+      "skills": [
+        "S2",
+        "S7",
+        "S9"
+      ],
+      "sources": [
+        [
+          "IBM Research：POWER硅前建模回顾",
+          "https://research.ibm.com/publications/the-power-processor-family-a-historical-perspective-from-the-viewpoint-of-presilicon-modeling",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] 功耗感知微架构教程列名"
+        ]
+      ]
+    },
+    {
+      "id": "kevin-nowka",
+      "name": "Kevin Nowka",
+      "domain": "physical-energy",
+      "skills": [
+        "S2",
+        "S7",
+        "S8"
+      ],
+      "sources": [
+        [
+          "IBM Research：Kevin Nowka署名技术文献",
+          "https://research.ibm.com/publications?author=82462",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "IBM Research：Circuit design for low power",
+          "https://research.ibm.com/publications/circuit-design-for-low-power",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] 低功耗电路教程列名"
+        ]
+      ]
+    },
+    {
+      "id": "john-shalf",
+      "name": "John Shalf",
+      "domain": "hpc",
+      "skills": [
+        "S3",
+        "S6",
+        "S7"
+      ],
+      "sources": [
+        [
+          "Hot Chips 2008公开议程",
+          "https://hc20.hotchips.org/",
+          "[Public] Roofline报告共同作者列名；实际演讲者未确认"
+        ],
+        [
+          "Berkeley Lab：2025 Seymour Cray奖与协同设计贡献",
+          "https://cs.lbl.gov/news-and-events/news/2025/berkeley-labs-john-shalf-recognized-with-2025-seymour-cray-award-for-outstanding-contributions-to-hpc/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ]
+    },
+    {
+      "id": "katherine-yelick",
+      "name": "Katherine Yelick",
+      "domain": "compiler-runtime",
+      "skills": [
+        "S4",
+        "S6",
+        "S8"
+      ],
+      "sources": [
+        [
+          "Berkeley官方研究履历",
+          "https://www2.eecs.berkeley.edu/Faculty/Homepages/yelick.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "本人文献表：通信规避、PGAS及HC2008",
+          "https://people.eecs.berkeley.edu/~yelick/pubs.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2008公开议程",
+          "https://hc20.hotchips.org/",
+          "[Public] 共同作者列名；实际演讲者未确认"
+        ]
+      ]
+    },
+    {
+      "id": "dennis-abts",
+      "name": "Dennis Abts",
+      "domain": "gpu-ai",
+      "skills": [
+        "S3",
+        "S6",
+        "S8"
+      ],
+      "sources": [
+        [
+          "Groq ISCA 2022署名技术论文",
+          "https://groq.com/wp-content/uploads/2023/05/GroqISCAPaper2022_ASoftwareDefinedTensorStreamingMultiprocessorForLargeScaleMachineLearning-1.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2022公开议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 报告题目及讲者列名"
+        ]
+      ]
+    },
+    {
+      "id": "mark-wade",
+      "name": "Mark Wade",
+      "domain": "network",
+      "skills": [
+        "S2",
+        "S7",
+        "S10"
+      ],
+      "sources": [
+        [
+          "Hot Chips 2019：TeraPHY技术投影片",
+          "https://old.hotchips.org/hc31/HC31_2.9_AyarLabs_20190820_HC_FINAL.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2019公开议程",
+          "https://hc31.hotchips.org/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Ayar Labs：Mark Wade技术角色",
+          "https://ayarlabs.com/news/ayar-labs-names-mark-wade-ceo",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ]
+    },
+    {
+      "id": "gurtej-sandhu",
+      "name": "Gurtej Sandhu",
+      "domain": "memory",
+      "skills": [
+        "S2",
+        "S7",
+        "S10"
+      ],
+      "sources": [
+        [
+          "Micron官方技术履历",
+          "https://www.micron.com/about/blog/blog-authors/author-bio/gurtej-sandhu",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "VCEW 2022公开议程",
+          "https://vcew.org/download/vcew-2022-program.pdf",
+          "[Public] 内存趋势题目与讲者列名；不披露闭门讨论"
+        ]
+      ]
+    },
+    {
+      "id": "ron-ho",
+      "name": "Ron Ho",
+      "domain": "network",
+      "skills": [
+        "S2",
+        "S4",
+        "S6"
+      ],
+      "sources": [
+        [
+          "Hot Chips 2010光互连教程",
+          "https://hc22.hotchips.org/index.html",
+          "[Public] 教程导论列名；不将全部教程成果归于个人"
+        ],
+        [
+          "Oracle Labs：低功耗硅光互连研究",
+          "https://labs.oracle.com/pls/apex/f?p=94065%3A10%3A27865079715025%3A24",
+          "[Public] 合著名单及研究范围，包含Ronald Ho"
+        ]
+      ]
+    },
+    {
+      "id": "rick-hetherington",
+      "name": "Rick Hetherington",
+      "domain": "cpu",
+      "skills": [
+        "S3",
+        "S5",
+        "S6"
+      ],
+      "sources": [
+        [
+          "Oracle OpenSPARC官方文献目录",
+          "https://www.oracle.com/servers/technologies/opensparc-publications.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Oracle：UltraSPARC T2署名技术论文",
+          "https://www.oracle.com/technetwork/systems/opensparc/02-t2-a-sscc2007-1530395.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "VCEW 2013公开议程",
+          "https://vcew.org/download/ce-vail-2013-program.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ]
+    },
+    {
+      "id": "michael-gschwind",
+      "name": "Michael Gschwind",
+      "domain": "compiler-runtime",
+      "skills": [
+        "S3",
+        "S4",
+        "S8"
+      ],
+      "sources": [
+        [
+          "IBM Research：Cell多核协同处理",
+          "https://research.ibm.com/publications/synergistic-processing-in-cells-multicore-architecture",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "IBM Research：Cell优化编译器",
+          "https://research.ibm.com/publications/optimizing-compiler-for-a-cell-processor",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] Cell报告共同作者列名"
+        ],
+        [
+          "Hot Chips 2015公开议程",
+          "https://hc27.hotchips.org/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ]
+    },
+    {
+      "id": "scott-rixner",
+      "name": "Scott Rixner",
+      "domain": "memory",
+      "skills": [
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "sources": [
+        [
+          "Scott Rixner本人研究文献表",
+          "https://www.cs.rice.edu/~rixner/research/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Rice Memory Access Scheduling存档",
+          "https://repository.rice.edu/items/36e1906f-cadc-4405-a2af-b73ba2340565",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "HC2000 Imagine投影片",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc12/hc12pres_pdf/Imagine.PDF",
+          "[Public] 题名页贡献者；实际演讲者未确认"
+        ]
+      ]
+    }
+  ]
+}
