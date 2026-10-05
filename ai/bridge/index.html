@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>技术 × 投资推理图 · Bridge</title><meta name="description" content="把分析师的财报问题连接到架构师的追问：从 HBM 供给约束追到堆叠、良率和晶圆经济。"><link rel="stylesheet" href="/ai/research-nav.css"><link rel="stylesheet" href="/ai/analysts/analysts.css?v=20261005-3"><style>.card{background:var(--panel);border-top:3px solid var(--accent);padding:24px;margin:0 0 22px}.card h3{margin:6px 0}.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}.chip{display:inline-block;border:1px solid var(--line);border-radius:3px;padding:1px 8px;margin:0 6px 6px 0;font-size:13px}.muted{color:var(--muted)}.arrow{font-size:22px;color:var(--gold)}@media(max-width:800px){.cols{grid-template-columns:1fr}}</style></head>
+<body><nav aria-label="Research collections" class="research-nav"><a class="research-name" href="/ai/index.html">AI 基础设施研究</a><a href="/ai/index.html">公司架构</a><a href="/ai/hot-chips/">Hot Chips</a><a href="/ai/earnings/">财报分析</a><a href="/ai/notes/">Architecture Notes</a><a href="/ai/architects/">架构师思想库</a><a href="/ai/analysts/">Analyst Mode · 分析师训练</a><a aria-current="page" href="/ai/bridge/">技术 × 投资</a></nav>
+<main><header class="hero"><p class="eyebrow">TECHNOLOGY × INVESTMENT</p><h1>从财报问题，追到架构原因。</h1><p class="lead">Analyst Mode 问“供给为什么紧”，Architect Mode 继续问“堆叠、良率与晶圆经济凭什么造成约束”。每张卡把一条已收录的财报问答连到架构师提问、人物与笔记。</p><div class="actions"><a class="button" href="/ai/analysts/">Analyst Mode →</a><a href="/ai/architects/">Architect Mode ↗</a></div></header>
+<section class="boundary"><strong>证据边界</strong><p id="method">正在读取…</p></section>
+<section id="cards" aria-live="polite"><p>正在读取…</p></section>
+<section><h2>技能对照</h2><p class="muted">分析师技能 S1–S14 与架构师技能 S1–S10 是两套独立编号。下表是编辑映射，不是评分。</p><table id="map"></table></section></main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const get=u=>fetch(u+'?v=20261005-1').then(r=>{if(!r.ok)throw Error(u);return r.json()});
+Promise.all([get('bridge.json'),get('/ai/analysts/corpus.json'),get('/ai/analysts/skill-graph.json'),get('/ai/architects/catalog.json'),get('/ai/notes/catalog.json')]).then(([b,corpus,sg,arch,notes])=>{
+ const qa=Object.fromEntries(corpus.ledger.map(q=>[q.id,q])),sk=Object.fromEntries(sg.map(s=>[s.id,s])),pr=Object.fromEntries(arch.profiles.map(p=>[p.id,p])),nt=Object.fromEntries(notes.available.map(n=>[n.id.toLowerCase(),n]));
+ $('method').textContent=b.method+' 截至 '+b.as_of+'。';
+ $('cards').innerHTML=b.cards.map(c=>`<article class="card" id="${esc(c.id)}"><p class="eyebrow">${esc(c.id)} / ${esc(c.topic)}</p>
+ <div class="cols"><div><h3>分析师看到</h3>${c.qa.map(id=>{const q=qa[id];return q?`<p><strong>${esc(q.company)} ${esc(q.quarter)}</strong> · ${esc(q.ask)}<br><a target="_blank" rel="noopener" href="${esc(q.url)}">来源</a> <span class="muted">${esc(id)}</span></p>`:`<p class="muted">缺少 ${esc(id)}</p>`}).join('')}
+ <p>${c.analyst_skills.map(s=>`<a class="chip" href="/ai/analysts/#skills">${esc(s)} ${esc(sk[s]?.zh||'')}</a>`).join('')}</p></div>
+ <div><h3>架构师继续追问 <span class="arrow">→</span></h3><ul>${c.architect_followups.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+ <p>${c.architect_skills.map(s=>`<a class="chip" href="/ai/architects/#skill-${esc(s.toLowerCase())}">${esc(s)}</a>`).join('')}</p>
+ <p>${c.profiles.map(id=>pr[id]?`<a class="chip" href="/ai/architects/#${esc(id)}">${esc(pr[id].name)}</a>`:'').join('')}${c.notes.map(id=>nt[id]?`<a class="chip" href="/ai/notes/${esc(id)}.html">${esc(nt[id].id)} ${esc(nt[id].title)}</a>`:'').join('')}</p></div></div>
+ <p class="muted">边界：${esc(c.boundary)}</p></article>`).join('');
+ $('map').innerHTML='<thead><tr><th>分析师技能</th><th>架构师技能</th><th>为什么相连</th></tr></thead><tbody>'+b.skill_map.map(m=>`<tr><td>${esc(m.analyst)} ${esc(sk[m.analyst]?.zh||'')}</td><td>${m.architect.map(esc).join(' · ')}</td><td>${esc(m.why)}</td></tr>`).join('')+'</tbody>';
+}).catch(e=>{$('cards').innerHTML='<p>数据读取失败：'+esc(e.message)+'</p>'});})();
+</script></body></html>
