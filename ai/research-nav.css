@@ -1,2 +1,8 @@
 
 .research-nav{box-sizing:border-box;background:#102c3b;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px max(20px,calc((100vw - 1240px)/2));font:500 15px/1.5 system-ui,-apple-system,sans-serif;border-bottom:1px solid #46616f;position:relative;z-index:5}.research-nav a{color:#d7e8ed;text-decoration:none;padding:9px 14px;border-radius:5px;white-space:nowrap}.research-nav a:hover{background:#264755;color:#fff}.research-nav a[aria-current=page]{background:#d5f3f1;color:#113a41}.research-nav .research-name{font-weight:700;color:white;margin-right:auto;padding-left:0}.research-downloads{max-width:1240px;margin:20px auto;padding:0 24px;display:flex;gap:12px;flex-wrap:wrap;font:15px/1.5 system-ui,sans-serif}.research-downloads a{border:1px solid #b8cbd4;border-radius:5px;padding:9px 14px;color:#006f76;text-decoration:none;background:white}@media(max-width:680px){.research-nav{padding:12px 16px;gap:5px}.research-nav .research-name{width:100%;padding:3px 0}.research-nav a{padding:8px 11px;font-size:14px}}
+
+/* Shared seven-section map; allow long bilingual labels to wrap on narrow screens. */
+.research-nav{margin:0;max-width:none;height:auto;min-height:0;justify-content:flex-start;overflow:visible}
+.research-nav a{font-weight:650;line-height:1.5;white-space:normal;max-width:100%;box-sizing:border-box}
+.research-nav a:focus-visible{outline:3px solid #ffe08a;outline-offset:2px}
+@media(max-width:680px){.research-nav a{flex:0 1 auto}.research-nav a:first-child{flex-basis:100%}}
