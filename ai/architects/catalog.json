@@ -130,7 +130,8 @@
         "paulius-micikevicius",
         "pradeep-dubey",
         "ralph-wittig",
-        "dennis-abts"
+        "dennis-abts",
+        "tushar-krishna"
       ]
     },
     {
@@ -5015,21 +5016,23 @@
     {
       "id": "bill-dally",
       "name": "Bill Dally",
-      "field": "能效、数据搬运与专用计算",
+      "field": "互连网络、能效、数据搬运与专用计算",
       "core": "先拆解有用工作的物理成本，再决定哪些工作不必发生。",
-      "evidence": "Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
+      "evidence": "ACM SIGARCH 2000 Maurice Wilkes Award 说明为“For contributions in the design of multiprocessor interconnection networks and parallel computer architectures.”。Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
       "habits": [
         "先把算术、控制、存储访问和通信分开记账，不默认算术是主要开销。",
         "质疑精度、零值运算和重复搬运是否真的必要，再考虑扩大执行资源。",
         "观察数据跨越片上、片外和远端边界时的成本变化，寻找低成本域中的复用。",
-        "把压缩解码、元数据和负载不均等新增开销与节省放在同一比较边界内。"
+        "把压缩解码、元数据和负载不均等新增开销与节省放在同一比较边界内。",
+        "把互连网络的拓扑、带宽与通信能耗和计算成本放在同一比较边界内。"
       ],
       "questions": [
         "哪些位、字节和运算实际上不必发生？",
         "可以用多少额外计算，换掉一次昂贵的数据访问？",
-        "压缩、复用或低精度在什么条件下开始失去优势？"
+        "压缩、复用或低精度在什么条件下开始失去优势？",
+        "通信拓扑改变后，哪些数据搬运可以被消除，而不只是被加速？"
       ],
-      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。",
+      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。 获奖说明只概括贡献方向；下文能效与专用计算的论述来自较新的公开资料，不是该说明的内容。",
       "diagnostic": "记录每单位合格输出的访存字节、通信字节和能耗，比较重算、复用与压缩的交叉点。",
       "notes": [
         [
@@ -5042,6 +5045,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2000 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Hot Chips 2023 演讲官方摘要",
           "https://blogs.nvidia.com/blog/hot-chips-dally-research/",
@@ -5413,21 +5421,23 @@
     {
       "id": "doug-burger",
       "name": "Doug Burger",
-      "field": "可重构计算、云加速与部署协同",
+      "field": "空间分布式处理与存储、可重构计算与云加速",
       "core": "加速器必须嵌入服务与基础设施，才会兑现专用化收益。",
-      "evidence": "Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
+      "evidence": "ACM SIGARCH 2006 Maurice Wilkes Award 说明为“For contributions to spatially distributed processor and memory systems architecture.”。Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
       "habits": [
         "从服务中的可加速部分选择机制。",
         "把数据传输和主机交互纳入比较。",
         "让编程与部署支持硬件演进。",
-        "评估云中共享资源与多种工作负载。"
+        "评估云中共享资源与多种工作负载。",
+        "检查计算与存储单元在空间上的分布与通信距离，是否匹配任务结构。"
       ],
       "questions": [
         "加速部分能否覆盖搬运与调度成本？",
         "软件工具链限制了多少收益？",
-        "固定硬件和可重构路线在哪些条件下反转？"
+        "固定硬件和可重构路线在哪些条件下反转？",
+        "空间分布的处理与存储单元之间的通信成本，何时超过并行收益？"
       ],
-      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。",
+      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。 获奖说明只概括贡献方向，不等同于下文 Catapult 的论述，具体机制须读原文。",
       "diagnostic": "用强软件基线做端到端 offload A/B；分解传输、等待、执行与回传，测量开发、部署和运行成本。",
       "notes": [
         [
@@ -5440,6 +5450,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2006 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services",
           "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf",
@@ -5469,7 +5484,8 @@
       },
       "domain": "gpu-ai",
       "relatedDomains": [
-        "datacenter"
+        "datacenter",
+        "memory"
       ]
     },
     {
@@ -7090,21 +7106,23 @@
     {
       "id": "onur-mutlu",
       "name": "Onur Mutlu",
-      "field": "以数据为中心的计算",
-      "core": "当数据移动成为主成本，重审计算与存储的组织边界。",
-      "evidence": "本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
+      "field": "高效、安全的 DRAM 与以数据为中心的计算",
+      "core": "当数据移动与 DRAM 的效率、可靠和安全问题成为主成本，重审计算、存储与保护机制的边界。",
+      "evidence": "ACM SIGARCH 2019 Maurice Wilkes Award 说明为“For innovative contributions to efficient and secure DRAM systems.”。本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
       "habits": [
         "先核算数据移动。",
         "区分带宽、容量和干扰。",
         "检查处理位置。",
-        "用负载证明新组织。"
+        "用负载证明新组织。",
+        "把 DRAM 的效率、可靠性与安全作为同一设计约束核算。"
       ],
       "questions": [
         "移动计算能否比移动数据更便宜？",
         "哪部分流量可真正消除？",
-        "新增一致性与控制成本是多少？"
+        "新增一致性与控制成本是多少？",
+        "效率机制是否同时扩大了 DRAM 的攻击面或降低了可靠性？"
       ],
-      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。",
+      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。 获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。",
       "diagnostic": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。",
       "notes": [
         [
@@ -7117,6 +7135,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2019 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "ETH：本人研究项目",
           "https://people.inf.ethz.ch/omutlu/projects.htm",
@@ -7140,7 +7163,8 @@
       },
       "domain": "memory",
       "relatedDomains": [
-        "physical-energy"
+        "physical-energy",
+        "correctness"
       ]
     },
     {
@@ -11537,21 +11561,21 @@
     {
       "id": "thomas-wenisch",
       "name": "Thomas Wenisch",
-      "field": "微秒级服务与数据中心效率",
-      "core": "在硬件和 OS 时间尺度之间，识别被遗漏的服务等待与调度机会。",
-      "evidence": "Michigan 微服务架构公开报告与本人研究资料连接微秒服务、处理器、IT 能量和数据中心；成果为合作研究。",
+      "field": "内存持久性、能效与微秒级服务",
+      "core": "把持久化顺序、能耗和微秒级等待放进同一条服务代价核算，识别被遗漏的等待与调度机会。",
+      "evidence": "ACM SIGARCH 2021 Maurice Wilkes Award 贡献说明为“For contributions to memory persistency and energy-efficient systems”。Michigan 微服务架构公开报告另连接微秒服务、处理器、IT 能量和数据中心；成果为合作研究，此处的阅读视角为教学归纳，不是对具体论文结论的转述。",
       "habits": [
-        "按服务阶段分解等待。",
-        "检查时间尺度错配。",
-        "联合看调度与微架构。",
+        "把持久化顺序、恢复点与性能代价分开核算。",
+        "按服务阶段分解等待与能耗。",
+        "检查硬件与 OS 时间尺度错配。",
         "关联 IT 与设施资源。"
       ],
       "questions": [
-        "微秒任务的调度是否比有用计算更贵？",
-        "哪个等待可以被重新安排？",
-        "改进能否保住服务尾部？"
+        "持久化顺序约束带来的额外等待，是否比恢复或重算更贵？",
+        "节能机制是否保住完整服务的尾部？",
+        "哪个等待可以被重新安排？"
       ],
-      "boundary": "平均微任务加速不保证端到端 P99，必须保留依赖与排队。",
+      "boundary": "获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。平均微任务加速不保证端到端 P99，必须保留依赖与排队。",
       "diagnostic": "用逐请求 trace 分解调度、排队、运行和 RPC，扫描并发与突发。",
       "notes": [
         [
@@ -11564,6 +11588,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2021 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Michigan：微服务时代的数据中心架构报告",
           "https://eecs.engin.umich.edu/event/datacenter-architectures-for-the-microservices-era/",
@@ -11588,6 +11617,7 @@
       "domain": "datacenter",
       "relatedDomains": [
         "cpu",
+        "memory",
         "physical-energy"
       ]
     },
@@ -11795,7 +11825,7 @@
       "name": "Christos Kozyrakis",
       "field": "资源效率与服务约束",
       "core": "用服务质量约束指导资源共享和硬件软件协同。",
-      "evidence": "Maurice Wilkes 官方说明记录其资源高效计算系统贡献；以下训练边界面向现代服务。",
+      "evidence": "Maurice Wilkes 2015 官方说明为“For outstanding contributions to transactional memory systems”，与本条目的资源效率与服务约束视角并不相同；以下训练边界是面向现代服务的教学归纳，不是该说明的内容。",
       "habits": [
         "用服务质量约束指导资源共享和硬件软件协同。",
         "先固定任务、正确性与资源边界，再判断 资源效率与服务约束 的收益。",
@@ -12504,7 +12534,7 @@
       "name": "Carole-Jean Wu",
       "field": "真实 AI 工作流的端到端效率",
       "core": "把数据预处理、训练与服务纳入同一任务账。",
-      "evidence": "HC 2021 AI at Scale tutorial 联合讲者。",
+      "evidence": "ACM SIGARCH 2025 Maurice Wilkes Award 说明为“For pioneering computer architecture research to enable efficient, scalable, and sustainable machine learning”。HC 2021 AI at Scale tutorial 联合讲者。",
       "habits": [
         "把数据预处理、训练与服务纳入同一任务账。",
         "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
@@ -12524,6 +12554,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2025 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "Hot Chips 2021 官方议程",
           "https://hc33.hotchips.org/",
@@ -13216,21 +13251,23 @@
     {
       "id": "anant-agarwal",
       "name": "Anant Agarwal",
-      "field": "可编程空间并行",
+      "field": "多线程延迟容忍、缓存一致性与可编程空间并行",
       "core": "显式组织计算与通信，让软件和硬件共同承担并行结构。",
-      "evidence": "MIT Raw 项目原始文档提供编译、互连和原型依据；具体成果来自团队。",
+      "evidence": "ACM SIGARCH 2001 Maurice Wilkes Award 说明为“For the first complete exploration of multithreading as a latency-tolerating technique for nondeterministic memory systems and software-assisted cache coherence.”。MIT Raw 项目原始文档提供编译、互连和原型依据；具体成果来自团队。",
       "habits": [
         "将通信纳入算法。",
         "明确计算的空间放置。",
         "比较静态与动态安排。",
-        "检查编译可实现性。"
+        "检查编译可实现性。",
+        "区分延迟容忍（切换线程）与消除延迟（改变数据放置或一致性）。"
       ],
       "questions": [
         "显式放置节省的控制开销是否超过通信与编译代价？",
         "拓扑改变哪条依赖？",
-        "不规则任务怎样处理？"
+        "不规则任务怎样处理？",
+        "多线程隐藏的等待，是否被额外的缓存压力和一致性流量抵消？"
       ],
-      "boundary": "静态组织不保证适合动态、稀疏或突发负载。",
+      "boundary": "静态组织不保证适合动态、稀疏或突发负载。 获奖说明只概括贡献方向，具体机制须读原文；Raw 项目是另一条阅读线索。",
       "diagnostic": "扫描映射与输入变化，测跳数、同步、负载偏斜及端到端时间。",
       "notes": [
         [
@@ -13243,6 +13280,11 @@
         ]
       ],
       "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2001 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
         [
           "MIT Raw：原始研究文档",
           "https://groups.csail.mit.edu/cag/raw/documents/",
@@ -13266,7 +13308,8 @@
       },
       "domain": "hpc",
       "relatedDomains": [
-        "compiler-runtime"
+        "compiler-runtime",
+        "memory"
       ]
     },
     {
@@ -15430,6 +15473,73 @@
         "method": "Inferred editorial synthesis",
         "challenge": "Inferred conditional model; no experiment executed"
       }
+    },
+    {
+      "id": "tushar-krishna",
+      "name": "Tushar Krishna",
+      "field": "大规模 AI 系统的架构与建模工具",
+      "core": "把大规模 AI 任务写成可复现的轨迹与成本模型，再决定架构取舍。",
+      "evidence": "ACM SIGARCH 2026 Maurice Wilkes Award 说明为“For outstanding contributions to architectures and modeling tools for large-scale AI systems”。Georgia Tech 公告提到其团队的开源工具 ASTRA-sim（大规模 AI 系统模拟）与 Chakra（AI 执行轨迹，MLCommons），用于建模、基准测试与优化大规模 AI 平台；本人研究页另列 SCALE-sim、MAESTRO、STONNE 等加速器工具。成果为团队与产业合作，以下阅读视角为教学归纳。",
+      "habits": [
+        "先把工作负载写成可复现的执行轨迹，再讨论架构。",
+        "把算子、数据流与集合通信放进同一条完整任务时间线。",
+        "区分模型预测与真实系统测量，并用后者校准前者。",
+        "检查结论对拓扑、重叠与批大小假设的敏感性。"
+      ],
+      "questions": [
+        "仿真排序的结论，换一个拓扑或重叠假设后还成立吗？",
+        "扩大加速器数量后，通信与同步是否先成为瓶颈？",
+        "哪份真实执行轨迹能校准这个成本模型？"
+      ],
+      "boundary": "模型与仿真器是决策工具，不是测量；排序结论必须用真实系统轨迹校准。获奖说明只概括贡献方向，具体工具能力以其公开文档为准。",
+      "diagnostic": "采集真实训练或推理执行轨迹，在仿真器中复现，核对迭代时间、通信占比与拓扑敏感性。",
+      "notes": [
+        [
+          "e14",
+          "GPU 小时与交付服务"
+        ],
+        [
+          "e05",
+          "设施电力与有效吞吐"
+        ]
+      ],
+      "sources": [
+        [
+          "Georgia Tech ECE：Krishna 获 Maurice Wilkes Award 公告",
+          "https://ece.gatech.edu/news/2026/08/krishna-earns-one-computer-architectures-highest-mid-career-honors",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2026 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "Tushar Krishna：研究与开源工具页",
+          "https://tushar-krishna.github.io/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "仿真与真实系统的校准挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "variables": "T_comp、T_comm、T_overlap：同任务秒；N：加速器数量。",
+        "model": "单次迭代时间 ≈ T_comp + T_comm − T_overlap；随 N 增大，通信项的增长决定扩展是否值得。",
+        "crossover": "当增加 N 使 T_comm 的增量超过 T_comp 的节省时，继续扩大规模不再值得。",
+        "counterexample": "仿真假设的重叠或拓扑与真实系统的拥塞、故障不符，方案排序可能反转。",
+        "transfer": "迁移到推理 decode 的 KV 传输与长上下文服务。",
+        "question": "增加加速器数量后，通信与同步是否先成为瓶颈？",
+        "validation": "用真实执行轨迹校准仿真，核对关键结论对拓扑、重叠与批大小假设的敏感性。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "datacenter"
+      ]
     }
   ]
 }
