@@ -18,9 +18,11 @@ skillnames={e.get('id').split('-')[-1].upper():e.xpath('.//h3')[0].text_content(
 def render(p):
  a=E('article',id=p['id'],class_='profile',data_research_status='complete')
  append(a,'div',f"{numbers[p['id']]} · {p['field']}",class_='profile-number');append(a,'h2',p['name'])
- tags=append(a,'p','主领域：',class_='domain-tags');tags.append(link('#domain-'+p['domain'],domains[p['domain']]['label']))
- for d in p.get('relatedDomains',[]):
-  x=link('#domain-'+d,domains[d]['label']); x.tail=' ';tags.append(x)
+ tags=append(a,'p','主领域：',class_='domain-tags');primary=link('#domain-'+p['domain'],domains[p['domain']]['label']);tags.append(primary)
+ related=p.get('relatedDomains',[])
+ if related:primary.tail=' · 关联领域：'
+ for i,d in enumerate(related):
+  x=link('#domain-'+d,domains[d]['label']);x.tail=' ／ ' if i<len(related)-1 else None;tags.append(x)
  append(a,'p',p['core'],class_='thesis');append(a,'h3','最重要贡献')
  ul=append(a,'ul')
  for c in p['contributions']:append(ul,'li',c)
@@ -43,7 +45,7 @@ def render(p):
  append(de,'h3','已核验来源与证据范围');ol=append(de,'ol',class_='source-audit')
  for s in p['sourceAudit']:
   li=append(ol,'li');li.append(link(s['url'],s['title']));append(li,'p',f"{s['authors']} · {s['date']} · {s['type']}；{s['locator']}。{s['contentStatus']}；证据：{s['evidenceStrength']}；用途：{s['role']}。")
- legacy=append(de,'details',class_='sources');append(legacy,'summary','保留的历史代表来源');ol=append(legacy,'ol')
+ legacy=append(de,'details',class_='sources');append(legacy,'summary','保留的代表来源');ol=append(legacy,'ol')
  for title,url,role in p['sources']:li=append(ol,'li');li.append(link(url,title));append(li,'small',role)
  if p.get('notes'):
   pp=append(de,'p','相关短文：',class_='connections')
@@ -96,6 +98,6 @@ for x in batch['records']:
  out.append(f'<tr><td>{name}</td><td>{"既有" if x["kind"]=="existing" else "候选"}</td><td>{dict(complete="完成",partial="部分完成",pending="待补")[x["status"]]}</td><td>{esc(x["reason"])} {esc(x["nextAction"] or "")}</td></tr>')
 out.append('</tbody></table><h2>证据与归属说明</h2><ul>')
 for n in batch['notes']:out.append('<li>'+esc(n)+'</li>')
-out.append('</ul><p>页面提交后须另核对 GitHub Pages 部署与公开 catalog；此日志不预先宣称上线。</p></main></html>')
+out.append('</ul><p>首次内容提交已通过 Pages 部署与公开内容核验。<a href="2026-10-06-deployment.json">查看上线核验记录</a>。</p></main></html>' if batch['publication']['status']=='published' else '</ul><p>页面提交后须另核对 GitHub Pages 部署与公开 catalog；此日志不预先宣称上线。</p></main></html>')
 (ROOT/'research/batches/2026-10-06.html').write_text('\n'.join(out)+'\n')
 print(f'Rendered {len(profiles)} profiles; audited cards: {sum(p.get("researchStatus",{}).get("standard")=="contribution-led-v1" for p in profiles)}')
