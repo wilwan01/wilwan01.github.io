@@ -1,0 +1,397 @@
+{
+  "baseCommit": "8def12379decd61f52e3da2961ff290ccb6cb685",
+  "profiles": [
+    {
+      "id": "john-crawford",
+      "name": "John H. Crawford",
+      "awardYear": 1995,
+      "award": "Eckert–Mauchly Award · 1995",
+      "field": "兼容架构与处理器演进",
+      "core": "稳定的软件契约可以容纳持续变化的内部实现。",
+      "evidence": "IEEE 人物资料记录其 Intel 处理器架构工作，并认可微处理器技术贡献。本条目从产业架构路线归纳兼容性与实现演进的取舍，不将全部成果归为个人独有。",
+      "habits": [
+        "区分接口与内部组织。",
+        "把兼容负担显式列出。",
+        "将性能机制与产品要求联动。",
+        "检查演进后的验证范围。"
+      ],
+      "questions": [
+        "哪些行为必须稳定？",
+        "哪些实现可以独立改变？",
+        "兼容成本是否进入比较？"
+      ],
+      "boundary": "兼容性也可能限制优化；迁移、验证与历史行为的成本不能藏在实现之外。",
+      "diagnostic": "比较兼容路径和新实现的性能、验证及迁移成本。",
+      "notes": [
+        [
+          "e04",
+          "分区与产品"
+        ],
+        [
+          "e13",
+          "状态与可迁移性"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Crawford 人物与奖项资料",
+          "https://www.computer.org/profiles/john-crawford",
+          "1995 · 微处理器架构贡献"
+        ]
+      ],
+      "challenge": {
+        "lens": "兼容与内部演进",
+        "skills": [
+          "A2",
+          "A8",
+          "A10"
+        ],
+        "variables": "K：迁移与验证投入；N：有效使用量；s：每次净节省。",
+        "model": "先验证既有软件契约，再估计 Ns-K。",
+        "crossover": "s>0 且 N>K/s；兼容异常必须作为硬门槛处理。",
+        "counterexample": "快速路径改变可观察行为，软件修补吞没收益。",
+        "transfer": "迁移到 Arm/RISC-V 或 accelerator 代际升级。",
+        "question": "哪些行为必须稳定？",
+        "validation": "比较兼容路径和新实现的性能、验证及迁移成本。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu"
+      ]
+    },
+    {
+      "id": "robert-colwell",
+      "name": "Robert P. Colwell",
+      "awardYear": 2005,
+      "award": "Eckert–Mauchly Award · 2005",
+      "field": "工业微架构与可交付的设计",
+      "core": "架构概念必须通过实现、验证和产品约束才能成立。",
+      "evidence": "IEEE 资料记录其 P6、Pentium 4 团队工作，并认可微架构实现及 RISC/CISC 辩论贡献。阅读重心是从概念净收益到工业兑现，不把团队成果归为一人。",
+      "habits": [
+        "比较真实实现而非架构标签。",
+        "把功耗和时序纳入设计。",
+        "检查机制交互与验证负担。",
+        "用可交付结果校正概念。"
+      ],
+      "questions": [
+        "机制在完整机器中仍然有益吗？",
+        "哪些交互改变原始结论？",
+        "实现复杂度影响多少进度和质量？"
+      ],
+      "boundary": "工业成功不证明某条路线永远最优；工艺、负载和部署边界变化后需要重测。",
+      "diagnostic": "在匹配预算下评估整机性能、功耗、验证范围和交付风险。",
+      "notes": [
+        [
+          "e12",
+          "局部机制与全服务"
+        ],
+        [
+          "e04",
+          "技术与成品"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Colwell 的工业架构工作",
+          "https://www.computer.org/profiles/robert-colwell",
+          "2005 · 微架构设计与实现"
+        ]
+      ],
+      "challenge": {
+        "lens": "可交付微架构",
+        "skills": [
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "variables": "ΔV：实际交付净价值；K：研发验证投入；L：延期/兼容损失。",
+        "model": "先通过时序、功率和正确性门槛，再检查 ΔV>K+L。",
+        "crossover": "局部机制须在完整产品与交付窗口内回收全部投入。",
+        "counterexample": "局部性能提升增加集成缺陷并错过产品窗口。",
+        "transfer": "迁移到新 ISA 功能或 chiplet 产品。",
+        "question": "机制在完整机器中仍然有益吗？",
+        "validation": "在匹配预算下评估整机性能、功耗、验证范围和交付风险。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "uri-weiser",
+      "name": "Uri Weiser",
+      "awardYear": 2016,
+      "award": "Eckert–Mauchly Award · 2016",
+      "field": "处理器组织、多媒体与非对称计算",
+      "core": "按工作的不同需求配置执行资源。",
+      "evidence": "IEEE 资料回顾 Pentium 架构领导工作、MMX、与他人共同提出的 trace cache，以及非对称多核研究。本条目从这些工作归纳应用需求与执行组织的匹配。",
+      "habits": [
+        "从应用需求确定执行组织。",
+        "区分任务对延迟与吞吐的要求。",
+        "用异构资源匹配不同工作。",
+        "共同评估硬件接口与软件使用。"
+      ],
+      "questions": [
+        "哪些工作需要不同的资源？",
+        "软件能否利用新增能力？",
+        "迁移和协调是否抵消匹配收益？"
+      ],
+      "boundary": "非对称不自动带来节能或加速；调度、共享资源、软件兼容与迁移成本需验证。",
+      "diagnostic": "按工作类别测量执行需求，比较同构与非对称放置下的服务性能和能耗。",
+      "notes": [
+        [
+          "e09",
+          "核心与工作匹配"
+        ],
+        [
+          "e12",
+          "执行路径与整体服务"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Weiser 的架构工作",
+          "https://www.computer.org/profiles/uri-weiser",
+          "2016 · 处理器、多媒体与非对称架构"
+        ],
+        [
+          "ACM：2016 获奖说明",
+          "https://www.acm.org/binaries/content/assets/press-releases/2016/may/2016-eckert-mauchly-award.pdf",
+          "公开贡献说明"
+        ]
+      ],
+      "challenge": {
+        "lens": "非对称资源匹配",
+        "skills": [
+          "A2",
+          "A4",
+          "A7"
+        ],
+        "variables": "E_A、E_B：同任务能量；E_move：搬运/迁移能量；D：deadline。",
+        "model": "选择 B 要求 E_B+E_move<E_A 且完成时间满足 D。",
+        "crossover": "负载驻留与复用足以摊销放置成本。",
+        "counterexample": "任务频繁切换或负载预测错误，非对称资源长期闲置。",
+        "transfer": "迁移到 CPU/GPU/NPU 路由。",
+        "question": "哪些工作需要不同的资源？",
+        "validation": "按工作类别测量执行需求，比较同构与非对称放置下的服务性能和能耗。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "daniel-a-jim-nez",
+      "name": "Daniel A. Jiménez",
+      "field": "学习预测与硬件预算",
+      "core": "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
+      "evidence": "Bob Rau 官方说明记录其神经分支预测贡献；不等同于现代 transformer 已有收益。",
+      "habits": [
+        "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
+        "先固定任务、正确性与资源边界，再判断 学习预测与硬件预算 的收益。",
+        "把新增负担显式放入比较：长推理、冷启动或相位漂移使离线准确率无法兑现。"
+      ],
+      "questions": [
+        "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。长推理、冷启动或相位漂移使离线准确率无法兑现。",
+      "diagnostic": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "学习预测与硬件预算挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
+        "variables": "Δm：失误/指令下降；p：暴露恢复周期；c_add：新增周期/指令；参数需从待评估系统测量，以下为条件模型。",
+        "model": "净 CPI 改善≈Δm p-c_add；增加面积功率作为独立预算。",
+        "crossover": "Δm p > c_add，跨阶段与冷启动仍满足预算。",
+        "counterexample": "长推理、冷启动或相位漂移使离线准确率无法兑现。",
+        "validation": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+        "transfer": "迁移到硬件 ML 预取与页放置预测。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "richard-sites",
+      "name": "Richard Sites",
+      "field": "长期 ISA 契约与性能诊断",
+      "core": "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
+      "evidence": "Sites 与 Witek 的 Alpha 手册明确列出长设计寿命、性能与迁移目标；归纳来自合作设计。",
+      "habits": [
+        "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
+        "先固定任务、正确性与资源边界，再判断 长期 ISA 契约与性能诊断 的收益。",
+        "把新增负担显式放入比较：极简接口将复杂性全部转嫁给软件迁移。"
+      ],
+      "questions": [
+        "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。极简接口将复杂性全部转嫁给软件迁移。",
+      "diagnostic": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
+          "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "长期 ISA 契约与性能诊断挑战",
+        "skills": [
+          "A1",
+          "A6",
+          "A8"
+        ],
+        "question": "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
+        "variables": "C_now：当代节省；C_future：后续实现负担；K_mig：迁移成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "在相同功能下比较生命周期成本 C_now 与 Σ C_future+K_mig。",
+        "crossover": "当前收益需覆盖后续代际成本；无法估计时以敏感性区间决策。",
+        "counterexample": "极简接口将复杂性全部转嫁给软件迁移。",
+        "validation": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+        "transfer": "迁移到长期稳定的加速器 ABI。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "rich-witek",
+      "name": "Rich Witek",
+      "field": "ISA 与高频微架构协同",
+      "core": "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
+      "evidence": "Alpha 手册与 Digital 技术论文记录其共同架构设计及 21064 实现角色。",
+      "habits": [
+        "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
+        "先固定任务、正确性与资源边界，再判断 ISA 与高频微架构协同 的收益。",
+        "把新增负担显式放入比较：宽度增加造成旁路延迟、功耗和缓存供给瓶颈。"
+      ],
+      "questions": [
+        "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
+      "diagnostic": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
+          "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "ISA 与高频微架构协同挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
+        "variables": "N：指令数；IPC：指令/周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T=N/(IPC×f)，加入未包含在 IPC 中的外围服务时间。",
+        "crossover": "IPC_new/IPC_old > f_old/f_new 才抵消降频，且同一任务。",
+        "counterexample": "宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
+        "validation": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+        "transfer": "迁移到宽 GPU 调度器与频率取舍。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "gurindar-sohi",
+      "name": "Gurindar S. Sohi",
+      "awardYear": 2011,
+      "award": "Eckert–Mauchly Award · 2011",
+      "field": "动态执行、存储依赖与推测",
+      "core": "解除不必要的等待，同时维护可恢复的精确状态。",
+      "evidence": "官方说明列出精确异常的动态执行、存储依赖预测、非阻塞缓存与 multiscalar 推测线程合作研究。",
+      "habits": [
+        "区分真实依赖与保守等待。",
+        "共同设计执行与恢复。",
+        "重叠访存和独立工作。",
+        "扩大并行粒度时计算错误代价。"
+      ],
+      "questions": [
+        "等待是否由真实依赖造成？",
+        "能恢复到哪个精确状态？",
+        "增加了多少被丢弃的工作？"
+      ],
+      "boundary": "理想并行度不是净加速；带宽、状态与恢复成本必须扣除。",
+      "diagnostic": "测量依赖阻塞、访存并发、错误路径与恢复时间。",
+      "notes": [
+        [
+          "e08",
+          "推测解码的净收益"
+        ],
+        [
+          "e09",
+          "并行与固定预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM：2011 获奖说明",
+          "https://www.acm.org/binaries/content/assets/press-releases/2011/may/eckert-mauchly-award-2011.pdf",
+          "2011 · 精确异常、依赖与推测"
+        ]
+      ],
+      "challenge": {
+        "lens": "访存依赖与可恢复执行",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "variables": "T_wait_saved：合法减少等待；pR：错误恢复均值；H：资源与管理成本。",
+        "model": "先保证精确状态，再比较 T_wait_saved 与 pR+H。",
+        "crossover": "独立访存足够且恢复开销不吞没重叠收益。",
+        "counterexample": "错误依赖判断引入重放风暴并占满资源。",
+        "transfer": "迁移到事务、异步状态读取或 GPU 调度。",
+        "question": "等待是否由真实依赖造成？",
+        "validation": "测量依赖阻塞、访存并发、错误路径与恢复时间。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory"
+      ]
+    }
+  ]
+}

@@ -6,15 +6,15 @@
   "plannedExisting": 63,
   "plannedCandidates": 13,
   "counts": {
-    "complete": 37,
-    "pending": 22,
-    "partial": 17
+    "complete": 44,
+    "pending": 18,
+    "partial": 14
   },
-  "completedExisting": 28,
+  "completedExisting": 35,
   "completedNew": 9,
   "publication": {
     "status": "awaiting-deployment-verification",
-    "previousPublishedCommit": "3ebacb801d8fef85fbd5b8d5c75f68065a15b2da",
+    "previousPublishedCommit": "8def12379decd61f52e3da2961ff290ccb6cb685",
     "publicProfileCountBefore": 260
   },
   "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
@@ -344,10 +344,44 @@
       "id": "john-crawford",
       "name": "John H. Crawford",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "John H. Crawford — 1995 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1995",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "John Crawford — 2014 Fellow",
+          "authors": "Computer History Museum",
+          "date": "2014",
+          "url": "https://computerhistory.org/profile/john-crawford/",
+          "locator": "Fellow citation 与 386 架构职责",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Oral History of John H. Crawford",
+          "authors": "John H. Crawford；采访 Douglas Fairbairn",
+          "date": "2014-02-24",
+          "url": "https://archive.computerhistory.org/resources/access/text/2014/07/102746866-05-01-acc.pdf",
+          "locator": "pp.21–25；32 位目标、寻址选择、团队与测试",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已读取指定正文；未观看录像",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "jim-keller",
@@ -521,14 +555,31 @@
       "id": "richard-sites",
       "name": "Richard Sites",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 Alpha 手册；需要独立作品及个人贡献定位。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
       "sources": [
         {
+          "title": "Alpha AXP Architecture",
+          "authors": "Richard L. Sites",
+          "date": "1992",
+          "url": "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "locator": "Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments",
+          "type": "论文全文",
+          "contentStatus": "取得署名论文全文转录；核验技术段及 Witek 共同架构师说明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Alpha AXP Architecture Reference Manual, Second Edition",
+          "authors": "Richard L. Sites; Richard T. Witek；多位贡献作者",
+          "date": "1995",
           "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "locator": "Part I：概览 PDF p.29；指令格式 p.31；算术异常 p.130；MB p.191",
+          "type": "技术专著全文",
+          "contentStatus": "已取得手册正文并读取指定章节",
+          "evidenceStrength": "强",
+          "role": "规范语义、取舍及共同作者归属"
         }
       ]
     },
@@ -925,10 +976,34 @@
       "id": "gurindar-sohi",
       "name": "Gurindar S. Sohi",
       "kind": "existing",
-      "status": "partial",
-      "reason": "官方获奖理由已核验；RUU 论文下载受阻，另一合集文字编码损坏，未据此提炼机制。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM, IEEE Computer Society Honor Innovator of High-Performance Computer Systems Designs",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2011-05-04",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2011/may/eckert-mauchly-award-2011.pdf",
+          "locator": "首段获奖理由",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验公告正文",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Retrospective: Instruction Issue Logic for High-Performance, Interruptable Pipelined Processors",
+          "authors": "Gurindar S. Sohi",
+          "date": "1998",
+          "url": "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-F03/handouts/papers/retrospective.pdf",
+          "locator": "25 Years of ISCA Selected Papers；印刷 pp.51–53，PDF pp.63–65",
+          "type": "作者技术文章",
+          "contentStatus": "PDF 文本层编码损坏；已渲染指定三页并 OCR 读取全文，未声称读到 1987 原文",
+          "evidenceStrength": "强",
+          "role": "作者对 RUU、合作、机制与实验边界的回顾",
+          "retrievedSha256": "2eed80c6729c08dfd8a0031f9ce94cd119a8f20510ea5d16c96fec180b6d87f4"
+        }
+      ]
     },
     {
       "id": "andre-seznec",
@@ -1048,19 +1123,65 @@
       "id": "uri-weiser",
       "name": "Uri Weiser",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM and IEEE Computer Society Honor Uri Weiser with 2016 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2016-05-18",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2016/may/2016-eckert-mauchly-award.pdf",
+          "locator": "获奖理由与贡献说明",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验公告正文",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "MultiAmdahl: How Should I Divide My Heterogeneous Chip?",
+          "authors": "Tsahee Zidenberg; Isaac Keslassy; Uri Weiser",
+          "date": "2012 年论文的扩展稿（所读稿件未标具体日期）",
+          "url": "https://webee.technion.ac.il/~isaac/p/computer12_multiamdahl.pdf",
+          "locator": "§3–4.1，PDF pp.3–6；约束优化、式(8)与近似边界",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "robert-colwell",
       "name": "Robert P. Colwell",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Robert P. Colwell — 2005 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2005",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Oral History of Robert P. Colwell",
+          "authors": "Robert P. Colwell；采访 Paul N. Edwards",
+          "date": "2009-08-24/25",
+          "url": "https://www.sigmicro.org/media/oralhistories/colwell.pdf",
+          "locator": "pp.98–100（P6、数据流分析与合作）；p.125（微操作）",
+          "type": "本人访谈文字稿",
+          "contentStatus": "取得访谈正文并读取指定页；未收听录音",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "mike-clark",
@@ -1128,14 +1249,31 @@
       "id": "rich-witek",
       "name": "Rich Witek",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得合著 Alpha 手册；第二项实质来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
       "sources": [
         {
+          "title": "Alpha AXP Architecture",
+          "authors": "Richard L. Sites",
+          "date": "1992",
+          "url": "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "locator": "Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments",
+          "type": "论文全文",
+          "contentStatus": "取得署名论文全文转录；核验技术段及 Witek 共同架构师说明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Alpha AXP Architecture Reference Manual, Second Edition",
+          "authors": "Richard L. Sites; Richard T. Witek；多位贡献作者",
+          "date": "1995",
           "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "locator": "Part I：概览 PDF p.29；指令格式 p.31；算术异常 p.130；MB p.191",
+          "type": "技术专著全文",
+          "contentStatus": "已取得手册正文并读取指定章节",
+          "evidenceStrength": "强",
+          "role": "规范语义、取舍及共同作者归属"
         }
       ]
     },
@@ -1348,10 +1486,44 @@
       "id": "daniel-a-jim-nez",
       "name": "Daniel A. Jiménez",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献与至少两项实质一手来源通过核验；来源页码、合作归属及适用边界见审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Jiménez to Receive IEEE CS Rau Award",
+          "authors": "IEEE Computer Society",
+          "date": "2021-10-04",
+          "url": "https://www.computer.org/press-room/2021-news/jimenez-to-receive-ieee-cs-rau-award",
+          "locator": "2021 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验完整获奖理由",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Dynamic Branch Prediction with Perceptrons",
+          "authors": "Daniel A. Jiménez; Calvin Lin",
+          "date": "2001",
+          "url": "https://people.engr.tamu.edu/djimenez/pdfs/hpca7_dist.pdf",
+          "locator": "HPCA-7；§3.2–3.5（权重、训练与线性可分性）",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "The Impact of Delay on the Design of Branch Predictors",
+          "authors": "Daniel A. Jiménez; Stephen W. Keckler; Calvin Lin",
+          "date": "2000",
+          "url": "https://people.engr.tamu.edu/djimenez/pdfs/micro33_dist.pdf",
+          "locator": "MICRO-33；§1、§4–5（延迟敏感组织及评估）",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "mike-filippo",
@@ -1747,6 +1919,45 @@
       "verified": [
         "catalog.json and index.html bytes match deployed commit"
       ]
+    },
+    {
+      "commit": "8def12379decd61f52e3da2961ff290ccb6cb685",
+      "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37449490765",
+      "pagesConclusion": "success",
+      "verifiedAtUtc": "2026-10-06T10:27:51.371519+00:00",
+      "profiles": 260,
+      "completed": 37,
+      "checks": [
+        {
+          "url": "https://wilwan01.github.io/ai/architects/catalog.json",
+          "http": 200,
+          "bytes": 876957,
+          "sha256": "bc4cf4e57574e7d8f452dcf478eb93f39a117164775dac735b88a095e6cf2f60",
+          "matchesCommit": true
+        },
+        {
+          "url": "https://wilwan01.github.io/ai/architects/index.html",
+          "http": 200,
+          "bytes": 1444289,
+          "sha256": "985b149fc67a201c4d642343ca48efd020ebd0ae0de550d176ea38501bec533a",
+          "matchesCommit": true
+        },
+        {
+          "url": "https://wilwan01.github.io/ai/architects/research/batches/2026-10-06.json",
+          "http": 200,
+          "bytes": 80554,
+          "sha256": "ab8c79ab07a1fccc8df8394ab7378d29c8dd6cc33dbc7b8664dae961423f6616",
+          "matchesCommit": true
+        },
+        {
+          "url": "https://wilwan01.github.io/ai/architects/research/batches/2026-10-06.html",
+          "http": 200,
+          "bytes": 20428,
+          "sha256": "7525a676a4e6a38d16e68007f2c87ed92ef32194bf228dd52df5fa3e99378dbc",
+          "matchesCommit": true
+        }
+      ],
+      "status": "published"
     }
   ],
   "continuations": [
@@ -1781,6 +1992,20 @@
       ],
       "completedCount": 8,
       "history": "research/history/2026-10-06-classics-before.json"
+    },
+    {
+      "baseCommit": "8def12379decd61f52e3da2961ff290ccb6cb685",
+      "completedIds": [
+        "john-crawford",
+        "robert-colwell",
+        "uri-weiser",
+        "daniel-a-jim-nez",
+        "richard-sites",
+        "rich-witek",
+        "gurindar-sohi"
+      ],
+      "completedCount": 7,
+      "history": "research/history/2026-10-06-execution-before.json"
     }
   ]
 }

@@ -1460,21 +1460,18 @@
       "awardYear": 1995,
       "award": "Eckert–Mauchly Award · 1995",
       "field": "兼容架构与处理器演进",
-      "core": "稳定的软件契约可以容纳持续变化的内部实现。",
-      "evidence": "IEEE 人物资料记录其 Intel 处理器架构工作，并认可微处理器技术贡献。本条目从产业架构路线归纳兼容性与实现演进的取舍，不将全部成果归为个人独有。",
+      "core": "推动 x86 从既有软件基础扩展为 32 位平台，让地址能力与指令表达的改进保持可迁移性。",
+      "evidence": "本人回顾将完整 32 位地址空间与旧二进制兼容并列为目标；在 32 位模式下推广基址、索引和比例因子组合，减少软件对受限寄存器用途的迁就。方案还须经软件、工程与客户反馈验证。",
       "habits": [
-        "区分接口与内部组织。",
-        "把兼容负担显式列出。",
-        "将性能机制与产品要求联动。",
-        "检查演进后的验证范围。"
+        "从软件痛点寻找有限而有价值的 ISA 扩展。",
+        "用模拟器和跨模式测试检验兼容承诺。"
       ],
       "questions": [
-        "哪些行为必须稳定？",
-        "哪些实现可以独立改变？",
-        "兼容成本是否进入比较？"
+        "保留旧程序的同时，哪些新寻址能力能实质简化编译代码？",
+        "模式切换与边界语义是否有可执行的兼容测试？"
       ],
-      "boundary": "兼容性也可能限制优化；迁移、验证与历史行为的成本不能藏在实现之外。",
-      "diagnostic": "比较兼容路径和新实现的性能、验证及迁移成本。",
+      "boundary": "兼容扩展并非没有解码与模式复杂度；某次成功不能推出所有历史约束都该永久保留。访谈属于当事人回顾，不是性能收益的独立测量。",
+      "diagnostic": "比较旧二进制兼容测试与新编译代码的指令序列；把寻址收益、解码复杂度和模式边界错误分别记录。",
       "notes": [
         [
           "e04",
@@ -1490,27 +1487,99 @@
           "IEEE：Crawford 人物与奖项资料",
           "https://www.computer.org/profiles/john-crawford",
           "1995 · 微处理器架构贡献"
+        ],
+        [
+          "John H. Crawford — 1995 Eckert–Mauchly citation",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "1995 · 官方获奖理由 · 对应年份 recipient citation"
+        ],
+        [
+          "John Crawford — 2014 Fellow",
+          "https://computerhistory.org/profile/john-crawford/",
+          "2014 · 官方获奖理由 · Fellow citation 与 386 架构职责"
+        ],
+        [
+          "Oral History of John H. Crawford",
+          "https://archive.computerhistory.org/resources/access/text/2014/07/102746866-05-01-acc.pdf",
+          "2014-02-24 · 本人访谈文字稿 · pp.21–25；32 位目标、寻址选择、团队与测试"
         ]
       ],
       "challenge": {
-        "lens": "兼容与内部演进",
+        "lens": "兼容扩展的软硬件契约",
         "skills": [
-          "A2",
-          "A8",
-          "A10"
+          "A1",
+          "A5",
+          "A6"
         ],
-        "variables": "K：迁移与验证投入；N：有效使用量；s：每次净节省。",
-        "model": "先验证既有软件契约，再估计 Ns-K。",
-        "crossover": "s>0 且 N>K/s；兼容异常必须作为硬门槛处理。",
-        "counterexample": "快速路径改变可观察行为，软件修补吞没收益。",
-        "transfer": "迁移到 Arm/RISC-V 或 accelerator 代际升级。",
-        "question": "哪些行为必须稳定？",
-        "validation": "比较兼容路径和新实现的性能、验证及迁移成本。"
+        "variables": "B：保留的软件价值；G：新语义带来的代码收益；C：实现与验证成本。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：在相同任务和规划期内评估 B+G−C；以实际程序和测试覆盖约束估计。",
+        "crossover": "新能力有明确软件用途，且兼容与验证成本可控。",
+        "counterexample": "增加模式与特例，却没有减少常见代码的实际负担。",
+        "transfer": "用于 ISA、协议版本或加速器接口扩展时先定义跨版本语义。",
+        "question": "保留旧程序的同时，哪些新寻址能力能实质简化编译代码？",
+        "validation": "比较旧二进制兼容测试与新编译代码的指令序列；把寻址收益、解码复杂度和模式边界错误分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "cpu"
-      ]
+      ],
+      "contributions": [
+        "官方理由认可其微处理器技术对产业的影响；本次聚焦他作为 Intel386 首席架构师负责的 32 位扩展。",
+        "在保留二进制软件基础的同时改进地址空间和寻址方式，并通过微代码、模拟器与测试程序落实架构。"
+      ],
+      "background": "CHM 官方资料确认 Crawford 负责 386 的架构扩展并领导微程序和测试生成。本人访谈列出 Rakesh Agarwal、Greg Blanck 等同事，不能把整芯片与验证工作归为一人。",
+      "argument": "本人回顾将完整 32 位地址空间与旧二进制兼容并列为目标；在 32 位模式下推广基址、索引和比例因子组合，减少软件对受限寄存器用途的迁就。方案还须经软件、工程与客户反馈验证。",
+      "sourceAudit": [
+        {
+          "title": "John H. Crawford — 1995 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1995",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "John Crawford — 2014 Fellow",
+          "authors": "Computer History Museum",
+          "date": "2014",
+          "url": "https://computerhistory.org/profile/john-crawford/",
+          "locator": "Fellow citation 与 386 架构职责",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Oral History of John H. Crawford",
+          "authors": "John H. Crawford；采访 Douglas Fairbairn",
+          "date": "2014-02-24",
+          "url": "https://archive.computerhistory.org/resources/access/text/2014/07/102746866-05-01-acc.pdf",
+          "locator": "pp.21–25；32 位目标、寻址选择、团队与测试",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已读取指定正文；未观看录像",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1995,
+          "citationZh": "表彰其通过微处理器技术发展对计算机产业产生的影响。",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "jim-keller",
@@ -2100,20 +2169,18 @@
       "id": "richard-sites",
       "name": "Richard Sites",
       "field": "长期 ISA 契约与性能诊断",
-      "core": "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
-      "evidence": "Sites 与 Witek 的 Alpha 手册明确列出长设计寿命、性能与迁移目标；归纳来自合作设计。",
+      "core": "共同设计面向长期扩展的 Alpha AXP，把 64 位、并行实现与软件迁移纳入同一架构契约。",
+      "evidence": "架构避免条件码和其他隐含状态增加依赖比较；软件兼容通过翻译与特权架构库等配套实现。共享内存允许重排，并以显式屏障表达需要保持的顺序。",
       "habits": [
-        "把 ISA 的长期寿命与当前实现分开，减少未来流水线的隐含约束。",
-        "先固定任务、正确性与资源边界，再判断 长期 ISA 契约与性能诊断 的收益。",
-        "把新增负担显式放入比较：极简接口将复杂性全部转嫁给软件迁移。"
+        "同时审查 ISA 自由度和软件迁移责任。",
+        "把长期实现约束显式写入契约评审。"
       ],
       "questions": [
-        "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "今天新增的隐含状态会给更宽、更深的实现增加哪些依赖？",
+        "简化硬件后，软件要承担的同步与迁移成本是否可接受？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。极简接口将复杂性全部转嫁给软件迁移。",
-      "diagnostic": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+      "boundary": "自由度会转化为软件责任：弱内存序须正确同步，早期字节写入和算术异常精度也有取舍。论文的长期扩展目标不是后续产品性能保证。",
+      "diagnostic": "对同一语义比较不同发射宽度；验证屏障与异常处理代码，并分别测原生编译和迁移程序的总成本。",
       "notes": [
         [
           "e04",
@@ -2125,6 +2192,11 @@
           "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
           "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Alpha AXP Architecture",
+          "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "1992 · 论文全文 · Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments"
         ]
       ],
       "challenge": {
@@ -2134,12 +2206,12 @@
           "A6",
           "A8"
         ],
-        "question": "为了当代芯片方便增加一个隐含 ISA 依赖，会怎样限制十年后的实现？",
+        "question": "今天新增的隐含状态会给更宽、更深的实现增加哪些依赖？",
         "variables": "C_now：当代节省；C_future：后续实现负担；K_mig：迁移成本；参数需从待评估系统测量，以下为条件模型。",
-        "model": "在相同功能下比较生命周期成本 C_now 与 Σ C_future+K_mig。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：在相同功能下比较生命周期成本 C_now 与 Σ C_future+K_mig。",
         "crossover": "当前收益需覆盖后续代际成本；无法估计时以敏感性区间决策。",
         "counterexample": "极简接口将复杂性全部转嫁给软件迁移。",
-        "validation": "用不同流水线宽度与编译器验证同一语义，检查兼容例外与串行约束。",
+        "validation": "对同一语义比较不同发射宽度；验证屏障与异常处理代码，并分别测原生编译和迁移程序的总成本。",
         "transfer": "迁移到长期稳定的加速器 ABI。"
       },
       "domain": "foundations",
@@ -2147,7 +2219,45 @@
         "cpu",
         "compiler-runtime"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "与 Rich Witek 共同设计 Alpha AXP，提前为多发射与多处理器实现留出空间。",
+        "以 PALcode 和二进制翻译承接软件迁移，避免为兼容旧指令集而把全部历史约束带入新 ISA。"
+      ],
+      "background": "1992 年 Sites 署名论文明确说 Witek 是共同架构师，并列出多位规范贡献者；1995 年参考手册由 Sites 与 Witek 共同署名。以下是有来源的编辑提炼，不是官方获奖理由。",
+      "argument": "架构避免条件码和其他隐含状态增加依赖比较；软件兼容通过翻译与特权架构库等配套实现。共享内存允许重排，并以显式屏障表达需要保持的顺序。",
+      "sourceAudit": [
+        {
+          "title": "Alpha AXP Architecture",
+          "authors": "Richard L. Sites",
+          "date": "1992",
+          "url": "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "locator": "Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments",
+          "type": "论文全文",
+          "contentStatus": "取得署名论文全文转录；核验技术段及 Witek 共同架构师说明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Alpha AXP Architecture Reference Manual, Second Edition",
+          "authors": "Richard L. Sites; Richard T. Witek；多位贡献作者",
+          "date": "1995",
+          "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "locator": "Part I：概览 PDF p.29；指令格式 p.31；算术异常 p.130；MB p.191",
+          "type": "技术专著全文",
+          "contentStatus": "已取得手册正文并读取指定章节",
+          "evidenceStrength": "强",
+          "role": "规范语义、取舍及共同作者归属"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "butler-lampson",
@@ -3659,21 +3769,18 @@
       "awardYear": 2011,
       "award": "Eckert–Mauchly Award · 2011",
       "field": "动态执行、存储依赖与推测",
-      "core": "解除不必要的等待，同时维护可恢复的精确状态。",
-      "evidence": "官方说明列出精确异常的动态执行、存储依赖预测、非阻塞缓存与 multiscalar 推测线程合作研究。",
+      "core": "把乱序执行、顺序提交与推测恢复结合起来，推动高性能处理器在保持程序语义时提取更多并行。",
+      "evidence": "RUU 将在途指令组织为有入口和提交出口的缓冲；保留分支位置可在预测错误时丢弃后续工作。正文进一步说明，执行资源再多也无法补偿持续不足的指令供给。",
       "habits": [
-        "区分真实依赖与保守等待。",
-        "共同设计执行与恢复。",
-        "重叠访存和独立工作。",
-        "扩大并行粒度时计算错误代价。"
+        "一起设计在途状态、提交和错误恢复。",
+        "在增加执行资源前核查持续指令供给。"
       ],
       "questions": [
-        "等待是否由真实依赖造成？",
-        "能恢复到哪个精确状态？",
-        "增加了多少被丢弃的工作？"
+        "提交吞吐受执行能力、取指入口还是恢复停顿限制？",
+        "错误路径的寄存器与内存副作用能否完整撤销或阻止提交？"
       ],
-      "boundary": "理想并行度不是净加速；带宽、状态与恢复成本必须扣除。",
-      "diagnostic": "测量依赖阻塞、访存并发、错误路径与恢复时间。",
+      "boundary": "回顾中的若干观察来自 Livermore 循环与特定模拟器；“数据依赖次要”等结论不能脱离其缓存、分支和缓冲条件。更大缓冲也受面积、时延与能耗约束。",
+      "diagnostic": "测取指、就绪、执行和提交的持续速率及队列占用；改变分支与访存压力，并注入错误预测核验恢复后的架构状态。",
       "notes": [
         [
           "e08",
@@ -3689,27 +3796,80 @@
           "ACM：2011 获奖说明",
           "https://www.acm.org/binaries/content/assets/press-releases/2011/may/eckert-mauchly-award-2011.pdf",
           "2011 · 精确异常、依赖与推测"
+        ],
+        [
+          "Retrospective: Instruction Issue Logic for High-Performance, Interruptable Pipelined Processors",
+          "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-F03/handouts/papers/retrospective.pdf",
+          "1998 · 作者技术文章 · 25 Years of ISCA Selected Papers；印刷 pp.51–53，PDF pp.63–65"
         ]
       ],
       "challenge": {
-        "lens": "访存依赖与可恢复执行",
+        "lens": "在途窗口、提交与供给",
         "skills": [
           "A2",
           "A3",
+          "A5",
           "A8"
         ],
-        "variables": "T_wait_saved：合法减少等待；pR：错误恢复均值；H：资源与管理成本。",
-        "model": "先保证精确状态，再比较 T_wait_saved 与 pR+H。",
-        "crossover": "独立访存足够且恢复开销不吞没重叠收益。",
-        "counterexample": "错误依赖判断引入重放风暴并占满资源。",
-        "transfer": "迁移到事务、异步状态读取或 GPU 调度。",
-        "question": "等待是否由真实依赖造成？",
-        "validation": "测量依赖阻塞、访存并发、错误路径与恢复时间。"
+        "variables": "F：持续取指速率；E：有效执行速率；R：提交能力；Q：在途容量。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：稳态提交吞吐≤min(F,E,R)；有限 Q 与恢复损失使实际值更低。",
+        "crossover": "扩大 Q 只在能容纳更多有用重叠且供给充分时提高吞吐。",
+        "counterexample": "前端持续饥饿，扩大后端窗口不会创造指令。",
+        "transfer": "用于任务执行图时同步设计入口背压、提交与失败恢复。",
+        "question": "提交吞吐受执行能力、取指入口还是恢复停顿限制？",
+        "validation": "测取指、就绪、执行和提交的持续速率及队列占用；改变分支与访存压力，并注入错误预测核验恢复后的架构状态。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "2011 年官方理由认可被广泛采用的高性能微处理器技术。",
+        "与 Sriram Vajapeyam 发展 Register Update Unit，将标签管理和精确状态维护的需求汇合，并扩展到分支错误路径恢复。"
+      ],
+      "background": "这里读取的是 Sohi 1998 年对 1987 年工作的本人回顾，不冒充已读受阻的原始论文。回顾明确归属合作伙伴 Vajapeyam，并说明 Smith、Pleszkun、Patt 等前驱和同期工作的影响。",
+      "argument": "RUU 将在途指令组织为有入口和提交出口的缓冲；保留分支位置可在预测错误时丢弃后续工作。正文进一步说明，执行资源再多也无法补偿持续不足的指令供给。",
+      "sourceAudit": [
+        {
+          "title": "ACM, IEEE Computer Society Honor Innovator of High-Performance Computer Systems Designs",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2011-05-04",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2011/may/eckert-mauchly-award-2011.pdf",
+          "locator": "首段获奖理由",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验公告正文",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Retrospective: Instruction Issue Logic for High-Performance, Interruptable Pipelined Processors",
+          "authors": "Gurindar S. Sohi",
+          "date": "1998",
+          "url": "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-F03/handouts/papers/retrospective.pdf",
+          "locator": "25 Years of ISCA Selected Papers；印刷 pp.51–53，PDF pp.63–65",
+          "type": "作者技术文章",
+          "contentStatus": "PDF 文本层编码损坏；已渲染指定三页并 OCR 读取全文，未声称读到 1987 原文",
+          "evidenceStrength": "强",
+          "role": "作者对 RUU、合作、机制与实验边界的回顾",
+          "retrievedSha256": "2eed80c6729c08dfd8a0031f9ce94cd119a8f20510ea5d16c96fec180b6d87f4"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2011,
+          "citationZh": "开创了在高性能微处理器设计中被广泛采用的微架构技术。",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2011/may/eckert-mauchly-award-2011.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "andre-seznec",
@@ -4117,21 +4277,18 @@
       "awardYear": 2016,
       "award": "Eckert–Mauchly Award · 2016",
       "field": "处理器组织、多媒体与非对称计算",
-      "core": "按工作的不同需求配置执行资源。",
-      "evidence": "IEEE 资料回顾 Pentium 架构领导工作、MMX、与他人共同提出的 trace cache，以及非对称多核研究。本条目从这些工作归纳应用需求与执行组织的匹配。",
+      "core": "推动高性能与多媒体处理器，并把异构计算的资源分配从局部加速转向整体最优。",
+      "evidence": "目标是最小化各程序段执行时间之和，受总面积约束。在单元性能函数递减、凸且可微的假设下，内部最优点让各单元增加资源带来的加权边际时间收益相等。",
       "habits": [
-        "从应用需求确定执行组织。",
-        "区分任务对延迟与吞吐的要求。",
-        "用异构资源匹配不同工作。",
-        "共同评估硬件接口与软件使用。"
+        "按整体任务权重比较资源的边际收益。",
+        "明确曲线、目标与约束，不只比较单个加速器峰值。"
       ],
       "questions": [
-        "哪些工作需要不同的资源？",
-        "软件能否利用新增能力？",
-        "迁移和协调是否抵消匹配收益？"
+        "同一单位面积给哪个单元能减少最多整任务时间？",
+        "共享带宽或迁移成本是否已纳入收益曲线？"
       ],
-      "boundary": "非对称不自动带来节能或加速；调度、共享资源、软件兼容与迁移成本需验证。",
-      "diagnostic": "按工作类别测量执行需求，比较同构与非对称放置下的服务性能和能耗。",
+      "boundary": "连续可微模型近似离散实现，且性能曲线要反映迁移代价；共享带宽、并发重叠或工作负载变化可能破坏简化模型。需重新拟合而非机械套用面积比例。",
+      "diagnostic": "测每个程序段的时间和不同资源配置的收益曲线；对离散面积、任务占比及共享带宽做敏感性分析。",
       "notes": [
         [
           "e09",
@@ -4152,25 +4309,77 @@
           "ACM：2016 获奖说明",
           "https://www.acm.org/binaries/content/assets/press-releases/2016/may/2016-eckert-mauchly-award.pdf",
           "公开贡献说明"
+        ],
+        [
+          "MultiAmdahl: How Should I Divide My Heterogeneous Chip?",
+          "https://webee.technion.ac.il/~isaac/p/computer12_multiamdahl.pdf",
+          "2012 年论文的扩展稿（所读稿件未标具体日期） · 论文全文 · §3–4.1，PDF pp.3–6；约束优化、式(8)与近似边界"
         ]
       ],
       "challenge": {
-        "lens": "非对称资源匹配",
+        "lens": "异构资源的边际收益",
         "skills": [
+          "A1",
           "A2",
-          "A4",
-          "A7"
+          "A3",
+          "A8"
         ],
-        "variables": "E_A、E_B：同任务能量；E_move：搬运/迁移能量；D：deadline。",
-        "model": "选择 B 要求 E_B+E_move<E_A 且完成时间满足 D。",
-        "crossover": "负载驻留与复用足以摊销放置成本。",
-        "counterexample": "任务频繁切换或负载预测错误，非对称资源长期闲置。",
-        "transfer": "迁移到 CPU/GPU/NPU 路由。",
-        "question": "哪些工作需要不同的资源？",
-        "validation": "按工作类别测量执行需求，比较同构与非对称放置下的服务性能和能耗。"
+        "variables": "ti：参考执行时间；fi(ai)：分配 ai 面积后的相对时间；A：总面积。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：在论文明确假设下，min Σti fi(ai)，约束 Σai≤A；边界点与离散配置需单独求解。",
+        "crossover": "将面积从边际收益较低处移向较高处，直到约束或边际平衡。",
+        "counterexample": "某单元峰值很高却很少被调用，继续加面积几乎不改善整体。",
+        "transfer": "用于加速器组合和芯粒分配时把通信、静态功耗与任务分布纳入。",
+        "question": "同一单位面积给哪个单元能减少最多整任务时间？",
+        "validation": "测每个程序段的时间和不同资源配置的收益曲线；对离散面积、任务占比及共享带宽做敏感性分析。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "官方理由认可其在高性能处理器、多媒体架构上的产业与学术开创工作和领导作用。",
+        "与 Zidenberg、Keslassy 合著 MultiAmdahl，用工作负载占比与资源收益曲线决定异构单元的面积分配。"
+      ],
+      "background": "2016 年获奖公告同时介绍 Pentium、MMX 和异构架构轨迹。MultiAmdahl 是三位作者的共同成果；这里展开该论文机制，不将整段职业贡献归结为单一模型。",
+      "argument": "目标是最小化各程序段执行时间之和，受总面积约束。在单元性能函数递减、凸且可微的假设下，内部最优点让各单元增加资源带来的加权边际时间收益相等。",
+      "sourceAudit": [
+        {
+          "title": "ACM and IEEE Computer Society Honor Uri Weiser with 2016 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2016-05-18",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2016/may/2016-eckert-mauchly-award.pdf",
+          "locator": "获奖理由与贡献说明",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验公告正文",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "MultiAmdahl: How Should I Divide My Heterogeneous Chip?",
+          "authors": "Tsahee Zidenberg; Isaac Keslassy; Uri Weiser",
+          "date": "2012 年论文的扩展稿（所读稿件未标具体日期）",
+          "url": "https://webee.technion.ac.il/~isaac/p/computer12_multiamdahl.pdf",
+          "locator": "§3–4.1，PDF pp.3–6；约束优化、式(8)与近似边界",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2016,
+          "citationZh": "表彰其在高性能处理器与多媒体架构上的领导作用，以及开创性的产业和学术工作。",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2016/may/2016-eckert-mauchly-award.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "robert-colwell",
@@ -4178,21 +4387,18 @@
       "awardYear": 2005,
       "award": "Eckert–Mauchly Award · 2005",
       "field": "工业微架构与可交付的设计",
-      "core": "架构概念必须通过实现、验证和产品约束才能成立。",
-      "evidence": "IEEE 资料记录其 P6、Pentium 4 团队工作，并认可微架构实现及 RISC/CISC 辩论贡献。阅读重心是从概念净收益到工业兑现，不把团队成果归为一人。",
+      "core": "领导把高性能乱序微架构落实到 x86 产品，并以真实代码的依赖分析检验 RISC/CISC 争论。",
+      "evidence": "分析先放宽功能单元等限制，识别真实依赖造成的上界，再回到可实现配置观察瓶颈迁移。P6 把 x86 指令转为内部微操作，保持外部指令契约并寻找动态执行机会。",
       "habits": [
-        "比较真实实现而非架构标签。",
-        "把功耗和时序纳入设计。",
-        "检查机制交互与验证负担。",
-        "用可交付结果校正概念。"
+        "用实际代码检验架构标签背后的假设。",
+        "在理想上界与可实现资源之间逐步收紧条件。"
       ],
       "questions": [
-        "机制在完整机器中仍然有益吗？",
-        "哪些交互改变原始结论？",
-        "实现复杂度影响多少进度和质量？"
+        "模型中的并行上界在加入实际资源限制后还剩多少？",
+        "尚未出现的兼容问题是否已有针对性验证？"
       ],
-      "boundary": "工业成功不证明某条路线永远最优；工艺、负载和部署边界变化后需要重测。",
-      "diagnostic": "在匹配预算下评估整机性能、功耗、验证范围和交付风险。",
+      "boundary": "理想数据流上界不包含全部时序、访存和实现成本；本人强调没有发现障碍不等于不存在障碍，仍需运行真实软件验证。",
+      "diagnostic": "先测真实依赖链上界，再逐项加入窗口、功能单元、取指和访存限制；核对微操作与架构指令计数口径。",
       "notes": [
         [
           "e12",
@@ -4208,25 +4414,82 @@
           "IEEE：Colwell 的工业架构工作",
           "https://www.computer.org/profiles/robert-colwell",
           "2005 · 微架构设计与实现"
+        ],
+        [
+          "Robert P. Colwell — 2005 Eckert–Mauchly citation",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "2005 · 官方获奖理由 · 对应年份 recipient citation"
+        ],
+        [
+          "Oral History of Robert P. Colwell",
+          "https://www.sigmicro.org/media/oralhistories/colwell.pdf",
+          "2009-08-24/25 · 本人访谈文字稿 · pp.98–100（P6、数据流分析与合作）；p.125（微操作）"
         ]
       ],
       "challenge": {
-        "lens": "可交付微架构",
+        "lens": "从理想数据流到产品",
         "skills": [
-          "A7",
-          "A8",
-          "A10"
+          "A1",
+          "A2",
+          "A3",
+          "A8"
         ],
-        "variables": "ΔV：实际交付净价值；K：研发验证投入；L：延期/兼容损失。",
-        "model": "先通过时序、功率和正确性门槛，再检查 ΔV>K+L。",
-        "crossover": "局部机制须在完整产品与交付窗口内回收全部投入。",
-        "counterexample": "局部性能提升增加集成缺陷并错过产品窗口。",
-        "transfer": "迁移到新 ISA 功能或 chiplet 产品。",
-        "question": "机制在完整机器中仍然有益吗？",
-        "validation": "在匹配预算下评估整机性能、功耗、验证范围和交付风险。"
+        "variables": "Tideal：理想数据流时间；Treal：实现时间；G：Treal−Tideal 的可归因差距。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：Treal≥Tideal；通过逐项加入约束分解 G，避免把理想 IPC 当作承诺。",
+        "crossover": "所选机制须缩小主导差距，并保持时序、功耗及兼容预算。",
+        "counterexample": "模型忽略取指或内存后显示大量并行，真实处理器却无法供给。",
+        "transfer": "用于新核心或编译调度时同时保留理想基线与真实实现基线。",
+        "question": "模型中的并行上界在加入实际资源限制后还剩多少？",
+        "validation": "先测真实依赖链上界，再逐项加入窗口、功能单元、取指和访存限制；核对微操作与架构指令计数口径。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "2005 年官方理由认可改变产业的微架构设计实现，以及对 RISC/CISC 讨论的贡献。",
+        "P6 团队用数据流分析估计 x86 的可用并行，逐步加入资源限制，支撑乱序执行方案选择。"
+      ],
+      "background": "本人 2009 年口述史区分了 Colwell、Dave Papworth、Glenn Hinton 等人的工作；他领导架构并参与分析，不是乱序执行概念的唯一发明者。",
+      "argument": "分析先放宽功能单元等限制，识别真实依赖造成的上界，再回到可实现配置观察瓶颈迁移。P6 把 x86 指令转为内部微操作，保持外部指令契约并寻找动态执行机会。",
+      "sourceAudit": [
+        {
+          "title": "Robert P. Colwell — 2005 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2005",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Oral History of Robert P. Colwell",
+          "authors": "Robert P. Colwell；采访 Paul N. Edwards",
+          "date": "2009-08-24/25",
+          "url": "https://www.sigmicro.org/media/oralhistories/colwell.pdf",
+          "locator": "pp.98–100（P6、数据流分析与合作）；p.125（微操作）",
+          "type": "本人访谈文字稿",
+          "contentStatus": "取得访谈正文并读取指定页；未收听录音",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2005,
+          "citationZh": "在改变产业的微架构设计与实现上取得突出成就，并对 RISC/CISC 架构讨论作出重要贡献。",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "mike-clark",
@@ -4514,20 +4777,18 @@
       "id": "rich-witek",
       "name": "Rich Witek",
       "field": "ISA 与高频微架构协同",
-      "core": "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
-      "evidence": "Alpha 手册与 Digital 技术论文记录其共同架构设计及 21064 实现角色。",
+      "core": "与 Richard Sites 共同设计 Alpha AXP，用显式依赖与较少隐藏状态支持高速、多发射和多处理器实现。",
+      "evidence": "手册允许不同地址的访问在其他处理器看来乱序完成，MB 恢复所需次序。早期算术异常可延后报告，软件在需要的位置使用屏障；这些选择减少硬件对所有操作强制顺序的约束。",
       "habits": [
-        "设计可高速实现的指令接口，同时追踪时序、旁路与访存成本。",
-        "先固定任务、正确性与资源边界，再判断 ISA 与高频微架构协同 的收益。",
-        "把新增负担显式放入比较：宽度增加造成旁路延迟、功耗和缓存供给瓶颈。"
+        "区分语义必须的顺序和实现偶然产生的顺序。",
+        "把硬件简化与软件屏障成本一起评估。"
       ],
       "questions": [
-        "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "少掉的隐含依赖是否真能换成更高频率或更多有效并行？",
+        "显式屏障的频率和代价是否抵消了实现自由度？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
-      "diagnostic": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+      "boundary": "屏障不是免费的性能加速器；手册明确 MB 保证顺序而不必加快访问。讨论限于所读早期 Alpha 版本，不把其指令限制推广到所有后续扩展。",
+      "diagnostic": "检查并发 litmus、屏障密度和异常精度需求；在同任务下同时报告频率、退休 IPC 与总时间。",
       "notes": [
         [
           "e08",
@@ -4539,6 +4800,11 @@
           "Sites 与 Witek：Alpha AXP Architecture Reference Manual",
           "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Alpha AXP Architecture",
+          "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "1992 · 论文全文 · Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments"
         ]
       ],
       "challenge": {
@@ -4548,12 +4814,12 @@
           "A3",
           "A8"
         ],
-        "question": "加宽发射提高 IPC，却降低时钟：哪一项决定任务性能？",
+        "question": "少掉的隐含依赖是否真能换成更高频率或更多有效并行？",
         "variables": "N：指令数；IPC：指令/周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
-        "model": "T=N/(IPC×f)，加入未包含在 IPC 中的外围服务时间。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T=N/(IPC×f)，加入未包含在 IPC 中的外围服务时间。",
         "crossover": "IPC_new/IPC_old > f_old/f_new 才抵消降频，且同一任务。",
         "counterexample": "宽度增加造成旁路延迟、功耗和缓存供给瓶颈。",
-        "validation": "跨频率与宽度做消融，记录退休 IPC、时序限制和整任务时间。",
+        "validation": "检查并发 litmus、屏障密度和异常精度需求；在同任务下同时报告频率、退休 IPC 与总时间。",
         "transfer": "迁移到宽 GPU 调度器与频率取舍。"
       },
       "domain": "cpu",
@@ -4561,7 +4827,45 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "共同建立完整 64 位的 Alpha 架构与参考规范，减少束缚未来流水线的隐含机器资源。",
+        "以显式内存屏障和异常屏障把部分顺序要求交给软件表达，让实现有更大的调度空间。"
+      ],
+      "background": "Sites 的 1992 年论文明确称 Witek 为共同架构师；1995 年手册共同署名并列贡献作者。因此可确认共同设计，不能进一步臆定每条指令由谁个人提出。",
+      "argument": "手册允许不同地址的访问在其他处理器看来乱序完成，MB 恢复所需次序。早期算术异常可延后报告，软件在需要的位置使用屏障；这些选择减少硬件对所有操作强制顺序的约束。",
+      "sourceAudit": [
+        {
+          "title": "Alpha AXP Architecture",
+          "authors": "Richard L. Sites",
+          "date": "1992",
+          "url": "https://ed-thelen.org/comp-hist/ALPHA-Sites-10.1.1.89.833.htm",
+          "locator": "Digital Technical Journal 4(4)；§4–5 设计选择、§14 Acknowledgments",
+          "type": "论文全文",
+          "contentStatus": "取得署名论文全文转录；核验技术段及 Witek 共同架构师说明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Alpha AXP Architecture Reference Manual, Second Edition",
+          "authors": "Richard L. Sites; Richard T. Witek；多位贡献作者",
+          "date": "1995",
+          "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "locator": "Part I：概览 PDF p.29；指令格式 p.31；算术异常 p.130；MB p.191",
+          "type": "技术专著全文",
+          "contentStatus": "已取得手册正文并读取指定章节",
+          "evidenceStrength": "强",
+          "role": "规范语义、取舍及共同作者归属"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "john-edmondson",
@@ -5275,20 +5579,18 @@
       "id": "daniel-a-jim-nez",
       "name": "Daniel A. Jiménez",
       "field": "学习预测与硬件预算",
-      "core": "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
-      "evidence": "Bob Rau 官方说明记录其神经分支预测贡献；不等同于现代 transformer 已有收益。",
+      "core": "开创神经分支预测的重要方法，用可训练权重利用长历史，并把预测延迟纳入性能判断。",
+      "evidence": "历史方向编码为正负输入，与整数权重求和决定预测方向，再按实际结果调整权重。相比为每种历史组合建表，权重存储随历史长度线性增长；但求和和访问仍有时延。",
       "habits": [
-        "利用相关历史改善预测，同时约束推理延迟、更新与状态成本。",
-        "先固定任务、正确性与资源边界，再判断 学习预测与硬件预算 的收益。",
-        "把新增负担显式放入比较：长推理、冷启动或相位漂移使离线准确率无法兑现。"
+        "把可学习模式与模型表达能力对应起来。",
+        "同时评估准确率、容量和预测返回时间。"
       ],
       "questions": [
-        "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "少掉的误判恢复周期能否覆盖更慢的预测返回？",
+        "失败来自历史不足、表项冲突还是线性不可分？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。长推理、冷启动或相位漂移使离线准确率无法兑现。",
-      "diagnostic": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+      "boundary": "单个感知器不能完美学习 XOR 等线性不可分模式。两篇论文的配置与工艺模拟有时代边界；应比较同一预算下的误判恢复、访问时延及冷启动。",
+      "diagnostic": "固定容量和访问预算，加入 XOR、长相关及冷启动轨迹；记录 MPKI、暴露预测延迟、恢复周期与总执行时间。",
       "notes": [
         [
           "e08",
@@ -5300,6 +5602,21 @@
           "IEEE Bob Rau Award：贡献说明",
           "https://www.computer.org/volunteering/awards/rau",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Jiménez to Receive IEEE CS Rau Award",
+          "https://www.computer.org/press-room/2021-news/jimenez-to-receive-ieee-cs-rau-award",
+          "2021-10-04 · 官方获奖理由 · 2021 recipient citation"
+        ],
+        [
+          "Dynamic Branch Prediction with Perceptrons",
+          "https://people.engr.tamu.edu/djimenez/pdfs/hpca7_dist.pdf",
+          "2001 · 论文全文 · HPCA-7；§3.2–3.5（权重、训练与线性可分性）"
+        ],
+        [
+          "The Impact of Delay on the Design of Branch Predictors",
+          "https://people.engr.tamu.edu/djimenez/pdfs/micro33_dist.pdf",
+          "2000 · 论文全文 · MICRO-33；§1、§4–5（延迟敏感组织及评估）"
         ]
       ],
       "challenge": {
@@ -5309,12 +5626,12 @@
           "A7",
           "A9"
         ],
-        "question": "更准确的预测器每次晚一个周期返回，什么失误下降才值得？",
+        "question": "少掉的误判恢复周期能否覆盖更慢的预测返回？",
         "variables": "Δm：失误/指令下降；p：暴露恢复周期；c_add：新增周期/指令；参数需从待评估系统测量，以下为条件模型。",
-        "model": "净 CPI 改善≈Δm p-c_add；增加面积功率作为独立预算。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净 CPI 改善≈Δm p-c_add；增加面积功率作为独立预算。",
         "crossover": "Δm p > c_add，跨阶段与冷启动仍满足预算。",
         "counterexample": "长推理、冷启动或相位漂移使离线准确率无法兑现。",
-        "validation": "用同容量同延迟约束回放分支轨迹，测失误与暴露等待，并包含启动阶段。",
+        "validation": "固定容量和访问预算，加入 XOR、长相关及冷启动轨迹；记录 MPKI、暴露预测延迟、恢复周期与总执行时间。",
         "transfer": "迁移到硬件 ML 预取与页放置预测。"
       },
       "domain": "cpu",
@@ -5322,7 +5639,64 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "2021 年 Rau 奖明确表彰其对微处理器神经分支预测的贡献。",
+        "与 Calvin Lin 的感知器研究用加权历史预测方向；与 Keckler、Lin 的延迟研究说明准确率提升未必转化为更高 IPC。"
+      ],
+      "background": "2001 年感知器论文由 Jiménez 与 Lin 合著；2000 年延迟论文由 Jiménez、Keckler、Lin 合著。相关商业实现由各产品团队完成，不能从论文直接推出某产品配置。",
+      "argument": "历史方向编码为正负输入，与整数权重求和决定预测方向，再按实际结果调整权重。相比为每种历史组合建表，权重存储随历史长度线性增长；但求和和访问仍有时延。",
+      "sourceAudit": [
+        {
+          "title": "Jiménez to Receive IEEE CS Rau Award",
+          "authors": "IEEE Computer Society",
+          "date": "2021-10-04",
+          "url": "https://www.computer.org/press-room/2021-news/jimenez-to-receive-ieee-cs-rau-award",
+          "locator": "2021 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验完整获奖理由",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Dynamic Branch Prediction with Perceptrons",
+          "authors": "Daniel A. Jiménez; Calvin Lin",
+          "date": "2001",
+          "url": "https://people.engr.tamu.edu/djimenez/pdfs/hpca7_dist.pdf",
+          "locator": "HPCA-7；§3.2–3.5（权重、训练与线性可分性）",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "The Impact of Delay on the Design of Branch Predictors",
+          "authors": "Daniel A. Jiménez; Stephen W. Keckler; Calvin Lin",
+          "date": "2000",
+          "url": "https://people.engr.tamu.edu/djimenez/pdfs/micro33_dist.pdf",
+          "locator": "MICRO-33；§1、§4–5（延迟敏感组织及评估）",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "IEEE Computer Society B. Ramakrishna Rau Award",
+          "year": 2021,
+          "citationZh": "表彰其对微处理器神经分支预测的贡献。",
+          "url": "https://www.computer.org/press-room/2021-news/jimenez-to-receive-ieee-cs-rau-award",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "mike-filippo",
@@ -17847,7 +18221,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 37,
+    "completedThisBatch": 44,
     "totalProfiles": 260
   }
 }
