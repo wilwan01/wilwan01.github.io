@@ -26,11 +26,11 @@ normalize=lambda s:re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',s).casefo
 aliases={'peter-hofstee':['Peter Hofstee','H. Peter Hofstee'],'tim-mattson':['Tim Mattson','Timothy G. Mattson']}
 seen={}
 for p in c['profiles']:
- for name in [p['name']]+aliases.get(p['id'],[]):
+ for name in [p['name']]+p.get('aliases',[])+aliases.get(p['id'],[]):
   k=normalize(name);assert k not in seen or seen[k]==p['id'],name;seen[k]=p['id']
 for pid in done:
  p=by[pid];assert p['researchStatus']['status']=='complete';assert 1<=len(p['contributions'])<=3
- substantive=[s for s in p['sourceAudit'] if s['type']!='机构报告简介'];assert len({s['url'] for s in substantive})>=2,pid
+ substantive=[s for s in p['sourceAudit'] if s['type'] not in ['机构报告简介','官方获奖名单']];assert len({s['url'] for s in substantive})>=2,pid
  assert any(s['type'] in ['论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文'] and '未取得全文' not in s['contentStatus'] for s in substantive),pid
  for s in p['sourceAudit']:
   assert all(s.get(k) for k in ['title','authors','date','url','locator','type','contentStatus','evidenceStrength','role']),pid

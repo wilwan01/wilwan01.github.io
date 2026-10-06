@@ -6,21 +6,16 @@
   "plannedExisting": 63,
   "plannedCandidates": 13,
   "counts": {
-    "complete": 44,
-    "pending": 18,
-    "partial": 14
+    "complete": 50,
+    "partial": 10,
+    "pending": 16
   },
-  "completedExisting": 35,
-  "completedNew": 9,
+  "completedExisting": 39,
+  "completedNew": 11,
   "publication": {
-    "status": "published",
-    "contentCommit": "621e8d64faa7b4dd7ea0274e8c454679fd3b5c02",
-    "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37450755176",
-    "pagesConclusion": "success",
-    "publicProfileCount": 260,
-    "completedCount": 44,
-    "verifiedAtUtc": "2026-10-06T10:36:16.096111+00:00",
-    "verificationRecord": "2026-10-06-deployment-continuation.json"
+    "status": "awaiting-deployment-verification",
+    "previousPublishedCommit": "1f64ec878365c0c5d1cca839da30a783bfda0005",
+    "publicProfileCountBefore": 260
   },
   "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
   "records": [
@@ -195,10 +190,33 @@
       "id": "robert-barton",
       "name": "Robert S. Barton",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Robert S. Barton — Award Recipient",
+          "authors": "IEEE Computer Society",
+          "date": "1977；1979",
+          "url": "https://www.computer.org/profiles/robert-barton",
+          "locator": "Awards：1977 McDowell 完整理由；1979 Eckert–Mauchly 身份",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引取得完整获奖段；直接访问受限",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "A New Approach to the Functional Design of a Digital Computer",
+          "authors": "R. S. Barton",
+          "date": "1961；1987 重印",
+          "url": "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-S11/handouts/papers/barton.pdf",
+          "locator": "1987 Annals 9(1), pp.11–15；Polish String、Stack、Subroutine Control",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "maurice-wilkes",
@@ -302,14 +320,42 @@
       "id": "wesley-clark",
       "name": "Wesley A. Clark",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 DEC 系统史全文；还需独立技术作品与个人贡献定位。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
       "sources": [
         {
+          "title": "The LINC Was Early and Small",
+          "authors": "Wesley A. Clark",
+          "date": "1986；1987 会议资料重印",
+          "url": "https://archive.computerhistory.org/resources/access/text/2024/06/102739347-05-0003-acc.pdf",
+          "locator": "印刷 pp.51–57；PDF pp.72–78，Summary、Introduction、Designing the LINC",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Digital at Work — LINC",
+          "authors": "Jamie Parker Pearson 编；DEC / Digital Press",
+          "date": "1992",
           "url": "https://archive.computerhistory.org/resources/text/DEC/dec.digital_at_work.1992.102630350.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "locator": "印刷 p.52（PDF p.65）；LINC 功能与 Clark/Molnar 归属",
+          "type": "厂商系统历史原始记录",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Eckert–Mauchly Award — Past Recipients",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1981",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly/",
+          "locator": "1981 Wesley A. Clark 名单",
+          "type": "官方获奖名单",
+          "contentStatus": "仅核验身份与年份；未取得完整理由",
+          "evidenceStrength": "强",
+          "role": "仅证奖项身份，不计作机制证据"
         }
       ]
     },
@@ -1192,19 +1238,31 @@
       "id": "mike-clark",
       "name": "Mike Clark",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得署名技术对话；管理层简介只证背景，不能作第二项技术证据。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
       "sources": [
         {
-          "url": "https://newsroom.amd.com/news/advanced-insights-zen-architecture-agentic-ai-era/",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "title": "A New x86 Core Architecture for the Next Generation of Computing",
+          "authors": "Mike Clark / AMD",
+          "date": "2016-08-23",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc28/HC28.23-Tuesday-Epub/HC28.23.90-High-Perform-Epub/HC28.23.930-X86-core-MikeClark-AMD-final_v2-28.pdf",
+          "locator": "pp.6–15；供给、执行、缓存与 SMT",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
         },
         {
-          "url": "https://ir.amd.com/news-events/press-releases/detail/841/amd-deepens-senior-management-and-technical-leadership-bench",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "title": "Next Generation “Zen 5” Core",
+          "authors": "Brad Cohen; Mahesh Subramony; co-author Mike Clark / AMD",
+          "date": "2024-08",
+          "url": "https://hc2024.hotchips.org/assets/program/conference/day2/24_HC2024.AMD.Cohen.Subramony.final.pdf",
+          "locator": "封面；pp.5–14；双通路、整数、访存及功耗",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
         }
       ]
     },
@@ -1230,10 +1288,33 @@
       "id": "peter-greenhalgh",
       "name": "Peter Greenhalgh",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "British Engineering Excellence Awards 2014 — Winners",
+          "authors": "BEEA / Findlay Media",
+          "date": "2014-10-09",
+          "url": "https://fplreflib.findlay.co.uk/images/pdf/beeas/beeas-2014-winners.pdf",
+          "locator": "印刷 p.27：Design Engineer of the Year；p.3 联合获奖说明",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "big.LITTLE Processing with ARM Cortex-A15 & Cortex-A7",
+          "authors": "Peter Greenhalgh / ARM",
+          "date": "封面 2011-09；所读版本内页版权 2013",
+          "url": "https://ks3-cn-beijing.ksyun.com/attachment/076f1d83146b66f9db99e3b4688a2ded",
+          "locator": "pp.2–8；处理器、任务迁移、MP 与软件",
+          "type": "作者技术文章",
+          "contentStatus": "取得署名 ARM 白皮书完整 8 页镜像；版本日期差异已注明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "mark-papermaster",
@@ -1595,10 +1676,33 @@
       "id": "sebastien-nussbaum",
       "name": "Sebastien Nussbaum",
       "kind": "candidate",
-      "status": "partial",
-      "reason": "已取得 Trinity Hot Chips 24 讲义；第二项实质一手来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Statistical Simulation of Symmetric Multiprocessor Systems",
+          "authors": "Sebastien Nussbaum; James E. Smith",
+          "date": "2002",
+          "url": "https://jes.ece.wisc.edu/papers/ss02.nussbaum.pdf",
+          "locator": "§2、§4、§5.3、§6；PDF pp.1–9",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "AMD “Trinity” APU",
+          "authors": "Sebastien Nussbaum / AMD",
+          "date": "2012；讲义页脚 2012-07，Hot Chips 24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-3-ManyCore/HC24.28.325-Trinity-Nussbaum-AMD-v2.pdf",
+          "locator": "封面；pp.19–24、38；热模型、功耗及系统集成",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "ivan-godard",
@@ -1713,10 +1817,33 @@
       "id": "eric-schwarz",
       "name": "Eric Schwarz",
       "kind": "candidate",
-      "status": "partial",
-      "reason": "已确认其为 z196 系统论文合作者，但只有摘要；十进制浮点论文未列他为作者，排除错误归属。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "所选关键贡献通过两项以上实质一手来源核验；共同归属、版本、机制和边界见来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Self Checking in Current Floating-Point Units",
+          "authors": "Daniel Lipetz; Eric Schwarz / IBM",
+          "date": "2011",
+          "url": "https://www.acsel-lab.com/arithmetic/arith20/papers/ARITH20_Lipetz.pdf",
+          "locator": "ARITH 20 pp.73–76；§VI–X",
+          "type": "论文全文",
+          "contentStatus": "网页工具取得完整 4 页正文；直接本地请求返回 406",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "US8443029B2 — Round for reround mode in a decimal floating point instruction",
+          "authors": "Michael F. Cowlishaw; Eric M. Schwarz; Ronald M. Smith, Sr.; Phil C. Yeh",
+          "date": "2013-05-14（授权公开）",
+          "url": "https://patents.google.com/patent/US8443029B2/en",
+          "locator": "Inventors、Abstract、Summary、低位信息及 P−2 精度条件",
+          "type": "共同发明专利全文",
+          "contentStatus": "已取得说明书与权利要求；只证明披露与共同归属",
+          "evidenceStrength": "强",
+          "role": "舍入机制、前提与共同发明归属"
+        }
+      ]
     },
     {
       "id": "brad-burgess",
@@ -1963,6 +2090,16 @@
         }
       ],
       "status": "published"
+    },
+    {
+      "status": "published",
+      "contentCommit": "621e8d64faa7b4dd7ea0274e8c454679fd3b5c02",
+      "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37450755176",
+      "pagesConclusion": "success",
+      "publicProfileCount": 260,
+      "completedCount": 44,
+      "verifiedAtUtc": "2026-10-06T10:36:16.096111+00:00",
+      "verificationRecord": "2026-10-06-deployment-continuation.json"
     }
   ],
   "continuations": [
@@ -2011,6 +2148,19 @@
       ],
       "completedCount": 7,
       "history": "research/history/2026-10-06-execution-before.json"
+    },
+    {
+      "baseCommit": "1f64ec878365c0c5d1cca839da30a783bfda0005",
+      "completedIds": [
+        "mike-clark",
+        "peter-greenhalgh",
+        "robert-barton",
+        "sebastien-nussbaum",
+        "eric-schwarz",
+        "wesley-clark"
+      ],
+      "completedCount": 6,
+      "history": "research/history/2026-10-06-platforms-before.json"
     }
   ]
 }

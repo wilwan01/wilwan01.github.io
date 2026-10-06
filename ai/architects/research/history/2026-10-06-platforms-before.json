@@ -1,0 +1,238 @@
+{
+  "baseCommit": "1f64ec878365c0c5d1cca839da30a783bfda0005",
+  "profiles": [
+    {
+      "id": "mike-clark",
+      "name": "Mike Clark",
+      "field": "工业 CPU 微架构与跨代 PPA",
+      "core": "在性能、频率、面积和功耗之间选择能够跨代兑现的架构平衡。",
+      "evidence": "AMD 公开资料将 Clark 与 Zen CPU 架构工作关联；2026 年本人和 Mark Papermaster 的 Advanced Insights 对谈讨论性能、频率、面积、功耗，以及 SMT、向量、chiplet 和密集核心的设计取舍。",
+      "habits": [
+        "同时评价机制的性能与实现代价。",
+        "区分每核能力与核心密度。",
+        "检查对软件生态和客户负载的影响。",
+        "让跨代演进保留可验证的架构基础。"
+      ],
+      "questions": [
+        "更宽的核心是否改善目标负载的有效吞吐？",
+        "固定功率下应该增加单核能力还是核心数？",
+        "机制的实现代价会限制下一代什么选择？"
+      ],
+      "boundary": "厂商讨论说明设计取舍，不等于所有负载上的独立测量；不同平台、频率、内存及 SLO 必须归一化。",
+      "diagnostic": "在固定功率、带宽与服务 SLO 下扫描核心数和执行能力，分解停顿与频率效应，比较有效吞吐和容量成本。",
+      "notes": [
+        [
+          "e09",
+          "更多核心与有效服务器"
+        ],
+        [
+          "e12",
+          "执行机制与全服务"
+        ]
+      ],
+      "sources": [
+        [
+          "AMD：Zen 架构与 agentic AI 对谈",
+          "https://newsroom.amd.com/news/advanced-insights-zen-architecture-agentic-ai-era/",
+          "2026-09-23 · Clark 与 Papermaster 对谈"
+        ],
+        [
+          "AMD：Zen 架构贡献说明",
+          "https://ir.amd.com/news-events/press-releases/detail/841/amd-deepens-senior-management-and-technical-leadership-bench",
+          "2018 · 工业 CPU 架构背景"
+        ]
+      ],
+      "challenge": {
+        "lens": "工业 PPA 挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A7",
+          "A10"
+        ],
+        "question": "单节点性能增加 5%、功率增加 10%，在固定设施功率下是否值得采购？",
+        "variables": "G：同质量/SLO 的节点有效吞吐；P：包含相关系统开销的节点功率；P_site：可用设施功率。",
+        "model": "仅在功率唯一绑定、节点可线性复制且其他约束不变时，fleet goodput 近似 P_site × G/P。",
+        "crossover": "此模型下需要 G_A/G_B > P_A/P_B；不能把标称性能或 TDP 直接当作 G、P。",
+        "counterexample": "单线程 SLO、内存容量或许可证先绑定时，功率模型不是完整采购边界。",
+        "validation": "测量同一负载/SLO 的整机功率和 goodput，加入机架密度、内存带宽与软件成本敏感性。",
+        "transfer": "迁移到不同 GPU 或专用加速器的 MW 约束比较。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "peter-greenhalgh",
+      "name": "Peter Greenhalgh",
+      "field": "异构执行与迁移边界",
+      "core": "工作应落在满足性能契约的合适执行资源上，迁移成本必须计入。",
+      "evidence": "公开专利 US8418187B2 的共同发明记录讨论处理资源之间的透明迁移；不据此声称其独自发明异构 CPU。",
+      "habits": [
+        "按任务需求选择资源。",
+        "检查迁移状态。",
+        "核算切换成本。",
+        "维持软件可观察契约。"
+      ],
+      "questions": [
+        "较省电的核心需要运行多久才能摊销迁移？",
+        "迁移改变哪些缓存与状态？",
+        "尾延迟预算允许切换吗？"
+      ],
+      "boundary": "同等时间不一定完成同等工作；必须先匹配任务量和 deadline。",
+      "diagnostic": "重放任务，测同工作量能量、迁移与预热、响应尾部。",
+      "notes": [
+        [
+          "e06",
+          "会话与放置"
+        ],
+        [
+          "e09",
+          "核心与有效吞吐"
+        ]
+      ],
+      "sources": [
+        [
+          "共同发明专利：处理资源迁移",
+          "https://patents.google.com/patent/US8418187B2/en",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构迁移挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "variables": "ΔE：同任务量净节能；E_m：迁移及预热能量。",
+        "model": "要求 ΔE > E_m，并满足完成时间约束。",
+        "crossover": "驻留工作量足以摊销迁移且 SLO 合格。",
+        "counterexample": "短突发频繁切换，预热成本主导。",
+        "transfer": "迁移到 NUMA 或 AI 会话放置。",
+        "question": "较省电的核心需要运行多久才能摊销迁移？",
+        "validation": "重放任务，测同工作量能量、迁移与预热、响应尾部。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "robert-barton",
+      "name": "Robert S. Barton",
+      "awardYear": 1979,
+      "award": "Eckert–Mauchly Award · 1979",
+      "field": "语言导向架构与程序层次",
+      "core": "让机器组织保留程序和数据的层次结构。",
+      "evidence": "IEEE 的人物资料回顾 B5000、ALGOL 类编译器和解释式设计；其合作专利使用栈与 display 寄存器支持程序层次中的变量访问。",
+      "habits": [
+        "从语言语义倒推机器。",
+        "保留层次和作用域信息。",
+        "共同设计表示与执行。",
+        "检查接口降低了哪些软件负担。"
+      ],
+      "questions": [
+        "接口丢掉了哪些程序结构？",
+        "硬件支持能否简化编译？",
+        "抽象是否限制后续优化？"
+      ],
+      "boundary": "语言导向不等于把所有语义硬化；负载变化、编译和兼容成本仍需评估。",
+      "diagnostic": "比较同一语义的不同表示，核算代码、访存与执行开销。",
+      "notes": [
+        [
+          "e13",
+          "状态表示与恢复"
+        ],
+        [
+          "e09",
+          "工作表达与执行"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：人物资料",
+          "https://www.computer.org/profiles/robert-barton/",
+          "B5000 与解释式架构"
+        ],
+        [
+          "Stack mechanism having multiple display registers",
+          "https://patents.google.com/patent/US3461434A/en",
+          "1969 · 多位发明人合作专利"
+        ]
+      ],
+      "challenge": {
+        "lens": "表示与语义信息",
+        "skills": [
+          "A1",
+          "A8",
+          "A9"
+        ],
+        "variables": "T_saved：保留结构减少的执行时间；T_repr：表示、检查和转换新增时间。",
+        "model": "同语义下要求 T_saved>T_repr，并检查代码和状态空间。",
+        "crossover": "结构信息被真实利用且节省超过传递成本。",
+        "counterexample": "更复杂表示无法被后端利用，却增加解码和转换。",
+        "transfer": "迁移到 compiler IR 或任务图接口。",
+        "question": "接口丢掉了哪些程序结构？",
+        "validation": "比较同一语义的不同表示，核算代码、访存与执行开销。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    },
+    {
+      "id": "wesley-clark",
+      "name": "Wesley A. Clark",
+      "awardYear": 1981,
+      "award": "Eckert–Mauchly Award · 1981",
+      "field": "交互式计算与任务现场",
+      "core": "从用户与现实世界的交互闭环定义机器。",
+      "evidence": "DEC 的原始历史资料记载 Clark 与 Charles Molnar 合作的 LINC，直接接收实验输入、处理数据并控制设备。其阅读重心是任务现场所需的完整计算闭环。",
+      "habits": [
+        "从使用过程倒推功能。",
+        "把输入输出纳入架构。",
+        "关注响应和操作负担。",
+        "让系统规模适合现场约束。"
+      ],
+      "questions": [
+        "用户多久需要一次响应？",
+        "输入与控制路径是否完整？",
+        "更大机器是否反而更难使用？"
+      ],
+      "boundary": "交互目标不能替代精度、实时保证和可靠性分析；历史个人计算形态不等于今天所有边缘系统。",
+      "diagnostic": "测量采集到控制的端到端延迟、失败率和操作成本。",
+      "notes": [
+        [
+          "e06",
+          "会话与组织边界"
+        ],
+        [
+          "e14",
+          "用户购买的输出"
+        ]
+      ],
+      "sources": [
+        [
+          "Digital at Work：LINC 记录",
+          "https://archive.computerhistory.org/resources/text/DEC/dec.digital_at_work.1992.102630350.pdf",
+          "1992 · DEC 原始资料；与 Molnar 合作"
+        ]
+      ],
+      "challenge": {
+        "lens": "交互闭环与 deadline",
+        "skills": [
+          "A3",
+          "A5",
+          "A9"
+        ],
+        "variables": "T_acq、T_compute、T_act：暴露采集、计算、动作时间；D：deadline。",
+        "model": "端到端 trace 确定关键路径；只在串行时可求和。",
+        "crossover": "总闭环时间满足 D，且优化确实减少暴露阶段或违约率。",
+        "counterexample": "计算更快，但采集、执行器或排队仍造成超时。",
+        "transfer": "迁移到 agent 工具调用与在线控制。",
+        "question": "用户多久需要一次响应？",
+        "validation": "测量采集到控制的端到端延迟、失败率和操作成本。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    }
+  ]
+}

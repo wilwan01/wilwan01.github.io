@@ -68,6 +68,7 @@ for d in catalog['domains']:
   tr=append(body,'tr');append(tr,'td',str(numbers[p['id']]));td=append(tr,'td');td.append(link('#'+p['id'],p['name']));append(tr,'td',p['field']);append(tr,'td',p['core'])
  page.xpath('//*[@id="domain-'+d['id']+'"]/span')[0].text=f'{len(members)} 位'
  directory.xpath('./nav/a[@href="#domain-'+d['id']+'"]/span')[0].text=f'{len(members)} 位'
+(ROOT/'catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n')
 # Sidebar navigation also derives from the catalog (including earlier additions).
 toc=page.xpath('//aside[@class="toc"]')[0];toc.clear();toc.set('class','toc');toc.set('aria-label','领域与人物目录')
 for d in catalog['domains']:

@@ -100,7 +100,9 @@
         "christian-jacobi",
         "brad-burgess",
         "jeff-stuecheli",
-        "cameron-mcnairy"
+        "cameron-mcnairy",
+        "sebastien-nussbaum",
+        "eric-schwarz"
       ]
     },
     {
@@ -898,21 +900,18 @@
       "awardYear": 1979,
       "award": "Eckert–Mauchly Award · 1979",
       "field": "语言导向架构与程序层次",
-      "core": "让机器组织保留程序和数据的层次结构。",
-      "evidence": "IEEE 的人物资料回顾 B5000、ALGOL 类编译器和解释式设计；其合作专利使用栈与 display 寄存器支持程序层次中的变量访问。",
+      "core": "以程序语言的结构指导计算机设计，用栈和自动过程链接缩小高级语言与机器执行之间的距离。",
+      "evidence": "表达式转换成 Polish 形式，由栈计数器和两个算术寄存器管理中间值；过程入口保存返回地址与前一层链接，退出恢复。论文主张模型、程序和逻辑设计协作，而不是完成硬件后再补语言。",
       "habits": [
-        "从语言语义倒推机器。",
-        "保留层次和作用域信息。",
-        "共同设计表示与执行。",
-        "检查接口降低了哪些软件负担。"
+        "从语言语义与调用结构追溯硬件需求。",
+        "将编译器和逻辑实现纳入同一设计循环。"
       ],
       "questions": [
-        "接口丢掉了哪些程序结构？",
-        "硬件支持能否简化编译？",
-        "抽象是否限制后续优化？"
+        "语言的哪些语义值得由硬件直接承担？",
+        "简化过程调用的收益是否覆盖隐式栈依赖和其他语言的适配代价？"
       ],
-      "boundary": "语言导向不等于把所有语义硬化；负载变化、编译和兼容成本仍需评估。",
-      "diagnostic": "比较同一语义的不同表示，核算代码、访存与执行开销。",
+      "boundary": "论文有意简化实际机器，并非完整 ALGOL 实现规范。栈隐式操作数减少显式存储管理，但对其他语言、寄存器优化或并行执行是否有利须另证。",
+      "diagnostic": "用嵌套表达式、递归调用和另一种语言各构建工作负载，比较编译复杂度、动态访存、代码大小与总执行时间。",
       "notes": [
         [
           "e13",
@@ -933,25 +932,81 @@
           "Stack mechanism having multiple display registers",
           "https://patents.google.com/patent/US3461434A/en",
           "1969 · 多位发明人合作专利"
+        ],
+        [
+          "Robert S. Barton — Award Recipient",
+          "https://www.computer.org/profiles/robert-barton",
+          "1977；1979 · 官方获奖理由 · Awards：1977 McDowell 完整理由；1979 Eckert–Mauchly 身份"
+        ],
+        [
+          "A New Approach to the Functional Design of a Digital Computer",
+          "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-S11/handouts/papers/barton.pdf",
+          "1961；1987 重印 · 论文全文 · 1987 Annals 9(1), pp.11–15；Polish String、Stack、Subroutine Control"
         ]
       ],
       "challenge": {
-        "lens": "表示与语义信息",
+        "lens": "语言语义与机器表示",
         "skills": [
           "A1",
-          "A8",
-          "A9"
+          "A2",
+          "A8"
         ],
-        "variables": "T_saved：保留结构减少的执行时间；T_repr：表示、检查和转换新增时间。",
-        "model": "同语义下要求 T_saved>T_repr，并检查代码和状态空间。",
-        "crossover": "结构信息被真实利用且节省超过传递成本。",
-        "counterexample": "更复杂表示无法被后端利用，却增加解码和转换。",
-        "transfer": "迁移到 compiler IR 或任务图接口。",
-        "question": "接口丢掉了哪些程序结构？",
-        "validation": "比较同一语义的不同表示，核算代码、访存与执行开销。"
+        "variables": "C编：编译成本；N访：运行期访存；T调：调用成本；C适：其他语言适配成本。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：硬件承接语义的收益须同时检查 C编、N访、T调 的下降与 C适 的增加。",
+        "crossover": "稳定而高频的语义值得专门支持；语言变化会改变收益。",
+        "counterexample": "为一种调用模型优化可能限制另一种语言的实现。",
+        "transfer": "可用于虚拟机、字节码和领域专用处理器。",
+        "question": "语言的哪些语义值得由硬件直接承担？",
+        "validation": "用嵌套表达式、递归调用和另一种语言各构建工作负载，比较编译复杂度、动态访存、代码大小与总执行时间。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "1977 年 IEEE W. Wallace McDowell Award 理由认可栈处理、自描述数据标签及高级语言执行等架构创新。",
+        "1961 年论文从表达式与过程出发，建立临时存储自动分配与可递归的调用链接机制。"
+      ],
+      "background": "IEEE 官方页面也确认其 1979 年 Eckert–Mauchly 获奖身份，但未提供该年理由；本页采用已取得的 1977 年官方理由。1961 论文抽象说明 Burroughs 系统设计，不等于全部 B5000 团队实现。",
+      "argument": "表达式转换成 Polish 形式，由栈计数器和两个算术寄存器管理中间值；过程入口保存返回地址与前一层链接，退出恢复。论文主张模型、程序和逻辑设计协作，而不是完成硬件后再补语言。",
+      "sourceAudit": [
+        {
+          "title": "Robert S. Barton — Award Recipient",
+          "authors": "IEEE Computer Society",
+          "date": "1977；1979",
+          "url": "https://www.computer.org/profiles/robert-barton",
+          "locator": "Awards：1977 McDowell 完整理由；1979 Eckert–Mauchly 身份",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引取得完整获奖段；直接访问受限",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "A New Approach to the Functional Design of a Digital Computer",
+          "authors": "R. S. Barton",
+          "date": "1961；1987 重印",
+          "url": "https://people.eecs.berkeley.edu/~kubitron/courses/cs252-S11/handouts/papers/barton.pdf",
+          "locator": "1987 Annals 9(1), pp.11–15；Polish String、Stack、Subroutine Control",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "IEEE Computer Society W. Wallace McDowell Award",
+          "year": 1977,
+          "citationZh": "以 B5000 及后继机器体现栈处理、自描述数据标签和高级语言执行等创新架构理念。",
+          "url": "https://www.computer.org/profiles/robert-barton",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "maurice-wilkes",
@@ -1295,21 +1350,18 @@
       "awardYear": 1981,
       "award": "Eckert–Mauchly Award · 1981",
       "field": "交互式计算与任务现场",
-      "core": "从用户与现实世界的交互闭环定义机器。",
-      "evidence": "DEC 的原始历史资料记载 Clark 与 Charles Molnar 合作的 LINC，直接接收实验输入、处理数据并控制设备。其阅读重心是任务现场所需的完整计算闭环。",
+      "core": "与团队创造 LINC，把可交互的计算、采样与实验控制带到研究者自己的实验台。",
+      "evidence": "设计从可负担的实验室仪器目标出发：有限内存促使磁带块传输控制进入硬件；采样、旋钮及显示支持实验闭环。培训和现场试用解决研究人员不会维护、编程的问题。",
       "habits": [
-        "从使用过程倒推功能。",
-        "把输入输出纳入架构。",
-        "关注响应和操作负担。",
-        "让系统规模适合现场约束。"
+        "把仪器接口、操作者和维护方式纳入系统定义。",
+        "用真实使用者试用检验系统是否可独立工作。"
       ],
       "questions": [
-        "用户多久需要一次响应？",
-        "输入与控制路径是否完整？",
-        "更大机器是否反而更难使用？"
+        "数据采集到反馈控制的完整闭环能否由使用者掌握？",
+        "内存或成本限制该由硬件控制承担，还是由软件与外设承担？"
       ],
-      "boundary": "交互目标不能替代精度、实时保证和可靠性分析；历史个人计算形态不等于今天所有边缘系统。",
-      "diagnostic": "测量采集到控制的端到端延迟、失败率和操作成本。",
+      "boundary": "本人回顾自述视角与记忆局限；“最早个人电脑”的界定依赖标准，本页不作唯一首创断言。历史成本和吞吐不直接外推到现代实验平台。",
+      "diagnostic": "用真实实验回放采样、分析、控制和保存流程，记录端到端延迟、丢样、操作者步骤与故障恢复所需帮助。",
       "notes": [
         [
           "e06",
@@ -1325,25 +1377,84 @@
           "Digital at Work：LINC 记录",
           "https://archive.computerhistory.org/resources/text/DEC/dec.digital_at_work.1992.102630350.pdf",
           "1992 · DEC 原始资料；与 Molnar 合作"
+        ],
+        [
+          "The LINC Was Early and Small",
+          "https://archive.computerhistory.org/resources/access/text/2024/06/102739347-05-0003-acc.pdf",
+          "1986；1987 会议资料重印 · 作者技术文章 · 印刷 pp.51–57；PDF pp.72–78，Summary、Introduction、Designing the LINC"
+        ],
+        [
+          "Eckert–Mauchly Award — Past Recipients",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly/",
+          "1981 · 官方获奖名单 · 1981 Wesley A. Clark 名单"
         ]
       ],
       "challenge": {
-        "lens": "交互闭环与 deadline",
+        "lens": "个人实验系统的完整闭环",
         "skills": [
+          "A1",
           "A3",
-          "A5",
-          "A9"
+          "A8"
         ],
-        "variables": "T_acq、T_compute、T_act：暴露采集、计算、动作时间；D：deadline。",
-        "model": "端到端 trace 确定关键路径；只在串行时可求和。",
-        "crossover": "总闭环时间满足 D，且优化确实减少暴露阶段或违约率。",
-        "counterexample": "计算更快，但采集、执行器或排队仍造成超时。",
-        "transfer": "迁移到 agent 工具调用与在线控制。",
-        "question": "用户多久需要一次响应？",
-        "validation": "测量采集到控制的端到端延迟、失败率和操作成本。"
+        "variables": "T采/T算/T控：采样、计算与控制时间；T人：必要人工干预时间；D：实验反馈时限。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：闭环时间由这些环节共同决定；满足实验时限还须验证抖动及操作者可用性。",
+        "crossover": "降低计算时间只有在计算支配闭环时最有效。",
+        "counterexample": "计算更快但数据导入或人工重配更慢，实验效率仍会下降。",
+        "transfer": "用于边缘仪器与交互式科研系统。",
+        "question": "数据采集到反馈控制的完整闭环能否由使用者掌握？",
+        "validation": "用真实实验回放采样、分析、控制和保存流程，记录端到端延迟、丢样、操作者步骤与故障恢复所需帮助。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "与 Charles Molnar 等人设计面向个人实验者的 LINC，直接连接模拟与数字实验信号。",
+        "用小型磁带、显示和控制操作构成可独立使用的系统，并以研究者培训与试用推动实际采用。"
+      ],
+      "background": "本人 1986 回顾明确是 MIT 两组人员及生物医学研究者的合作；DEC 1992 记录确认 Clark、Molnar 的设计归属。1981 Eckert–Mauchly 身份已核验，官方完整理由未取得，以下贡献仍标为编辑提炼。",
+      "argument": "设计从可负担的实验室仪器目标出发：有限内存促使磁带块传输控制进入硬件；采样、旋钮及显示支持实验闭环。培训和现场试用解决研究人员不会维护、编程的问题。",
+      "sourceAudit": [
+        {
+          "title": "The LINC Was Early and Small",
+          "authors": "Wesley A. Clark",
+          "date": "1986；1987 会议资料重印",
+          "url": "https://archive.computerhistory.org/resources/access/text/2024/06/102739347-05-0003-acc.pdf",
+          "locator": "印刷 pp.51–57；PDF pp.72–78，Summary、Introduction、Designing the LINC",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Digital at Work — LINC",
+          "authors": "Jamie Parker Pearson 编；DEC / Digital Press",
+          "date": "1992",
+          "url": "https://archive.computerhistory.org/resources/text/DEC/dec.digital_at_work.1992.102630350.pdf",
+          "locator": "印刷 p.52（PDF p.65）；LINC 功能与 Clark/Molnar 归属",
+          "type": "厂商系统历史原始记录",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Eckert–Mauchly Award — Past Recipients",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1981",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly/",
+          "locator": "1981 Wesley A. Clark 名单",
+          "type": "官方获奖名单",
+          "contentStatus": "仅核验身份与年份；未取得完整理由",
+          "evidenceStrength": "强",
+          "role": "仅证奖项身份，不计作机制证据"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "charles-thacker",
@@ -4495,21 +4606,18 @@
       "id": "mike-clark",
       "name": "Mike Clark",
       "field": "工业 CPU 微架构与跨代 PPA",
-      "core": "在性能、频率、面积和功耗之间选择能够跨代兑现的架构平衡。",
-      "evidence": "AMD 公开资料将 Clark 与 Zen CPU 架构工作关联；2026 年本人和 Mark Papermaster 的 Advanced Insights 对谈讨论性能、频率、面积、功耗，以及 SMT、向量、chiplet 和密集核心的设计取舍。",
+      "core": "领导 Zen 核心架构设计，以前端、执行与缓存的协同改进兼顾单线程性能、吞吐和能效。",
+      "evidence": "初代 Zen 用 Op Cache 减少重复译码，并让 SMT 利用共享资源。Zen 5 的双取指/译码通路、8 路分派、6 个 ALU 与更宽缓存接口一起调整，说明核心加宽需要供给配合。",
       "habits": [
-        "同时评价机制的性能与实现代价。",
-        "区分每核能力与核心密度。",
-        "检查对软件生态和客户负载的影响。",
-        "让跨代演进保留可验证的架构基础。"
+        "让前端、执行与数据供给同步扩展。",
+        "把功耗作为架构起点，并区分每周期工作量与整机收益。"
       ],
       "questions": [
-        "更宽的核心是否改善目标负载的有效吞吐？",
-        "固定功率下应该增加单核能力还是核心数？",
-        "机制的实现代价会限制下一代什么选择？"
+        "加宽执行后，前端或缓存能否持续供给？",
+        "开启 SMT 后，总吞吐收益是否覆盖单线程延迟损失？"
       ],
-      "boundary": "厂商讨论说明设计取舍，不等于所有负载上的独立测量；不同平台、频率、内存及 SLO 必须归一化。",
-      "diagnostic": "在固定功率、带宽与服务 SLO 下扫描核心数和执行能力，分解停顿与频率效应，比较有效吞吐和容量成本。",
+      "boundary": "两代讲义中的提升比例是 AMD 特定条件下的结果或估计，不能当普适收益。SMT 会争用资源；更宽数据路径也可能受带宽、频率与功耗限制。",
+      "diagnostic": "固定频率与任务，比较 1T/2T 的完成时间、功耗、前端停顿、缓存带宽及有效退休率；分别施加分支和访存压力。",
       "notes": [
         [
           "e09",
@@ -4530,26 +4638,74 @@
           "AMD：Zen 架构贡献说明",
           "https://ir.amd.com/news-events/press-releases/detail/841/amd-deepens-senior-management-and-technical-leadership-bench",
           "2018 · 工业 CPU 架构背景"
+        ],
+        [
+          "A New x86 Core Architecture for the Next Generation of Computing",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc28/HC28.23-Tuesday-Epub/HC28.23.90-High-Perform-Epub/HC28.23.930-X86-core-MikeClark-AMD-final_v2-28.pdf",
+          "2016-08-23 · 作者幻灯片 · pp.6–15；供给、执行、缓存与 SMT"
+        ],
+        [
+          "Next Generation “Zen 5” Core",
+          "https://hc2024.hotchips.org/assets/program/conference/day2/24_HC2024.AMD.Cohen.Subramony.final.pdf",
+          "2024-08 · 作者幻灯片 · 封面；pp.5–14；双通路、整数、访存及功耗"
         ]
       ],
       "challenge": {
-        "lens": "工业 PPA 挑战",
+        "lens": "核心加宽与持续供给",
         "skills": [
           "A2",
           "A3",
-          "A7",
-          "A10"
+          "A4",
+          "A7"
         ],
-        "question": "单节点性能增加 5%、功率增加 10%，在固定设施功率下是否值得采购？",
-        "variables": "G：同质量/SLO 的节点有效吞吐；P：包含相关系统开销的节点功率；P_site：可用设施功率。",
-        "model": "仅在功率唯一绑定、节点可线性复制且其他约束不变时，fleet goodput 近似 P_site × G/P。",
-        "crossover": "此模型下需要 G_A/G_B > P_A/P_B；不能把标称性能或 TDP 直接当作 G、P。",
-        "counterexample": "单线程 SLO、内存容量或许可证先绑定时，功率模型不是完整采购边界。",
-        "validation": "测量同一负载/SLO 的整机功率和 goodput，加入机架密度、内存带宽与软件成本敏感性。",
-        "transfer": "迁移到不同 GPU 或专用加速器的 MW 约束比较。"
+        "variables": "F：前端供给；E：执行能力；M：访存支持的有效速率；P：功耗。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：有效吞吐受 min(F,E,M) 限制；能效须以完成工作量/P 检查。",
+        "crossover": "扩大 E 仅在供给充足且频率、功耗代价可接受时有效。",
+        "counterexample": "依赖链或内存带宽主导时，更多 ALU 仍会空闲。",
+        "transfer": "适用于处理器与加速器流水线的资源配比。",
+        "question": "加宽执行后，前端或缓存能否持续供给？",
+        "validation": "固定频率与任务，比较 1T/2T 的完成时间、功耗、前端停顿、缓存带宽及有效退休率；分别施加分支和访存压力。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "初代 Zen 将微操作缓存、更宽执行、两线程 SMT 与缓存改进结合，重建高性能 x86 核心。",
+        "与 Brad Cohen、Mahesh Subramony 合作推进 Zen 5，扩大取指和执行能力时同步增强访存供给。"
+      ],
+      "background": "2016 讲义由 Clark 署名；2024 Zen 5 讲义主讲作者为 Cohen、Subramony，明确列 Clark 为合作者。AMD 2026 新闻文字确认其首席架构师身份；未将视频简介当作访谈全文。",
+      "argument": "初代 Zen 用 Op Cache 减少重复译码，并让 SMT 利用共享资源。Zen 5 的双取指/译码通路、8 路分派、6 个 ALU 与更宽缓存接口一起调整，说明核心加宽需要供给配合。",
+      "sourceAudit": [
+        {
+          "title": "A New x86 Core Architecture for the Next Generation of Computing",
+          "authors": "Mike Clark / AMD",
+          "date": "2016-08-23",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc28/HC28.23-Tuesday-Epub/HC28.23.90-High-Perform-Epub/HC28.23.930-X86-core-MikeClark-AMD-final_v2-28.pdf",
+          "locator": "pp.6–15；供给、执行、缓存与 SMT",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Next Generation “Zen 5” Core",
+          "authors": "Brad Cohen; Mahesh Subramony; co-author Mike Clark / AMD",
+          "date": "2024-08",
+          "url": "https://hc2024.hotchips.org/assets/program/conference/day2/24_HC2024.AMD.Cohen.Subramony.final.pdf",
+          "locator": "封面；pp.5–14；双通路、整数、访存及功耗",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "gerard-williams",
@@ -4665,21 +4821,18 @@
       "id": "peter-greenhalgh",
       "name": "Peter Greenhalgh",
       "field": "异构执行与迁移边界",
-      "core": "工作应落在满足性能契约的合适执行资源上，迁移成本必须计入。",
-      "evidence": "公开专利 US8418187B2 的共同发明记录讨论处理资源之间的透明迁移；不据此声称其独自发明异构 CPU。",
+      "core": "领导 big.LITTLE 与 Cortex-A53 开发，让不同能效的兼容核心按任务需求协同工作。",
+      "evidence": "A15/A7 保持指令语义兼容，一致性互连及可迁移中断支持状态交接；软件可在大小核间迁移，也可同时调度不同线程。小核满足时限时保留任务，超出能力时使用大核。",
       "habits": [
-        "按任务需求选择资源。",
-        "检查迁移状态。",
-        "核算切换成本。",
-        "维持软件可观察契约。"
+        "按任务时限与能耗选择核心。",
+        "把状态迁移、缓存和中断作为完整切换路径评估。"
       ],
       "questions": [
-        "较省电的核心需要运行多久才能摊销迁移？",
-        "迁移改变哪些缓存与状态？",
-        "尾延迟预算允许切换吗？"
+        "小核能否满足响应时限，且节省的能量足以支付迁移成本？",
+        "切换频率和缓存预热是否导致反复迁移？"
       ],
-      "boundary": "同等时间不一定完成同等工作；必须先匹配任务量和 deadline。",
-      "diagnostic": "重放任务，测同工作量能量、迁移与预热、响应尾部。",
+      "boundary": "迁移、缓存预热与漏电均有成本；短暂负载波动可能抵消节能。白皮书的迁移时延是当时系统设计目标，不是所有 big.LITTLE 的实测常数。",
+      "diagnostic": "回放负载突发与空闲间隔，测任务时限、迁移耗时、缓存预热和整机能量；加入短周期波动作为反例。",
       "notes": [
         [
           "e06",
@@ -4695,27 +4848,83 @@
           "共同发明专利：处理资源迁移",
           "https://patents.google.com/patent/US8418187B2/en",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "British Engineering Excellence Awards 2014 — Winners",
+          "https://fplreflib.findlay.co.uk/images/pdf/beeas/beeas-2014-winners.pdf",
+          "2014-10-09 · 官方获奖理由 · 印刷 p.27：Design Engineer of the Year；p.3 联合获奖说明"
+        ],
+        [
+          "big.LITTLE Processing with ARM Cortex-A15 & Cortex-A7",
+          "https://ks3-cn-beijing.ksyun.com/attachment/076f1d83146b66f9db99e3b4688a2ded",
+          "封面 2011-09；所读版本内页版权 2013 · 作者技术文章 · pp.2–8；处理器、任务迁移、MP 与软件"
         ]
       ],
       "challenge": {
-        "lens": "异构迁移挑战",
+        "lens": "异构核心的迁移盈亏",
         "skills": [
-          "A2",
+          "A1",
           "A4",
-          "A8"
+          "A7"
         ],
-        "variables": "ΔE：同任务量净节能；E_m：迁移及预热能量。",
-        "model": "要求 ΔE > E_m，并满足完成时间约束。",
-        "crossover": "驻留工作量足以摊销迁移且 SLO 合格。",
-        "counterexample": "短突发频繁切换，预热成本主导。",
-        "transfer": "迁移到 NUMA 或 AI 会话放置。",
-        "question": "较省电的核心需要运行多久才能摊销迁移？",
-        "validation": "重放任务，测同工作量能量、迁移与预热、响应尾部。"
+        "variables": "E大/E小：完成同任务能量；E迁：迁移及预热能量；T小：小核完成时间；D：截止时间。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：选择小核需同时满足 T小≤D 且 E大−E小>E迁。",
+        "crossover": "可节省能量覆盖切换成本且时限允许时，迁移才有意义。",
+        "counterexample": "短突发频繁切换可能比持续留在大核更耗能。",
+        "transfer": "用于 CPU/GPU 任务放置时同样计入数据搬运。",
+        "question": "小核能否满足响应时限，且节省的能量足以支付迁移成本？",
+        "validation": "回放负载突发与空闲间隔，测任务时限、迁移耗时、缓存预热和整机能量；加入短周期波动作为反例。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "physical-energy"
-      ]
+      ],
+      "contributions": [
+        "2014 年 BEEA 获奖说明认可其领导 big.LITTLE 和 Cortex-A53 从设计到验证、实现的工作。",
+        "big.LITTLE 将相同架构语义、不同微架构取舍的核心通过一致性互连连接，扩展单一核心 DVFS 的适用范围。"
+      ],
+      "background": "官方获奖册明确这是 Greenhalgh 领导团队的成果，非个人独造全部 IP。白皮书署名本人；所读副本封面为 2011 年 9 月，内页版权标注 2013，按带后续修订痕迹版本记录。",
+      "argument": "A15/A7 保持指令语义兼容，一致性互连及可迁移中断支持状态交接；软件可在大小核间迁移，也可同时调度不同线程。小核满足时限时保留任务，超出能力时使用大核。",
+      "sourceAudit": [
+        {
+          "title": "British Engineering Excellence Awards 2014 — Winners",
+          "authors": "BEEA / Findlay Media",
+          "date": "2014-10-09",
+          "url": "https://fplreflib.findlay.co.uk/images/pdf/beeas/beeas-2014-winners.pdf",
+          "locator": "印刷 p.27：Design Engineer of the Year；p.3 联合获奖说明",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "big.LITTLE Processing with ARM Cortex-A15 & Cortex-A7",
+          "authors": "Peter Greenhalgh / ARM",
+          "date": "封面 2011-09；所读版本内页版权 2013",
+          "url": "https://ks3-cn-beijing.ksyun.com/attachment/076f1d83146b66f9db99e3b4688a2ded",
+          "locator": "pp.2–8；处理器、任务迁移、MP 与软件",
+          "type": "作者技术文章",
+          "contentStatus": "取得署名 ARM 白皮书完整 8 页镜像；版本日期差异已注明",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "British Engineering Excellence Awards — Design Engineer of the Year（联合获奖）",
+          "year": 2014,
+          "citationZh": "领导 big.LITTLE 与 Cortex-A53 的设计、验证和实现，推进低功耗处理器产品开发。",
+          "url": "https://fplreflib.findlay.co.uk/images/pdf/beeas/beeas-2014-winners.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "mark-papermaster",
@@ -18212,6 +18421,187 @@
         "question": "另一线程填补的空闲时间是否超过切换与缓存干扰成本？",
         "validation": "固定任务与线程数，对照禁用/启用线程切换，测停顿隐藏量、切换周期、缓存未命中、总线利用率和单线程延迟。"
       }
+    },
+    {
+      "id": "sebastien-nussbaum",
+      "name": "Sebastien Nussbaum",
+      "aliases": [
+        "Sébastien Nussbaum"
+      ],
+      "field": "APU 系统架构与统计仿真",
+      "domain": "cpu",
+      "relatedDomains": [
+        "physical-energy",
+        "hpc"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Statistical Simulation of Symmetric Multiprocessor Systems",
+          "https://jes.ece.wisc.edu/papers/ss02.nussbaum.pdf",
+          "2002 · 论文全文 · §2、§4、§5.3、§6；PDF pp.1–9"
+        ],
+        [
+          "AMD “Trinity” APU",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-3-ManyCore/HC24.28.325-Trinity-Nussbaum-AMD-v2.pdf",
+          "2012；讲义页脚 2012-07，Hot Chips 24 · 作者幻灯片 · 封面；pp.19–24、38；热模型、功耗及系统集成"
+        ]
+      ],
+      "core": "将快速性能建模与异构 SoC 设计结合：用统计仿真筛选方案，并在 Trinity 中协调计算与热预算。",
+      "contributions": [
+        "与 James E. Smith 扩展统计仿真至 SMP，把同步和一致性事件纳入快速设计空间探索。",
+        "作为 Trinity SoC 架构师，阐述 CPU、GPU 与电源管理的集成，用动态热余量调整性能。"
+      ],
+      "background": "SMP 论文署名 Sun 的 Nussbaum 与 Wisconsin 的 Smith；2012 Trinity 讲义明确其 AMD Fellow、Trinity SoC Architect 身份。统计方法属合作，Trinity 各 IP 属团队；本页是有来源的编辑提炼。",
+      "argument": "统计仿真从详细运行提取分布，再生成合成指令流；加入锁、屏障和缓存干预以刻画并行程序。Trinity 则以热实体及 RC 网络估计局部温度，再调节电压频率；两项工作分别说明设计评估与运行控制。",
+      "evidence": "统计仿真从详细运行提取分布，再生成合成指令流；加入锁、屏障和缓存干预以刻画并行程序。Trinity 则以热实体及 RC 网络估计局部温度，再调节电压频率；两项工作分别说明设计评估与运行控制。",
+      "boundary": "快速收敛不等于准确：SMP 论文中 Ocean 等负载仍有较大绝对误差，结果依赖配置。Trinity 热模型图注明工程讨论用途，不能据此宣称所有量产配置的温度精度。",
+      "habits": [
+        "先以快速模型筛选，再用详细仿真复核。",
+        "对共享资源和热热点保留专门的验证负载。"
+      ],
+      "questions": [
+        "统计模型是否保留决定方案排名的同步与一致性行为？",
+        "CPU/GPU 热余量分配能否改善完整任务，而不只是单个单元频率？"
+      ],
+      "sourceAudit": [
+        {
+          "title": "Statistical Simulation of Symmetric Multiprocessor Systems",
+          "authors": "Sebastien Nussbaum; James E. Smith",
+          "date": "2002",
+          "url": "https://jes.ece.wisc.edu/papers/ss02.nussbaum.pdf",
+          "locator": "§2、§4、§5.3、§6；PDF pp.1–9",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "AMD “Trinity” APU",
+          "authors": "Sebastien Nussbaum / AMD",
+          "date": "2012；讲义页脚 2012-07，Hot Chips 24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-3-ManyCore/HC24.28.325-Trinity-Nussbaum-AMD-v2.pdf",
+          "locator": "封面；pp.19–24、38；热模型、功耗及系统集成",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "diagnostic": "选排名接近的候选，用相同输入做详细仿真；报告每项误差而非仅均值。SoC 回放 CPU、GPU 及混合负载，核查温度估计和任务完成能量。",
+      "challenge": {
+        "lens": "快速模型的决策可信度",
+        "skills": [
+          "A4",
+          "A7",
+          "A8"
+        ],
+        "variables": "Δ：两个方案预测差距；ε甲/ε乙：由复核估计的误差界。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：只有 Δ>ε甲+ε乙 时，模型排序才具有明确误差余量。",
+        "crossover": "差距落入误差区间时，增加模型细节或详细复核。",
+        "counterexample": "总体平均误差小，仍可能误排受屏障支配的关键任务。",
+        "transfer": "适用于架构仿真与热控制模型的分层验证。",
+        "question": "统计模型是否保留决定方案排名的同步与一致性行为？",
+        "validation": "选排名接近的候选，用相同输入做详细仿真；报告每项误差而非仅均值。SoC 回放 CPU、GPU 及混合负载，核查温度估计和任务完成能量。"
+      }
+    },
+    {
+      "id": "eric-schwarz",
+      "name": "Eric Schwarz",
+      "aliases": [
+        "Eric M. Schwarz"
+      ],
+      "field": "浮点算术、舍入与可靠性",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Self Checking in Current Floating-Point Units",
+          "https://www.acsel-lab.com/arithmetic/arith20/papers/ARITH20_Lipetz.pdf",
+          "2011 · 论文全文 · ARITH 20 pp.73–76；§VI–X"
+        ],
+        [
+          "US8443029B2 — Round for reround mode in a decimal floating point instruction",
+          "https://patents.google.com/patent/US8443029B2/en",
+          "2013-05-14（授权公开） · 共同发明专利全文 · Inventors、Abstract、Summary、低位信息及 P−2 精度条件"
+        ]
+      ],
+      "core": "推进可靠浮点运算，在算术校验和舍入机制中兼顾结果正确性与硬件成本。",
+      "contributions": [
+        "与 Daniel Lipetz 提出混合模 9/3 余数校验结构，适配十进制系数和二进制整数的检错需求。",
+        "与 Cowlishaw、Smith、Yeh 共同提出为后续重舍入保留信息的十进制指令机制，避免特定双重舍入错误。"
+      ],
+      "background": "2011 论文明确两人同属 IBM；专利列四名共同发明人及 IBM。两者确认 Eric Schwarz / Eric M. Schwarz 的技术归属，不能把全部 IBM 浮点单元归其个人。未将先前仅有摘要的 z196 论文计为已读全文。",
+      "argument": "余数校验从输入独立推导结果的模值，再与输出比较；混合结构复用逻辑处理不同数制。舍入专利另以低位信息区分精确与非精确结果，使后续缩减精度不误认中点。",
+      "evidence": "余数校验从输入独立推导结果的模值，再与输出比较；混合结构复用逻辑处理不同数制。舍入专利另以低位信息区分精确与非精确结果，使后续缩减精度不误认中点。",
+      "boundary": "余数匹配不能排除所有多位错误，指数、控制和特殊数需单独检查。专利的一种简化模式要求后续精度至少减少两位；专利披露本身不证明量产性能。",
+      "habits": [
+        "先定义错误模型，再选择校验结构。",
+        "把中间结果的舍入信息视为正确性契约。"
+      ],
+      "questions": [
+        "算术校验能覆盖哪些错误，未覆盖部分由谁检测？",
+        "中间舍入后，是否仍足以判断目标精度的正确方向？"
+      ],
+      "sourceAudit": [
+        {
+          "title": "Self Checking in Current Floating-Point Units",
+          "authors": "Daniel Lipetz; Eric Schwarz / IBM",
+          "date": "2011",
+          "url": "https://www.acsel-lab.com/arithmetic/arith20/papers/ARITH20_Lipetz.pdf",
+          "locator": "ARITH 20 pp.73–76；§VI–X",
+          "type": "论文全文",
+          "contentStatus": "网页工具取得完整 4 页正文；直接本地请求返回 406",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "US8443029B2 — Round for reround mode in a decimal floating point instruction",
+          "authors": "Michael F. Cowlishaw; Eric M. Schwarz; Ronald M. Smith, Sr.; Phil C. Yeh",
+          "date": "2013-05-14（授权公开）",
+          "url": "https://patents.google.com/patent/US8443029B2/en",
+          "locator": "Inventors、Abstract、Summary、低位信息及 P−2 精度条件",
+          "type": "共同发明专利全文",
+          "contentStatus": "已取得说明书与权利要求；只证明披露与共同归属",
+          "evidenceStrength": "强",
+          "role": "舍入机制、前提与共同发明归属"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "diagnostic": "对系数、指数和控制分别注入单/多位错误；用精确参考算术覆盖中点两侧、尾数全零、溢出和多级舍入。",
+      "challenge": {
+        "lens": "数值正确性与检错覆盖",
+        "skills": [
+          "A2",
+          "A5",
+          "A8"
+        ],
+        "variables": "p漏：给定故障模型下漏检概率；A检：检错面积；L检：检测延迟。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：在 p漏 与 L检 满足恢复要求后比较 A检；模值相等仅是必要校验，不是正确性的充分证明。",
+        "crossover": "提高模数可能提高覆盖，但须核算实现与恢复时限。",
+        "counterexample": "相同余数的多位错误可以穿过校验。",
+        "transfer": "用于低精度算术时分别审查表示误差与硬件故障。",
+        "question": "算术校验能覆盖哪些错误，未覆盖部分由谁检测？",
+        "validation": "对系数、指数和控制分别注入单/多位错误；用精确参考算术覆盖中点两侧、尾数全零、溢出和多级舍入。"
+      }
     }
   ],
   "research": {
@@ -18221,7 +18611,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 44,
-    "totalProfiles": 260
+    "completedThisBatch": 50,
+    "totalProfiles": 262
   }
 }
