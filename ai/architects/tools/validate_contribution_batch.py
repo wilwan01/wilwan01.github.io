@@ -22,6 +22,9 @@ for p in old['profiles']:
   assert all(s in by[p['id']]['sources'] for s in p['sources']),p['id']
   assert by[p['id']]['notes']==p['notes']
 normalize=lambda s:re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',s).casefold())
+# Classify primary bodies by their actual format; a specification or patent is
+# not a paper, and a colleague's recollection is not the subject's own interview.
+PRIMARY_BODY_TYPES={'论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文','专利说明书全文','技术规范全文','作者演讲文字稿','参与者访谈文字稿'}
 # Explicit aliases are identity checks, not new people.
 aliases={'peter-hofstee':['Peter Hofstee','H. Peter Hofstee'],'tim-mattson':['Tim Mattson','Timothy G. Mattson']}
 seen={}
@@ -31,12 +34,23 @@ for p in c['profiles']:
 for pid in done:
  p=by[pid];assert p['researchStatus']['status']=='complete';assert 1<=len(p['contributions'])<=3
  substantive=[s for s in p['sourceAudit'] if s['type'] not in ['机构报告简介','官方获奖名单']];assert len({s['url'] for s in substantive})>=2,pid
- assert any(s['type'] in ['论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文'] and '未取得全文' not in s['contentStatus'] for s in substantive),pid
+ assert any(s['type'] in PRIMARY_BODY_TYPES and '未取得全文' not in s['contentStatus'] for s in substantive),pid
  for s in p['sourceAudit']:
   assert all(s.get(k) for k in ['title','authors','date','url','locator','type','contentStatus','evidenceStrength','role']),pid
   assert s['url'].startswith('https://'),s
  for w in p.get('awardsVerified',[]):assert w['paraphrase'] is True and w['year']<=2026
  assert all(k in ['A'+str(n) for n in range(1,11)] for k in p['challenge']['skills'])
+# This continuation uses an explicit work-level gate; a second URL or an award
+# citation is not a second substantive technical work.
+for continuation in b.get('continuations',[]):
+ if continuation.get('evidenceGate')!='two-distinct-substantive-primary-works-v1':continue
+ for pid in continuation['completedIds']:
+  p=by[pid];sources=p['sourceAudit']
+  eligible=[s for s in sources if s.get('primary') is True and s.get('substantive') is True and s['type'] in PRIMARY_BODY_TYPES]
+  assert len({s['workId'] for s in eligible})>=2,pid
+  assert p.get('sourceFacts') and all(f['workId'] in {s['workId'] for s in eligible} for f in p['sourceFacts']),pid
+  if continuation.get('requiresMechanismBody'):
+   assert any(s.get('mechanismBody') is True for s in eligible),pid
 for d in c['domains']:assert d['members']==[p['id'] for p in c['profiles'] if p['domain']==d['id']]
 r=html.fromstring((ROOT/'index.html').read_text());ids=[x.get('id') for x in r.xpath('//*[@id]')];assert len(ids)==len(set(ids))
 articles=r.xpath('//article[contains(concat(" ",normalize-space(@class)," ")," profile ")]');assert {a.get('id') for a in articles}==set(by)
@@ -47,6 +61,7 @@ for row,p in zip(rows,c['profiles']):
  assert [td.get('data-skill') for td in row.xpath('./td[contains(@class,"associated")]')]==sorted(p['challenge']['skills'],key=lambda x:int(x[1:]))
 for p in c['profiles']:
  a=r.xpath('//article[@id="'+p['id']+'"]')[0];assert a.xpath('./h2')[0].text==p['name'];assert a.xpath('./p[@class="thesis"]')[0].text==p['core']
+ for fact in p.get('sourceFacts',[]):assert fact['text'] in a.text_content(),p['id']
  d=r.xpath('//*[@id="directory-'+p['domain']+'"]//tbody/tr[td/a[@href="#'+p['id']+'"]]')[0];assert d.xpath('./td')[3].text==p['core']
 for o in r.xpath('//*[@id="matrix-skill"]/option'):
  k=o.get('value');expected=len(by) if not k else sum(k in p['challenge']['skills'] for p in c['profiles']);assert str(expected)+' 位' in o.text

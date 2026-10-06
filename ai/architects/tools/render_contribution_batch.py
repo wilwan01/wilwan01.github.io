@@ -33,7 +33,13 @@ def render(p):
  if not p.get('awardsVerified'):append(a,'p','以上为基于署名作品的编辑提炼，非官方获奖理由。',class_='contribution-origin')
  append(a,'p','本次关键贡献研究已核验 · 2026-10-06；不表示穷尽个人成果。',class_='profile-number')
  de=append(a,'details',class_='research-detail');append(de,'summary','展开：背景、机制、取舍、诊断与来源')
- for title,key in [('背景与贡献归属','background'),('机制与核心论证 · 编辑解读','argument')]:append(de,'h3',title);append(de,'p',p[key])
+ append(de,'h3','背景与贡献归属');append(de,'p',p['background'])
+ if p.get('sourceFacts'):
+  append(de,'h3','来源事实 · 与编辑解读分列');facts=append(de,'ul')
+  audit={s['workId']:s for s in p['sourceAudit'] if s.get('workId')}
+  for fact in p['sourceFacts']:
+   li=append(facts,'li',fact['text']+' ');s=audit[fact['workId']];li.append(link(s['url'],s['title']))
+ append(de,'h3','机制与核心论证 · 编辑解读');append(de,'p',p['argument'])
  append(de,'h3','思维方式');ul=append(de,'ul')
  for h in p['habits']:append(ul,'li',h)
  append(de,'h3','可复用提问');ul=append(de,'ul')
