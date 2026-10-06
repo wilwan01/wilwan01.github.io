@@ -6,16 +6,16 @@
   "plannedExisting": 63,
   "plannedCandidates": 13,
   "counts": {
-    "complete": 29,
-    "pending": 30,
+    "complete": 37,
+    "pending": 22,
     "partial": 17
   },
-  "completedExisting": 20,
+  "completedExisting": 28,
   "completedNew": 9,
   "publication": {
     "status": "awaiting-deployment-verification",
-    "previousPublishedCommit": "41c7fa5329e113b4fc8ba72fc13b80ecb19463d0",
-    "publicProfileCountBefore": 259
+    "previousPublishedCommit": "3ebacb801d8fef85fbd5b8d5c75f68065a15b2da",
+    "publicProfileCountBefore": 260
   },
   "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
   "records": [
@@ -124,19 +124,67 @@
       "id": "michael-flynn",
       "name": "Michael J. Flynn",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Michael J. Flynn — Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1992",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Some Computer Organizations and Their Effectiveness",
+          "authors": "Michael J. Flynn",
+          "date": "1972-09",
+          "url": "https://users.cs.utah.edu/~hari/teaching/paralg/Flynn72.pdf",
+          "locator": "IEEE Transactions on Computers C-21(9), pp.948–960；Introduction、分类及资源模型",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "7a7b318f56fc5b9f708504a91b477123a9c30aacbd167e69b2597f6960c93bb7"
+        }
+      ]
     },
     {
       "id": "edward-davidson",
       "name": "Edward S. Davidson",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Edward Davidson — 2000 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2000",
+          "url": "https://www.computer.org/profiles/edward-davidson/",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Oral History of Edward S. Davidson",
+          "authors": "Edward S. Davidson；采访 Paul N. Edwards",
+          "date": "2009-06-17/18、2009-09-29；2011-03-17 整理",
+          "url": "https://www.sigmicro.org/media/oralhistories/davidson.pdf",
+          "locator": "pp.82–85 预约表、合作归属与硬件采用；pp.120–121 短循环限制",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已读取上述访谈正文；未收听录音",
+          "evidenceStrength": "强",
+          "role": "本人对机制与实际边界的回顾",
+          "retrievedSha256": "a9c92754255b779740c8aa597a680240ce5ab84f41db31cdde752f94a96d3f6e"
+        }
+      ]
     },
     {
       "id": "robert-barton",
@@ -151,28 +199,99 @@
       "id": "maurice-wilkes",
       "name": "Maurice V. Wilkes",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1967（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届表 1967 Maurice Wilkes",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验完整 citation；直接 PDF 获取受限",
+          "evidenceStrength": "强",
+          "role": "EDSAC、程序库及共同作者定位"
+        },
+        {
+          "title": "The Best Way to Design an Automatic Calculating Machine",
+          "authors": "M. V. Wilkes",
+          "date": "1951（会议文章；所读为历史重印扫描）",
+          "url": "https://www.cs.princeton.edu/courses/archive/fall10/cos375/BestWay.pdf",
+          "locator": "重印 pp.182–184；PDF pp.2–4，尤其 Fig.12 与末段",
+          "type": "论文全文",
+          "contentStatus": "取得扫描全文并对所列三页进行 OCR 阅读，核验矩阵 A/B 与可擦写存储讨论",
+          "evidenceStrength": "强",
+          "role": "微程序机制、设计动机与实现边界"
+        }
+      ]
     },
     {
       "id": "gordon-bell",
       "name": "C. Gordon Bell",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Gordon Bell — Seymour Cray Computer Engineering Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2014",
+          "url": "https://www.computer.org/profiles/gordon-bell",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Bell’s Law for the Birth and Death of Computer Classes: A Theory of the Computer’s Evolution",
+          "authors": "Gordon Bell",
+          "date": "2008-01",
+          "url": "https://gordonbell.azurewebsites.net/cacm%20bell%27s%20law%20vol%2051.%202008-january.pdf",
+          "locator": "Communications of the ACM 51(1), pp.86–94；类别定义、技术演化与价格讨论",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "cdf39e4a106e0124e356605cc79b4329452f9968cefbb730f549f0e321a933cd"
+        }
+      ]
     },
     {
       "id": "fred-brooks",
       "name": "Frederick P. Brooks, Jr.",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Frederick P. Brooks, Jr. — 2004 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2004",
+          "url": "https://www.computer.org/profiles/frederick-brooks",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Architecture of the IBM System/360",
+          "authors": "Gene M. Amdahl; Gerrit A. Blaauw; Frederick P. Brooks, Jr.",
+          "date": "1964-04（所读取扫描本原刊日期；页面另列 2000 重印元数据）",
+          "url": "https://www.researchgate.net/publication/220498837_Architecture_of_the_IBM_System360",
+          "locator": "IBM Journal of Research and Development 8(2), pp.87–101；Introduction、Design objectives、Advanced concepts、Open-ended design",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "da7b506bf367832f9569b57d665c7243c1d7b6193a0833b0d37dae9c943f9df3"
+        }
+      ]
     },
     {
       "id": "wesley-clark",
@@ -193,10 +312,33 @@
       "id": "charles-thacker",
       "name": "Charles P. (Chuck) Thacker",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM Turing Award Goes to Creator of First Modern Personal Computer",
+          "authors": "ACM",
+          "date": "2010-03-09（2009 年获奖）",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2010/march/turing-award-09-1.pdf",
+          "locator": "获奖公告首段",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引取得公告全文",
+          "evidenceStrength": "强",
+          "role": "2009 奖项及 Alto 贡献定位"
+        },
+        {
+          "title": "Alto: A Personal Computer",
+          "authors": "C. P. Thacker; E. M. McCreight; B. W. Lampson; R. F. Sproull; D. R. Boggs",
+          "date": "1979-08-07；1984-02 重印",
+          "url": "https://bwlampson.site/25-Alto/25-AltoOCR.htm",
+          "locator": "CSL-79-11；§1–2",
+          "type": "论文全文",
+          "contentStatus": "读取作者站点 OCR 正文 §1–2；OCR 未校对，不据此转录精细数值",
+          "evidenceStrength": "强",
+          "role": "目标、共享微任务机制与合作归属"
+        }
+      ]
     },
     {
       "id": "john-crawford",
@@ -651,10 +793,34 @@
       "id": "james-thornton",
       "name": "James E. Thornton",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "James E. Thornton — 1994 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1994",
+          "url": "https://www.computer.org/profiles/james-thornton/",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Design of a Computer: The Control Data 6600",
+          "authors": "James E. Thornton",
+          "date": "1970",
+          "url": "https://archive.computerhistory.org/resources/text/CDC/cdc.6600.thornton.design_of_a_computer_the_control_data_6600.1970.102630394.pdf",
+          "locator": "Chapter VI.D Scoreboard，印刷 pp.125–128（PDF pp.136–139）",
+          "type": "技术专著全文",
+          "contentStatus": "取得原著全文，核验控制章节；来源为技术专著",
+          "evidenceStrength": "强",
+          "role": "记分牌机制与约束",
+          "retrievedSha256": "106971fa93feddbbbd85d4abd874cadece2525f7b614225285cacea46df8c70e"
+        }
+      ]
     },
     {
       "id": "robert-tomasulo",
@@ -693,10 +859,34 @@
       "id": "yale-patt",
       "name": "Yale Patt",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "最重要贡献、官方理由与机制正文已核验；团队归属和边界见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Yale Patt — 1996 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1996",
+          "url": "https://www.computer.org/press-room/news-archive/patt-2013-goode-award",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "HPS, a New Microarchitecture: Rationale and Introduction",
+          "authors": "Yale N. Patt; Wen-mei Hwu; Michael Shebanow",
+          "date": "1985",
+          "url": "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Patt.1985.micro.pdf",
+          "locator": "MICRO 18, pp.103–108；§1–3，尤其 §3.1 活动窗口、Merger 与退休",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "9a789806a7e1b1f9f4ca45f61452b1e5e77c239c16c68b1a85509e5699125f44"
+        }
+      ]
     },
     {
       "id": "james-smith",
@@ -1546,6 +1736,17 @@
       "publicProfileCount": 259,
       "verificationRecord": "2026-10-06-deployment.json",
       "verification": "公开 catalog、HTML、批次 HTML/JSON 和 CSS 均与内容提交字节一致；浏览器核验 8 张新卡、技能与姓名筛选、展开证据。显示标签修正另随此记录提交。"
+    },
+    {
+      "status": "published",
+      "commit": "3ebacb801d8fef85fbd5b8d5c75f68065a15b2da",
+      "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37447947919",
+      "pagesConclusion": "success",
+      "publicProfileCount": 260,
+      "completedCount": 29,
+      "verified": [
+        "catalog.json and index.html bytes match deployed commit"
+      ]
     }
   ],
   "continuations": [
@@ -1565,6 +1766,21 @@
       ],
       "completedCount": 10,
       "history": "research/history/2026-10-06-continuation-before.json"
+    },
+    {
+      "baseCommit": "3ebacb801d8fef85fbd5b8d5c75f68065a15b2da",
+      "completedIds": [
+        "michael-flynn",
+        "yale-patt",
+        "james-thornton",
+        "edward-davidson",
+        "fred-brooks",
+        "charles-thacker",
+        "maurice-wilkes",
+        "gordon-bell"
+      ],
+      "completedCount": 8,
+      "history": "research/history/2026-10-06-classics-before.json"
     }
   ]
 }

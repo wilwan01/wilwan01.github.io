@@ -1,0 +1,474 @@
+{
+  "baseCommit": "3ebacb801d8fef85fbd5b8d5c75f68065a15b2da",
+  "profiles": [
+    {
+      "id": "michael-flynn",
+      "name": "Michael J. Flynn",
+      "awardYear": 1992,
+      "award": "Eckert–Mauchly Award · 1992",
+      "field": "处理器分类、算术与并行组织",
+      "core": "先说清并行发生在哪里，再比较机器组织。",
+      "evidence": "IEEE 获奖说明认可处理器组织与分类、算术及性能评估；官方回顾记录其流水线与并行处理器设计著作。本条目以分类服务于分析为重心。",
+      "habits": [
+        "区分指令流与数据流。",
+        "明确分类的观察层次。",
+        "把运算与组织分开比较。",
+        "用分类提出问题而非给出结论。"
+      ],
+      "questions": [
+        "并行发生在指令、数据还是任务层？",
+        "同一系统是否包含多种组织？",
+        "分类掩盖了哪些存储约束？"
+      ],
+      "boundary": "SIMD、MIMD 等类别不预测具体性能；现代系统可在不同层次同时属于不同组织。",
+      "diagnostic": "标注各层执行与数据流，再测量实际并行效率和供给瓶颈。",
+      "notes": [
+        [
+          "e09",
+          "并行层次"
+        ],
+        [
+          "e10",
+          "计算与通信"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Flynn 的研究与著作回顾",
+          "https://www.computer.org/publications/tech-news/insider-membership-news/in-memoriam-mike-flynn",
+          "2026 · 组织、分类与并行设计"
+        ]
+      ],
+      "challenge": {
+        "lens": "并行组织与供给",
+        "skills": [
+          "A3",
+          "A6",
+          "A9"
+        ],
+        "variables": "W：操作数；P：执行资源；r：单资源操作/s；B：字节/s；b：字节/操作。",
+        "model": "理想吞吐上界 min(P r,B/b)，另查依赖与控制。",
+        "crossover": "增加 P 仅在计算供给绑定且有独立工作时可能有效。",
+        "counterexample": "SIMD 遇到分歧或不合并访问，资源并行无法兑现。",
+        "transfer": "迁移到线程并行、向量与 GPU 的选择。",
+        "question": "并行发生在指令、数据还是任务层？",
+        "validation": "标注各层执行与数据流，再测量实际并行效率和供给瓶颈。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    },
+    {
+      "id": "yale-patt",
+      "name": "Yale Patt",
+      "field": "动态执行、推测与数据流",
+      "core": "程序规定的语义顺序，不必等同于硬件的实际执行顺序。",
+      "evidence": "HPS 合作研究、动态调度、寄存器重命名和分支预测工作，体现了在保持程序所需结果的同时挖掘指令级并行的研究路线。来源使用研究组论文目录和课程材料；本条目是对研究路线的归纳，而不是从目录推导任何具体性能倍数。",
+      "habits": [
+        "区分真正的数据依赖与名字、控制和实现造成的限制。",
+        "让就绪的工作先执行，再维护正确的体系结构状态。",
+        "将预测、调度和恢复视为相互关联的机制。",
+        "评估可利用并行性时，同时检查执行窗口与资源成本。"
+      ],
+      "questions": [
+        "哪些约束是语义所必需，哪些只是实现选择？",
+        "放宽执行顺序之后，如何保证可恢复的正确状态？",
+        "预测错了要丢弃多少工作、消耗多少时间和能量？"
+      ],
+      "boundary": "更积极的推测不等于更好的系统。错误路径、恢复、调度复杂度和安全约束必须进入评价，不能只看理想 IPC。",
+      "diagnostic": "记录退休工作与执行工作的差额、误预测恢复时间、依赖阻塞和窗口饱和情况，比较实际净收益。",
+      "notes": [
+        [
+          "e08",
+          "推测解码：更多工作还是更少等待"
+        ],
+        [
+          "e12",
+          "局部执行与服务目标"
+        ]
+      ],
+      "sources": [
+        [
+          "HPS Research Group：微架构论文目录",
+          "https://hps.ece.utexas.edu/hps_micro.html",
+          "1985 起 · 作者研究组出版记录"
+        ],
+        [
+          "Yale Patt EE 382N 课程材料",
+          "https://users.ece.utexas.edu/~patt/26s.382N/handouts/",
+          "2026 · HPS、动态调度与相关论文阅读表"
+        ]
+      ],
+      "awardYear": 1996,
+      "award": "Eckert–Mauchly Award · 1996",
+      "challenge": {
+        "lens": "推测的净有用工作",
+        "skills": [
+          "A2",
+          "A3",
+          "A9"
+        ],
+        "variables": "T_hide：隐藏等待；p：每任务误推测概率；R：恢复时间；H：其他暴露开销。",
+        "model": "简化平均净益 T_hide-pR-H；相关故障和尾部单独测量。",
+        "crossover": "T_hide>pR+H，同时保持精确状态和预算。",
+        "counterexample": "更深推测增加错误路径流量，挤占有用工作。",
+        "transfer": "迁移到 speculative decoding 或事务执行。",
+        "question": "哪些约束是语义所必需，哪些只是实现选择？",
+        "validation": "记录退休工作与执行工作的差额、误预测恢复时间、依赖阻塞和窗口饱和情况，比较实际净收益。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "compiler-runtime"
+      ]
+    },
+    {
+      "id": "james-thornton",
+      "name": "James E. Thornton",
+      "awardYear": 1994,
+      "award": "Eckert–Mauchly Award · 1994",
+      "field": "Scoreboard 与执行资源协调",
+      "core": "使就绪工作与可用资源相遇，同时显式管理冲突。",
+      "evidence": "IEEE 获奖说明认可 scoreboard 指令发射和高性能、向量处理器贡献。本库从这些机制提炼依赖、资源和执行协调的视角。",
+      "habits": [
+        "区分操作数等待与资源等待。",
+        "记录状态而非猜测可执行性。",
+        "允许独立工作绕过等待。",
+        "检查协调结构自身的规模成本。"
+      ],
+      "questions": [
+        "工作已就绪还是只是排在前面？",
+        "哪个资源冲突阻止发射？",
+        "控制成本怎样随宽度增长？"
+      ],
+      "boundary": "Scoreboard 不消除全部依赖或名字冲突；不能等同于现代寄存器重命名的全部机制。",
+      "diagnostic": "按依赖和功能单元归因停顿，扫描窗口及资源配置。",
+      "notes": [
+        [
+          "e09",
+          "执行与等待"
+        ],
+        [
+          "e12",
+          "局部执行收益"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Thornton 获奖依据",
+          "https://www.computer.org/profiles/james-thornton/",
+          "1994 · Scoreboard 与向量系统"
+        ]
+      ],
+      "challenge": {
+        "lens": "就绪工作与资源冲突",
+        "skills": [
+          "A3",
+          "A6",
+          "A9"
+        ],
+        "variables": "r_ready：独立就绪操作/s；r_unit：功能单元操作/s；r_issue：发射上限。",
+        "model": "吞吐上界 min(r_ready,r_unit,r_issue)，依赖与协调另查。",
+        "crossover": "增加单元只在 r_unit 绑定且就绪工作充足时可能有效。",
+        "counterexample": "等待来自操作数未就绪，增加单元无法消除依赖。",
+        "transfer": "迁移到 GPU warp 或任务调度。",
+        "question": "工作已就绪还是只是排在前面？",
+        "validation": "按依赖和功能单元归因停顿，扫描窗口及资源配置。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "edward-davidson",
+      "name": "Edward S. Davidson",
+      "awardYear": 2000,
+      "award": "Eckert–Mauchly Award · 2000",
+      "field": "流水线、性能模型与应用评估",
+      "core": "让性能模型解释工作如何流过机器，并由实现检验。",
+      "evidence": "IEEE 人物资料记录流水线、并行处理、性能建模与应用调优；获奖依据同时涵盖设计、实现和评价。",
+      "habits": [
+        "明确工作与资源的对应。",
+        "分解流水线的服务和等待。",
+        "让模型产生可检验预测。",
+        "将应用调优与机器评价联动。"
+      ],
+      "questions": [
+        "模型解释哪个停顿？",
+        "阶段速率是否匹配？",
+        "真实应用是否支持模型结论？"
+      ],
+      "boundary": "模型依赖工作负载及边界；平均吞吐可能隐藏阶段变化与尾部等待。",
+      "diagnostic": "用阶段服务时间与停顿归因校准模型，比较代表性应用。",
+      "notes": [
+        [
+          "e09",
+          "资源预算与排队"
+        ],
+        [
+          "e12",
+          "局部与整体"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Davidson 研究与获奖资料",
+          "https://www.computer.org/profiles/edward-davidson/",
+          "2000 · 流水线与性能评价"
+        ]
+      ],
+      "challenge": {
+        "lens": "流水线模型校准",
+        "skills": [
+          "A2",
+          "A3",
+          "A9"
+        ],
+        "variables": "t_i：各阶段秒/任务；k_i：并行服务资源数；N：任务数。",
+        "model": "稳态吞吐上界 min_i(k_i/t_i)；首任务延迟与排队另算。",
+        "crossover": "加速阶段 i 只有在它绑定稳态吞吐或暴露关键路径时有益。",
+        "counterexample": "阶段均值拟合良好，突发与共享资源使模型失效。",
+        "transfer": "迁移到预处理—推理—后处理流水线。",
+        "question": "模型解释哪个停顿？",
+        "validation": "用阶段服务时间与停顿归因校准模型，比较代表性应用。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu"
+      ]
+    },
+    {
+      "id": "fred-brooks",
+      "name": "Frederick P. Brooks, Jr.",
+      "awardYear": 2004,
+      "award": "Eckert–Mauchly Award · 2004",
+      "field": "计算机家族、接口与概念一致性",
+      "core": "让一个清晰的体系结构契约支撑多种实现。",
+      "evidence": "官方获奖说明认可计算机家族、指令集原则和 System/360 架构贡献。System/360 是多人协作成果；本库聚焦软件可见行为与实现差异的分离。",
+      "habits": [
+        "先定义软件可见契约。",
+        "保持接口中的概念一致性。",
+        "允许不同实现共享同一语义。",
+        "同时核算组织和兼容成本。"
+      ],
+      "questions": [
+        "哪些差异应该隐藏在实现中？",
+        "接口是否存在相互矛盾的例外？",
+        "家族演进怎样保持软件价值？"
+      ],
+      "boundary": "一致性不等于单一实现或拒绝变化；兼容负担、扩展需求与验证仍需取舍。",
+      "diagnostic": "比较不同实现对同一程序的语义与性能，并审查接口例外和迁移成本。",
+      "notes": [
+        [
+          "e04",
+          "分区与产品组合"
+        ],
+        [
+          "e13",
+          "状态表示与迁移"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：历届获奖说明",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "2004 · 计算机家族与指令集原则"
+        ],
+        [
+          "ACM：Brooks 架构贡献说明",
+          "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "1999 · 架构、系统与软件工程"
+        ]
+      ],
+      "challenge": {
+        "lens": "家族契约与例外成本",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "variables": "K_m：迁移投入；K_v：兼容验证；N：使用量；s：每次净收益。",
+        "model": "同契约实现先验证行为等价，再检查 Ns>K_m+K_v。",
+        "crossover": "稳定接口收益必须覆盖例外和长期兼容成本。",
+        "counterexample": "名义兼容仍存在行为例外，软件需逐机型分叉。",
+        "transfer": "迁移到 ISA 扩展或多代 accelerator 接口。",
+        "question": "哪些差异应该隐藏在实现中？",
+        "validation": "比较不同实现对同一程序的语义与性能，并审查接口例外和迁移成本。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    },
+    {
+      "id": "charles-thacker",
+      "name": "Charles P. (Chuck) Thacker",
+      "awardYear": 2017,
+      "award": "Eckert–Mauchly Award · 2017",
+      "field": "交互式计算、网络与完整系统",
+      "core": "通过完整系统原型检验计算机能够带来的使用方式。",
+      "evidence": "ACM 的 2017 获奖公告回顾其网络与分布式计算贡献、Alto、Ethernet 团队工作及平板计算机设计。阅读重心是将处理、交互、软件和连接组织成可使用的系统。",
+      "habits": [
+        "从使用闭环确定系统边界。",
+        "让硬件、软件与网络一起工作。",
+        "用原型揭示接口与操作问题。",
+        "评价完整任务而非单个部件。"
+      ],
+      "questions": [
+        "系统是否支持完整使用过程？",
+        "哪一个接口破坏了体验？",
+        "原型揭示了哪些纸面模型遗漏？"
+      ],
+      "boundary": "原型成功不等于规模化交付成功；成本、可靠性和维护必须进一步验证。",
+      "diagnostic": "完成代表性端到端任务，测量响应、失败恢复和用户操作负担。",
+      "notes": [
+        [
+          "e14",
+          "服务输出与比较单位"
+        ],
+        [
+          "e06",
+          "交互与会话组织"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM：2017 获奖公告",
+          "https://www.acm.org/articles/membernet/2017/membernet-06292017",
+          "Alto、网络与分布式计算；团队贡献"
+        ]
+      ],
+      "challenge": {
+        "lens": "完整系统原型",
+        "skills": [
+          "A3",
+          "A9",
+          "A10"
+        ],
+        "variables": "G：成功任务/小时；C：同周期完整成本；R：恢复时间。",
+        "model": "比较 C/G，并单列响应和恢复约束；组件分数不是 G。",
+        "crossover": "原型在完整任务上提高 G 的比例超过成本增幅。",
+        "counterexample": "组件演示很快，接口、恢复或用户流程无法闭环。",
+        "transfer": "迁移到 AI 工作流与端到端 serving 原型。",
+        "question": "系统是否支持完整使用过程？",
+        "validation": "完成代表性端到端任务，测量响应、失败恢复和用户操作负担。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    },
+    {
+      "id": "maurice-wilkes",
+      "name": "Maurice V. Wilkes",
+      "awardYear": 1980,
+      "award": "Eckert–Mauchly Award · 1980",
+      "field": "微程序与可构造的控制",
+      "core": "把复杂控制拆成可组织、可检查的实现层。",
+      "evidence": "IEEE 的历史资料记录其微程序思想，以及与 Wheeler、Gill 合作的子程序体系。阅读重心是将接口行为与内部实现层次分开。",
+      "habits": [
+        "区分外部行为与内部控制。",
+        "用层次组织复杂实现。",
+        "复用可验证的基本单元。",
+        "把编程工具纳入机器可用性。"
+      ],
+      "questions": [
+        "什么应成为稳定接口？",
+        "复杂控制能否分解？",
+        "实现层变化能否保持语义？"
+      ],
+      "boundary": "增加实现层也可能增加延迟；微程序并非所有控制路径的最优方案。",
+      "diagnostic": "比较不同控制实现的关键路径、状态规模及验证范围。",
+      "notes": [
+        [
+          "e12",
+          "执行机制与服务性能"
+        ],
+        [
+          "e13",
+          "状态与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Wilkes 历史资料",
+          "https://history.computer.org/wilkes.html",
+          "微程序与合作编程体系"
+        ]
+      ],
+      "challenge": {
+        "lens": "控制实现分层",
+        "skills": [
+          "A2",
+          "A8",
+          "A10"
+        ],
+        "variables": "K：实现和验证投入；N：交付量；Δc：每产品实现净成本差。",
+        "model": "比较控制方案的 K+N c，时序与语义为独立门槛。",
+        "crossover": "若替代方案固定投入增加 ΔK，需 NΔc>ΔK 才摊销。",
+        "counterexample": "灵活控制层增加关键路径，无法满足目标频率。",
+        "transfer": "迁移到固件与硬件策略边界。",
+        "question": "什么应成为稳定接口？",
+        "validation": "比较不同控制实现的关键路径、状态规模及验证范围。"
+      },
+      "domain": "foundations",
+      "relatedDomains": []
+    },
+    {
+      "id": "gordon-bell",
+      "name": "C. Gordon Bell",
+      "awardYear": 1982,
+      "award": "Eckert–Mauchly Award · 1982",
+      "field": "计算机类别、系统组织与经济边界",
+      "core": "技术改变成本边界时，重新定义机器的形态和用途。",
+      "evidence": "本人出版目录讨论计算机类别形成、系统结构及可扩展计算。本条目从这些公开工作提炼技术条件与使用经济性共同塑造系统的视角。",
+      "habits": [
+        "观察价格、规模与用途的组合。",
+        "区分类别变化与局部升级。",
+        "让系统形态适应新技术条件。",
+        "追踪软硬件与用户需求共同演进。"
+      ],
+      "questions": [
+        "新的成本边界允许什么机器？",
+        "旧产品类别是否仍适合新用途？",
+        "哪些系统接口限制形态改变？"
+      ],
+      "boundary": "类别演化是分析框架，不能当作精确的市场时间表；新技术不保证新产品成功。",
+      "diagnostic": "固定任务，比较不同系统形态的成本、可用性与部署约束。",
+      "notes": [
+        [
+          "e05",
+          "设施电力约束"
+        ],
+        [
+          "e14",
+          "服务的比较单位"
+        ]
+      ],
+      "sources": [
+        [
+          "Gordon Bell：本人出版目录",
+          "https://gordonbell.azurewebsites.net/Pubs.htm?from=https%3A%2F%2Fresearch.microsoft.com%2F~gbell%2FPubs.htm&type=path",
+          "系统结构与计算机类别论文入口"
+        ],
+        [
+          "IEEE：人物与奖项资料",
+          "https://www.computer.org/profiles/gordon-bell",
+          "历届架构贡献"
+        ]
+      ],
+      "challenge": {
+        "lens": "成本边界与机器形态",
+        "skills": [
+          "A1",
+          "A7",
+          "A10"
+        ],
+        "variables": "K：固定平台成本；v：每任务变动成本；N：任务量。",
+        "model": "同服务要求下 C_A=K_A+Nv_A，C_B=K_B+Nv_B。",
+        "crossover": "N(v_A-v_B)>K_B-K_A；需求和部署约束改变边界。",
+        "counterexample": "新形态单位成本低但使用量不足，固定投入无法摊销。",
+        "transfer": "迁移到专用推理服务与通用云实例。",
+        "question": "新的成本边界允许什么机器？",
+        "validation": "固定任务，比较不同系统形态的成本、可用性与部署约束。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "datacenter"
+      ]
+    }
+  ]
+}

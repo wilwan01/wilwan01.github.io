@@ -680,21 +680,18 @@
       "awardYear": 1992,
       "award": "Eckert–Mauchly Award · 1992",
       "field": "处理器分类、算术与并行组织",
-      "core": "先说清并行发生在哪里，再比较机器组织。",
-      "evidence": "IEEE 获奖说明认可处理器组织与分类、算术及性能评估；官方回顾记录其流水线与并行处理器设计著作。本条目以分类服务于分析为重心。",
+      "core": "建立按指令流与数据流理解计算机组织的框架，使并行结构与资源利用可以系统比较。",
+      "evidence": "SISD、SIMD、MISD、MIMD 按指令流和数据流组织区分。论文进一步采用请求与服务资源模型，分析依赖及通信互斥如何降低利用率；分类是分析起点，不是性能排名。",
       "habits": [
-        "区分指令流与数据流。",
-        "明确分类的观察层次。",
-        "把运算与组织分开比较。",
-        "用分类提出问题而非给出结论。"
+        "先明确观察层次，再标注流的组织。",
+        "把逻辑并行性与物理资源争用分开。"
       ],
       "questions": [
-        "并行发生在指令、数据还是任务层？",
-        "同一系统是否包含多种组织？",
-        "分类掩盖了哪些存储约束？"
+        "新增处理单元面对的是独立工作，还是同一共享资源的等待？",
+        "当前瓶颈是否属于模型排除的 I/O？"
       ],
-      "boundary": "SIMD、MIMD 等类别不预测具体性能；现代系统可在不同层次同时属于不同组织。",
-      "diagnostic": "标注各层执行与数据流，再测量实际并行效率和供给瓶颈。",
+      "boundary": "原文明确不处理 I/O 瓶颈，并简化指令时长。嵌套和排队模型有特定假设，不能把某种次线性增长当成所有并行机器的定律。",
+      "diagnostic": "固定工作量，测各资源服务需求与等待时间；按核心、节点和系统分别分类，检查通信与 I/O 是否支配总时间。",
       "notes": [
         [
           "e09",
@@ -710,25 +707,82 @@
           "IEEE：Flynn 的研究与著作回顾",
           "https://www.computer.org/publications/tech-news/insider-membership-news/in-memoriam-mike-flynn",
           "2026 · 组织、分类与并行设计"
+        ],
+        [
+          "Michael J. Flynn — Eckert–Mauchly citation",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "1992 · 官方获奖理由 · 对应年份 recipient citation"
+        ],
+        [
+          "Some Computer Organizations and Their Effectiveness",
+          "https://users.cs.utah.edu/~hari/teaching/paralg/Flynn72.pdf",
+          "1972-09 · 论文全文 · IEEE Transactions on Computers C-21(9), pp.948–960；Introduction、分类及资源模型"
         ]
       ],
       "challenge": {
-        "lens": "并行组织与供给",
+        "lens": "流的组织与资源饱和",
         "skills": [
+          "A1",
           "A3",
-          "A6",
-          "A9"
+          "A8"
         ],
-        "variables": "W：操作数；P：执行资源；r：单资源操作/s；B：字节/s；b：字节/操作。",
-        "model": "理想吞吐上界 min(P r,B/b)，另查依赖与控制。",
-        "crossover": "增加 P 仅在计算供给绑定且有独立工作时可能有效。",
-        "counterexample": "SIMD 遇到分歧或不合并访问，资源并行无法兑现。",
-        "transfer": "迁移到线程并行、向量与 GPU 的选择。",
-        "question": "并行发生在指令、数据还是任务层？",
-        "validation": "标注各层执行与数据流，再测量实际并行效率和供给瓶颈。"
+        "variables": "W：工作量；C：有效计算服务率；B：共享资源可服务率；D：每单位工作对共享资源的需求。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：吞吐率上界 ≤ min(C, B/D)；独立工作充足且资源需求可度量时适用。",
+        "crossover": "增加计算单元只有在 C 为限制项时直接提高上界。",
+        "counterexample": "更多独立指令仍可能堵在同一内存或网络接口。",
+        "transfer": "比较 GPU、分布式执行时，分别建立对应层次的资源需求。",
+        "question": "新增处理单元面对的是独立工作，还是同一共享资源的等待？",
+        "validation": "固定工作量，测各资源服务需求与等待时间；按核心、节点和系统分别分类，检查通信与 I/O 是否支配总时间。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "官方理由认可处理器组织与分类、计算机算术和性能评估的基础贡献。",
+        "1972 年论文把组织分类与依赖、分支及共享资源竞争联系起来，说明更多并行单元不保证等比例加速。"
+      ],
+      "background": "论文由 Stanford 的 Michael J. Flynn 署名；本页聚焦其分类和效能分析，不以一篇论文替代全部算术研究。",
+      "argument": "SISD、SIMD、MISD、MIMD 按指令流和数据流组织区分。论文进一步采用请求与服务资源模型，分析依赖及通信互斥如何降低利用率；分类是分析起点，不是性能排名。",
+      "sourceAudit": [
+        {
+          "title": "Michael J. Flynn — Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1992",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Some Computer Organizations and Their Effectiveness",
+          "authors": "Michael J. Flynn",
+          "date": "1972-09",
+          "url": "https://users.cs.utah.edu/~hari/teaching/paralg/Flynn72.pdf",
+          "locator": "IEEE Transactions on Computers C-21(9), pp.948–960；Introduction、分类及资源模型",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "7a7b318f56fc5b9f708504a91b477123a9c30aacbd167e69b2597f6960c93bb7"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1992,
+          "citationZh": "在处理器组织与分类、计算机算术和性能评估方面作出开创性贡献。",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "edward-davidson",
@@ -736,21 +790,18 @@
       "awardYear": 2000,
       "award": "Eckert–Mauchly Award · 2000",
       "field": "流水线、性能模型与应用评估",
-      "core": "让性能模型解释工作如何流过机器，并由实现检验。",
-      "evidence": "IEEE 人物资料记录流水线、并行处理、性能建模与应用调优；获奖依据同时涵盖设计、实现和评价。",
+      "core": "将高性能流水线与多处理器的设计、调度和性能评估连接起来，使资源占用可被系统分析。",
+      "evidence": "预约表描述一个任务在哪些时刻占用哪些阶段；冲突向量排除会相撞的启动间隔，状态图进一步寻找高吞吐循环。访谈也强调反馈路径的选择会改变可调度性。",
       "habits": [
-        "明确工作与资源的对应。",
-        "分解流水线的服务和等待。",
-        "让模型产生可检验预测。",
-        "将应用调优与机器评价联动。"
+        "从资源占用图推导允许的启动间隔。",
+        "把启动、排空与短循环纳入总成本。"
       ],
       "questions": [
-        "模型解释哪个停顿？",
-        "阶段速率是否匹配？",
-        "真实应用是否支持模型结论？"
+        "负载有足够多次迭代来兑现稳态吞吐吗？",
+        "复杂反馈路径带来的控制成本能否由资源复用抵偿？"
       ],
-      "boundary": "模型依赖工作负载及边界；平均吞吐可能隐藏阶段变化与尾部等待。",
-      "diagnostic": "用阶段服务时间与停顿归因校准模型，比较代表性应用。",
+      "boundary": "本人回顾指出，很多硬件选择简单直通流水线，未采用复杂控制；软件循环太短时也可能到不了稳态。最优稳态间隔不等于最短整程序时间。",
+      "diagnostic": "同时报告启动间隔、填充/排空开销和循环长度分布；在长循环与短循环上分别比较总时间。",
       "notes": [
         [
           "e09",
@@ -766,27 +817,80 @@
           "IEEE：Davidson 研究与获奖资料",
           "https://www.computer.org/profiles/edward-davidson/",
           "2000 · 流水线与性能评价"
+        ],
+        [
+          "Oral History of Edward S. Davidson",
+          "https://www.sigmicro.org/media/oralhistories/davidson.pdf",
+          "2009-06-17/18、2009-09-29；2011-03-17 整理 · 本人访谈文字稿 · pp.82–85 预约表、合作归属与硬件采用；pp.120–121 短循环限制"
         ]
       ],
       "challenge": {
-        "lens": "流水线模型校准",
+        "lens": "稳态调度与短任务边界",
         "skills": [
+          "A1",
           "A2",
           "A3",
-          "A9"
+          "A8"
         ],
-        "variables": "t_i：各阶段秒/任务；k_i：并行服务资源数；N：任务数。",
-        "model": "稳态吞吐上界 min_i(k_i/t_i)；首任务延迟与排队另算。",
-        "crossover": "加速阶段 i 只有在它绑定稳态吞吐或暴露关键路径时有益。",
-        "counterexample": "阶段均值拟合良好，突发与共享资源使模型失效。",
-        "transfer": "迁移到预处理—推理—后处理流水线。",
-        "question": "模型解释哪个停顿？",
-        "validation": "用阶段服务时间与停顿归因校准模型，比较代表性应用。"
+        "variables": "N：迭代数；I：稳态启动间隔；P：填充与排空等固定开销。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T(N)≈P+N×I；仅适用于稳态模型能描述该循环且无额外数据相关停顿时。",
+        "crossover": "方案 2 的较小 I 须补偿其新增 P，才能在给定 N 上获胜。",
+        "counterexample": "仅执行几次的循环可能在进入稳态前已结束。",
+        "transfer": "用于软件流水、批处理或加速器时，保留实际任务长度分布。",
+        "question": "负载有足够多次迭代来兑现稳态吞吐吗？",
+        "validation": "同时报告启动间隔、填充/排空开销和循环长度分布；在长循环与短循环上分别比较总时间。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "cpu"
-      ]
+      ],
+      "contributions": [
+        "官方理由认可高性能流水线及多处理器的设计、实现和性能评估贡献。",
+        "与学生发展预约表、冲突向量和状态图方法，寻找流水线无冲突的启动序列与循环调度。"
+      ],
+      "background": "2009 年本人访谈明确指出，流水线理论由他与 Len Shar 等学生共同推进；“我的理论”不应被理解为个人独作。这里采用 2011 整理版访谈正文。",
+      "argument": "预约表描述一个任务在哪些时刻占用哪些阶段；冲突向量排除会相撞的启动间隔，状态图进一步寻找高吞吐循环。访谈也强调反馈路径的选择会改变可调度性。",
+      "sourceAudit": [
+        {
+          "title": "Edward Davidson — 2000 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2000",
+          "url": "https://www.computer.org/profiles/edward-davidson/",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Oral History of Edward S. Davidson",
+          "authors": "Edward S. Davidson；采访 Paul N. Edwards",
+          "date": "2009-06-17/18、2009-09-29；2011-03-17 整理",
+          "url": "https://www.sigmicro.org/media/oralhistories/davidson.pdf",
+          "locator": "pp.82–85 预约表、合作归属与硬件采用；pp.120–121 短循环限制",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已读取上述访谈正文；未收听录音",
+          "evidenceStrength": "强",
+          "role": "本人对机制与实际边界的回顾",
+          "retrievedSha256": "a9c92754255b779740c8aa597a680240ce5ab84f41db31cdde752f94a96d3f6e"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2000,
+          "citationZh": "为高性能流水线和多处理器系统的设计、实现及性能评估作出开创性贡献。",
+          "url": "https://www.computer.org/profiles/edward-davidson/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "robert-barton",
@@ -855,21 +959,18 @@
       "awardYear": 1980,
       "award": "Eckert–Mauchly Award · 1980",
       "field": "微程序与可构造的控制",
-      "core": "把复杂控制拆成可组织、可检查的实现层。",
-      "evidence": "IEEE 的历史资料记录其微程序思想，以及与 Wheeler、Gill 合作的子程序体系。阅读重心是将接口行为与内部实现层次分开。",
+      "core": "建成 EDSAC 并推动程序库实践，又以微程序把指令控制转成可系统设计的操作序列。",
+      "evidence": "矩阵 A 产生寄存器传送等控制脉冲，矩阵 B 选择后继微操作；机器状态还能决定条件分支。将控制写成序列后，可更清楚地权衡结构规则性与设备数量。",
       "habits": [
-        "区分外部行为与内部控制。",
-        "用层次组织复杂实现。",
-        "复用可验证的基本单元。",
-        "把编程工具纳入机器可用性。"
+        "让控制步骤及后继关系显式可查。",
+        "逐项比较规则结构的工程收益与器件成本。"
       ],
       "questions": [
-        "什么应成为稳定接口？",
-        "复杂控制能否分解？",
-        "实现层变化能否保持语义？"
+        "控制复杂度减少是否足以补偿控制存储和执行步骤？",
+        "要求修改的是控制序列，还是数据通路本身？"
       ],
-      "boundary": "增加实现层也可能增加延迟；微程序并非所有控制路径的最优方案。",
-      "diagnostic": "比较不同控制实现的关键路径、状态规模及验证范围。",
+      "boundary": "原设计的固定矩阵改动需要重新布线；不能误写成已经实现现代可在线更新微码。作者讨论了可擦写控制存储的可能性，同时质疑当时硬件代价。",
+      "diagnostic": "列出每条指令的微操作路径、控制存储和关键时序；分别验证控制序列变更及其数据通路依赖。",
       "notes": [
         [
           "e12",
@@ -885,25 +986,81 @@
           "IEEE：Wilkes 历史资料",
           "https://history.computer.org/wilkes.html",
           "微程序与合作编程体系"
+        ],
+        [
+          "ACM A.M. Turing Award — Fact Sheet",
+          "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "1967（获奖年份） · 官方获奖理由 · 历届表 1967 Maurice Wilkes"
+        ],
+        [
+          "The Best Way to Design an Automatic Calculating Machine",
+          "https://www.cs.princeton.edu/courses/archive/fall10/cos375/BestWay.pdf",
+          "1951（会议文章；所读为历史重印扫描） · 论文全文 · 重印 pp.182–184；PDF pp.2–4，尤其 Fig.12 与末段"
         ]
       ],
       "challenge": {
-        "lens": "控制实现分层",
+        "lens": "控制规则性与实现成本",
         "skills": [
           "A2",
-          "A8",
-          "A10"
+          "A5",
+          "A6"
         ],
-        "variables": "K：实现和验证投入；N：交付量；Δc：每产品实现净成本差。",
-        "model": "比较控制方案的 K+N c，时序与语义为独立门槛。",
-        "crossover": "若替代方案固定投入增加 ΔK，需 NΔc>ΔK 才摊销。",
-        "counterexample": "灵活控制层增加关键路径，无法满足目标频率。",
-        "transfer": "迁移到固件与硬件策略边界。",
-        "question": "什么应成为稳定接口？",
-        "validation": "比较不同控制实现的关键路径、状态规模及验证范围。"
+        "variables": "L：微操作路径长度；τ：控制步时间；H：控制硬件成本。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：单条指令控制时间约 L×τ；需与同等语义的实现及验证成本 H 一起比较。",
+        "crossover": "规则化控制收益须覆盖额外控制存储、路径长度和关键时序成本。",
+        "counterexample": "重写控制序列无法凭空增加数据通路没有的运算能力。",
+        "transfer": "迁移到固件状态机时区分可编程控制和可重构硬件。",
+        "question": "控制复杂度减少是否足以补偿控制存储和执行步骤？",
+        "validation": "列出每条指令的微操作路径、控制存储和关键时序；分别验证控制序列变更及其数据通路依赖。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "1967 年图灵奖理由认可 EDSAC 的设计建造，以及与 Wheeler、Gill 合著作品对程序库的推动。",
+        "1951 年本人论文提出用控制矩阵产生微操作与后继选择，使复杂控制不必完全依赖临时拼接的逻辑。"
+      ],
+      "background": "EDSAC 与程序库是合作工程；官方理由明确列出 Wheeler、Gill。微程序机制取自 Wilkes 本人的 1951 年会议文章，与奖项引用的程序库贡献分别说明。",
+      "argument": "矩阵 A 产生寄存器传送等控制脉冲，矩阵 B 选择后继微操作；机器状态还能决定条件分支。将控制写成序列后，可更清楚地权衡结构规则性与设备数量。",
+      "sourceAudit": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1967（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届表 1967 Maurice Wilkes",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引核验完整 citation；直接 PDF 获取受限",
+          "evidenceStrength": "强",
+          "role": "EDSAC、程序库及共同作者定位"
+        },
+        {
+          "title": "The Best Way to Design an Automatic Calculating Machine",
+          "authors": "M. V. Wilkes",
+          "date": "1951（会议文章；所读为历史重印扫描）",
+          "url": "https://www.cs.princeton.edu/courses/archive/fall10/cos375/BestWay.pdf",
+          "locator": "重印 pp.182–184；PDF pp.2–4，尤其 Fig.12 与末段",
+          "type": "论文全文",
+          "contentStatus": "取得扫描全文并对所列三页进行 OCR 阅读，核验矩阵 A/B 与可擦写存储讨论",
+          "evidenceStrength": "强",
+          "role": "微程序机制、设计动机与实现边界"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 1967,
+          "citationZh": "认可 EDSAC 的设计与建造，以及与 Wheeler、Gill 合著作品对程序库的引入。",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "gordon-bell",
@@ -911,21 +1068,18 @@
       "awardYear": 1982,
       "award": "Eckert–Mauchly Award · 1982",
       "field": "计算机类别、系统组织与经济边界",
-      "core": "技术改变成本边界时，重新定义机器的形态和用途。",
-      "evidence": "本人出版目录讨论计算机类别形成、系统结构及可扩展计算。本条目从这些公开工作提炼技术条件与使用经济性共同塑造系统的视角。",
+      "core": "把高性能计算机从设计带到可用产品，并以价格、软件环境与接口共同解释计算机类别的演化。",
+      "evidence": "器件进步可提高既有价位的能力，也可能打开更低价位的产品类别；但新平台还需合适的软件环境、网络与人机接口。文章讨论其他技术也必须以可配合的速度演化。",
       "habits": [
-        "观察价格、规模与用途的组合。",
-        "区分类别变化与局部升级。",
-        "让系统形态适应新技术条件。",
-        "追踪软硬件与用户需求共同演进。"
+        "把性能、价格与实际使用方式共同比较。",
+        "区分既有类别升级和新类别形成。"
       ],
       "questions": [
-        "新的成本边界允许什么机器？",
-        "旧产品类别是否仍适合新用途？",
-        "哪些系统接口限制形态改变？"
+        "这只是同一用途的便宜版本，还是带来了新的使用方式和软件环境？",
+        "器件突破之外，接口与生态是否已经能支撑实际采用？"
       ],
-      "boundary": "类别演化是分析框架，不能当作精确的市场时间表；新技术不保证新产品成功。",
-      "diagnostic": "固定任务，比较不同系统形态的成本、可用性与部署约束。",
+      "boundary": "约十年的类别演化节律是历史观察，不是物理定律或上市时间保证。成本下降若没有新的使用价值与生态，不足以证明新类别成立。",
+      "diagnostic": "列出目标价位、完整任务、编程环境、交互接口和采用障碍；与既有类别升级方案对照，不仅比较峰值性能。",
       "notes": [
         [
           "e05",
@@ -946,27 +1100,79 @@
           "IEEE：人物与奖项资料",
           "https://www.computer.org/profiles/gordon-bell",
           "历届架构贡献"
+        ],
+        [
+          "Bell’s Law for the Birth and Death of Computer Classes: A Theory of the Computer’s Evolution",
+          "https://gordonbell.azurewebsites.net/cacm%20bell%27s%20law%20vol%2051.%202008-january.pdf",
+          "2008-01 · 论文全文 · Communications of the ACM 51(1), pp.86–94；类别定义、技术演化与价格讨论"
         ]
       ],
       "challenge": {
-        "lens": "成本边界与机器形态",
+        "lens": "计算机类别与采用条件",
         "skills": [
           "A1",
-          "A7",
-          "A10"
+          "A6",
+          "A8"
         ],
-        "variables": "K：固定平台成本；v：每任务变动成本；N：任务量。",
-        "model": "同服务要求下 C_A=K_A+Nv_A，C_B=K_B+Nv_B。",
-        "crossover": "N(v_A-v_B)>K_B-K_A；需求和部署约束改变边界。",
-        "counterexample": "新形态单位成本低但使用量不足，固定投入无法摊销。",
-        "transfer": "迁移到专用推理服务与通用云实例。",
-        "question": "新的成本边界允许什么机器？",
-        "validation": "固定任务，比较不同系统形态的成本、可用性与部署约束。"
+        "variables": "P：完整系统价格；V：目标用户获得的价值；E：生态可用性；I：接口适配。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：新类别假说需同时满足可负担 P、可辨认 V、可用 E 和合适 I；这是判断框架，不是作者的定量公式。",
+        "crossover": "技术降价与新的可用场景共同成立时，才有理由研究类别转变。",
+        "counterexample": "处理器便宜很多，但软件和交互方式仍不适合新用户。",
+        "transfer": "用于 AI 设备或边缘平台时检查完整产品与采用路径。",
+        "question": "这只是同一用途的便宜版本，还是带来了新的使用方式和软件环境？",
+        "validation": "列出目标价位、完整任务、编程环境、交互接口和采用障碍；与既有类别升级方案对照，不仅比较峰值性能。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "datacenter"
-      ]
+      ],
+      "contributions": [
+        "2014 年 Seymour Cray 奖理由特别认可 PDP-6 与 VAX-11/780 等系统的设计和产品化贡献。",
+        "2008 年 Bell’s Law 文章把新计算机类别理解为技术、价格区间、编程环境与使用方式共同变化的结果。"
+      ],
+      "background": "官方页面核验其 1982 年 Eckert–Mauchly 获奖身份，但未给出理由；此处采用有完整理由的 2014 年奖项。具体系统是团队成果，Bell’s Law 为本人署名解释框架。",
+      "argument": "器件进步可提高既有价位的能力，也可能打开更低价位的产品类别；但新平台还需合适的软件环境、网络与人机接口。文章讨论其他技术也必须以可配合的速度演化。",
+      "sourceAudit": [
+        {
+          "title": "Gordon Bell — Seymour Cray Computer Engineering Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2014",
+          "url": "https://www.computer.org/profiles/gordon-bell",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Bell’s Law for the Birth and Death of Computer Classes: A Theory of the Computer’s Evolution",
+          "authors": "Gordon Bell",
+          "date": "2008-01",
+          "url": "https://gordonbell.azurewebsites.net/cacm%20bell%27s%20law%20vol%2051.%202008-january.pdf",
+          "locator": "Communications of the ACM 51(1), pp.86–94；类别定义、技术演化与价格讨论",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "cdf39e4a106e0124e356605cc79b4329452f9968cefbb730f549f0e321a933cd"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "IEEE Computer Society Seymour Cray Computer Engineering Award",
+          "year": 2014,
+          "citationZh": "在设计并推动多种重要计算机系统进入市场方面作出卓越贡献，尤其是 PDP-6 和 VAX-11/780。",
+          "url": "https://www.computer.org/profiles/gordon-bell",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "fred-brooks",
@@ -974,21 +1180,18 @@
       "awardYear": 2004,
       "award": "Eckert–Mauchly Award · 2004",
       "field": "计算机家族、接口与概念一致性",
-      "core": "让一个清晰的体系结构契约支撑多种实现。",
-      "evidence": "官方获奖说明认可计算机家族、指令集原则和 System/360 架构贡献。System/360 是多人协作成果；本库聚焦软件可见行为与实现差异的分离。",
+      "core": "推动计算机体系结构与具体实现分离，并把兼容的计算机家族落实为 IBM System/360 的设计主线。",
+      "evidence": "架构规定概念结构与功能行为，实现可以选择不同的数据通路、控制和器件。论文把跨机型程序兼容、通用 I/O 与长期扩展共同作为目标，并强调完整系统产出。",
       "habits": [
-        "先定义软件可见契约。",
-        "保持接口中的概念一致性。",
-        "允许不同实现共享同一语义。",
-        "同时核算组织和兼容成本。"
+        "把程序员可见契约与实现自由度分开。",
+        "用客户迁移和完整任务产出检验架构价值。"
       ],
       "questions": [
-        "哪些差异应该隐藏在实现中？",
-        "接口是否存在相互矛盾的例外？",
-        "家族演进怎样保持软件价值？"
+        "哪些行为必须跨机型保持，哪些成本应留给具体实现优化？",
+        "兼容承诺是否同时覆盖 I/O、异常和系统软件？"
       ],
-      "boundary": "一致性不等于单一实现或拒绝变化；兼容负担、扩展需求与验证仍需取舍。",
-      "diagnostic": "比较不同实现对同一程序的语义与性能，并审查接口例外和迁移成本。",
+      "boundary": "这是新家族内部兼容的设计，不意味着与所有旧产品兼容；原文允许为新目标打破旧兼容。统一契约也必须容纳成本、技术与应用差异。",
+      "diagnostic": "建立跨实现的契约测试，覆盖数据格式、指令、异常与 I/O；另计迁移成本、每项任务时间和扩展余地。",
       "notes": [
         [
           "e04",
@@ -1009,25 +1212,82 @@
           "ACM：Brooks 架构贡献说明",
           "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
           "1999 · 架构、系统与软件工程"
+        ],
+        [
+          "Frederick P. Brooks, Jr. — 2004 Eckert–Mauchly citation",
+          "https://www.computer.org/profiles/frederick-brooks",
+          "2004 · 官方获奖理由 · 对应年份 recipient citation"
+        ],
+        [
+          "Architecture of the IBM System/360",
+          "https://www.researchgate.net/publication/220498837_Architecture_of_the_IBM_System360",
+          "1964-04（所读取扫描本原刊日期；页面另列 2000 重印元数据） · 论文全文 · IBM Journal of Research and Development 8(2), pp.87–101；Introduction、Design objectives、Advanced concepts、Open-ended design"
         ]
       ],
       "challenge": {
-        "lens": "家族契约与例外成本",
+        "lens": "家族兼容与实现自由",
         "skills": [
           "A1",
-          "A8",
-          "A10"
+          "A6",
+          "A8"
         ],
-        "variables": "K_m：迁移投入；K_v：兼容验证；N：使用量；s：每次净收益。",
-        "model": "同契约实现先验证行为等价，再检查 Ns>K_m+K_v。",
-        "crossover": "稳定接口收益必须覆盖例外和长期兼容成本。",
-        "counterexample": "名义兼容仍存在行为例外，软件需逐机型分叉。",
-        "transfer": "迁移到 ISA 扩展或多代 accelerator 接口。",
-        "question": "哪些差异应该隐藏在实现中？",
-        "validation": "比较不同实现对同一程序的语义与性能，并审查接口例外和迁移成本。"
+        "variables": "M：避免的迁移成本；C：兼容实现成本；V：长期软件复用价值；比较同一规划期。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：兼容方案的净价值≈M+V−C；各项需按场景估计，不能用 ISA 相同替代生态验证。",
+        "crossover": "只有关键语义稳定且兼容成本可控，家族扩展才保留复用价值。",
+        "counterexample": "指令集相同，但 I/O 和系统接口差异仍可能迫使软件重写。",
+        "transfer": "用于平台演进时把 ABI、设备接口和运维契约一并列出。",
+        "question": "哪些行为必须跨机型保持，哪些成本应留给具体实现优化？",
+        "validation": "建立跨实现的契约测试，覆盖数据格式、指令、异常与 I/O；另计迁移成本、每项任务时间和扩展余地。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "官方理由认可体系结构定义、计算机家族、指令集设计和 System/360 的贡献。",
+        "与 Amdahl、Blaauw 合著的论文把程序员可见行为作为稳定契约，让不同规模机器共享程序设计基础。"
+      ],
+      "background": "1964 年 System/360 论文由 Gene M. Amdahl、Gerrit A. Blaauw、Frederick P. Brooks, Jr. 合著；家族产品、硬件和软件由 IBM 团队实现。",
+      "argument": "架构规定概念结构与功能行为，实现可以选择不同的数据通路、控制和器件。论文把跨机型程序兼容、通用 I/O 与长期扩展共同作为目标，并强调完整系统产出。",
+      "sourceAudit": [
+        {
+          "title": "Frederick P. Brooks, Jr. — 2004 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2004",
+          "url": "https://www.computer.org/profiles/frederick-brooks",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Architecture of the IBM System/360",
+          "authors": "Gene M. Amdahl; Gerrit A. Blaauw; Frederick P. Brooks, Jr.",
+          "date": "1964-04（所读取扫描本原刊日期；页面另列 2000 重印元数据）",
+          "url": "https://www.researchgate.net/publication/220498837_Architecture_of_the_IBM_System360",
+          "locator": "IBM Journal of Research and Development 8(2), pp.87–101；Introduction、Design objectives、Advanced concepts、Open-ended design",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "da7b506bf367832f9569b57d665c7243c1d7b6193a0833b0d37dae9c943f9df3"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2004,
+          "citationZh": "推动体系结构定义、计算机家族与指令集原则，在指令顺序、中断和 System/360 指令集上作出重要贡献。",
+          "url": "https://www.computer.org/profiles/frederick-brooks",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "wesley-clark",
@@ -1091,21 +1351,18 @@
       "awardYear": 2017,
       "award": "Eckert–Mauchly Award · 2017",
       "field": "交互式计算、网络与完整系统",
-      "core": "通过完整系统原型检验计算机能够带来的使用方式。",
-      "evidence": "ACM 的 2017 获奖公告回顾其网络与分布式计算贡献、Alto、Ethernet 团队工作及平板计算机设计。阅读重心是将处理、交互、软件和连接组织成可使用的系统。",
+      "core": "设计并实现 Xerox Alto，把图形交互、本地计算与网络服务整合为可工作的个人计算系统。",
+      "evidence": "16 个固定优先级微任务共享处理器，用户指令解释器处于最低优先级；显示、磁盘和网络任务按需要取得服务。共享处理能力同时协调内存使用，减少为每种 I/O 单独堆叠复杂硬件。",
       "habits": [
-        "从使用闭环确定系统边界。",
-        "让硬件、软件与网络一起工作。",
-        "用原型揭示接口与操作问题。",
-        "评价完整任务而非单个部件。"
+        "从完整交互任务反推硬件资源分配。",
+        "把设备服务与用户程序的资源竞争一起测量。"
       ],
       "questions": [
-        "系统是否支持完整使用过程？",
-        "哪一个接口破坏了体验？",
-        "原型揭示了哪些纸面模型遗漏？"
+        "I/O 优先服务改善交互时，用户程序还能获得多少执行时间？",
+        "专用控制器与共享微程序的复杂度、延迟和成本如何交换？"
       ],
-      "boundary": "原型成功不等于规模化交付成功；成本、可靠性和维护必须进一步验证。",
-      "diagnostic": "完成代表性端到端任务，测量响应、失败恢复和用户操作负担。",
+      "boundary": "这一选择面向单用户交互，不以数值吞吐为首要目标；固定优先级可能压缩用户程序可用时间。现代隔离、实时性和吞吐需求须重新评估。",
+      "diagnostic": "分别测显示/设备期限违约、交互响应和用户程序进展；改变 I/O 强度，核查固定优先级下的服务份额。",
       "notes": [
         [
           "e14",
@@ -1121,25 +1378,81 @@
           "ACM：2017 获奖公告",
           "https://www.acm.org/articles/membernet/2017/membernet-06292017",
           "Alto、网络与分布式计算；团队贡献"
+        ],
+        [
+          "ACM Turing Award Goes to Creator of First Modern Personal Computer",
+          "https://www.acm.org/binaries/content/assets/press-releases/2010/march/turing-award-09-1.pdf",
+          "2010-03-09（2009 年获奖） · 官方获奖理由 · 获奖公告首段"
+        ],
+        [
+          "Alto: A Personal Computer",
+          "https://bwlampson.site/25-Alto/25-AltoOCR.htm",
+          "1979-08-07；1984-02 重印 · 论文全文 · CSL-79-11；§1–2"
         ]
       ],
       "challenge": {
-        "lens": "完整系统原型",
+        "lens": "交互系统的共享执行资源",
         "skills": [
+          "A1",
           "A3",
-          "A9",
-          "A10"
+          "A8"
         ],
-        "variables": "G：成功任务/小时；C：同周期完整成本；R：恢复时间。",
-        "model": "比较 C/G，并单列响应和恢复约束；组件分数不是 G。",
-        "crossover": "原型在完整任务上提高 G 的比例超过成本增幅。",
-        "counterexample": "组件演示很快，接口、恢复或用户流程无法闭环。",
-        "transfer": "迁移到 AI 工作流与端到端 serving 原型。",
-        "question": "系统是否支持完整使用过程？",
-        "validation": "完成代表性端到端任务，测量响应、失败恢复和用户操作负担。"
+        "variables": "Uio：I/O 与维护任务所占处理器份额；Uuser：用户可用份额。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：忽略切换与空闲时 Uuser≤1−Uio；实际还须满足各设备服务期限。",
+        "crossover": "共享执行能节约控制硬件，但须在目标 I/O 压力下保留足够用户进展。",
+        "counterexample": "高优先级设备持续繁忙时，平均硬件利用率很高而交互任务变慢。",
+        "transfer": "用于 SoC 控制核和边缘设备时加入隔离与服务保障。",
+        "question": "I/O 优先服务改善交互时，用户程序还能获得多少执行时间？",
+        "validation": "分别测显示/设备期限违约、交互响应和用户程序进展；改变 I/O 强度，核查固定优先级下的服务份额。"
       },
       "domain": "foundations",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "官方理由认可 Alto 的开创性设计与实现，以及局域网、多处理器工作站、缓存一致性和手写平板方面的贡献。",
+        "Alto 将微程序处理器在用户程序和 I/O 任务之间共享，以有限硬件支持交互式应用。"
+      ],
+      "background": "1979 年 Alto 报告由 Thacker、McCreight、Lampson、Sproull、Boggs 合著；具体系统论证属于团队，本页机制聚焦 Alto，不穷尽获奖清单。",
+      "argument": "16 个固定优先级微任务共享处理器，用户指令解释器处于最低优先级；显示、磁盘和网络任务按需要取得服务。共享处理能力同时协调内存使用，减少为每种 I/O 单独堆叠复杂硬件。",
+      "sourceAudit": [
+        {
+          "title": "ACM Turing Award Goes to Creator of First Modern Personal Computer",
+          "authors": "ACM",
+          "date": "2010-03-09（2009 年获奖）",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2010/march/turing-award-09-1.pdf",
+          "locator": "获奖公告首段",
+          "type": "官方获奖理由",
+          "contentStatus": "官方索引取得公告全文",
+          "evidenceStrength": "强",
+          "role": "2009 奖项及 Alto 贡献定位"
+        },
+        {
+          "title": "Alto: A Personal Computer",
+          "authors": "C. P. Thacker; E. M. McCreight; B. W. Lampson; R. F. Sproull; D. R. Boggs",
+          "date": "1979-08-07；1984-02 重印",
+          "url": "https://bwlampson.site/25-Alto/25-AltoOCR.htm",
+          "locator": "CSL-79-11；§1–2",
+          "type": "论文全文",
+          "contentStatus": "读取作者站点 OCR 正文 §1–2；OCR 未校对，不据此转录精细数值",
+          "evidenceStrength": "强",
+          "role": "目标、共享微任务机制与合作归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 2009,
+          "citationZh": "开创性设计并实现 Alto 个人计算机，并贡献于局域网、多处理器工作站和个人平板计算。",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2010/march/turing-award-09-1.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "john-crawford",
@@ -2908,21 +3221,18 @@
       "awardYear": 1994,
       "award": "Eckert–Mauchly Award · 1994",
       "field": "Scoreboard 与执行资源协调",
-      "core": "使就绪工作与可用资源相遇，同时显式管理冲突。",
-      "evidence": "IEEE 获奖说明认可 scoreboard 指令发射和高性能、向量处理器贡献。本库从这些机制提炼依赖、资源和执行协调的视角。",
+      "core": "以 CDC 6600 的记分牌协调多个功能单元，使单一指令流中的独立操作能够重叠执行。",
+      "evidence": "指令尽早送入可用功能单元，等待操作数期间可让后续独立操作前进。控制器记录单元、来源与结果寄存器状态，分别限制发射、读数和结果写回，避免破坏程序依赖。",
       "habits": [
-        "区分操作数等待与资源等待。",
-        "记录状态而非猜测可执行性。",
-        "允许独立工作绕过等待。",
-        "检查协调结构自身的规模成本。"
+        "把冲突具体分成单元、读依赖与写冲突。",
+        "检查发射之后是否仍有可重叠工作。"
       ],
       "questions": [
-        "工作已就绪还是只是排在前面？",
-        "哪个资源冲突阻止发射？",
-        "控制成本怎样随宽度增长？"
+        "停顿来自真实数据依赖，还是资源和寄存器名称冲突？",
+        "增加功能单元后，发射与寄存器约束是否仍主导？"
       ],
-      "boundary": "Scoreboard 不消除全部依赖或名字冲突；不能等同于现代寄存器重命名的全部机制。",
-      "diagnostic": "按依赖和功能单元归因停顿，扫描窗口及资源配置。",
+      "boundary": "记分牌不会消除寄存器名称冲突：同一结果寄存器的后继写入仍可阻塞发射。不要把它等同带寄存器重命名和推测退休的现代完整乱序核心。",
+      "diagnostic": "用独立运算、同目标寄存器和未读旧值三类轨迹，观察发射、读操作数和写回阻塞；验证结果与顺序执行一致。",
       "notes": [
         [
           "e09",
@@ -2938,25 +3248,77 @@
           "IEEE：Thornton 获奖依据",
           "https://www.computer.org/profiles/james-thornton/",
           "1994 · Scoreboard 与向量系统"
+        ],
+        [
+          "Design of a Computer: The Control Data 6600",
+          "https://archive.computerhistory.org/resources/text/CDC/cdc.6600.thornton.design_of_a_computer_the_control_data_6600.1970.102630394.pdf",
+          "1970 · 论文全文 · Chapter VI.D Scoreboard，印刷 pp.125–128（PDF pp.136–139）"
         ]
       ],
       "challenge": {
-        "lens": "就绪工作与资源冲突",
+        "lens": "动态调度中的冲突分解",
         "skills": [
+          "A2",
           "A3",
-          "A6",
-          "A9"
+          "A5"
         ],
-        "variables": "r_ready：独立就绪操作/s；r_unit：功能单元操作/s；r_issue：发射上限。",
-        "model": "吞吐上界 min(r_ready,r_unit,r_issue)，依赖与协调另查。",
-        "crossover": "增加单元只在 r_unit 绑定且就绪工作充足时可能有效。",
-        "counterexample": "等待来自操作数未就绪，增加单元无法消除依赖。",
-        "transfer": "迁移到 GPU warp 或任务调度。",
-        "question": "工作已就绪还是只是排在前面？",
-        "validation": "按依赖和功能单元归因停顿，扫描窗口及资源配置。"
+        "variables": "T：总周期；S：资源冲突；D：真依赖等待；N：名称冲突等待；各项须按不重叠归因。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：先分解 T，再比较消除一类冲突后的 ΔT；不得把重叠等待简单相加。",
+        "crossover": "增加单元仅消除其资源冲突；名称冲突须另有机制处理。",
+        "counterexample": "多个单元空闲，下一指令仍因同一目标寄存器被占用而不能发射。",
+        "transfer": "迁移到加速器流水线时，明确状态预约和结果可见规则。",
+        "question": "停顿来自真实数据依赖，还是资源和寄存器名称冲突？",
+        "validation": "用独立运算、同目标寄存器和未读旧值三类轨迹，观察发射、读操作数和写回阻塞；验证结果与顺序执行一致。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "官方理由特别认可发明指令发射记分牌，以及高性能处理器和向量超级计算方面的贡献。",
+        "1970 年原著给出单元与寄存器预约控制，区分资源冲突、结果依赖和覆盖未读操作数等约束。"
+      ],
+      "background": "Thornton 的《Design of a Computer》详细解释 CDC 6600；书中整机是 Control Data 团队成果，记分牌个人贡献另由官方获奖理由确认。",
+      "argument": "指令尽早送入可用功能单元，等待操作数期间可让后续独立操作前进。控制器记录单元、来源与结果寄存器状态，分别限制发射、读数和结果写回，避免破坏程序依赖。",
+      "sourceAudit": [
+        {
+          "title": "James E. Thornton — 1994 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1994",
+          "url": "https://www.computer.org/profiles/james-thornton/",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "Design of a Computer: The Control Data 6600",
+          "authors": "James E. Thornton",
+          "date": "1970",
+          "url": "https://archive.computerhistory.org/resources/text/CDC/cdc.6600.thornton.design_of_a_computer_the_control_data_6600.1970.102630394.pdf",
+          "locator": "Chapter VI.D Scoreboard，印刷 pp.125–128（PDF pp.136–139）",
+          "type": "技术专著全文",
+          "contentStatus": "取得原著全文，核验控制章节；来源为技术专著",
+          "evidenceStrength": "强",
+          "role": "记分牌机制与约束",
+          "retrievedSha256": "106971fa93feddbbbd85d4abd874cadece2525f7b614225285cacea46df8c70e"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1994,
+          "citationZh": "开创高性能处理器设计，发明指令发射记分牌，并对向量超级计算作出基础贡献。",
+          "url": "https://www.computer.org/profiles/james-thornton/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "robert-tomasulo",
@@ -3067,21 +3429,18 @@
       "id": "yale-patt",
       "name": "Yale Patt",
       "field": "动态执行、推测与数据流",
-      "core": "程序规定的语义顺序，不必等同于硬件的实际执行顺序。",
-      "evidence": "HPS 合作研究、动态调度、寄存器重命名和分支预测工作，体现了在保持程序所需结果的同时挖掘指令级并行的研究路线。来源使用研究组论文目录和课程材料；本条目是对研究路线的归纳，而不是从目录推导任何具体性能倍数。",
+      "core": "推动指令级并行与超标量设计，以有限活动窗口中的数据流执行提高单线程效率。",
+      "evidence": "Merger 利用广义 Tomasulo 方法连接依赖，节点在操作数齐备后执行；指令需等待前序指令退休才退休，内存副作用在退休时处理。这样在局部寻找并行，同时维护顺序机器的可见行为。",
       "habits": [
-        "区分真正的数据依赖与名字、控制和实现造成的限制。",
-        "让就绪的工作先执行，再维护正确的体系结构状态。",
-        "将预测、调度和恢复视为相互关联的机制。",
-        "评估可利用并行性时，同时检查执行窗口与资源成本。"
+        "把可并行执行与可提交状态分开。",
+        "在有限硬件窗口内衡量实际可见并行。"
       ],
       "questions": [
-        "哪些约束是语义所必需，哪些只是实现选择？",
-        "放宽执行顺序之后，如何保证可恢复的正确状态？",
-        "预测错了要丢弃多少工作、消耗多少时间和能量？"
+        "增大活动窗口后，真正就绪的操作增加了多少？",
+        "推测路径上的副作用何时才允许对外可见？"
       ],
-      "boundary": "更积极的推测不等于更好的系统。错误路径、恢复、调度复杂度和安全约束必须进入评价，不能只看理想 IPC。",
-      "diagnostic": "记录退休工作与执行工作的差额、误预测恢复时间、依赖阻塞和窗口饱和情况，比较实际净收益。",
+      "boundary": "论文是微架构提案，不是某款量产处理器的实测。有限窗口看不到远处并行；取指、分支、访存与节点表容量仍会限制收益。",
+      "diagnostic": "对窗口大小做受控扫描，统计就绪节点、取指空泡、访存阻塞及退休停顿；加入分支错误和异常验证架构状态。",
       "notes": [
         [
           "e08",
@@ -3102,29 +3461,87 @@
           "Yale Patt EE 382N 课程材料",
           "https://users.ece.utexas.edu/~patt/26s.382N/handouts/",
           "2026 · HPS、动态调度与相关论文阅读表"
+        ],
+        [
+          "Yale Patt — 1996 Eckert–Mauchly citation",
+          "https://www.computer.org/press-room/news-archive/patt-2013-goode-award",
+          "1996 · 官方获奖理由 · 对应年份 recipient citation"
+        ],
+        [
+          "HPS, a New Microarchitecture: Rationale and Introduction",
+          "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Patt.1985.micro.pdf",
+          "1985 · 论文全文 · MICRO 18, pp.103–108；§1–3，尤其 §3.1 活动窗口、Merger 与退休"
         ]
       ],
       "awardYear": 1996,
       "award": "Eckert–Mauchly Award · 1996",
       "challenge": {
-        "lens": "推测的净有用工作",
+        "lens": "有限窗口中的数据流",
         "skills": [
           "A2",
           "A3",
-          "A9"
+          "A5",
+          "A8"
         ],
-        "variables": "T_hide：隐藏等待；p：每任务误推测概率；R：恢复时间；H：其他暴露开销。",
-        "model": "简化平均净益 T_hide-pR-H；相关故障和尾部单独测量。",
-        "crossover": "T_hide>pR+H，同时保持精确状态和预算。",
-        "counterexample": "更深推测增加错误路径流量，挤占有用工作。",
-        "transfer": "迁移到 speculative decoding 或事务执行。",
-        "question": "哪些约束是语义所必需，哪些只是实现选择？",
-        "validation": "记录退休工作与执行工作的差额、误预测恢复时间、依赖阻塞和窗口饱和情况，比较实际净收益。"
+        "variables": "W：窗口容量；R(W)：平均就绪操作数；E：执行宽度；F：供给速率。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：可持续发射受 min(R(W), E, F) 限制；该上界不含恢复与访存额外停顿。",
+        "crossover": "增大 W 需确实增加 R(W)，且收益覆盖搜索、连线与恢复成本。",
+        "counterexample": "长真实依赖链即使占满大窗口，也没有更多可执行节点。",
+        "transfer": "用于乱序核或任务调度时，同时核验副作用提交协议。",
+        "question": "增大活动窗口后，真正就绪的操作增加了多少？",
+        "validation": "对窗口大小做受控扫描，统计就绪节点、取指空泡、访存阻塞及退休停顿；加入分支错误和异常验证架构状态。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "compiler-runtime"
-      ]
+      ],
+      "contributions": [
+        "官方理由认可指令级并行和超标量处理器设计的重要贡献。",
+        "与 Wen-mei Hwu、Michael Shebanow 提出 HPS，把顺序指令转成有限窗口内的数据流节点，结合乱序执行与按序退休。"
+      ],
+      "background": "1985 年 HPS 论文由 Patt、Hwu、Shebanow 合著；机制与论证属于团队，不能将窗口执行及后继商业实现全部归给 Patt。",
+      "argument": "Merger 利用广义 Tomasulo 方法连接依赖，节点在操作数齐备后执行；指令需等待前序指令退休才退休，内存副作用在退休时处理。这样在局部寻找并行，同时维护顺序机器的可见行为。",
+      "sourceAudit": [
+        {
+          "title": "Yale Patt — 1996 Eckert–Mauchly citation",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "1996",
+          "url": "https://www.computer.org/press-room/news-archive/patt-2013-goode-award",
+          "locator": "对应年份 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖理由；直接获取部分受限",
+          "evidenceStrength": "强",
+          "role": "奖项、年份与关键贡献定位"
+        },
+        {
+          "title": "HPS, a New Microarchitecture: Rationale and Introduction",
+          "authors": "Yale N. Patt; Wen-mei Hwu; Michael Shebanow",
+          "date": "1985",
+          "url": "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Patt.1985.micro.pdf",
+          "locator": "MICRO 18, pp.103–108；§1–3，尤其 §3.1 活动窗口、Merger 与退休",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "9a789806a7e1b1f9f4ca45f61452b1e5e77c239c16c68b1a85509e5699125f44"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1996,
+          "citationZh": "为指令级并行和超标量处理器设计作出重要贡献。",
+          "url": "https://www.computer.org/press-room/news-archive/patt-2013-goode-award",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "james-smith",
@@ -17430,7 +17847,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 29,
+    "completedThisBatch": 37,
     "totalProfiles": 260
   }
 }
