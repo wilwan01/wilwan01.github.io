@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "batches": [
+    {
+      "id": "initial-20261005",
+      "completed_on": "2026-10-05",
+      "counts": {
+        "profiles": 10,
+        "source_records": 14,
+        "synthetic_cards": 32
+      },
+      "note": "Inherited verified snapshot; original source check dates preserved."
+    },
+    {
+      "id": "weekly-20261009-early-20261006",
+      "scheduled_for": "2026-10-09T09:00:00+01:00",
+      "run_started_on": "2026-10-06",
+      "research_cutoff": "2026-10-06T16:24:20+01:00",
+      "execution": "manual early run; 6 research subagents + primary",
+      "new_profiles": [
+        "smith-fundsmith",
+        "sleep-nomad",
+        "ackman-pershing",
+        "einhorn-greenlight",
+        "mauboussin-counterpoint",
+        "arya-bofa",
+        "sur-jpm",
+        "rolland-susquehanna",
+        "curtis-jefferies",
+        "rakers-wf"
+      ],
+      "new_source_records": [
+        "B1D01",
+        "B1D02",
+        "B1D03",
+        "B1D04",
+        "B1D05",
+        "B2D01",
+        "B2D02",
+        "B2D03",
+        "B2D04",
+        "B2D05",
+        "B2D06",
+        "B2D07",
+        "B3D1",
+        "B3D2",
+        "B3D3",
+        "S1D01",
+        "S1D02",
+        "S1D03",
+        "S1D04",
+        "S2D-B01",
+        "S2D-B02",
+        "S2D-B03",
+        "S2D-B04",
+        "S3D02"
+      ],
+      "new_cards": [
+        "B1C01",
+        "B1C02",
+        "B1C03",
+        "B1C04",
+        "B1C05",
+        "B1C06",
+        "B2C01",
+        "B2C02",
+        "B2C03",
+        "B2C04",
+        "B2C05",
+        "B2C06",
+        "B3C1",
+        "B3C2",
+        "B3C3",
+        "B3C4",
+        "S1C01",
+        "S1C02",
+        "S1C03",
+        "S1C04",
+        "S1C05",
+        "S1C06",
+        "S2C-B01",
+        "S2C-B02",
+        "S2C-B03",
+        "S2C-B04",
+        "S2C-B05",
+        "S2C-B06",
+        "S3C01",
+        "S3C02",
+        "S3C03",
+        "S3C04"
+      ],
+      "counts": {
+        "buy_side": 5,
+        "sell_side": 5,
+        "synthetic_cards": 32
+      },
+      "status": "research_and_content_validation_complete",
+      "pending": [
+        {
+          "candidate": "David Einhorn / Greenlight",
+          "reason": "官网演示octet-stream不可解析；已读两份本人署名公开逐页镜像及两封团队季度信。归因与完整性边界已明确，但尚未逐字校验官方文件。",
+          "action": "将来官方可访问时校验PDF，不凭新闻摘要升级证据。"
+        },
+        {
+          "candidate": "两位当前角色与持仓",
+          "reason": "本次是历史方法扩展；出版时角色有原始证据，截止日完整实时履历和仓位未审计。",
+          "action": "需要当前投资结论时另取最新人事/监管及组合文件。"
+        },
+        {
+          "profile": "arya-bofa",
+          "gap": "融资/预算同机制第三次有日期具名交换及许可研报模型未取得",
+          "status": "retain_method_sample_only"
+        },
+        {
+          "profile": "sur-jpm",
+          "gap": "跨议题材料足够，稳定同机制认证与完整估计模型不足",
+          "status": "retain_method_sample_only"
+        },
+        "Hari历史GS档案本轮未纳入：当前NVIDIA IR；Ramsay历史TD Cowen档案本轮未纳入：当前AMD IR。",
+        "Rolland/Curtis当前2026-10雇主原页未独立验证，只按原稿日期标注。",
+        "Cirrus 2025-11和2026-02代问不计Rolland本人认证；至少三次同机制跨两场尚未达标。",
+        {
+          "name": "Srini Pajjuri / RBC Capital Markets（历史Raymond James）",
+          "status": "本轮未纳入正式思想地图；机构纠错已核查，保留候选",
+          "reason": "RBC官方2026-09-30媒体目录与2025TIMT页确认RBC身份。Micron/Astera 2025-11-19两份镜像可读，但尚未读取发行人托管具名完整Q&A；两份同日会议材料未充分检查同机制三次跨两电话会，不声称稳定模式。CNBC官方2026-09-30视频正文robots blocked。为保持本轮来源核查门槛，用Aaron Rakers替换；未将第三方分析师评分或媒体片段作为个人模型。",
+          "urls": [
+            "https://www.rbccm.com/en/about-us/in-the-media",
+            "https://www.rbccm.com/en/conference/timt-conference",
+            "https://www.cnbc.com/video/2026/09/30/rbc-capitalas-srini-pajjuri-on-micron-we-feel-pretty-good-about-it.html",
+            "https://stockanalysis.com/stocks/alab/transcripts/420683-global-technology-internet-media-telecommunications-conference-2025/"
+          ],
+          "next_step": "找Micron或Astera发行人托管录音/逐字稿并核查具名问题；以原日期和机构存档，不倒填历史Raymond James为当前身份。"
+        }
+      ],
+      "validation": [
+        "source and role attribution reviewed",
+        "independent arithmetic audits passed",
+        "unseen transfer forward test passed",
+        "JSON unique IDs, source joins, F1-F25 tags passed",
+        "JS syntax and DOM search/stage/draft/lazy-answer tests passed"
+      ]
+    }
+  ],
+  "deduplication": {
+    "identity": "stable person ID plus reviewed names/aliases; source-time role controls classification",
+    "documents": "same URL can contain independently dated letters; copied mirrors count as same underlying artifact",
+    "existing_profile_ids": [
+      "meeker-bond",
+      "loeb-thirdpoint",
+      "mauboussin-counterpoint",
+      "muse-cantor",
+      "rasgon-bernstein",
+      "arya-bofa",
+      "moore-ms",
+      "ackman-pershing",
+      "druckenmiller-duquesne",
+      "smith-fundsmith",
+      "wood-ark",
+      "newman-bernstein",
+      "sleep-nomad",
+      "marks-oaktree",
+      "curtis-jefferies",
+      "sur-jpm",
+      "einhorn-greenlight",
+      "arcuri-ubs",
+      "rakers-wf",
+      "rolland-susquehanna"
+    ]
+  },
+  "source_id_aliases": {
+    "S3D01": "S1D01"
+  },
+  "real_qa_added": 0,
+  "pending": [
+    {
+      "candidate": "David Einhorn / Greenlight",
+      "reason": "官网演示octet-stream不可解析；已读两份本人署名公开逐页镜像及两封团队季度信。归因与完整性边界已明确，但尚未逐字校验官方文件。",
+      "action": "将来官方可访问时校验PDF，不凭新闻摘要升级证据。"
+    },
+    {
+      "candidate": "两位当前角色与持仓",
+      "reason": "本次是历史方法扩展；出版时角色有原始证据，截止日完整实时履历和仓位未审计。",
+      "action": "需要当前投资结论时另取最新人事/监管及组合文件。"
+    },
+    {
+      "profile": "arya-bofa",
+      "gap": "融资/预算同机制第三次有日期具名交换及许可研报模型未取得",
+      "status": "retain_method_sample_only"
+    },
+    {
+      "profile": "sur-jpm",
+      "gap": "跨议题材料足够，稳定同机制认证与完整估计模型不足",
+      "status": "retain_method_sample_only"
+    },
+    "Hari历史GS档案本轮未纳入：当前NVIDIA IR；Ramsay历史TD Cowen档案本轮未纳入：当前AMD IR。",
+    "Rolland/Curtis当前2026-10雇主原页未独立验证，只按原稿日期标注。",
+    "Cirrus 2025-11和2026-02代问不计Rolland本人认证；至少三次同机制跨两场尚未达标。",
+    {
+      "name": "Srini Pajjuri / RBC Capital Markets（历史Raymond James）",
+      "status": "本轮未纳入正式思想地图；机构纠错已核查，保留候选",
+      "reason": "RBC官方2026-09-30媒体目录与2025TIMT页确认RBC身份。Micron/Astera 2025-11-19两份镜像可读，但尚未读取发行人托管具名完整Q&A；两份同日会议材料未充分检查同机制三次跨两电话会，不声称稳定模式。CNBC官方2026-09-30视频正文robots blocked。为保持本轮来源核查门槛，用Aaron Rakers替换；未将第三方分析师评分或媒体片段作为个人模型。",
+      "urls": [
+        "https://www.rbccm.com/en/about-us/in-the-media",
+        "https://www.rbccm.com/en/conference/timt-conference",
+        "https://www.cnbc.com/video/2026/09/30/rbc-capitalas-srini-pajjuri-on-micron-we-feel-pretty-good-about-it.html",
+        "https://stockanalysis.com/stocks/alab/transcripts/420683-global-technology-internet-media-telecommunications-conference-2025/"
+      ],
+      "next_step": "找Micron或Astera发行人托管录音/逐字稿并核查具名问题；以原日期和机构存档，不倒填历史Raymond James为当前身份。"
+    }
+  ]
+}
