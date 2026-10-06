@@ -1,0 +1,606 @@
+{
+  "verifiedAtUtc": "2026-10-06T17:17:30.759641+00:00",
+  "result": "PASS — scoped production regression; no application code changes required",
+  "repository": "wilwan01/wilwan01.github.io",
+  "branch": "master",
+  "baselineCommit": "2786ccaff01e79f4f33740014d62713ede6c3dd5",
+  "targetCommits": [
+    {
+      "sha": "a0397443876d05d18f5b6b8957447f8e02364042",
+      "date": "2026-10-06T15:33:10Z",
+      "message": "Invalidate cached analyst script for final source links"
+    },
+    {
+      "sha": "062a25f3c7d1fa6677ed43d75d6fabee10137d1f",
+      "date": "2026-10-06T15:31:21Z",
+      "message": "Expose inspected source mirrors and clarify publication date basis"
+    },
+    {
+      "sha": "a1d135e651d3653e70425b0a95d8cb30da8d8dee",
+      "date": "2026-10-06T15:29:10Z",
+      "message": "Reconcile final 38 source records across analyst atlas surfaces"
+    },
+    {
+      "sha": "0d5c2f62da0e0bf63fcd24d9727120b3f82c4729",
+      "date": "2026-10-06T15:27:04Z",
+      "message": "Run weekly analyst expansion early: 5 buy-side, 5 sell-side and 32 challenges"
+    }
+  ],
+  "scope": "Production /ai/analysts/ and /ai/analysts/thoughts.html regression for the four 2026-10-06 15:27–15:33 UTC commits. Application files were not changed.",
+  "priorArchitectRecord": "ai/architects/research/batches/2026-10-06-expansion80-deployment.json",
+  "priorRecordBoundary": "The existing 15:58 UTC architect verification covers architect files. This record adds analyst-specific file and browser evidence.",
+  "pagesRuns": [
+    {
+      "id": 37492239732,
+      "head_sha": "2786ccaff01e79f4f33740014d62713ede6c3dd5",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37492239732",
+      "created_at": "2026-10-06T16:00:30Z",
+      "updated_at": "2026-10-06T16:02:32Z"
+    },
+    {
+      "id": 37491798667,
+      "head_sha": "94ccf0e66088e13bb55804b7f7a22171fd772829",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37491798667",
+      "created_at": "2026-10-06T15:57:13Z",
+      "updated_at": "2026-10-06T15:58:03Z"
+    },
+    {
+      "id": 37488500184,
+      "head_sha": "a0397443876d05d18f5b6b8957447f8e02364042",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37488500184",
+      "created_at": "2026-10-06T15:33:22Z",
+      "updated_at": "2026-10-06T15:34:21Z"
+    }
+  ],
+  "comparisonMethod": "Fetch current master Git tree once; pin baseline SHA; compute SHA-1 over Git blob header plus exact production response bytes and compare with baseline blob IDs. SHA-256 recorded for downloaded bytes. Both ordinary paths and actual versioned resource URLs were fetched with HTTP 200.",
+  "httpChecks": [
+    {
+      "path": "ai/analysts/analysts.css",
+      "url": "https://wilwan01.github.io/ai/analysts/analysts.css",
+      "status": 200,
+      "bytes": 4984,
+      "git_blob_sha": "e6bf088e4a843ffc57abea8763b3865fc2ebbb69",
+      "expected_git_blob_sha": "e6bf088e4a843ffc57abea8763b3865fc2ebbb69",
+      "matches_master": true,
+      "sha256": "6e2c19f7990e77b8cad7f6dbc196b3ce9e2ca94148b7022cff4eae4e3a26aa83",
+      "checked_at": "2026-10-06T17:14:10.908338+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-1378\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/analysts.js",
+      "url": "https://wilwan01.github.io/ai/analysts/analysts.js",
+      "status": 200,
+      "bytes": 19862,
+      "git_blob_sha": "e0e384d3b80c16114306eaab7cb2e3cbabe40e2c",
+      "expected_git_blob_sha": "e0e384d3b80c16114306eaab7cb2e3cbabe40e2c",
+      "matches_master": true,
+      "sha256": "dec07a662775b70fc8df241e2f04408026d0b3d8715567f4c146241464e25eab",
+      "checked_at": "2026-10-06T17:14:10.878710+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-4d96\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/corpus.json",
+      "url": "https://wilwan01.github.io/ai/analysts/corpus.json",
+      "status": 200,
+      "bytes": 1508982,
+      "git_blob_sha": "a2a40060da69e90d52625b73337977651e769cf3",
+      "expected_git_blob_sha": "a2a40060da69e90d52625b73337977651e769cf3",
+      "matches_master": true,
+      "sha256": "a218239e2728c8a872406f526a9ac8b1a8fee3828ef02c95256f3d59c3206a7a",
+      "checked_at": "2026-10-06T17:14:11.065082+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-170676\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/coverage-audit.html",
+      "url": "https://wilwan01.github.io/ai/analysts/coverage-audit.html",
+      "status": 200,
+      "bytes": 79132,
+      "git_blob_sha": "6e98345d3af7b89f1165a1b7f41eacbba90e8d52",
+      "expected_git_blob_sha": "6e98345d3af7b89f1165a1b7f41eacbba90e8d52",
+      "matches_master": true,
+      "sha256": "0668cc1d27be35cd1300236d759a1dc9c0979153d0efcf90f5c0a79e80b05f2f",
+      "checked_at": "2026-10-06T17:14:10.934224+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-1351c\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/coverage-audit.json",
+      "url": "https://wilwan01.github.io/ai/analysts/coverage-audit.json",
+      "status": 200,
+      "bytes": 289645,
+      "git_blob_sha": "6d13bc8a57006fd24108d445257ea80dab91fa4a",
+      "expected_git_blob_sha": "6d13bc8a57006fd24108d445257ea80dab91fa4a",
+      "matches_master": true,
+      "sha256": "bc988cfb30b30be2109b02e89c07363e7c27a82851ba7d2513890f2533d9277a",
+      "checked_at": "2026-10-06T17:14:11.009436+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-46b6d\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/coverage-rows.csv",
+      "url": "https://wilwan01.github.io/ai/analysts/coverage-rows.csv",
+      "status": 200,
+      "bytes": 120257,
+      "git_blob_sha": "a68dccf00f6398dad057ac9ea79a711bc5b322bb",
+      "expected_git_blob_sha": "a68dccf00f6398dad057ac9ea79a711bc5b322bb",
+      "matches_master": true,
+      "sha256": "8213c38cf0de221bd25927aa3971bb397ff4105204cd9afec1bc676447149a0e",
+      "checked_at": "2026-10-06T17:14:10.915833+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-1d5c1\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/expansion-ledger.json",
+      "url": "https://wilwan01.github.io/ai/analysts/expansion-ledger.json",
+      "status": 200,
+      "bytes": 8443,
+      "git_blob_sha": "39b147e92ef04c2022df83ff4c0ce345c4861f7d",
+      "expected_git_blob_sha": "39b147e92ef04c2022df83ff4c0ce345c4861f7d",
+      "matches_master": true,
+      "sha256": "44139aaedfdcfe962be9da0b54e48846ba3c5126e0071df9cd92aba001e1c0d9",
+      "checked_at": "2026-10-06T17:14:10.933452+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-20fb\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/index.html",
+      "url": "https://wilwan01.github.io/ai/analysts/index.html",
+      "status": 200,
+      "bytes": 10618,
+      "git_blob_sha": "c4ba752d164542c1ab8d3288d0fef214a5968eb3",
+      "expected_git_blob_sha": "c4ba752d164542c1ab8d3288d0fef214a5968eb3",
+      "matches_master": true,
+      "sha256": "d77c586a345a51ecb6141e69836f4f4d57e54931530ea530248c8e3569eab7a7",
+      "checked_at": "2026-10-06T17:14:10.860780+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-297a\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/master-prompt.txt",
+      "url": "https://wilwan01.github.io/ai/analysts/master-prompt.txt",
+      "status": 200,
+      "bytes": 40051,
+      "git_blob_sha": "6082fd3533f156f190e10e5399d4ef76c73cf749",
+      "expected_git_blob_sha": "6082fd3533f156f190e10e5399d4ef76c73cf749",
+      "matches_master": true,
+      "sha256": "5fe90839d4ee0126bf33c1b3dd07d3cababbb6014d8bf9a24398019758660a4c",
+      "checked_at": "2026-10-06T17:14:16.924075+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-9c73\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/product-roadmap.md",
+      "url": "https://wilwan01.github.io/ai/analysts/product-roadmap.md",
+      "status": 200,
+      "bytes": 17371,
+      "git_blob_sha": "30c66908562fbc4e72936eeb4b7ca9e1b8fb94c4",
+      "expected_git_blob_sha": "30c66908562fbc4e72936eeb4b7ca9e1b8fb94c4",
+      "matches_master": true,
+      "sha256": "e0768e5535fe31501324f147d692b2cc00dbcc02f97ba35de80c664cb37d47a8",
+      "checked_at": "2026-10-06T17:14:16.972547+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-43db\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/roadmap.html",
+      "url": "https://wilwan01.github.io/ai/analysts/roadmap.html",
+      "status": 200,
+      "bytes": 11638,
+      "git_blob_sha": "918deb63dc04e39d5c1e12b2aea368e2bf1ece89",
+      "expected_git_blob_sha": "918deb63dc04e39d5c1e12b2aea368e2bf1ece89",
+      "matches_master": true,
+      "sha256": "7c651bce6fd968f0cce36244a8af225521a64adc85845442fdcadb1b68afe6ad",
+      "checked_at": "2026-10-06T17:14:17.015435+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-2d76\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/skill-graph.json",
+      "url": "https://wilwan01.github.io/ai/analysts/skill-graph.json",
+      "status": 200,
+      "bytes": 35196,
+      "git_blob_sha": "435459598764cd08f23025cc173cbb8e059714c8",
+      "expected_git_blob_sha": "435459598764cd08f23025cc173cbb8e059714c8",
+      "matches_master": true,
+      "sha256": "ad8df4f48f9846c62cf92002e690b89588d9a4eeab5e73c9918f8f3f4384afe5",
+      "checked_at": "2026-10-06T17:14:17.035762+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-897c\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/skill-map.html",
+      "url": "https://wilwan01.github.io/ai/analysts/skill-map.html",
+      "status": 200,
+      "bytes": 9429,
+      "git_blob_sha": "6c13c60ac904a171e425b06344e174b2b45d6103",
+      "expected_git_blob_sha": "6c13c60ac904a171e425b06344e174b2b45d6103",
+      "matches_master": true,
+      "sha256": "8fb99e80c41d8c18225d0ec24daeacba7261c9b6a7e08c9e914883d5bab6eb41",
+      "checked_at": "2026-10-06T17:14:16.929229+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-24d5\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/skill-map.md",
+      "url": "https://wilwan01.github.io/ai/analysts/skill-map.md",
+      "status": 200,
+      "bytes": 17494,
+      "git_blob_sha": "c57b56ea48ef63c323352ea048b59d163aa7ad23",
+      "expected_git_blob_sha": "c57b56ea48ef63c323352ea048b59d163aa7ad23",
+      "matches_master": true,
+      "sha256": "0c96999ea0c8a4d35b9de8f4ddb987109ee45ceccae4a6797957afee6921e8e1",
+      "checked_at": "2026-10-06T17:14:16.910839+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-4456\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/thought-answer-keys.json",
+      "url": "https://wilwan01.github.io/ai/analysts/thought-answer-keys.json",
+      "status": 200,
+      "bytes": 12181,
+      "git_blob_sha": "d28c51b0d9c51ddaa8ea94575a08898b61dca1b5",
+      "expected_git_blob_sha": "d28c51b0d9c51ddaa8ea94575a08898b61dca1b5",
+      "matches_master": true,
+      "sha256": "6f6e115368227058342279aad2424851bec200a957475c72da3126bc8aa5c80a",
+      "checked_at": "2026-10-06T17:14:16.980503+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-2f95\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/thought-atlas.json",
+      "url": "https://wilwan01.github.io/ai/analysts/thought-atlas.json",
+      "status": 200,
+      "bytes": 181457,
+      "git_blob_sha": "41fb84d1a24d22b2cd20347339b62cbbcf0238df",
+      "expected_git_blob_sha": "41fb84d1a24d22b2cd20347339b62cbbcf0238df",
+      "matches_master": true,
+      "sha256": "58ab6e6c7e69f431fe40edef00750fa9e202963b43dbafc44b2878df4f6f9c58",
+      "checked_at": "2026-10-06T17:14:17.006836+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-2c4d1\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/thoughts.html",
+      "url": "https://wilwan01.github.io/ai/analysts/thoughts.html",
+      "status": 200,
+      "bytes": 5843,
+      "git_blob_sha": "732fe7223d66c1b57f8a0710a50e5419e2cd8af3",
+      "expected_git_blob_sha": "732fe7223d66c1b57f8a0710a50e5419e2cd8af3",
+      "matches_master": true,
+      "sha256": "0290be1fc25121f550e67a1ad092d681f2c3e204b8fa8289a1dbdacb9704447f",
+      "checked_at": "2026-10-06T17:14:22.681419+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-16d3\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "52",
+        "x-cache": "HIT"
+      }
+    },
+    {
+      "path": "ai/analysts/thoughts.js",
+      "url": "https://wilwan01.github.io/ai/analysts/thoughts.js",
+      "status": 200,
+      "bytes": 8395,
+      "git_blob_sha": "0b3895955eb4e10b988dc446f9689d922b90d64b",
+      "expected_git_blob_sha": "0b3895955eb4e10b988dc446f9689d922b90d64b",
+      "matches_master": true,
+      "sha256": "61791e72442c0cf8a5a7c2ee7aa5209f28d7bfce6ba27bf8c8483d037d2023b1",
+      "checked_at": "2026-10-06T17:14:22.711346+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-20cb\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/index.html",
+      "url": "https://wilwan01.github.io/ai/analysts/",
+      "status": 200,
+      "bytes": 10618,
+      "git_blob_sha": "c4ba752d164542c1ab8d3288d0fef214a5968eb3",
+      "expected_git_blob_sha": "c4ba752d164542c1ab8d3288d0fef214a5968eb3",
+      "matches_master": true,
+      "sha256": "d77c586a345a51ecb6141e69836f4f4d57e54931530ea530248c8e3569eab7a7",
+      "checked_at": "2026-10-06T17:15:07.696388+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-297a\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "0",
+        "x-cache": "MISS"
+      }
+    },
+    {
+      "path": "ai/analysts/thoughts.js",
+      "url": "https://wilwan01.github.io/ai/analysts/thoughts.js?v=20261006-early-final",
+      "status": 200,
+      "bytes": 8395,
+      "git_blob_sha": "0b3895955eb4e10b988dc446f9689d922b90d64b",
+      "expected_git_blob_sha": "0b3895955eb4e10b988dc446f9689d922b90d64b",
+      "matches_master": true,
+      "sha256": "61791e72442c0cf8a5a7c2ee7aa5209f28d7bfce6ba27bf8c8483d037d2023b1",
+      "checked_at": "2026-10-06T17:15:07.591065+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-20cb\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "45",
+        "x-cache": "HIT"
+      }
+    },
+    {
+      "path": "ai/analysts/thought-atlas.json",
+      "url": "https://wilwan01.github.io/ai/analysts/thought-atlas.json?v=20261006-early",
+      "status": 200,
+      "bytes": 181457,
+      "git_blob_sha": "41fb84d1a24d22b2cd20347339b62cbbcf0238df",
+      "expected_git_blob_sha": "41fb84d1a24d22b2cd20347339b62cbbcf0238df",
+      "matches_master": true,
+      "sha256": "58ab6e6c7e69f431fe40edef00750fa9e202963b43dbafc44b2878df4f6f9c58",
+      "checked_at": "2026-10-06T17:15:07.693943+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-2c4d1\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "51",
+        "x-cache": "HIT"
+      }
+    },
+    {
+      "path": "ai/analysts/thought-answer-keys.json",
+      "url": "https://wilwan01.github.io/ai/analysts/thought-answer-keys.json?v=20261006-early",
+      "status": 200,
+      "bytes": 12181,
+      "git_blob_sha": "d28c51b0d9c51ddaa8ea94575a08898b61dca1b5",
+      "expected_git_blob_sha": "d28c51b0d9c51ddaa8ea94575a08898b61dca1b5",
+      "matches_master": true,
+      "sha256": "6f6e115368227058342279aad2424851bec200a957475c72da3126bc8aa5c80a",
+      "checked_at": "2026-10-06T17:15:07.634724+00:00",
+      "cache_headers": {
+        "cache-control": "max-age=600",
+        "etag": "\"6ac51b54-2f95\"",
+        "last-modified": "Tue, 06 Oct 2026 16:01:24 GMT",
+        "age": "51",
+        "x-cache": "HIT"
+      }
+    }
+  ],
+  "staticChecks": {
+    "counts": {
+      "profiles": 20,
+      "sources": 38,
+      "cards": 64
+    },
+    "unique_ids": true,
+    "card_profile_and_source_references": true,
+    "answer_key_coverage": 64,
+    "role_counts": {
+      "buy": 10,
+      "sell": 10
+    },
+    "index.html": {
+      "missing_local_anchors": [],
+      "scripts": [
+        "analysts.js?v=20261006-f25"
+      ]
+    },
+    "thoughts.html": {
+      "missing_local_anchors": [],
+      "scripts": [
+        "thoughts.js?v=20261006-early-final"
+      ]
+    },
+    "thoughtsJsSyntax": "node --check passed"
+  },
+  "browserChecks": {
+    "environment": "Live production pages in cloud Chrome; normal page UI and read-only DOM inspection",
+    "homepage": {
+      "url": "https://wilwan01.github.io/ai/analysts/",
+      "thoughtAtlasBannerCounts": {
+        "profiles": 20,
+        "sources": 38,
+        "cards": 64
+      },
+      "thoughtAtlasLinkNavigation": "PASS"
+    },
+    "thoughtAtlas": {
+      "url": "https://wilwan01.github.io/ai/analysts/thoughts.html",
+      "dynamicStatus": "20个人物/机构档案（10买方/创投 + 10卖方） · 38个来源记录 · 64张挑战卡 · 2026-10-06",
+      "profileButtons": 20,
+      "sourceListItems": 38,
+      "challengeOptions": 64,
+      "scriptSrc": "thoughts.js?v=20261006-early-final"
+    },
+    "sourceMirrors": {
+      "result": "All three visible mirror anchor destinations match baseline source mirror_url fields",
+      "links": [
+        {
+          "sourceId": "B2D03",
+          "url": "https://www.scribd.com/document/762996515/Sohn-Investment-Conference-Presentation-April-3-2024"
+        },
+        {
+          "sourceId": "B2D06",
+          "url": "https://alpha-file.com/content/8121"
+        },
+        {
+          "sourceId": "B2D07",
+          "url": "https://www.scribd.com/document/953310072/Robin-Hood-Investors-Conference-October-23-2024"
+        }
+      ]
+    },
+    "publicationDateBasis": {
+      "sourceId": "B2D02",
+      "visibleText": "Report signed August 13, 2026; official materials index lists August 12, 2026; letter itself has no separate date.",
+      "result": "PASS — rendered separately from source access boundary"
+    },
+    "profileFiltering": [
+      {
+        "query": "Einhorn",
+        "matchingButtons": [
+          "David Einhorn / Greenlight Capital"
+        ],
+        "selection": "David Einhorn / Greenlight Capital",
+        "renderedCards": [
+          "B2C04",
+          "B2C05",
+          "B2C06"
+        ],
+        "result": "PASS"
+      },
+      {
+        "query": "Rakers",
+        "matchingButtons": [
+          "Aaron Rakers / Wells Fargo"
+        ],
+        "selection": "Aaron Rakers / Wells Fargo",
+        "renderedCards": [
+          "S3C01",
+          "S3C02",
+          "S3C03",
+          "S3C04"
+        ],
+        "result": "PASS"
+      },
+      {
+        "query": "",
+        "matchingButtonCount": 20,
+        "result": "PASS — clearing search restores all profile buttons"
+      }
+    ],
+    "challengeInteractions": [
+      {
+        "action": "Expand S3C04 editorial method details",
+        "result": "PASS — model, boundary, counterexample, falsification evidence and attribution visible"
+      },
+      {
+        "action": "Click S3C04 card challenge button",
+        "result": "PASS — selects S3C04 and displays matching title/question at stage 1/3 with blank answer and hidden reference model"
+      },
+      {
+        "action": "Click Next with blank answer",
+        "result": "PASS — remains at stage 1/3, reference model hidden, status 先尝试当前问题再进入下一阶段。"
+      },
+      {
+        "action": "Explicitly reveal reference model",
+        "result": "PASS — asynchronously loads S3C04 answer; visible net savings −$20 million/year and 12.5 billion qualified-task threshold"
+      },
+      {
+        "action": "Select B3C4 in challenge dropdown",
+        "result": "PASS — changes title/question to Bayes exercise at stage 1/3, hides reference panel and clears its text"
+      }
+    ],
+    "anchors": {
+      "clicked": "https://wilwan01.github.io/ai/analysts/thoughts.html#map",
+      "result": "PASS — URL fragment updates; static local-fragment checks on both pages have zero missing targets"
+    },
+    "visualInspection": "Desktop screenshot inspected: counts, typography, navigation and thought-atlas layout render normally",
+    "console": {
+      "applicationErrorsObserved": 0,
+      "applicationWarningsObserved": 0,
+      "excluded": "Browser extension metadata-delivery errors from chrome-extension:// content script, unrelated to site application"
+    }
+  },
+  "limitations": [
+    "Scoped smoke regression, not an exhaustive test of every card or browser.",
+    "External mirror anchor visibility and exact destinations were verified against master; third-party availability, paywalls, and full source content were not re-audited.",
+    "No test answer was entered. Non-empty answer persistence and full three-stage progression were not exercised in this run.",
+    "Observed cloud-browser and HTTP cache responses do not certify every user browser cache."
+  ],
+  "resolution": {
+    "codeFixRequired": false,
+    "applicationFilesModified": [],
+    "recordOnly": true
+  }
+}
