@@ -12,7 +12,16 @@
       "区分情景与真实预期",
       "指出价格解释的证据缺口"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "读财报",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断真实预期差及价格已反映的情景。",
+    "sell_task": "冻结预期口径并说明实际、指引与共识差异。"
   },
   {
     "id": "F2",
@@ -27,7 +36,16 @@
       "隔离一次性/时间因素",
       "检验持续性"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "读财报",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断盈利改善是否可持续。",
+    "sell_task": "拆解收入毛利桥并标记时间与一次性影响。"
   },
   {
     "id": "F3",
@@ -42,7 +60,16 @@
       "区别承诺/交付/收入",
       "列出转化证据"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "读财报",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断指引如何改变投资论点与赔率。",
+    "sell_task": "把指引转成有依据的季度和年度变量。"
   },
   {
     "id": "F4",
@@ -57,7 +84,16 @@
       "计算旧新EPS",
       "费用与稀释敏感性"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "识别足以改变决策的模型假设。",
+    "sell_task": "维护分产品、分季度、可复核的财务模型。"
   },
   {
     "id": "F5",
@@ -72,7 +108,16 @@
       "区分水平与斜率",
       "提出独立先行证据"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "检验增长减速是否改变盈利与价格预期。",
+    "sell_task": "拆分水平、增速、基数和财务影响。"
   },
   {
     "id": "F6",
@@ -87,7 +132,16 @@
       "加入时间滞后",
       "识别替代和集中度"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "发现跨产业链估计修正与组合共同暴露。",
+    "sell_task": "按内容、份额和时滞进行同行传导。"
   },
   {
     "id": "F7",
@@ -102,7 +156,16 @@
       "连接合同收入确认",
       "预测瓶颈转移"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "验证供需约束对持续利润的影响。",
+    "sell_task": "持续跟踪产能、认证、库存、订单及价格。"
   },
   {
     "id": "F8",
@@ -117,7 +180,16 @@
       "量价成本敏感性",
       "可证伪的拐点阈值"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "区分周期利润、长期盈利与市场预期。",
+    "sell_task": "建立可比指标序列与供需反转情景。"
   },
   {
     "id": "F9",
@@ -132,7 +204,16 @@
       "区分建设与设备",
       "建交付及融资传导"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断投资需求、融资和现金回报可持续性。",
+    "sell_task": "将资本开支转成供给、部署和确认时点。"
   },
   {
     "id": "F10",
@@ -147,7 +228,16 @@
       "利用率敏感性",
       "质量和重投资边界"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断客户ROI是否支撑长期付费需求。",
+    "sell_task": "建立匹配质量、利用率和更新成本的单位模型。"
   },
   {
     "id": "F11",
@@ -162,7 +252,16 @@
       "租赁和押金义务",
       "避免新增重复计算"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "验证与判断",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "评估盈利质量、现金义务与可分配回报。",
+    "sell_task": "闭合利润、现金流、租赁及押金分类。"
   },
   {
     "id": "F12",
@@ -177,7 +276,16 @@
       "倍数变化理由",
       "EV/股权与稀释边界"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "估值与决策",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "判断价格内含假设与上下行边界。",
+    "sell_task": "把估计修正转成口径一致的估值敏感性。"
   },
   {
     "id": "F13",
@@ -192,7 +300,16 @@
       "列竞争解释",
       "用证据而非故事归因"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "验证与判断",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 1
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "区分股价结果与论点证据，避免价格追认。",
+    "sell_task": "解释事件与预测变化，保留无法识别的因果。"
   },
   {
     "id": "F14",
@@ -207,7 +324,16 @@
       "说明预测修正动作",
       "迁移到陌生公司"
     ],
-    "scenario_type": "synthetic teaching case"
+    "scenario_type": "synthetic teaching case",
+    "category": "验证与判断",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "预先设定论点逆转和决策复核条件。",
+    "sell_task": "明确观点的失效阈值及下一项验证证据。"
   },
   {
     "id": "F15",
@@ -229,6 +355,325 @@
       "分别计算按期与延期的收入、毛利及扣除旧品蚕食后的净增量营业利润。推导盈亏反转销量阈值，说明还缺哪些EPS与现金流输入。",
       "新约束：竞品提前半年认证，关键客户延迟一代产品。重新审视可确认销量、价格、毛利及旧产品蚕食；哪些假设需要证据才能修改？给出里程碑、期限与逆转标准。",
       "迁移到HBM或800G→1.6T光模块，重新建立代际、认证、供给、采用及价值捕获模型；指出CPU案例中不能直接沿用的系数。"
-    ]
+    ],
+    "category": "建模与产业链",
+    "origin": "页面",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "buy_task": "评估产品战略对利润池、竞争和长期赔率的影响。",
+    "sell_task": "持续跟踪代际、认证、交付与财务兑现。"
+  },
+  {
+    "id": "F16",
+    "name": "Business Model & Moat",
+    "zh": "商业模式与护城河",
+    "category": "研究底座",
+    "question": "合成：平台收入100、贡献毛利60、年维护及获客费用30；替代品使价格下降15%，销量不变，单位变动成本仍为40。营业贡献怎样变化？若AI编程降低客户迁移工时，能否直接判定护城河消失？",
+    "solution": "原贡献=100−40−30=30；新=85−40−30=15，下降50%。收入和利润对价格冲击不同。迁移工时只是一项成本，还要检验正确性、性能、集群通信、维护、客户留存和定价权。持续高利润也可能来自短期供给不足，不能当作永久护城河。",
+    "transfer": "迁移到Arm IP/CSS/自有硅或电力设备：价值由谁捕获？用哪个客户行为与利润指标区分护城河和周期红利？",
+    "rubric": [
+      "支付方、价值捕获与成本边界",
+      "量化定价权对利润的影响",
+      "检验迁移成本、替代与竞争响应",
+      "反例、证伪与跨行业迁移"
+    ],
+    "buy_task": "判断超额回报持续性、价格内含假设与投资论点。",
+    "sell_task": "按业务拆分收入、份额、价格与竞争敏感性。",
+    "related": [
+      "F10",
+      "F12",
+      "F15",
+      "F14"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F17",
+    "name": "Primary Research & Evidence Acquisition",
+    "zh": "一手信息获取",
+    "category": "研究底座",
+    "question": "合成：三份材料都称出货增长40%，但都转述同一家供应商。另有8家渠道样本覆盖总体销量20%，样本增长10%。你能否把四条消息平均成总体增长预测？怎样设计合法、获授权的下一项调查？",
+    "solution": "不能。三份转述是一个原始证据，不是三个独立样本；渠道样本有选择偏差，覆盖20%也不能直接外推总体。记录原始来源、日期、样本框、重合和可观察范围；用客户验收、公开采购或获授权专家资料检验竞争假设，给出未知区间。只获取允许公开或授权使用的信息，遇到疑似机密或重大未公开信息时停止使用和传播并按适用流程处理，不主动索取。",
+    "transfer": "从GPU渠道库存迁移到HBM认证或数据中心energized MW，重建样本与独立交叉核验方法。",
+    "rubric": [
+      "源头、时间与授权可追溯",
+      "独立性、样本覆盖和选择偏差",
+      "调查可区分竞争解释",
+      "信息使用边界与未知项"
+    ],
+    "buy_task": "寻找可改变判断的独立证据并评估其信息价值。",
+    "sell_task": "维持可复用来源记录、持续覆盖与交叉核验。",
+    "related": [
+      "F1",
+      "F7",
+      "F14",
+      "F25"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F18",
+    "name": "Technology-to-Financial Translation",
+    "zh": "技术判断转化为财务变量",
+    "category": "研究底座",
+    "question": "合成：一项技术把同等SLO吞吐提高25%，客户工作量不变。基准需要100台、每台ASP 10万、供应商GM 40%。若按比例减少采购，供应商收入与毛利怎样变化？如果更低成本诱发工作量增加50%呢？",
+    "solution": "固定工作量所需100/1.25=80台，收入1,000万→800万，毛利400万→320万。工作量增50%则需要100×1.5/1.25=120台，收入1,200万、毛利480万。均为可整除的简化情景，需实测SLO、容量利用率、替换周期、份额、ASP与成本。性能提升不自动带来供应商收入增长。",
+    "transfer": "将吞吐改善换成HBM带宽、先进封装良率或CPU缓存改善，找出谁受益、何时确认、哪些成本转移。",
+    "rubric": [
+      "匹配工作负载、SLO和系统边界",
+      "技术→部署量/ASP/成本的变量桥",
+      "需求弹性与供应商价值捕获",
+      "收入、毛利及现金时滞"
+    ],
+    "buy_task": "挑战技术叙事是否真正改变供应商盈利与估值。",
+    "sell_task": "把技术假设写成可审计的分产品财务驱动项。",
+    "related": [
+      "F4",
+      "F6",
+      "F10",
+      "F15"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F19",
+    "name": "Macro & Policy Transmission",
+    "zh": "宏观与政策",
+    "category": "研究底座",
+    "question": "合成：企业100单位收入中40以美元计价、其余60以本币计价，美元对本币升值10%，销量及美元价格不变。本币收入如何改变？新出口限制是否就能直接扣减同样比例的收入？",
+    "solution": "本币收入40×1.1+60=104，增4%，未考虑套保、美元成本与应收款。出口限制需核查适用产品、地区、时间、许可、客户替代与订单确认，不能把关税/受限市场规模直接当净利润损失。融资、汇率和估值渠道分别建模，相关性不是因果。任何现实政策结论须查询当期官方文件。",
+    "transfer": "迁移到Foundry补助、数据主权或高利率下neocloud融资，哪些经营与估值渠道改变？",
+    "rubric": [
+      "政策适用范围、日期与官方依据",
+      "经营、汇率、融资和估值渠道分开",
+      "对冲、成本与替代情景",
+      "不把宏观相关性当公司因果"
+    ],
+    "buy_task": "检验宏观暴露、融资韧性和组合共同风险。",
+    "sell_task": "只修正与所覆盖公司相关且可验证的变量。",
+    "related": [
+      "F4",
+      "F9",
+      "F12",
+      "F22"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 1
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F20",
+    "name": "Management & Capital Allocation",
+    "zh": "管理层与资本配置评估",
+    "category": "验证与判断",
+    "question": "合成：管理层三年兑现率80%，现有可用现金10亿美元。项目A需6亿、预估净现值2亿，项目B需5亿、预估净现值3亿，另须保留2亿现金储备。两项同时推进可行吗？只因B净现值更高就选择B吗？",
+    "solution": "A+B+储备=13亿，资金缺口3亿；A或B单独都在总额上可行，但还需逐期现金流。不能只比较未经核验的NPV：检验假设、资金约束、融资成本、客户承诺、失败概率、可逆性与协同。80%兑现率需拆样本、难度和未兑现事件。考察增量投入回报、激励与资本分配，不以名气或语气评分。",
+    "transfer": "迁移到Intel Foundry/GPU、Arm造芯片或并购，设计分阶段预算与继续/停止节点。",
+    "rubric": [
+      "历史承诺与实际结果有日期",
+      "增量回报、激励与现金约束",
+      "替代方案、协同和机会成本",
+      "里程碑投入与逆转标准"
+    ],
+    "buy_task": "评估资本配置、治理和长期股东回报。",
+    "sell_task": "核对投入、执行里程碑和回报假设对预测的影响。",
+    "related": [
+      "F9",
+      "F11",
+      "F15",
+      "F22"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 1
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F21",
+    "name": "Valuation Method Selection & Breadth",
+    "zh": "估值方法广度",
+    "category": "估值与决策",
+    "question": "合成：公司持续年FCF 10亿，增长0、WACC 10%，净债务20亿、稀释股数1亿。在永续简化模型下股权价值及每股价值是多少？若当前价格120，反向DCF隐含的持续FCF是多少？周期高峰EPS能否直接乘同行倍数？",
+    "solution": "EV=10/10%=100亿；股权=100−20=80亿；每股80。价格120对应股权120亿、EV140亿，零增长下需持续FCF14亿。需匹配经营现金流/WACC与EV，再桥接股权；现实DCF须分期预测、终值、净债务和稀释。周期高峰EPS不能不经正常化外推。SOTP避免分部交易重复，检查总部成本、交叉持股、税与其他索取权。F12负责预测→估值桥，F21负责方法选择及互证。",
+    "transfer": "迁移到许可IP与资本密集云业务并存的公司，用DCF、反向DCF、SOTP和周期正常化解释不同结果。",
+    "rubric": [
+      "方法匹配商业模式与周期",
+      "现金/折现率和EV/股权口径",
+      "反向解价格隐含假设",
+      "SOTP、终值及正常化敏感性"
+    ],
+    "buy_task": "寻找价格内含假设、赔率和估值误差的安全边界。",
+    "sell_task": "用多种一致方法支持可复核估值与敏感性。",
+    "related": [
+      "F12",
+      "F11",
+      "F16",
+      "F22"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F22",
+    "name": "Risk, Position Sizing & Downside",
+    "zh": "风险与仓位",
+    "category": "估值与决策",
+    "question": "合成：价格100，一年后情景160/100/50，概率30%/40%/30%，无分红。期望收益是多少？组合若给该股票10%权重，下行情景直接损失贡献多少？这能否单独决定仓位或止损？",
+    "solution": "期望价格=48+40+15=103，收益3%；概率是合成假设，不是观测值。10%权重×−50%=组合−5个百分点，忽略其他持仓与联动。仓位还需授权、最大回撤、相关性、流动性、杠杆、事件与融资风险；不以一个期望值或机械Kelly定仓。区分价格风险控制、论点证伪和组合减仓，止损执行受跳空与流动性约束，不保证最大亏损。真实交易建议须有足够账户和风险信息，不执行交易。",
+    "transfer": "迁移到同时持有GPU、HBM和neocloud的组合，构造客户CapEx下降及融资收紧的共同下行情景。",
+    "rubric": [
+      "概率来源与上下行分布",
+      "头寸×损失和组合关联",
+      "流动性、杠杆及授权边界",
+      "价格、论点与组合退出条件分开"
+    ],
+    "buy_task": "将判断转成受约束的仓位、风险预算与复核触发。",
+    "sell_task": "输出风险分布和情景，不代客户确定实际仓位。",
+    "related": [
+      "F1",
+      "F12",
+      "F14",
+      "F19"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 1
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F23",
+    "name": "Decision Discipline & Review",
+    "zh": "认知纪律",
+    "category": "估值与决策",
+    "question": "合成：你在T0记录收入增长20%且客户认证按期是必要条件；T1股价涨30%，但收入仅增5%且认证延期。你能否把价格上涨记为分析成功？如何复盘并保留原预测？",
+    "solution": "股价上涨不能验证收入机制。冻结T0来源、概率、预测区间、替代解释和更新规则；在T1分别评价业务机制、预测准确性、决策过程与结果，调查其他催化剂。保留原预测和修订版本，区分信息更新与事后改口。单次对错不能建立长期校准能力；可用多次同类概率预测的Brier分数，不选择性删掉失败。",
+    "transfer": "迁移到2030产品路线预判或财报共识修正，记录当时信息集并解释一次错判如何更新方法。",
+    "rubric": [
+      "时间冻结与原预测可追溯",
+      "过程、预测与价格结果分开",
+      "概率校准及失败样本保留",
+      "更新规则和下一次改进"
+    ],
+    "buy_task": "复盘自己的判断、仓位和纪律，而非只记录收益。",
+    "sell_task": "保存预测版本、误差分解与覆盖方法改进。",
+    "related": [
+      "F1",
+      "F14",
+      "F15",
+      "F22"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 2
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F24",
+    "name": "Communication & Persuasion",
+    "zh": "沟通与说服",
+    "category": "输出与工具",
+    "question": "合成：收入增长20%，毛利率40%→35%，收入基数100。请用一段话向投资委员会或客户说明核心变化、毛利结果、反方解释及下一项证据，不用“AI需求强”替代计算。",
+    "solution": "毛利40→120×35%=42，仅增5%，收入增20%不能等同盈利增20%。说明价格/组合/爬坡成本是竞争解释，尚缺分产品量价成本证据；设定一项可验证节点。买方版本交代决策、风险和何时复核；卖方版本给预测修正、估值影响、来源及时间。说服必须受证据边界约束，不省略反方或以修辞制造确定性。",
+    "transfer": "同一材料分别写买方决策摘要和卖方覆盖更新；哪些信息要突出，哪些未知项两边都必须保留？",
+    "rubric": [
+      "结论、机制与量化桥一致",
+      "受众对应的决策/预测影响",
+      "来源、时间、未知项与反方",
+      "清晰表达而不夸大确定性"
+    ],
+    "buy_task": "形成投资委员会可评估、可追责的决策材料。",
+    "sell_task": "形成及时、一致、有来源的客户研究更新。",
+    "related": [
+      "F2",
+      "F4",
+      "F12",
+      "F14"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 3,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
+  },
+  {
+    "id": "F25",
+    "name": "Research Tools, Reproducibility & Compliance",
+    "zh": "工具效率与合规",
+    "category": "输出与工具",
+    "question": "合成：AI生成模型把百万美元当作美元，又将客户押金既加进CFO又算融资流入；一份专家材料标为“未获授权传播”。如何修复，并建立可复现、可发布的研究输出？",
+    "solution": "先核单位、币种、期间、公式及现金流分类，消除押金重复；与原始报表闭合，保留版本、来源和检查记录。隔离未授权材料，不转发或上传到公共模型/网站，不由摘要绕过授权边界；使用公开可核验替代证据或获取许可。AI、脚本和表格只提升处理效率，不替代责任；按适用机构流程核查保密、利益冲突、研究发布要求及数据许可，现实规则查最新正式文件。所有案例均是教学，不构成法律判断。",
+    "transfer": "迁移到批量更新25家公司、发布研报或训练网站，设计自动检查、人工复核、失败回滚与来源权限记录。",
+    "rubric": [
+      "数据、单位、版本和复现链",
+      "独立核验、闭合与异常处理",
+      "授权、保密与冲突处理",
+      "工具提高效率而不代替责任"
+    ],
+    "buy_task": "保护研究信息、模型与决策审计链。",
+    "sell_task": "保持覆盖产出质量、发布流程和数据使用边界。",
+    "related": [
+      "F17",
+      "F11",
+      "F23",
+      "F24"
+    ],
+    "origin": "补充",
+    "role_priority": {
+      "buy_side": 2,
+      "sell_side": 3
+    },
+    "priority_basis": "Wei's 2026-10-06 default training priorities; not universal professional ratings",
+    "scenario_type": "synthetic teaching case",
+    "updated_at": "2026-10-06"
   }
 ]
