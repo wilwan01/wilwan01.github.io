@@ -1,0 +1,1299 @@
+{
+  "date": "2026-10-06",
+  "focus": "CPU 与平台",
+  "baseCommit": "164820eec0959bf404e397e583d201967625a523",
+  "plannedScope": 76,
+  "plannedExisting": 63,
+  "plannedCandidates": 13,
+  "counts": {
+    "complete": 19,
+    "partial": 19,
+    "pending": 38
+  },
+  "completedExisting": 11,
+  "completedNew": 8,
+  "publication": {
+    "status": "validated-for-publication",
+    "verification": "提交与公开部署验证结果由 Git 历史及本次最终报告记录；不预先宣称已上线。"
+  },
+  "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
+  "records": [
+    {
+      "id": "john-hennessy",
+      "name": "John Hennessy",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "John Hennessy and David Patterson Share ACM Turing Award",
+          "authors": "Mark D. Hill / ACM SIGARCH",
+          "date": "2018-04-12",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "locator": "正文引述官方 2017 获奖理由",
+          "type": "官方学术组织文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位；SIGARCH 转引官方 citation",
+          "retrievedSha256": "b36f5284eae29036f605a0bdcad23e278d5dfbed4efebe8c93c34f9fcb3c6922"
+        },
+        {
+          "title": "A New Golden Age for Computer Architecture",
+          "authors": "John L. Hennessy; David A. Patterson",
+          "date": "2019-02",
+          "url": "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "locator": "CACM 62(2), pp.48–60；RISC、领域专用架构章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "a65ddd6bcd9c44a16bfcaba364b31c56ce75f7c868857c957988323528f498e9"
+        }
+      ]
+    },
+    {
+      "id": "david-patterson",
+      "name": "David Patterson",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "John Hennessy and David Patterson Share ACM Turing Award",
+          "authors": "Mark D. Hill / ACM SIGARCH",
+          "date": "2018-04-12",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "locator": "正文引述官方 2017 获奖理由",
+          "type": "官方学术组织文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位；SIGARCH 转引官方 citation",
+          "retrievedSha256": "b36f5284eae29036f605a0bdcad23e278d5dfbed4efebe8c93c34f9fcb3c6922"
+        },
+        {
+          "title": "A New Golden Age for Computer Architecture",
+          "authors": "John L. Hennessy; David A. Patterson",
+          "date": "2019-02",
+          "url": "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "locator": "CACM 62(2), pp.48–60；RISC、领域专用架构章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "a65ddd6bcd9c44a16bfcaba364b31c56ce75f7c868857c957988323528f498e9"
+        }
+      ]
+    },
+    {
+      "id": "gene-amdahl",
+      "name": "Gene M. Amdahl",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 1967 原论文；第二项实质一手来源与官方获奖理由待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.cs.cmu.edu/~18742/papers/Amdahl1967.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "michael-flynn",
+      "name": "Michael J. Flynn",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "edward-davidson",
+      "name": "Edward S. Davidson",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "robert-barton",
+      "name": "Robert S. Barton",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "maurice-wilkes",
+      "name": "Maurice V. Wilkes",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "gordon-bell",
+      "name": "C. Gordon Bell",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "fred-brooks",
+      "name": "Frederick P. Brooks, Jr.",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "wesley-clark",
+      "name": "Wesley A. Clark",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 DEC 系统史全文；还需独立技术作品与个人贡献定位。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://archive.computerhistory.org/resources/text/DEC/dec.digital_at_work.1992.102630350.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "charles-thacker",
+      "name": "Charles P. (Chuck) Thacker",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "john-crawford",
+      "name": "John H. Crawford",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "jim-keller",
+      "name": "Jim Keller",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 HDSR 访谈正文；第二项实质一手来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://hdsr.mitpress.mit.edu/pub/n7la10vt/release/4",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "dave-ditzel",
+      "name": "David “Dave” Ditzel",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "mike-muller",
+      "name": "Mike Muller",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "richard-grisenthwaite",
+      "name": "Richard Grisenthwaite",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Morello research program hits major milestone with hardware now available for testing",
+          "authors": "Richard Grisenthwaite",
+          "date": "2022-01-20",
+          "url": "https://newsroom.arm.com/blog/morello",
+          "locator": "文章正文；CHERI、合作机构与原型验证",
+          "type": "作者技术文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "2827ac6af7177d90c54ab9364350a98c3f6f5426c5fc0e5755c32c9ca4161da2"
+        },
+        {
+          "title": "Arm Confidential Compute Architecture",
+          "authors": "Richard Grisenthwaite",
+          "date": "2021-06-23",
+          "url": "https://newsroom.arm.com/news/arm-cca-will-put-confidential-compute-in-the-hands-of-every-developer",
+          "locator": "文章正文；Realm、信任模型与证明",
+          "type": "作者技术文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "80419607be4cdd661c840a438b4aa9562a31c94037c5ccce814b075f0e745256"
+        }
+      ]
+    },
+    {
+      "id": "krste-asanovic",
+      "name": "Krste Asanović",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "authors": "Andrew Waterman; Yunsup Lee; David Patterson; Krste Asanović",
+          "date": "2014-05-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "locator": "EECS-2014-54；Introduction 与基础 ISA 章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "9df37f8d73cfb5fd31d9b80d16d17c6e3d2f33ea070db2e00fe34ffe8685a6ea"
+        },
+        {
+          "title": "Instruction Sets Should Be Free: The Case For RISC-V",
+          "authors": "Krste Asanović; David A. Patterson",
+          "date": "2014-08-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-146.pdf",
+          "locator": "EECS-2014-146，pp.1–7",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "dd9811093562dd811b0b391f539ca5f61f531e4c8768ce05947130d0f4568295"
+        }
+      ]
+    },
+    {
+      "id": "andrew-waterman",
+      "name": "Andrew Waterman",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "authors": "Andrew Waterman; Yunsup Lee; David Patterson; Krste Asanović",
+          "date": "2014-05-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "locator": "EECS-2014-54；Introduction 与基础 ISA 章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "9df37f8d73cfb5fd31d9b80d16d17c6e3d2f33ea070db2e00fe34ffe8685a6ea"
+        },
+        {
+          "title": "Design of the RISC-V Instruction Set Architecture",
+          "authors": "Andrew Waterman",
+          "date": "2016-01-03",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/Archive/EECS-2016-1.pdf",
+          "locator": "EECS-2016-1；基础 ISA 与压缩指令章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "f128031a1a72f665f3af500a99e40e446e7b241bf14def2993f49ab8478f9c19"
+        }
+      ]
+    },
+    {
+      "id": "sophie-wilson",
+      "name": "Sophie Wilson",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得口述史正文；第二项实质一手来源与官方获奖理由待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "richard-sites",
+      "name": "Richard Sites",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 Alpha 手册；需要独立作品及个人贡献定位。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "butler-lampson",
+      "name": "Butler Lampson",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "dave-jaggar",
+      "name": "Dave Jaggar",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得口述史；第二项技术来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://archive.computerhistory.org/resources/access/text/2014/01/102746627-05-01-acc.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "stephen-morse",
+      "name": "Stephen Morse",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "bruce-ravenel",
+      "name": "Bruce Ravenel",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "greg-favor",
+      "name": "Greg Favor",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "kevin-mcgrath",
+      "name": "Kevin McGrath",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 x86-64 联合讲义；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "dave-christie",
+      "name": "Dave Christie",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 x86-64 联合讲义；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "frank-soltis",
+      "name": "Frank Soltis",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得本人访谈；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.itjungle.com/2023/06/21/talking-system-architecture-with-the-frank-soltis/",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "ivan-sutherland",
+      "name": "Ivan Sutherland",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "alan-kay",
+      "name": "Alan Kay",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "douglas-engelbart",
+      "name": "Douglas Engelbart",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "keith-diefendorff",
+      "name": "Keith Diefendorff",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "andrew-herbert",
+      "name": "Andrew Herbert",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "john-mashey",
+      "name": "John Mashey",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "james-thornton",
+      "name": "James E. Thornton",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "robert-tomasulo",
+      "name": "Robert M. Tomasulo",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "yale-patt",
+      "name": "Yale Patt",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "james-smith",
+      "name": "James E. Smith",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "gurindar-sohi",
+      "name": "Gurindar S. Sohi",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "官方获奖理由已核验；RUU 论文下载受阻，另一合集文字编码损坏，未据此提炼机制。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "andre-seznec",
+      "name": "André Seznec",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM/IEEE Computer Society Announce André Seznec Recipient of 2025 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2025-06",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2025/june/eckert-mauchly-award-2025.pdf",
+          "locator": "官方新闻稿 pp.1–2",
+          "type": "官方获奖理由",
+          "contentStatus": "公开网页工具获取 PDF 正文；本地下载受限",
+          "evidenceStrength": "强",
+          "role": "贡献定位"
+        },
+        {
+          "title": "A case for (partially) TAgged GEometric history length branch prediction",
+          "authors": "André Seznec; Pierre Michaud",
+          "date": "2006-02",
+          "url": "https://www.jilp.org/vol8/v8paper1.pdf",
+          "locator": "JILP 8；TAGE 组织、分配与评估章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "d103642b0b7297e2771d316485d604b770d748026b25d54e65437121f32d9524"
+        }
+      ]
+    },
+    {
+      "id": "susan-eggers",
+      "name": "Susan Eggers",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Susan Eggers Named Recipient of 2018 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2018-06",
+          "url": "https://awards.acm.org/binaries/content/assets/press-releases/2018/june/eckert-mauchly-award-2018.pdf",
+          "locator": "官方新闻稿 pp.1–2",
+          "type": "官方获奖理由",
+          "contentStatus": "公开网页工具获取 PDF 正文",
+          "evidenceStrength": "强",
+          "role": "贡献定位"
+        },
+        {
+          "title": "Converting Thread-Level Parallelism to Instruction-Level Parallelism via Simultaneous Multithreading",
+          "authors": "Jack L. Lo; Susan J. Eggers; Joel S. Emer; Henry M. Levy; Rebecca L. Stamm; Dean M. Tullsen",
+          "date": "1997-08",
+          "url": "https://www.cs.washington.edu/research/smt/papers/tlp2ilp.final.pdf",
+          "locator": "ACM TOCS 15(3), pp.322–354；架构与评估章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "e3e7ac139748bacc2a4837b4d55975856619c43ab3809392dba92f36b316e968"
+        }
+      ]
+    },
+    {
+      "id": "joel-emer",
+      "name": "Joel S. Emer",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "andy-glew",
+      "name": "Andrew “Andy” Glew",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 MLP 技术文章；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://people.eecs.berkeley.edu/~kubitron/asplos98/abstracts/andrew_glew.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "uri-weiser",
+      "name": "Uri Weiser",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "robert-colwell",
+      "name": "Robert P. Colwell",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "mike-clark",
+      "name": "Mike Clark",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得署名技术对话；管理层简介只证背景，不能作第二项技术证据。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://newsroom.amd.com/news/advanced-insights-zen-architecture-agentic-ai-era/",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/841/amd-deepens-senior-management-and-technical-leadership-bench",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "gerard-williams",
+      "name": "Gerard Williams III",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "manu-gulati",
+      "name": "Manu Gulati",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "peter-greenhalgh",
+      "name": "Peter Greenhalgh",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "mark-papermaster",
+      "name": "Mark Papermaster",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得技术对话；第二项实质作品及职责边界待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://newsroom.amd.com/news/advanced-insights-zen-architecture-agentic-ai-era/",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "rich-witek",
+      "name": "Rich Witek",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得合著 Alpha 手册；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.bitsavers.org/pdf/dec/alpha/Sites_AlphaAXPArchitectureReferenceManual_2ed_1995.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "john-edmondson",
+      "name": "John Edmondson",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得 DEC 技术论文合订本；第二项作品及具体作者归属待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "dirk-meyer",
+      "name": "Dirk Meyer",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2003",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2003 · Dirk Meyer",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "A Seventh-Generation x86 Microprocessor",
+          "authors": "Michael Golden; Steve Hesley; Alisa Scherer; Matthew Crowley; Scott C. Johnson; Stephan Meier; Dirk Meyer; Jerry D. Moench; Stuart Oberman; Hamid Partovi; Fred Weber; Scott White; Tim Wood; John Yong",
+          "date": "1999-11",
+          "url": "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "locator": "IEEE JSSC 34(11), pp.1466–1477；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "52def695dde3ac6d36cb819a5a3b3c0c95e6ed530db8d4da7fd0d4a93d1e72d4"
+        }
+      ]
+    },
+    {
+      "id": "fred-weber",
+      "name": "Fred Weber",
+      "kind": "existing",
+      "status": "partial",
+      "reason": "已取得合著 K7 论文；第二项实质来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": [
+        {
+          "url": "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "retrievalStatus": "retrieved-not-yet-claim-audited",
+          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+        }
+      ]
+    },
+    {
+      "id": "glenn-hinton",
+      "name": "Glenn Hinton",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2002",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2002 · Glenn Hinton",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "The Microarchitecture of the Pentium 4 Processor",
+          "authors": "Glenn Hinton; Dave Sager; Mike Upton; Darrell Boggs; Doug Carmean; Alan Kyker; Patrice Roussel",
+          "date": "2001-Q1",
+          "url": "https://www.intel.com/content/dam/www/public/us/en/documents/research/2001-vol05-iss-1-intel-technology-journal.pdf",
+          "locator": "Intel Technology Journal，合订 PDF pp.16–28",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "7771525a6c3eba9eeea0d85f4339775a4a75ff075def36482ad2d7b28ea30e9f"
+        }
+      ]
+    },
+    {
+      "id": "david-papworth",
+      "name": "David Papworth",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "donald-alpert",
+      "name": "Donald Alpert",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "marc-tremblay",
+      "name": "Marc Tremblay",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "lieven-eeckhout",
+      "name": "Lieven Eeckhout",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2017",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2017 · Lieven Eeckhout",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "Interval Simulation: Raising the Level of Abstraction in Architectural Simulation",
+          "authors": "Davy Genbrugge; Stijn Eyerman; Lieven Eeckhout",
+          "date": "2010",
+          "url": "https://users.elis.ugent.be/~leeckhou/papers/hpca10.pdf",
+          "locator": "HPCA 2010；模型、M5 对比与适用条件",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "81ec3773a480bc845cacd516cbb394102e6822cda121d2fedb74bd20728b2c7d"
+        },
+        {
+          "title": "Sniper: Exploring the Level of Abstraction for Scalable and Accurate Parallel Multi-Core Simulation",
+          "authors": "Trevor E. Carlson; Wim Heirman; Lieven Eeckhout",
+          "date": "2011",
+          "url": "https://users.elis.ugent.be/~leeckhou/papers/sc11.pdf",
+          "locator": "SC 2011；模型与实机验证章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "b2d96e3872082711d8a7c953560aa4e14da889fa4c5c6d15a68a774683389a01"
+        }
+      ]
+    },
+    {
+      "id": "tim-sherwood",
+      "name": "Tim Sherwood",
+      "kind": "existing",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2016",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2016 · Timothy Sherwood",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "Automatically Characterizing Large Scale Program Behavior",
+          "authors": "Timothy Sherwood; Erez Perelman; Greg Hamerly; Brad Calder",
+          "date": "2002-10",
+          "url": "https://cseweb.ucsd.edu/~calder/papers/ASPLOS-02-SimPoint.pdf",
+          "locator": "ASPLOS X；基本块向量、聚类、采样和误差章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "f67a9b33460c3148edde0859279cb94f464e96f8a0c37009e7acd40110d1d1ac"
+        }
+      ]
+    },
+    {
+      "id": "daniel-a-jim-nez",
+      "name": "Daniel A. Jiménez",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "mike-filippo",
+      "name": "Mike Filippo",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "fred-pollack",
+      "name": "Fred Pollack",
+      "kind": "existing",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "shailender-chaudhry",
+      "name": "Shailender Chaudhry",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "已取得 execute-ahead 相关专利正文；第二项独立技术作品与职责归属待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "cameron-mcnairy",
+      "name": "Cameron McNairy",
+      "kind": "candidate",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "sebastien-nussbaum",
+      "name": "Sebastien Nussbaum",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "已取得 Trinity Hot Chips 24 讲义；第二项实质一手来源待补。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "ivan-godard",
+      "name": "Ivan Godard",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "The Belt: Mill CPU architecture talk",
+          "authors": "Ivan Godard",
+          "date": "2013-07-11",
+          "url": "https://millcomputing.com/pptx/2013-07-11_mill_cpu_belt.pptx",
+          "locator": "官方讲义；幻灯片 36–39",
+          "type": "作者讲义/幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        },
+        {
+          "title": "The Mill CPU: Execution",
+          "authors": "Ivan Godard",
+          "date": "2014-02-05",
+          "url": "https://millcomputing.com/pptx/execution.02.pptx",
+          "locator": "官方讲义；幻灯片 16 与执行阶段说明",
+          "type": "作者讲义/幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        }
+      ]
+    },
+    {
+      "id": "peter-hofstee",
+      "name": "Peter Hofstee",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Cell Processor architecture / Stanford EE380 talk",
+          "authors": "H. Peter Hofstee",
+          "date": "日期待核：讲义版权 2005；文件名 060222",
+          "url": "https://web.stanford.edu/class/ee380/Abstracts/Cell_060222.pdf",
+          "locator": "幻灯片 3、13 及 SPE/DMA 章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "17301df62a4c91804d6ee30e0913738558cb378c454079e8bcbc4533c210f653"
+        },
+        {
+          "title": "The Design and Implementation of a First-Generation CELL Processor",
+          "authors": "D. C. Pham; ...; H. P. Hofstee; J. A. Kahle 等",
+          "date": "2005",
+          "url": "https://research.ibm.com/publications/the-design-and-implementation-of-a-first-generation-cell-processor",
+          "locator": "IBM Research 官方论文摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "团队实现与作者归属"
+        },
+        {
+          "title": "Stanford EE380: Cell Processor",
+          "authors": "Stanford University / H. Peter Hofstee",
+          "date": "页面标 2005-02-22；待校正",
+          "url": "https://web.stanford.edu/class/ee380/Abstracts/060222.html",
+          "locator": "报告简介：chief scientist / SPE chief architect",
+          "type": "机构报告简介",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "只证明个人职责与背景"
+        }
+      ]
+    },
+    {
+      "id": "christian-jacobi",
+      "name": "Christian Jacobi",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "IBM Telum Processor",
+          "authors": "Christian Jacobi",
+          "date": "2021-08",
+          "url": "https://www.hc33.hotchips.org/assets/program/conference/day1/HC2021.C1.3%20IBM%20Cristian%20Jacobi.pdf",
+          "locator": "Hot Chips 33，17 页；AI 与缓存章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "0515c0347e64e9aaa2e3a87fc23cad49201cbf11e3b37cfcbbe9ff9e43cb8bfc"
+        },
+        {
+          "title": "IBM Telum Processor: The next-gen microprocessor for IBM Z and IBM LinuxONE",
+          "authors": "Christian Jacobi; Elpida Tzortzatos",
+          "date": "2021-08-23",
+          "url": "https://www.ibm.com/new/announcements/ibm-telum-processor-the-next-gen-microprocessor-for-ibm-z-and-ibm-linuxone",
+          "locator": "IBM 发布文章正文；in-transaction inference",
+          "type": "作者技术文章",
+          "contentStatus": "公开网页工具获取文章正文；本地请求被拦截",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        }
+      ]
+    },
+    {
+      "id": "eric-schwarz",
+      "name": "Eric Schwarz",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "已确认其为 z196 系统论文合作者，但只有摘要；十进制浮点论文未列他为作者，排除错误归属。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "brad-burgess",
+      "name": "Brad Burgess",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Bobcat: AMD’s Low Power x86 Processor",
+          "authors": "Brad Burgess",
+          "date": "2010-08-24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.24.730-Burgess-AMD-Bobcat-x86.pdf",
+          "locator": "Hot Chips 22；架构、可综合设计与电源章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "cabdf25646b06165f0177d26f90890b42295abbc207ca3e6b03999cb019d1421"
+        },
+        {
+          "title": "Bobcat: AMD’s Low-Power x86 Processor",
+          "authors": "Brad Burgess; Brad Cohen; Marvin Denman; Jim Dundas; David Kaplan; Jeff Rupley",
+          "date": "2011",
+          "url": "https://www.researchgate.net/publication/224211632_Bobcat_AMD%27s_Low-Power_x86_Processor",
+          "locator": "IEEE Micro 31(2), pp.16–25；DOI 10.1109/MM.2011.2",
+          "type": "原论文摘要",
+          "contentStatus": "原论文摘要已获取；未取得全文",
+          "evidenceStrength": "中",
+          "role": "设计定位与团队归属",
+          "retrievedSha256": "70e9a2777b02082305ae8d83735885822ad5f4c42fd6572efa7cbf0bf5cd8f2f"
+        }
+      ]
+    },
+    {
+      "id": "dan-hettena",
+      "name": "Dan Hettena",
+      "kind": "candidate",
+      "status": "pending",
+      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
+      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "sources": []
+    },
+    {
+      "id": "jeff-stuecheli",
+      "name": "Jeff Stuecheli",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "POWER9",
+          "authors": "Jeff Stuecheli",
+          "date": "2018",
+          "url": "https://www.hpcuserforum.com/presentations/tuscon2018/Tech%20Update_IBM_UFTucson2018.pdf",
+          "locator": "HPC User Forum Tucson；核心变体与互连页",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "82a4a0e90f0ebdb6f797fe88d0f0a4cc861c800f9abdb2f19b64e871f23b24b5"
+        },
+        {
+          "title": "The Cache and Memory Subsystems of the IBM POWER8 Processor",
+          "authors": "William J. Starke; Jeff Stuecheli; D. M. Daly; J. S. Dodson 等",
+          "date": "2015",
+          "url": "https://research.ibm.com/publications/the-cache-and-memory-subsystems-of-the-ibm-power8-processor",
+          "locator": "IBM J. Research and Development；官方摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "子系统设计目标与归属"
+        }
+      ]
+    },
+    {
+      "id": "todd-takken",
+      "name": "Todd Takken",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Overview of the Blue Gene/L System Architecture",
+          "authors": "Alan Gara; Matthias A. Blumrich; Dong Chen; ...; Todd Takken 等",
+          "date": "2005",
+          "url": "https://www.ida.liu.se/~TDDI03/lecture-notes/blueGene.pdf",
+          "locator": "IBM JRD 49(2/3)；系统、通信网络与应用映射章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "7adb6daa4a84930e6388e626ef2e5528c2513da2b6022529f66e51b2433797cf"
+        },
+        {
+          "title": "Packaging the Blue Gene/L Supercomputer",
+          "authors": "IBM Blue Gene/L 团队；包括 T. Takken",
+          "date": "2005",
+          "url": "https://research.ibm.com/publications/packaging-the-blue-genel-supercomputer",
+          "locator": "IBM Research 官方论文摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "机架封装目标与归属"
+        }
+      ]
+    },
+    {
+      "id": "tim-mattson",
+      "name": "Tim Mattson",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "OpenCL and the Quest for Portable Performance",
+          "authors": "Tim Mattson",
+          "date": "2011",
+          "url": "https://indico.cern.ch/event/140118/attachments/121851/172933/ocl-port-perf.pdf",
+          "locator": "完整讲义；NDRange、同步和优化案例",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "16d7a20c67c3873f7e2e9095b0c452bb5b52e12c1b517abeedc61331d757924a"
+        },
+        {
+          "title": "Introduction to OpenCL",
+          "authors": "Tim Mattson; Udeepta Bordoloi；材料另有致谢作者",
+          "date": "教程基于 ISC11；当前副本存于 2015 课程目录",
+          "url": "https://didawiki.cli.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/spd/2015/opencl-intro-tim-mattson.pdf",
+          "locator": "完整教程；平台、执行/内存模型与矩阵乘优化",
+          "type": "作者教程",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "42fd84dcd88022ab9d0688fcd4d9a56831b908cafc9f67d973dbef7384d10a8a"
+        }
+      ]
+    },
+    {
+      "id": "keith-underwood",
+      "name": "Keith Underwood",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "所选关键贡献、至少两项实质一手来源及机制正文通过核验。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "FPGAs vs. CPUs: Trends in Peak Floating-Point Performance",
+          "authors": "Keith Underwood",
+          "date": "2004",
+          "url": "https://www.researchgate.net/publication/221225167_FPGAs_vs_CPUs_trends_in_peak_floating-point_performance",
+          "locator": "FPGA 2004；DOI 10.1145/968280.968305；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "401dafd23e6a74d50a02f5984cc56530e49e1c72922eb782561b794b8fe0b938"
+        },
+        {
+          "title": "Architectures and APIs: Assessing Requirements for Delivering FPGA Performance to Applications",
+          "authors": "Keith Underwood; K. Scott Hemmert; Craig Ulmer",
+          "date": "2006",
+          "url": "https://www.researchgate.net/publication/224281845_Architectures_and_APIs_Assessing_Requirements_for_Delivering_FPGA_Performance_to_Applications",
+          "locator": "SC 2006；DOI 10.1109/SC.2006.13；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "aca06ddcfdaad9c1d904d4a1415d9dc45426038b1080c1072737dbed1146dd92"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "完整范围仍为既有 250 + 候选 50；今日仅处理固定第一批，不开启后续批次。",
+    "现有额外人物 Tushar Krishna 保留，不计入本批和原 300 人计划。",
+    "IBM 摘要来源在公开网页工具中读取；本地同 URL 返回反爬页面，未把反爬页面记录为正文。",
+    "未获取或收听视频内容；全部机制以已核验文字/幻灯片为依据，无伪造时间戳。",
+    "Godard 的 PPTX 文字已从幻灯片 XML 获取；未观看动画或录制。",
+    "未完成人物不加入完成计数；既有人物内容不因资料缺口被清空。"
+  ]
+}
