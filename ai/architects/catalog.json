@@ -10566,23 +10566,19 @@
     {
       "id": "mark-hill",
       "name": "Mark D. Hill",
-      "field": "存储模型、一致性与可检验的设计",
+      "field": "DRF 契约与内存一致性",
       "award": "Eckert–Mauchly Award · 2019",
-      "core": "先用模型区分问题的成因，再选择机制，并明确软件与硬件的契约。",
-      "evidence": "3C 模型区分首次访问、容量与冲突缺失；与 Sarita Adve 的 SC-for-DRF 合作研究连接程序的数据竞争约束与顺序一致性的推理方式。与其他作者合著的存储一致性及缓存一致性教材强调两者的区别。官方获奖说明也突出设计与模型并重。",
+      "core": "与 Adve 建立以无数据竞争程序为中心的弱排序契约，并共同系统化内存一致性与缓存一致性的区分。",
+      "evidence": "编辑解读：先说明哪些程序满足契约，再讨论可合法重排的访问；单地址权限正确也不能替代跨地址的内存模型验证。",
       "habits": [
-        "把相似症状拆成不同成因，避免对所有缺失采用同一个补救。",
-        "先说清程序可以假设什么，再讨论实现允许哪些重排。",
-        "将缓存一致性与内存一致性分开分析，再检查其接口。",
-        "使模型产生可观察的预测，并用仿真或测量检查。"
+        "先写明语义、资源与实验前提，再比较机制。",
+        "分开验证正确性与性能，保留团队归属。"
       ],
       "questions": [
-        "这个缺失属于容量、冲突还是首次访问；还有什么未被模型覆盖？",
-        "程序承诺了什么，硬件又必须保证什么？",
-        "改变机制后，哪个可测量结果应当随之变化？"
+        "程序满足哪些同步条件，重排后哪些结果仍被禁止？"
       ],
-      "boundary": "3C 不是现代存储开销的完整分类，不能独自解释一致性失效、预取、翻译或排队。SC-for-DRF 依赖具体模型与程序条件，不能推广为任意程序都具有顺序一致性。",
-      "diagnostic": "用容量与映射反事实实验归因缺失，另行测量共享及翻译开销；对存储模型使用明确语义的 litmus tests 检查允许和禁止的结果。",
+      "boundary": "DRF0 是特定历史模型，不直接等于现代 C++ 或 GPU 内存模型。教材属于合著阐释；本轮没有穷尽 3C、LogTM 等贡献。",
+      "diagnostic": "列出程序前提，用 litmus 和编译映射检查允许结果，再测等待。",
       "notes": [
         [
           "e07",
@@ -10603,35 +10599,127 @@
           "A Primer on Memory Consistency and Cache Coherence, Second Edition",
           "https://pages.cs.wisc.edu/~markhill/papers/primer2020_2nd_edition.pdf",
           "2020 · Nagarajan、Sorin、Hill、Wood 合著"
+        ],
+        [
+          "Weak Ordering — A New Definition",
+          "https://pages.cs.wisc.edu/~markhill/papers/isca90_drf0.pdf",
+          "1990 · ISCA · §§3–5：定义、DRF0 与实现充分条件"
+        ],
+        [
+          "ACM–IEEE CS Eckert–Mauchly Award",
+          "https://awards.acm.org/xpages/eckert-mauchly/index",
+          "2019 官方获奖理由"
         ]
       ],
       "awardYear": 2019,
       "challenge": {
-        "lens": "缺失归因与反事实",
+        "lens": "程序契约与实现保证",
         "skills": [
           "A1",
           "A3",
           "A9"
         ],
-        "variables": "M_cap、M_conf：容量/冲突可减少 miss；L_e：暴露成本；H：机制成本。",
-        "model": "固定语义与容量做映射反事实，再估计 ΔM L_e-H；共享/翻译另计。",
-        "crossover": "优化应针对实际可减少且暴露的 miss，而非所有 miss。",
-        "counterexample": "扩大容量处理不了共享失效或地址翻译瓶颈。",
-        "transfer": "迁移到 KV 分配碎片或 tier-placement 归因。",
-        "question": "这个缺失属于容量、冲突还是首次访问；还有什么未被模型覆盖？",
-        "validation": "用容量与映射反事实实验归因缺失，另行测量共享及翻译开销；对存储模型使用明确语义的 litmus tests 检查允许和禁止的结果。"
+        "question": "程序满足哪些同步条件，重排后哪些结果仍被禁止？",
+        "variables": "P：程序前提；B：允许行为集合。",
+        "model": "本站条件性诊断（编辑提炼，非作者公式）：在 P 成立时检查实现行为属于 B，之后才比较等待成本。",
+        "crossover": "前提被验证且允许结果不扩大。",
+        "counterexample": "存在竞争时仍套用 DRF 保证。",
+        "validation": "列出程序前提，用 litmus 和编译映射检查允许结果，再测等待。",
+        "transfer": "适用于比较内存模型；不同语言必须重新核对前提。"
       },
       "domain": "memory",
       "relatedDomains": [
         "correctness"
-      ]
+      ],
+      "contributions": [
+        "共同提出 DRF0：用程序同步约束换取顺序一致的可观察结果，同时允许实现放松排序。",
+        "与 Nagarajan、Sorin、Wood 合著第二版 Primer，以权限和数据值不变量解释 coherence。"
+      ],
+      "background": "1990 原论文由 Adve、Hill 共同署名；2020 专著为四人合著。此卡聚焦 DRF 契约和一致性解释框架，教材不作为 Hill 首创所有协议的证据。",
+      "sourceFacts": [
+        {
+          "text": "§§3–5 把同步模型规定的程序条件与实现提供的行为保证分开，并给出 DRF0 的充分实现条件。",
+          "workId": "drf-1990"
+        },
+        {
+          "text": "§2.4 分列单写者/多读者权限不变量与跨 epoch 的数据值不变量。",
+          "workId": "primer-2020"
+        }
+      ],
+      "argument": "编辑解读：先说明哪些程序满足契约，再讨论可合法重排的访问；单地址权限正确也不能替代跨地址的内存模型验证。",
+      "sourceAudit": [
+        {
+          "workId": "drf-1990",
+          "title": "Weak Ordering — A New Definition",
+          "authors": "Sarita V. Adve; Mark D. Hill",
+          "date": "1990 · ISCA",
+          "url": "https://pages.cs.wisc.edu/~markhill/papers/isca90_drf0.pdf",
+          "locator": "§§3–5：定义、DRF0 与实现充分条件",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两人共同提出以同步模型约束程序、以顺序一致结果约束实现的定义",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "d8a1031b0574d88c295d166ab7092b78fe09d98cdad144a6ff213a118772a10b"
+        },
+        {
+          "workId": "primer-2020",
+          "title": "A Primer on Memory Consistency and Cache Coherence, Second Edition",
+          "authors": "Vijay Nagarajan; Daniel J. Sorin; Mark D. Hill; David A. Wood",
+          "date": "2020",
+          "url": "https://pages.cs.wisc.edu/~markhill/papers/primer2020_2nd_edition.pdf",
+          "locator": "第2章 §2.4–2.4.2：SWMR、数据值不变量及粒度；封面作者名单",
+          "type": "技术专著全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "四人合著的系统化阐释；不把教材整理等同首次发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "46a2e25f17c101ce5dadf29bd701c8b4bc83d7adde3e07aebf44d21801ddbf31"
+        },
+        {
+          "workId": "official-award-mark-hill",
+          "title": "ACM–IEEE CS Eckert–Mauchly Award 官方获奖名单",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2019",
+          "url": "https://awards.acm.org/xpages/eckert-mauchly/index",
+          "locator": "2019 年获奖者条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份与获奖理由",
+          "evidenceStrength": "强：官方归属；不作为第二项实质技术来源",
+          "role": "仅支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM–IEEE CS Eckert–Mauchly Award",
+          "year": 2019,
+          "citationZh": "对内存系统与并行计算机设计和评估的贡献。",
+          "url": "https://awards.acm.org/xpages/eckert-mauchly/index",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "david-wood",
       "name": "David Wood",
       "field": "一致性系统的性能与可实现性",
-      "core": "同时证明共享机制的正确性、性能与实现可行性。",
-      "evidence": "本人 Wisconsin 研究说明明确以性能、可行性和正确性评估新架构；具体协议来自合作研究。",
+      "core": "共同设计 Token Coherence 与 SafetyNet，把共享内存的权限安全、请求进展和故障恢复分别落实为机制。",
+      "evidence": "编辑解读：低延迟快路径必须受正确性约束；故障恢复还需另有完整的状态与检测假设。两项工作不能拼成一个已验证的组合实现。",
       "habits": [
         "先定义共享语义。",
         "追踪状态与消息。",
@@ -10643,7 +10731,7 @@
         "哪些拓扑使机制失效？",
         "瓶颈是流量还是串行状态转换？"
       ],
-      "boundary": "协议消息减少不等于关键路径缩短；必须覆盖竞争与瞬态。",
+      "boundary": "Token Coherence 假设可靠消息传递；SafetyNet 另有检测和恢复机制。模拟配置的结论不能保证任意规模或故障类型。",
       "diagnostic": "检查协议状态，回放共享模式，测消息、目录压力、迁移和尾延迟。",
       "notes": [
         [
@@ -10660,6 +10748,16 @@
           "Wisconsin：本人研究说明",
           "https://pages.cs.wisc.edu/~david/includes/research.html",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Token Coherence: Decoupling Performance and Correctness",
+          "https://www.cs.wisc.edu/multifacet/papers/isca03_token_coherence.pdf",
+          "2003 · ISCA · §§3–4：token 不变量、owner token、persistent requests 与 TokenB"
+        ],
+        [
+          "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "2002 · ISCA · §§2.2–2.4：日志、全局检查点、验证；§3：实现"
         ]
       ],
       "challenge": {
@@ -10680,14 +10778,74 @@
       "domain": "memory",
       "relatedDomains": [
         "correctness"
-      ]
+      ],
+      "contributions": [
+        "与 Martin、Hill 提出 Token Coherence，以 token 和持久请求约束快路径。",
+        "与 Sorin、Martin、Hill 提出 SafetyNet，使全局恢复点包含内存与一致性权限。"
+      ],
+      "background": "两篇原论文分别为三人和四人合著；正文没有逐模块个人分工，故只确认 Wood 的共同作者贡献。",
+      "sourceFacts": [
+        {
+          "text": "§3 将 token 安全不变量与 persistent requests 的防饥饿职责分开。",
+          "workId": "token-2003"
+        },
+        {
+          "text": "§2.2 对寄存器做检查点，对内存旧值与权限做增量日志。",
+          "workId": "safetynet-2002"
+        }
+      ],
+      "argument": "编辑解读：低延迟快路径必须受正确性约束；故障恢复还需另有完整的状态与检测假设。两项工作不能拼成一个已验证的组合实现。",
+      "sourceAudit": [
+        {
+          "workId": "token-2003",
+          "title": "Token Coherence: Decoupling Performance and Correctness",
+          "authors": "Milo M. K. Martin; Mark D. Hill; David A. Wood",
+          "date": "2003 · ISCA",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/isca03_token_coherence.pdf",
+          "locator": "§§3–4：token 不变量、owner token、persistent requests 与 TokenB",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "三人共同提出；计数保障安全，持久请求保障进展",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "c51174f4ee7c8d457f2d230bb5aea48d29f7c042c0f95b1f6bcf91f2f4544b41"
+        },
+        {
+          "workId": "safetynet-2002",
+          "title": "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "authors": "Daniel J. Sorin; Milo M. K. Martin; Mark D. Hill; David A. Wood",
+          "date": "2002 · ISCA",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "locator": "§§2.2–2.4：日志、全局检查点、验证；§3：实现",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "四人共同提出；检查点必须覆盖数据和一致性权限",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "0034afa4444b1718515369b4b27e3d6071819f54db66db9e5512f66dcc8ce216"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "moinuddin-qureshi",
       "name": "Moinuddin Qureshi",
-      "field": "自适应缓存策略",
-      "core": "缓存策略应响应实际复用，而不是坚持单一插入假设。",
-      "evidence": "Adaptive Insertion Policies 是 Qureshi、Jaleel、Patt、Steely 与 Emer 的合作论文；不将历史结果当作当前测量。",
+      "field": "缓存插入策略与效用分配",
+      "core": "共同提出按复用与边际效用管理缓存：动态选择插入策略，并按减少缺失的潜力分配共享容量。",
+      "evidence": "编辑解读：策略应依据可观测的边际收益；减少 miss 还须转化为暴露等待减少，采样偏差与相位转换可能改变结论。",
       "habits": [
         "观察复用与污染。",
         "用对照识别策略差异。",
@@ -10699,7 +10857,7 @@
         "相位变化有多快？",
         "采样能代表真实负载吗？"
       ],
-      "boundary": "miss 降低不保证等比例服务提升；带宽与延迟隐藏会改变价值。",
+      "boundary": "原论文模拟结果不是所有工作负载的保证；缺失最少不自动意味着公平性、尾延迟或能耗最优。",
       "diagnostic": "固定容量，扫描工作集与相位，测 miss、暴露 stall、策略切换与 goodput。",
       "notes": [
         [
@@ -10716,6 +10874,21 @@
           "Adaptive Insertion Policies：原始合作论文",
           "https://people.csail.mit.edu/emer/media/papers/2007.06.isca.dip.pdf",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Adaptive Insertion Policies for High Performance Caching",
+          "https://jaleels.org/ajaleel/publications/isca2007-dip.pdf",
+          "2007 · ISCA · §4：LIP/BIP；§§5.1–5.3：DIP、PSEL 与 set dueling"
+        ],
+        [
+          "Utility-Based Cache Partitioning: A Low-Overhead, High-Performance, Runtime Mechanism to Partition Shared Caches",
+          "https://www.eecs.northwestern.edu/~rjoseph/eecs453/papers/quereshi-micro2006.pdf",
+          "2006 · MICRO · §§2–3：utility 定义、UMON 与按路划分"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "2022 官方获奖理由"
         ]
       ],
       "challenge": {
@@ -10734,29 +10907,104 @@
         "validation": "固定容量，扫描工作集与相位，测 miss、暴露 stall、策略切换与 goodput。"
       },
       "domain": "memory",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "与 Jaleel、Patt、Steely、Emer 提出 DIP，以 set dueling 选择 LRU 或 BIP。",
+        "与 Patt 提出 UCP，以 UMON 估计不同分配下的缓存效用。"
+      ],
+      "background": "DIP 原论文有五名作者；UCP 为 Qureshi、Patt 两人合著。两者解决插入与容量分配两个不同决策，不能混同一个算法。",
+      "sourceFacts": [
+        {
+          "text": "§5.2 用少量专用集合竞争并更新 PSEL，跟随集合采用获胜策略。",
+          "workId": "dip-2007"
+        },
+        {
+          "text": "§§2–3 以额外缓存路带来的缺失减少定义 utility，而非直接按访问需求分配。",
+          "workId": "ucp-2006"
+        }
+      ],
+      "argument": "编辑解读：策略应依据可观测的边际收益；减少 miss 还须转化为暴露等待减少，采样偏差与相位转换可能改变结论。",
+      "sourceAudit": [
+        {
+          "workId": "dip-2007",
+          "title": "Adaptive Insertion Policies for High Performance Caching",
+          "authors": "Moinuddin K. Qureshi; Aamer Jaleel; Yale N. Patt; Simon C. Steely Jr.; Joel Emer",
+          "date": "2007 · ISCA",
+          "url": "https://jaleels.org/ajaleel/publications/isca2007-dip.pdf",
+          "locator": "§4：LIP/BIP；§§5.1–5.3：DIP、PSEL 与 set dueling",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "五人合著；正文经网页 PDF 读取，直接下载返回 406，未记录虚假本地哈希",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "ucp-2006",
+          "title": "Utility-Based Cache Partitioning: A Low-Overhead, High-Performance, Runtime Mechanism to Partition Shared Caches",
+          "authors": "Moinuddin K. Qureshi; Yale N. Patt",
+          "date": "2006 · MICRO",
+          "url": "https://www.eecs.northwestern.edu/~rjoseph/eecs453/papers/quereshi-micro2006.pdf",
+          "locator": "§§2–3：utility 定义、UMON 与按路划分",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两人合著；按边际缺失减少量而非访问需求分配缓存",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "70344b32a8dab88b30fd3404d39c50f5444180297fd6d9f6a1db839da5522adb"
+        },
+        {
+          "workId": "official-award-moinuddin-qureshi",
+          "title": "ACM SIGARCH Maurice Wilkes Award 官方获奖名单",
+          "authors": "ACM SIGARCH",
+          "date": "2022",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "locator": "2022 年获奖者条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份与获奖理由",
+          "evidenceStrength": "强：官方归属；不作为第二项实质技术来源",
+          "role": "仅支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2022,
+          "citationZh": "对高性能内存系统的贡献。",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "onur-mutlu",
       "name": "Onur Mutlu",
-      "field": "高效、安全的 DRAM 与以数据为中心的计算",
-      "core": "当数据移动与 DRAM 的效率、可靠和安全问题成为主成本，重审计算、存储与保护机制的边界。",
-      "evidence": "ACM SIGARCH 2019 Maurice Wilkes Award 说明为“For innovative contributions to efficient and secure DRAM systems.”。本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
+      "field": "共享 DRAM 调度、公平性与可靠性",
+      "core": "共同改进共享 DRAM 的公平调度，并参与系统揭示 DRAM 扰动错误与概率刷新缓解。",
+      "evidence": "编辑解读：吞吐、公平性和可靠性需分别设定验收条件；刷新开销与调度干扰必须在相同系统预算下测量。",
       "habits": [
-        "先核算数据移动。",
-        "区分带宽、容量和干扰。",
-        "检查处理位置。",
-        "用负载证明新组织。",
-        "把 DRAM 的效率、可靠性与安全作为同一设计约束核算。"
+        "先写明语义、资源与实验前提，再比较机制。",
+        "分开验证正确性与性能，保留团队归属。"
       ],
       "questions": [
-        "移动计算能否比移动数据更便宜？",
-        "哪部分流量可真正消除？",
-        "新增一致性与控制成本是多少？",
-        "效率机制是否同时扩大了 DRAM 的攻击面或降低了可靠性？"
+        "平均吞吐改善是否掩盖了线程饥饿或扰动错误？"
       ],
-      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。 获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。",
-      "diagnostic": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。",
+      "boundary": "2014 样本和扰动阈值不能外推到所有现售 DRAM；PARA 的概率和邻接假设需重核。两篇论文没有验证 PAR-BS 与 PARA 的组合，也不涵盖全部 PIM 贡献。",
+      "diagnostic": "分别消融批次与排名；记录每线程 slowdown。对可靠性另用受控测试核对邻接、激活与刷新，不由吞吐推断安全。",
       "notes": [
         [
           "e07",
@@ -10777,28 +11025,120 @@
           "ETH：本人研究项目",
           "https://people.inf.ethz.ch/omutlu/projects.htm",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Parallelism-Aware Batch Scheduling: Enhancing both Performance and Fairness of Shared DRAM Systems",
+          "https://people.inf.ethz.ch/omutlu/pub/parbs_isca08.pdf",
+          "2008 · ISCA · §§4.1–4.3：批次、Max-Total 排序、代价与公平性"
+        ],
+        [
+          "Flipping Bits in Memory Without Accessing Them: An Experimental Study of DRAM Disturbance Errors",
+          "https://people.inf.ethz.ch/omutlu/pub/dram-row-hammer_isca14.pdf",
+          "2014 · ISCA · §1 与 §8.2：实验定位、PARA、概率与物理邻接要求；首页署名"
         ]
       ],
       "challenge": {
-        "lens": "数据移动挑战",
+        "lens": "共享 DRAM 的公平与可靠性",
         "skills": [
           "A1",
           "A4",
           "A7"
         ],
-        "variables": "b_saved：减少字节；e_b：该边界能量/字节；E_extra：新增能量。",
-        "model": "能量净益要求 b_saved e_b > E_extra，时间单独验证。",
-        "crossover": "只有实际减少的流量足以覆盖控制与计算新成本。",
-        "counterexample": "小数据或大量结果回传无法摊销。",
-        "transfer": "迁移到存储计算或会话放置。",
-        "question": "移动计算能否比移动数据更便宜？",
-        "validation": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。"
+        "question": "平均吞吐改善是否掩盖了线程饥饿或扰动错误？",
+        "variables": "逐线程 slowdown、批次等待、刷新代价、错误概率。",
+        "model": "本站条件性诊断（编辑提炼，非作者公式）：公平与可靠性各设门槛，再在固定带宽和功耗下优化吞吐。",
+        "crossover": "满足服务与错误率目标且额外刷新成本可承受。",
+        "counterexample": "行命中率提高却使少请求线程长期等待。",
+        "validation": "分别消融批次与排名；记录每线程 slowdown。对可靠性另用受控测试核对邻接、激活与刷新，不由吞吐推断安全。",
+        "transfer": "迁移到其他共享控制器时重核排队与错误模型。"
       },
       "domain": "memory",
       "relatedDomains": [
         "physical-energy",
         "correctness"
-      ]
+      ],
+      "contributions": [
+        "与 Moscibroda 提出 PAR-BS，结合请求批次和跨 bank 的线程排序。",
+        "作为九人团队成员合著 RowHammer 实验论文及 PARA 缓解方案。"
+      ],
+      "background": "PAR-BS 为 Mutlu、Moscibroda 合著；RowHammer 原论文完整九人名单见审计来源。此处确认共同贡献，不声称 Mutlu 独自发现扰动现象或完成所有实验。",
+      "sourceFacts": [
+        {
+          "text": "§4 先优先已标记请求，批内兼顾 row hit 与线程排名；同一排名跨 bank 使用。",
+          "workId": "parbs-2008"
+        },
+        {
+          "text": "§8.2 的 PARA 在关闭行时概率激活邻行；需要物理邻接信息，且不提供绝对零错误保证。",
+          "workId": "rowhammer-2014"
+        }
+      ],
+      "argument": "编辑解读：吞吐、公平性和可靠性需分别设定验收条件；刷新开销与调度干扰必须在相同系统预算下测量。",
+      "sourceAudit": [
+        {
+          "workId": "parbs-2008",
+          "title": "Parallelism-Aware Batch Scheduling: Enhancing both Performance and Fairness of Shared DRAM Systems",
+          "authors": "Onur Mutlu; Thomas Moscibroda",
+          "date": "2008 · ISCA",
+          "url": "https://people.inf.ethz.ch/omutlu/pub/parbs_isca08.pdf",
+          "locator": "§§4.1–4.3：批次、Max-Total 排序、代价与公平性",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两位作者共同提出 PAR-BS；按论文请求优先级解释机制",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "60fffc0f303f7aa7a626abb7a4bb857edd69bf218a3b605742a06de406f7935e"
+        },
+        {
+          "workId": "rowhammer-2014",
+          "title": "Flipping Bits in Memory Without Accessing Them: An Experimental Study of DRAM Disturbance Errors",
+          "authors": "Yoongu Kim; Ross Daly; Jeremie Kim; Chris Fallin; Ji Hye Lee; Donghyuk Lee; Chris Wilkerson; Konrad Lai; Onur Mutlu",
+          "date": "2014 · ISCA",
+          "url": "https://people.inf.ethz.ch/omutlu/pub/dram-row-hammer_isca14.pdf",
+          "locator": "§1 与 §8.2：实验定位、PARA、概率与物理邻接要求；首页署名",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "九人合作的实证与缓解方案；不把所有 RowHammer 工作或漏洞发现归为 Mutlu 个人",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "663d10735139e967164df09d79f5513268e6821e54319f5fa8426b531c13d0a2"
+        },
+        {
+          "workId": "official-award-onur-mutlu",
+          "title": "ACM SIGARCH Maurice Wilkes Award 官方获奖名单",
+          "authors": "ACM SIGARCH",
+          "date": "2019",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "locator": "2019 年获奖者条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份与获奖理由",
+          "evidenceStrength": "强：官方归属；不作为第二项实质技术来源",
+          "role": "仅支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2019,
+          "citationZh": "对高效且安全的 DRAM 系统的贡献。",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "abhishek-bhattacharjee",
@@ -11399,8 +11739,8 @@
       "id": "kourosh-gharachorloo",
       "name": "Kourosh Gharachorloo",
       "field": "存储一致性与真实工作负载",
-      "core": "用明确语义区分必须的顺序与实现上可重叠的等待。",
-      "evidence": "与 Adve 合作的存储一致性教程及数据库负载合作研究，连接语义、乱序执行和共享系统。",
+      "core": "共同提出释放一致性，用 acquire/release 区分必要排序，并系统化程序语义与实现约束的关系。",
+      "evidence": "编辑解读：明确同步方向可避免不必要的全局等待，但真实性能收益取决于可重叠工作；依赖链不能靠放松排序消除。",
       "habits": [
         "写明允许的可观察行为。",
         "区分真实依赖与排序约束。",
@@ -11412,7 +11752,7 @@
         "哪些操作不能重叠？",
         "数据库实际瓶颈是否来自排序？"
       ],
-      "boundary": "弱序不是无序；收益不能以违反原程序契约为代价。",
+      "boundary": "历史 RCpc/RCsc 与今天某 ISA 或语言的 acquire/release 不可直接画等号；模型等价性必须保留程序标记条件。",
       "diagnostic": "用 litmus 与模型检查语义，归因 fence、依赖、访存及共享流量，再测整机服务。",
       "notes": [
         [
@@ -11429,6 +11769,21 @@
           "RSIM：一致性教程与合作研究",
           "https://rsim.cs.uiuc.edu/consistency/",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Memory Consistency and Event Ordering in Scalable Shared-Memory Multiprocessors",
+          "https://web.csl.cornell.edu/courses/ece5750/gharachorloo.isca90.pdf",
+          "1990 · ISCA · §§3.1–3.3：访问分类与 release consistency；§4：模型等价条件"
+        ],
+        [
+          "Shared Memory Consistency Models: A Tutorial",
+          "https://sadve.cs.illinois.edu/Publications/computer96.pdf",
+          "1996 · IEEE Computer 29(12) · pp.66–76：顺序一致性、放宽模型及程序员视角；扫描全文经 OCR 辅助核验"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "2004 官方获奖理由"
         ]
       ],
       "challenge": {
@@ -11449,14 +11804,96 @@
       "domain": "correctness",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "与 Lenoski、Laudon、Gibbons、Gupta、Hennessy 提出 release consistency。",
+        "与 Adve 合著教程，解释放松模型及其编程条件。"
+      ],
+      "background": "1990 原论文保留六名共同作者；1996 教程为两人合作的不同作品。模型提出与后续教程的整理贡献分别表述。",
+      "sourceFacts": [
+        {
+          "text": "§3.3 要求普通访问服从先前 acquire，release 服从先前普通访问；§4 的等价性依赖正确标记的程序。",
+          "workId": "release-1990"
+        },
+        {
+          "text": "教程把不同放宽模型的排序约束与程序员可依赖的行为联系起来。",
+          "workId": "tutorial-1996"
+        }
+      ],
+      "argument": "编辑解读：明确同步方向可避免不必要的全局等待，但真实性能收益取决于可重叠工作；依赖链不能靠放松排序消除。",
+      "sourceAudit": [
+        {
+          "workId": "release-1990",
+          "title": "Memory Consistency and Event Ordering in Scalable Shared-Memory Multiprocessors",
+          "authors": "Kourosh Gharachorloo; Daniel Lenoski; James Laudon; Phillip Gibbons; Anoop Gupta; John Hennessy",
+          "date": "1990 · ISCA",
+          "url": "https://web.csl.cornell.edu/courses/ece5750/gharachorloo.isca90.pdf",
+          "locator": "§§3.1–3.3：访问分类与 release consistency；§4：模型等价条件",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "六人共同提出 release consistency；保留 properly-labeled programs 的前提",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "87b52019e771a403b11d01f1d9044690719c2d715afc2ae181c7f3ced4c58323"
+        },
+        {
+          "workId": "tutorial-1996",
+          "title": "Shared Memory Consistency Models: A Tutorial",
+          "authors": "Sarita V. Adve; Kourosh Gharachorloo",
+          "date": "1996 · IEEE Computer 29(12)",
+          "url": "https://sadve.cs.illinois.edu/Publications/computer96.pdf",
+          "locator": "IEEE Computer 29(12), pp.66–76；重点核验 p.66 语义接口、p.72 排序分类表、p.74 programmer-centric models；扫描全文及页面对照",
+          "type": "作者教程",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两位作者的技术教程；与 DRF 和 release consistency 原论文为不同作品",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "d012fd5b113b2fa4ce1d933a1efbf876bce66b00724dcb600cbbd1ab4034964c"
+        },
+        {
+          "workId": "official-award-kourosh-gharachorloo",
+          "title": "ACM SIGARCH Maurice Wilkes Award 官方获奖名单",
+          "authors": "ACM SIGARCH",
+          "date": "2004",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "locator": "2004 年获奖者条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份与获奖理由",
+          "evidenceStrength": "强：官方归属；不作为第二项实质技术来源",
+          "role": "仅支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2004,
+          "citationZh": "对共享内存多处理器内存一致性模型的贡献。",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "sarita-adve",
       "name": "Sarita Adve",
       "field": "语言与硬件的并发契约",
-      "core": "先建立程序、编译器与硬件共同遵守的语义，再讨论重排序收益。",
-      "evidence": "本人研究资料包含 DRF、DeNovo、Spandex 与一致性教程；相关成果有明确合作关系。",
+      "core": "共同建立以无数据竞争为前提的内存模型契约，并从程序员与实现两侧系统化一致性模型。",
+      "evidence": "编辑解读：语义保证必须带上程序前提；同步操作少并非自动更好，需先核对竞争、编译映射与允许结果。",
       "habits": [
         "明确数据竞争假设。",
         "划分语言与硬件保证。",
@@ -11468,7 +11905,7 @@
         "程序依赖的是哪层保证？",
         "同步成本是否真在关键路径？"
       ],
-      "boundary": "DRF 保证有具体模型前提；不能把无竞争当作所有程序自动成立。",
+      "boundary": "历史模型不能直接替代当前语言或 ISA 规范；本轮不把近似计算及全部异构模型成果一并标为核验完成。",
       "diagnostic": "检查竞争与 litmus，验证编译映射，再测同步和共享路径。",
       "notes": [
         [
@@ -11485,6 +11922,21 @@
           "本人研究与出版记录",
           "https://sadve.cs.illinois.edu/",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Weak Ordering — A New Definition",
+          "https://pages.cs.wisc.edu/~markhill/papers/isca90_drf0.pdf",
+          "1990 · ISCA · §§3–5：定义、DRF0 与实现充分条件"
+        ],
+        [
+          "Shared Memory Consistency Models: A Tutorial",
+          "https://sadve.cs.illinois.edu/Publications/computer96.pdf",
+          "1996 · IEEE Computer 29(12) · pp.66–76：顺序一致性、放宽模型及程序员视角；扫描全文经 OCR 辅助核验"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "2008 官方获奖理由"
         ]
       ],
       "challenge": {
@@ -11506,14 +11958,96 @@
       "relatedDomains": [
         "compiler-runtime",
         "memory"
-      ]
+      ],
+      "contributions": [
+        "与 Hill 提出 DRF0，把合法程序的顺序一致结果作为弱排序实现的契约。",
+        "与 Gharachorloo 合著一致性教程，解释排序放松与编程约束之间的联系。"
+      ],
+      "background": "DRF 原论文为 Adve、Hill 合著；1996 教程为 Adve、Gharachorloo 合著。教程总结多方已有模型，不将其综述范围全计为原创。",
+      "sourceFacts": [
+        {
+          "text": "DRF0 对同步操作及无竞争条件作规定；保证不是无条件适用于所有并发程序。",
+          "workId": "drf-1990"
+        },
+        {
+          "text": "教程区分程序员所见语义与硬件排序约束，并比较顺序一致及放宽模型。",
+          "workId": "tutorial-1996"
+        }
+      ],
+      "argument": "编辑解读：语义保证必须带上程序前提；同步操作少并非自动更好，需先核对竞争、编译映射与允许结果。",
+      "sourceAudit": [
+        {
+          "workId": "drf-1990",
+          "title": "Weak Ordering — A New Definition",
+          "authors": "Sarita V. Adve; Mark D. Hill",
+          "date": "1990 · ISCA",
+          "url": "https://pages.cs.wisc.edu/~markhill/papers/isca90_drf0.pdf",
+          "locator": "§§3–5：定义、DRF0 与实现充分条件",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两人共同提出以同步模型约束程序、以顺序一致结果约束实现的定义",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "d8a1031b0574d88c295d166ab7092b78fe09d98cdad144a6ff213a118772a10b"
+        },
+        {
+          "workId": "tutorial-1996",
+          "title": "Shared Memory Consistency Models: A Tutorial",
+          "authors": "Sarita V. Adve; Kourosh Gharachorloo",
+          "date": "1996 · IEEE Computer 29(12)",
+          "url": "https://sadve.cs.illinois.edu/Publications/computer96.pdf",
+          "locator": "IEEE Computer 29(12), pp.66–76；重点核验 p.66 语义接口、p.72 排序分类表、p.74 programmer-centric models；扫描全文及页面对照",
+          "type": "作者教程",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "两位作者的技术教程；与 DRF 和 release consistency 原论文为不同作品",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "d012fd5b113b2fa4ce1d933a1efbf876bce66b00724dcb600cbbd1ab4034964c"
+        },
+        {
+          "workId": "official-award-sarita-adve",
+          "title": "ACM SIGARCH Maurice Wilkes Award 官方获奖名单",
+          "authors": "ACM SIGARCH",
+          "date": "2008",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "locator": "2008 年获奖者条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份与获奖理由",
+          "evidenceStrength": "强：官方归属；不作为第二项实质技术来源",
+          "role": "仅支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2008,
+          "citationZh": "对多处理器内存一致性模型形式化的贡献，特别是无数据竞争模型及其对硬件和高级语言的影响。",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "milo-martin",
       "name": "Milo Martin",
       "field": "一致性权利与模块化协议",
-      "core": "明确谁拥有访问权，再组织高性能消息路径。",
-      "evidence": "其 Token Coherence 博士论文是原始依据；本条目把权利表达与性能机制分开审查。",
+      "core": "共同提出 Token Coherence，将常见情况的性能优化与权限安全、请求进展分层，并参与 SafetyNet 全局恢复设计。",
+      "evidence": "编辑解读：安全与活性是不同证明义务；常见情况更快只有在慢路径仍能完成请求时才有意义。",
       "habits": [
         "明确读写权利。",
         "区分安全与进展。",
@@ -11525,7 +12059,7 @@
         "热点如何影响权利转移？",
         "丢失或延迟消息怎样处理？"
       ],
-      "boundary": "权利模型需连同协议前提审查；不能把抽象 token 当作完整实现。",
+      "boundary": "持久请求和 token 存储仍有成本；可靠传输是 Token Coherence 的前提，不能依靠 token 计数自动修复丢失消息。",
       "diagnostic": "验证安全及活性，扫描写共享、拓扑、消息延迟与资源耗尽。",
       "notes": [
         [
@@ -11542,6 +12076,16 @@
           "Token Coherence：本人博士论文",
           "https://acg.cis.upenn.edu/milom/papers/milo_martin_phd.pdf",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Token Coherence: Decoupling Performance and Correctness",
+          "https://www.cs.wisc.edu/multifacet/papers/isca03_token_coherence.pdf",
+          "2003 · ISCA · §§3–4：token 不变量、owner token、persistent requests 与 TokenB"
+        ],
+        [
+          "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "2002 · ISCA · §§2.2–2.4：日志、全局检查点、验证；§3：实现"
         ]
       ],
       "challenge": {
@@ -11562,27 +12106,83 @@
       "domain": "correctness",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "与 Hill、Wood 共同提出 token 计数和持久请求机制，支撑无序互连上的 coherence。",
+        "与 Sorin、Hill、Wood 共同提出 SafetyNet，维护可恢复的全局共享状态。"
+      ],
+      "background": "Martin 是两篇合作论文的署名作者；不能仅凭作者顺序推断独立发明或具体实现分工。",
+      "sourceFacts": [
+        {
+          "text": "优化后的 §3.1 要求读者既有 token 又有有效数据；写者须持有全部 token。",
+          "workId": "token-2003"
+        },
+        {
+          "text": "§2.3 等待未完成事务结束再推进恢复点，避免保存事务中间态。",
+          "workId": "safetynet-2002"
+        }
+      ],
+      "argument": "编辑解读：安全与活性是不同证明义务；常见情况更快只有在慢路径仍能完成请求时才有意义。",
+      "sourceAudit": [
+        {
+          "workId": "token-2003",
+          "title": "Token Coherence: Decoupling Performance and Correctness",
+          "authors": "Milo M. K. Martin; Mark D. Hill; David A. Wood",
+          "date": "2003 · ISCA",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/isca03_token_coherence.pdf",
+          "locator": "§§3–4：token 不变量、owner token、persistent requests 与 TokenB",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "三人共同提出；计数保障安全，持久请求保障进展",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "c51174f4ee7c8d457f2d230bb5aea48d29f7c042c0f95b1f6bcf91f2f4544b41"
+        },
+        {
+          "workId": "safetynet-2002",
+          "title": "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "authors": "Daniel J. Sorin; Milo M. K. Martin; Mark D. Hill; David A. Wood",
+          "date": "2002 · ISCA",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "locator": "§§2.2–2.4：日志、全局检查点、验证；§3：实现",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "四人共同提出；检查点必须覆盖数据和一致性权限",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "0034afa4444b1718515369b4b27e3d6071819f54db66db9e5512f66dcc8ce216"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "daniel-sorin",
       "name": "Daniel Sorin",
-      "field": "可组合的一致性验证",
-      "core": "系统扩展时，让模块契约与验证结构一起扩展。",
-      "evidence": "本人出版记录包含异构一致性的形式验证与可组合基础；具体证明与实现属于合作研究。",
+      "field": "全局检查点恢复与共享内存正确性",
+      "core": "共同提出 SafetyNet 全局检查点恢复，并以权限与数据值不变量解释共享内存的正确性。",
+      "evidence": "编辑解读：一致的恢复点必须连同权限一起恢复；延迟验证并不消除日志容量、外部输出和故障检测的限制。",
       "habits": [
-        "定义模块不变量。",
-        "检查接口组合。",
-        "覆盖瞬态与故障。",
-        "把验证成本纳入设计。"
+        "先写明语义、资源与实验前提，再比较机制。",
+        "分开验证正确性与性能，保留团队归属。"
       ],
       "questions": [
-        "局部证明为何能够支持组合后的全局保证？",
-        "哪些接口假设可能被违反？",
-        "新增代理扩大多少验证空间？"
+        "恢复后数据、权限和处理器状态是否属于同一逻辑时刻？"
       ],
-      "boundary": "局部正确不自动推出全局正确；需要明确组合规则。",
-      "diagnostic": "模型检查接口和瞬态，对组合契约做负面测试并回放竞争。",
+      "boundary": "只对所述恢复协议及故障模型成立；不能把检查点恢复等同持久化事务，也不能由教材推断任意实现已获形式证明。",
+      "diagnostic": "注入论文故障模型内的消息故障，核对恢复状态、日志压力与输出时序。",
       "notes": [
         [
           "e10",
@@ -11598,27 +12198,97 @@
           "Duke：本人论文记录",
           "https://people.ee.duke.edu/~sorin/papers.html",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "2002 · ISCA · §§2.2–2.4：日志、全局检查点、验证；§3：实现"
+        ],
+        [
+          "A Primer on Memory Consistency and Cache Coherence, Second Edition",
+          "https://pages.cs.wisc.edu/~markhill/papers/primer2020_2nd_edition.pdf",
+          "2020 · 第2章 §2.4–2.4.2：SWMR、数据值不变量及粒度；封面作者名单"
         ]
       ],
       "challenge": {
-        "lens": "组合证明挑战",
+        "lens": "一致恢复点挑战",
         "skills": [
           "A6",
           "A8",
           "A9"
         ],
-        "variables": "I_i：模块不变量；A_i：接口假设；G：全局保证。",
-        "model": "证明组合满足所有 A_i 且由 I_i 推得 G，再比较实现成本。",
-        "crossover": "只有契约可保持，局部验证成本才可复用。",
-        "counterexample": "新代理违反旧模块对消息顺序的假设。",
-        "transfer": "迁移到 chiplet 或持久化协议。",
-        "question": "局部证明为何能够支持组合后的全局保证？",
-        "validation": "模型检查接口和瞬态，对组合契约做负面测试并回放竞争。"
+        "question": "恢复后数据、权限和处理器状态是否属于同一逻辑时刻？",
+        "variables": "C：检查点状态；D：检测延迟；L：日志容量。",
+        "model": "本站条件性诊断（编辑提炼，非作者公式）：C 必须全局一致，且 L 足以覆盖 D 内需要保留的修改。",
+        "crossover": "检测与日志约束均满足才可安全推进恢复点。",
+        "counterexample": "验证未完成就释放日志或对外提交不可撤销输出。",
+        "validation": "注入论文故障模型内的消息故障，核对恢复状态、日志压力与输出时序。",
+        "transfer": "可用于检查点系统；持久化与外部事务需另加保证。"
       },
       "domain": "correctness",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "与 Martin、Hill、Wood 共同设计 SafetyNet，将验证与后续执行流水重叠。",
+        "与 Nagarajan、Hill、Wood 合著 Primer 第二版，区分 coherence 权限和数据值要求。"
+      ],
+      "background": "SafetyNet 原论文列四名共同作者；2020 专著也为四人合著，新增作者 Nagarajan 必须保留。选定贡献是全局恢复和正确性阐释，不把全部组合式验证研究归于本次核验。",
+      "sourceFacts": [
+        {
+          "text": "§§2.3–2.4 以逻辑原子性确定检查点归属，未完成事务妨碍恢复点前进。",
+          "workId": "safetynet-2002"
+        },
+        {
+          "text": "§2.4 说明仅有单写者/多读者仍不足，读取值还须遵循数据值不变量。",
+          "workId": "primer-2020"
+        }
+      ],
+      "argument": "编辑解读：一致的恢复点必须连同权限一起恢复；延迟验证并不消除日志容量、外部输出和故障检测的限制。",
+      "sourceAudit": [
+        {
+          "workId": "safetynet-2002",
+          "title": "SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery",
+          "authors": "Daniel J. Sorin; Milo M. K. Martin; Mark D. Hill; David A. Wood",
+          "date": "2002 · ISCA",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/isca02_safetynet.pdf",
+          "locator": "§§2.2–2.4：日志、全局检查点、验证；§3：实现",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "四人共同提出；检查点必须覆盖数据和一致性权限",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "0034afa4444b1718515369b4b27e3d6071819f54db66db9e5512f66dcc8ce216"
+        },
+        {
+          "workId": "primer-2020",
+          "title": "A Primer on Memory Consistency and Cache Coherence, Second Edition",
+          "authors": "Vijay Nagarajan; Daniel J. Sorin; Mark D. Hill; David A. Wood",
+          "date": "2020",
+          "url": "https://pages.cs.wisc.edu/~markhill/papers/primer2020_2nd_edition.pdf",
+          "locator": "第2章 §2.4–2.4.2：SWMR、数据值不变量及粒度；封面作者名单",
+          "type": "技术专著全文",
+          "contentStatus": "已取得全文并核验所列章节、作者及机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名、机制及论文内边界；不证明个人独占或跨平台收益",
+          "role": "四人合著的系统化阐释；不把教材整理等同首次发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "46a2e25f17c101ce5dadf29bd701c8b4bc83d7adde3e07aebf44d21801ddbf31"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-memory",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "olivier-giroux",
@@ -20399,6 +21069,12 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 264
+    "totalProfiles": 264,
+    "batchLogs": [
+      "research/batches/2026-10-06.json",
+      "research/batches/2026-10-06-memory.json"
+    ],
+    "completedTotal": 84,
+    "remainingCatalog": 180
   }
 }

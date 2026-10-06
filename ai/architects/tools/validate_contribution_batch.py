@@ -6,8 +6,26 @@ from collections import Counter
 from lxml import html
 ROOT=Path(__file__).resolve().parents[1];REPO=ROOT.parents[1]
 c=json.loads((ROOT/'catalog.json').read_text());b=json.loads((ROOT/'research/batches/2026-10-06.json').read_text());h=json.loads((ROOT/'research/history/2026-10-06-before.json').read_text())
-old=json.loads(subprocess.check_output(['git','show',b['baseCommit']+':ai/architects/catalog.json'],cwd=REPO));by={p['id']:p for p in c['profiles']};oldby={p['id']:p for p in old['profiles']};done={r['id'] for r in b['records'] if r['status']=='complete'}
-assert len(by)==len(c['profiles'])==len(oldby)+b['completedNew']
+batchpaths=c['research'].get('batchLogs',[c['research']['batchLog']]);batches=[json.loads((ROOT/path).read_text()) for path in batchpaths]
+assert len(batchpaths)==len(set(batchpaths))
+old=json.loads(subprocess.check_output(['git','show',b['baseCommit']+':ai/architects/catalog.json'],cwd=REPO));by={p['id']:p for p in c['profiles']};oldby={p['id']:p for p in old['profiles']};done={r['id'] for batch in batches for r in batch['records'] if r['status']=='complete'}
+record_ids=[r['id'] for batch in batches for r in batch['records']]
+assert len(record_ids)==len(set(record_ids)), 'A person must belong to only one fixed batch'
+for batchpath,batch in zip(batchpaths,batches):
+ counts=Counter(r['status'] for r in batch['records'])
+ assert all(counts.get(k,0)==batch['counts'].get(k,0) for k in set(counts)|set(batch['counts']))
+ assert sum(r['status']=='complete' and r['kind']=='existing' for r in batch['records'])==batch['completedExisting']
+ assert sum(r['status']=='complete' and r['kind']=='candidate' for r in batch['records'])==batch['completedNew']
+ for r in batch['records']:
+  if r['status']=='complete':assert by[r['id']]['researchStatus']['batch']==Path(batchpath).stem
+ report_html=html.fromstring((ROOT/Path(batchpath).with_suffix('.html')).read_text())
+ assert len(report_html.xpath('//tbody/tr'))==len(batch['records'])
+ assert {url.removeprefix('../../#') for url in report_html.xpath('//tbody/tr/td/a/@href')}=={r['id'] for r in batch['records'] if r['status']=='complete'}
+ if batchpath != c['research']['batchLog']:
+  assert len(batch['records'])==batch['plannedScope']==batch['plannedExisting']+batch['plannedCandidates']
+  for record in batch['records']:
+   if record['status']=='complete':assert record['sources']==by[record['id']]['sourceAudit']
+assert len(by)==len(c['profiles'])==len(oldby)+sum(batch['completedNew'] for batch in batches)
 assert len(b['records'])==76 and len({r['id'] for r in b['records']})==76
 assert dict(Counter(r['status'] for r in b['records']))==b['counts']
 assert sum(r['status']=='complete' and r['kind']=='existing' for r in b['records'])==b['completedExisting']
@@ -42,7 +60,7 @@ for pid in done:
  assert all(k in ['A'+str(n) for n in range(1,11)] for k in p['challenge']['skills'])
 # This continuation uses an explicit work-level gate; a second URL or an award
 # citation is not a second substantive technical work.
-for continuation in b.get('continuations',[]):
+for continuation in [item for batch in batches for item in batch.get('continuations',[])]:
  if continuation.get('evidenceGate')!='two-distinct-substantive-primary-works-v1':continue
  for pid in continuation['completedIds']:
   p=by[pid];sources=p['sourceAudit']
@@ -77,6 +95,8 @@ for d in c['domains']:
  de=r.xpath('//aside[@class="toc"]/details[summary[contains(text(),"'+d['label']+'")]]')[0]
  assert de.xpath('./a[not(@class)]/@href')==['#'+pid for pid in d['members']]
  assert de.xpath('./summary')[0].text.endswith(' · '+str(len(d['members'])))
-assert c['research']['completedThisBatch']==len(done)
+assert c['research']['completedThisBatch']==b['counts']['complete']
+assert c['research'].get('completedTotal',len(done))==len(done)
+assert c['research'].get('remainingCatalog',len(by)-len(done))==len(by)-len(done)
 assert c['research']['totalProfiles']==len(by)
-print(f'PASS: {len(by)} unique profiles; 76 fixed records; {len(done)} audited; all old profiles/sources retained; directories, skills, counts and internal links consistent.')
+print(f'PASS: {len(by)} unique profiles; {len(batches)} fixed batches ({len(record_ids)} records); {len(done)} audited; all old profiles/sources retained; directories, skills, counts and internal links consistent.')

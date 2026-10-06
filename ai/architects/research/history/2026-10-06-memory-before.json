@@ -1,0 +1,468 @@
+{
+  "baseCommit": "164820eec0959bf404e397e583d201967625a523",
+  "continuationBase": "44aed3fb903c9f79e2edbb95e9f33c4b9d5365f6",
+  "profiles": [
+    {
+      "id": "mark-hill",
+      "name": "Mark D. Hill",
+      "field": "存储模型、一致性与可检验的设计",
+      "award": "Eckert–Mauchly Award · 2019",
+      "core": "先用模型区分问题的成因，再选择机制，并明确软件与硬件的契约。",
+      "evidence": "3C 模型区分首次访问、容量与冲突缺失；与 Sarita Adve 的 SC-for-DRF 合作研究连接程序的数据竞争约束与顺序一致性的推理方式。与其他作者合著的存储一致性及缓存一致性教材强调两者的区别。官方获奖说明也突出设计与模型并重。",
+      "habits": [
+        "把相似症状拆成不同成因，避免对所有缺失采用同一个补救。",
+        "先说清程序可以假设什么，再讨论实现允许哪些重排。",
+        "将缓存一致性与内存一致性分开分析，再检查其接口。",
+        "使模型产生可观察的预测，并用仿真或测量检查。"
+      ],
+      "questions": [
+        "这个缺失属于容量、冲突还是首次访问；还有什么未被模型覆盖？",
+        "程序承诺了什么，硬件又必须保证什么？",
+        "改变机制后，哪个可测量结果应当随之变化？"
+      ],
+      "boundary": "3C 不是现代存储开销的完整分类，不能独自解释一致性失效、预取、翻译或排队。SC-for-DRF 依赖具体模型与程序条件，不能推广为任意程序都具有顺序一致性。",
+      "diagnostic": "用容量与映射反事实实验归因缺失，另行测量共享及翻译开销；对存储模型使用明确语义的 litmus tests 检查允许和禁止的结果。",
+      "notes": [
+        [
+          "e07",
+          "大页与数据放置"
+        ],
+        [
+          "e11",
+          "共享内存与系统尾部"
+        ]
+      ],
+      "sources": [
+        [
+          "UW–Madison：Mark Hill 获奖说明",
+          "https://www.cs.wisc.edu/2019/06/05/one-of-worlds-leading-memory-systems-researchers-receives-top-computer-architecture-award/",
+          "2019 · 作者机构；3C 与 SC-for-DRF"
+        ],
+        [
+          "A Primer on Memory Consistency and Cache Coherence, Second Edition",
+          "https://pages.cs.wisc.edu/~markhill/papers/primer2020_2nd_edition.pdf",
+          "2020 · Nagarajan、Sorin、Hill、Wood 合著"
+        ]
+      ],
+      "awardYear": 2019,
+      "challenge": {
+        "lens": "缺失归因与反事实",
+        "skills": [
+          "A1",
+          "A3",
+          "A9"
+        ],
+        "variables": "M_cap、M_conf：容量/冲突可减少 miss；L_e：暴露成本；H：机制成本。",
+        "model": "固定语义与容量做映射反事实，再估计 ΔM L_e-H；共享/翻译另计。",
+        "crossover": "优化应针对实际可减少且暴露的 miss，而非所有 miss。",
+        "counterexample": "扩大容量处理不了共享失效或地址翻译瓶颈。",
+        "transfer": "迁移到 KV 分配碎片或 tier-placement 归因。",
+        "question": "这个缺失属于容量、冲突还是首次访问；还有什么未被模型覆盖？",
+        "validation": "用容量与映射反事实实验归因缺失，另行测量共享及翻译开销；对存储模型使用明确语义的 litmus tests 检查允许和禁止的结果。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness"
+      ]
+    },
+    {
+      "id": "david-wood",
+      "name": "David Wood",
+      "field": "一致性系统的性能与可实现性",
+      "core": "同时证明共享机制的正确性、性能与实现可行性。",
+      "evidence": "本人 Wisconsin 研究说明明确以性能、可行性和正确性评估新架构；具体协议来自合作研究。",
+      "habits": [
+        "先定义共享语义。",
+        "追踪状态与消息。",
+        "核算实现资源。",
+        "同时检验性能和正确性。"
+      ],
+      "questions": [
+        "较少一致性消息是否值得新增状态与验证复杂度？",
+        "哪些拓扑使机制失效？",
+        "瓶颈是流量还是串行状态转换？"
+      ],
+      "boundary": "协议消息减少不等于关键路径缩短；必须覆盖竞争与瞬态。",
+      "diagnostic": "检查协议状态，回放共享模式，测消息、目录压力、迁移和尾延迟。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e11",
+          "共享与尾延迟"
+        ]
+      ],
+      "sources": [
+        [
+          "Wisconsin：本人研究说明",
+          "https://pages.cs.wisc.edu/~david/includes/research.html",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "共享实现挑战",
+        "skills": [
+          "A3",
+          "A6",
+          "A8"
+        ],
+        "variables": "T_msg_saved；T_state_extra：暴露时间；A：状态资源。",
+        "model": "正确性通过后，要求 T_msg_saved > T_state_extra 且 A 可实现。",
+        "crossover": "收益需出现在实际关键路径而非只在消息总数。",
+        "counterexample": "新增目录状态形成资源瓶颈。",
+        "transfer": "迁移到异构 coherence 或分布式缓存。",
+        "question": "较少一致性消息是否值得新增状态与验证复杂度？",
+        "validation": "检查协议状态，回放共享模式，测消息、目录压力、迁移和尾延迟。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness"
+      ]
+    },
+    {
+      "id": "moinuddin-qureshi",
+      "name": "Moinuddin Qureshi",
+      "field": "自适应缓存策略",
+      "core": "缓存策略应响应实际复用，而不是坚持单一插入假设。",
+      "evidence": "Adaptive Insertion Policies 是 Qureshi、Jaleel、Patt、Steely 与 Emer 的合作论文；不将历史结果当作当前测量。",
+      "habits": [
+        "观察复用与污染。",
+        "用对照识别策略差异。",
+        "检查适应速度。",
+        "核算策略成本。"
+      ],
+      "questions": [
+        "改变插入策略减少的 miss 是否减少了暴露等待？",
+        "相位变化有多快？",
+        "采样能代表真实负载吗？"
+      ],
+      "boundary": "miss 降低不保证等比例服务提升；带宽与延迟隐藏会改变价值。",
+      "diagnostic": "固定容量，扫描工作集与相位，测 miss、暴露 stall、策略切换与 goodput。",
+      "notes": [
+        [
+          "e07",
+          "翻译与数据放置"
+        ],
+        [
+          "e09",
+          "核心与有效吞吐"
+        ]
+      ],
+      "sources": [
+        [
+          "Adaptive Insertion Policies：原始合作论文",
+          "https://people.csail.mit.edu/emer/media/papers/2007.06.isca.dip.pdf",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "自适应复用挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A9"
+        ],
+        "variables": "ΔM：减少 miss 数；L_e：平均暴露 miss 成本；C_p：策略暴露成本。",
+        "model": "简化要求 ΔM L_e > C_p，考虑相位切换。",
+        "crossover": "策略适应后节省必须超过采样和过渡损失。",
+        "counterexample": "采样误判短相位，保护了无复用数据。",
+        "transfer": "迁移到 KV eviction 或页面分层。",
+        "question": "改变插入策略减少的 miss 是否减少了暴露等待？",
+        "validation": "固定容量，扫描工作集与相位，测 miss、暴露 stall、策略切换与 goodput。"
+      },
+      "domain": "memory",
+      "relatedDomains": []
+    },
+    {
+      "id": "onur-mutlu",
+      "name": "Onur Mutlu",
+      "field": "高效、安全的 DRAM 与以数据为中心的计算",
+      "core": "当数据移动与 DRAM 的效率、可靠和安全问题成为主成本，重审计算、存储与保护机制的边界。",
+      "evidence": "ACM SIGARCH 2019 Maurice Wilkes Award 说明为“For innovative contributions to efficient and secure DRAM systems.”。本人 ETH 研究项目与 Intelligent Architectures 论文讨论存储、数据移动和数据中心计算；以下是主题归纳。",
+      "habits": [
+        "先核算数据移动。",
+        "区分带宽、容量和干扰。",
+        "检查处理位置。",
+        "用负载证明新组织。",
+        "把 DRAM 的效率、可靠性与安全作为同一设计约束核算。"
+      ],
+      "questions": [
+        "移动计算能否比移动数据更便宜？",
+        "哪部分流量可真正消除？",
+        "新增一致性与控制成本是多少？",
+        "效率机制是否同时扩大了 DRAM 的攻击面或降低了可靠性？"
+      ],
+      "boundary": "近数据处理仍需输入输出、语义和可编程性；不能假设全部流量消失。 获奖说明只概括贡献方向，具体机制与数值须读原文，不能由说明推断。",
+      "diagnostic": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。",
+      "notes": [
+        [
+          "e07",
+          "翻译与数据放置"
+        ],
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2019 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "ETH：本人研究项目",
+          "https://people.inf.ethz.ch/omutlu/projects.htm",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据移动挑战",
+        "skills": [
+          "A1",
+          "A4",
+          "A7"
+        ],
+        "variables": "b_saved：减少字节；e_b：该边界能量/字节；E_extra：新增能量。",
+        "model": "能量净益要求 b_saved e_b > E_extra，时间单独验证。",
+        "crossover": "只有实际减少的流量足以覆盖控制与计算新成本。",
+        "counterexample": "小数据或大量结果回传无法摊销。",
+        "transfer": "迁移到存储计算或会话放置。",
+        "question": "移动计算能否比移动数据更便宜？",
+        "validation": "对照放置，测实际跨边界字节、能量、状态一致性及任务时间。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "physical-energy",
+        "correctness"
+      ]
+    },
+    {
+      "id": "kourosh-gharachorloo",
+      "name": "Kourosh Gharachorloo",
+      "field": "存储一致性与真实工作负载",
+      "core": "用明确语义区分必须的顺序与实现上可重叠的等待。",
+      "evidence": "与 Adve 合作的存储一致性教程及数据库负载合作研究，连接语义、乱序执行和共享系统。",
+      "habits": [
+        "写明允许的可观察行为。",
+        "区分真实依赖与排序约束。",
+        "按工作负载评价松弛收益。",
+        "检查语言到硬件的契约。"
+      ],
+      "questions": [
+        "放松顺序能隐藏多少等待，同时维持程序保证？",
+        "哪些操作不能重叠？",
+        "数据库实际瓶颈是否来自排序？"
+      ],
+      "boundary": "弱序不是无序；收益不能以违反原程序契约为代价。",
+      "diagnostic": "用 litmus 与模型检查语义，归因 fence、依赖、访存及共享流量，再测整机服务。",
+      "notes": [
+        [
+          "e09",
+          "核心与有效吞吐"
+        ],
+        [
+          "e11",
+          "共享与尾延迟"
+        ]
+      ],
+      "sources": [
+        [
+          "RSIM：一致性教程与合作研究",
+          "https://rsim.cs.uiuc.edu/consistency/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "排序成本挑战",
+        "skills": [
+          "A1",
+          "A3",
+          "A8"
+        ],
+        "variables": "T_wait：受排序限制的暴露等待；T_extra：新机制暴露成本。",
+        "model": "同语义条件下估计 T_saved ≤ T_wait，检查 T_saved > T_extra。",
+        "crossover": "只有可合法重叠的等待超过新增实现成本才改善关键路径。",
+        "counterexample": "数据真实依赖或带宽已经主导，弱化 fence 也无益。",
+        "transfer": "迁移到 GPU scope 或异步 DMA。",
+        "question": "放松顺序能隐藏多少等待，同时维持程序保证？",
+        "validation": "用 litmus 与模型检查语义，归因 fence、依赖、访存及共享流量，再测整机服务。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "memory"
+      ]
+    },
+    {
+      "id": "sarita-adve",
+      "name": "Sarita Adve",
+      "field": "语言与硬件的并发契约",
+      "core": "先建立程序、编译器与硬件共同遵守的语义，再讨论重排序收益。",
+      "evidence": "本人研究资料包含 DRF、DeNovo、Spandex 与一致性教程；相关成果有明确合作关系。",
+      "habits": [
+        "明确数据竞争假设。",
+        "划分语言与硬件保证。",
+        "检查同步边界。",
+        "用形式和实验互证。"
+      ],
+      "questions": [
+        "优化成立所需的无数据竞争假设能否被满足？",
+        "程序依赖的是哪层保证？",
+        "同步成本是否真在关键路径？"
+      ],
+      "boundary": "DRF 保证有具体模型前提；不能把无竞争当作所有程序自动成立。",
+      "diagnostic": "检查竞争与 litmus，验证编译映射，再测同步和共享路径。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e11",
+          "共享与尾延迟"
+        ]
+      ],
+      "sources": [
+        [
+          "本人研究与出版记录",
+          "https://sadve.cs.illinois.edu/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "语义契约挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A9"
+        ],
+        "variables": "B_req：要求行为集合；B_impl：实现允许行为；T_sync：同步成本。",
+        "model": "先确认 B_impl 不超出 B_req，之后才能优化 T_sync。",
+        "crossover": "正确性是门槛，不可用性能收益交换。",
+        "counterexample": "存在数据竞争的代码不满足采用保证的前提。",
+        "transfer": "迁移到 GPU scope 或分布式同步。",
+        "question": "优化成立所需的无数据竞争假设能否被满足？",
+        "validation": "检查竞争与 litmus，验证编译映射，再测同步和共享路径。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ]
+    },
+    {
+      "id": "milo-martin",
+      "name": "Milo Martin",
+      "field": "一致性权利与模块化协议",
+      "core": "明确谁拥有访问权，再组织高性能消息路径。",
+      "evidence": "其 Token Coherence 博士论文是原始依据；本条目把权利表达与性能机制分开审查。",
+      "habits": [
+        "明确读写权利。",
+        "区分安全与进展。",
+        "分离正确性基础与优化。",
+        "考察层级和竞争。"
+      ],
+      "questions": [
+        "快路径变化后，访问权与进展还由什么保证？",
+        "热点如何影响权利转移？",
+        "丢失或延迟消息怎样处理？"
+      ],
+      "boundary": "权利模型需连同协议前提审查；不能把抽象 token 当作完整实现。",
+      "diagnostic": "验证安全及活性，扫描写共享、拓扑、消息延迟与资源耗尽。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e11",
+          "共享与尾延迟"
+        ]
+      ],
+      "sources": [
+        [
+          "Token Coherence：本人博士论文",
+          "https://acg.cis.upenn.edu/milom/papers/milo_martin_phd.pdf",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "访问权挑战",
+        "skills": [
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "variables": "R：读写权利状态；T_transfer：转移关键路径。",
+        "model": "先证明互斥与进展，再最小化合法 T_transfer。",
+        "crossover": "减少消息只有在不破坏权利和进展时才成立。",
+        "counterexample": "局部快路径造成全局饥饿或权限冲突。",
+        "transfer": "迁移到分布式 lease 或锁。",
+        "question": "快路径变化后，访问权与进展还由什么保证？",
+        "validation": "验证安全及活性，扫描写共享、拓扑、消息延迟与资源耗尽。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "memory"
+      ]
+    },
+    {
+      "id": "daniel-sorin",
+      "name": "Daniel Sorin",
+      "field": "可组合的一致性验证",
+      "core": "系统扩展时，让模块契约与验证结构一起扩展。",
+      "evidence": "本人出版记录包含异构一致性的形式验证与可组合基础；具体证明与实现属于合作研究。",
+      "habits": [
+        "定义模块不变量。",
+        "检查接口组合。",
+        "覆盖瞬态与故障。",
+        "把验证成本纳入设计。"
+      ],
+      "questions": [
+        "局部证明为何能够支持组合后的全局保证？",
+        "哪些接口假设可能被违反？",
+        "新增代理扩大多少验证空间？"
+      ],
+      "boundary": "局部正确不自动推出全局正确；需要明确组合规则。",
+      "diagnostic": "模型检查接口和瞬态，对组合契约做负面测试并回放竞争。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e13",
+          "状态与恢复"
+        ]
+      ],
+      "sources": [
+        [
+          "Duke：本人论文记录",
+          "https://people.ee.duke.edu/~sorin/papers.html",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "组合证明挑战",
+        "skills": [
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "variables": "I_i：模块不变量；A_i：接口假设；G：全局保证。",
+        "model": "证明组合满足所有 A_i 且由 I_i 推得 G，再比较实现成本。",
+        "crossover": "只有契约可保持，局部验证成本才可复用。",
+        "counterexample": "新代理违反旧模块对消息顺序的假设。",
+        "transfer": "迁移到 chiplet 或持久化协议。",
+        "question": "局部证明为何能够支持组合后的全局保证？",
+        "validation": "模型检查接口和瞬态，对组合契约做负面测试并回放竞争。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "memory"
+      ]
+    }
+  ]
+}
