@@ -1,0 +1,516 @@
+{
+  "baseCommit": "41c7fa5329e113b4fc8ba72fc13b80ecb19463d0",
+  "profiles": [
+    {
+      "id": "gene-amdahl",
+      "name": "Gene M. Amdahl",
+      "awardYear": 1987,
+      "award": "Eckert–Mauchly Award · 1987",
+      "field": "整体性能与并行边界",
+      "core": "先找无法随资源增长缩短的部分，再估计加速上限。",
+      "evidence": "1967 原论文分析单处理器与多处理器路线的限制；IEEE 同时认可其流水线、前瞻执行和缓存创新。本条目选择整体性能约束作为提炼重心。",
+      "habits": [
+        "固定问题与比较边界。",
+        "分解可加速与剩余工作。",
+        "计算协调和数据管理。",
+        "优化后重新寻找主导项。"
+      ],
+      "questions": [
+        "优化部分占总时间多少？",
+        "未加速部分会不会主导？",
+        "扩大问题后模型是否改变？"
+      ],
+      "boundary": "固定问题规模的结论不能直接用于变化规模；串行比例也不是负载永恒属性。",
+      "diagnostic": "对固定任务做时间分解，并另行报告规模变化下的并行效率。",
+      "notes": [
+        [
+          "e09",
+          "核心增长与固定预算"
+        ],
+        [
+          "e12",
+          "局部与整体性能"
+        ]
+      ],
+      "sources": [
+        [
+          "Validity of the single processor approach…",
+          "https://www.cs.cmu.edu/~18742/papers/Amdahl1967.pdf",
+          "1967 · 原论文；大学托管"
+        ],
+        [
+          "IEEE：Amdahl 获奖资料",
+          "https://www.computer.org/profiles/gene-amdahl",
+          "1987 · 架构创新"
+        ]
+      ],
+      "challenge": {
+        "lens": "固定任务的加速上限",
+        "skills": [
+          "A2",
+          "A3",
+          "A6"
+        ],
+        "variables": "f：可加速比例；p：理想加速倍数；H：额外时间。",
+        "model": "固定任务 T_p=T_1[(1-f)+f/p]+H；不用于直接预测弱扩展。",
+        "crossover": "T_1 f(1-1/p)>H；p→∞ 时剩余部分仍存在。",
+        "counterexample": "规模改变使通信与串行部分增长，原 f 不再有效。",
+        "transfer": "迁移到服务链或集体通信优化。",
+        "question": "优化部分占总时间多少？",
+        "validation": "对固定任务做时间分解，并另行报告规模变化下的并行效率。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "joel-emer",
+      "name": "Joel S. Emer",
+      "awardYear": 2009,
+      "award": "Eckert–Mauchly Award · 2009",
+      "field": "微架构建模与性能归因",
+      "core": "让模型解释瓶颈，再让真实实现校正模型。",
+      "evidence": "IEEE 的获奖资料认可其微架构分析、性能建模和工业处理器贡献。本条目据此提炼模型、测量与实现之间的往返，而非将预测当作实测。",
+      "habits": [
+        "先定义性能量与模型边界。",
+        "把现象分解为可解释的原因。",
+        "用预测与测量的偏差校正假设。",
+        "将研究机制放回完整实现。"
+      ],
+      "questions": [
+        "哪些停顿仍无法解释？",
+        "结论对哪些假设敏感？",
+        "什么测量能够推翻模型？"
+      ],
+      "boundary": "模型精细度必须适合问题；校准一个负载不能保证外推到所有负载。",
+      "diagnostic": "扫描资源与负载，比较预测、实际停顿和吞吐，定位偏差来源。",
+      "notes": [
+        [
+          "e09",
+          "核心与瓶颈归因"
+        ],
+        [
+          "e12",
+          "机制与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Emer 的微架构分析贡献",
+          "https://www.computer.org/profiles/joel-emer",
+          "2009 · 分析、建模与工业实现"
+        ]
+      ],
+      "challenge": {
+        "lens": "模型偏差与瓶颈归因",
+        "skills": [
+          "A2",
+          "A3",
+          "A9"
+        ],
+        "variables": "G_pred、G_obs：预测与实测吞吐；ε：允许模型误差；x：资源参数。",
+        "model": "计算相对误差 |G_pred-G_obs|/G_obs，并做参数敏感性。",
+        "crossover": "只有误差与机制归因在决策区域内可接受，模型才支持选择。",
+        "counterexample": "模型在校准点正确，却漏掉扩展后的新瓶颈。",
+        "transfer": "迁移到 AI 服务容量或 rack 功率模型。",
+        "question": "哪些停顿仍无法解释？",
+        "validation": "扫描资源与负载，比较预测、实际停顿和吞吐，定位偏差来源。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "sophie-wilson",
+      "name": "Sophie Wilson",
+      "field": "指令语义与可实现性",
+      "core": "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
+      "evidence": "本人 CHM 口述史讨论 BBC BASIC 与 ARM 设计；据此连接软件表达与硬件实现。",
+      "habits": [
+        "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
+        "先固定任务、正确性与资源边界，再判断 指令语义与可实现性 的收益。",
+        "把新增负担显式放入比较：指令更丰富却增加解码、编译和验证例外。"
+      ],
+      "questions": [
+        "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指令更丰富却增加解码、编译和验证例外。",
+      "diagnostic": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "CHM：Sophie Wilson 口述史",
+          "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "指令语义与可实现性挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
+        "variables": "N：动态指令；c：平均周期/指令；f：Hz；K：编译与验证成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T=Nc/f；用整程序而非单指令比较，并另计 K。",
+        "crossover": "N_new c_new/f_new < N_old c_old/f_old，且兼容与投入可接受。",
+        "counterexample": "指令更丰富却增加解码、编译和验证例外。",
+        "validation": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
+        "transfer": "迁移到向量 ISA 或 AI 专用算子接口。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "ivan-sutherland",
+      "name": "Ivan Sutherland",
+      "field": "交互表示与约束系统",
+      "core": "用可操作的表示暴露结构与约束，使人和机器共同解决问题。",
+      "evidence": "CHM 资料记录 Sketchpad 与交互图形研究；不把界面影响当芯片性能证据。",
+      "habits": [
+        "用可操作的表示暴露结构与约束，使人和机器共同解决问题。",
+        "固定 T_h：人工时间；T_m：机器时间；e：合格输出比例 的定义，按完整任务比较。",
+        "先测试最强反例：可视化隐藏约束冲突，快速得到错误结果。"
+      ],
+      "questions": [
+        "可视化约束缩短设计时间，但自动求解开销大，价值怎样检验？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。可视化隐藏约束冲突，快速得到错误结果。",
+      "diagnostic": "同任务交叉对照，检查约束满足、错误和完整设计时间。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Ivan Sutherland：代表性公开资料",
+          "https://computerhistory.org/profile/ivan-sutherland/",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "交互表示与约束系统挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "可视化约束缩短设计时间，但自动求解开销大，价值怎样检验？",
+        "variables": "T_h：人工时间；T_m：机器时间；e：合格输出比例；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较完整工作流完成时间和合格率；人工与机器成本分开计价。",
+        "crossover": "表示改善需在正确设计产出上兑现，不能仅用点击速度。",
+        "counterexample": "可视化隐藏约束冲突，快速得到错误结果。",
+        "validation": "同任务交叉对照，检查约束满足、错误和完整设计时间。",
+        "transfer": "迁移到架构探索工具与可视化性能诊断。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "alan-kay",
+      "name": "Alan Kay",
+      "field": "计算媒介与消息抽象",
+      "core": "从使用者要表达的活动选择抽象，再检查对象与消息的系统成本。",
+      "evidence": "CHM 官方资料记录 Smalltalk、个人计算与教育研究。",
+      "habits": [
+        "从使用者要表达的活动选择抽象，再检查对象与消息的系统成本。",
+        "固定 K_dev：开发投入；H_run：运行开销；n：部署次数 的定义，按完整任务比较。",
+        "先测试最强反例：细粒度消息和分配造成过量调度与通信。"
+      ],
+      "questions": [
+        "可组合消息接口让开发更快，但运行时开销增加，怎样判断价值？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。细粒度消息和分配造成过量调度与通信。",
+      "diagnostic": "比较完整开发与运行任务，测消息、分配、维护和语义回归。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Alan Kay：代表性公开资料",
+          "https://computerhistory.org/profile/alan-kay/",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "计算媒介与消息抽象挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "可组合消息接口让开发更快，但运行时开销增加，怎样判断价值？",
+        "variables": "K_dev：开发投入；H_run：运行开销；n：部署次数；参数需从待评估系统测量，以下为条件模型。",
+        "model": "生命周期比较 K_dev+n H_run，同时保持接口与任务质量。",
+        "crossover": "表达与维护节省需覆盖长期运行开销，按部署规模检验。",
+        "counterexample": "细粒度消息和分配造成过量调度与通信。",
+        "validation": "比较完整开发与运行任务，测消息、分配、维护和语义回归。",
+        "transfer": "迁移到 agent 工具接口与运行时设计。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "butler-lampson",
+      "name": "Butler Lampson",
+      "field": "接口、提示与故障边界",
+      "core": "保持契约清楚，将性能提示与正确性真相分离。",
+      "evidence": "本人 Hints for Computer System Design 讨论接口、性能、可靠性与提示；本卡是综合归纳。",
+      "habits": [
+        "保持契约清楚，将性能提示与正确性真相分离。",
+        "先固定任务、正确性与资源边界，再判断 接口、提示与故障边界 的收益。",
+        "把新增负担显式放入比较：验证同原查询一样昂贵，或错误提示被当作事实。"
+      ],
+      "questions": [
+        "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。验证同原查询一样昂贵，或错误提示被当作事实。",
+      "diagnostic": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Butler Lampson：Hints for Computer System Design",
+          "https://www.microsoft.com/en-us/research/publication/hints-for-computer-system-design/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "接口、提示与故障边界挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
+        "variables": "h：有效提示比例；V：验证秒；M：失效查询秒；B：基线查询秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E[T]=V+(1-h)M，前提验证足以保证正确性。",
+        "crossover": "V+(1-h)M < B；验证不能弱化契约，未验证提示不构成有效优化。",
+        "counterexample": "验证同原查询一样昂贵，或错误提示被当作事实。",
+        "validation": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
+        "transfer": "迁移到缓存路由、预取和 speculative execution。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "douglas-engelbart",
+      "name": "Douglas Engelbart",
+      "field": "增强人的集体问题解决",
+      "core": "系统目标应是提升完整协作产出，而非单个操作速度。",
+      "evidence": "CHM 官方资料记录 NLS、交互和 1968 演示；方法为归纳。",
+      "habits": [
+        "系统目标应是提升完整协作产出，而非单个操作速度。",
+        "固定 T_create/T_review/T_rework：秒；Q：合格成果数 的定义，按完整任务比较。",
+        "先测试最强反例：更多低质量输出让评审成为瓶颈。"
+      ],
+      "questions": [
+        "AI 工具生成文档快十倍，但审查返工增加，是否提升团队产出？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。更多低质量输出让评审成为瓶颈。",
+      "diagnostic": "同任务对照记录合格率、返工与团队完成时间；测量长期学习效应。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Douglas Engelbart：代表性公开资料",
+          "https://computerhistory.org/profile/doug-engelbart/",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "增强人的集体问题解决挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "AI 工具生成文档快十倍，但审查返工增加，是否提升团队产出？",
+        "variables": "T_create/T_review/T_rework：秒；Q：合格成果数；参数需从待评估系统测量，以下为条件模型。",
+        "model": "goodput=Q/(T_create+T_review+T_rework)，按同质量任务比较。",
+        "crossover": "生成节省大于新增审查与返工，且协作正确性不下降。",
+        "counterexample": "更多低质量输出让评审成为瓶颈。",
+        "validation": "同任务对照记录合格率、返工与团队完成时间；测量长期学习效应。",
+        "transfer": "迁移到架构研究与 AI 内容工作流。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "robert-tomasulo",
+      "name": "Robert M. Tomasulo",
+      "awardYear": 1997,
+      "award": "Eckert–Mauchly Award · 1997",
+      "field": "动态调度与名字依赖",
+      "core": "让执行追随真实依赖，而不受不必要的名字约束限制。",
+      "evidence": "IEEE 资料回顾 System/360 Model 91 与 Tomasulo 算法，并认可其对乱序执行的贡献。本库从动态调度路线归纳依赖与名字分离的视角。",
+      "habits": [
+        "区分数据依赖与名字冲突。",
+        "用动态状态记录就绪关系。",
+        "让独立工作先执行。",
+        "检查广播和调度结构的扩展成本。"
+      ],
+      "questions": [
+        "约束来自值还是寄存器名字？",
+        "操作数在哪里等待？",
+        "增加宽度时协调结构怎样增长？"
+      ],
+      "boundary": "去除名字依赖不消除真实依赖；现代精确异常与安全机制需要额外设计。",
+      "diagnostic": "分解真实依赖、资源冲突和调度等待，测量协调开销。",
+      "notes": [
+        [
+          "e09",
+          "并行兑现"
+        ],
+        [
+          "e08",
+          "推测与净工作"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Tomasulo 与原始系统",
+          "https://www.computer.org/profiles/robert-tomasulo",
+          "1997 · 算法与乱序执行"
+        ]
+      ],
+      "challenge": {
+        "lens": "名字依赖与真实依赖",
+        "skills": [
+          "A1",
+          "A3",
+          "A8"
+        ],
+        "variables": "T_name：名字约束的暴露等待；T_coord：重命名与协调新增时间。",
+        "model": "语义与精确状态保持后，净收益要求 T_name>T_coord。",
+        "crossover": "可消除的伪依赖必须足够大；真实值依赖仍需等待。",
+        "counterexample": "主要瓶颈是链式值依赖，重命名容量增长无益。",
+        "transfer": "迁移到寄存器分配或版本化数据。",
+        "question": "约束来自值还是寄存器名字？",
+        "validation": "分解真实依赖、资源冲突和调度等待，测量协调开销。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "james-smith",
+      "name": "James E. Smith",
+      "awardYear": 1999,
+      "award": "Eckert–Mauchly Award · 1999",
+      "field": "预测、精确状态与解耦执行",
+      "core": "用有限状态预测未来，并让不同进度的工作适当解耦。",
+      "evidence": "官方获奖依据列出饱和计数器、精确异常的重排序结构、access/execute 解耦及向量系统。UCSB 的本人讲座资料也记录这些研究方向。",
+      "habits": [
+        "预测时保留对噪声的容忍。",
+        "区分执行进度与提交状态。",
+        "让供给与计算在适当边界解耦。",
+        "核算队列与恢复成本。"
+      ],
+      "questions": [
+        "预测需要记住多少状态？",
+        "哪个边界可以独立前进？",
+        "解耦队列何时成为新瓶颈？"
+      ],
+      "boundary": "解耦不减少必需工作；队列、同步、错误预测与恢复可能抵消延迟重叠。",
+      "diagnostic": "测量队列占用、供给停顿、错误预测与恢复成本。",
+      "notes": [
+        [
+          "e06",
+          "阶段解耦与会话"
+        ],
+        [
+          "e08",
+          "预测与净收益"
+        ]
+      ],
+      "sources": [
+        [
+          "UCSB：Smith 本人讲座与研究简介",
+          "https://iee.ucsb.edu/news-events/events/seminar-series/roadmap-reverse-architecting-brains-neocortex",
+          "2019 · 预测、精确状态与架构研究"
+        ]
+      ],
+      "challenge": {
+        "lens": "预测、解耦与队列",
+        "skills": [
+          "A2",
+          "A3",
+          "A4"
+        ],
+        "variables": "T_supply_saved：减少供给停顿；pR：平均恢复时间；H_q：队列新增暴露成本。",
+        "model": "净关键路径收益要求 T_supply_saved>pR+H_q。",
+        "crossover": "解耦提供的提前量必须覆盖预测错误和管理成本。",
+        "counterexample": "队列更深但生产速率不足，或提前工作迅速失效。",
+        "transfer": "迁移到预取、异步 IO 或推理流水线。",
+        "question": "预测需要记住多少状态？",
+        "validation": "测量队列占用、供给停顿、错误预测与恢复成本。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    }
+  ]
+}

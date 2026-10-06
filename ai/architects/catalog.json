@@ -99,7 +99,8 @@
         "ivan-godard",
         "christian-jacobi",
         "brad-burgess",
-        "jeff-stuecheli"
+        "jeff-stuecheli",
+        "cameron-mcnairy"
       ]
     },
     {
@@ -567,20 +568,17 @@
       "awardYear": 1987,
       "award": "Eckert–Mauchly Award · 1987",
       "field": "整体性能与并行边界",
-      "core": "先找无法随资源增长缩短的部分，再估计加速上限。",
-      "evidence": "1967 原论文分析单处理器与多处理器路线的限制；IEEE 同时认可其流水线、前瞻执行和缓存创新。本条目选择整体性能约束作为提炼重心。",
+      "core": "推动流水线、指令前瞻与缓存创新，并揭示整体性能受不可并行工作限制。",
+      "evidence": "论文比较近似等量硬件的三种组织，指出数据管理、边界不规则和计算不均会削弱理想并行。诊断应先固定任务并分解时间；常用加速比公式是本页教学模型，不冒充原论文原式。",
       "habits": [
-        "固定问题与比较边界。",
-        "分解可加速与剩余工作。",
-        "计算协调和数据管理。",
-        "优化后重新寻找主导项。"
+        "先比较同一任务与硬件预算。",
+        "把数据管理与不规则计算计入总时间。"
       ],
       "questions": [
-        "优化部分占总时间多少？",
-        "未加速部分会不会主导？",
-        "扩大问题后模型是否改变？"
+        "不能被新增执行单元加速的时间占多少？",
+        "问题规模改变后，原来的时间分解还成立吗？"
       ],
-      "boundary": "固定问题规模的结论不能直接用于变化规模；串行比例也不是负载永恒属性。",
+      "boundary": "原文的工作负载比例与性能判断属于当时条件，不能当作今日常数。扩大问题规模或改变算法后必须重估串行比例。",
       "diagnostic": "对固定任务做时间分解，并另行报告规模变化下的并行效率。",
       "notes": [
         [
@@ -602,6 +600,11 @@
           "IEEE：Amdahl 获奖资料",
           "https://www.computer.org/profiles/gene-amdahl",
           "1987 · 架构创新"
+        ],
+        [
+          "Gene M. Amdahl — recipient citation",
+          "https://awards.acm.org/award_winners/amdahl_5555573.cfm",
+          "1987 · 官方获奖理由 · 1987 citation"
         ]
       ],
       "challenge": {
@@ -612,17 +615,64 @@
           "A6"
         ],
         "variables": "f：可加速比例；p：理想加速倍数；H：额外时间。",
-        "model": "固定任务 T_p=T_1[(1-f)+f/p]+H；不用于直接预测弱扩展。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：固定任务 T_p=T_1[(1-f)+f/p]+H；不用于直接预测弱扩展。",
         "crossover": "T_1 f(1-1/p)>H；p→∞ 时剩余部分仍存在。",
         "counterexample": "规模改变使通信与串行部分增长，原 f 不再有效。",
         "transfer": "迁移到服务链或集体通信优化。",
-        "question": "优化部分占总时间多少？",
+        "question": "不能被新增执行单元加速的时间占多少？",
         "validation": "对固定任务做时间分解，并另行报告规模变化下的并行效率。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "hpc"
-      ]
+      ],
+      "contributions": [
+        "官方获奖理由认可流水线、指令前瞻和缓存方面的架构创新。",
+        "1967 年论文把数据管理与问题不规则性纳入并行评估，说明增加执行资源不能消除顺序工作。"
+      ],
+      "background": "1967 年论文署名 IBM 的 Gene M. Amdahl。获奖理由覆盖其架构创新；这里另用本人论文解释并行边界，不把论文视为全部获奖工作的证明。",
+      "argument": "论文比较近似等量硬件的三种组织，指出数据管理、边界不规则和计算不均会削弱理想并行。诊断应先固定任务并分解时间；常用加速比公式是本页教学模型，不冒充原论文原式。",
+      "sourceAudit": [
+        {
+          "title": "Gene M. Amdahl — recipient citation",
+          "authors": "ACM",
+          "date": "1987",
+          "url": "https://awards.acm.org/award_winners/amdahl_5555573.cfm",
+          "locator": "1987 citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引提供完整 citation；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "获奖年份与贡献定位"
+        },
+        {
+          "title": "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities",
+          "authors": "Gene M. Amdahl",
+          "date": "1967",
+          "url": "https://www.cs.cmu.edu/~18742/papers/Amdahl1967.pdf",
+          "locator": "pp.483–485；数据管理、不规则性与三种机器比较",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "e8b483867db2e90f6edbcb7cc65e26141dbd243f8411e9898a152753ee59d156"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1987,
+          "citationZh": "在流水线、指令前瞻和缓存等计算机架构技术上作出突出创新。",
+          "url": "https://awards.acm.org/award_winners/amdahl_5555573.cfm",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "michael-flynn",
@@ -1634,19 +1684,17 @@
       "id": "sophie-wilson",
       "name": "Sophie Wilson",
       "field": "指令语义与可实现性",
-      "core": "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
-      "evidence": "本人 CHM 口述史讨论 BBC BASIC 与 ARM 设计；据此连接软件表达与硬件实现。",
+      "core": "与 Steve Furber 共同创造 BBC Micro 和早期 ARM 架构，把精简处理器做成可负担的完整系统。",
+      "evidence": "口述史把 ARM 起点放在 Acorn 的处理器需求：指令集与可实现流水线共同迭代。Wilson 明确说移动时代重视的能效优势并非最初目标的完整预设；她也举出后来因系统设计复杂而移除的流水化内存总线。",
       "habits": [
-        "从可编译的程序语义推导 ISA，再用实现成本检验表达方式。",
-        "先固定任务、正确性与资源边界，再判断 指令语义与可实现性 的收益。",
-        "把新增负担显式放入比较：指令更丰富却增加解码、编译和验证例外。"
+        "把指令表达与实现成本共同讨论。",
+        "区分设计时目标与后来显现的价值。"
       ],
       "questions": [
-        "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "新增指令的整程序收益能覆盖关键路径与验证成本吗？",
+        "这项优势是明确设计目标，还是约束下产生的结果？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指令更丰富却增加解码、编译和验证例外。",
+      "boundary": "低功耗的历史结果不证明所有精简 ISA 都天然节能；还要看工艺、访存、频率和软件。口述史是当事人回忆，不是独立性能测量。",
       "diagnostic": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
       "notes": [
         [
@@ -1659,6 +1707,11 @@
           "CHM：Sophie Wilson 口述史",
           "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Sophie Wilson — 2012 Fellow",
+          "https://computerhistory.org/profile/sophie-wilson/",
+          "2012 · 官方获奖理由 · 2012 Fellow citation 与 BBC Micro/ARM 贡献段"
         ]
       ],
       "challenge": {
@@ -1668,9 +1721,9 @@
           "A8",
           "A10"
         ],
-        "question": "新指令减少 15% 动态指令，却拉长关键路径：值得加入 ISA 吗？",
+        "question": "新增指令的整程序收益能覆盖关键路径与验证成本吗？",
         "variables": "N：动态指令；c：平均周期/指令；f：Hz；K：编译与验证成本；参数需从待评估系统测量，以下为条件模型。",
-        "model": "T=Nc/f；用整程序而非单指令比较，并另计 K。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T=Nc/f；用整程序而非单指令比较，并另计 K。",
         "crossover": "N_new c_new/f_new < N_old c_old/f_old，且兼容与投入可接受。",
         "counterexample": "指令更丰富却增加解码、编译和验证例外。",
         "validation": "编译同一程序集，检查代码大小、动态指令、关键路径与回归；收益集中单例则不推广。",
@@ -1681,7 +1734,54 @@
         "cpu",
         "compiler-runtime"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "共同设计 BBC Micro；Wilson 负责的操作系统与 BBC BASIC 将硬件能力变成可编程的使用环境。",
+        "在早期 ARM 合作中设计指令集，Furber 研究流水线与实现；简洁、低成本的选择同时带来出色能效。"
+      ],
+      "background": "CHM 2012 Fellow Award 明确共同认可 Wilson 与 Furber。本人 2012 口述史还列出 VLSI、I/O、显示及内存控制器团队，不能将整套芯片都归为个人成果。",
+      "argument": "口述史把 ARM 起点放在 Acorn 的处理器需求：指令集与可实现流水线共同迭代。Wilson 明确说移动时代重视的能效优势并非最初目标的完整预设；她也举出后来因系统设计复杂而移除的流水化内存总线。",
+      "sourceAudit": [
+        {
+          "title": "Sophie Wilson — 2012 Fellow",
+          "authors": "Computer History Museum",
+          "date": "2012",
+          "url": "https://computerhistory.org/profile/sophie-wilson/",
+          "locator": "2012 Fellow citation 与 BBC Micro/ARM 贡献段",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Oral History of Sophie Wilson",
+          "authors": "Sophie Wilson；采访 Douglas Fairbairn",
+          "date": "2012-01-31",
+          "url": "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
+          "locator": "PDF pp.3–4、22–23；ARM 目标、分工与实现",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "82f9462a30a867e35481893e4db9b88e9938b12a0876b8a4af09b79146c66d16"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "Computer History Museum Fellow Award",
+          "year": 2012,
+          "citationZh": "表彰她与 Steve Furber 在 BBC Micro 计算机和 ARM 处理器架构上的工作。",
+          "url": "https://computerhistory.org/profile/sophie-wilson/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "richard-sites",
@@ -1740,19 +1840,17 @@
       "id": "butler-lampson",
       "name": "Butler Lampson",
       "field": "接口、提示与故障边界",
-      "core": "保持契约清楚，将性能提示与正确性真相分离。",
-      "evidence": "本人 Hints for Computer System Design 讨论接口、性能、可靠性与提示；本卡是综合归纳。",
+      "core": "推动分布式个人计算，并把真实系统经验提炼为兼顾接口、性能与恢复能力的设计原则。",
+      "evidence": "提示允许过期或错误，但不可逆动作之前必须以可靠信息验证。Alto/Pilot 的磁盘标签提供真值，目录和寻址结构提供快捷路径；效率与正确性因而可以采用不同的数据组织。",
       "habits": [
-        "保持契约清楚，将性能提示与正确性真相分离。",
-        "先固定任务、正确性与资源边界，再判断 接口、提示与故障边界 的收益。",
-        "把新增负担显式放入比较：验证同原查询一样昂贵，或错误提示被当作事实。"
+        "先写清接口承诺和实现代价。",
+        "让提示可错，让校验与恢复有确定契约。"
       ],
       "questions": [
-        "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "提示错误时，能否在不可逆操作前发现并安全回退？",
+        "为最坏情况保留的资源能否保证继续前进？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。验证同原查询一样昂贵，或错误提示被当作事实。",
+      "boundary": "若验证与回退代价接近原查询，提示没有净收益。常见路径与最坏情况分离须满足应用可接受的恢复和进展要求，不能照搬历史故障容忍尺度。",
       "diagnostic": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
       "notes": [
         [
@@ -1765,6 +1863,16 @@
           "Butler Lampson：Hints for Computer System Design",
           "https://www.microsoft.com/en-us/research/publication/hints-for-computer-system-design/",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "ACM A.M. Turing Award — Fact Sheet",
+          "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "1992（获奖年份） · 官方获奖理由 · 历届获奖表：1992 Butler W. Lampson"
+        ],
+        [
+          "Hints for Computer System Design",
+          "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf",
+          "1983 · 论文全文 · §1、§2.1、§2.5、§3；PDF pp.1–5、12–13、17"
         ]
       ],
       "challenge": {
@@ -1774,9 +1882,9 @@
           "A8",
           "A10"
         ],
-        "question": "用预测提示绕过昂贵查询，怎样保证提示错误时仍返回正确结果？",
+        "question": "提示错误时，能否在不可逆操作前发现并安全回退？",
         "variables": "h：有效提示比例；V：验证秒；M：失效查询秒；B：基线查询秒；参数需从待评估系统测量，以下为条件模型。",
-        "model": "E[T]=V+(1-h)M，前提验证足以保证正确性。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：E[T]=V+(1-h)M，前提验证足以保证正确性。",
         "crossover": "V+(1-h)M < B；验证不能弱化契约，未验证提示不构成有效优化。",
         "counterexample": "验证同原查询一样昂贵，或错误提示被当作事实。",
         "validation": "注入过期提示与故障，验证回退和接口语义，再测端到端节省。",
@@ -1787,7 +1895,53 @@
         "cpu",
         "compiler-runtime"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "参与发展工作站、网络与系统软件相结合的个人计算环境；官方理由同时覆盖安全与文档出版等实现技术。",
+        "《Hints》说明怎样保持接口契约，用可校验的提示加速常见路径，并为异常情况保留进展能力。"
+      ],
+      "background": "《Hints》由 Lampson 署名，实例来自他参与的 Alto、Dorado、Bravo 等合作系统；文中明确不宣称所有建议原创，也不将其称为普适定律。",
+      "argument": "提示允许过期或错误，但不可逆动作之前必须以可靠信息验证。Alto/Pilot 的磁盘标签提供真值，目录和寻址结构提供快捷路径；效率与正确性因而可以采用不同的数据组织。",
+      "sourceAudit": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1992（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1992 Butler W. Lampson",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "Hints for Computer System Design",
+          "authors": "Butler W. Lampson",
+          "date": "1983",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf",
+          "locator": "§1、§2.1、§2.5、§3；PDF pp.1–5、12–13、17",
+          "type": "论文全文",
+          "contentStatus": "网页 PDF 正文已读取；本地下载超时",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 1992,
+          "citationZh": "发展分布式个人计算环境及其实现技术，包括工作站、网络、操作与编程系统、显示、安全和文档出版。",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "dave-jaggar",
@@ -2199,19 +2353,17 @@
       "id": "ivan-sutherland",
       "name": "Ivan Sutherland",
       "field": "交互表示与约束系统",
-      "core": "用可操作的表示暴露结构与约束，使人和机器共同解决问题。",
-      "evidence": "CHM 资料记录 Sketchpad 与交互图形研究；不把界面影响当芯片性能证据。",
+      "core": "以 Sketchpad 把图形从计算结果变成可直接编辑、复用并受约束的设计对象。",
+      "evidence": "第 VIII 章以四边形变为正方形说明约束求解：用户给定等长、直角等条件，由求解器修正形状。第 VI–VII 章的递归实例和复制支持复杂图形组织。",
       "habits": [
-        "用可操作的表示暴露结构与约束，使人和机器共同解决问题。",
-        "固定 T_h：人工时间；T_m：机器时间；e：合格输出比例 的定义，按完整任务比较。",
-        "先测试最强反例：可视化隐藏约束冲突，快速得到错误结果。"
+        "把设计意图表达成可检查的约束。",
+        "区分几何外观正确与约束真正满足。"
       ],
       "questions": [
-        "可视化约束缩短设计时间，但自动求解开销大，价值怎样检验？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "更快的交互是否提高了满足约束的设计产出？",
+        "重复实例修改后，哪些关系必须保持不变？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。可视化隐藏约束冲突，快速得到错误结果。",
+      "boundary": "原论文自述系统仍主要是二维设计过程模型；冗余约束、松弛收敛与更高级应用尚待改进。不能把原型等同现代 CAD 的全部能力。",
       "diagnostic": "同任务交叉对照，检查约束满足、错误和完整设计时间。",
       "notes": [
         [
@@ -2224,6 +2376,16 @@
           "Ivan Sutherland：代表性公开资料",
           "https://computerhistory.org/profile/ivan-sutherland/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "ACM A.M. Turing Award — Fact Sheet",
+          "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "1988（获奖年份） · 官方获奖理由 · 历届获奖表：1988 Ivan Sutherland"
+        ],
+        [
+          "Sketchpad: A Man-Machine Graphical Communication System",
+          "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-574.pdf",
+          "1963；2003-09 重印 · 论文全文 · 作者原文第 VI–VIII 章；重印本 pp.77–98，尤其 pp.93–94"
         ]
       ],
       "challenge": {
@@ -2233,9 +2395,9 @@
           "A8",
           "A10"
         ],
-        "question": "可视化约束缩短设计时间，但自动求解开销大，价值怎样检验？",
+        "question": "更快的交互是否提高了满足约束的设计产出？",
         "variables": "T_h：人工时间；T_m：机器时间；e：合格输出比例；参数需从待评估系统测量，以下为条件模型。",
-        "model": "比较完整工作流完成时间和合格率；人工与机器成本分开计价。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：比较完整工作流完成时间和合格率；人工与机器成本分开计价。",
         "crossover": "表示改善需在正确设计产出上兑现，不能仅用点击速度。",
         "counterexample": "可视化隐藏约束冲突，快速得到错误结果。",
         "validation": "同任务交叉对照，检查约束满足、错误和完整设计时间。",
@@ -2251,25 +2413,70 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "在 Sketchpad 中用光笔建立图形并施加几何条件，让计算机调整变量满足设计意图。",
+        "通过主图与实例、递归处理和关系数据结构，使重复结构能够复用和修改，而非逐笔重画。"
+      ],
+      "background": "Sketchpad 是 Sutherland 1963 年 MIT 博士论文工作，建立在 TX-2 平台及实验室支持上。使用 Cambridge 2003 重印本，并区分新增序言与作者原文。",
+      "argument": "第 VIII 章以四边形变为正方形说明约束求解：用户给定等长、直角等条件，由求解器修正形状。第 VI–VII 章的递归实例和复制支持复杂图形组织。",
+      "sourceAudit": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1988（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1988 Ivan Sutherland",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项及贡献定位"
+        },
+        {
+          "title": "Sketchpad: A Man-Machine Graphical Communication System",
+          "authors": "Ivan Edward Sutherland",
+          "date": "1963；2003-09 重印",
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-574.pdf",
+          "locator": "作者原文第 VI–VIII 章；重印本 pp.77–98，尤其 pp.93–94",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "e052281b553622badc8dd308003c127617aa5723e4ec3dbfa79b781d8e712742"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 1988,
+          "citationZh": "表彰从 Sketchpad 开始并持续拓展的、具有开创性的计算机图形学贡献。",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
       }
     },
     {
       "id": "alan-kay",
       "name": "Alan Kay",
       "field": "计算媒介与消息抽象",
-      "core": "从使用者要表达的活动选择抽象，再检查对象与消息的系统成本。",
-      "evidence": "CHM 官方资料记录 Smalltalk、个人计算与教育研究。",
+      "core": "开创面向对象与个人计算的重要理念，并领导 Smalltalk 团队把消息交互变成可工作的编程环境。",
+      "evidence": "对象隐藏状态和处理，只通过消息参与组合；实现细节可在保持行为时改变。文章追溯 Sketchpad、Simula、Lisp 等影响，并记录 Smalltalk-72 到 -76 的变化，不把一次设计写成不变教条。",
       "habits": [
-        "从使用者要表达的活动选择抽象，再检查对象与消息的系统成本。",
-        "固定 K_dev：开发投入；H_run：运行开销；n：部署次数 的定义，按完整任务比较。",
-        "先测试最强反例：细粒度消息和分配造成过量调度与通信。"
+        "围绕使用者活动选择抽象。",
+        "保留前人影响和团队分工。"
       ],
       "questions": [
-        "可组合消息接口让开发更快，但运行时开销增加，怎样判断价值？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "消息接口带来的表达与维护收益是否覆盖运行成本？",
+        "对新手可用与对专家可扩展能否在同一任务中验证？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。细粒度消息和分配造成过量调度与通信。",
+      "boundary": "消息抽象不自动消除运行开销，也不保证易学。该历史是作者回顾；开发效率和教育效果需对具体任务另做验证。",
       "diagnostic": "比较完整开发与运行任务，测消息、分配、维护和语义回归。",
       "notes": [
         [
@@ -2282,6 +2489,16 @@
           "Alan Kay：代表性公开资料",
           "https://computerhistory.org/profile/alan-kay/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "ACM Turing Lecture: Introductions To Computing Should Be Child’s Play",
+          "https://www.oopsla.org.splashcon.hosting.acm.org/2004/ShowEvent32f0.html",
+          "2004（2003 年获奖） · 官方获奖理由 · 官方会议页面完整引述 2003 Turing citation"
+        ],
+        [
+          "The Early History of Smalltalk",
+          "https://worrydream.com/EarlyHistoryOfSmalltalk/",
+          "1993-04 · 论文全文 · Introduction、§IV–V；署名论文全文重排版"
         ]
       ],
       "challenge": {
@@ -2291,9 +2508,9 @@
           "A8",
           "A10"
         ],
-        "question": "可组合消息接口让开发更快，但运行时开销增加，怎样判断价值？",
+        "question": "消息接口带来的表达与维护收益是否覆盖运行成本？",
         "variables": "K_dev：开发投入；H_run：运行开销；n：部署次数；参数需从待评估系统测量，以下为条件模型。",
-        "model": "生命周期比较 K_dev+n H_run，同时保持接口与任务质量。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：生命周期比较 K_dev+n H_run，同时保持接口与任务质量。",
         "crossover": "表达与维护节省需覆盖长期运行开销，按部署规模检验。",
         "counterexample": "细粒度消息和分配造成过量调度与通信。",
         "validation": "比较完整开发与运行任务，测消息、分配、维护和语义回归。",
@@ -2309,25 +2526,70 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "以封装状态、仅经消息交互的对象组织复杂行为，推动 Smalltalk 的核心设计。",
+        "将编程、交互与学习环境结合，面向普通使用者探索个人计算，而不只改善大型机使用方式。"
+      ],
+      "background": "1993 年本人历史文章明确区分发起和原始设计，与 Dan Ingalls、Adele Goldberg 及 PARC 团队的实现、设计和传播贡献。不能把 Smalltalk 或面向对象的全部发明归为个人。",
+      "argument": "对象隐藏状态和处理，只通过消息参与组合；实现细节可在保持行为时改变。文章追溯 Sketchpad、Simula、Lisp 等影响，并记录 Smalltalk-72 到 -76 的变化，不把一次设计写成不变教条。",
+      "sourceAudit": [
+        {
+          "title": "ACM Turing Lecture: Introductions To Computing Should Be Child’s Play",
+          "authors": "ACM OOPSLA 2004",
+          "date": "2004（2003 年获奖）",
+          "url": "https://www.oopsla.org.splashcon.hosting.acm.org/2004/ShowEvent32f0.html",
+          "locator": "官方会议页面完整引述 2003 Turing citation",
+          "type": "官方获奖理由",
+          "contentStatus": "已核验页面获奖理由；未观看演讲",
+          "evidenceStrength": "强",
+          "role": "奖项定位，不作为演讲观点证据"
+        },
+        {
+          "title": "The Early History of Smalltalk",
+          "authors": "Alan C. Kay",
+          "date": "1993-04",
+          "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/",
+          "locator": "Introduction、§IV–V；署名论文全文重排版",
+          "type": "论文全文",
+          "contentStatus": "取得正文，核验引言、对象机制与贡献归属；非视频",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "ba907dabf57133d02efba4b728cb8d1e700bb773298aff2194fe3014a61ccfca"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 2003,
+          "citationZh": "开创现代面向对象语言的重要理念，领导开发 Smalltalk 的团队，并为个人计算作出基础性贡献。",
+          "url": "https://www.oopsla.org.splashcon.hosting.acm.org/2004/ShowEvent32f0.html",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
       }
     },
     {
       "id": "douglas-engelbart",
       "name": "Douglas Engelbart",
       "field": "增强人的集体问题解决",
-      "core": "系统目标应是提升完整协作产出，而非单个操作速度。",
-      "evidence": "CHM 官方资料记录 NLS、交互和 1968 演示；方法为归纳。",
+      "core": "提出增强人的问题解决能力的系统愿景，并与团队以 NLS 将交互编辑、结构化信息和协作工具付诸实现。",
+      "evidence": "工具改变会牵动表达方式、工作方法和训练。NLS 用结构化文件和协调的编辑、检索操作支持完整工作，而非仅加快输入；研究团队也以自身工作作为改进环境。",
       "habits": [
-        "系统目标应是提升完整协作产出，而非单个操作速度。",
-        "固定 T_create/T_review/T_rework：秒；Q：合格成果数 的定义，按完整任务比较。",
-        "先测试最强反例：更多低质量输出让评审成为瓶颈。"
+        "同时检查工具、方法和训练的变化。",
+        "以完整问题解决过程评估交互。"
       ],
       "questions": [
-        "AI 工具生成文档快十倍，但审查返工增加，是否提升团队产出？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "团队完成合格成果的总时间是否下降，而不仅是输入变快？",
+        "工具上线后，哪些方法与训练必须同时改变？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。更多低质量输出让评审成为瓶颈。",
+      "boundary": "这些来源展示框架和系统能力，不给出现代团队生产率的通用倍数。新工具若增加训练、审查或返工，局部操作提速可能不改善整体产出。",
       "diagnostic": "同任务对照记录合格率、返工与团队完成时间；测量长期学习效应。",
       "notes": [
         [
@@ -2340,6 +2602,21 @@
           "Douglas Engelbart：代表性公开资料",
           "https://computerhistory.org/profile/doug-engelbart/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "ACM A.M. Turing Award — Fact Sheet",
+          "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "1997（获奖年份） · 官方获奖理由 · 历届获奖表：1997 Douglas Engelbart"
+        ],
+        [
+          "Augmenting Human Intellect: A Conceptual Framework",
+          "https://www.dougengelbart.org/content/view/138",
+          "1962-10 · 作者技术文章 · §I、§II.A（H-LAM/T，2a4–2a15）、§IV"
+        ],
+        [
+          "A Research Center for Augmenting Human Intellect",
+          "https://dougengelbart.org/pubs/papers/scanned-original/1968-augment-3954-A-Research-Center-for-Augmenting-Human-Intellect.pdf",
+          "1968-12 · 论文全文 · AFIPS Vol.33 pp.395–410；Summary、Introduction、文件与交互说明"
         ]
       ],
       "challenge": {
@@ -2349,9 +2626,9 @@
           "A8",
           "A10"
         ],
-        "question": "AI 工具生成文档快十倍，但审查返工增加，是否提升团队产出？",
+        "question": "团队完成合格成果的总时间是否下降，而不仅是输入变快？",
         "variables": "T_create/T_review/T_rework：秒；Q：合格成果数；参数需从待评估系统测量，以下为条件模型。",
-        "model": "goodput=Q/(T_create+T_review+T_rework)，按同质量任务比较。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：goodput=Q/(T_create+T_review+T_rework)，按同质量任务比较。",
         "crossover": "生成节省大于新增审查与返工，且协作正确性不下降。",
         "counterexample": "更多低质量输出让评审成为瓶颈。",
         "validation": "同任务对照记录合格率、返工与团队完成时间；测量长期学习效应。",
@@ -2367,6 +2644,65 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "1962 年把人、语言、工具、方法与训练作为整体研究，改变只以机器速度衡量计算价值的视角。",
+        "1968 年与 William English 合著论文描述可操作的多终端系统、鼠标选择和层次文件编辑，将愿景落实为实验环境。"
+      ],
+      "background": "1962 报告由 Engelbart 署名；1968 系统论文由 Engelbart 与 English 合著，明确是 SRI 研究团队工作。不得把鼠标与 NLS 全部实现都写成个人独作。",
+      "argument": "工具改变会牵动表达方式、工作方法和训练。NLS 用结构化文件和协调的编辑、检索操作支持完整工作，而非仅加快输入；研究团队也以自身工作作为改进环境。",
+      "sourceAudit": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1997（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1997 Douglas Engelbart",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "Augmenting Human Intellect: A Conceptual Framework",
+          "authors": "Douglas C. Engelbart",
+          "date": "1962-10",
+          "url": "https://www.dougengelbart.org/content/view/138",
+          "locator": "§I、§II.A（H-LAM/T，2a4–2a15）、§IV",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "3424bbe4787562bd7240b62b3e1cae138a1aa85864f0e529ef6e04b5213d03ad"
+        },
+        {
+          "title": "A Research Center for Augmenting Human Intellect",
+          "authors": "Douglas C. Engelbart; William K. English",
+          "date": "1968-12",
+          "url": "https://dougengelbart.org/pubs/papers/scanned-original/1968-augment-3954-A-Research-Center-for-Augmenting-Human-Intellect.pdf",
+          "locator": "AFIPS Vol.33 pp.395–410；Summary、Introduction、文件与交互说明",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "3a726af813d4028ded539c0c6210c279ae16e747f78f3eb7f96947c793fe4bc3"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 1997,
+          "citationZh": "提出交互式计算的前瞻愿景，并发明帮助实现这一愿景的关键技术。",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
       }
     },
     {
@@ -2628,21 +2964,18 @@
       "awardYear": 1997,
       "award": "Eckert–Mauchly Award · 1997",
       "field": "动态调度与名字依赖",
-      "core": "让执行追随真实依赖，而不受不必要的名字约束限制。",
-      "evidence": "IEEE 资料回顾 System/360 Model 91 与 Tomasulo 算法，并认可其对乱序执行的贡献。本库从动态调度路线归纳依赖与名字分离的视角。",
+      "core": "以保留站、标签和公共数据总线实现动态指令调度，让独立运算越过等待而保持真实数据依赖。",
+      "evidence": "发射时记录操作数值或其生产者标签，保留站在数据到达后执行；结果连同标签广播，等待者据此接收。寄存器名称复用不再强迫所有指令串行，但真实依赖仍须满足。",
       "habits": [
-        "区分数据依赖与名字冲突。",
-        "用动态状态记录就绪关系。",
-        "让独立工作先执行。",
-        "检查广播和调度结构的扩展成本。"
+        "区分真实数据依赖与名称冲突。",
+        "把调度能力与结果传输能力一起核算。"
       ],
       "questions": [
-        "约束来自值还是寄存器名字？",
-        "操作数在哪里等待？",
-        "增加宽度时协调结构怎样增长？"
+        "阻塞来自真实依赖，还是寄存器名称复用？",
+        "增加执行单元后，结果广播是否先饱和？"
       ],
-      "boundary": "去除名字依赖不消除真实依赖；现代精确异常与安全机制需要额外设计。",
-      "diagnostic": "分解真实依赖、资源冲突和调度等待，测量协调开销。",
+      "boundary": "原机制不等于现代完整的推测与按序提交体系，不能仅凭这篇论文声称已解决精确异常。总线带宽、保留站容量和广播成本限制扩展。",
+      "diagnostic": "用真实依赖链、名称复用和独立运算三组轨迹，对照发射阻塞、保留站占用与总线利用率；异常恢复另行验证。",
       "notes": [
         [
           "e09",
@@ -2658,6 +2991,11 @@
           "IEEE：Tomasulo 与原始系统",
           "https://www.computer.org/profiles/robert-tomasulo",
           "1997 · 算法与乱序执行"
+        ],
+        [
+          "An Efficient Algorithm for Exploiting Multiple Arithmetic Units",
+          "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Tomasulo.1967.IBMJRD.pdf",
+          "1967-01 · 论文全文 · IBM JRD 11(1), pp.25–33；数据路径、标签与保留站说明"
         ]
       ],
       "challenge": {
@@ -2668,15 +3006,62 @@
           "A8"
         ],
         "variables": "T_name：名字约束的暴露等待；T_coord：重命名与协调新增时间。",
-        "model": "语义与精确状态保持后，净收益要求 T_name>T_coord。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：语义与精确状态保持后，净收益要求 T_name>T_coord。",
         "crossover": "可消除的伪依赖必须足够大；真实值依赖仍需等待。",
         "counterexample": "主要瓶颈是链式值依赖，重命名容量增长无益。",
         "transfer": "迁移到寄存器分配或版本化数据。",
-        "question": "约束来自值还是寄存器名字？",
-        "validation": "分解真实依赖、资源冲突和调度等待，测量协调开销。"
+        "question": "阻塞来自真实依赖，还是寄存器名称复用？",
+        "validation": "用真实依赖链、名称复用和独立运算三组轨迹，对照发射阻塞、保留站占用与总线利用率；异常恢复另行验证。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "1967 年为 IBM System/360 Model 91 浮点单元提出动态调度机制，提高多个运算单元的利用率。",
+        "以结果来源标签代替对寄存器名称的机械等待，为后来的乱序执行处理器提供关键基础。"
+      ],
+      "background": "论文由 IBM 的 R. M. Tomasulo 署名，讨论 Model 91 的浮点部分；整机与后续乱序处理器是更大团队及后继工作的成果。",
+      "argument": "发射时记录操作数值或其生产者标签，保留站在数据到达后执行；结果连同标签广播，等待者据此接收。寄存器名称复用不再强迫所有指令串行，但真实依赖仍须满足。",
+      "sourceAudit": [
+        {
+          "title": "Robert Tomasulo — 1997 Eckert-Mauchly Award",
+          "authors": "IEEE Computer Society",
+          "date": "1997",
+          "url": "https://www.computer.org/profiles/robert-tomasulo",
+          "locator": "Award 段完整理由",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖段；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "奖项、身份与贡献定位"
+        },
+        {
+          "title": "An Efficient Algorithm for Exploiting Multiple Arithmetic Units",
+          "authors": "R. M. Tomasulo",
+          "date": "1967-01",
+          "url": "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Tomasulo.1967.IBMJRD.pdf",
+          "locator": "IBM JRD 11(1), pp.25–33；数据路径、标签与保留站说明",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "88e8e6be34d242342ede934760cb9556f95308ea26d0abd4e5683c3acad927f2"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1997,
+          "citationZh": "以 Tomasulo 算法使乱序执行处理器的实现成为可能。",
+          "url": "https://www.computer.org/profiles/robert-tomasulo",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "yale-patt",
@@ -2747,21 +3132,18 @@
       "awardYear": 1999,
       "award": "Eckert–Mauchly Award · 1999",
       "field": "预测、精确状态与解耦执行",
-      "core": "用有限状态预测未来，并让不同进度的工作适当解耦。",
-      "evidence": "官方获奖依据列出饱和计数器、精确异常的重排序结构、access/execute 解耦及向量系统。UCSB 的本人讲座资料也记录这些研究方向。",
+      "core": "推动分支预测与可恢复高性能执行；用有限历史状态提升预测可靠性，而非盲目追求更大预测表。",
+      "evidence": "预测表按分支地址索引；计数器在多次结果支持后改变方向，避免一次偶然结果立即推翻惯常判断。论文也比较表大小、地址映射冲突与不同程序，说明收益依赖行为。",
       "habits": [
-        "预测时保留对噪声的容忍。",
-        "区分执行进度与提交状态。",
-        "让供给与计算在适当边界解耦。",
-        "核算队列与恢复成本。"
+        "在相同存储预算下比较预测器。",
+        "既看误判，也看预测时延与程序差异。"
       ],
       "questions": [
-        "预测需要记住多少状态？",
-        "哪个边界可以独立前进？",
-        "解耦队列何时成为新瓶颈？"
+        "增加历史状态后，减少的恢复周期能覆盖新增预测开销吗？",
+        "差分结果是否被少量程序或表项冲突主导？"
       ],
-      "boundary": "解耦不减少必需工作；队列、同步、错误预测与恢复可能抵消延迟重叠。",
-      "diagnostic": "测量队列占用、供给停顿、错误预测与恢复成本。",
+      "boundary": "周期性、交替或相互冲突的分支可以击败简单计数器。较高准确率若伴随访问延迟或能耗增加，不一定提高整机效率；历史实验数值不是现代产品预测。",
+      "diagnostic": "固定容量、访问延迟和工作负载，记录 MPKI、每次恢复周期与预测额外延迟；加入交替分支和地址冲突轨迹。",
       "notes": [
         [
           "e06",
@@ -2777,25 +3159,82 @@
           "UCSB：Smith 本人讲座与研究简介",
           "https://iee.ucsb.edu/news-events/events/seminar-series/roadmap-reverse-architecting-brains-neocortex",
           "2019 · 预测、精确状态与架构研究"
+        ],
+        [
+          "James E. Smith — 1999 Eckert-Mauchly Award",
+          "https://www.computer.org/profiles/james-smith",
+          "1999 · 官方获奖理由 · 1999 recipient citation"
+        ],
+        [
+          "A Study of Branch Prediction Strategies",
+          "https://ctho.org/toread/finished/smith2.pdf",
+          "1981 · 论文全文 · 作者论文重排本 PDF pp.4–8；Dynamic Prediction Strategies、Strategy 7 和结论"
         ]
       ],
       "challenge": {
-        "lens": "预测、解耦与队列",
+        "lens": "有限状态预测的净收益",
         "skills": [
           "A2",
           "A3",
           "A4"
         ],
-        "variables": "T_supply_saved：减少供给停顿；pR：平均恢复时间；H_q：队列新增暴露成本。",
-        "model": "净关键路径收益要求 T_supply_saved>pR+H_q。",
-        "crossover": "解耦提供的提前量必须覆盖预测错误和管理成本。",
-        "counterexample": "队列更深但生产速率不足，或提前工作迅速失效。",
+        "variables": "m：每千条指令误判数；R：平均恢复周期；L：预测额外关键路径周期/千指令。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：ΔC=(m_old−m_new)R−(L_new−L_old)；同负载同容量，且恢复代价变化时应分别计量。",
+        "crossover": "ΔC>0 且功耗、面积和访问时序满足预算。",
+        "counterexample": "交替分支、表项别名冲突或过慢的预测查询抵消准确率收益。",
         "transfer": "迁移到预取、异步 IO 或推理流水线。",
-        "question": "预测需要记住多少状态？",
-        "validation": "测量队列占用、供给停顿、错误预测与恢复成本。"
+        "question": "增加历史状态后，减少的恢复周期能覆盖新增预测开销吗？",
+        "validation": "固定容量、访问延迟和工作负载，记录 MPKI、每次恢复周期与预测额外延迟；加入交替分支和地址冲突轨迹。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "1981 年研究比较静态与动态分支预测，展示带置信惯性的计数器如何利用有限历史减少误判。",
+        "官方理由还认可精确异常的重排序缓冲、访问/执行解耦与向量系统；本次机制展开聚焦预测。"
+      ],
+      "background": "1981 年论文署名 Control Data 的 James E. Smith。预测研究可按本人署名归属；获奖清单中的其他机制不在此推断其全部合作细节。",
+      "argument": "预测表按分支地址索引；计数器在多次结果支持后改变方向，避免一次偶然结果立即推翻惯常判断。论文也比较表大小、地址映射冲突与不同程序，说明收益依赖行为。",
+      "sourceAudit": [
+        {
+          "title": "James E. Smith — 1999 Eckert-Mauchly Award",
+          "authors": "IEEE Computer Society",
+          "date": "1999",
+          "url": "https://www.computer.org/profiles/james-smith",
+          "locator": "1999 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整理由；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "A Study of Branch Prediction Strategies",
+          "authors": "James E. Smith",
+          "date": "1981",
+          "url": "https://ctho.org/toread/finished/smith2.pdf",
+          "locator": "作者论文重排本 PDF pp.4–8；Dynamic Prediction Strategies、Strategy 7 和结论",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "c53bf061b90ff4581d2cdca6367451b668e5baf13f0736e8e949823403acab97"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 1999,
+          "citationZh": "为高性能微架构作出基础贡献，包括预测饱和计数器、精确异常重排序缓冲、访问/执行解耦和向量超级计算机。",
+          "url": "https://www.computer.org/profiles/james-smith",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "gurindar-sohi",
@@ -3095,20 +3534,17 @@
       "awardYear": 2009,
       "award": "Eckert–Mauchly Award · 2009",
       "field": "微架构建模与性能归因",
-      "core": "让模型解释瓶颈，再让真实实现校正模型。",
-      "evidence": "IEEE 的获奖资料认可其微架构分析、性能建模和工业处理器贡献。本条目据此提炼模型、测量与实现之间的往返，而非将预测当作实测。",
+      "core": "用可测量的性能归因连接处理器模型与真实实现，使微架构优化有据可查。",
+      "evidence": "micro-PC 直方图统计各微代码地址执行周期，再映射到架构事件与时间类别。真实分时负载和合成负载并列，补足只看基准总分或用户指令轨迹的盲区。",
       "habits": [
-        "先定义性能量与模型边界。",
-        "把现象分解为可解释的原因。",
-        "用预测与测量的偏差校正假设。",
-        "将研究机制放回完整实现。"
+        "让模型中的时间项对应可观察事件。",
+        "同时检查真实系统负载和受控负载。"
       ],
       "questions": [
-        "哪些停顿仍无法解释？",
-        "结论对哪些假设敏感？",
-        "什么测量能够推翻模型？"
+        "总执行时间中仍有多少不能被测量类别解释？",
+        "模型误差来自事件遗漏，还是重叠时间重复计数？"
       ],
-      "boundary": "模型精细度必须适合问题；校准一个负载不能保证外推到所有负载。",
+      "boundary": "微代码地址到事件的映射依赖实现；VAX 的数值不能外推到现代乱序核，重叠停顿也不能未经检查直接相加。",
       "diagnostic": "扫描资源与负载，比较预测、实际停顿和吞吐，定位偏差来源。",
       "notes": [
         [
@@ -3125,6 +3561,16 @@
           "IEEE：Emer 的微架构分析贡献",
           "https://www.computer.org/profiles/joel-emer",
           "2009 · 分析、建模与工业实现"
+        ],
+        [
+          "ISCA 2009 Awards Ceremony",
+          "https://www.iscaconf.org/isca2009/awards.html",
+          "2009-06-23 · 官方获奖理由 · ACM/IEEE Eckert-Mauchly Award 段"
+        ],
+        [
+          "A Characterization of Processor Performance in the VAX-11/780",
+          "https://www.researchgate.net/publication/213891344_A_characterization_of_processor_performance_in_the_VAX-11780",
+          "1984-06 · 论文全文 · §2 测量与负载；§3–5 事件及时间归因；作者上传全文"
         ]
       ],
       "challenge": {
@@ -3135,15 +3581,62 @@
           "A9"
         ],
         "variables": "G_pred、G_obs：预测与实测吞吐；ε：允许模型误差；x：资源参数。",
-        "model": "计算相对误差 |G_pred-G_obs|/G_obs，并做参数敏感性。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：计算相对误差 |G_pred-G_obs|/G_obs，并做参数敏感性。",
         "crossover": "只有误差与机制归因在决策区域内可接受，模型才支持选择。",
         "counterexample": "模型在校准点正确，却漏掉扩展后的新瓶颈。",
         "transfer": "迁移到 AI 服务容量或 rack 功率模型。",
-        "question": "哪些停顿仍无法解释？",
+        "question": "总执行时间中仍有多少不能被测量类别解释？",
         "validation": "扫描资源与负载，比较预测、实际停顿和吞吐，定位偏差来源。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "与 Douglas W. Clark 合著 VAX-11/780 研究，以微程序计数把执行时间分解为计算、访存管理和停顿。",
+        "官方理由同时认可性能分析与建模方法、工业微处理器设计，以及研究与开发之间的连接。"
+      ],
+      "background": "1984 年论文两位作者均署名 DEC；测量方法和实验结论属于 Emer 与 Clark 的合作，不把整台 VAX 设计归给 Emer。",
+      "argument": "micro-PC 直方图统计各微代码地址执行周期，再映射到架构事件与时间类别。真实分时负载和合成负载并列，补足只看基准总分或用户指令轨迹的盲区。",
+      "sourceAudit": [
+        {
+          "title": "ISCA 2009 Awards Ceremony",
+          "authors": "ACM SIGARCH / IEEE-CS TCCA，ISCA 2009",
+          "date": "2009-06-23",
+          "url": "https://www.iscaconf.org/isca2009/awards.html",
+          "locator": "ACM/IEEE Eckert-Mauchly Award 段",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "A Characterization of Processor Performance in the VAX-11/780",
+          "authors": "Joel S. Emer; Douglas W. Clark",
+          "date": "1984-06",
+          "url": "https://www.researchgate.net/publication/213891344_A_characterization_of_processor_performance_in_the_VAX-11780",
+          "locator": "§2 测量与负载；§3–5 事件及时间归因；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "9a2c72fd5653fcacbe31373a501c057e89d821503f755601675cce64ec90fb82"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE CS Eckert–Mauchly Award",
+          "year": 2009,
+          "citationZh": "开创性能分析与建模方法，在重要工业微处理器中实现设计创新，并连接学术研究与产业开发。",
+          "url": "https://www.iscaconf.org/isca2009/awards.html",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "andy-glew",
@@ -16838,6 +17331,96 @@
         "question": "API 是否把硬件可用的并行性暴露给应用了？",
         "validation": "围绕“API 是否把硬件可用的并行性暴露给应用了？”测量下列变量：主机时间 H；搬运 D；加速计算 A；调用次数 n；单次开销 o。 将假设与结果分别记录。"
       }
+    },
+    {
+      "id": "cameron-mcnairy",
+      "name": "Cameron McNairy",
+      "field": "Itanium 微架构与延迟容忍",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Itanium 2 Processor Microarchitecture",
+          "https://pages.cs.wisc.edu/~david/courses/cs752/Spring2004/reader/micro_itanium2.pdf",
+          "2003-03/04 · 论文全文 · IEEE Micro 23(2), pp.44–55；Microarchitecture overview、缓存与流水线章节"
+        ],
+        [
+          "Montecito — The Next Product in the Itanium Processor Family",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc16/3_Tue/13_HC16_Sess10_Pres1_bw.pdf",
+          "2004-08-24 · 作者幻灯片 · Hot Chips 16；slides 5–10（PDF pp.3–5）"
+        ]
+      ],
+      "core": "参与 Itanium 2 与 Montecito 微架构设计，用缓存和动态线程切换缓解显式并行机器的访存停顿。",
+      "contributions": [
+        "与 Don Soltis 合著 Itanium 2 论文，说明流水线、发射和缓存如何把编译器给出的并行性变成执行能力。",
+        "与 Rohit Bhatia 展示 Montecito：保留兼容性，用多核、双线程及缓存改进提高长延迟负载的资源利用率。"
+      ],
+      "background": "2003 论文将 McNairy 列为 Intel 的 Itanium 2 微架构师；2004 幻灯片署名 McNairy（Intel）与 Bhatia（HP）。产品机制属于 Intel/HP 团队，不将所有硬件归于单一作者。",
+      "argument": "Itanium 以指令束和停止标记暴露可并行操作，但动态访存仍可让执行资源闲置。Montecito 根据长延迟事件和线程紧迫度切换，配合时间片及阈值保证进展；缓存组织也同步调整。",
+      "evidence": "Itanium 以指令束和停止标记暴露可并行操作，但动态访存仍可让执行资源闲置。Montecito 根据长延迟事件和线程紧迫度切换，配合时间片及阈值保证进展；缓存组织也同步调整。",
+      "boundary": "这是时间多线程的延迟隐藏，不能写成每周期同时发射多个线程的 SMT。共享缓存与接口可能增加竞争；2004 幻灯片是发布前设计说明，不把其中功耗或 Foxton 计划当成最终量产实测。",
+      "habits": [
+        "把编译器可见并行与动态停顿分开测量。",
+        "检查线程切换的滞后、公平性与资源争用。"
+      ],
+      "questions": [
+        "另一线程填补的空闲时间是否超过切换与缓存干扰成本？",
+        "同一总线饱和时，增加线程还能提高吞吐吗？"
+      ],
+      "sourceAudit": [
+        {
+          "title": "Itanium 2 Processor Microarchitecture",
+          "authors": "Cameron McNairy; Don Soltis",
+          "date": "2003-03/04",
+          "url": "https://pages.cs.wisc.edu/~david/courses/cs752/Spring2004/reader/micro_itanium2.pdf",
+          "locator": "IEEE Micro 23(2), pp.44–55；Microarchitecture overview、缓存与流水线章节",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "d20a876617e736a3d8178282dc4add618649da1bc97ee8cbb6e503948910b62a"
+        },
+        {
+          "title": "Montecito — The Next Product in the Itanium Processor Family",
+          "authors": "Cameron McNairy; Rohit Bhatia",
+          "date": "2004-08-24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc16/3_Tue/13_HC16_Sess10_Pres1_bw.pdf",
+          "locator": "Hot Chips 16；slides 5–10（PDF pp.3–5）",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "a96aa8688a6830a32b20959fae953e43ce96bb54654c80e16fceb235f835d0f0"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "diagnostic": "固定任务与线程数，对照禁用/启用线程切换，测停顿隐藏量、切换周期、缓存未命中、总线利用率和单线程延迟。",
+      "challenge": {
+        "lens": "显式并行与延迟隐藏",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "variables": "H：被隐藏停顿；S：切换成本；I：新增缓存与接口干扰；均按同一任务周期计。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净周期节省 ΔT=H−S−I；仅当工作量和正确性相同才可比较。",
+        "crossover": "H>S+I 且单线程延迟、公平性满足目标。",
+        "counterexample": "两个线程同时受共享内存带宽限制，切换不能创造带宽。",
+        "transfer": "迁移到 GPU、存储异步执行时重新计量并发资源与干扰。",
+        "question": "另一线程填补的空闲时间是否超过切换与缓存干扰成本？",
+        "validation": "固定任务与线程数，对照禁用/启用线程切换，测停顿隐藏量、切换周期、缓存未命中、总线利用率和单线程延迟。"
+      }
     }
   ],
   "research": {
@@ -16847,7 +17430,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 19,
-    "totalProfiles": 259
+    "completedThisBatch": 29,
+    "totalProfiles": 260
   }
 }

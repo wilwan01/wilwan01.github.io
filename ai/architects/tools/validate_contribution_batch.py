@@ -7,13 +7,15 @@ from lxml import html
 ROOT=Path(__file__).resolve().parents[1];REPO=ROOT.parents[1]
 c=json.loads((ROOT/'catalog.json').read_text());b=json.loads((ROOT/'research/batches/2026-10-06.json').read_text());h=json.loads((ROOT/'research/history/2026-10-06-before.json').read_text())
 old=json.loads(subprocess.check_output(['git','show',b['baseCommit']+':ai/architects/catalog.json'],cwd=REPO));by={p['id']:p for p in c['profiles']};oldby={p['id']:p for p in old['profiles']};done={r['id'] for r in b['records'] if r['status']=='complete'}
-assert len(by)==len(c['profiles'])==259
+assert len(by)==len(c['profiles'])==len(oldby)+b['completedNew']
 assert len(b['records'])==76 and len({r['id'] for r in b['records']})==76
-assert dict(Counter(r['status'] for r in b['records']))==b['counts']==dict(complete=19,partial=19,pending=38)
-assert sum(r['status']=='complete' and r['kind']=='existing' for r in b['records'])==11
-assert sum(r['status']=='complete' and r['kind']=='candidate' for r in b['records'])==8
+assert dict(Counter(r['status'] for r in b['records']))==b['counts']
+assert sum(r['status']=='complete' and r['kind']=='existing' for r in b['records'])==b['completedExisting']
+assert sum(r['status']=='complete' and r['kind']=='candidate' for r in b['records'])==b['completedNew']
 assert set(oldby)<=set(by) and by['tushar-krishna']==oldby['tushar-krishna']
-assert h['profiles']==[p for p in old['profiles'] if p['id'] in done]
+histories=[json.loads(f.read_text()) for f in (ROOT/'research/history').glob('2026-10-06*before.json')]
+preserved={p['id']:p for history in histories for p in history['profiles']}
+assert preserved=={p['id']:p for p in old['profiles'] if p['id'] in done}
 for p in old['profiles']:
  if p['id'] not in done:assert by[p['id']]==p,p['id']
  else:
@@ -29,7 +31,7 @@ for p in c['profiles']:
 for pid in done:
  p=by[pid];assert p['researchStatus']['status']=='complete';assert 1<=len(p['contributions'])<=3
  substantive=[s for s in p['sourceAudit'] if s['type']!='机构报告简介'];assert len({s['url'] for s in substantive})>=2,pid
- assert any(s['type'] in ['论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片'] and '未取得全文' not in s['contentStatus'] for s in substantive),pid
+ assert any(s['type'] in ['论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿'] and '未取得全文' not in s['contentStatus'] for s in substantive),pid
  for s in p['sourceAudit']:
   assert all(s.get(k) for k in ['title','authors','date','url','locator','type','contentStatus','evidenceStrength','role']),pid
   assert s['url'].startswith('https://'),s
@@ -38,7 +40,7 @@ for pid in done:
 for d in c['domains']:assert d['members']==[p['id'] for p in c['profiles'] if p['domain']==d['id']]
 r=html.fromstring((ROOT/'index.html').read_text());ids=[x.get('id') for x in r.xpath('//*[@id]')];assert len(ids)==len(set(ids))
 articles=r.xpath('//article[contains(concat(" ",normalize-space(@class)," ")," profile ")]');assert {a.get('id') for a in articles}==set(by)
-rows=r.xpath('//*[@id="architect-skill-table"]/tbody/tr');assert len(rows)==259
+rows=r.xpath('//*[@id="architect-skill-table"]/tbody/tr');assert len(rows)==len(by)
 for row,p in zip(rows,c['profiles']):
  assert row.get('data-name')==p['name'];assert row.get('data-skills').split()==p['challenge']['skills']
  assert row.xpath('./th/a/@href')==['#'+p['id']]
@@ -47,7 +49,7 @@ for p in c['profiles']:
  a=r.xpath('//article[@id="'+p['id']+'"]')[0];assert a.xpath('./h2')[0].text==p['name'];assert a.xpath('./p[@class="thesis"]')[0].text==p['core']
  d=r.xpath('//*[@id="directory-'+p['domain']+'"]//tbody/tr[td/a[@href="#'+p['id']+'"]]')[0];assert d.xpath('./td')[3].text==p['core']
 for o in r.xpath('//*[@id="matrix-skill"]/option'):
- k=o.get('value');expected=259 if not k else sum(k in p['challenge']['skills'] for p in c['profiles']);assert str(expected)+' 位' in o.text
+ k=o.get('value');expected=len(by) if not k else sum(k in p['challenge']['skills'] for p in c['profiles']);assert str(expected)+' 位' in o.text
 broken=[]
 for url in r.xpath('//@href'):
  if url.startswith('#') and url[1:] not in ids:broken.append(url)
@@ -60,4 +62,6 @@ for d in c['domains']:
  de=r.xpath('//aside[@class="toc"]/details[summary[contains(text(),"'+d['label']+'")]]')[0]
  assert de.xpath('./a[not(@class)]/@href')==['#'+pid for pid in d['members']]
  assert de.xpath('./summary')[0].text.endswith(' · '+str(len(d['members'])))
-print('PASS: 259 unique profiles; 76 fixed records; 19 audited; all old profiles/sources retained; directories, skills, counts and internal links consistent.')
+assert c['research']['completedThisBatch']==len(done)
+assert c['research']['totalProfiles']==len(by)
+print(f'PASS: {len(by)} unique profiles; 76 fixed records; {len(done)} audited; all old profiles/sources retained; directories, skills, counts and internal links consistent.')

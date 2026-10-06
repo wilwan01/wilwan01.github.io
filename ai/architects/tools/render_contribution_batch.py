@@ -8,6 +8,8 @@ from html import escape as esc
 from lxml import html,etree
 ROOT=Path(__file__).resolve().parents[1]
 catalog=json.loads((ROOT/'catalog.json').read_text());profiles=catalog['profiles'];domains={d['id']:d for d in catalog['domains']};numbers={p['id']:i+1 for i,p in enumerate(profiles)}
+batch=json.loads((ROOT/'research/batches/2026-10-06.json').read_text())
+counts=batch['counts'];progress=f"本批完成 {counts['complete']} 位：深化既有 {batch['completedExisting']} 位、新增候选 {batch['completedNew']} 位；部分完成 {counts.get('partial',0)} 位，待补 {counts.get('pending',0)} 位。"
 page=html.fromstring((ROOT/'index.html').read_text())
 def E(tag,text=None,**attrs):
  e=etree.Element(tag,attrib={k.rstrip('_').replace('_','-'):str(v) for k,v in attrs.items()});e.text=text;return e
@@ -88,11 +90,11 @@ stat=page.xpath('//div[@class="stats"]')[0];stat[0].text=str(len(profiles));stat
 intro=page.xpath('//div[@class="intro"]/div[1]/p')[0];intro.text='以最重要贡献为阅读主线，结合官方获奖理由与代表作品，解释突破、机制与适用边界。贡献式展示按已核验研究逐批更新。'
 existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
-b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · 2026-10-06');append(b,'p','本批完成 19 位：深化既有 11 位、新增候选 8 位；部分完成 19 位，待补 38 位。计划总范围为原 250 位与 50 名候选；另保留此前已新增的 Tushar Krishna。');pp=append(b,'p');pp.append(link('research/batches/2026-10-06.html','逐人状态、证据与待办'));pp[-1].tail=' · ';pp.append(link('research/batches/2026-10-06.json','机器可读来源审计'))
+b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · 2026-10-06');append(b,'p',progress+'计划总范围为原 250 位与 50 名候选；另保留此前已新增的 Tushar Krishna。');pp=append(b,'p');pp.append(link('research/batches/2026-10-06.html','逐人状态、证据与待办'));pp[-1].tail=' · ';pp.append(link('research/batches/2026-10-06.json','机器可读来源审计'))
 page.xpath('//main')[0].insert(1,b)
 (ROOT/'index.html').write_text('<!doctype html>\n'+html.tostring(page,encoding='unicode',method='html')+'\n')
 # Public batch report, readable without JS.
-batch=json.loads((ROOT/'research/batches/2026-10-06.json').read_text());out=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CPU 与平台研究批次 · 2026-10-06</title><link rel="stylesheet" href="/ai/style.css"><link rel="stylesheet" href="../../thoughts.css"><style>table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:10px;border:1px solid #ccd6dc;text-align:left;vertical-align:top}td:first-child{width:20%}.research-detail summary{cursor:pointer}</style><main><h1>CPU 与平台 · 2026-10-06</h1><p>固定批次 76 位；完成 19 位（既有 11、新增 8），部分完成 19，待补 38。完成仅指选定关键贡献与证据通过核验。</p><p><a href="../../">返回人物目录</a> · <a href="2026-10-06.json">完整来源审计 JSON</a></p><p>以官方获奖理由式的最重要贡献作为主线；无奖项者明确标为编辑提炼。完整机制与边界放入展开内容，历史资料保留。</p><table><thead><tr><th>人物</th><th>类别</th><th>状态</th><th>结论与待办</th></tr></thead><tbody>']
+batch=json.loads((ROOT/'research/batches/2026-10-06.json').read_text());out=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CPU 与平台研究批次 · 2026-10-06</title><link rel="stylesheet" href="/ai/style.css"><link rel="stylesheet" href="../../thoughts.css"><style>table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:10px;border:1px solid #ccd6dc;text-align:left;vertical-align:top}td:first-child{width:20%}.research-detail summary{cursor:pointer}</style><main><h1>CPU 与平台 · 2026-10-06</h1><p>固定批次 76 位；'+esc(progress)+'完成仅指选定关键贡献与证据通过核验。</p><p><a href="../../">返回人物目录</a> · <a href="2026-10-06.json">完整来源审计 JSON</a></p><p>以官方获奖理由式的最重要贡献作为主线；无奖项者明确标为编辑提炼。完整机制与边界放入展开内容，历史资料保留。</p><table><thead><tr><th>人物</th><th>类别</th><th>状态</th><th>结论与待办</th></tr></thead><tbody>']
 for x in batch['records']:
  name=esc(x['name']);name=f'<a href="../../#{x["id"]}">{name}</a>' if x['status']=='complete' else name
  out.append(f'<tr><td>{name}</td><td>{"既有" if x["kind"]=="existing" else "候选"}</td><td>{dict(complete="完成",partial="部分完成",pending="待补")[x["status"]]}</td><td>{esc(x["reason"])} {esc(x["nextAction"] or "")}</td></tr>')

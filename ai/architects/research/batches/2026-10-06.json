@@ -6,20 +6,16 @@
   "plannedExisting": 63,
   "plannedCandidates": 13,
   "counts": {
-    "complete": 19,
-    "partial": 19,
-    "pending": 38
+    "complete": 29,
+    "pending": 30,
+    "partial": 17
   },
-  "completedExisting": 11,
-  "completedNew": 8,
+  "completedExisting": 20,
+  "completedNew": 9,
   "publication": {
-    "status": "published",
-    "contentMergeCommit": "b28558b5dcbb07dd11363800fd61f2ab062bc696",
-    "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37435907990",
-    "pagesConclusion": "success",
-    "publicProfileCount": 259,
-    "verificationRecord": "2026-10-06-deployment.json",
-    "verification": "公开 catalog、HTML、批次 HTML/JSON 和 CSS 均与内容提交字节一致；浏览器核验 8 张新卡、技能与姓名筛选、展开证据。显示标签修正另随此记录提交。"
+    "status": "awaiting-deployment-verification",
+    "previousPublishedCommit": "41c7fa5329e113b4fc8ba72fc13b80ecb19463d0",
+    "publicProfileCountBefore": 259
   },
   "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
   "records": [
@@ -95,14 +91,32 @@
       "id": "gene-amdahl",
       "name": "Gene M. Amdahl",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 1967 原论文；第二项实质一手来源与官方获奖理由待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
       "sources": [
         {
+          "title": "Gene M. Amdahl — recipient citation",
+          "authors": "ACM",
+          "date": "1987",
+          "url": "https://awards.acm.org/award_winners/amdahl_5555573.cfm",
+          "locator": "1987 citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引提供完整 citation；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "获奖年份与贡献定位"
+        },
+        {
+          "title": "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities",
+          "authors": "Gene M. Amdahl",
+          "date": "1967",
           "url": "https://www.cs.cmu.edu/~18742/papers/Amdahl1967.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "locator": "pp.483–485；数据管理、不规则性与三种机器比较",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "e8b483867db2e90f6edbcb7cc65e26141dbd243f8411e9898a152753ee59d156"
         }
       ]
     },
@@ -332,14 +346,32 @@
       "id": "sophie-wilson",
       "name": "Sophie Wilson",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得口述史正文；第二项实质一手来源与官方获奖理由待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
       "sources": [
         {
+          "title": "Sophie Wilson — 2012 Fellow",
+          "authors": "Computer History Museum",
+          "date": "2012",
+          "url": "https://computerhistory.org/profile/sophie-wilson/",
+          "locator": "2012 Fellow citation 与 BBC Micro/ARM 贡献段",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "Oral History of Sophie Wilson",
+          "authors": "Sophie Wilson；采访 Douglas Fairbairn",
+          "date": "2012-01-31",
           "url": "https://archive.computerhistory.org/resources/access/text/2012/06/102746190-05-01-acc.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "locator": "PDF pp.3–4、22–23；ARM 目标、分工与实现",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "82f9462a30a867e35481893e4db9b88e9938b12a0876b8a4af09b79146c66d16"
         }
       ]
     },
@@ -362,10 +394,33 @@
       "id": "butler-lampson",
       "name": "Butler Lampson",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1992（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1992 Butler W. Lampson",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "Hints for Computer System Design",
+          "authors": "Butler W. Lampson",
+          "date": "1983",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/acrobat-17.pdf",
+          "locator": "§1、§2.1、§2.5、§3；PDF pp.1–5、12–13、17",
+          "type": "论文全文",
+          "contentStatus": "网页 PDF 正文已读取；本地下载超时",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        }
+      ]
     },
     {
       "id": "dave-jaggar",
@@ -458,28 +513,112 @@
       "id": "ivan-sutherland",
       "name": "Ivan Sutherland",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1988（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1988 Ivan Sutherland",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项及贡献定位"
+        },
+        {
+          "title": "Sketchpad: A Man-Machine Graphical Communication System",
+          "authors": "Ivan Edward Sutherland",
+          "date": "1963；2003-09 重印",
+          "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-574.pdf",
+          "locator": "作者原文第 VI–VIII 章；重印本 pp.77–98，尤其 pp.93–94",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "e052281b553622badc8dd308003c127617aa5723e4ec3dbfa79b781d8e712742"
+        }
+      ]
     },
     {
       "id": "alan-kay",
       "name": "Alan Kay",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM Turing Lecture: Introductions To Computing Should Be Child’s Play",
+          "authors": "ACM OOPSLA 2004",
+          "date": "2004（2003 年获奖）",
+          "url": "https://www.oopsla.org.splashcon.hosting.acm.org/2004/ShowEvent32f0.html",
+          "locator": "官方会议页面完整引述 2003 Turing citation",
+          "type": "官方获奖理由",
+          "contentStatus": "已核验页面获奖理由；未观看演讲",
+          "evidenceStrength": "强",
+          "role": "奖项定位，不作为演讲观点证据"
+        },
+        {
+          "title": "The Early History of Smalltalk",
+          "authors": "Alan C. Kay",
+          "date": "1993-04",
+          "url": "https://worrydream.com/EarlyHistoryOfSmalltalk/",
+          "locator": "Introduction、§IV–V；署名论文全文重排版",
+          "type": "论文全文",
+          "contentStatus": "取得正文，核验引言、对象机制与贡献归属；非视频",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "ba907dabf57133d02efba4b728cb8d1e700bb773298aff2194fe3014a61ccfca"
+        }
+      ]
     },
     {
       "id": "douglas-engelbart",
       "name": "Douglas Engelbart",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ACM A.M. Turing Award — Fact Sheet",
+          "authors": "ACM",
+          "date": "1997（获奖年份）",
+          "url": "https://www.acm.org/binaries/content/assets/awards/about-the-acm-a.m.-turing-award-fact-sheet.pdf",
+          "locator": "历届获奖表：1997 Douglas Engelbart",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引可核验对应完整理由；PDF 直接获取受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "Augmenting Human Intellect: A Conceptual Framework",
+          "authors": "Douglas C. Engelbart",
+          "date": "1962-10",
+          "url": "https://www.dougengelbart.org/content/view/138",
+          "locator": "§I、§II.A（H-LAM/T，2a4–2a15）、§IV",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "3424bbe4787562bd7240b62b3e1cae138a1aa85864f0e529ef6e04b5213d03ad"
+        },
+        {
+          "title": "A Research Center for Augmenting Human Intellect",
+          "authors": "Douglas C. Engelbart; William K. English",
+          "date": "1968-12",
+          "url": "https://dougengelbart.org/pubs/papers/scanned-original/1968-augment-3954-A-Research-Center-for-Augmenting-Human-Intellect.pdf",
+          "locator": "AFIPS Vol.33 pp.395–410；Summary、Introduction、文件与交互说明",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "3a726af813d4028ded539c0c6210c279ae16e747f78f3eb7f96947c793fe4bc3"
+        }
+      ]
     },
     {
       "id": "keith-diefendorff",
@@ -521,10 +660,34 @@
       "id": "robert-tomasulo",
       "name": "Robert M. Tomasulo",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Robert Tomasulo — 1997 Eckert-Mauchly Award",
+          "authors": "IEEE Computer Society",
+          "date": "1997",
+          "url": "https://www.computer.org/profiles/robert-tomasulo",
+          "locator": "Award 段完整理由",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整获奖段；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "奖项、身份与贡献定位"
+        },
+        {
+          "title": "An Efficient Algorithm for Exploiting Multiple Arithmetic Units",
+          "authors": "R. M. Tomasulo",
+          "date": "1967-01",
+          "url": "https://courses.grainger.illinois.edu/ece511/fa2005/papers/Tomasulo.1967.IBMJRD.pdf",
+          "locator": "IBM JRD 11(1), pp.25–33；数据路径、标签与保留站说明",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "88e8e6be34d242342ede934760cb9556f95308ea26d0abd4e5683c3acad927f2"
+        }
+      ]
     },
     {
       "id": "yale-patt",
@@ -539,10 +702,34 @@
       "id": "james-smith",
       "name": "James E. Smith",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "James E. Smith — 1999 Eckert-Mauchly Award",
+          "authors": "IEEE Computer Society",
+          "date": "1999",
+          "url": "https://www.computer.org/profiles/james-smith",
+          "locator": "1999 recipient citation",
+          "type": "官方获奖理由",
+          "contentStatus": "官方搜索索引取得完整理由；直接打开受限",
+          "evidenceStrength": "强",
+          "role": "奖项与贡献定位"
+        },
+        {
+          "title": "A Study of Branch Prediction Strategies",
+          "authors": "James E. Smith",
+          "date": "1981",
+          "url": "https://ctho.org/toread/finished/smith2.pdf",
+          "locator": "作者论文重排本 PDF pp.4–8；Dynamic Prediction Strategies、Strategy 7 和结论",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "c53bf061b90ff4581d2cdca6367451b668e5baf13f0736e8e949823403acab97"
+        }
+      ]
     },
     {
       "id": "gurindar-sohi",
@@ -623,10 +810,34 @@
       "id": "joel-emer",
       "name": "Joel S. Emer",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "ISCA 2009 Awards Ceremony",
+          "authors": "ACM SIGARCH / IEEE-CS TCCA，ISCA 2009",
+          "date": "2009-06-23",
+          "url": "https://www.iscaconf.org/isca2009/awards.html",
+          "locator": "ACM/IEEE Eckert-Mauchly Award 段",
+          "type": "官方获奖理由",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属"
+        },
+        {
+          "title": "A Characterization of Processor Performance in the VAX-11/780",
+          "authors": "Joel S. Emer; Douglas W. Clark",
+          "date": "1984-06",
+          "url": "https://www.researchgate.net/publication/213891344_A_characterization_of_processor_performance_in_the_VAX-11780",
+          "locator": "§2 测量与负载；§3–5 事件及时间归因；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "9a2c72fd5653fcacbe31373a501c057e89d821503f755601675cce64ec90fb82"
+        }
+      ]
     },
     {
       "id": "andy-glew",
@@ -983,10 +1194,35 @@
       "id": "cameron-mcnairy",
       "name": "Cameron McNairy",
       "kind": "candidate",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "关键贡献、来源归属与机制正文已核验；详见人物卡来源审计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "title": "Itanium 2 Processor Microarchitecture",
+          "authors": "Cameron McNairy; Don Soltis",
+          "date": "2003-03/04",
+          "url": "https://pages.cs.wisc.edu/~david/courses/cs752/Spring2004/reader/micro_itanium2.pdf",
+          "locator": "IEEE Micro 23(2), pp.44–55；Microarchitecture overview、缓存与流水线章节",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "d20a876617e736a3d8178282dc4add618649da1bc97ee8cbb6e503948910b62a"
+        },
+        {
+          "title": "Montecito — The Next Product in the Itanium Processor Family",
+          "authors": "Cameron McNairy; Rohit Bhatia",
+          "date": "2004-08-24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc16/3_Tue/13_HC16_Sess10_Pres1_bw.pdf",
+          "locator": "Hot Chips 16；slides 5–10（PDF pp.3–5）",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节",
+          "evidenceStrength": "强",
+          "role": "关键贡献、机制与归属",
+          "retrievedSha256": "a96aa8688a6830a32b20959fae953e43ce96bb54654c80e16fceb235f835d0f0"
+        }
+      ]
     },
     {
       "id": "sebastien-nussbaum",
@@ -1300,5 +1536,35 @@
     "未获取或收听视频内容；全部机制以已核验文字/幻灯片为依据，无伪造时间戳。",
     "Godard 的 PPTX 文字已从幻灯片 XML 获取；未观看动画或录制。",
     "未完成人物不加入完成计数；既有人物内容不因资料缺口被清空。"
+  ],
+  "publicationHistory": [
+    {
+      "status": "published",
+      "contentMergeCommit": "b28558b5dcbb07dd11363800fd61f2ab062bc696",
+      "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37435907990",
+      "pagesConclusion": "success",
+      "publicProfileCount": 259,
+      "verificationRecord": "2026-10-06-deployment.json",
+      "verification": "公开 catalog、HTML、批次 HTML/JSON 和 CSS 均与内容提交字节一致；浏览器核验 8 张新卡、技能与姓名筛选、展开证据。显示标签修正另随此记录提交。"
+    }
+  ],
+  "continuations": [
+    {
+      "baseCommit": "41c7fa5329e113b4fc8ba72fc13b80ecb19463d0",
+      "completedIds": [
+        "gene-amdahl",
+        "joel-emer",
+        "sophie-wilson",
+        "ivan-sutherland",
+        "alan-kay",
+        "butler-lampson",
+        "douglas-engelbart",
+        "robert-tomasulo",
+        "james-smith",
+        "cameron-mcnairy"
+      ],
+      "completedCount": 10,
+      "history": "research/history/2026-10-06-continuation-before.json"
+    }
   ]
 }
