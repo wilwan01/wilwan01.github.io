@@ -6,21 +6,16 @@
   "plannedExisting": 63,
   "plannedCandidates": 13,
   "counts": {
-    "complete": 50,
-    "partial": 10,
-    "pending": 16
+    "complete": 58,
+    "partial": 3,
+    "pending": 15
   },
-  "completedExisting": 39,
-  "completedNew": 11,
+  "completedExisting": 46,
+  "completedNew": 12,
   "publication": {
-    "status": "published",
-    "contentCommit": "3b318036cdf145c3a66dee1ab4ed52a6c42a23b3",
-    "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37454654086",
-    "pagesConclusion": "success",
-    "publicProfileCount": 262,
-    "completedCount": 50,
-    "verifiedAtUtc": "2026-10-06T11:12:14.285020+00:00",
-    "verificationRecord": "2026-10-06-deployment-continuation.json"
+    "status": "pending-pr",
+    "previousPublishedCompletedCount": 50,
+    "note": "本轮仅创建 PR；合并及 GitHub Pages 上线须另核验。"
   },
   "standard": "最重要贡献主线；官方理由凝练转述；至少两项实质一手来源且至少一项机制正文；合著边界明确。",
   "records": [
@@ -443,14 +438,21 @@
       "id": "jim-keller",
       "name": "Jim Keller",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 HDSR 访谈正文；第二项实质一手来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
           "url": "https://hdsr.mitpress.mit.edu/pub/n7la10vt/release/4",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "workId": "hdsr-keller-2026",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "Managing at Scale: The AMD Turnaround；复杂系统与模块化讨论"
+        },
+        {
+          "url": "https://patents.google.com/patent/US20130275720A1/en",
+          "workId": "US20130275720A1",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "发明人/Apple 转让记录；Summary；Figs.5–11 的重命名、重复计数和退休"
         }
       ]
     },
@@ -675,14 +677,21 @@
       "id": "dave-jaggar",
       "name": "Dave Jaggar",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得口述史；第二项技术来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
           "url": "https://archive.computerhistory.org/resources/access/text/2014/01/102746627-05-01-acc.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "workId": "chm-X6779.2013",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "印刷 pp.12–15，Thumb 动机、双 ISA、编译器迭代及 ARM7TDMI"
+        },
+        {
+          "url": "https://patents.google.com/patent/US5740461A/en",
+          "workId": "US5740461A",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "发明人；Description of preferred embodiments，Figs.1–9；T 状态与 Thumb/ARM 译码"
         }
       ]
     },
@@ -717,14 +726,21 @@
       "id": "kevin-mcgrath",
       "name": "Kevin McGrath",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 x86-64 联合讲义；第二项实质来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
           "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "workId": "hotchips14-x86-64",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "slides 4–13：设计目标、Long/Compatibility mode、REX 与页表"
+        },
+        {
+          "url": "https://aggregate.org/EE686/01196116.pdf",
+          "workId": "ieee-micro-2003-1196116",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "IEEE Micro 23(2), pp.66–76；pp.66–68 ISA/核心；pp.71–74 内存与互连"
         }
       ]
     },
@@ -747,14 +763,21 @@
       "id": "frank-soltis",
       "name": "Frank Soltis",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得本人访谈；第二项实质来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
-          "url": "https://www.itjungle.com/2023/06/21/talking-system-architecture-with-the-frank-soltis/",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "url": "https://bitsavers.org/pdf/ibm/system38/G580-0237-1_IBM_System_38_Technical_Developments_198007.pdf",
+          "workId": "ibm-system38-hardware-hoffman-soltis",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "印刷 pp.19–21（PDF pp.21–23）：硬件、地址转换、任务队列和 SEND/RECEIVE"
+        },
+        {
+          "url": "https://public.dhe.ibm.com/as400/web/COMMON/4/IBMibestofFrank/IBMiExpertseriesbestofFrankTranscript.pdf",
+          "workId": "ibm-best-of-frank-2013",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "pp.1–2：Silverlake、技术独立性、RISC 迁移与集成"
         }
       ]
     },
@@ -1164,14 +1187,21 @@
       "id": "andy-glew",
       "name": "Andrew “Andy” Glew",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 MLP 技术文章；第二项实质来源待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
           "url": "https://people.eecs.berkeley.edu/~kubitron/asplos98/abstracts/andrew_glew.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "workId": "asplos98-glew-mlp",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "单页原文：Problem Description、Solution、研究建议 (4)–(6)"
+        },
+        {
+          "url": "https://patents.google.com/patent/US5671444A/en",
+          "workId": "US5671444A",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "发明人；Figs.4–8，fill buffer 分配、命中、返回与替换；claims"
         }
       ]
     },
@@ -1372,14 +1402,21 @@
       "id": "john-edmondson",
       "name": "John Edmondson",
       "kind": "existing",
-      "status": "partial",
-      "reason": "已取得 DEC 技术论文合订本；第二项作品及具体作者归属待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
       "sources": [
         {
           "url": "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
-          "retrievalStatus": "retrieved-not-yet-claim-audited",
-          "next": "须核验正文、作者与具体贡献后才可支撑展示；抓取成功不等于研究完成。"
+          "workId": "dtj7-1-alpha21164-internal",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "印刷 p.119 起（PDF p.121 起），Overview、Internal Organization、Instruction Unit；同卷 Edmondson 作者简介"
+        },
+        {
+          "url": "https://patents.google.com/patent/US6272624B1/en",
+          "workId": "US6272624B1",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "Summary of the invention；group global history 与单读端口的并行预测；claims 20–26"
         }
       ]
     },
@@ -1488,10 +1525,23 @@
       "id": "marc-tremblay",
       "name": "Marc Tremblay",
       "kind": "existing",
-      "status": "pending",
-      "reason": "尚未完成关键贡献定位和两项实质一手来源的正文核验；现有资料保留，未标为深化完成。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "url": "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "workId": "ieee-micro-2005-high-performance-throughput",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责"
+        },
+        {
+          "url": "https://patents.google.com/patent/US20040133769A1/en",
+          "workId": "US20040133769A1",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "发明人；Summary [0009]–[0022]；Figs.1–3"
+        }
+      ]
     },
     {
       "id": "lieven-eeckhout",
@@ -1638,10 +1688,23 @@
       "id": "shailender-chaudhry",
       "name": "Shailender Chaudhry",
       "kind": "candidate",
-      "status": "partial",
-      "reason": "已取得 execute-ahead 相关专利正文；第二项独立技术作品与职责归属待补。",
-      "nextAction": "优先查颁奖机构 recipient citation；获取作者/机构托管的第二项技术正文并核验团队归属。",
-      "sources": []
+      "status": "complete",
+      "reason": "本轮核验两项独立实质一手作品；来源事实、个人/团队归属和编辑解读分列，详见人物卡。",
+      "nextAction": null,
+      "sources": [
+        {
+          "url": "https://patents.google.com/patent/US20040133769A1/en",
+          "workId": "US20040133769A1",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "发明人；Summary [0009]–[0022]；Figs.1–3"
+        },
+        {
+          "url": "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "workId": "ieee-micro-2005-high-performance-throughput",
+          "retrievalStatus": "body-and-attribution-audited",
+          "locator": "IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责"
+        }
+      ]
     },
     {
       "id": "cameron-mcnairy",
@@ -2034,7 +2097,11 @@
     "IBM 摘要来源在公开网页工具中读取；本地同 URL 返回反爬页面，未把反爬页面记录为正文。",
     "未获取或收听视频内容；全部机制以已核验文字/幻灯片为依据，无伪造时间戳。",
     "Godard 的 PPTX 文字已从幻灯片 XML 获取；未观看动画或录制。",
-    "未完成人物不加入完成计数；既有人物内容不因资料缺口被清空。"
+    "未完成人物不加入完成计数；既有人物内容不因资料缺口被清空。",
+    "本轮从 master 的 50 完成 / 10 部分 / 16 待补继续，未重复处理 Amdahl、Clark 或 Flynn。",
+    "本轮八人各核验两项独立实质一手作品；机构简介、奖项名单和同一作品不同 URL 不计第二作品。",
+    "Soltis 原 IT Jungle 来源为视频简介而非文字稿；保留历史链接，改由 IBM 官方文字稿与 Hoffman/Soltis 论文支撑。",
+    "scouting 的论文和专利是两个独立作品，但共享团队与机制，不声称相互独立的实验复现；本轮未执行性能实验。"
   ],
   "publicationHistory": [
     {
@@ -2105,6 +2172,16 @@
       "completedCount": 44,
       "verifiedAtUtc": "2026-10-06T10:36:16.096111+00:00",
       "verificationRecord": "2026-10-06-deployment-continuation.json"
+    },
+    {
+      "status": "published",
+      "contentCommit": "3b318036cdf145c3a66dee1ab4ed52a6c42a23b3",
+      "pagesRun": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/37454654086",
+      "pagesConclusion": "success",
+      "publicProfileCount": 262,
+      "completedCount": 50,
+      "verifiedAtUtc": "2026-10-06T11:12:14.285020+00:00",
+      "verificationRecord": "2026-10-06-deployment-continuation.json"
     }
   ],
   "continuations": [
@@ -2166,6 +2243,23 @@
       ],
       "completedCount": 6,
       "history": "research/history/2026-10-06-platforms-before.json"
+    },
+    {
+      "baseCommit": "78749251c63e63c53c69a1123a8d68cd198e46df",
+      "completedIds": [
+        "jim-keller",
+        "dave-jaggar",
+        "kevin-mcgrath",
+        "frank-soltis",
+        "andy-glew",
+        "john-edmondson",
+        "shailender-chaudhry",
+        "marc-tremblay"
+      ],
+      "completedCount": 8,
+      "history": "research/history/2026-10-06-evidence-followup-before.json",
+      "evidenceGate": "two-distinct-substantive-primary-works-v1",
+      "summary": "关闭七项 partial（含一名候选），完成一项 pending；专利仅支撑共同披露，不证明产品采用。"
     }
   ]
 }

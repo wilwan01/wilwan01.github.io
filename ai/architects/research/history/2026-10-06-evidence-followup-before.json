@@ -1,0 +1,398 @@
+{
+  "baseCommit": "164820eec0959bf404e397e583d201967625a523",
+  "continuationBase": "78749251c63e63c53c69a1123a8d68cd198e46df",
+  "profiles": [
+    {
+      "id": "jim-keller",
+      "name": "Jim Keller",
+      "field": "抽象、模块化与可实现的复杂系统",
+      "core": "持续重构抽象和任务边界，使每一部分都能被理解、实现和验证。",
+      "evidence": "Harvard Data Science Review 保存的本人访谈明确讨论由简单抽象组合复杂系统，以及将设计和工作重构成可实现的模块。他同时强调分析问题与创造性跃迁。这里提炼公开设计论述，不把未来系统能力的自述当作已独立验证结果。",
+      "habits": [
+        "追问当前复杂性来自问题本身，还是历史积累的组织方式。",
+        "将大系统拆成接口清楚、责任适当、能够测试的部分。",
+        "设计变得不可理解时，重构边界，而不是继续叠加补丁。",
+        "保留分层分析，并允许在旧抽象失效时提出新的组织方式。"
+      ],
+      "questions": [
+        "这个模块的接口是否让实现和验证成为可完成的任务？",
+        "抽象隐藏的是细节，还是关键的成本与限制？",
+        "继承的边界如果重画，能否消除一类问题？"
+      ],
+      "boundary": "模块化不能把复杂性转嫁给接口，重构也不是无条件推倒重来。兼容性、集成、验证和迁移成本必须计算。",
+      "diagnostic": "比较重构前后的跨模块依赖、接口例外、集成缺陷和验证范围，同时检查性能与功耗是否受到损害。",
+      "notes": [
+        [
+          "e04",
+          "Chiplet 的分区与接口"
+        ],
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "From Silicon to Intelligence: A Fireside Chat With Jim Keller",
+          "https://hdsr.mitpress.mit.edu/pub/n7la10vt/release/4",
+          "访谈于 2025-10-21；2026-07 发布 · 最新公开版本"
+        ]
+      ],
+      "challenge": {
+        "lens": "模块边界与集成复杂性",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "variables": "K_split：重构投入；C_int_saved：集成验证节省；C_if_extra：接口新增成本。",
+        "model": "比较 C_int_saved 与 K_split+C_if_extra，另测跨边界关键路径。",
+        "crossover": "可复用边界减少的完整成本超过重构和接口负担。",
+        "counterexample": "模块更清晰，却使高频交互跨越昂贵边界。",
+        "transfer": "迁移到 chiplet 分割或微服务拆分。",
+        "question": "这个模块的接口是否让实现和验证成为可完成的任务？",
+        "validation": "比较重构前后的跨模块依赖、接口例外、集成缺陷和验证范围，同时检查性能与功耗是否受到损害。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu"
+      ]
+    },
+    {
+      "id": "dave-jaggar",
+      "name": "Dave Jaggar",
+      "field": "紧凑编码与嵌入式 ISA",
+      "core": "把指令编码密度与取指、解码和软件表达联合评估。",
+      "evidence": "CHM 本人口述史记录 ARM 架构与 Thumb 工作；不是单独发明全部 ARM 技术。",
+      "habits": [
+        "把指令编码密度与取指、解码和软件表达联合评估。",
+        "固定 N：动态指令；b：平均字节；B：取指 B/s；D：依赖秒 的定义，按完整任务比较。",
+        "先测试最强反例：指令数膨胀、模式切换和解码限制吞掉代码密度收益。"
+      ],
+      "questions": [
+        "紧凑编码减少取指字节，却增加指令数，什么时候仍缩短任务时间？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指令数膨胀、模式切换和解码限制吞掉代码密度收益。",
+      "diagnostic": "匹配程序语义，测动态字节、I-cache miss、解码停顿与完整任务时间。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Dave Jaggar：代表性公开资料",
+          "https://archive.computerhistory.org/resources/access/text/2014/01/102746627-05-01-acc.pdf",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "紧凑编码与嵌入式 ISA挑战",
+        "skills": [
+          "A1",
+          "A4",
+          "A8"
+        ],
+        "question": "紧凑编码减少取指字节，却增加指令数，什么时候仍缩短任务时间？",
+        "variables": "N：动态指令；b：平均字节；B：取指 B/s；D：依赖秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(Nb/B,D)，实际还含解码与执行约束。",
+        "crossover": "取指受限时减少 Nb 才能改善该下界；新增执行成本必须更小。",
+        "counterexample": "指令数膨胀、模式切换和解码限制吞掉代码密度收益。",
+        "validation": "匹配程序语义，测动态字节、I-cache miss、解码停顿与完整任务时间。",
+        "transfer": "迁移到 RISC-V 压缩指令与代码缓存。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "kevin-mcgrath",
+      "name": "Kevin McGrath",
+      "field": "兼容式 ISA 扩展",
+      "core": "增加地址和寄存器能力，同时设计旧软件到新模式的迁移路径。",
+      "evidence": "Hot Chips 的 AMD x86-64 原始演讲记录其与 Christie 的扩展工作。",
+      "habits": [
+        "增加地址和寄存器能力，同时设计旧软件到新模式的迁移路径。",
+        "固定 n_p：指针数；Δb：每指针新增字节；C：缓存容量 的定义，按完整任务比较。",
+        "先测试最强反例：指针密集结构跨过缓存容量门槛。"
+      ],
+      "questions": [
+        "64 位指针增加容量却膨胀工作集，什么时候性能倒退？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指针密集结构跨过缓存容量门槛。",
+      "diagnostic": "同数据规模比较 ABI、布局和代码生成，测 miss 与整任务时间。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Kevin McGrath：代表性公开资料",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "兼容式 ISA 扩展挑战",
+        "skills": [
+          "A1",
+          "A4",
+          "A8"
+        ],
+        "question": "64 位指针增加容量却膨胀工作集，什么时候性能倒退？",
+        "variables": "n_p：指针数；Δb：每指针新增字节；C：缓存容量；参数需从待评估系统测量，以下为条件模型。",
+        "model": "新增工作集 n_p Δb；与新寄存器及寻址收益分别测量。",
+        "crossover": "容量与表达收益需覆盖缓存、TLB 和内存流量增加。",
+        "counterexample": "指针密集结构跨过缓存容量门槛。",
+        "validation": "同数据规模比较 ABI、布局和代码生成，测 miss 与整任务时间。",
+        "transfer": "迁移到宽地址、能力指针及压缩指针。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "frank-soltis",
+      "name": "Frank Soltis",
+      "field": "机器接口与实现解耦",
+      "core": "稳定高层机器接口，让底层处理器和存储组织可演进。",
+      "evidence": "本人系统架构访谈讨论 System/38 与 AS/400；以下迁移模型属于现代归纳。",
+      "habits": [
+        "稳定高层机器接口，让底层处理器和存储组织可演进。",
+        "固定 H：每代运行负担；K_direct/K_abstract：迁移投入；g：代数 的定义，按完整任务比较。",
+        "先测试最强反例：接口泄漏底层假设，既付转换成本又无法迁移。"
+      ],
+      "questions": [
+        "稳定机器接口增加转换开销，怎样换取代际迁移收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。接口泄漏底层假设，既付转换成本又无法迁移。",
+      "diagnostic": "在两种后端上运行相同程序，检查语义、数据兼容和转换成本。",
+      "notes": [
+        [
+          "e04",
+          "模块与接口"
+        ]
+      ],
+      "sources": [
+        [
+          "Frank Soltis：代表性公开资料",
+          "https://www.itjungle.com/2023/06/21/talking-system-architecture-with-the-frank-soltis/",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "机器接口与实现解耦挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "稳定机器接口增加转换开销，怎样换取代际迁移收益？",
+        "variables": "H：每代运行负担；K_direct/K_abstract：迁移投入；g：代数；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较 ΣH 与 Σ(K_direct-K_abstract)，契约正确性独立验证。",
+        "crossover": "长期迁移节省需超过持续抽象开销，按代数做敏感性。",
+        "counterexample": "接口泄漏底层假设，既付转换成本又无法迁移。",
+        "validation": "在两种后端上运行相同程序，检查语义、数据兼容和转换成本。",
+        "transfer": "迁移到可移植加速器运行时。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "andy-glew",
+      "name": "Andrew “Andy” Glew",
+      "field": "乱序执行与访存并行",
+      "core": "指令并行与访存并行不是同一个扩展问题。",
+      "evidence": "其 ASPLOS 1998 原始讨论材料区分帮助 ILP 与帮助 MLP 的机制；本库聚焦消除错误的并行度等同假设。",
+      "habits": [
+        "区分指令与访存并行。",
+        "检查可执行的真实依赖。",
+        "让窗口资源对准等待类型。",
+        "追踪并行增加后的流量。"
+      ],
+      "questions": [
+        "更大执行窗口为什么可能增加 ILP 却不改善 MLP？",
+        "需要更多独立地址还是更多执行资源？",
+        "未完成访存数在哪里被限制？"
+      ],
+      "boundary": "访存并发不能突破带宽或真实依赖；更大窗口也有面积、功率和恢复成本。",
+      "diagnostic": "扫描窗口、未完成请求和访存延迟，分解依赖链、资源阻塞与带宽饱和。",
+      "notes": [
+        [
+          "e09",
+          "核心与有效吞吐"
+        ],
+        [
+          "e08",
+          "推测的净收益"
+        ]
+      ],
+      "sources": [
+        [
+          "ASPLOS 1998：本人讨论材料",
+          "https://people.eecs.berkeley.edu/~kubitron/asplos98/abstracts/andrew_glew.pdf",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "ILP 与 MLP 挑战",
+        "skills": [
+          "A1",
+          "A3",
+          "A6"
+        ],
+        "variables": "m：独立未完成请求；L：平均服务时间；B：可持续请求/s。",
+        "model": "理想访存吞吐上限近似 min(m/L,B)，不包含所有队列交互。",
+        "crossover": "提高 m 仅在 m/L < B 且有独立工作时可增供给。",
+        "counterexample": "链式指针访问不产生足够独立请求。",
+        "transfer": "迁移到 GPU 并发或存储队列深度。",
+        "question": "更大执行窗口为什么可能增加 ILP 却不改善 MLP？",
+        "validation": "扫描窗口、未完成请求和访存延迟，分解依赖链、资源阻塞与带宽饱和。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory"
+      ]
+    },
+    {
+      "id": "john-edmondson",
+      "name": "John Edmondson",
+      "field": "超标量执行与供给链",
+      "core": "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
+      "evidence": "Alpha 21164 合作论文讨论四发射及缓存组织；以下是基于共同工作的机制归纳。",
+      "habits": [
+        "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
+        "先固定任务、正确性与资源边界，再判断 超标量执行与供给链 的收益。",
+        "把新增负担显式放入比较：依赖链或指令缓存失配使执行宽度空闲。"
+      ],
+      "questions": [
+        "四发射机器增加两个执行单元，为何吞吐可能几乎不变？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。依赖链或指令缓存失配使执行宽度空闲。",
+      "diagnostic": "做执行宽度与缓存供给独立消融，归因空槽和依赖等待；失配主导则否定扩宽。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Digital Technical Journal：Alpha 21164 合作论文",
+          "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "超标量执行与供给链挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "四发射机器增加两个执行单元，为何吞吐可能几乎不变？",
+        "variables": "r_fe/r_ex/r_mem：前端、执行、存储可持续指令/周期；参数需从待评估系统测量，以下为条件模型。",
+        "model": "可持续 IPC≤min(r_fe,r_ex,r_mem)，依赖限制还会压低上界。",
+        "crossover": "只有执行资源绑定时增加 r_ex 才可能提高有效 IPC。",
+        "counterexample": "依赖链或指令缓存失配使执行宽度空闲。",
+        "validation": "做执行宽度与缓存供给独立消融，归因空槽和依赖等待；失配主导则否定扩宽。",
+        "transfer": "迁移到增加 GPU SM 但显存带宽固定。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "marc-tremblay",
+      "name": "Marc Tremblay",
+      "field": "多层并行与推测代价",
+      "core": "并行方式应由任务结构决定，并显式核算推测失效的工作。",
+      "evidence": "Microsoft 公开履历记录其 UltraSPARC、MAJC 与 Rock 工作；首硅不等于产品成功。",
+      "habits": [
+        "并行方式应由任务结构决定，并显式核算推测失效的工作。",
+        "先固定任务、正确性与资源边界，再判断 多层并行与推测代价 的收益。",
+        "把新增负担显式放入比较：推测失败、共享缓存污染和回滚使多线程更慢。"
+      ],
+      "questions": [
+        "推测线程减少关键路径，却占用共享缓存：在什么并发度下失去吞吐优势？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。推测失败、共享缓存污染和回滚使多线程更慢。",
+      "diagnostic": "匹配总资源，扫并发与成功率，记录回滚、缓存干扰与合格任务/s。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Microsoft Research：Marc Tremblay 公开履历",
+          "https://www.microsoft.com/en-us/research/event/system-design-cloud-services/biographies/?lang=zh-cn",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "多层并行与推测代价挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A8"
+        ],
+        "question": "推测线程减少关键路径，却占用共享缓存：在什么并发度下失去吞吐优势？",
+        "variables": "u：有用工作；s：推测工作；r：成功比例；B：共享预算；参数需从待评估系统测量，以下为条件模型。",
+        "model": "核算每个完成任务的 u+s 与关键路径节省，分别比较延迟和吞吐。",
+        "crossover": "有效重叠节省需覆盖回滚与竞争；延迟改善不保证同预算 goodput 增加。",
+        "counterexample": "推测失败、共享缓存污染和回滚使多线程更慢。",
+        "validation": "匹配总资源，扫并发与成功率，记录回滚、缓存干扰与合格任务/s。",
+        "transfer": "迁移到 LLM speculative decoding。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    }
+  ]
+}

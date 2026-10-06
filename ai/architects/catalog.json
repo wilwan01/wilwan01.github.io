@@ -102,7 +102,8 @@
         "jeff-stuecheli",
         "cameron-mcnairy",
         "sebastien-nussbaum",
-        "eric-schwarz"
+        "eric-schwarz",
+        "shailender-chaudhry"
       ]
     },
     {
@@ -1697,8 +1698,8 @@
       "id": "jim-keller",
       "name": "Jim Keller",
       "field": "抽象、模块化与可实现的复杂系统",
-      "core": "持续重构抽象和任务边界，使每一部分都能被理解、实现和验证。",
-      "evidence": "Harvard Data Science Review 保存的本人访谈明确讨论由简单抽象组合复杂系统，以及将设计和工作重构成可实现的模块。他同时强调分析问题与创造性跃迁。这里提炼公开设计论述，不把未来系统能力的自述当作已独立验证结果。",
+      "core": "以可重构、可验证的设计组织推进复杂芯片，并共同提出用寄存器映射消除数据搬运的具体机制。",
+      "evidence": "编辑解读：从“复制数值”改为“保持等价映射”，说明改变表示可消除执行工作。但重复映射计数、退休和恢复仍需正确维护；零执行周期不等于零前端、重命名或验证成本。",
       "habits": [
         "追问当前复杂性来自问题本身，还是历史积累的组织方式。",
         "将大系统拆成接口清楚、责任适当、能够测试的部分。",
@@ -1710,7 +1711,7 @@
         "抽象隐藏的是细节，还是关键的成本与限制？",
         "继承的边界如果重画，能否消除一类问题？"
       ],
-      "boundary": "模块化不能把复杂性转嫁给接口，重构也不是无条件推倒重来。兼容性、集成、验证和迁移成本必须计算。",
+      "boundary": "组织经历为本人回顾；专利证明共同披露而非商业采用、优先权排名或收益测量。映射资源不足、计数饱和与恢复开销可能限制 move 消除。",
       "diagnostic": "比较重构前后的跨模块依赖、接口例外、集成缺陷和验证范围，同时检查性能与功耗是否受到损害。",
       "notes": [
         [
@@ -1727,6 +1728,11 @@
           "From Silicon to Intelligence: A Fireside Chat With Jim Keller",
           "https://hdsr.mitpress.mit.edu/pub/n7la10vt/release/4",
           "访谈于 2025-10-21；2026-07 发布 · 最新公开版本"
+        ],
+        [
+          "Zero cycle move — US20130275720A1",
+          "https://patents.google.com/patent/US20130275720A1/en",
+          "2013-10-17（公开）；2012-04-16（申请） · 发明人/Apple 转让记录；Summary；Figs.5–11 的重命名、重复计数和退休"
         ]
       ],
       "challenge": {
@@ -1747,7 +1753,61 @@
       "domain": "foundations",
       "relatedDomains": [
         "cpu"
-      ]
+      ],
+      "contributions": [
+        "本人回顾在 AMD 将设计组织改为技术人员主导，并在后续软件栈中持续重构可测试模块。",
+        "与 Mylius、Blasco-Allue、Williams、Vats 共同披露 zero-cycle move：复用源物理寄存器映射，避免执行实际复制。"
+      ],
+      "background": "HDSR 支撑本人所述组织角色；Apple 转让记录与五人发明人名单支撑具体技术参与。两类证据分别使用：不把团队重组写成独自设计 Zen，也不声称该专利就是 A7 或 Zen 的实现。",
+      "sourceFacts": [
+        {
+          "text": "HDSR 的 AMD 回顾强调组织调整；模块化段落把软件栈负责人指向 Jasmina Vasiljevic。",
+          "workId": "hdsr-keller-2026"
+        },
+        {
+          "text": "专利把 move 的目的寄存器映射到源物理寄存器，并跟踪重复映射计数及退休释放。",
+          "workId": "US20130275720A1"
+        }
+      ],
+      "argument": "编辑解读：从“复制数值”改为“保持等价映射”，说明改变表示可消除执行工作。但重复映射计数、退休和恢复仍需正确维护；零执行周期不等于零前端、重命名或验证成本。",
+      "sourceAudit": [
+        {
+          "workId": "hdsr-keller-2026",
+          "title": "From Silicon to Intelligence: A Fireside Chat With Jim Keller",
+          "authors": "Jim Keller；主持 Archerman、Francesca Dominici",
+          "date": "访谈 2025-10-21；2026 发布；release/4",
+          "url": "https://hdsr.mitpress.mit.edu/pub/n7la10vt/release/4",
+          "locator": "Managing at Scale: The AMD Turnaround；复杂系统与模块化讨论",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人对组织与设计方法的回顾；不将主持人赞语或未来预测作为业绩事实",
+          "primary": true,
+          "substantive": true
+        },
+        {
+          "workId": "US20130275720A1",
+          "title": "Zero cycle move — US20130275720A1",
+          "authors": "James B. Keller; John H. Mylius; Conrado Blasco-Allue; Gerard R. Williams III; Suparn Vats",
+          "date": "2013-10-17（公开）；2012-04-16（申请）",
+          "url": "https://patents.google.com/patent/US20130275720A1/en",
+          "locator": "发明人/Apple 转让记录；Summary；Figs.5–11 的重命名、重复计数和退休",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "五人共同披露的具体机制；不推断在 A7 或 Zen 上落地",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "dave-ditzel",
@@ -2482,8 +2542,8 @@
       "id": "dave-jaggar",
       "name": "Dave Jaggar",
       "field": "紧凑编码与嵌入式 ISA",
-      "core": "把指令编码密度与取指、解码和软件表达联合评估。",
-      "evidence": "CHM 本人口述史记录 ARM 架构与 Thumb 工作；不是单独发明全部 ARM 技术。",
+      "core": "设计 Thumb 紧凑指令及 ARM/Thumb 切换，使较窄取指接口仍可驱动 32 位数据通路。",
+      "evidence": "编辑解读：编码压缩减少取指字节，但可能增加动态指令或模式切换。应比较同一任务的动态字节、执行次数和总时间，而非仅比较二进制大小。",
       "habits": [
         "把指令编码密度与取指、解码和软件表达联合评估。",
         "固定 N：动态指令；b：平均字节；B：取指 B/s；D：依赖秒 的定义，按完整任务比较。",
@@ -2494,7 +2554,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指令数膨胀、模式切换和解码限制吞掉代码密度收益。",
+      "boundary": "早期 Thumb 的模式与译码机制不能直接等同 Thumb-2。口述史中的收益为回顾性陈述；此处不外推为所有程序的性能或功耗增益。",
       "diagnostic": "匹配程序语义，测动态字节、I-cache miss、解码停顿与完整任务时间。",
       "notes": [
         [
@@ -2507,6 +2567,11 @@
           "Dave Jaggar：代表性公开资料",
           "https://archive.computerhistory.org/resources/access/text/2014/01/102746627-05-01-acc.pdf",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "Data processing with multiple instruction sets — US5740461A",
+          "https://patents.google.com/patent/US5740461A/en",
+          "1998-04-14（公开）；优先权 1994-05-03 · 发明人；Description of preferred embodiments，Figs.1–9；T 状态与 Thumb/ARM 译码"
         ]
       ],
       "challenge": {
@@ -2534,6 +2599,61 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "将 16 位 Thumb 指令与原有 32 位 ARM 指令并置，通过状态与译码映射复用处理器数据通路。",
+        "以代码密度和外部存储宽度共同决定执行模式，并通过编译器、模拟器和客户反馈迭代。"
+      ],
+      "background": "CHM 口述史记录 Jaggar 对 Thumb 的设计叙述；US5740461A 列 David Vivian Jaggar 为发明人。ARM7TDMI 的完整实现、工具链和商业采用仍属多方合作。",
+      "sourceFacts": [
+        {
+          "text": "口述史 pp.12–15 将客户代码容量要求、双 ISA 和分支时切换联系起来。",
+          "workId": "chm-X6779.2013"
+        },
+        {
+          "text": "专利 Figs.1–9 明确区分 16 位指令、32 位数据通路、T 状态和译码映射。",
+          "workId": "US5740461A"
+        }
+      ],
+      "argument": "编辑解读：编码压缩减少取指字节，但可能增加动态指令或模式切换。应比较同一任务的动态字节、执行次数和总时间，而非仅比较二进制大小。",
+      "sourceAudit": [
+        {
+          "workId": "chm-X6779.2013",
+          "title": "Oral History of David “Dave” Jaggar",
+          "authors": "Dave Jaggar；访谈者 Donald Fairbairn",
+          "date": "2012-11-15（访谈）",
+          "url": "https://archive.computerhistory.org/resources/access/text/2014/01/102746627-05-01-acc.pdf",
+          "locator": "印刷 pp.12–15，Thumb 动机、双 ISA、编译器迭代及 ARM7TDMI",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "个人贡献回顾与团队/客户背景",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "c47fb8c06c356d0ef305d6c0bedba1a95418f852914d7d463ac483638a34a892"
+        },
+        {
+          "workId": "US5740461A",
+          "title": "Data processing with multiple instruction sets — US5740461A",
+          "authors": "David Vivian Jaggar",
+          "date": "1998-04-14（公开）；优先权 1994-05-03",
+          "url": "https://patents.google.com/patent/US5740461A/en",
+          "locator": "发明人；Description of preferred embodiments，Figs.1–9；T 状态与 Thumb/ARM 译码",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "紧凑指令和共享数据通路机制；不将整个 ARM7TDMI 归为个人",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -2714,8 +2834,8 @@
       "id": "kevin-mcgrath",
       "name": "Kevin McGrath",
       "field": "兼容式 ISA 扩展",
-      "core": "增加地址和寄存器能力，同时设计旧软件到新模式的迁移路径。",
-      "evidence": "Hot Chips 的 AMD x86-64 原始演讲记录其与 Christie 的扩展工作。",
+      "core": "共同设计兼容式 x86-64 扩展，并将寄存器、地址空间和多处理器内存通路纳入 Opteron 的整体架构。",
+      "evidence": "编辑解读：兼容性是迁移约束，不是没有成本。额外寄存器可减少访存，宽指针又可能扩大数据集；系统扩展还受 NUMA 放置和互连流量约束。",
       "habits": [
         "增加地址和寄存器能力，同时设计旧软件到新模式的迁移路径。",
         "固定 n_p：指针数；Δb：每指针新增字节；C：缓存容量 的定义，按完整任务比较。",
@@ -2739,6 +2859,11 @@
           "Kevin McGrath：代表性公开资料",
           "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "The AMD Opteron Processor for Multiprocessor Servers",
+          "https://aggregate.org/EE686/01196116.pdf",
+          "2003-03/04 · IEEE Micro 23(2), pp.66–76；pp.66–68 ISA/核心；pp.71–74 内存与互连"
         ]
       ],
       "challenge": {
@@ -2766,6 +2891,60 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "与 Dave Christie 联合阐释 Long/Compatibility mode、REX 编码及扩展页表，保留旧软件迁移路径。",
+        "与 Keltcher、Ahmed、Conway 合著 Opteron 论文，说明 ISA 扩展与片上内存控制器、HyperTransport 的组合。"
+      ],
+      "background": "Hot Chips 2002 两位署名者与 IEEE Micro 2003 四位署名者分别列出；共同作品不构成 McGrath 独自发明 AMD64、内存控制器或互连的证据。",
+      "sourceFacts": [
+        {
+          "text": "2002 讲义分别列出 64 位模式与兼容模式，并用 REX 扩展寄存器编码。",
+          "workId": "hotchips14-x86-64"
+        },
+        {
+          "text": "2003 论文区分架构地址空间与初代 Opteron 的 48 位虚拟、40 位物理地址实现。",
+          "workId": "ieee-micro-2003-1196116"
+        }
+      ],
+      "argument": "编辑解读：兼容性是迁移约束，不是没有成本。额外寄存器可减少访存，宽指针又可能扩大数据集；系统扩展还受 NUMA 放置和互连流量约束。",
+      "sourceAudit": [
+        {
+          "workId": "hotchips14-x86-64",
+          "title": "The AMD x86-64 Architecture: Extending the x86 to 64 bits",
+          "authors": "Kevin McGrath; Dave Christie / AMD",
+          "date": "2002-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
+          "locator": "slides 4–13：设计目标、Long/Compatibility mode、REX 与页表",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人联合署名的 ISA 扩展设计",
+          "primary": true,
+          "substantive": true
+        },
+        {
+          "workId": "ieee-micro-2003-1196116",
+          "title": "The AMD Opteron Processor for Multiprocessor Servers",
+          "authors": "Chetana N. Keltcher; Kevin J. McGrath; Ardsher Ahmed; Pat Conway",
+          "date": "2003-03/04",
+          "url": "https://aggregate.org/EE686/01196116.pdf",
+          "locator": "IEEE Micro 23(2), pp.66–76；pp.66–68 ISA/核心；pp.71–74 内存与互连",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "McGrath 合著；ISA 设计与 Opteron 实现边界分开",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -2830,8 +3009,8 @@
       "id": "frank-soltis",
       "name": "Frank Soltis",
       "field": "机器接口与实现解耦",
-      "core": "稳定高层机器接口，让底层处理器和存储组织可演进。",
-      "evidence": "本人系统架构访谈讨论 System/38 与 AS/400；以下迁移模型属于现代归纳。",
+      "core": "共同构建 System/38 的硬件与微码控制基础，并以技术独立接口延续 AS/400 应用投资。",
+      "evidence": "编辑解读：把稳定软件契约和可变实现隔开，可以把多代迁移成本集中到系统层；收益要扣除持续的转换、微码与兼容验证成本。",
       "habits": [
         "稳定高层机器接口，让底层处理器和存储组织可演进。",
         "固定 H：每代运行负担；K_direct/K_abstract：迁移投入；g：代数 的定义，按完整任务比较。",
@@ -2855,6 +3034,16 @@
           "Frank Soltis：代表性公开资料",
           "https://www.itjungle.com/2023/06/21/talking-system-architecture-with-the-frank-soltis/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "Hardware organization of the System/38",
+          "https://bitsavers.org/pdf/ibm/system38/G580-0237-1_IBM_System_38_Technical_Developments_198007.pdf",
+          "1978；所读合订本为 1980-07 第二版 · 印刷 pp.19–21（PDF pp.21–23）：硬件、地址转换、任务队列和 SEND/RECEIVE"
+        ],
+        [
+          "Best of Frank Soltis — IBM Expert Reference Series transcript",
+          "https://public.dhe.ibm.com/as400/web/COMMON/4/IBMibestofFrank/IBMiExpertseriesbestofFrankTranscript.pdf",
+          "2013（文档日期 6/7/13） · pp.1–2：Silverlake、技术独立性、RISC 迁移与集成"
         ]
       ],
       "challenge": {
@@ -2882,6 +3071,61 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "与 R. L. Hoffman 描述将任务调度、队列和地址转换纳入硬件/微码的 System/38 组织。",
+        "在 IBM 官方文字稿中解释 Silverlake 到 AS/400 的整合，以及底层处理器变更时保留应用的设计目标。"
+      ],
+      "background": "System/38 文章是 Hoffman、Soltis 合著；邻近的地址翻译文章署名 Houdek、Mitchell，不能挪作 Soltis 的独著。2013 IBM 文字稿明确其 AS/400 chief architect 身份。原 IT Jungle 链接只有视频简介，本轮未观看，不计入正文门槛。",
+      "sourceFacts": [
+        {
+          "text": "合著论文 pp.19–21 描述统一任务分派、SEND/RECEIVE 队列以及处理器和 I/O 的配合。",
+          "workId": "ibm-system38-hardware-hoffman-soltis"
+        },
+        {
+          "text": "IBM 文字稿 pp.1–2 回顾技术独立性和 RISC 迁移保留应用；这是本人历史陈述。",
+          "workId": "ibm-best-of-frank-2013"
+        }
+      ],
+      "argument": "编辑解读：把稳定软件契约和可变实现隔开，可以把多代迁移成本集中到系统层；收益要扣除持续的转换、微码与兼容验证成本。",
+      "sourceAudit": [
+        {
+          "workId": "ibm-system38-hardware-hoffman-soltis",
+          "title": "Hardware organization of the System/38",
+          "authors": "R. L. Hoffman; F. G. Soltis / IBM",
+          "date": "1978；所读合订本为 1980-07 第二版",
+          "url": "https://bitsavers.org/pdf/ibm/system38/G580-0237-1_IBM_System_38_Technical_Developments_198007.pdf",
+          "locator": "印刷 pp.19–21（PDF pp.21–23）：硬件、地址转换、任务队列和 SEND/RECEIVE",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人合著的硬件/微码控制组织；不把相邻文章归给 Soltis",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "0865b70169695417d5d2c2a6b31915dfaeb8af96588cadbdb7497ea14f1b7247"
+        },
+        {
+          "workId": "ibm-best-of-frank-2013",
+          "title": "Best of Frank Soltis — IBM Expert Reference Series transcript",
+          "authors": "Frank Soltis / IBM STG",
+          "date": "2013（文档日期 6/7/13）",
+          "url": "https://public.dhe.ibm.com/as400/web/COMMON/4/IBMibestofFrank/IBMiExpertseriesbestofFrankTranscript.pdf",
+          "locator": "pp.1–2：Silverlake、技术独立性、RISC 迁移与集成",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "IBM 官方文字稿；本人回顾，不采纳“其他厂商从未做到”的排他性说法",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -4331,8 +4575,8 @@
       "id": "andy-glew",
       "name": "Andrew “Andy” Glew",
       "field": "乱序执行与访存并行",
-      "core": "指令并行与访存并行不是同一个扩展问题。",
-      "evidence": "其 ASPLOS 1998 原始讨论材料区分帮助 ILP 与帮助 MLP 的机制；本库聚焦消除错误的并行度等同假设。",
+      "core": "将单线程的访存并行度明确列为优化目标，并共同披露支持多个未完成缺失的非阻塞缓存机制。",
+      "evidence": "编辑解读：窗口宽度和并发缺失数应分别测量。增加并发只有在存在独立地址、缓存跟踪资源和剩余带宽时才可能减少暴露等待。",
       "habits": [
         "区分指令与访存并行。",
         "检查可执行的真实依赖。",
@@ -4361,6 +4605,11 @@
           "ASPLOS 1998：本人讨论材料",
           "https://people.eecs.berkeley.edu/~kubitron/asplos98/abstracts/andrew_glew.pdf",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Methods and apparatus for caching data in a non-blocking manner using a plurality of fill buffers — US5671444A",
+          "https://patents.google.com/patent/US5671444A/en",
+          "1997-09-23（公开） · 发明人；Figs.4–8，fill buffer 分配、命中、返回与替换；claims"
         ]
       ],
       "challenge": {
@@ -4381,7 +4630,62 @@
       "domain": "cpu",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "1998 年完整立场材料区分 ILP 与 MLP，提出让前端越过最老缺失继续探索后续独立访问。",
+        "与七位同事共同披露多 fill buffer 的非阻塞缓存：在未完成填充期间继续处理可服务访问。"
+      ],
+      "background": "1998 材料为一页研究主张，不是完整实验论文。US5671444A 的八名发明人均保留；缓存专利和 MLP 立场是不同作品，不把后来的 runahead 成果全部归给 Glew。",
+      "sourceFacts": [
+        {
+          "text": "立场材料以可重叠未完成 cache miss 定义 MLP，仍以总执行时间为目标。",
+          "workId": "asplos98-glew-mlp"
+        },
+        {
+          "text": "专利描述 fill buffer 的分配、匹配、返回与替换；资源用尽时仍可能阻塞。",
+          "workId": "US5671444A"
+        }
+      ],
+      "argument": "编辑解读：窗口宽度和并发缺失数应分别测量。增加并发只有在存在独立地址、缓存跟踪资源和剩余带宽时才可能减少暴露等待。",
+      "sourceAudit": [
+        {
+          "workId": "asplos98-glew-mlp",
+          "title": "MLP yes! ILP no!",
+          "authors": "Andrew Glew / Intel Microcomputer Research Labs and University of Wisconsin–Madison",
+          "date": "1998",
+          "url": "https://people.eecs.berkeley.edu/~kubitron/asplos98/abstracts/andrew_glew.pdf",
+          "locator": "单页原文：Problem Description、Solution、研究建议 (4)–(6)",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "完整一页立场材料；提出研究方向，非实测论文",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "712a4695587ad5f1f149a2f0c9c6572bdeed28c4580feb3e6409838da93fb78c"
+        },
+        {
+          "workId": "US5671444A",
+          "title": "Methods and apparatus for caching data in a non-blocking manner using a plurality of fill buffers — US5671444A",
+          "authors": "Haitham Akkary; Jeffrey M. Abramson; Andrew F. Glew; Glenn J. Hinton; Kris G. Konigsfeld; Paul D. Madland; Mandar S. Joshi; Brent E. Lince",
+          "date": "1997-09-23（公开）",
+          "url": "https://patents.google.com/patent/US5671444A/en",
+          "locator": "发明人；Figs.4–8，fill buffer 分配、命中、返回与替换；claims",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "八人共同披露的非阻塞缓存机制；不证明 MLP 思想由一人首创",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "uri-weiser",
@@ -5082,8 +5386,8 @@
       "id": "john-edmondson",
       "name": "John Edmondson",
       "field": "超标量执行与供给链",
-      "core": "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
-      "evidence": "Alpha 21164 合作论文讨论四发射及缓存组织；以下是基于共同工作的机制归纳。",
+      "core": "领导 Alpha 21164 架构团队协调四发射与缓存供给，并共同提出按取指组进行多分支预测的机制。",
+      "evidence": "编辑解读：发射宽度需要足够正确取指和数据供给。组历史减少串行预测依赖，但历史压缩、别名和恢复策略仍可能改变准确率。",
       "habits": [
         "发射能力只有得到前端、缓存与寄存器通路供给才有价值。",
         "先固定任务、正确性与资源边界，再判断 超标量执行与供给链 的收益。",
@@ -5094,7 +5398,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。依赖链或指令缓存失配使执行宽度空闲。",
+      "boundary": "两项作品支持不同年代的贡献，不能拼成同一产品配置。专利没有提供现代工作负载的准确率或能效保证；团队负责人不等于全部功能单元的独立设计者。",
       "diagnostic": "做执行宽度与缓存供给独立消融，归因空槽和依赖等待；失配主导则否定扩宽。",
       "notes": [
         [
@@ -5107,6 +5411,11 @@
           "Digital Technical Journal：Alpha 21164 合作论文",
           "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Method and apparatus for predicting multiple conditional branches — US6272624B1",
+          "https://patents.google.com/patent/US6272624B1/en",
+          "2001-08-07（公开） · Summary of the invention；group global history 与单读端口的并行预测；claims 20–26"
         ]
       ],
       "challenge": {
@@ -5129,7 +5438,62 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "Alpha 21164 合作论文将四发射、整数/浮点管线、非阻塞访存和片上二级缓存作为整体组织。",
+        "与 Glenn P. Giacalone 共同披露 group global history，使一组分支预测可由单次预测阵列读取产生。"
+      ],
+      "background": "DEC 同卷作者简介明确 Edmondson 是 21164 设计团队的架构负责人，正文署名包含各单元合作者。2001 专利是后来的独立作品，不能据此声称 21164 已采用该预测器。",
+      "sourceFacts": [
+        {
+          "text": "DTJ 论文开篇列出四路发射、降低操作延迟、非阻塞访存和片上二级缓存。",
+          "workId": "dtj7-1-alpha21164-internal"
+        },
+        {
+          "text": "专利以组控制流摘要与组 PC 索引阵列，读取后重排多个分支预测。",
+          "workId": "US6272624B1"
+        }
+      ],
+      "argument": "编辑解读：发射宽度需要足够正确取指和数据供给。组历史减少串行预测依赖，但历史压缩、别名和恢复策略仍可能改变准确率。",
+      "sourceAudit": [
+        {
+          "workId": "dtj7-1-alpha21164-internal",
+          "title": "Internal Organization of the Alpha 21164, a 300-MHz 64-bit Quad-issue CMOS RISC Microprocessor",
+          "authors": "John H. Edmondson; Paul I. Rubinfeld; Peter J. Bannon; Bradley J. Benschneider; Debra Bernstein; Ruben W. Castelino; Elizabeth M. Cooper; Daniel E. Dever; Dale R. Donchin; Timothy C. Fischer; Anil K. Jain; Shekhar Mehta; Jeanne E. Meyer; Ronald P. Preston; Vidya Rajagopalan; Chandrasekhara Somanathan; Scott A. Taylor; Gilbert M. Wolrich",
+          "date": "1995",
+          "url": "https://www.bitsavers.org/pdf/dec/dtj/dtj_v07-01_1995.pdf",
+          "locator": "印刷 p.119 起（PDF p.121 起），Overview、Internal Organization、Instruction Unit；同卷 Edmondson 作者简介",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "合作论文与架构团队负责人归属；独立于后来专利",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "901828e50b6456dfd322778291cac0d055f8559f0a8658b397a3313673eb665c"
+        },
+        {
+          "workId": "US6272624B1",
+          "title": "Method and apparatus for predicting multiple conditional branches — US6272624B1",
+          "authors": "Glenn P. Giacalone; John H. Edmondson",
+          "date": "2001-08-07（公开）",
+          "url": "https://patents.google.com/patent/US6272624B1/en",
+          "locator": "Summary of the invention；group global history 与单读端口的并行预测；claims 20–26",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同发明的前端机制；不据此反推 Alpha 21164 的具体实现",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "dirk-meyer",
@@ -5502,8 +5866,8 @@
       "id": "marc-tremblay",
       "name": "Marc Tremblay",
       "field": "多层并行与推测代价",
-      "core": "并行方式应由任务结构决定，并显式核算推测失效的工作。",
-      "evidence": "Microsoft 公开履历记录其 UltraSPARC、MAJC 与 Rock 工作；首硅不等于产品成功。",
+      "core": "共同发展吞吐计算与硬件 scouting，让多线程扩展同时顾及单线程关键路径。",
+      "evidence": "编辑解读：共享资源下的预执行既能隐藏等待，也会增加竞争。因此延迟缩短与同功耗预算下吞吐提升必须分别验证。",
       "habits": [
         "并行方式应由任务结构决定，并显式核算推测失效的工作。",
         "先固定任务、正确性与资源边界，再判断 多层并行与推测代价 的收益。",
@@ -5514,7 +5878,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。推测失败、共享缓存污染和回滚使多线程更慢。",
+      "boundary": "论文中的模拟提升与作者路线设想不等同量产成绩。Scouting 不提交架构结果，不能混同投机多线程的结果提交；共享缓存污染和带宽竞争可能使收益反转。",
       "diagnostic": "匹配总资源，扫并发与成功率，记录回滚、缓存干扰与合格任务/s。",
       "notes": [
         [
@@ -5527,6 +5891,16 @@
           "Microsoft Research：Marc Tremblay 公开履历",
           "https://www.microsoft.com/en-us/research/event/system-design-cloud-services/biographies/?lang=zh-cn",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "High-Performance Throughput Computing",
+          "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "2005-05/06 · IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责"
+        ],
+        [
+          "Generating prefetches by speculatively executing code through hardware scout threading — US20040133769A1",
+          "https://patents.google.com/patent/US20040133769A1/en",
+          "2004-07-08（公开） · 发明人；Summary [0009]–[0022]；Figs.1–3"
         ]
       ],
       "challenge": {
@@ -5549,7 +5923,62 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "与 Chaudhry、Caprioli、Yip 合著分析多核/多线程吞吐和单线程延迟的取舍。",
+        "与 Chaudhry 共同披露 scout threading，通过不提交的先行执行发现后续访存。"
+      ],
+      "background": "2005 文章基于 Tremblay 的 ISCA 2004 keynote 并由四人共同署名；文末区分其系统组架构职责与 Chaudhry 的 Rock chief architect 职责。这里只完成吞吐/scouting 贡献，不声称覆盖全部 UltraSPARC、MAJC 或 Rock 成果。",
+      "sourceFacts": [
+        {
+          "text": "合著论文说明吞吐优先仍受关键区段、响应时间和单线程流水线效率约束。",
+          "workId": "ieee-micro-2005-high-performance-throughput"
+        },
+        {
+          "text": "scout 专利的共同发明人是 Chaudhry 与 Tremblay，恢复后从停顿点继续正式执行。",
+          "workId": "US20040133769A1"
+        }
+      ],
+      "argument": "编辑解读：共享资源下的预执行既能隐藏等待，也会增加竞争。因此延迟缩短与同功耗预算下吞吐提升必须分别验证。",
+      "sourceAudit": [
+        {
+          "workId": "ieee-micro-2005-high-performance-throughput",
+          "title": "High-Performance Throughput Computing",
+          "authors": "Shailender Chaudhry; Paul Caprioli; Sherman Yip; Marc Tremblay / Sun Microsystems",
+          "date": "2005-05/06",
+          "url": "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "locator": "IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "独立技术论文：机制、模拟条件与团队职责",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "942402d2dd7d2763d0bd32de9eacb23ca78a73ece784f1ab7eaf1c580dc1e956"
+        },
+        {
+          "workId": "US20040133769A1",
+          "title": "Generating prefetches by speculatively executing code through hardware scout threading — US20040133769A1",
+          "authors": "Shailender Chaudhry; Marc Tremblay",
+          "date": "2004-07-08（公开）",
+          "url": "https://patents.google.com/patent/US20040133769A1/en",
+          "locator": "发明人；Summary [0009]–[0022]；Figs.1–3",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人共同披露；预取、影子状态与恢复，不是商品性能证明",
+          "primary": true,
+          "substantive": true
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "lieven-eeckhout",
@@ -18605,6 +19034,111 @@
         "question": "算术校验能覆盖哪些错误，未覆盖部分由谁检测？",
         "validation": "对系数、指数和控制分别注入单/多位错误；用精确参考算术覆盖中点两侧、尾数全零、溢出和多级舍入。"
       }
+    },
+    {
+      "id": "shailender-chaudhry",
+      "name": "Shailender Chaudhry",
+      "field": "硬件 scouting 与单线程访存并行",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Generating prefetches by speculatively executing code through hardware scout threading — US20040133769A1",
+          "https://patents.google.com/patent/US20040133769A1/en",
+          "2004-07-08（公开） · 发明人；Summary [0009]–[0022]；Figs.1–3"
+        ],
+        [
+          "High-Performance Throughput Computing",
+          "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "2005-05/06 · IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责"
+        ]
+      ],
+      "habits": [
+        "把缺失等待转成地址探索，同时隔离正式架构状态。",
+        "分别核算有用预取、错误路径流量和恢复成本。"
+      ],
+      "questions": [
+        "scout 得到的是及时可用的数据，还是只占满带宽的请求？",
+        "地址依赖未返回数据时，还能发现多少独立缺失？"
+      ],
+      "boundary": "论文结果为特定模拟配置；专利披露不证明量产或商业成功。依赖链、带宽饱和和缓存污染会限制 scouting。",
+      "diagnostic": "固定缓存、频率和总功耗预算，开关 scouting，测预取覆盖率/及时性、额外流量、恢复周期和完整任务时间。",
+      "challenge": {
+        "lens": "等待期探索与有效预取",
+        "skills": [
+          "A3",
+          "A6",
+          "A8"
+        ],
+        "question": "scout 得到的是及时可用的数据，还是只占满带宽的请求？",
+        "variables": "S：减少的暴露等待；R：恢复代价；I：缓存与带宽干扰；均按同一任务周期计。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净节省约为 S−R−I，重叠项不得重复计入。",
+        "crossover": "地址可解析且预取及时，S 大于 R+I。",
+        "counterexample": "指针追逐使后续地址不可知，或额外流量拖慢正式线程。",
+        "validation": "固定资源做 scouting 消融，并检查正式架构状态一致。",
+        "transfer": "适用于 runahead、辅助预取线程；不能直接等同训练型预取器。"
+      },
+      "core": "共同提出硬件 scout threading，在停顿期探索可解析访存，以非提交的执行增加预取机会。",
+      "contributions": [
+        "与 Marc Tremblay 共同披露 shadow register、不可用值标记及停顿结束后的恢复流程。",
+        "与 Caprioli、Yip、Tremblay 合著吞吐计算论文，把 scouting 放入多核多线程的单线程性能约束中。"
+      ],
+      "background": "2005 论文简介称 Chaudhry 为 Rock chief architect，Caprioli 为 Rock core architect 并领导性能建模，Yip 从事性能建模，Tremblay 负责 Scalable Systems Group 架构；这些职责不得合并为一个人的工作。",
+      "sourceFacts": [
+        {
+          "text": "专利 [0009]–[0022] 仅对可解析地址发预取，推测结果不提交到正式架构状态。",
+          "workId": "US20040133769A1"
+        },
+        {
+          "text": "论文 Hardware scout 章节描述检查点、影子寄存器与 NT 位传播，并报告特定模拟条件下的效果。",
+          "workId": "ieee-micro-2005-high-performance-throughput"
+        }
+      ],
+      "argument": "编辑解读：scouting 的价值是减少后续正式执行的等待，而非提交更多推测指令。评估必须同时记录覆盖率、及时性、流量和状态恢复成本。",
+      "evidence": "编辑解读：scouting 的价值是减少后续正式执行的等待，而非提交更多推测指令。评估必须同时记录覆盖率、及时性、流量和状态恢复成本。",
+      "sourceAudit": [
+        {
+          "workId": "US20040133769A1",
+          "title": "Generating prefetches by speculatively executing code through hardware scout threading — US20040133769A1",
+          "authors": "Shailender Chaudhry; Marc Tremblay",
+          "date": "2004-07-08（公开）",
+          "url": "https://patents.google.com/patent/US20040133769A1/en",
+          "locator": "发明人；Summary [0009]–[0022]；Figs.1–3",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人共同披露；预取、影子状态与恢复，不是商品性能证明",
+          "primary": true,
+          "substantive": true
+        },
+        {
+          "workId": "ieee-micro-2005-high-performance-throughput",
+          "title": "High-Performance Throughput Computing",
+          "authors": "Shailender Chaudhry; Paul Caprioli; Sherman Yip; Marc Tremblay / Sun Microsystems",
+          "date": "2005-05/06",
+          "url": "https://www.ece.ualberta.ca/~elliott/ece510/seminars/2005f/2005-11-22/High-Performance_Throughput_Computing.pdf",
+          "locator": "IEEE Micro pp.32–45；Hardware scout（p.39 起）；末页四位作者职责",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "独立技术论文：机制、模拟条件与团队职责",
+          "primary": true,
+          "substantive": true,
+          "retrievedSha256": "942402d2dd7d2763d0bd32de9eacb23ca78a73ece784f1ab7eaf1c580dc1e956"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     }
   ],
   "research": {
@@ -18614,7 +19148,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 50,
-    "totalProfiles": 262
+    "completedThisBatch": 58,
+    "totalProfiles": 263
   }
 }

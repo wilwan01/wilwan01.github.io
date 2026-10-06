@@ -37,6 +37,15 @@ for pid in done:
   assert s['url'].startswith('https://'),s
  for w in p.get('awardsVerified',[]):assert w['paraphrase'] is True and w['year']<=2026
  assert all(k in ['A'+str(n) for n in range(1,11)] for k in p['challenge']['skills'])
+# This continuation uses an explicit work-level gate; a second URL or an award
+# citation is not a second substantive technical work.
+for continuation in b.get('continuations',[]):
+ if continuation.get('evidenceGate')!='two-distinct-substantive-primary-works-v1':continue
+ for pid in continuation['completedIds']:
+  p=by[pid];sources=p['sourceAudit']
+  eligible=[s for s in sources if s.get('primary') is True and s.get('substantive') is True and s['type'] in ['论文全文','作者技术文章','作者幻灯片','本人访谈文字稿','专利说明书全文']]
+  assert len({s['workId'] for s in eligible})>=2,pid
+  assert p.get('sourceFacts') and all(f['workId'] in {s['workId'] for s in eligible} for f in p['sourceFacts']),pid
 for d in c['domains']:assert d['members']==[p['id'] for p in c['profiles'] if p['domain']==d['id']]
 r=html.fromstring((ROOT/'index.html').read_text());ids=[x.get('id') for x in r.xpath('//*[@id]')];assert len(ids)==len(set(ids))
 articles=r.xpath('//article[contains(concat(" ",normalize-space(@class)," ")," profile ")]');assert {a.get('id') for a in articles}==set(by)
@@ -47,6 +56,7 @@ for row,p in zip(rows,c['profiles']):
  assert [td.get('data-skill') for td in row.xpath('./td[contains(@class,"associated")]')]==sorted(p['challenge']['skills'],key=lambda x:int(x[1:]))
 for p in c['profiles']:
  a=r.xpath('//article[@id="'+p['id']+'"]')[0];assert a.xpath('./h2')[0].text==p['name'];assert a.xpath('./p[@class="thesis"]')[0].text==p['core']
+ for fact in p.get('sourceFacts',[]):assert fact['text'] in a.text_content(),p['id']
  d=r.xpath('//*[@id="directory-'+p['domain']+'"]//tbody/tr[td/a[@href="#'+p['id']+'"]]')[0];assert d.xpath('./td')[3].text==p['core']
 for o in r.xpath('//*[@id="matrix-skill"]/option'):
  k=o.get('value');expected=len(by) if not k else sum(k in p['challenge']['skills'] for p in c['profiles']);assert str(expected)+' 位' in o.text
