@@ -1,0 +1,507 @@
+{
+  "baseCommit": "164820eec0959bf404e397e583d201967625a523",
+  "continuationBase": "f628b2d98580b27d2478a4923f02bfd63d5771c4",
+  "profiles": [
+    {
+      "id": "bill-dally",
+      "name": "Bill Dally",
+      "field": "互连网络、能效、数据搬运与专用计算",
+      "core": "先拆解有用工作的物理成本，再决定哪些工作不必发生。",
+      "evidence": "ACM SIGARCH 2000 Maurice Wilkes Award 说明为“For contributions in the design of multiprocessor interconnection networks and parallel computer architectures.”。Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
+      "habits": [
+        "先把算术、控制、存储访问和通信分开记账，不默认算术是主要开销。",
+        "质疑精度、零值运算和重复搬运是否真的必要，再考虑扩大执行资源。",
+        "观察数据跨越片上、片外和远端边界时的成本变化，寻找低成本域中的复用。",
+        "把压缩解码、元数据和负载不均等新增开销与节省放在同一比较边界内。",
+        "把互连网络的拓扑、带宽与通信能耗和计算成本放在同一比较边界内。"
+      ],
+      "questions": [
+        "哪些位、字节和运算实际上不必发生？",
+        "可以用多少额外计算，换掉一次昂贵的数据访问？",
+        "压缩、复用或低精度在什么条件下开始失去优势？",
+        "通信拓扑改变后，哪些数据搬运可以被消除，而不只是被加速？"
+      ],
+      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。 获奖说明只概括贡献方向；下文能效与专用计算的论述来自较新的公开资料，不是该说明的内容。",
+      "diagnostic": "记录每单位合格输出的访存字节、通信字节和能耗，比较重算、复用与压缩的交叉点。",
+      "notes": [
+        [
+          "e02",
+          "KV 前缀：取回还是重算"
+        ],
+        [
+          "e10",
+          "稀疏性与同步屏障"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2000 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "Hot Chips 2023 演讲官方摘要",
+          "https://blogs.nvidia.com/blog/hot-chips-dally-research/",
+          "2023 · 公开演讲摘要"
+        ],
+        [
+          "EIE: Efficient Inference Engine on Compressed Deep Neural Network",
+          "https://arxiv.org/abs/1602.01528",
+          "2016 · 合作论文"
+        ]
+      ],
+      "awardYear": 2010,
+      "award": "Eckert–Mauchly Award · 2010",
+      "challenge": {
+        "lens": "有用工作的物理成本",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "variables": "b_saved：减少字节；e_b：J/字节；n_saved：减少运算；e_op：J/运算；E_extra。",
+        "model": "同质量任务净节能 b_saved e_b+n_saved e_op-E_extra，按边界避免重复计数。",
+        "crossover": "实际省下的移动和运算能量超过解码、元数据与管理。",
+        "counterexample": "稀疏/压缩节省被不规则访问和元数据抵消。",
+        "transfer": "迁移到 KV 压缩、重算与复用。",
+        "question": "哪些位、字节和运算实际上不必发生？",
+        "validation": "记录每单位合格输出的访存字节、通信字节和能耗，比较重算、复用与压缩的交叉点。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "norman-jouppi",
+      "name": "Norman P. Jouppi",
+      "awardYear": 2015,
+      "award": "Eckert–Mauchly Award · 2015",
+      "field": "存储层次、异构与实现成本",
+      "core": "针对瓶颈改变组织，并把面积、时间和能耗一起建模。",
+      "evidence": "官方说明列出 victim cache、stream buffer、单 ISA 异构架构及 CACTI，分别涉及缓存冲突、数据供给、执行匹配与实现成本。",
+      "habits": [
+        "区分容量与组织问题。",
+        "寻找小结构对主结构的补足。",
+        "让执行资源匹配工作。",
+        "将性能与实现成本共同评价。"
+      ],
+      "questions": [
+        "需要更大缓存，还是更好的组织？",
+        "什么工作值得异构执行？",
+        "收益能否覆盖实现成本？"
+      ],
+      "boundary": "预取污染、迁移和模型误差必须计入；历史模型不是当前工艺测量。",
+      "diagnostic": "分别消融缓存组织、预取与异构放置，测量服务性能及面积、功耗。",
+      "notes": [
+        [
+          "e07",
+          "大页与数据放置"
+        ],
+        [
+          "e09",
+          "核心与资源匹配"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM：2015 获奖说明",
+          "https://www.acm.org/media-center/2015/june/eckert-mauchly-award-2015",
+          "2015 · 存储、异构与 CACTI"
+        ]
+      ],
+      "challenge": {
+        "lens": "存储组织与实现预算",
+        "skills": [
+          "A2",
+          "A3",
+          "A7"
+        ],
+        "variables": "ΔM：减少 miss；L_e：暴露秒/miss；H：新增管理时间；A：面积。",
+        "model": "净关键路径收益近似 ΔM L_e-H；固定 A 和功率另比较方案。",
+        "crossover": "ΔM L_e>H，且不因组织改变引入更昂贵的数据供给瓶颈。",
+        "counterexample": "miss 降低但访问更慢，关键路径仍恶化。",
+        "transfer": "迁移到 victim cache、HBM 或专用 accelerator。",
+        "question": "需要更大缓存，还是更好的组织？",
+        "validation": "分别消融缓存组织、预取与异构放置，测量服务性能及面积、功耗。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ]
+    },
+    {
+      "id": "steve-keckler",
+      "name": "Stephen “Steve” Keckler",
+      "field": "GPU 的物理扩展边界",
+      "core": "并行吞吐必须通过数据供给、通信与能量预算兑现。",
+      "evidence": "GPUs and the Future of Parallel Computing 是 Keckler 等人的合作论文；以下把研究主题转化为现代设计审查。",
+      "habits": [
+        "从有效工作量定义吞吐。",
+        "核算数据移动。",
+        "共同看计算与带宽。",
+        "检查扩展后的功率。"
+      ],
+      "questions": [
+        "增加执行单元后，数据供给还能增长多少？",
+        "算术强度是否随规模保持？",
+        "哪里开始为通信付出更多能量？"
+      ],
+      "boundary": "Roofline 是上界，不是含排队、依赖和不规则访问的预测。",
+      "diagnostic": "扫描算术强度与工作集，测带宽、执行利用率、通信和能量。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e05",
+          "设施电力约束"
+        ]
+      ],
+      "sources": [
+        [
+          "GPUs and the Future of Parallel Computing",
+          "https://research.nvidia.com/publication/2011-09_gpus-and-future-parallel-computing",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "物理吞吐挑战",
+        "skills": [
+          "A3",
+          "A6",
+          "A7"
+        ],
+        "variables": "F：运算/s；B：字节/s；I：运算/字节。",
+        "model": "吞吐上界 min(F,B I)，另查依赖、通信与功率。",
+        "crossover": "只有 F < B I 且供给约束允许，增加 F 才可能兑现。",
+        "counterexample": "不规则访问使实际 B 远低于峰值。",
+        "transfer": "迁移到 CPU 向量或 AI accelerator。",
+        "question": "增加执行单元后，数据供给还能增长多少？",
+        "validation": "扫描算术强度与工作集，测带宽、执行利用率、通信和能量。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": []
+    },
+    {
+      "id": "michael-garland",
+      "name": "Michael Garland",
+      "field": "并行算法与不规则数据",
+      "core": "先改变工作分解与数据访问，再判断 GPU 能否有效执行。",
+      "evidence": "NVIDIA 本人出版记录涵盖并行编程和合作 GPU 图遍历研究；不把合作算法归于一人。",
+      "habits": [
+        "分析工作量分布。",
+        "检查访问合并与重复工作。",
+        "选择并行粒度。",
+        "比较端到端算法。"
+      ],
+      "questions": [
+        "图遍历的更多并发是否只是增加重复访问？",
+        "不规则度怎样改变负载均衡？",
+        "哪种数据分解减少实际工作？"
+      ],
+      "boundary": "吞吐比较必须保持相同图、算法结果与遍历语义。",
+      "diagnostic": "分层统计 frontier 大小、边访问、重复工作、有效带宽与各阶段时间。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ],
+        [
+          "e12",
+          "局部加速与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "NVIDIA：本人研究与出版记录",
+          "https://research.nvidia.com/person/michael-garland",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "不规则并行挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "variables": "W：有效工作；r：实际/有效工作比；u：有效执行速率。",
+        "model": "简化时间 r W/u，加上不重叠的调度与搬运。",
+        "crossover": "新分解须降低 r/u，且节省超过新增管理时间。",
+        "counterexample": "高并发扩张重复边访问和原子竞争。",
+        "transfer": "迁移到稀疏专家或数据库 join。",
+        "question": "图遍历的更多并发是否只是增加重复访问？",
+        "validation": "分层统计 frontier 大小、边访问、重复工作、有效带宽与各阶段时间。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ]
+    },
+    {
+      "id": "john-nickolls",
+      "name": "John Nickolls",
+      "field": "可扩展并行编程抽象",
+      "core": "用可独立调度的工作分解隔离程序与机器规模。",
+      "evidence": "Scalable Parallel Programming with CUDA 是 Nickolls、Buck、Garland 与 Skadron 的合作文章。",
+      "habits": [
+        "区分抽象与实现。",
+        "明确块内与块间依赖。",
+        "让工作分解适应不同规模。",
+        "核算同步与资源占用。"
+      ],
+      "questions": [
+        "程序为什么能在更多处理器上扩展，而无需改变正确性？",
+        "块间依赖由谁保证？",
+        "资源占用何时限制并发？"
+      ],
+      "boundary": "可调度性不保证线性加速；全局同步、带宽和小问题规模仍会绑定。",
+      "diagnostic": "跨设备规模扫描同一分解，检查依赖正确性、驻留资源和瓶颈迁移。",
+      "notes": [
+        [
+          "e09",
+          "核心与有效吞吐"
+        ],
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Scalable Parallel Programming with CUDA",
+          "https://research.nvidia.com/publication/2008-03_scalable-parallel-programming-cuda",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "可扩展抽象挑战",
+        "skills": [
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "variables": "W：总工作；P：资源数；S：不可并行关键路径。",
+        "model": "理想下界 T ≥ max(W/P,S)，实际还需加调度和通信。",
+        "crossover": "增加 P 在 W/P 主导且并发分解合法时才有潜力。",
+        "counterexample": "全局依赖把程序变成串行阶段。",
+        "transfer": "迁移到线程池或分布式任务系统。",
+        "question": "程序为什么能在更多处理器上扩展，而无需改变正确性？",
+        "validation": "跨设备规模扫描同一分解，检查依赖正确性、驻留资源和瓶颈迁移。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ]
+    },
+    {
+      "id": "doug-burger",
+      "name": "Doug Burger",
+      "field": "空间分布式处理与存储、可重构计算与云加速",
+      "core": "加速器必须嵌入服务与基础设施，才会兑现专用化收益。",
+      "evidence": "ACM SIGARCH 2006 Maurice Wilkes Award 说明为“For contributions to spatially distributed processor and memory systems architecture.”。Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
+      "habits": [
+        "从服务中的可加速部分选择机制。",
+        "把数据传输和主机交互纳入比较。",
+        "让编程与部署支持硬件演进。",
+        "评估云中共享资源与多种工作负载。",
+        "检查计算与存储单元在空间上的分布与通信距离，是否匹配任务结构。"
+      ],
+      "questions": [
+        "加速部分能否覆盖搬运与调度成本？",
+        "软件工具链限制了多少收益？",
+        "固定硬件和可重构路线在哪些条件下反转？",
+        "空间分布的处理与存储单元之间的通信成本，何时超过并行收益？"
+      ],
+      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。 获奖说明只概括贡献方向，不等同于下文 Catapult 的论述，具体机制须读原文。",
+      "diagnostic": "用强软件基线做端到端 offload A/B；分解传输、等待、执行与回传，测量开发、部署和运行成本。",
+      "notes": [
+        [
+          "e12",
+          "局部加速与服务"
+        ],
+        [
+          "e14",
+          "可交付计算的单位"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2006 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services",
+          "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf",
+          "2014 · Catapult 团队原始论文"
+        ],
+        [
+          "Microsoft：Doug Burger 公开工作",
+          "https://www.microsoft.com/en-us/research/people/dburger/",
+          "Catapult、Brainwave 与云系统研究背景"
+        ]
+      ],
+      "challenge": {
+        "lens": "专用化与 offload 挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A10"
+        ],
+        "question": "一个算子在加速器上快十倍，怎样证明 offload 后服务仍有净收益？",
+        "variables": "T_CPU：原关键路径成本；T_off：调度、实际暴露搬运、等待、加速执行与回传组成的关键路径。",
+        "model": "延迟收益需要 T_off < T_CPU；可重叠部分按关键路径计入，不能把所有阶段盲目相加。",
+        "crossover": "算子规模或复用达到使暴露 offload 开销小于节省时间的边界；吞吐与经济性另行计算。",
+        "counterexample": "小任务或共享加速器排队，让计算加速被固定开销抵消。",
+        "validation": "扫描任务大小、批处理和并发，比较匹配质量/SLO 的强软件基线；归因等待与搬运。",
+        "transfer": "迁移到 SmartNIC、压缩或 CPU/GPU 分工。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "datacenter",
+        "memory"
+      ]
+    },
+    {
+      "id": "cliff-young",
+      "name": "Cliff Young",
+      "field": "实际负载驱动的 TPU 特化",
+      "core": "先固定任务与数值要求，再决定专用计算和片上存储。",
+      "evidence": "Google 本人署名 TPU 技术说明；HC 2024–25 emeritus/program 记录。",
+      "habits": [
+        "先固定任务与数值要求，再决定专用计算和片上存储。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：小矩阵和频繁访存使阵列利用率低。"
+      ],
+      "questions": [
+        "专用矩阵阵列峰值很高，什么数据访问模式会使它输给通用 GPU？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。小矩阵和频繁访存使阵列利用率低。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：小矩阵和频繁访存使阵列利用率低。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Google：Cliff Young 的 TPU 公开技术说明",
+          "https://cloud.google.com/blog/products/ai-machine-learning/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "实际负载驱动的 TPU 特化挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "专用矩阵阵列峰值很高，什么数据访问模式会使它输给通用 GPU？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "小矩阵和频繁访存使阵列利用率低。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：小矩阵和频繁访存使阵列利用率低。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "CY",
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "id": "richard-ho",
+      "name": "Richard Ho",
+      "field": "AI 芯片设计与系统交付",
+      "core": "用完整系统和软件可用性检验芯片设计目标。",
+      "evidence": "HC 2026 OpenAI 芯片演讲联合讲者；不据演讲身份推断未公开产品参数。",
+      "habits": [
+        "用完整系统和软件可用性检验芯片设计目标。",
+        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
+        "优先检验反例：缺失算子回退与格式转换吞掉局部收益。"
+      ],
+      "questions": [
+        "专用芯片 kernel 很快，怎样判断完整模型已经可交付？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。缺失算子回退与格式转换吞掉局部收益。",
+      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：缺失算子回退与格式转换吞掉局部收益。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "AI 芯片设计与系统交付挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "专用芯片 kernel 很快，怎样判断完整模型已经可交付？",
+        "variables": "T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_total=T_setup+n(T_k+T_convert)；并行重叠按实际关键路径去重，M_tmp 另核算容量门槛。",
+        "crossover": "kernel 节省须覆盖启动、转换和临时存储代价，且保持数值/异常契约。",
+        "counterexample": "缺失算子回退与格式转换吞掉局部收益。",
+        "validation": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：缺失算子回退与格式转换吞掉局部收益。",
+        "transfer": "迁移到 AI kernel、ML IR 和异构编译。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H26"
+      ]
+    }
+  ]
+}

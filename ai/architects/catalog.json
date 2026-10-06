@@ -8649,9 +8649,9 @@
     {
       "id": "bill-dally",
       "name": "Bill Dally",
-      "field": "互连网络、能效、数据搬运与专用计算",
-      "core": "先拆解有用工作的物理成本，再决定哪些工作不必发生。",
-      "evidence": "ACM SIGARCH 2000 Maurice Wilkes Award 说明为“For contributions in the design of multiprocessor interconnection networks and parallel computer architectures.”。Hot Chips 2023 演讲把数值表示、专用运算、稀疏性与存储通信设计联系起来，强调软硬件共同设计以及减少数据搬运。EIE 合作研究则让硬件直接执行压缩网络，而不是把压缩只当成存储格式。",
+      "field": "压缩表示与稀疏推理协同设计",
+      "core": "让压缩后的表示直接参与执行，并把省下的访存与新增的解码、索引和不均衡一起记账。",
+      "evidence": "编辑解读：压缩率只是入口；架构评审应验证执行是否真正跳过对应搬运和运算，再扣除索引、解码、广播与不均衡成本。模型质量相同且关键路径缩短，才能把表示收益转化为系统收益。",
       "habits": [
         "先把算术、控制、存储访问和通信分开记账，不默认算术是主要开销。",
         "质疑精度、零值运算和重复搬运是否真的必要，再考虑扩大执行资源。",
@@ -8665,7 +8665,7 @@
         "压缩、复用或低精度在什么条件下开始失去优势？",
         "通信拓扑改变后，哪些数据搬运可以被消除，而不只是被加速？"
       ],
-      "boundary": "减少搬运不是绝对命令。重算也消耗能量和算力；低精度必须满足质量要求，稀疏性必须扣除组织和同步成本。 获奖说明只概括贡献方向；下文能效与专用计算的论述来自较新的公开资料，不是该说明的内容。",
+      "boundary": "本轮完成的是 Deep Compression 与 EIE 两项作品的贡献核验，不是全部职业生涯审计；共同署名不证明个人独占。剪枝和量化必须重新验证质量，EIE 的稀疏矩阵向量机制不能直接外推到所有批量矩阵计算、Transformer 或现代 GPU；Huffman 存储编码也不等于 EIE 运行时直接执行的格式。",
       "diagnostic": "记录每单位合格输出的访存字节、通信字节和能耗，比较重算、复用与压缩的交叉点。",
       "notes": [
         [
@@ -8692,6 +8692,21 @@
           "EIE: Efficient Inference Engine on Compressed Deep Neural Network",
           "https://arxiv.org/abs/1602.01528",
           "2016 · 合作论文"
+        ],
+        [
+          "Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding",
+          "https://arxiv.org/pdf/1510.00149",
+          "2016 · ICLR; arXiv v5 2016-02-15 · §§2–4：剪枝、训练量化及 Huffman；§5：质量和存储统计；首页作者名单"
+        ],
+        [
+          "EIE: Efficient Inference Engine on Compressed Deep Neural Network",
+          "https://arxiv.org/pdf/1602.01528",
+          "2016 · ISCA; arXiv v2 2016-05-03 · §§III–IV：CSC、并行分配、激活队列与 PE；§V：验证和实现方法；首页作者名单"
+        ],
+        [
+          "ACM–IEEE CS Eckert–Mauchly Award 官方获奖名单",
+          "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "2010 · 2010 William J. Dally 条目"
         ]
       ],
       "awardYear": 2010,
@@ -8715,29 +8730,138 @@
       "relatedDomains": [
         "network",
         "physical-energy"
-      ]
+      ],
+      "contributions": [
+        "与 Song Han、Huizi Mao 共同提出 Deep Compression，将剪枝、训练量化和 Huffman 编码串成模型压缩流程。",
+        "作为 EIE 七人合作论文作者之一，将稀疏权重和非零激活的处理映射到分布式 SRAM 与计算单元。"
+      ],
+      "background": "本轮核验聚焦 2016 年模型压缩与推理硬件协同设计。Deep Compression 由 Han、Mao、Dally 共同署名；EIE 由 Han、Liu、Mao、Pu、Pedram、Horowitz、Dally 七人共同署名，正文没有足以把具体模块分配给 Dally 个人的贡献声明。其互连网络与并行计算获奖贡献另列，不把较晚的 AI 工作倒填为获奖理由。",
+      "sourceFacts": [
+        {
+          "text": "Deep Compression 的 §§2–4 依次描述剪枝后重训练、聚类共享权重并微调质心，以及对权重和索引进行 Huffman 编码；§5 的压缩统计计入码本与稀疏索引。",
+          "workId": "deep-compression-2016"
+        },
+        {
+          "text": "EIE 的 §§III–IV 采用交错分布的压缩稀疏列表示；只广播非零激活，各 PE 在本地累计，激活队列缓解负载不均，任一队列满时停止广播。",
+          "workId": "eie-2016"
+        },
+        {
+          "text": "EIE 的 §V 报告周期级模拟、RTL 验证和布局流程；不能将论文的估计能耗与比较条件省略后表述为任意现代系统的实测收益。",
+          "workId": "eie-2016"
+        }
+      ],
+      "argument": "编辑解读：压缩率只是入口；架构评审应验证执行是否真正跳过对应搬运和运算，再扣除索引、解码、广播与不均衡成本。模型质量相同且关键路径缩短，才能把表示收益转化为系统收益。",
+      "sourceAudit": [
+        {
+          "workId": "deep-compression-2016",
+          "title": "Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding",
+          "authors": "Song Han; Huizi Mao; William J. Dally",
+          "date": "2016 · ICLR; arXiv v5 2016-02-15",
+          "url": "https://arxiv.org/pdf/1510.00149",
+          "locator": "§§2–4：剪枝、训练量化及 Huffman；§5：质量和存储统计；首页作者名单",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者与机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：原始论文正文支持机制和共同署名，不证明个人独占或跨平台收益",
+          "role": "三人共同署名的压缩流程研究；不能细分个人模块归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "248044bef68e27e22384583a39d0bee743fd614d00e88a8dda6b331b5fd218d3"
+        },
+        {
+          "workId": "eie-2016",
+          "title": "EIE: Efficient Inference Engine on Compressed Deep Neural Network",
+          "authors": "Song Han; Xingyu Liu; Huizi Mao; Jing Pu; Ardavan Pedram; Mark A. Horowitz; William J. Dally",
+          "date": "2016 · ISCA; arXiv v2 2016-05-03",
+          "url": "https://arxiv.org/pdf/1602.01528",
+          "locator": "§§III–IV：CSC、并行分配、激活队列与 PE；§V：验证和实现方法；首页作者名单",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者与机制；非仅摘要或搜索片段",
+          "evidenceStrength": "强：原始论文正文支持机制和共同署名，不证明个人独占或跨平台收益",
+          "role": "七人共同署名的稀疏推理硬件；无个人独占模块声明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "859a0d659d8dce46db4026224231fd2add4eddf03d2fa896b27a3783d5746972"
+        },
+        {
+          "workId": "dally-award-2010",
+          "title": "ACM–IEEE CS Eckert–Mauchly Award 官方获奖名单",
+          "authors": "IEEE Computer Society / ACM",
+          "date": "2010",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "locator": "2010 William J. Dally 条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份及获奖理由",
+          "evidenceStrength": "强：官方归属，不计入两项实质作品",
+          "role": "仅支持获奖理由中文转述",
+          "primary": true,
+          "substantive": false,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "dally-award-2000",
+          "title": "ACM SIGARCH Maurice Wilkes Award 官方获奖名单",
+          "authors": "ACM SIGARCH",
+          "date": "2000",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "locator": "2000 William J. Dally 条目",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份及获奖理由",
+          "evidenceStrength": "强：官方归属，不计入两项实质作品",
+          "role": "仅支持获奖理由中文转述",
+          "primary": true,
+          "substantive": false,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "ACM–IEEE CS Eckert–Mauchly Award",
+          "year": 2010,
+          "citationZh": "对互连网络与并行计算机体系结构的杰出贡献。",
+          "url": "https://www.computer.org/volunteering/awards/eckert-mauchly",
+          "paraphrase": true
+        },
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2000,
+          "citationZh": "对多处理器互连网络与并行计算机体系结构设计的贡献。",
+          "url": "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "norman-jouppi",
       "name": "Norman P. Jouppi",
       "awardYear": 2015,
       "award": "Eckert–Mauchly Award · 2015",
-      "field": "存储层次、异构与实现成本",
-      "core": "针对瓶颈改变组织，并把面积、时间和能耗一起建模。",
-      "evidence": "官方说明列出 victim cache、stream buffer、单 ISA 异构架构及 CACTI，分别涉及缓存冲突、数据供给、执行匹配与实现成本。",
+      "field": "专用计算、服务约束与 TPU 系统组织",
+      "core": "把专用计算单元、数据供给与服务约束一起设计，并用可交付的整机性能检验收益。",
+      "evidence": "编辑解读：专用化的收益应沿完整数据路径审查；更大的矩阵峰值不能自动解决稀疏访存、跨芯片交换或不可用节点造成的损失。",
       "habits": [
-        "区分容量与组织问题。",
-        "寻找小结构对主结构的补足。",
-        "让执行资源匹配工作。",
-        "将性能与实现成本共同评价。"
+        "先固定服务延迟与模型条件。",
+        "沿计算、缓冲、HBM、互连追踪数据供给。",
+        "把主机与不可用节点纳入系统收益。",
+        "核对整机与增量功耗的计量边界。"
       ],
       "questions": [
-        "需要更大缓存，还是更好的组织？",
-        "什么工作值得异构执行？",
-        "收益能否覆盖实现成本？"
+        "峰值吞吐在规定尾延迟下还能兑现多少？",
+        "稀疏层究竟受访存、通信还是专用单元限制？",
+        "重配置收益能否覆盖通信与调度代价？"
       ],
-      "boundary": "预取污染、迁移和模型误差必须计入；历史模型不是当前工艺测量。",
-      "diagnostic": "分别消融缓存组织、预取与异构放置，测量服务性能及面积、功耗。",
+      "boundary": "2017 推理与 2023 训练系统的负载和计量条件不同，不能直接拼成代际倍率；SparseCore 始于 TPU v2，TPU v4 论文的披露不等于 2023 才发明。团队论文不支持把 OCS 或 TPU 全部机制独归 Jouppi。",
+      "diagnostic": "固定模型、精度与服务目标，消融数据缓冲、稀疏单元和拓扑选择，测端到端吞吐、尾延迟、整机功耗及故障时有效吞吐。",
       "notes": [
         [
           "e07",
@@ -8753,34 +8877,127 @@
           "ACM：2015 获奖说明",
           "https://www.acm.org/media-center/2015/june/eckert-mauchly-award-2015",
           "2015 · 存储、异构与 CACTI"
+        ],
+        [
+          "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "https://arxiv.org/pdf/1704.04760",
+          "2017 · ISCA · §2 架构与脉动数据流；§4/Table 4 服务延迟限制；§5 整机与增量功耗口径"
+        ],
+        [
+          "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hardware Support for Embeddings",
+          "https://arxiv.org/pdf/2304.01433",
+          "2023 · ISCA · §§2.1–2.3 OCS、构造和可用性；§2.8 拓扑；§§3.4–3.6 SparseCore 与 embedding 数据路径"
         ]
       ],
       "challenge": {
-        "lens": "存储组织与实现预算",
+        "lens": "专用计算的数据供给与系统收益",
         "skills": [
           "A2",
           "A3",
           "A7"
         ],
-        "variables": "ΔM：减少 miss；L_e：暴露秒/miss；H：新增管理时间；A：面积。",
-        "model": "净关键路径收益近似 ΔM L_e-H；固定 A 和功率另比较方案。",
-        "crossover": "ΔM L_e>H，且不因组织改变引入更昂贵的数据供给瓶颈。",
-        "counterexample": "miss 降低但访问更慢，关键路径仍恶化。",
-        "transfer": "迁移到 victim cache、HBM 或专用 accelerator。",
-        "question": "需要更大缓存，还是更好的组织？",
-        "validation": "分别消融缓存组织、预取与异构放置，测量服务性能及面积、功耗。"
+        "variables": "T_c：计算时间；T_m：数据移动时间；T_h：主机与调度开销；P：整机功耗。",
+        "model": "编辑模型：理想重叠下 T≈max(T_c,T_m)+T_h；重叠不足时须按实测关键路径修正。",
+        "crossover": "缩短主导项后，收益仍满足延迟目标，并且没有把瓶颈转移到主机或互连。",
+        "counterexample": "矩阵峰值提高，但 embedding 受 HBM/ICI 限制，端到端训练步时几乎不变。",
+        "transfer": "将推理尾延迟与训练通信分别纳入专用加速器评估。",
+        "question": "专用单元增加的峰值，能否穿过数据供给与服务约束兑现？",
+        "validation": "分别测量计算、访存、跨芯片交换和主机时间；同时报告固定服务目标下的端到端性能与整机功耗。"
       },
       "domain": "gpu-ai",
       "relatedDomains": [
         "memory"
-      ]
+      ],
+      "contributions": [
+        "共同披露并评估首代 TPU：以脉动矩阵单元、软件管理缓冲和主机协同执行支持推理，并纳入尾延迟约束。",
+        "共同披露 TPU v4 系统：用可重构光互连组织计算切片，以 SparseCore 支持 embedding 的细粒度访存与通信。"
+      ],
+      "background": "此卡将原有存储层次背景延伸到两代 TPU 的团队论文。Jouppi 均列首位作者；论文足以确认共同技术作品，不能由作者顺序推出每个子模块的个人发明权。2015 获奖理由另据 ACM 官方公告核验。",
+      "sourceFacts": [
+        {
+          "workId": "tpu-isca-2017",
+          "text": "§2 描述预装权重的脉动阵列，减少大缓冲区读写；主机发送指令，访存可与矩阵运算重叠。§4/Table 4 在应用的 99 分位响应时间限制下比较吞吐；§5 区分包含主机和扣除主机功耗的两种口径。"
+        },
+        {
+          "workId": "tpu-v4-isca-2023",
+          "text": "§2 将电连接的 4×4×4 芯片块通过 OCS 连接，并以重配置绕过不可用单元。§3 的 SparseCore 让 embedding 的 gather/scatter 利用 HBM 和 ICI，细粒度 all-to-all 的性能还受二分带宽与负载不均衡约束。"
+        }
+      ],
+      "argument": "编辑解读：专用化的收益应沿完整数据路径审查；更大的矩阵峰值不能自动解决稀疏访存、跨芯片交换或不可用节点造成的损失。",
+      "sourceAudit": [
+        {
+          "workId": "tpu-isca-2017",
+          "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "authors": "Norman P. Jouppi; Cliff Young; Nishant Patil; David Patterson; Google TPU 团队其他共同作者（完整名单见论文首页）",
+          "date": "2017 · ISCA",
+          "url": "https://arxiv.org/pdf/1704.04760",
+          "locator": "§2 架构与脉动数据流；§4/Table 4 服务延迟限制；§5 整机与增量功耗口径",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者名单及机制正文；非仅摘要或搜索片段",
+          "evidenceStrength": "强：共同署名、机制与论文内条件；不能据作者顺序拆分团队内部发明归属",
+          "role": "Jouppi 为首位署名作者，与 Young、Patil、Patterson 及多名工程作者共同披露并评估 TPU；不据排序认定全部机制由个人独创",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "19793e4ae1486630ac45a12facabc0e80609dd679db8ca7a3a040f8bf0d8e0be"
+        },
+        {
+          "workId": "tpu-v4-isca-2023",
+          "title": "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hardware Support for Embeddings",
+          "authors": "Norman P. Jouppi; George Kurian; Sheng Li; Peter Ma; Rahul Nagarajan; Lifeng Nai; Nishant Patil; Suvinay Subramanian; Andy Swing; Brian Towles; Cliff Young; Xiang Zhou; Zongwei Zhou; David Patterson",
+          "date": "2023 · ISCA",
+          "url": "https://arxiv.org/pdf/2304.01433",
+          "locator": "§§2.1–2.3 OCS、构造和可用性；§2.8 拓扑；§§3.4–3.6 SparseCore 与 embedding 数据路径",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、作者名单及机制正文；非仅摘要或搜索片段",
+          "evidenceStrength": "强：共同署名、机制与论文内条件；不能据作者顺序拆分团队内部发明归属",
+          "role": "Jouppi 与 Kurian、Li、Ma、Subramanian、Towles 等团队作者共同披露系统；OCS、SparseCore 与扭曲环面不作个人独占归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "94f08ac4cd041e46e5037876793761df8043296ac374aa5372af7afb0bdf3ce2"
+        },
+        {
+          "workId": "official-award-norman-jouppi",
+          "title": "ACM / IEEE Computer Society 2015 Eckert–Mauchly Award 公告",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2015-06-10",
+          "url": "https://www.acm.org/media-center/2015/june/eckert-mauchly-award-2015",
+          "locator": "获奖理由及 Memory Hierarchy、Heterogeneous Architectures、CACTI 段落",
+          "type": "官方获奖名单",
+          "contentStatus": "已核验官方年份、姓名与获奖理由",
+          "evidenceStrength": "强：官方归属；不计为第二项技术作品",
+          "role": "支撑获奖理由中文转述",
+          "primary": true,
+          "substantive": false,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [
+        {
+          "name": "Eckert–Mauchly Award",
+          "year": 2015,
+          "citationZh": "表彰其对高性能处理器及存储系统设计与分析的开创性贡献。",
+          "url": "https://www.acm.org/media-center/2015/june/eckert-mauchly-award-2015",
+          "paraphrase": true
+        }
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "steve-keckler",
       "name": "Stephen “Steve” Keckler",
       "field": "GPU 的物理扩展边界",
-      "core": "并行吞吐必须通过数据供给、通信与能量预算兑现。",
-      "evidence": "GPUs and the Future of Parallel Computing 是 Keckler 等人的合作论文；以下把研究主题转化为现代设计审查。",
+      "core": "把 GPU 吞吐扩展的问题推进到寄存器、调度和存储层次：降低每条有效指令的数据供给能耗。",
+      "evidence": "编辑提炼：并发度应拆成“为延迟保留的上下文”与“每周期参与选择的工作集”。审查吞吐方案时，应一起核算活跃集、寄存器访问和数据移动，不能只增加执行槽位。",
       "habits": [
         "从有效工作量定义吞吐。",
         "核算数据移动。",
@@ -8792,7 +9009,7 @@
         "算术强度是否随规模保持？",
         "哪里开始为通信付出更多能量？"
       ],
-      "boundary": "Roofline 是上界，不是含排队、依赖和不规则访问的预测。",
+      "boundary": "Echelon 是研究架构而非量产 GPU 规格；线程上下文论文使用模拟和能耗建模。减小活跃集会引入换入换出和脏寄存器写回，收益依赖延迟结构及程序局部性，不能直接外推现代 GPU 的整体能效。",
       "diagnostic": "扫描算术强度与工作集，测带宽、执行利用率、通信和能量。",
       "notes": [
         [
@@ -8809,6 +9026,16 @@
           "GPUs and the Future of Parallel Computing",
           "https://research.nvidia.com/publication/2011-09_gpus-and-future-parallel-computing",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "GPUs and the Future of Parallel Computing",
+          "https://www.cs.cmu.edu/~15740-f20/papers/ieeemicro11-keckler-parallel.pdf",
+          "2011-09 · IEEE Micro 31(5), pp. 7–17；正文 pp. 13–15：Energy-efficient throughput cores、Register file caching、Multilevel scheduling、Malleable memory system"
+        ],
+        [
+          "Energy-efficient Mechanisms for Managing Thread Context in Throughput Processors",
+          "https://research.nvidia.com/sites/default/files/publications/2011_06_NVIDIA_ISCA.pdf",
+          "2011-06 · ISCA 2011；作者稿 pp. 3–6，§§3.1–3.3、4.1–4.3；首页同等第一作者注"
         ]
       ],
       "challenge": {
@@ -8827,27 +9054,91 @@
         "validation": "扫描算术强度与工作集，测带宽、执行利用率、通信和能量。"
       },
       "domain": "gpu-ai",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "与 Dally、Khailany、Garland、Glasco 合作提出 Echelon 研究架构，以可配置片上存储、吞吐核心与延迟优化核心探索并行扩展的能耗边界。",
+        "作为 Gebhart、Johnson 等人合作论文的共同作者，研究寄存器文件缓存和两级 warp 调度：小活跃集覆盖短延迟，大待命集覆盖长延迟。"
+      ],
+      "background": "2011 年 GPU 研究面对的不只是运算单元数量：大量驻留线程需要昂贵的寄存器容量和调度状态。Keckler 参与的两项合作研究分别给出系统级 Echelon 方案与线程上下文供给机制。",
+      "sourceFacts": [
+        {
+          "text": "Echelon 论文描述可按应用配置的 SRAM 层次，并区分吞吐优化核心与延迟优化核心；这是研究方案，配置和能效数字属于目标或实验，不能当作量产规格。",
+          "workId": "keckler-gpu-future-2011"
+        },
+        {
+          "text": "ISCA 论文只向活跃 warp 分配寄存器缓存；遇到长延迟依赖而暂停时，将脏缓存项写回主寄存器文件。机制同时缩小短期寄存器工作集和逐周期调度候选集。",
+          "workId": "gebhart-thread-context-2011"
+        },
+        {
+          "text": "该 ISCA 论文采用跟踪驱动的 SM 模拟与综合后的能耗模型；首页明确 Gebhart 与 Johnson 为同等贡献的第一作者，Keckler 为七位共同作者之一。",
+          "workId": "gebhart-thread-context-2011"
+        }
+      ],
+      "argument": "编辑提炼：并发度应拆成“为延迟保留的上下文”与“每周期参与选择的工作集”。审查吞吐方案时，应一起核算活跃集、寄存器访问和数据移动，不能只增加执行槽位。",
+      "sourceAudit": [
+        {
+          "workId": "keckler-gpu-future-2011",
+          "title": "GPUs and the Future of Parallel Computing",
+          "authors": "Stephen W. Keckler; William J. Dally; Brucek Khailany; Michael Garland; David Glasco",
+          "date": "2011-09",
+          "url": "https://www.cs.cmu.edu/~15740-f20/papers/ieeemicro11-keckler-parallel.pdf",
+          "locator": "IEEE Micro 31(5), pp. 7–17；正文 pp. 13–15：Energy-efficient throughput cores、Register file caching、Multilevel scheduling、Malleable memory system",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列机制章节、作者和评估边界",
+          "evidenceStrength": "实质一手正文",
+          "role": "第一作者；与四位共同作者合作，正文以 NVIDIA Research 团队陈述 Echelon",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "0357a30330218662b9ae19a74257b6df73db46f0e036a0b2c5e09f638ada23b0"
+        },
+        {
+          "workId": "gebhart-thread-context-2011",
+          "title": "Energy-efficient Mechanisms for Managing Thread Context in Throughput Processors",
+          "authors": "Mark Gebhart; Daniel R. Johnson; David Tarjan; Stephen W. Keckler; William J. Dally; Erik Lindholm; Kevin Skadron",
+          "date": "2011-06",
+          "url": "https://research.nvidia.com/sites/default/files/publications/2011_06_NVIDIA_ISCA.pdf",
+          "locator": "ISCA 2011；作者稿 pp. 3–6，§§3.1–3.3、4.1–4.3；首页同等第一作者注",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列机制章节、作者和评估边界",
+          "evidenceStrength": "实质一手正文",
+          "role": "共同作者；Gebhart 与 Johnson 明确为同等贡献的第一作者",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "a6be8cf37f9f9f8fdea6b368521d72b890108b373d470e7193d589730298e117"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "michael-garland",
       "name": "Michael Garland",
       "field": "并行算法与不规则数据",
-      "core": "先改变工作分解与数据访问，再判断 GPU 能否有效执行。",
-      "evidence": "NVIDIA 本人出版记录涵盖并行编程和合作 GPU 图遍历研究；不把合作算法归于一人。",
+      "core": "先把不规则数据变成适合执行的布局与粒度，再评估 GPU 的有效吞吐。",
+      "evidence": "编辑解读：有效并行度由工作分解和数据分布决定。评审稀疏负载时，先检查填充浪费、长尾行、访存合并与阶段成本，再判断更多线程是否有价值。",
       "habits": [
-        "分析工作量分布。",
-        "检查访问合并与重复工作。",
-        "选择并行粒度。",
-        "比较端到端算法。"
+        "先量化行长与非零分布。",
+        "检查填充与访存合并。",
+        "比较线程和 warp 两种粒度。",
+        "分开内核与完整迭代计时。"
       ],
       "questions": [
-        "图遍历的更多并发是否只是增加重复访问？",
-        "不规则度怎样改变负载均衡？",
-        "哪种数据分解减少实际工作？"
+        "少量长行是否让统一格式浪费大部分带宽？",
+        "每行一个线程是否暴露了足够并行度？",
+        "转换与传输后，完整迭代是否仍获益？"
       ],
-      "boundary": "吞吐比较必须保持相同图、算法结果与遍历语义。",
-      "diagnostic": "分层统计 frontier 大小、边访问、重复工作、有效带宽与各阶段时间。",
+      "boundary": "2008 年 Tesla/GTX 平台的具体合并规则与性能不能直接迁移到现代 GPU；格式转换、主机传输及完整迭代必须另行计入。论文未分解各作者的个人实现份额。",
+      "diagnostic": "记录行长分布、填充比例、有效字节、线程利用率，并分测格式转换、传输、内核及完整迭代。",
       "notes": [
         [
           "e10",
@@ -8863,34 +9154,112 @@
           "NVIDIA：本人研究与出版记录",
           "https://research.nvidia.com/person/michael-garland",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Efficient Sparse Matrix-Vector Multiplication on CUDA",
+          "https://mgarland.org/files/papers/nvr-2008-004.pdf",
+          "2008-12-11 · NVR-2008-004 · §3.5 HYB；§4 稀疏内核；§5.2 非结构矩阵与粒度边界（pp.10,13–20,24–26）"
+        ],
+        [
+          "Parallel Computing Experiences with CUDA",
+          "https://www.cecm.sfu.ca/CAG/papers/CUDA.pdf",
+          "2008 · IEEE Micro 28(4),13–27 · CUDA parallel programming model（p.14）；Molecular dynamics / HOOMD（pp.17–18）"
         ]
       ],
       "challenge": {
-        "lens": "不规则并行挑战",
+        "lens": "稀疏并行粒度挑战",
         "skills": [
           "A3",
           "A4",
           "A9"
         ],
-        "variables": "W：有效工作；r：实际/有效工作比；u：有效执行速率。",
-        "model": "简化时间 r W/u，加上不重叠的调度与搬运。",
-        "crossover": "新分解须降低 r/u，且节省超过新增管理时间。",
-        "counterexample": "高并发扩张重复边访问和原子竞争。",
-        "transfer": "迁移到稀疏专家或数据库 join。",
-        "question": "图遍历的更多并发是否只是增加重复访问？",
-        "validation": "分层统计 frontier 大小、边访问、重复工作、有效带宽与各阶段时间。"
+        "variables": "W：有效非零工作；r：实际/有效工作比；u：有效执行速率；C：转换及搬运成本。",
+        "model": "编辑简化：单次时间约为 rW/u+C，复用格式时按实际次数摊销 C。",
+        "crossover": "新格式减少的执行时间须覆盖转换、搬运及填充带来的成本。",
+        "counterexample": "每行一个线程在行数较少时并行度不足；一 warp 一行在短行时又可能浪费执行槽。",
+        "transfer": "编辑迁移：稀疏专家与数据库 join 也应先测数据分布再选择粒度。",
+        "question": "每行一个线程是否暴露了足够并行度？",
+        "validation": "记录行长分布、填充比例、有效字节、线程利用率，并分测格式转换、传输、内核及完整迭代。"
       },
       "domain": "gpu-ai",
       "relatedDomains": [
         "compiler-runtime"
-      ]
+      ],
+      "contributions": [
+        "与 Nathan Bell 研究 CUDA 稀疏矩阵向量乘，将稀疏模式、存储格式和线程映射共同纳入设计。",
+        "与八位合作者总结 CUDA 应用经验，解释独立线程块及分阶段内核如何表达可扩展并行。"
+      ],
+      "background": "SpMV 报告由 Nathan Bell、Michael Garland 两人署名；CUDA 应用经验论文由 Garland 与八位合作者共同撰写。后者是编程模型与多个团队应用成果的联合总结，不能将 CUDA 或全部应用算法归于 Garland 一人。",
+      "sourceFacts": [
+        {
+          "workId": "bell-garland-spmv-2008",
+          "text": "HYB 将常见行宽放入 ELL，把较长行的剩余非零元置入 COO；阈值依据行长分布与实现成本估计。"
+        },
+        {
+          "workId": "bell-garland-spmv-2008",
+          "text": "非结构矩阵测试没有通用最佳格式；一线程一行可能因行数少而并行度不足，一 warp 一行又可能在短行浪费线程。"
+        },
+        {
+          "workId": "garland-cuda-experiences-2008",
+          "text": "文中要求线程块可按任意顺序独立执行；全局通信需求影响内核拆分。"
+        },
+        {
+          "workId": "garland-cuda-experiences-2008",
+          "text": "HOOMD 例子按粒子映射线程，并将邻居表、力计算和积分拆为多个内核；论文区分局部内核与整体应用收益。"
+        }
+      ],
+      "argument": "编辑解读：有效并行度由工作分解和数据分布决定。评审稀疏负载时，先检查填充浪费、长尾行、访存合并与阶段成本，再判断更多线程是否有价值。",
+      "sourceAudit": [
+        {
+          "workId": "bell-garland-spmv-2008",
+          "title": "Efficient Sparse Matrix-Vector Multiplication on CUDA",
+          "authors": "Nathan Bell; Michael Garland",
+          "date": "2008-12-11 · NVR-2008-004",
+          "url": "https://mgarland.org/files/papers/nvr-2008-004.pdf",
+          "locator": "§3.5 HYB；§4 稀疏内核；§5.2 非结构矩阵与粒度边界（pp.10,13–20,24–26）",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、署名与机制正文，非仅摘要",
+          "evidenceStrength": "强：作者一手论文及具体机制；共同署名不证明独占发明",
+          "role": "两人合著；源于作者网站的技术报告",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "d8721fc84ba29da6ff28c887dd354c9f8cc5c4edaa00e244f86088e75275bfe5"
+        },
+        {
+          "workId": "garland-cuda-experiences-2008",
+          "title": "Parallel Computing Experiences with CUDA",
+          "authors": "Michael Garland; Scott Le Grand; John Nickolls; Joshua Anderson; Jim Hardwick; Scott Morton; Everett Phillips; Yao Zhang; Vasily Volkov",
+          "date": "2008 · IEEE Micro 28(4),13–27",
+          "url": "https://www.cecm.sfu.ca/CAG/papers/CUDA.pdf",
+          "locator": "CUDA parallel programming model（p.14）；Molecular dynamics / HOOMD（pp.17–18）",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列章节、署名与机制正文，非仅摘要",
+          "evidenceStrength": "强：作者一手论文及具体机制；共同署名不证明独占发明",
+          "role": "九人合著；大学存档的完整发表论文，作者由 NVIDIA 官方出版页交叉核对",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "72df2a85bed3b3a9548b97ae53aa210da7a2b97c9b69547fb3c7b213b47b839b"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "john-nickolls",
       "name": "John Nickolls",
       "field": "可扩展并行编程抽象",
-      "core": "用可独立调度的工作分解隔离程序与机器规模。",
-      "evidence": "Scalable Parallel Programming with CUDA 是 Nickolls、Buck、Garland 与 Skadron 的合作文章。",
+      "core": "用独立线程块连接并行算法与不同规模的 GPU，再以完整应用时间衡量异构执行。",
+      "evidence": "编辑解读：先验证任务分解不依赖块的同时驻留，再扫描资源规模；把 kernel 加速与完整应用加速分开，避免将增加并发误当作消除了串行关键路径。",
       "habits": [
         "区分抽象与实现。",
         "明确块内与块间依赖。",
@@ -8902,7 +9271,7 @@
         "块间依赖由谁保证？",
         "资源占用何时限制并发？"
       ],
-      "boundary": "可调度性不保证线性加速；全局同步、带宽和小问题规模仍会绑定。",
+      "boundary": "归属限于共同署名技术解释与团队成果；2008–2010 机制描述不替代当前 CUDA 规范。独立调度不保证线性加速，2010 Table 2 是带面积和单线程速度假设的示例，不是通用 CPU/GPU 性能比例。",
       "diagnostic": "跨设备规模扫描同一分解，检查依赖正确性、驻留资源和瓶颈迁移。",
       "notes": [
         [
@@ -8919,6 +9288,16 @@
           "Scalable Parallel Programming with CUDA",
           "https://research.nvidia.com/publication/2008-03_scalable-parallel-programming-cuda",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Scalable Parallel Programming with CUDA",
+          "https://saulius-grazulis.lt/~saulius/paskaitos/VU/kompiuteri%C5%B3-architekt%C5%ABra/skaidr%C4%97s/bibliography/PDF/2008_Nickolls_40.pdf",
+          "2008 · ACM Queue 6(2), 40–53 · pp. 42、45–47：线程组层次、块内 barrier、块独立性与 kernel 间依赖；p. 40 作者名单"
+        ],
+        [
+          "The GPU Computing Era",
+          "https://pages.cs.wisc.edu/~markhill/restricted/ieeemicro10_gpu.pdf",
+          "2010 · IEEE Micro 30(2), 56–69 · pp. 59–61：CUDA 层次和 Fermi 块调度；pp. 64–66：CPU+GPU 协同、Table 2 假设与应用限制；p. 69 个人履历"
         ]
       ],
       "challenge": {
@@ -8939,7 +9318,67 @@
       "domain": "gpu-ai",
       "relatedDomains": [
         "compiler-runtime"
-      ]
+      ],
+      "contributions": [
+        "与 Buck、Garland、Skadron 共同阐释 CUDA 的线程组、共享内存与屏障层次，以及线程块可按任意次序执行的扩展契约。",
+        "与 Dally 共同解释 Fermi 的线程块调度和 CPU+GPU 协同执行，将串行延迟与并行吞吐的取舍放入同一应用模型。"
+      ],
+      "background": "2008 文章由 Nickolls、Buck、Garland、Skadron 共同署名；2010 文章由 Nickolls、Dally 共同署名，文末列 Nickolls 为 NVIDIA GPU computing 架构负责人。两篇是不同技术作品，支持共同架构解释与编程模型贡献，不支持 CUDA 或 Fermi 的个人独占发明。",
+      "sourceFacts": [
+        {
+          "text": "2008 正文规定线程块必须可按任意次序、串行或并行执行；块内线程通过共享内存和 barrier 协作，有依赖的 grid 以 kernel 间同步衔接。",
+          "workId": "cuda-scalable-2008"
+        },
+        {
+          "text": "2010 正文描述 GigaThread 将块交给有空闲资源的 SM，并在块结束释放资源后补入新块；异构执行章节保留 CPU 串行部分，并明确应用收益受协同开销和分歧影响。",
+          "workId": "gpu-era-2010"
+        }
+      ],
+      "argument": "编辑解读：先验证任务分解不依赖块的同时驻留，再扫描资源规模；把 kernel 加速与完整应用加速分开，避免将增加并发误当作消除了串行关键路径。",
+      "sourceAudit": [
+        {
+          "workId": "cuda-scalable-2008",
+          "title": "Scalable Parallel Programming with CUDA",
+          "authors": "John Nickolls; Ian Buck; Michael Garland; Kevin Skadron",
+          "date": "2008 · ACM Queue 6(2), 40–53",
+          "url": "https://saulius-grazulis.lt/~saulius/paskaitos/VU/kompiuteri%C5%B3-architekt%C5%ABra/skaidr%C4%97s/bibliography/PDF/2008_Nickolls_40.pdf",
+          "locator": "pp. 42、45–47：线程组层次、块内 barrier、块独立性与 kernel 间依赖；p. 40 作者名单",
+          "type": "论文全文",
+          "contentStatus": "已下载全文并核验所列机制章节与署名；非仅摘要或搜索片段",
+          "evidenceStrength": "强：原始论文全文、明确署名与机制边界；大学镜像承载原文",
+          "role": "四人共同阐释 CUDA 编程模型及实现约束；署名不提供个人独占设计归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "56914db1732c2dfa20cef2d979fc8ff169ee1857dbd9f1673803bfa144c3779f"
+        },
+        {
+          "workId": "gpu-era-2010",
+          "title": "The GPU Computing Era",
+          "authors": "John Nickolls; William J. Dally",
+          "date": "2010 · IEEE Micro 30(2), 56–69",
+          "url": "https://pages.cs.wisc.edu/~markhill/restricted/ieeemicro10_gpu.pdf",
+          "locator": "pp. 59–61：CUDA 层次和 Fermi 块调度；pp. 64–66：CPU+GPU 协同、Table 2 假设与应用限制；p. 69 个人履历",
+          "type": "论文全文",
+          "contentStatus": "已下载全文并核验所列机制章节与署名；非仅摘要或搜索片段",
+          "evidenceStrength": "强：原始论文全文、明确署名与机制边界；大学镜像承载原文",
+          "role": "两人共同解释架构与异构执行取舍；正文致谢 NVIDIA 团队，不能将 Fermi 或 CUDA 归为个人作品",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "6b11e32c9190f889dad0ed59039e3f460743fc0d87965d45eded94607942646b"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "david-kirk",
@@ -9055,8 +9494,8 @@
       "id": "doug-burger",
       "name": "Doug Burger",
       "field": "空间分布式处理与存储、可重构计算与云加速",
-      "core": "加速器必须嵌入服务与基础设施，才会兑现专用化收益。",
-      "evidence": "ACM SIGARCH 2006 Maurice Wilkes Award 说明为“For contributions to spatially distributed processor and memory systems architecture.”。Microsoft 的 Project Catapult 团队将 FPGA 用于大规模数据中心服务；其原始 ISCA 论文与公开项目资料讨论可重构计算组织。Burger 是合作研究成员及相关研究领导者，不是项目的唯一设计者。",
+      "core": "共同推进数据中心可重构加速：从跨FPGA服务流水线扩展到复用数据中心网络的加速资源池。",
+      "evidence": "编辑提炼：加速器的价值必须通过宿主准备、网络传输、排队和恢复后的服务指标兑现；资源池化能改善利用率，也会引入共享网络争用。",
       "habits": [
         "从服务中的可加速部分选择机制。",
         "把数据传输和主机交互纳入比较。",
@@ -9070,7 +9509,7 @@
         "固定硬件和可重构路线在哪些条件下反转？",
         "空间分布的处理与存储单元之间的通信成本，何时超过并行收益？"
       ],
-      "boundary": "FPGA 不保证优于 CPU、GPU 或 ASIC；比较需匹配精度、吞吐、批大小和完整服务路径，并计入实现与运营成本。 获奖说明只概括贡献方向，不等同于下文 Catapult 的论述，具体机制须读原文。",
+      "boundary": "共同作品不等于Burger独立设计所有模块。2014排名实验的95分位约束、2016远端排名的99.9分位归一化基准，以及低注入率LTL往返测量属于不同口径；不能混写为任意负载下的端到端延迟保证。",
       "diagnostic": "用强软件基线做端到端 offload A/B；分解传输、等待、执行与回传，测量开发、部署和运行成本。",
       "notes": [
         [
@@ -9097,6 +9536,11 @@
           "Microsoft：Doug Burger 公开工作",
           "https://www.microsoft.com/en-us/research/people/dburger/",
           "Catapult、Brainwave 与云系统研究背景"
+        ],
+        [
+          "A Cloud-Scale Acceleration Architecture",
+          "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/Cloud-Scale-Acceleration-Architecture.pdf",
+          "2016-10 · 作者栏；§II.A Shell与Role；§V.A LTL；§V.C–D及Figures 10–11网络测量与远端加速"
         ]
       ],
       "challenge": {
@@ -9119,7 +9563,67 @@
       "relatedDomains": [
         "datacenter",
         "memory"
-      ]
+      ],
+      "contributions": [
+        "共同参与Catapult：把Bing排名的部分阶段映射到互联FPGA，并配套配置、健康检测与重映射。",
+        "共同参与Configurable Cloud：将FPGA置于NIC与交换网络之间，兼顾本地计算、网络处理和远端服务。"
+      ],
+      "background": "两项论文均将Doug Burger列为共同作者；系统由Microsoft及合作团队完成。论文没有逐人划分流水线、传输层或部署模块，本卡不据作者顺序推断其独立发明或实现责任。",
+      "sourceFacts": [
+        {
+          "workId": "catapult-isca-2014",
+          "text": "Catapult把排名阶段映射至八节点组，其中七块 FPGA 承担流水线、一块备用；Mapping Manager 与 Health Monitor 处理配置及故障重映射。评测结合吞吐与指定延迟分位点。"
+        },
+        {
+          "workId": "configurable-cloud-micro-2016",
+          "text": "Configurable Cloud分离Shell与应用Role，LTL用确认、重传和流控提供远端FPGA通信；Figure 10测量低注入率的包头至ACK往返，Figure 11另测排名服务。"
+        }
+      ],
+      "argument": "编辑提炼：加速器的价值必须通过宿主准备、网络传输、排队和恢复后的服务指标兑现；资源池化能改善利用率，也会引入共享网络争用。",
+      "sourceAudit": [
+        {
+          "workId": "catapult-isca-2014",
+          "title": "A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services",
+          "authors": "Andrew Putnam, Adrian M. Caulfield, Eric S. Chung, Derek Chiou, Kypros Constantinides, John Demme, Hadi Esmaeilzadeh, Jeremy Fowers, Gopi Prashanth Gopal, Jan Gray, Michael Haselman, Scott Hauck, Stephen Heil, Amir Hormati, Joo-Young Kim, Sitaram Lanka, James Larus, Eric Peterson, Simon Pope, Aaron Smith, Jason Thong, Phillip Yi Xiao, Doug Burger",
+          "date": "2014-06",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/Catapult_ISCA_2014.pdf",
+          "locator": "作者栏；§§3.4–3.5故障管理；§4排名流水线；§5及Figures 14–15尾延迟与吞吐边界",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF全文并核验所列机制章节、作者栏和评测条件",
+          "evidenceStrength": "强：作者团队原始论文，含机制与实验正文",
+          "role": "共同作者；个人贡献定位为共同参与系统研究，正文未逐人分配模块责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "8eed60c2fcd1dde1dd2be478c08a99ad2e1cf676199345f3af02bd415f3a5476"
+        },
+        {
+          "workId": "configurable-cloud-micro-2016",
+          "title": "A Cloud-Scale Acceleration Architecture",
+          "authors": "Adrian M. Caulfield, Eric S. Chung, Andrew Putnam, Hari Angepat, Jeremy Fowers, Michael Haselman, Stephen Heil, Matt Humphrey, Puneet Kaur, Joo-Young Kim, Daniel Lo, Todd Massengill, Kalin Ovtcharov, Michael Papamichael, Lisa Woods, Sitaram Lanka, Derek Chiou, Doug Burger",
+          "date": "2016-10",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/Cloud-Scale-Acceleration-Architecture.pdf",
+          "locator": "作者栏；§II.A Shell与Role；§V.A LTL；§V.C–D及Figures 10–11网络测量与远端加速",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF全文并核验所列机制章节、作者栏和评测条件",
+          "evidenceStrength": "强：作者团队原始论文，含机制与实验正文",
+          "role": "共同作者；个人贡献定位为共同参与系统研究，正文未逐人分配模块责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "18f213fca5e1447ad0533f3708b74a4c88b6522f3ea38db58b0b54fb3a55e880"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "ian-bratt",
@@ -9408,8 +9912,8 @@
       "id": "cliff-young",
       "name": "Cliff Young",
       "field": "实际负载驱动的 TPU 特化",
-      "core": "先固定任务与数值要求，再决定专用计算和片上存储。",
-      "evidence": "Google 本人署名 TPU 技术说明；HC 2024–25 emeritus/program 记录。",
+      "core": "参与 TPU 跨代团队研究：从尾延迟约束下的推理特化，扩展到面向嵌入访问与集体通信的训练系统。",
+      "evidence": "编辑解读：先确定服务约束与数据访问形态，再选择专用单元及拓扑；芯片面积预算应同时回应计算、访存和通信的瓶颈。",
       "habits": [
         "先固定任务与数值要求，再决定专用计算和片上存储。",
         "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
@@ -9420,7 +9924,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。小矩阵和频繁访存使阵列利用率低。",
+      "boundary": "两篇论文证明团队研究参与及公开技术内容，不支持逐项个人发明归属。2017 推理结论有当时模型、精度与平台边界；2023 的 OCS 重配置不能表述为已实现逐算子动态切换。方法、问题与诊断实验为编辑提炼，非本人原话。",
       "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：小矩阵和频繁访存使阵列利用率低。",
       "notes": [
         [
@@ -9443,6 +9947,16 @@
           "Hot Chips 2025 委员会",
           "https://hc2025.hotchips.org/about/committees/",
           "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "https://arxiv.org/pdf/1704.04760",
+          "2017 · PDF 第1页作者名单；§2，PDF pp.2–4；§4，PDF pp.5–8，尤其 Table 4"
+        ],
+        [
+          "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hardware Support for Embeddings",
+          "https://arxiv.org/pdf/2304.01433",
+          "2023 · PDF 第1页作者名单；§2.1–2.8，PDF pp.2–4；§3.3–3.5，PDF pp.5–6，Fig.7"
         ]
       ],
       "challenge": {
@@ -9476,7 +9990,71 @@
         "CY",
         "C24",
         "C25"
-      ]
+      ],
+      "contributions": [
+        "共同署名 TPU 2017 论文，公开推理芯片的脉动数据流、软件管理存储及面向响应时间的性能分析。",
+        "共同署名 TPU v4 2023 论文，说明光路重配如何支持作业切片、绕开失效组件并选择通信拓扑。",
+        "在同一团队论文中说明 SparseCore 用细粒度访存与数据流单元承接嵌入训练。"
+      ],
+      "background": "推理吞吐受响应时间约束；训练负载又包含稠密计算、嵌入查表与跨芯片通信。Young 在两代公开论文中的共同署名可核验，但论文没有逐项划分个人设计职责。",
+      "sourceFacts": [
+        {
+          "text": "TPU 2017 正文描述以脉动执行减少片上存储访问，并显示响应时间限制会约束可用批量；因此峰值吞吐不能直接代表在线推理容量。",
+          "workId": "tpu-isca-2017"
+        },
+        {
+          "text": "TPU v4 正文说明 OCS 连接芯片块、绕开失效组件；实际训练作业使用单个静态拓扑，并与并行策略共同选择。",
+          "workId": "tpu-v4-isca-2023"
+        },
+        {
+          "text": "SparseCore 通过面向 HBM 的抓取、向量处理和写回单元处理嵌入；相应小粒度 all-to-all 使互连成为重要性能约束。",
+          "workId": "tpu-v4-isca-2023"
+        }
+      ],
+      "argument": "编辑解读：先确定服务约束与数据访问形态，再选择专用单元及拓扑；芯片面积预算应同时回应计算、访存和通信的瓶颈。",
+      "sourceAudit": [
+        {
+          "workId": "tpu-isca-2017",
+          "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "authors": "Norman P. Jouppi、Cliff Young、Nishant Patil、David Patterson 等 Google 团队共同作者（完整名单见论文首页）",
+          "date": "2017",
+          "url": "https://arxiv.org/pdf/1704.04760",
+          "locator": "PDF 第1页作者名单；§2，PDF pp.2–4；§4，PDF pp.5–8，尤其 Table 4",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列正文：阵列执行、片上存储与批量/尾延迟约束。",
+          "evidenceStrength": "强：参与者共同署名技术论文正文。",
+          "role": "Cliff Young 为共同作者；不将 TPU 架构及性能成果归为个人独创。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "19793e4ae1486630ac45a12facabc0e80609dd679db8ca7a3a040f8bf0d8e0be"
+        },
+        {
+          "workId": "tpu-v4-isca-2023",
+          "title": "TPU v4: An Optically Reconfigurable Supercomputer for Machine Learning with Hardware Support for Embeddings",
+          "authors": "Norman P. Jouppi、George Kurian、Sheng Li、Peter Ma、Rahul Nagarajan、Lifeng Nai、Nishant Patil、Suvinay Subramanian、Andy Swing、Brian Towles、Cliff Young、Xiang Zhou、Zongwei Zhou、David Patterson",
+          "date": "2023",
+          "url": "https://arxiv.org/pdf/2304.01433",
+          "locator": "PDF 第1页作者名单；§2.1–2.8，PDF pp.2–4；§3.3–3.5，PDF pp.5–6，Fig.7",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列正文：OCS 连接与按作业配置、SparseCore 细粒度访存和通信。",
+          "evidenceStrength": "强：参与者共同署名技术论文正文。",
+          "role": "Cliff Young 为共同作者；未据此认定他独立设计 OCS 或 SparseCore。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "ron-diamant",
@@ -10114,21 +10692,19 @@
     {
       "id": "richard-ho",
       "name": "Richard Ho",
-      "field": "AI 芯片设计与系统交付",
-      "core": "用完整系统和软件可用性检验芯片设计目标。",
-      "evidence": "HC 2026 OpenAI 芯片演讲联合讲者；不据演讲身份推断未公开产品参数。",
+      "field": "专用计算系统与分层验证",
+      "core": "参与专用计算系统及验证研究：把加速器性能放回宿主机路径，把RTL正确性连接到应用数值行为。",
+      "evidence": "编辑提炼：专用芯片的交付标准应同时包含完整应用关键路径和从实现到数值结果的验证链；局部kernel或单层模型通过，并不能替代系统检查。",
       "habits": [
-        "用完整系统和软件可用性检验芯片设计目标。",
-        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
-        "优先检验反例：缺失算子回退与格式转换吞掉局部收益。"
+        "先定义完整应用的性能和数值正确性验收条件。",
+        "通过相邻模型交叉对照定位实现偏差。"
       ],
       "questions": [
-        "专用芯片 kernel 很快，怎样判断完整模型已经可交付？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "局部加速是否在宿主交互后仍有效？",
+        "RTL、架构参考模型与数值模型之间分别检查什么？"
       ],
-      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。缺失算子回退与格式转换吞掉局部收益。",
-      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：缺失算子回退与格式转换吞掉局部收益。",
+      "boundary": "两项成果均为团队合作，正文未提供Richard Ho个人模块分工，故不归为独占发明。TPU2017结论限于当时推理负载与平台；Anton分层仿真提供验证证据而非对任意长运行的完全证明。本文不据这些工作推断未核验的后续TPU或OpenAI芯片参数。方法、问题与建议实验为编辑提炼，非本人原话。",
+      "diagnostic": "建议验证（编辑提炼，未执行）：分离宿主与加速器时间；对RTL与参考模型做逐位对照，并另检查应用级数值稳定性与长期漂移。",
       "notes": [
         [
           "e10",
@@ -10140,6 +10716,21 @@
           "Hot Chips 2026 官方议程",
           "https://hc2026.hotchips.org/",
           "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "https://arxiv.org/pdf/1704.04760",
+          "2017 · 作者栏；§2 TPU架构与软件栈；§4 Tables 3–6；§7宿主机开销边界"
+        ],
+        [
+          "Hierarchical Simulation-Based Verification of Anton, a Special-Purpose Parallel Machine",
+          "https://www.deshawresearch.com/publications/Hierarchical%20Simulation-Based%20Verification%20of%20Anton,%20a%20Special-Purpose%20Parallel%20Machine.pdf",
+          "2008 · 作者栏；§III.A–C接口绑定及混合仿真；§IV数值验证；§V讨论"
+        ],
+        [
+          "Richard Ho — Kisaco Research speaker biography",
+          "https://www.kisacoresearch.com/content/richard-ho",
+          "页面未标日期；2026-10-06核验 · 讲者简介首段"
         ]
       ],
       "challenge": {
@@ -10171,7 +10762,83 @@
       "expansionRound": "VCEW-HotChips-2026-10-05",
       "conferenceSourceKeys": [
         "H26"
-      ]
+      ],
+      "contributions": [
+        "共同参与TPU首代推理架构与系统评测研究，关注矩阵计算、软件管理的数据路径和宿主机交互。",
+        "共同参与Anton分层验证研究，以相邻模型对照连接RTL、架构仿真和长期数值稳定性。"
+      ],
+      "background": "会议主办方简介明确关联 Richard Ho 的 D. E. Shaw Research Anton 与 Google TPU 经历；两篇原论文均署名 C. Richard Ho，机构和项目相符。本卡据此对应同一人，区别于 Ron/Ronald Ho。",
+      "sourceFacts": [
+        {
+          "workId": "tpu-isca-2017",
+          "text": "TPU论文§2描述宿主经PCIe下发指令、脉动矩阵阵列及用户态驱动首次编译后缓存程序；Tables 3–6区分芯片计数器、宿主交互和响应时间约束下的吞吐。"
+        },
+        {
+          "workId": "anton-verification-iccd-2008",
+          "text": "Anton论文§III把C++参考模型复用于块级RTL与整芯片混合仿真，按原子比较位置和力数据以容忍包次序差异；§IV以匹配定点计算的Pyrite检查长期能量漂移，并与Archsim短程逐位对照。"
+        }
+      ],
+      "argument": "编辑提炼：专用芯片的交付标准应同时包含完整应用关键路径和从实现到数值结果的验证链；局部kernel或单层模型通过，并不能替代系统检查。",
+      "sourceAudit": [
+        {
+          "workId": "tpu-isca-2017",
+          "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "authors": "Norman P. Jouppi, Cliff Young, Nishant Patil, David Patterson, C. Richard Ho 等 Google 团队作者",
+          "date": "2017",
+          "url": "https://arxiv.org/pdf/1704.04760",
+          "locator": "作者栏；§2 TPU架构与软件栈；§4 Tables 3–6；§7宿主机开销边界",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列机制章节、作者栏和适用边界",
+          "evidenceStrength": "一手技术正文；共同作者署名",
+          "role": "C. Richard Ho 为共同作者；论文未划分个人负责的微结构或验证模块",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "19793e4ae1486630ac45a12facabc0e80609dd679db8ca7a3a040f8bf0d8e0be"
+        },
+        {
+          "workId": "anton-verification-iccd-2008",
+          "title": "Hierarchical Simulation-Based Verification of Anton, a Special-Purpose Parallel Machine",
+          "authors": "J.P. Grossman, John K. Salmon, C. Richard Ho, Douglas J. Ierardi, Brian Towles, Brannon Batson, Jochen Spengler, Stanley C. Wang, Rolf Mueller, Michael Theobald, Cliff Young, Joseph Gagliardo, Martin M. Deneroff, Ron O. Dror, David E. Shaw",
+          "date": "2008",
+          "url": "https://www.deshawresearch.com/publications/Hierarchical%20Simulation-Based%20Verification%20of%20Anton,%20a%20Special-Purpose%20Parallel%20Machine.pdf",
+          "locator": "作者栏；§III.A–C接口绑定及混合仿真；§IV数值验证；§V讨论",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并核验所列机制章节、作者栏和适用边界",
+          "evidenceStrength": "一手技术正文；共同作者署名",
+          "role": "C. Richard Ho 为共同作者；论文未划分个人负责的微结构或验证模块",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "4eba6a3d3af448f36961c4e18b412a513cdf0fe2e8ab2f8871cde336f6ab8a98"
+        },
+        {
+          "workId": "richard-ho-kisaco-bio",
+          "title": "Richard Ho — Kisaco Research speaker biography",
+          "authors": "Kisaco Research",
+          "date": "页面未标日期；2026-10-06核验",
+          "url": "https://www.kisacoresearch.com/content/richard-ho",
+          "locator": "讲者简介首段",
+          "type": "官方讲者简介",
+          "contentStatus": "已核验完整简介",
+          "evidenceStrength": "身份与经历核验，不计实质作品",
+          "role": "会议主办方确认本人先参与D. E. Shaw Research Anton、后参与Google TPU，现为OpenAI讲者",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06-accelerators",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项不同实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "paulius-micikevicius",
@@ -21072,9 +21739,10 @@
     "totalProfiles": 264,
     "batchLogs": [
       "research/batches/2026-10-06.json",
-      "research/batches/2026-10-06-memory.json"
+      "research/batches/2026-10-06-memory.json",
+      "research/batches/2026-10-06-accelerators.json"
     ],
-    "completedTotal": 84,
-    "remainingCatalog": 180
+    "completedTotal": 92,
+    "remainingCatalog": 172
   }
 }
