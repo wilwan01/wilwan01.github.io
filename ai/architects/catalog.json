@@ -103,7 +103,8 @@
         "cameron-mcnairy",
         "sebastien-nussbaum",
         "eric-schwarz",
-        "shailender-chaudhry"
+        "shailender-chaudhry",
+        "dan-hettena"
       ]
     },
     {
@@ -1813,8 +1814,8 @@
       "id": "dave-ditzel",
       "name": "David “Dave” Ditzel",
       "field": "ISA、实现与软件层边界",
-      "core": "稳定的软件接口不要求内部执行机制永远不变。",
-      "evidence": "Esperanto 官方背景记录其 Transmeta 工作及与 Patterson 合作的 The Case for RISC；以下接口视角是公开经历上的归纳。",
+      "core": "通过指令实现与编译软件协同，重新划分软件接口和处理器内部复杂性。",
+      "evidence": "编辑解读：稳定 ISA 可由不同内部执行方式实现；评价应包含翻译、热身、回滚和长期运行的成本。",
       "habits": [
         "区分软件接口与实现。",
         "比较硬件和软件承担复杂性的方式。",
@@ -1826,7 +1827,7 @@
         "翻译与验证成本怎样摊销？",
         "什么负载会击穿这一选择？"
       ],
-      "boundary": "动态转换不是免费；启动、代码形态、兼容和安全需要实际验证。",
+      "boundary": "概念论证与厂商演示不等同现代负载实测；不把翻译开销视为零，也不声称接口改变总能提高能效。",
       "diagnostic": "对比原生与转换路径，测冷启动、复用、代码尺寸、功率和语义覆盖。",
       "notes": [
         [
@@ -1843,6 +1844,16 @@
           "Esperanto：公开技术背景",
           "https://www.esperanto.ai/Directors/dave-ditzel/",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "The Case for the Reduced Instruction Set Computer",
+          "https://www.researchgate.net/publication/234831314_INTRODUCTION_The_Case_for_the_Reduced_Instruction_Set_Computer",
+          "1980-10 · SIGARCH CAN 8(6), pp.25–33；体系复杂度、编译器与结论"
+        ],
+        [
+          "Transmeta’s Crusoe: Cool Chips for Mobile Computing",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc12/hc12pres_pdf/crusoe-mobilecomputing.PDF",
+          "2000-08 · slides 19–25：shadow registers、gated store buffer、commit/rollback"
         ]
       ],
       "challenge": {
@@ -1864,14 +1875,72 @@
       "relatedDomains": [
         "cpu",
         "compiler-runtime"
-      ]
+      ],
+      "contributions": [
+        "与 Patterson 合著 RISC 论证，把系统成本和编译器效果纳入指令集取舍。",
+        "以 Crusoe 演示说明动态翻译如何借助状态检查点和提交/回滚保持 x86 语义。"
+      ],
+      "background": "1980 为两人合作立场论文；2000 为 Ditzel 对 Transmeta 团队机制的演示。两者支持架构方向和技术阐释，不支持单人发明全部 RISC 或 Crusoe。",
+      "sourceFacts": [
+        {
+          "text": "论文从编译器和实现成本讨论指令集复杂性，区分不同研究者的实验职责。",
+          "workId": "can1980-risc-case"
+        },
+        {
+          "text": "Crusoe 幻灯片用影子寄存器和受控存储缓冲说明状态提交及异常回滚。",
+          "workId": "hc12-crusoe"
+        }
+      ],
+      "argument": "编辑解读：稳定 ISA 可由不同内部执行方式实现；评价应包含翻译、热身、回滚和长期运行的成本。",
+      "sourceAudit": [
+        {
+          "workId": "can1980-risc-case",
+          "title": "The Case for the Reduced Instruction Set Computer",
+          "authors": "David A. Patterson; David R. Ditzel",
+          "date": "1980-10",
+          "url": "https://www.researchgate.net/publication/234831314_INTRODUCTION_The_Case_for_the_Reduced_Instruction_Set_Computer",
+          "locator": "SIGARCH CAN 8(6), pp.25–33；体系复杂度、编译器与结论",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "hc12-crusoe",
+          "title": "Transmeta’s Crusoe: Cool Chips for Mobile Computing",
+          "authors": "David R. Ditzel / Transmeta",
+          "date": "2000-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc12/hc12pres_pdf/crusoe-mobilecomputing.PDF",
+          "locator": "slides 19–25：shadow registers、gated store buffer、commit/rollback",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人演示的团队实现；不把所有 Code Morphing 机制归于 Ditzel",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "mike-muller",
       "name": "Mike Muller",
       "field": "技术演进、架构生态与协作",
-      "core": "技术约束变化时，同时重新检查创新方向和实现它所需的协作边界。",
-      "evidence": "Arm 的 2018 Research Summit 资料记录其创始成员、技术及业务背景，并介绍本人 What’s Next 演讲关于摩尔定律放缓、数据与安全的议题。2012 DAC 公告强调合作创新。生态与接口问题是本库基于这些公开背景的归纳，不是已核实的人物原话。",
+      "core": "将低能耗研究与处理器 IP 的可交付流程衔接，显式管理时序裕量和验证成本。",
+      "evidence": "编辑解读：低功耗机制应比较节省的能量与检测、恢复和验证成本；研究原型到可授权 IP 还需要稳定边界条件。",
       "habits": [
         "识别旧技术趋势何时不再支撑原路线。",
         "区分架构契约与具体实现。",
@@ -1883,7 +1952,7 @@
         "接口允许多少实现差异而不破坏软件？",
         "合作伙伴为什么愿意采用这一改变？"
       ],
-      "boundary": "公开会议简介不能代表完整思想体系；本条目的生态判断属于有限依据上的分析视角，不推断私人动机或所有历史商业决策。",
+      "boundary": "会议转录可能含数字误识，本卡不采用其中未经交叉核对的制程数值；没有据访谈宣称量产部署。",
       "diagnostic": "比较多种实现上的接口符合性、软件移植和集成成本；建立采用规模与一次性投入的敏感性模型。",
       "notes": [
         [
@@ -1905,6 +1974,16 @@
           "ARM Highlights Innovation Driven by Partner Collaboration at DAC 2012",
           "https://www.arm.com/zh-cn/company/news/2012/05/arm-highlights-innovation-driven-by-partner-collaboration-at-dac-2012",
           "2012 · 官方合作创新公告"
+        ],
+        [
+          "Energy Efficient Microchips",
+          "https://www.thenakedscientists.com/articles/interviews/energy-efficient-microchips",
+          "2011-02-06 · 访谈正文：电压裕量、时序错误检测和恢复"
+        ],
+        [
+          "ARM Analyst & Investor Day 2011 — Mike Muller presentation",
+          "https://stockanalysis.com/stocks/arm/transcripts/127740-analyst-investor-day-2011/",
+          "2011-05-17 · Mike Muller 发言段：研发、测试芯片、工艺合作和产品交接"
         ]
       ],
       "challenge": {
@@ -1925,7 +2004,65 @@
       "domain": "foundations",
       "relatedDomains": [
         "cpu"
-      ]
+      ],
+      "contributions": [
+        "解释降低电压裕量、检测时序错误并恢复的能耗取舍。",
+        "在研发演讲中说明早期测试芯片、工艺协作和研究到产品的交接。"
+      ],
+      "background": "2011 两次不同场合的本人发言支撑技术与研发方法；大学合作和团队工作不写成 Muller 单独发明，发言中的未来计划不写成已交付产品。",
+      "sourceFacts": [
+        {
+          "text": "访谈解释在节能收益超过错误恢复代价时减少电压裕量，并明确离产品化尚有距离。",
+          "workId": "muller2011-energy"
+        },
+        {
+          "text": "研发演讲把工艺验证用测试芯片与后续处理器 IP 产品交接分开。",
+          "workId": "arm-investorday2011-muller"
+        }
+      ],
+      "argument": "编辑解读：低功耗机制应比较节省的能量与检测、恢复和验证成本；研究原型到可授权 IP 还需要稳定边界条件。",
+      "sourceAudit": [
+        {
+          "workId": "muller2011-energy",
+          "title": "Energy Efficient Microchips",
+          "authors": "Mike Muller；访谈 Chris Smith",
+          "date": "2011-02-06",
+          "url": "https://www.thenakedscientists.com/articles/interviews/energy-efficient-microchips",
+          "locator": "访谈正文：电压裕量、时序错误检测和恢复",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人解释研究机制与落地距离；不归为其单人发明 Razor",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "arm-investorday2011-muller",
+          "title": "ARM Analyst & Investor Day 2011 — Mike Muller presentation",
+          "authors": "Mike Muller；会议文字稿含其他发言者",
+          "date": "2011-05-17",
+          "url": "https://stockanalysis.com/stocks/arm/transcripts/127740-analyst-investor-day-2011/",
+          "locator": "Mike Muller 发言段：研发、测试芯片、工艺合作和产品交接",
+          "type": "作者演讲文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "只采用其本人发言；转录中的节点数字不作为规格",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "richard-grisenthwaite",
@@ -2660,8 +2797,8 @@
       "id": "stephen-morse",
       "name": "Stephen Morse",
       "field": "从软件需求定义 ISA",
-      "core": "先问软件需要什么表达，再与实现者协商硬件代价。",
-      "evidence": "本人公开访谈记录 8086 架构和与 Ravenel、McKevitt 的协作。",
+      "core": "从软件表达和迁移需求定义 8086 架构，再与逻辑设计协商实现成本。",
+      "evidence": "编辑解读：软件可表达性必须同实现成本一起评估；源代码迁移与二进制兼容是不同承诺。",
       "habits": [
         "先问软件需要什么表达，再与实现者协商硬件代价。",
         "固定 n：操作次数；s：每次节省秒；K：全生命周期投入 的定义，按完整任务比较。",
@@ -2672,7 +2809,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。高频语法操作在优化后消失，专用指令反而无用。",
+      "boundary": "不采纳访谈中未经核验的“第一款 16 位微处理器”说法；后代 x86 功能不能反归于 8086 初始设计。",
       "diagnostic": "比较优化后动态执行，检查编译器选择、异常语义与不同实现。",
       "notes": [
         [
@@ -2685,6 +2822,16 @@
           "Stephen Morse：代表性公开资料",
           "https://stephenmorse.org/pcw1b.html",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "Intel Microprocessors: 8008 to 8086",
+          "https://stevemorse.org/8086history/8086history.pdf",
+          "1980-10（Computer 13(10), pp.42–60；作者保存的重排版） · §VII–VIII，8086 内存与指令；§X Acknowledgments，架构/逻辑职责"
+        ],
+        [
+          "Stephen Morse: Father of the 8086 Processor",
+          "https://stevemorse.org/pcw1b.html",
+          "2008-06-16 · Intel 8086 Development：需求、Rev.0、Ravenel 与 McKevitt 分工"
         ]
       ],
       "challenge": {
@@ -2712,14 +2859,72 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "形成早期 8086 架构规范，覆盖指令、寄存器、分段地址和中断。",
+        "与 Ravenel 持续修订规范，并与 Pohlman、McKevitt 等人的实现工作配合。"
+      ],
+      "background": "1980 合著回顾与本人访谈区分 Morse 初始架构、Ravenel 后续细化和 McKevitt 逻辑设计；不把总线与电路实现归为 Morse 的个人工作。",
+      "sourceFacts": [
+        {
+          "text": "合著文章说明分段基址与偏移形成 20 位地址；8080 迁移指向汇编源程序转换。",
+          "workId": "computer1980-8086-history"
+        },
+        {
+          "text": "Morse 回顾在最初两版规范后加入 Ravenel，并因硬件代价反馈修改架构。",
+          "workId": "pcworld2008-morse"
+        }
+      ],
+      "argument": "编辑解读：软件可表达性必须同实现成本一起评估；源代码迁移与二进制兼容是不同承诺。",
+      "sourceAudit": [
+        {
+          "workId": "computer1980-8086-history",
+          "title": "Intel Microprocessors: 8008 to 8086",
+          "authors": "Stephen P. Morse; Bruce W. Ravenel; Stanley Mazor; William B. Pohlman",
+          "date": "1980-10（Computer 13(10), pp.42–60；作者保存的重排版）",
+          "url": "https://stevemorse.org/8086history/8086history.pdf",
+          "locator": "§VII–VIII，8086 内存与指令；§X Acknowledgments，架构/逻辑职责",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "pcworld2008-morse",
+          "title": "Stephen Morse: Father of the 8086 Processor",
+          "authors": "Stephen Morse；访谈 Benj Edwards",
+          "date": "2008-06-16",
+          "url": "https://stevemorse.org/pcw1b.html",
+          "locator": "Intel 8086 Development：需求、Rev.0、Ravenel 与 McKevitt 分工",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "个人回顾；排除未经独立核验的“首个”与市场因果断言",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
       "id": "bruce-ravenel",
       "name": "Bruce Ravenel",
       "field": "软件与器件规范的协商",
-      "core": "让架构表达与器件实现相互校验，显式记录复杂性转移。",
-      "evidence": "Morse 的第一人称访谈记述 Ravenel 共同改进 8086 规范；不推断未公开的个人决策。",
+      "core": "参与细化 8086 的软件可见架构，把指令、地址组织和软件支持放在同一迁移约束下。",
+      "evidence": "编辑解读：架构协作应留下接口和取舍依据；兼容迁移需要检查代码转换、寻址和运行时约定，不能仅核对操作码名称。",
       "habits": [
         "让架构表达与器件实现相互校验，显式记录复杂性转移。",
         "固定 T_sw：软件秒；T_hw：硬件暴露秒；K：验证投入 的定义，按完整任务比较。",
@@ -2730,7 +2935,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。简洁 API 隐藏昂贵数据转换和异常分支。",
+      "boundary": "不将 Ravenel 写为唯一 8086 架构师，也不从联合署名推断某一条指令由其个人首创。",
       "diagnostic": "分别实现软件展开与硬件支持，测同任务关键路径和异常回归。",
       "notes": [
         [
@@ -2743,6 +2948,16 @@
           "Bruce Ravenel：代表性公开资料",
           "https://stephenmorse.org/pcw1b.html",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "The Intel 8086 Microprocessor: A 16-Bit Evolution of the 8080",
+          "https://studylib.net/doc/18187878/the-intel-8086-microprocessor--a-16",
+          "1978-06 · Computer 11(6), pp.18–27；Memory organization、指令和作者简介"
+        ],
+        [
+          "Intel Microprocessors: 8008 to 8086",
+          "https://stevemorse.org/8086history/8086history.pdf",
+          "1980-10（Computer 13(10), pp.42–60；作者保存的重排版） · §VII–VIII，8086 内存与指令；§X Acknowledgments，架构/逻辑职责"
         ]
       ],
       "challenge": {
@@ -2770,14 +2985,72 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "参与 8086 架构规范迭代，与 Morse 协作校正软件表达和实现约束。",
+        "共同发表 1978 技术说明和 1980 历史分析，解释分段寻址及 8080 源程序迁移。"
+      ],
+      "background": "1978 三人论文与 1980 四人论文是不同作品，但共享团队且内容有重叠，不是两次独立实验。1980 致谢把初始架构归于 Morse、细化归于 Ravenel，逻辑/电路另有负责人。",
+      "sourceFacts": [
+        {
+          "text": "1978 论文详细描述段寄存器、偏移、指令操作数及程序迁移，作者简介记录 Ravenel 的设计/软件支持职责。",
+          "workId": "computer1978-8086"
+        },
+        {
+          "text": "1980 文章 §X 区分 Morse 的架构制定、Ravenel 的细化和 McKevitt/Bayliss 的实现职责。",
+          "workId": "computer1980-8086-history"
+        }
+      ],
+      "argument": "编辑解读：架构协作应留下接口和取舍依据；兼容迁移需要检查代码转换、寻址和运行时约定，不能仅核对操作码名称。",
+      "sourceAudit": [
+        {
+          "workId": "computer1978-8086",
+          "title": "The Intel 8086 Microprocessor: A 16-Bit Evolution of the 8080",
+          "authors": "Stephen P. Morse; William B. Pohlman; Bruce W. Ravenel",
+          "date": "1978-06",
+          "url": "https://studylib.net/doc/18187878/the-intel-8086-microprocessor--a-16",
+          "locator": "Computer 11(6), pp.18–27；Memory organization、指令和作者简介",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "computer1980-8086-history",
+          "title": "Intel Microprocessors: 8008 to 8086",
+          "authors": "Stephen P. Morse; Bruce W. Ravenel; Stanley Mazor; William B. Pohlman",
+          "date": "1980-10（Computer 13(10), pp.42–60；作者保存的重排版）",
+          "url": "https://stevemorse.org/8086history/8086history.pdf",
+          "locator": "§VII–VIII，8086 内存与指令；§X Acknowledgments，架构/逻辑职责",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
       "id": "greg-favor",
       "name": "Greg Favor",
       "field": "开放 ISA 的可组合规范",
-      "core": "扩展需要清晰语义与可组合的软件契约，生态成本也是架构成本。",
-      "evidence": "RISC-V 官方认可其规范协作和技术领导贡献；不据职务推断所有产品决策。",
+      "core": "参与 RISC-V 中断规范并阐释 chiplet 平台分区，将软件契约与系统扩展一同约束。",
+      "evidence": "编辑解读：可组合接口要覆盖特权、隔离和实现选择；开放规范本身不保证互通、实时延迟或产品性能。",
       "habits": [
         "扩展需要清晰语义与可组合的软件契约，生态成本也是架构成本。",
         "固定 s：每任务节省；n：使用次数；K_port/K_test：迁移验证成本 的定义，按完整任务比较。",
@@ -2788,7 +3061,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。扩展交互、探测和工具链版本使局部收益不可部署。",
+      "boundary": "仅确认规范共同参与及本人技术阐释；不推出每个功能块由其个人设计，也不把厂商路线表述当作测量结果。",
       "diagnostic": "跨编译器和实现做一致性测试，检查回退及升级路径。",
       "notes": [
         [
@@ -2801,6 +3074,16 @@
           "Greg Favor：代表性公开资料",
           "https://riscv.org/members/recognition/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "RISC-V Advanced Interrupt Architecture, Version 1.0",
+          "https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts-1.0.pdf",
+          "2023-06-30 · 署名页；§1.3.2，Ch.3 IMSIC、Ch.4 APLIC、Ch.6 虚拟机"
+        ],
+        [
+          "Paving the Road Ahead: RISC-V and Chiplet Technologies in Modern Data Center and Automotive Architectures",
+          "https://riscv.or.jp/wp-content/uploads/23-06-20-Ventana-RISC-V-Days-Tokyo.pdf",
+          "2023-06-20 · slides 3、6、9 起：贡献者身份、chiplet、工艺和互连"
         ]
       ],
       "challenge": {
@@ -2828,6 +3111,65 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "作为 AIA 1.0 共同贡献者参与消息中断和虚拟化接口规范。",
+        "解释计算、uncore 与定制加速器按 chiplet 组合的实现边界。"
+      ],
+      "background": "AIA 的编辑是 John Hauser，Favor 在共同贡献者名单内；东京讲义和官方会议议程相互定位讲者。规范不能将某章机制独占归于 Favor。",
+      "sourceFacts": [
+        {
+          "text": "AIA §1.3.2 说明 IMSIC 以地址化 MSI 接收中断，APLIC 可将线中断转换为 MSI，并可提供 guest interrupt files。",
+          "workId": "riscv-aia-v1.0"
+        },
+        {
+          "text": "讲义区分计算与 uncore 的工艺选择，以及标准互连连接定制 chiplet 的方案。",
+          "workId": "riscv-tokyo2023-favor"
+        }
+      ],
+      "argument": "编辑解读：可组合接口要覆盖特权、隔离和实现选择；开放规范本身不保证互通、实时延迟或产品性能。",
+      "sourceAudit": [
+        {
+          "workId": "riscv-aia-v1.0",
+          "title": "RISC-V Advanced Interrupt Architecture, Version 1.0",
+          "authors": "Editor John Hauser；contributors: Krste Asanović, Paul Donahue, Greg Favor, John Hauser, James Kenney, David Kruckemyer, Shubu Mukherjee, Stefan O’Rear, Vernon Pang, Anup Patel, Josh Scheid, Ved Shanbhogue, Andrew Waterman",
+          "date": "2023-06-30",
+          "url": "https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts-1.0.pdf",
+          "locator": "署名页；§1.3.2，Ch.3 IMSIC、Ch.4 APLIC、Ch.6 虚拟机",
+          "type": "技术规范全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "Favor 为列名共同贡献者，非独立作者或所有章节负责人",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "9b9fa0d4c9ec45eaae02ef9af2680125b937dfe0b91891497c69421ce52fdbc5"
+        },
+        {
+          "workId": "riscv-tokyo2023-favor",
+          "title": "Paving the Road Ahead: RISC-V and Chiplet Technologies in Modern Data Center and Automotive Architectures",
+          "authors": "Greg Favor / Ventana；RISC-V Days Tokyo 议程确认讲者",
+          "date": "2023-06-20",
+          "url": "https://riscv.or.jp/wp-content/uploads/23-06-20-Ventana-RISC-V-Days-Tokyo.pdf",
+          "locator": "slides 3、6、9 起：贡献者身份、chiplet、工艺和互连",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人讲述的团队平台方案；不采用未归一化性能宣传",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -2951,8 +3293,8 @@
       "id": "dave-christie",
       "name": "Dave Christie",
       "field": "ISA 演进与兼容边界",
-      "core": "把新模式、旧语义与软件迁移作为一个架构问题。",
-      "evidence": "AMD x86-64 合作演讲支持兼容扩展视角；不把合作贡献归为个人独占。",
+      "core": "共同发展兼容式 x86-64 和事务同步扩展，把 ISA 机制与软件迁移、失败回退一起设计。",
+      "evidence": "编辑解读：ISA 扩展的边界包括运行模式和失败路径；事务加速应以整栈运行时间、冲突率和回退成本衡量。",
       "habits": [
         "把新模式、旧语义与软件迁移作为一个架构问题。",
         "固定 T_exec/T_mem：暴露执行/访存秒；K_mig：迁移投入 的定义，按完整任务比较。",
@@ -2963,7 +3305,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。数据膨胀使更多访问走 DRAM，而代码节省只影响小阶段。",
+      "boundary": "ASF 数据来自模拟与特定软件栈；不宣称在量产 AMD 芯片中实现，也不将跨机构成果归于 Christie 一人。",
       "diagnostic": "分离 ABI、数据布局和指令生成做消融，检查旧二进制互操作。",
       "notes": [
         [
@@ -2976,6 +3318,11 @@
           "Dave Christie：代表性公开资料",
           "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "Evaluation of AMD’s Advanced Synchronization Facility Within a Complete Transactional Memory Stack",
+          "https://llvm.org/pubs/2010-04-EUROSYS-DresdenTM.pdf",
+          "2010-04 · EuroSys pp.27–40；§2.1–2.2，ASF、选择性保护和软件回退"
         ]
       ],
       "challenge": {
@@ -3003,6 +3350,64 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "与 Kevin McGrath 联合阐释 x86-64 模式、寄存器编码和兼容路径。",
+        "合著 ASF 软硬件事务栈研究，以选择性访存保护和软件回退处理硬件事务限制。"
+      ],
+      "background": "x86-64 讲义为两人署名；ASF 论文为 AMD、Dresden、Neuchâtel 的十一人合作。论文明确 ASF 当时是实验扩展，不是已宣布产品。",
+      "sourceFacts": [
+        {
+          "text": "讲义区分 Long/Compatibility mode，并通过 REX 扩展寄存器编码。",
+          "workId": "hotchips14-x86-64"
+        },
+        {
+          "text": "ASF 论文 §2 描述缓存/一致性支持的保护访问与事务失败；容量限制由软件栈处理。",
+          "workId": "eurosys2010-asf"
+        }
+      ],
+      "argument": "编辑解读：ISA 扩展的边界包括运行模式和失败路径；事务加速应以整栈运行时间、冲突率和回退成本衡量。",
+      "sourceAudit": [
+        {
+          "workId": "hotchips14-x86-64",
+          "title": "The AMD x86-64 Architecture: Extending the x86 to 64 bits",
+          "authors": "Kevin McGrath; Dave Christie / AMD",
+          "date": "2002-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/26_x86-64_ISA_HC_v7.pdf",
+          "locator": "slides 4–13：设计目标、Long/Compatibility mode、REX 与页表",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人联合署名的 ISA 扩展设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true
+        },
+        {
+          "workId": "eurosys2010-asf",
+          "title": "Evaluation of AMD’s Advanced Synchronization Facility Within a Complete Transactional Memory Stack",
+          "authors": "Dave Christie; Jae-Woong Chung; Stephan Diestelhorst; Michael Hohmuth; Martin Pohlack; Christof Fetzer; Martin Nowack; Torvald Riegel; Pascal Felber; Patrick Marlier; Etienne Rivière",
+          "date": "2010-04",
+          "url": "https://llvm.org/pubs/2010-04-EUROSYS-DresdenTM.pdf",
+          "locator": "EuroSys pp.27–40；§2.1–2.2，ASF、选择性保护和软件回退",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "c6fce407dedb4bdf5ec005ec9b5a538afdbdf3f24f5a10e7c95ef7020121e978"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -3488,8 +3893,8 @@
       "id": "keith-diefendorff",
       "name": "Keith Diefendorff",
       "field": "SIMD 与 ISA 扩展",
-      "core": "数据并行表达需和软件、异常及实现预算共同评估。",
-      "evidence": "IBM Research AltiVec 合作论文作者；HC 2024–25 steering/production。",
+      "core": "共同发展 AltiVec，以独立向量寄存器和灵活重排支持媒体数据并行。",
+      "evidence": "编辑解读：SIMD 收益取决于数据整理而非仅算术宽度；应把装载、重排、尾部处理和寄存器压力计入同一任务。",
       "habits": [
         "数据并行表达需和软件、异常及实现预算共同评估。",
         "固定比较范围与变量：r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛",
@@ -3500,7 +3905,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。数据准备和混合标量路径主导运行时间。",
+      "boundary": "论文中的核函数结果不能外推所有应用；AltiVec 为合作设计，口述史不是独占贡献的证据。",
       "diagnostic": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：数据准备和混合标量路径主导运行时间。",
       "notes": [
         [
@@ -3523,6 +3928,16 @@
           "Hot Chips 2025 委员会",
           "https://hc2025.hotchips.org/about/committees/",
           "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "AltiVec Extension to PowerPC Accelerates Media Processing",
+          "https://www.eecg.utoronto.ca/~moshovos/ACA06/readings/altivec.pdf",
+          "2000-03/04 · IEEE Micro 20(2), pp.85–95；寄存器组织、四操作数和 permute"
+        ],
+        [
+          "Oral History of Keith Diefendorff",
+          "https://archive.computerhistory.org/resources/access/text/2024/05/102792764-05-01-acc.pdf",
+          "2022-08-24 · pp.25–27：AltiVec、permute 与面积/媒体负载"
         ]
       ],
       "challenge": {
@@ -3555,14 +3970,73 @@
       "conferenceSourceKeys": [
         "C24",
         "C25"
-      ]
+      ],
+      "contributions": [
+        "参与定义 128 位 SIMD、独立寄存器组及三源一目的操作。",
+        "推动将 permute 和非破坏式操作纳入媒体处理的数据组织。"
+      ],
+      "background": "技术论文有四位作者；口述史中的个人倡议为本人回顾，不能替代团队署名或推出全球首创。",
+      "sourceFacts": [
+        {
+          "text": "论文说明 32 个 128 位向量寄存器、四操作数形式和字节级 permute。",
+          "workId": "micro2000-altivec"
+        },
+        {
+          "text": "口述史将 AltiVec 的媒体需求、permute 选择与额外芯片面积联系起来。",
+          "workId": "chm-diefendorff-2022"
+        }
+      ],
+      "argument": "编辑解读：SIMD 收益取决于数据整理而非仅算术宽度；应把装载、重排、尾部处理和寄存器压力计入同一任务。",
+      "sourceAudit": [
+        {
+          "workId": "micro2000-altivec",
+          "title": "AltiVec Extension to PowerPC Accelerates Media Processing",
+          "authors": "Keith Diefendorff; Pradeep K. Dubey; Ron Hochsprung; Hunter Scales",
+          "date": "2000-03/04",
+          "url": "https://www.eecg.utoronto.ca/~moshovos/ACA06/readings/altivec.pdf",
+          "locator": "IEEE Micro 20(2), pp.85–95；寄存器组织、四操作数和 permute",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "chm-diefendorff-2022",
+          "title": "Oral History of Keith Diefendorff",
+          "authors": "Keith Diefendorff；访谈 Doug Fairbairn",
+          "date": "2022-08-24",
+          "url": "https://archive.computerhistory.org/resources/access/text/2024/05/102792764-05-01-acc.pdf",
+          "locator": "pp.25–27：AltiVec、permute 与面积/媒体负载",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "个人回顾与四人合作论文交叉定位；不主张独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "6e8bbf1024f72d9321f0cf144b0efad2d0cfb528b80fbed230d0eb02dec22e91"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "andrew-herbert",
       "name": "Andrew Herbert",
       "field": "硬件与系统软件的协同演进",
-      "core": "接口和实现需要共同维护完整系统的可理解语义。",
-      "evidence": "VCEW 2017 keynote 及公开 bio 记录 microprogrammed OS kernel、Cambridge distributed system 和 EDSAC reconstruction。",
+      "core": "参与 CAP 系统软件并合著 Cambridge 分布式系统，将保护、共享和实现分工放在完整系统中解释。",
+      "evidence": "编辑解读：保护接口可约束访问，但共享语义仍需同步和恢复协议；不能从模块化直接推出低复杂度或高性能。",
       "habits": [
         "接口和实现需要共同维护完整系统的可理解语义。",
         "固定比较范围与变量：I：必须成立的语义；F：检测失败数；K：覆盖/维护投入；T：任务秒",
@@ -3573,7 +4047,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。软件补偿引入异常与兼容缺口。",
+      "boundary": "不把 CAP 系统架构、隐式 capability 寻址或 Cambridge Ring 归于 Herbert 独创；本轮范围为系统软件参与及共同技术总结。",
       "diagnostic": "建议验证（尚未执行）：生成边界用例并做差分、异常及扩展组合测试，报告未覆盖状态和版本回退路径。重点否证：软件补偿引入异常与兼容缺口。",
       "notes": [
         [
@@ -3586,6 +4060,16 @@
           "VCEW 2017 公开议程",
           "https://vcew.org/download/vcew-2017-program.pdf",
           "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "The Cambridge Distributed Computing System",
+          "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cmds.pdf",
+          "1982 · Preface p.viii 团队职责；pp.109–110，TRIPOS 共享文件与同步"
+        ],
+        [
+          "The Cambridge CAP Computer",
+          "https://www.computerconservationsociety.org/resurrection/res63.htm",
+          "2013（Resurrection 63） · CAP 文章：系统生成、Needham 的 OS 架构和分段换出"
         ]
       ],
       "challenge": {
@@ -3617,26 +4101,82 @@
       "expansionRound": "VCEW-HotChips-2026-10-05",
       "conferenceSourceKeys": [
         "V17"
-      ]
+      ],
+      "contributions": [
+        "在 CAP 工作中编写系统生成程序，与操作系统架构和集成负责人协作。",
+        "与 Needham 合著分布式系统专著，分析共享文件服务、客户端和同步约束。"
+      ],
+      "background": "Herbert 的 CAP 回顾将 OS 架构归于 Needham、集成及主要文件系统归于 Birrell；其个人工作包括系统生成程序。专著前言也区分网络、文件服务和 TRIPOS 团队。",
+      "sourceFacts": [
+        {
+          "text": "CAP 回顾明确 Herbert 的系统生成工作，并记录与 Needham 尝试分段换出算法的限制。",
+          "workId": "herbert-cap2013"
+        },
+        {
+          "text": "专著 pp.109–110 讨论共享文件服务的互斥/同步；集中服务并不必然缩小客户端事务代码。",
+          "workId": "cambridge-distributed1982"
+        }
+      ],
+      "argument": "编辑解读：保护接口可约束访问，但共享语义仍需同步和恢复协议；不能从模块化直接推出低复杂度或高性能。",
+      "sourceAudit": [
+        {
+          "workId": "cambridge-distributed1982",
+          "title": "The Cambridge Distributed Computing System",
+          "authors": "R. M. Needham; A. J. Herbert",
+          "date": "1982",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cmds.pdf",
+          "locator": "Preface p.viii 团队职责；pp.109–110，TRIPOS 共享文件与同步",
+          "type": "技术专著全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "两人合著，前言分别列出网络、文件服务、TRIPOS 与认证团队",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "8ed7b8b5f87c69f8df1084c717d2baecabfd533e4c972f0ebfbf72bc96894d49"
+        },
+        {
+          "workId": "herbert-cap2013",
+          "title": "The Cambridge CAP Computer",
+          "authors": "Andrew Herbert",
+          "date": "2013（Resurrection 63）",
+          "url": "https://www.computerconservationsociety.org/resurrection/res63.htm",
+          "locator": "CAP 文章：系统生成、Needham 的 OS 架构和分段换出",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人技术回顾；明确个人工具工作与团队架构分工",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "john-mashey",
       "name": "John Mashey",
-      "field": "ISA 与编译器共同设计",
-      "core": "指令表达要通过实际代码生成与软件迁移检验。",
-      "evidence": "HC 1989 MIPS architecture 讲者及 compiler issues panel chair。",
+      "field": "数据规模、I/O 与基础设施约束",
+      "core": "把大数据界定为相对系统能力的工作负载边界，分析容量增长与 I/O 服务速度不匹配。",
+      "evidence": "编辑解读：容量可扩展不代表服务时间可扩展；采购或架构评估应检查一次全量扫描、恢复和备份是否仍满足窗口。",
       "habits": [
-        "指令表达要通过实际代码生成与软件迁移检验。",
-        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
-        "优先检验反例：别名、异常及寄存器限制阻止合法匹配。"
+        "本站编辑提炼：将机制、约束和任务结果分别测量。",
+        "本站编辑提炼：先核对来源适用范围，再迁移历史经验。"
       ],
       "questions": [
-        "一条复杂指令替代多个操作，编译器能在多少真实路径使用它？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "新增容量能否在既定时间内被扫描、备份和恢复？"
       ],
-      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。别名、异常及寄存器限制阻止合法匹配。",
-      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：别名、异常及寄存器限制阻止合法匹配。",
+      "boundary": "历史设备示例不能当作当前规格；主要核验数据系统分析贡献，未穷尽 UNIX、MIPS 与基准工作。",
+      "diagnostic": "固定数据集与服务目标，分别测量扫描、备份和恢复时间及并发干扰。",
       "notes": [
         [
           "e04",
@@ -3648,22 +4188,32 @@
           "Hot Chips 1989 官方议程",
           "https://hc01.hotchips.org/",
           "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Big Data and the Next Wave of InfraStress",
+          "https://www.usenix.org/publications/library/proceedings/usenix99/invited_talks/mashey.pdf",
+          "讲义 1998-04-25；USENIX 1999 会议目录托管 · slides 35–43：容量、带宽、延迟与备份压力"
+        ],
+        [
+          "Big Data — Yesterday, Today and Tomorrow",
+          "https://www.slideshare.net/slideshow/big-data-yesterday-today-and-tomorrow-by-john-mashey-techviser/26290050",
+          "2013-09-16 · 印刷 slides 1、4、9–11：本人职责、定义和数据系统演进"
         ]
       ],
       "challenge": {
-        "lens": "ISA 与编译器共同设计挑战",
+        "lens": "容量与服务窗口",
         "skills": [
           "A3",
           "A4",
           "A8"
         ],
-        "question": "一条复杂指令替代多个操作，编译器能在多少真实路径使用它？",
-        "variables": "T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节；参数需从待评估系统测量，以下为条件模型。",
-        "model": "T_total=T_setup+n(T_k+T_convert)；并行重叠按实际关键路径去重，M_tmp 另核算容量门槛。",
-        "crossover": "kernel 节省须覆盖启动、转换和临时存储代价，且保持数值/异常契约。",
-        "counterexample": "别名、异常及寄存器限制阻止合法匹配。",
-        "validation": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：别名、异常及寄存器限制阻止合法匹配。",
-        "transfer": "迁移到 AI kernel、ML IR 和异构编译。"
+        "question": "新增容量能否在既定时间内被扫描、备份和恢复？",
+        "variables": "数据量、可持续带宽、并发流量、恢复目标。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：仅当机制节省超过新增协调、资源与恢复成本，才有净收益。",
+        "crossover": "固定功能正确性与资源预算后，完整任务指标改善。",
+        "counterexample": "容量扩张快于吞吐，恢复窗口随数据量增长。",
+        "validation": "固定数据集与服务目标，分别测量扫描、备份和恢复时间及并发干扰。",
+        "transfer": "用于提出待测假设；不能直接转写为作者定律或产品收益。"
       },
       "domain": "foundations",
       "relatedDomains": [
@@ -3679,7 +4229,65 @@
       "expansionRound": "VCEW-HotChips-2026-10-05",
       "conferenceSourceKeys": [
         "H89"
-      ]
+      ],
+      "contributions": [
+        "在 InfraStress 演讲中联系存储容量、带宽、延迟与维护窗口。",
+        "在后续回顾中区分内存能容纳、需外存、需紧耦合系统等不同数据规模条件。"
+      ],
+      "background": "两项作者讲义支撑数据系统分析；本人履历陈述与技术机制分开。本轮不据演讲独自认定其发明 Big Data、SPEC 或全部 MIPS 架构。",
+      "sourceFacts": [
+        {
+          "text": "讲义以容量和带宽不同的增长速度解释搬运与备份压力。",
+          "workId": "mashey-infrastress1998"
+        },
+        {
+          "text": "2013 slide 4 把规模同时联系当时可得内存、I/O 性能和数据复杂性，称其为移动的边界。",
+          "workId": "mashey-bigdata2013"
+        }
+      ],
+      "argument": "编辑解读：容量可扩展不代表服务时间可扩展；采购或架构评估应检查一次全量扫描、恢复和备份是否仍满足窗口。",
+      "sourceAudit": [
+        {
+          "workId": "mashey-infrastress1998",
+          "title": "Big Data and the Next Wave of InfraStress",
+          "authors": "John R. Mashey / Silicon Graphics",
+          "date": "讲义 1998-04-25；USENIX 1999 会议目录托管",
+          "url": "https://www.usenix.org/publications/library/proceedings/usenix99/invited_talks/mashey.pdf",
+          "locator": "slides 35–43：容量、带宽、延迟与备份压力",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人技术分析；不用于证明“Big Data”词语首创",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "mashey-bigdata2013",
+          "title": "Big Data — Yesterday, Today and Tomorrow",
+          "authors": "John R. Mashey；Angela Hey 上传作者幻灯片",
+          "date": "2013-09-16",
+          "url": "https://www.slideshare.net/slideshow/big-data-yesterday-today-and-tomorrow-by-john-mashey-techviser/26290050",
+          "locator": "印刷 slides 1、4、9–11：本人职责、定义和数据系统演进",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "与早期讲义为不同演讲；回顾不是独立实验复现",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "james-thornton",
@@ -5015,22 +5623,18 @@
     {
       "id": "gerard-williams",
       "name": "Gerard Williams III",
-      "field": "工业高性能核心与产品边界",
-      "core": "高性能核心要在功率、软件和平台预算中兑现用户任务。",
-      "evidence": "本人 Qualcomm Oryon 公开文章介绍定制 CPU 的平台目标；产品介绍不是独立性能测量，思想归纳限定在这些公开目标。",
+      "field": "寄存器映射与数据搬运消除",
+      "core": "共同提出用寄存器映射复用消除可预测的数据搬运，并以验证和恢复维持正确性。",
+      "evidence": "编辑解读：消除数据搬运把工作转移到映射与验证；收益受可消除比例、预测错误、引用计数和恢复资源约束。",
       "habits": [
-        "从实际用户任务定义性能。",
-        "共同看每核性能与能效。",
-        "检查软件与平台接口。",
-        "用交付条件检验设计雄心。"
+        "本站编辑提炼：将机制、约束和任务结果分别测量。",
+        "本站编辑提炼：先核对来源适用范围，再迁移历史经验。"
       ],
       "questions": [
-        "更强的核心在固定平台功率下能交付多少有效工作？",
-        "哪个负载要求单核能力？",
-        "移植与部署成本会怎样改变选择？"
+        "省去的数据搬运是否超过映射与错误恢复成本？"
       ],
-      "boundary": "跨产品比较必须匹配功率、内存、软件和 SLO；不以营销倍数证明通用优势。",
-      "diagnostic": "扫描负载与功率，在同质量/SLO 下测 goodput、响应和整个平台能量。",
+      "boundary": "zero-cycle 是机制名称，不表示取指、映射和校验无成本；两项专利不证明量产采用或商业性能。",
+      "diagnostic": "比较开关消除机制时的任务时间、可消除比例、计数资源及重放。",
       "notes": [
         [
           "e09",
@@ -5046,45 +5650,108 @@
           "Qualcomm Oryon：本人公开文章",
           "https://www.qualcomm.com/news/onq/2022/11/qualcomm-oryon-custom-cpu-at-center-of-next-gen-premium-experiences-on-snapdragon-platforms",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Zero cycle move — US20130275720A1",
+          "https://patents.google.com/patent/US20130275720A1/en",
+          "2013-10-17（公开）；2012-04-16（申请） · 发明人/Apple 转让记录；Summary；Figs.5–11 的重命名、重复计数和退休"
+        ],
+        [
+          "Zero cycle load",
+          "https://patents.google.com/patent/US20130339671A1/en",
+          "2013-12-19 · Summary 与 Description：RAW 预测、物理寄存器复用、校验和重放"
         ]
       ],
       "challenge": {
-        "lens": "核心产品挑战",
+        "lens": "映射消除与恢复",
         "skills": [
           "A3",
           "A7",
           "A10"
         ],
-        "variables": "G：合格吞吐；P：平台功率。",
-        "model": "在功率唯一绑定时比较 G/P，另查单请求 SLO。",
-        "crossover": "G_A/G_B > P_A/P_B 才提高此约束下可复制的吞吐。",
-        "counterexample": "更多总吞吐无法满足单线程关键路径。",
-        "transfer": "迁移到服务器核心采购。",
-        "question": "更强的核心在固定平台功率下能交付多少有效工作？",
-        "validation": "扫描负载与功率，在同质量/SLO 下测 goodput、响应和整个平台能量。"
+        "variables": "可消除比例、预测准确率、引用计数、恢复延迟。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：仅当机制节省超过新增协调、资源与恢复成本，才有净收益。",
+        "crossover": "固定功能正确性与资源预算后，完整任务指标改善。",
+        "counterexample": "预测错误或映射资源耗尽，使消除收益被重放抵消。",
+        "transfer": "用于提出待测假设；不能直接转写为作者定律或产品收益。",
+        "question": "省去的数据搬运是否超过映射与错误恢复成本？",
+        "validation": "比较开关消除机制时的任务时间、可消除比例、计数资源及重放。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "参与 zero-cycle move，将目的寄存器映射至已有源值并管理重复引用。",
+        "参与 zero-cycle load，预测 store-load 依赖以复用存储源寄存器，再验证和必要时重放。"
+      ],
+      "background": "两项不同专利族均列 Williams 为共同发明人；五人 move 与三人 load 名单分开。此处定位可核验机制，不由职位或专利反推其独自设计 A7、Oryon 或其他核心。",
+      "sourceFacts": [
+        {
+          "text": "move 专利通过复用物理寄存器及重复计数消除部分实际复制。",
+          "workId": "US20130275720A1"
+        },
+        {
+          "text": "load 专利按预测依赖复用较早 store 的源寄存器，错误预测触发清除/重放。",
+          "workId": "US20130339671A1"
+        }
+      ],
+      "argument": "编辑解读：消除数据搬运把工作转移到映射与验证；收益受可消除比例、预测错误、引用计数和恢复资源约束。",
+      "sourceAudit": [
+        {
+          "workId": "US20130275720A1",
+          "title": "Zero cycle move — US20130275720A1",
+          "authors": "James B. Keller; John H. Mylius; Conrado Blasco-Allue; Gerard R. Williams III; Suparn Vats",
+          "date": "2013-10-17（公开）；2012-04-16（申请）",
+          "url": "https://patents.google.com/patent/US20130275720A1/en",
+          "locator": "发明人/Apple 转让记录；Summary；Figs.5–11 的重命名、重复计数和退休",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "五人共同披露的具体机制；不推断在 A7 或 Zen 上落地",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true
+        },
+        {
+          "workId": "US20130339671A1",
+          "title": "Zero cycle load",
+          "authors": "Gerard R. Williams III; John H. Mylius; Conrade Blasco-Allue（原记录拼写）",
+          "date": "2013-12-19",
+          "url": "https://patents.google.com/patent/US20130339671A1/en",
+          "locator": "Summary 与 Description：RAW 预测、物理寄存器复用、校验和重放",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "三人共同披露；与 zero-cycle move 为不同专利族",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "manu-gulati",
       "name": "Manu Gulati",
-      "field": "SoC 集成与架构重新审视",
-      "core": "核心能力必须通过数据供给与完整系统集成兑现。",
-      "evidence": "本人公开介绍回顾 Apple、Google 与共同创办 NUVIA 的经历，并强调从第一原则重新看架构；具体 SoC 设计细节未据此推断。",
+      "field": "SoC 带宽与内存功率反馈",
+      "core": "共同发展 SoC 带宽反馈和内存性能状态控制，将数据供给与功耗动态协调。",
+      "evidence": "编辑解读：动态降速需要足够稳定的低负载窗口；能量收益要扣除切换、滞回等待和突发流量的延迟代价。",
       "habits": [
-        "把 CPU 放回 SoC 资源边界。",
-        "检查数据供给是否匹配执行。",
-        "识别接口造成的隐藏等待。",
-        "区分局部速度与系统结果。"
+        "本站编辑提炼：将机制、约束和任务结果分别测量。",
+        "本站编辑提炼：先核对来源适用范围，再迁移历史经验。"
       ],
       "questions": [
-        "CPU 加速后，SoC 哪项资源会先绑定？",
-        "数据搬运和供电是否承担了代价？",
-        "系统集成改变了哪些原始收益？"
+        "降速和限流在突发负载下是否仍满足延迟约束？"
       ],
-      "boundary": "公开履历与简短自述不足以复原个人完整思想；本条目是有限依据的现代审查视角。",
-      "diagnostic": "对完整系统做 CPU、存储和 I/O 资源消融，测量任务关键路径与系统功率。",
+      "boundary": "专利没有建立特定产品采用或净节能的证据；限流会影响服务质量，控制器局部最优不等于整机最优。",
+      "diagnostic": "固定负载分布，测功耗、尾延迟、切换频率与恢复时间。",
       "notes": [
         [
           "e12",
@@ -5100,27 +5767,95 @@
           "本人公开架构与经历介绍",
           "https://www.linkedin.com/posts/manu-gulati-283346_im-excited-to-share-that-ive-joined-velaura-activity-7434682151096418304-pqPi",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "Bandwidth Management",
+          "https://patents.google.com/patent/US20140086070A1/en",
+          "2014-03-27 · Description/Fig.1：阈值控制器、队列指标、fabric 限流与滞回"
+        ],
+        [
+          "Systems and methods for dynamically switching memory performance states",
+          "https://patents.google.com/patent/US10175905B2/en",
+          "2019-01-08 · Description/Figs.2–3：流量窗口、队列、时钟分频及退出条件"
         ]
       ],
       "challenge": {
-        "lens": "SoC 集成挑战",
+        "lens": "带宽反馈与服务质量",
         "skills": [
           "A3",
           "A7",
           "A8"
         ],
-        "variables": "T_cpu、T_mem、T_io：各阶段暴露关键路径时间。",
-        "model": "加速 CPU 只改变可归因的 T_cpu；重叠由 trace 决定。",
-        "crossover": "节省的暴露 T_cpu 必须超过接口和资源竞争新增时间。",
-        "counterexample": "存储或 I/O 绑定，核心提升无法兑现。",
-        "transfer": "迁移到 CPU/GPU 异构 SoC。",
-        "question": "CPU 加速后，SoC 哪项资源会先绑定？",
-        "validation": "对完整系统做 CPU、存储和 I/O 资源消融，测量任务关键路径与系统功率。"
+        "variables": "队列深度、流量窗口、控制阈值、滞回和切换代价。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：仅当机制节省超过新增协调、资源与恢复成本，才有净收益。",
+        "crossover": "固定功能正确性与资源预算后，完整任务指标改善。",
+        "counterexample": "短暂空闲触发降速，随后的突发流量造成尾延迟恶化。",
+        "transfer": "用于提出待测假设；不能直接转写为作者定律或产品收益。",
+        "question": "降速和限流在突发负载下是否仍满足延迟约束？",
+        "validation": "固定负载分布，测功耗、尾延迟、切换频率与恢复时间。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "gpu-ai"
-      ]
+      ],
+      "contributions": [
+        "参与基于性能/队列指标的 fabric 限流与滞回控制。",
+        "参与按流量和队列状态降低内存时钟、在需求或控制事件下退出的机制。"
+      ],
+      "background": "两项专利分别为四人和十人合作；支持 Gulati 的具体共同技术参与，不支持将某代 Apple A 系列或整个平台写为个人独作。",
+      "sourceFacts": [
+        {
+          "text": "带宽管理专利使用阈值控制器驱动限流，并用滞回减少频繁切换。",
+          "workId": "US20140086070A1"
+        },
+        {
+          "text": "内存状态专利监测时间窗口内的流量/队列，控制分频，并规定需求增长、校准等退出条件。",
+          "workId": "US10175905B2"
+        }
+      ],
+      "argument": "编辑解读：动态降速需要足够稳定的低负载窗口；能量收益要扣除切换、滞回等待和突发流量的延迟代价。",
+      "sourceAudit": [
+        {
+          "workId": "US20140086070A1",
+          "title": "Bandwidth Management",
+          "authors": "Gurjeet S. Saund; James B. Keller; Manu Gulati; Sukalpa Biswas",
+          "date": "2014-03-27",
+          "url": "https://patents.google.com/patent/US20140086070A1/en",
+          "locator": "Description/Fig.1：阈值控制器、队列指标、fabric 限流与滞回",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "四人共同披露；不把整体 SoC 归于一人",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "US10175905B2",
+          "title": "Systems and methods for dynamically switching memory performance states",
+          "authors": "Robert E. Jeter; Liang Deng; Kai Lun Hsiung; Manu Gulati; Rakesh L. Notani; Sukalpa Biswas; Venkata Ramana Malladi; Gregory S. Mathews; Enming Zheng; Fabien S. Faure",
+          "date": "2019-01-08",
+          "url": "https://patents.google.com/patent/US10175905B2/en",
+          "locator": "Description/Figs.2–3：流量窗口、队列、时钟分频及退出条件",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "十人共同披露；与 Bandwidth Management 为不同专利族",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "peter-greenhalgh",
@@ -5236,8 +5971,8 @@
       "id": "mark-papermaster",
       "name": "Mark Papermaster",
       "field": "产品路线、PPA 与跨代交付",
-      "core": "把局部机制放回能够持续演进和交付的完整平台。",
-      "evidence": "与 Mike Clark 的 AMD 2026 对谈讨论 Zen 的跨代演进、PPA、SMT、向量、chiplet 和客户需求；这些是工业设计主题，不是独立测量。",
+      "core": "以异构共享与模块化分区组织处理器平台演进，协调计算、I/O、工艺和功率约束。",
+      "evidence": "编辑解读：不同模块的缩放收益不同，分区可以分别选择工艺；还需计入跨芯粒延迟、封装成本和软件放置。",
       "habits": [
         "将架构机制与客户负载连接。",
         "共同评价性能、频率、面积与功耗。",
@@ -5249,7 +5984,7 @@
         "工艺和封装改变哪些边界？",
         "什么改动会破坏产品交付？"
       ],
-      "boundary": "平台成功不代表某个机制普遍最优；路线预测与当前实测要分开。",
+      "boundary": "路线说明和厂商模拟不能代替独立产品测量；演讲者的组织职责与各模块设计团队贡献分开。",
       "diagnostic": "在匹配预算下进行机制消融，加入验证范围、软件兼容、封装和交付敏感性。",
       "notes": [
         [
@@ -5266,6 +6001,16 @@
           "AMD：与 Clark 的公开架构对谈",
           "https://newsroom.amd.com/news/advanced-insights-zen-architecture-agentic-ai-era/",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "The Surround Computing Era",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-Key1-Surround-Computing-Era/HC24.28.K10-Surround-Computing-Era-Papermaster-AMD.pdf",
+          "2012-08-28 · slides 8–19：HSA、Steamroller 译码、功率协调"
+        ],
+        [
+          "AMD Next Horizon — Mark Papermaster section",
+          "https://www.slideshare.net/slideshow/amd-next-horizon-122428860/122428860",
+          "2018-11-06 · slide 27 身份；slides 39–43 核心变化、Naples 与 Rome 分区"
         ]
       ],
       "challenge": {
@@ -5286,7 +6031,65 @@
       "domain": "cpu",
       "relatedDomains": [
         "foundations"
-      ]
+      ],
+      "contributions": [
+        "2012 演讲阐释 HSA 的共享地址/一致性以及 CPU、GPU 的功率协调。",
+        "2018 演讲解释 Rome 将 7 nm 计算 chiplet 与 14 nm 中央 I/O 分开。"
+      ],
+      "background": "两次本人演示支撑技术路线阐释和领导角色；它们不证明 Papermaster 独自发明 Zen、HSA 或 Infinity Fabric。2018 正文由 AMD 官方 SlideShare 账号保存，失效的旧 PDF 链接不计第二证据。",
+      "sourceFacts": [
+        {
+          "text": "2012 幻灯片把共享地址空间、缓存一致性和 CPU/GPU 功率管理列为平台机制。",
+          "workId": "hc24-papermaster"
+        },
+        {
+          "text": "2018 Papermaster 分段将 Rome 中央 I/O 与独立计算芯粒对照 Naples 的组织。",
+          "workId": "amd-next-horizon-2018"
+        }
+      ],
+      "argument": "编辑解读：不同模块的缩放收益不同，分区可以分别选择工艺；还需计入跨芯粒延迟、封装成本和软件放置。",
+      "sourceAudit": [
+        {
+          "workId": "hc24-papermaster",
+          "title": "The Surround Computing Era",
+          "authors": "Mark Papermaster / AMD",
+          "date": "2012-08-28",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc24/HC24-Key1-Surround-Computing-Era/HC24.28.K10-Surround-Computing-Era-Papermaster-AMD.pdf",
+          "locator": "slides 8–19：HSA、Steamroller 译码、功率协调",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "CTO 的技术路线与团队机制说明；不是所有机制的个人发明证明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "amd-next-horizon-2018",
+          "title": "AMD Next Horizon — Mark Papermaster section",
+          "authors": "Mark Papermaster；AMD 官方账号发布的联合演示",
+          "date": "2018-11-06",
+          "url": "https://www.slideshare.net/slideshow/amd-next-horizon-122428860/122428860",
+          "locator": "slide 27 身份；slides 39–43 核心变化、Naples 与 Rome 分区",
+          "type": "作者幻灯片",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "仅使用 Papermaster 分段，其他演讲者的材料不归入其个人作品",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "rich-witek",
@@ -5603,8 +6406,8 @@
       "id": "fred-weber",
       "name": "Fred Weber",
       "field": "核心、内存与系统通路",
-      "core": "将执行能力和内存访问组织作为联合设计问题。",
-      "evidence": "K7 合作论文支持执行资源设计视角；不把不同代际团队决策归为个人独立思想。",
+      "core": "共同领导 K7 开发，并参与将 x86 译码、乱序执行和地址转换时序作为整体实现问题。",
+      "evidence": "编辑解读：兼容 ISA 的性能取决于内部表示和访存时序；移出关键路径不代表消除工作，需核对缺失服务与异常路径的代价。",
       "habits": [
         "将执行能力和内存访问组织作为联合设计问题。",
         "先固定任务、正确性与资源边界，再判断 核心、内存与系统通路 的收益。",
@@ -5615,7 +6418,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。更多本地通路增加控制、布线和一致性开销。",
+      "boundary": "两项作品不能拼接成同一量产配置；专利披露不证明采用或净收益。",
       "diagnostic": "固定线程放置，改变内存位置与频率，分离可重叠和暴露等待。",
       "notes": [
         [
@@ -5628,6 +6431,11 @@
           "A Seventh-Generation x86 Microprocessor：作者提供的合作论文",
           "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Computer system including a novel address translation mechanism",
+          "https://patents.google.com/patent/US6446189B1/en",
+          "2002-09-03 · Summary；Figs.1–2，BIU 转换和 TLB"
         ]
       ],
       "challenge": {
@@ -5650,7 +6458,65 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "合著 K7 论文，说明直接译码与微码路径、宏操作和执行单元组织。",
+        "共同披露把分页模式选择与地址屏蔽移出缓存关键路径的转换机制。"
+      ],
+      "background": "K7 论文作者简介明确 Weber 为开发共同负责人；十四人合著与六人专利名单分别保留。不能将 K7 团队设计或专利中的所有单元写成其独作。",
+      "sourceFacts": [
+        {
+          "text": "K7 论文 §II 区分 DirectPath 与 VectorPath 译码，并说明宏操作进入乱序执行的流程。",
+          "workId": "jssc1999-k7"
+        },
+        {
+          "text": "专利将部分转换/屏蔽放在 BIU，缓存侧 TLB 保存最终物理地址以简化关键路径。",
+          "workId": "US6446189B1"
+        }
+      ],
+      "argument": "编辑解读：兼容 ISA 的性能取决于内部表示和访存时序；移出关键路径不代表消除工作，需核对缺失服务与异常路径的代价。",
+      "sourceAudit": [
+        {
+          "workId": "jssc1999-k7",
+          "title": "A seventh-generation x86 microprocessor",
+          "authors": "Michael Golden; Steve Hesley; Alisa Scherer; Matthew Crowley; Scott C. Johnson; Stephan Meier; Dirk Meyer; Jerry D. Moench; Stuart Oberman; Hamid Partovi; Fred Weber; Scott White; Tim Wood; John Yong",
+          "date": "1999-11",
+          "url": "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "locator": "JSSC 34(11), pp.1466–1477，§II 微架构；Weber 作者简介",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "US6446189B1",
+          "title": "Computer system including a novel address translation mechanism",
+          "authors": "Gerald D. Zuraski Jr.; Frederick D. Weber; William A. Hughes; William K. Lewchuk; Scott A. White; Michael T. Clark",
+          "date": "2002-09-03",
+          "url": "https://patents.google.com/patent/US6446189B1/en",
+          "locator": "Summary；Figs.1–2，BIU 转换和 TLB",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "六人共同披露；不据此断言 K7 采用该专利",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "glenn-hinton",
@@ -5760,8 +6626,8 @@
       "id": "david-papworth",
       "name": "David Papworth",
       "field": "乱序执行的可交付实现",
-      "core": "将依赖调度、重命名和精确提交组织成可实现的执行引擎。",
-      "evidence": "ACM 官方说明记录其 P6 乱序引擎及 VLIW 处理器贡献。",
+      "core": "以工作负载模拟调优 Pentium Pro 的实现参数，并参与兼容式地址扩展机制。",
+      "evidence": "编辑解读：更宽和更大不是单调收益；应在相同工艺与时钟约束下评估前端、缓存、分支恢复的联合效果。",
       "habits": [
         "将依赖调度、重命名和精确提交组织成可实现的执行引擎。",
         "先固定任务、正确性与资源边界，再判断 乱序执行的可交付实现 的收益。",
@@ -5772,7 +6638,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。串行指针链扩大窗口也无法增加 MLP。",
+      "boundary": "不把专利方案反推为 Pentium Pro 的量产配置；参数演进是历史设计过程，不构成现代核心的通用最优值。",
       "diagnostic": "扫窗口和调度复杂度，测关键依赖、访存并行及有效性能/瓦。",
       "notes": [
         [
@@ -5785,6 +6651,16 @@
           "ACM：David Papworth 的 P6 与 VLIW 贡献",
           "https://awards.acm.org/about/2022-thacker",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Tuning the Pentium Pro Microarchitecture",
+          "https://people.cs.pitt.edu/~cho/cs2410/papers/papworth-micromag96.pdf",
+          "1996-04 · IEEE Micro 16(2), pp.8–15；设计参数演进、trace simulation"
+        ],
+        [
+          "Linear address extension and mapping to physical memory using 4 and 8 byte page table entries in a 32 bit microprocessor",
+          "https://patents.google.com/patent/US6349380B1/en",
+          "2002-02-19 · Description：LAE、Figs.11–14 分页映射"
         ]
       ],
       "challenge": {
@@ -5807,14 +6683,73 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "记录 P6 从初始设计到产品在译码宽度、流水级和缓存容量上的联合调整。",
+        "共同披露通过扩展地址和页表形式增加寻址能力的方案。"
+      ],
+      "background": "1996 技术文章由 Papworth 署名，描述的是整个 P6 团队调优过程；地址扩展专利为五人共同作品，年代和产品采用范围另行区分。",
+      "sourceFacts": [
+        {
+          "text": "文章对照初始四译码、十级、各 32 KiB 的 L1 指令/数据缓存与最终三译码、十四级、各 8 KiB 的 L1 指令/数据缓存配置，并说明 trace 模拟依据。",
+          "workId": "micro1996-papworth"
+        },
+        {
+          "text": "专利描述 LAE 状态、扩展段地址与不同页表项形式的映射。",
+          "workId": "US6349380B1"
+        }
+      ],
+      "argument": "编辑解读：更宽和更大不是单调收益；应在相同工艺与时钟约束下评估前端、缓存、分支恢复的联合效果。",
+      "sourceAudit": [
+        {
+          "workId": "micro1996-papworth",
+          "title": "Tuning the Pentium Pro Microarchitecture",
+          "authors": "David B. Papworth",
+          "date": "1996-04",
+          "url": "https://people.cs.pitt.edu/~cho/cs2410/papers/papworth-micromag96.pdf",
+          "locator": "IEEE Micro 16(2), pp.8–15；设计参数演进、trace simulation",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "725bf027d5f8ca1743db69ba1d413711e586b3b337ae946aaaf90986bcfd9231"
+        },
+        {
+          "workId": "US6349380B1",
+          "title": "Linear address extension and mapping to physical memory using 4 and 8 byte page table entries in a 32 bit microprocessor",
+          "authors": "Shahrokh Shahidzadeh; Bryant E. Bigbee; David B. Papworth; Frank Binns; Robert P. Colwell",
+          "date": "2002-02-19",
+          "url": "https://patents.google.com/patent/US6349380B1/en",
+          "locator": "Description：LAE、Figs.11–14 分页映射",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "五人共同披露的地址扩展方案；不等同 AMD64 或已交付 P6 功能",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "donald-alpert",
       "name": "Donald Alpert",
       "field": "超标量产品与实现约束",
-      "core": "把并行执行的收益放回时序、兼容性与完整产品边界。",
-      "evidence": "本人 Camelback 网站记录其 Pentium 主架构师及处理器产品经历；思想为履历支持的有限归纳。",
+      "core": "参与兼容处理器的流水与超标量实现，并把软件安装基础纳入架构可交付性的判断。",
+      "evidence": "编辑解读：预译码可把前端工作提前，但增加缓存表示成本；技术价值还须穿过兼容软件和客户迁移门槛。",
       "habits": [
         "把并行执行的收益放回时序、兼容性与完整产品边界。",
         "先固定任务、正确性与资源边界，再判断 超标量产品与实现约束 的收益。",
@@ -5825,7 +6760,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。频繁依赖或无法配对指令使峰值发射率没有用户价值。",
+      "boundary": "回顾不证明“首款”排名或通用性能优势；未获得正文的 Pentium 论文不计入本次双来源门槛。",
       "diagnostic": "回放实际二进制，记录有效配对、频率和兼容回归；不以峰值宣称通用收益。",
       "notes": [
         [
@@ -5838,6 +6773,16 @@
           "Donald Alpert：Camelback Computer Architecture",
           "https://camelback-comparch.com/",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "Technical Highlights — Swordfish and Pentium",
+          "https://camelback-comparch.com/about/technical-highlights/",
+          "网页未标发布日期；2026-10-06 核验 · Swordfish：Key Features；Pentium：Background 与团队经历"
+        ],
+        [
+          "Oral History Panel on the Development and Promotion of the National Semiconductor 32000 Microprocessor",
+          "https://archive.computerhistory.org/resources/access/text/2013/05/102658246-05-01-acc.pdf",
+          "2008-02-26 · pp.13–14，Alpert 的 32532 架构职责；pp.23–24，Swordfish 和软件生态"
         ]
       ],
       "challenge": {
@@ -5860,7 +6805,66 @@
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "在 NS32532 架构与 Swordfish 技术中处理多种负载、兼容性和并行执行。",
+        "技术回顾解释双槽部分译码缓存及并行标志，口述史补充软件生态约束。"
+      ],
+      "background": "CHM 参与者确认 Alpert 的 32532 架构职责；技术回顾保留 Intrater、Talmudi 等人的工作引注。个人角色不等于独自完成 Swordfish 或 Pentium 全部设计。",
+      "sourceFacts": [
+        {
+          "text": "Swordfish 回顾描述两个固定槽、部分译码和标识可并行/复杂模拟指令的控制信息。",
+          "workId": "alpert-technical-highlights"
+        },
+        {
+          "text": "Alpert 在 pp.23–24 回顾客户重视既有应用软件，认为组件技术正确仍不足以促成架构采用。",
+          "workId": "chm-X4430.2008"
+        }
+      ],
+      "argument": "编辑解读：预译码可把前端工作提前，但增加缓存表示成本；技术价值还须穿过兼容软件和客户迁移门槛。",
+      "sourceAudit": [
+        {
+          "workId": "alpert-technical-highlights",
+          "title": "Technical Highlights — Swordfish and Pentium",
+          "authors": "Donald Alpert / Camelback Computer Architecture",
+          "date": "网页未标发布日期；2026-10-06 核验",
+          "url": "https://camelback-comparch.com/about/technical-highlights/",
+          "locator": "Swordfish：Key Features；Pentium：Background 与团队经历",
+          "type": "作者技术文章",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "本人技术回顾，含对原始技术材料的明确引注；不把嵌引材料另算第三作品",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "chm-X4430.2008",
+          "title": "Oral History Panel on the Development and Promotion of the National Semiconductor 32000 Microprocessor",
+          "authors": "Donald Alpert; Subhash Bal; Robert Freund; Giora Yaron；主持 Richard Sanquini",
+          "date": "2008-02-26",
+          "url": "https://archive.computerhistory.org/resources/access/text/2013/05/102658246-05-01-acc.pdf",
+          "locator": "pp.13–14，Alpert 的 32532 架构职责；pp.23–24，Swordfish 和软件生态",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "区分各发言者；Alpert 本人回顾与其他参与者角色确认",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "dd5e7500bf96a096a8a6a6789cc475720c24f2a83f114e6328a68e251c0c9a2f"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      }
     },
     {
       "id": "marc-tremblay",
@@ -6342,8 +7346,8 @@
       "id": "mike-filippo",
       "name": "Mike Filippo",
       "field": "持续性能与 PPA 协同",
-      "core": "按可持续功率下的任务性能重组核心，而非仅追求突发峰值。",
-      "evidence": "本人 Cortex-A72 访谈讨论性能、功率和面积目标；原名单 Mike Flippo 更正为 Mike Filippo。",
+      "core": "围绕核心 PPA 组织设计，并共同提出用指令年龄压缩乱序累积状态跟踪的机制。",
+      "evidence": "编辑解读：利用累积状态的语义可减少逐指令记录，但需证明程序序、异常和清除路径一致；存储位数减少不直接等于整核节能。",
       "habits": [
         "按可持续功率下的任务性能重组核心，而非仅追求突发峰值。",
         "固定 Q：合格任务/s；P：整机 W；A：面积；D：截止时间 的定义，按完整任务比较。",
@@ -6354,7 +7358,7 @@
         "哪类负载或约束会使上述收益反转？",
         "怎样用受控实验区分机制收益与成本转移？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。基准持续时间过短，掩盖热限制与存储等待。",
+      "boundary": "不采用未归一化的宣传性能百分比；访谈视频未完整核验，专利只证明共同披露。",
       "diagnostic": "运行至热稳态，扫并发和功率上限，归因频率、IPC 与存储停顿。",
       "notes": [
         [
@@ -6367,6 +7371,11 @@
           "Mike Filippo：代表性公开资料",
           "https://www.androidauthority.com/arm-cortex-a-72-interview-604568/",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "Data processing",
+          "https://patents.google.com/patent/US10310862B2/en",
+          "2019-06-04 · Description，Figs.2–5：累积状态位、指令年龄与退休/清除"
         ]
       ],
       "challenge": {
@@ -6394,26 +7403,81 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "在 A72 技术访谈中说明相对 A57 的性能、功率和面积目标。",
+        "共同披露为每个累积状态位跟踪最早相关在途指令，在退休或清除时更新状态。"
+      ],
+      "background": "访谈支撑 A72 设计负责人的技术说明；专利列 McDonald、Filippo、Harris 三位发明人。两项证据不能证明 A72 使用了 2017 年申请的该机制。",
+      "sourceFacts": [
+        {
+          "text": "刊载文字将 A72 作为 A57 的后续设计，讨论三项 PPA 目标。",
+          "workId": "filippo-a72-2015"
+        },
+        {
+          "text": "专利用每状态位的指令标识和年龄比较维护累积标志，处理乱序到达、退休及 flush。",
+          "workId": "US10310862B2"
+        }
+      ],
+      "argument": "编辑解读：利用累积状态的语义可减少逐指令记录，但需证明程序序、异常和清除路径一致；存储位数减少不直接等于整核节能。",
+      "sourceAudit": [
+        {
+          "workId": "filippo-a72-2015",
+          "title": "Interview with ARM’s lead Cortex-A72 designer Mike Filippo",
+          "authors": "Mike Filippo；访谈/文章 Gary Sims",
+          "date": "2015-04-29",
+          "url": "https://www.androidauthority.com/arm-cortex-a-72-interview-604568/",
+          "locator": "刊载访谈文字：A72/A57 关系和性能、功率、面积目标",
+          "type": "本人访谈文字稿",
+          "contentStatus": "已核验文章中刊载的技术访谈文字；未观看完整视频，不声称完整访谈核验",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "仅核验已刊载文字；未观看全文视频",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "US10310862B2",
+          "title": "Data processing",
+          "authors": "Robert Greg McDonald; Michael Filippo; Glen Andrew Harris",
+          "date": "2019-06-04",
+          "url": "https://patents.google.com/patent/US10310862B2/en",
+          "locator": "Description，Figs.2–5：累积状态位、指令年龄与退休/清除",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "三人共同披露；不证明此方案在 Cortex-A72 中采用",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
       "id": "fred-pollack",
       "name": "Fred Pollack",
-      "field": "复杂性预算与性能规划",
-      "core": "资源扩张必须用边际任务收益检验，避免把面积增长当性能增长。",
-      "evidence": "Intel 官方资料记录其处理器规划与研究角色；此卡不把经验缩放规律当物理定律。",
+      "field": "对象系统协同与架构管理",
+      "core": "参与对象式多处理器的软件/硬件协同，并在 P6 架构管理中处理方案与交付风险。",
+      "evidence": "编辑解读：复杂性预算不仅是晶体管数量，还包括接口、同步和方案风险；应比较可验证的系统行为，不能把经验关系当普适定律。",
       "habits": [
-        "资源扩张必须用边际任务收益检验，避免把面积增长当性能增长。",
-        "固定 A：总面积；a：单核面积；q：每核合格吞吐；η：扩展效率 的定义，按完整任务比较。",
-        "先测试最强反例：任务串行性或带宽共享使简单核数量无法兑现。"
+        "本站编辑提炼：将机制、约束和任务结果分别测量。",
+        "本站编辑提炼：先核对来源适用范围，再迁移历史经验。"
       ],
       "questions": [
-        "同面积预算应投一个复杂核心，还是更多简单核心？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "模块保护和管理分工能否降低实际同步及交付风险？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。任务串行性或带宽共享使简单核数量无法兑现。",
-      "diagnostic": "同工艺与功率预算比较任务组合，扫并发并测扩展效率。",
+      "boundary": "本轮未取得“Pollack’s rule”的原始完整论证，不把平方根关系写成其已核验公式；历史对象系统也不等于商业成功。",
+      "diagnostic": "记录对象访问边界、同步路径和方案评估条件，再检查端到端行为及项目假设。",
       "notes": [
         [
           "e08",
@@ -6425,22 +7489,32 @@
           "Fred Pollack：代表性公开资料",
           "https://www.intel.com/pressroom/archive/releases/1997/SP100997.HTM",
           "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ],
+        [
+          "iMAX: A Multiprocessor Operating System for an Object-Based Computer",
+          "https://cs.uwaterloo.ca/~Brecht/courses/702/Possible-Readings/oses/imax-multiprocessor-os-sosp-1981.pdf",
+          "1981-12 · SOSP pp.127–136；pp.127–129，对象保护、Ada package、port 与多处理器同步"
+        ],
+        [
+          "Oral history of Robert P. Colwell",
+          "https://www.sigmicro.org/media/oralhistories/colwell.pdf",
+          "2009-08-24/25 · pp.82–83，P6 architecture manager、Metaflow 评估与团队分工"
         ]
       ],
       "challenge": {
-        "lens": "复杂性预算与性能规划挑战",
+        "lens": "接口与方案风险",
         "skills": [
           "A2",
           "A7",
           "A10"
         ],
-        "question": "同面积预算应投一个复杂核心，还是更多简单核心？",
-        "variables": "A：总面积；a：单核面积；q：每核合格吞吐；η：扩展效率；参数需从待评估系统测量，以下为条件模型。",
-        "model": "总吞吐近似 floor(A/a)×q×η；延迟和带宽约束另检查。",
-        "crossover": "复杂核心的 q/a 优势须覆盖数量减少与利用率差异。",
-        "counterexample": "任务串行性或带宽共享使简单核数量无法兑现。",
-        "validation": "同工艺与功率预算比较任务组合，扫并发并测扩展效率。",
-        "transfer": "迁移到 P-core/E-core 服务器选择。"
+        "question": "模块保护和管理分工能否降低实际同步及交付风险？",
+        "variables": "接口数量、同步依赖、外部方案约束和验证成本。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：仅当机制节省超过新增协调、资源与恢复成本，才有净收益。",
+        "crossover": "固定功能正确性与资源预算后，完整任务指标改善。",
+        "counterexample": "局部简化增加跨模块协调，或外部方案限制后续实现。",
+        "validation": "记录对象访问边界、同步路径和方案评估条件，再检查端到端行为及项目假设。",
+        "transfer": "用于提出待测假设；不能直接转写为作者定律或产品收益。"
       },
       "domain": "cpu",
       "relatedDomains": [
@@ -6452,6 +7526,65 @@
         "contribution": "Public",
         "method": "Inferred",
         "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "contributions": [
+        "合著 iMAX，描述 capability 对象、受保护软件接口和多处理器同步。",
+        "作为 P6 架构经理参与外部方案评估与架构团队组织。"
+      ],
+      "background": "iMAX 原文共有九位作者，含 Michael R. Gifkins；P6 角色由同事 Colwell 的口述定位，不能伪装成 Pollack 本人访谈，也不把 Colwell、Hinton、Papworth 的设计归于经理个人。",
+      "sourceFacts": [
+        {
+          "text": "iMAX 论文将硬件/软件对象接口、受保护 Ada 包与显式同步结合。",
+          "workId": "sosp1981-imax"
+        },
+        {
+          "text": "Colwell 在 pp.82–83 回顾 Pollack 为架构经理，曾推动评估 Metaflow 以降低项目风险，团队最终另行选择。",
+          "workId": "colwell-oral2009-pollack"
+        }
+      ],
+      "argument": "编辑解读：复杂性预算不仅是晶体管数量，还包括接口、同步和方案风险；应比较可验证的系统行为，不能把经验关系当普适定律。",
+      "sourceAudit": [
+        {
+          "workId": "sosp1981-imax",
+          "title": "iMAX: A Multiprocessor Operating System for an Object-Based Computer",
+          "authors": "Kevin C. Kahn; William M. Corwin; T. Don Dennis; Herman D’Hooge; David E. Hubka; Linda A. Hutchins; John T. Montague; Fred J. Pollack; Michael R. Gifkins",
+          "date": "1981-12",
+          "url": "https://cs.uwaterloo.ca/~Brecht/courses/702/Possible-Readings/oses/imax-multiprocessor-os-sosp-1981.pdf",
+          "locator": "SOSP pp.127–136；pp.127–129，对象保护、Ada package、port 与多处理器同步",
+          "type": "论文全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "共同署名作品；不证明个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "colwell-oral2009-pollack",
+          "title": "Oral history of Robert P. Colwell",
+          "authors": "Robert P. Colwell；访谈 Paul N. Edwards",
+          "date": "2009-08-24/25",
+          "url": "https://www.sigmicro.org/media/oralhistories/colwell.pdf",
+          "locator": "pp.82–83，P6 architecture manager、Metaflow 评估与团队分工",
+          "type": "参与者访谈文字稿",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "说话者是 Colwell，不是 Pollack；同时代同事对架构管理的第一手回顾",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-06",
+          "retrievedSha256": "12d5f15bb773910d5f57ed999ac83cb9f652cf9e72e57f0a1914d1af984511d9"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
     },
     {
@@ -19139,6 +20272,123 @@
         "standard": "contribution-led-v1",
         "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
       }
+    },
+    {
+      "id": "dan-hettena",
+      "name": "Dan Hettena",
+      "field": "安全系统与验证流程",
+      "domain": "cpu",
+      "relatedDomains": [],
+      "notes": [],
+      "sources": [
+        [
+          "Systems and methods for safe and reliable autonomous vehicles",
+          "https://patents.google.com/patent/US11644834B2/en",
+          "2023-05-09 · Figs.7、16–17：安全核心、锁步比较和安全 MCU 隔离；inventor 名单"
+        ],
+        [
+          "NVIDIA/AdaCore SPARK Process — Unit Verification",
+          "https://nvidia.github.io/spark-process/process/process/unit-verification.html",
+          "版本 aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e；2026-10-06 核验 · §6.5.2.5 stack usage；§6.5.3.1 全局评审；仓库 README Acknowledgements"
+        ],
+        [
+          "SPARK Process — 固定版本贡献归属",
+          "https://github.com/NVIDIA/spark-process/blob/aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e/README.md",
+          "README Acknowledgements；与流程正文属于同一作品，不另计来源"
+        ],
+        [
+          "SPARK Unit Verification — 固定版本正文",
+          "https://github.com/NVIDIA/spark-process/blob/aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e/source/process/process/unit-verification.rst",
+          "同一流程作品的固定版本；不另计第二来源"
+        ]
+      ],
+      "habits": [
+        "区分硬件故障检测和软件验证的覆盖范围。",
+        "将安全假设、工具输出与评审记录关联。"
+      ],
+      "questions": [
+        "哪些失效被检测，哪些仍可能同时影响冗余路径？",
+        "验证结论依赖哪些工具和环境假设？"
+      ],
+      "diagnostic": "对指定故障模型执行故障注入，并保存工具版本、诊断、假设与评审结果；比较检测覆盖与残余风险。",
+      "challenge": {
+        "lens": "检测覆盖与验证证据",
+        "skills": [
+          "A6",
+          "A8",
+          "A10"
+        ],
+        "question": "双路计算一致时，是否仍存在共同原因失效？",
+        "variables": "故障集合、独立性、检测延迟、软件假设和证据覆盖。",
+        "model": "本站编辑诊断：每项安全主张必须对应故障模型、检测/恢复路径及可复查证据；重复硬件数量不是覆盖率。",
+        "crossover": "隔离和诊断能覆盖目标故障，且反应时间符合系统要求。",
+        "counterexample": "共享电源、相同软件缺陷或未验证假设使冗余路径同时失效。",
+        "validation": "在明确故障模型下检查隔离、注入、恢复和工具结果的可追溯性。",
+        "transfer": "可迁移至安全控制与可靠系统；不直接构成认证结论。"
+      },
+      "core": "共同参与安全计算系统机制和 SPARK 验证流程，将运行时检测与工程证据相衔接。",
+      "contributions": [
+        "作为共同发明人参与自动驾驶安全系统专利，涵盖锁步检测和隔离的安全控制路径。",
+        "作为官方列名贡献者参与 NVIDIA/AdaCore 的 SPARK 软件开发验证流程。"
+      ],
+      "background": "专利列十五位共同发明人；SPARK 项目 README 明确致谢 Hettena 对流程的贡献，但未说明其负责哪一条规范。不能从致谢推出主导作者，也不能把某一安全核心的设计独占归于他。",
+      "sourceFacts": [
+        {
+          "text": "专利图示包含安全核心的锁步比较以及与主要 SoC 分隔的安全 MCU 路径。",
+          "workId": "US11644834B2"
+        },
+        {
+          "text": "流程正文要求栈使用分析和全局验证评审；README 单独确认 Hettena 的共同参与，未给出逐条作者归属。",
+          "workId": "nvidia-spark-process-aaa7b573"
+        }
+      ],
+      "argument": "编辑解读：硬件冗余与软件证明解决不同故障；组合使用仍需说明共同原因失效、工具假设和剩余风险。",
+      "evidence": "编辑解读：硬件冗余与软件证明解决不同故障；组合使用仍需说明共同原因失效、工具假设和剩余风险。",
+      "sourceAudit": [
+        {
+          "workId": "US11644834B2",
+          "title": "Systems and methods for safe and reliable autonomous vehicles",
+          "authors": "Michael Alan Ditty; Gary Hicok; Jonathan Sweedler; Clement Farabet; Mohammed Abdulla Yousuf; Tai-Yuen Chan; Ram Ganapathi; Ashok Srinivasan; Michael Rod Truog; Karl Greb; John George Mathieson; David Nister; Kevin Flory; Daniel Perrin; Dan Hettena",
+          "date": "2023-05-09",
+          "url": "https://patents.google.com/patent/US11644834B2/en",
+          "locator": "Figs.7、16–17：安全核心、锁步比较和安全 MCU 隔离；inventor 名单",
+          "type": "专利说明书全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "十五人共同披露；不能分配某个模块的个人发明权",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06"
+        },
+        {
+          "workId": "nvidia-spark-process-aaa7b573",
+          "title": "NVIDIA/AdaCore SPARK Process — Unit Verification",
+          "authors": "NVIDIA 与 AdaCore；README 列 Brian Gaeke、Dan Hettena、Dmitry Kulagin、Duane McInerney、Erwan Le Guillou、Florian Schanda、Vasiliy Fofanov、Yannick Moy 为贡献者",
+          "date": "版本 aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e；2026-10-06 核验",
+          "url": "https://nvidia.github.io/spark-process/process/process/unit-verification.html",
+          "locator": "§6.5.2.5 stack usage；§6.5.3.1 全局评审；仓库 README Acknowledgements",
+          "type": "技术规范全文",
+          "contentStatus": "已取得正文并核验所列章节；非仅摘要或搜索片段",
+          "evidenceStrength": "强：署名及所列机制；不证明个人独占或生产收益",
+          "role": "README 仅确认 Hettena 参与流程，不证明其编写任一特定条款",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-06",
+          "attributionUrl": "https://github.com/NVIDIA/spark-process/blob/aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e/README.md",
+          "pinnedBodyUrl": "https://github.com/NVIDIA/spark-process/blob/aaa7b5733f94f7eaaa3fdfb3fa11f33b53e7cb8e/source/process/process/unit-verification.rst"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献及两项实质一手作品核验完成；不表示穷尽个人成果或独占团队成果。"
+      },
+      "boundary": "仅完成共同参与的有限贡献主线，不声称 Hettena 独创锁步机制或流程全部条款。项目声明不是当前内部流程或认证保证；专利也不证明产品通过安全认证。"
     }
   ],
   "research": {
@@ -19148,7 +20398,7 @@
       "tushar-krishna"
     ],
     "batchLog": "research/batches/2026-10-06.json",
-    "completedThisBatch": 58,
-    "totalProfiles": 263
+    "completedThisBatch": 76,
+    "totalProfiles": 264
   }
 }

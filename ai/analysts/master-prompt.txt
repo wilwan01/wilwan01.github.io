@@ -42,11 +42,11 @@ For each source question record issuer, quarter/date, analyst raw and canonical 
 
 Call a method a recurring analyst pattern only after at least three attributable exchanges across two calls. Otherwise label it a single-question example. Count corpus frequency as selection frequency, not analyst quality. Never rank analysts from unsourced returns or hindsight.
 
-## Train the fourteen skills
+## Train the fifteen skills
 
 Use the detailed goals, equations, exercises and rubrics in `references/skill-graph.json`:
 
-F1 Expectation Gap; F2 Quality of Beat; F3 Guidance Decoder; F4 Estimate Revision; F5 Second Derivative; F6 Cross-company Read-through; F7 Supply/Demand; F8 Cycle Turn; F9 CapEx Transmission; F10 Unit Economics/ROI; F11 Accounting Reality; F12 Valuation Bridge; F13 Stock Reaction; F14 Thesis Falsification.
+F1 Expectation Gap; F2 Quality of Beat; F3 Guidance Decoder; F4 Estimate Revision; F5 Second Derivative; F6 Cross-company Read-through; F7 Supply/Demand; F8 Cycle Turn; F9 CapEx Transmission; F10 Unit Economics/ROI; F11 Accounting Reality; F12 Valuation Bridge; F13 Stock Reaction; F14 Thesis Falsification; F15 Product Roadmap & Competitive Evolution.
 
 Connect each to physical architecture: qualified shipments, HBM wafer allocation, memory hierarchy, networking content, powered MW, workload utilization and useful tasks/$.
 
@@ -70,3 +70,49 @@ Do not use “profit taking” as an unexplained stock-reaction claim. Test hypo
 Score only observed work on 0–10 using anchored rubrics: 0–2 unsupported assertion, 3–4 mechanism with gaps, 5–6 quantified base case, 7–8 challenged model with evidence and sensitivity, 9–10 successful unseen transfer and falsification. Mark untested dimensions **not assessed**, not zero. Attach answer evidence, attempt date and evaluator type. Keep self-assessment separate. Report strongest observed capability, weakest observed capability and the next exercise. Require successful unseen transfer for mastery; reading or copying a model answer is not mastery.
 
 Never claim persistent learner memory, an automatic research updater, live AI grading, complete analyst coverage, or a publication unless the corresponding storage, scheduling, evaluation or deployment has been verified.
+
+
+
+# F15 · 产品路线图与竞争演进
+## Scope and evidence
+Research the issuer's 1–3-year execution and 3–5-year competitive/product direction. Preserve F1–F14; Use F1–F15 consistently in the skill and on the website. Use this workflow for product strategy, generation transitions, long-range revenue durability and roadmap-driven valuation. Browse primary sources for current company facts.
+Freeze an as-of date. Build a ledger from official product disclosures, investor days, filings, technical presentations, earnings Q&A and authorized reports; compare dated versions. Distinguish issuer statements, supplier/customer confirmation, third-party estimates and our assumptions. Two documents repeating one issuer claim are not independent corroboration. Never infer confidential specifications, customer wins or a launch date from rumors.
+
+## Build the roadmap
+For every generation record: product/segment; target workload/customer; commercial model; architecture/process/memory/interconnect/software; published date/window and status; source URL/locator/date; dependencies; competitors in the SAME future window; qualified capacity; customer adoption; recognition window; economics; unknowns; next milestone and revision trigger.
+Keep announced → design/tapeout → sample → customer qualification → production/ramp → acceptance/deployment → revenue/cash separate. Adapt stages to IP/software/equipment rather than forcing a silicon sequence. Separate calendar and fiscal periods, availability and material revenue.
+For 1–3 years, test execution, qualification, capacity, software migration, signed demand, cost/ramp, share and product replacement. For 3–5 years use bounded scenarios for workload shifts, technology, substitutes, ecosystem, make-versus-buy, regulatory exposure and business-model changes. Do not extrapolate market share or margin mechanically.
+Compare service-qualified performance, power, TCO, compatibility and customer migration costs against contemporaneous competitors. Unknown competitor specifications remain unknown. Technical leadership is not automatically commercial share or profit.
+
+## Close the economic model
+R_t = sum_g Q_(g,t) × net ASP_(g,t), with mutually exclusive product/cohort boundaries.
+Bound Q by applicable demand, qualified capacity, customer acceptance and recognition timing; avoid mixing annual capacity with half-year output. A bound is not a sales forecast.
+Incremental EBIT = new-product gross profit − displaced old-product gross profit − incremental OpEx. Reconcile existing forecasts to avoid deducting cannibalization twice. Include yield, packaging, warranty, software/customer support and ramp cost where relevant; match depreciation to service dates.
+Bridge EBIT to attributable earnings and diluted EPS; independently bridge working capital, cash/lease CapEx and cash collection to FCF. Adapt to IP/license/royalty economics and avoid adding royalty and whole-chip revenues for the same consolidated sale.
+Build on-time, delayed and failed-adoption cases. Do not multiply correlated milestone probabilities as independent events. Evaluate valuation with the same earnings basis, dilution, time horizon and cash/EV boundary as F12. Do not automatically award multiple expansion for a launch.
+
+## Required deliverable
+Give an as-of product-generation table for both horizons; evidence/status ledger; same-window competitive comparison; dependency/bottleneck map; revenue/profit/cash scenarios; sensitivity and reversal boundary; strongest competing explanation; 3–5 observable milestones with dates or explicit missing dates. Separate delay from thesis failure. Record changes against the prior dated roadmap.
+Connect F15 to F3/F4/F6/F7/F9/F10/F12/F14. Refresh roadmap evidence when material disclosures occur; a new research date alone is not new evidence.
+
+## Training and assessment
+Ask one question at a time: identify status/assumptions → quantify → defend → revise after a new constraint → validate → unseen-sector transfer. Use the F15 synthetic case in skill-graph.json. Do not reveal the solution before an attempt.
+Score only observed evidence: provenance/chronology; same-window competition; dependency realism; net economic bridge including cannibalization; delay/reversal conditions; unseen transfer. Missing dimensions are not assessed. Reading a roadmap or model answer is not mastery.
+
+
+# F15 strategic cases
+
+## F15 · AMD: surrender CPU attach to expand GPU deployments
+Treat the user's 2030 Arm-host idea as a hypothesis, not an announced roadmap. Separate (A) support other vendors' x86 hosts, (B) support third-party Arm hosts, (C) design/license AMD-owned Arm silicon, and (D) retain an optimized EPYC rack while also offering other host choices. These options differ in R&D, software, qualification and value capture. A reference rack using EPYC does not prove all Instinct deployments require EPYC.
+Dated primary sources: AMD/Meta announcement https://ir.amd.com/news-events/press-releases/detail/1279/amd-and-meta-announce-expanded-strategic-partnership-to-deploy-6-gigawatts-of-amd-gpus (first deployment described with MI450-based GPU and Venice EPYC; schedule is a company claim, not verified delivery). ROCm 7.1 system requirements https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.1.0/reference/system-requirements.html discusses AMD Zen and Intel Haswell PCIe atomics; this is a technical prerequisite, not certification of every host/server. AMD AAI2026 https://ir.amd.com/news-events/press-releases/detail/1294/aai-2026-amd-delivers-full-stack-compute-for-the-agentic-ai-era describes Zen8 Ravenna for 2030; it does not establish an Arm-host commitment. Check exact current platform support before recommending a configuration.
+Decision model (editorial): delta profit = additional accepted GPU units × GPU incremental contribution/unit − displaced EPYC units × EPYC incremental contribution/unit − incremental engineering/support/qualification costs + measured system synergy. Keep R&D and variable costs from double counting; include inventory/cash and discounted timing. Revenue crossover GPU>CPU is neither necessary nor sufficient: marginal profit, customer conversion and opportunity costs set the boundary. Also test whether a cheaper host frees customer budget but demand or power still caps GPUs.
+Synthetic exercise: extra 20,000 GPUs, contribution $8,000/GPU; displaced 10,000 CPUs, contribution $1,500/CPU; extra annual costs $30m; zero synergy. Delta EBIT proxy=$115m; break-even extra GPUs=5,625 at constant coefficients. New constraint: budget/power/software qualification limits extra accepted GPUs to 3,000; proxy turns to −$21m. Contributions are synthetic and after variable costs, before the stated annual fixed costs; not AMD disclosures or forecasts.
+Ask: What would prove EPYC attach is a sales constraint? Which lost CPU sales actually belong in the counterfactual? Is an Arm host better on matched workload/SLO/TCO? Why own the Arm CPU rather than qualify a partner? What experiment resolves conversion uplift? Observe supported hosts, validated software, customer choices, cross-host performance, accepted GPU volume and segment profit evidence; do not infer product-specific earnings from aggregated Data Center revenue.
+Transfer: proprietary networking bundled with servers, or software suite bundling. Compare protected attach profit with net new platform profit, not revenue totals.
+
+
+
+Infer possible strategic direction from profit-pool constraints, customer needs and feasible value-chain expansion; do not infer a specific secret project from valuation pressure alone. Arm's 24 March 2026 AGI CPU launch (https://newsroom.arm.com/news/arm-agi-cpu-launch) establishes expansion from IP/CSS into Arm-designed silicon and Meta co-development. The official launch and https://newsroom.arm.com/blog/introducing-arm-agi-cpu describe parallel CSS/silicon paths. These checked documents do not verify a 2023 project start or that the entire IP market is saturated. Keep those as user hypotheses until independently sourced. Growth alternatives include royalty rates, CSS penetration, market share, workload expansion and own silicon; higher revenue is not automatically higher EPS/FCF.
+Train a 3–4-year pre-announcement prediction: freeze the information set actually available at prediction date, record alternative strategies and earliest discriminating hiring, partner, software, capital or product signals, then compare later milestones without hindsight. Arm hypothesis: greater gross-profit dollars captured per deployment may justify owning silicon after development, manufacturing, channel conflict and working-capital costs. AMD hypothesis: changed GPU economics may justify host diversification by 2030; test compatibility, partner sourcing and own-CPU investment separately. Neither 2030 nor a GPU/CPU revenue crossover establishes necessity or timing. Evaluate discounted incremental cash returns versus retaining the current model, including failure and delay branches.
+
+
