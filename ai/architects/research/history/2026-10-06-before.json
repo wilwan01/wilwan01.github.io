@@ -1,0 +1,648 @@
+{
+  "baseCommit": "164820eec0959bf404e397e583d201967625a523",
+  "profiles": [
+    {
+      "id": "john-hennessy",
+      "name": "John Hennessy",
+      "field": "定量评估、软硬件协同设计",
+      "core": "架构选择必须通过完整工作负载和明确基线的定量比较来成立。",
+      "evidence": "Hennessy 与 Patterson 共同建立系统、定量的架构设计和评估方法。共同的图灵演讲及后续文章讨论领域专用软硬件协同、功耗和并行性的约束。本库把定量分解作为 Hennessy 条目的阅读重心，并不把共同成果归为一人独有。",
+      "habits": [
+        "先确定工作负载、比较基线和系统边界，再解释加速来自哪里。",
+        "分解执行时间，优先处理对整体结果影响最大的部分。",
+        "将编译器与硬件作为联动设计对象，而不是默认软件能自动利用新特性。",
+        "当工艺或功耗条件改变时，重新评估过去有效的性能扩展方式。"
+      ],
+      "questions": [
+        "被加速的部分占原始总时间多少？",
+        "局部加速后，剩余部分和通信会不会成为主导？",
+        "如果公平固定功耗或成本，排名是否仍然成立？"
+      ],
+      "boundary": "定量模型的精确外观不能补救错误的工作负载。平均结果可能隐藏尾延迟、阶段差异和规模变化。",
+      "diagnostic": "做端到端时间分解与敏感性分析，分别报告基线、优化部分、剩余部分以及规模扩大后的瓶颈。",
+      "notes": [
+        [
+          "e09",
+          "核心数与固定预算"
+        ],
+        [
+          "e12",
+          "内核加速与全服务性能"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH：Hennessy 与 Patterson 的定量方法",
+          "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "2018 · 学术组织说明"
+        ],
+        [
+          "A New Golden Age for Computer Architecture",
+          "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "2019 · 两人合著文章；大学托管全文"
+        ]
+      ],
+      "awardYear": 2001,
+      "award": "Eckert–Mauchly Award · 2001",
+      "challenge": {
+        "lens": "完整负载与基线",
+        "skills": [
+          "A2",
+          "A3",
+          "A9"
+        ],
+        "variables": "f：基线时间中被优化比例；s：该部分加速比；h：新增时间/基线时间。",
+        "model": "固定任务且分段可加时，T_new/T_old=(1-f)+f/s+h。",
+        "crossover": "f(1-1/s)>h；若重叠或负载改变，应重建模型。",
+        "counterexample": "被优化部分很小，局部大幅加速被固定等待淹没。",
+        "transfer": "从 CPU 指令优化迁移到推理 prefill/decode。",
+        "question": "被加速的部分占原始总时间多少？",
+        "validation": "做端到端时间分解与敏感性分析，分别报告基线、优化部分、剩余部分以及规模扩大后的瓶颈。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ]
+    },
+    {
+      "id": "david-patterson",
+      "name": "David Patterson",
+      "field": "简化接口、系统组合与开放架构",
+      "core": "重新组织系统和接口，可能比追求更昂贵的单个部件更有效。",
+      "evidence": "RAID 合作论文以廉价磁盘的组合、并行与冗余替代单个大型昂贵磁盘，并比较成本、性能和可靠性。与 Hennessy 的共同文章讨论领域专用语言和架构、开放指令集以及敏捷硬件开发。此处将组合与接口作为阅读重心，不是与 Hennessy 划分思想所有权。",
+      "habits": [
+        "把昂贵部件提供的功能拆开，看能否由不同的系统组织完成。",
+        "比较组合后的完整成本、性能和可靠性，而不是只比较单个元件。",
+        "检查硬件与软件的接口是否保留了可利用的领域结构。",
+        "把可修改、可验证的实现与迭代过程看作架构创新的一部分。"
+      ],
+      "questions": [
+        "贵部件的优势能否由组织、并行或冗余获得？",
+        "接口丢掉了哪些对优化有用的信息？",
+        "组合之后新增了什么故障、控制和维护成本？"
+      ],
+      "boundary": "廉价部件组合不必然更便宜或更可靠。相关故障、重建、冗余和管理开销必须计入；开放 ISA 本身不保证高性能。",
+      "diagnostic": "在相同服务要求下比较单体与组合方案的总成本、吞吐、故障恢复和维护负担。",
+      "notes": [
+        [
+          "e04",
+          "已知良品裸片与成品经济性"
+        ],
+        [
+          "e11",
+          "共享内存的系统代价"
+        ]
+      ],
+      "sources": [
+        [
+          "A Case for Redundant Arrays of Inexpensive Disks (RAID)",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/1987/5853.html",
+          "1987 · Patterson、Gibson、Katz 合作论文"
+        ],
+        [
+          "A New Golden Age for Computer Architecture",
+          "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "2019 · Hennessy 与 Patterson 合著文章"
+        ]
+      ],
+      "awardYear": 2008,
+      "award": "Eckert–Mauchly Award · 2008",
+      "challenge": {
+        "lens": "系统组合与接口",
+        "skills": [
+          "A1",
+          "A7",
+          "A10"
+        ],
+        "variables": "C：同周期完整成本；Q：满足语义、质量和 SLO 的服务量。",
+        "model": "比较单体 A 与组合 B 的 C_A/Q_A、C_B/Q_B，包含通信和恢复。",
+        "crossover": "C_B/C_A<Q_B/Q_A，且可靠性与部署门槛通过。",
+        "counterexample": "廉价部件组合的协调和故障成本高于部件节省。",
+        "transfer": "迁移到 chiplet 与 scale-out。",
+        "question": "贵部件的优势能否由组织、并行或冗余获得？",
+        "validation": "在相同服务要求下比较单体与组合方案的总成本、吞吐、故障恢复和维护负担。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "datacenter",
+        "gpu-ai"
+      ]
+    },
+    {
+      "id": "richard-grisenthwaite",
+      "name": "Richard Grisenthwaite",
+      "field": "ISA 演进、系统契约与安全验证",
+      "core": "架构变化必须同时定义保证、实现边界和软件验证路径。",
+      "evidence": "Arm 作者资料记录其长期架构演进工作；本人 Morello 文章介绍基于 CHERI 原则的实验性架构与生态验证，CCA 文章讨论机密计算基础。实验项目、标准架构与具体实现的保证应分别评价。",
+      "habits": [
+        "先说明架构向软件承诺什么。",
+        "明确攻击者、信任域与保证边界。",
+        "通过原型和软件反馈检验新能力。",
+        "把长期兼容与跨层验证纳入演进。"
+      ],
+      "questions": [
+        "保证属于 ISA、平台还是具体实现？",
+        "新安全能力解决什么威胁，又没有解决什么？",
+        "软件迁移和验证成本是否可承担？"
+      ],
+      "boundary": "Morello 是实验性 CHERI 相关架构，不能写成所有 Armv9 产品都具备的能力；安全属性受威胁模型、实现和软件采用限制。",
+      "diagnostic": "定义威胁模型与不变量，检查 ISA/编译/OS 组合；用原型软件、漏洞类别测试及形式方法验证，并核算兼容与部署成本。",
+      "notes": [
+        [
+          "e13",
+          "状态、表示与恢复"
+        ],
+        [
+          "e11",
+          "共享与信任边界"
+        ]
+      ],
+      "sources": [
+        [
+          "Arm Morello: What Is It and Why Is It Important?",
+          "https://newsroom.arm.com/blog/morello",
+          "2022 · 本人文章；实验架构与生态验证"
+        ],
+        [
+          "Arm CCA will Put Confidential Compute in the Hands of Every Developer",
+          "https://newsroom.arm.com/news/arm-cca-will-put-confidential-compute-in-the-hands-of-every-developer",
+          "2021 · 本人文章；机密计算"
+        ],
+        [
+          "Arm：Grisenthwaite 作者资料",
+          "https://newsroom.arm.com/author/richard-grisenthwaite",
+          "长期架构演进背景"
+        ]
+      ],
+      "challenge": {
+        "lens": "ISA 契约与安全挑战",
+        "skills": [
+          "A1",
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "一种安全能力有额外性能和软件迁移成本：哪些保证必须先成立，哪些成本才可以比较？",
+        "variables": "G_required：明确威胁模型下要求的保证；C：同周期完整服务成本；Q：SLO 合格任务；K：新增迁移成本。",
+        "model": "先证明或验证候选满足 G_required；通过硬门槛后，按 (C_new+K)/Q_new 与满足同等保证的基线比较。",
+        "crossover": "经济边界以相同安全保证为前提；不能用较低成本抵消缺失的安全属性，也不杜撰攻击概率来估算收益。",
+        "counterexample": "保护内存内容，但未覆盖侧信道、可用性或不受约束的软件路径。",
+        "validation": "跨 ISA、编译器和 OS 检查契约，区分形式证明与经验测试；记录防护覆盖、开销、迁移与回退。",
+        "transfer": "迁移到 accelerator 隔离、CXL 多租户或虚拟机机密计算。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "correctness"
+      ]
+    },
+    {
+      "id": "krste-asanovic",
+      "name": "Krste Asanović",
+      "field": "开放接口与可演进实现",
+      "core": "把稳定接口、可选扩展和具体实现分开，降低探索架构的耦合。",
+      "evidence": "本人 Berkeley 出版记录涵盖 RISC-V、向量与物理设计工具；开放性之外仍需验证实现质量。",
+      "habits": [
+        "分离 ISA 与微架构。",
+        "明确扩展边界。",
+        "检查软件与验证生态。",
+        "比较实现而非标签。"
+      ],
+      "questions": [
+        "开放接口减少了哪项成本，又新增了哪些兼容成本？",
+        "扩展怎样避免软件碎片化？",
+        "实现能否兑现目标负载？"
+      ],
+      "boundary": "开放 ISA 不自动带来性能、低成本或完整软件支持。",
+      "diagnostic": "比较匹配实现，检查工具链、扩展兼容、验证范围与迁移投入。",
+      "notes": [
+        [
+          "e04",
+          "芯粒与成品经济性"
+        ],
+        [
+          "e14",
+          "服务价值与比较单位"
+        ]
+      ],
+      "sources": [
+        [
+          "Berkeley：本人出版记录",
+          "https://people.eecs.berkeley.edu/~krste/publications.html",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "开放接口挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "variables": "C_saved：减少授权及适配投入；C_extra：验证、生态和碎片化投入。",
+        "model": "完整成本变化 C_extra-C_saved，另设性能与兼容门槛。",
+        "crossover": "C_saved > C_extra 且目标服务合格。",
+        "counterexample": "自定义扩展导致工具链和二进制割裂。",
+        "transfer": "迁移到 chiplet 或互连接口。",
+        "question": "开放接口减少了哪项成本，又新增了哪些兼容成本？",
+        "validation": "比较匹配实现，检查工具链、扩展兼容、验证范围与迁移投入。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "andrew-waterman",
+      "name": "Andrew Waterman",
+      "field": "ISA 简洁性与编码取舍",
+      "core": "接口选择要经得起代码、实现复杂度和未来演进的共同检验。",
+      "evidence": "其 Designing a RISC-V ISA 博士论文与压缩指令研究是直接依据；不把 ISA 简洁等同实现简单。",
+      "habits": [
+        "列出接口的长期约束。",
+        "测代码与取指行为。",
+        "核算解码和验证成本。",
+        "在多个负载上检验取舍。"
+      ],
+      "questions": [
+        "压缩编码节省的取指成本是否覆盖解码代价？",
+        "哪些负载没有收益？",
+        "扩展是否保持接口一致性？"
+      ],
+      "boundary": "代码字节减少不直接等于同比性能或能量提升。",
+      "diagnostic": "固定程序语义，测代码大小、I-cache/TLB miss、解码压力与总能量。",
+      "notes": [
+        [
+          "e07",
+          "翻译与数据放置"
+        ],
+        [
+          "e12",
+          "局部加速与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "博士论文：Design of the RISC-V ISA",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-1.html",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "接口编码挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A8"
+        ],
+        "variables": "E_fetch_saved：减少取指能量；E_decode_extra：新增解码能量。",
+        "model": "同工作量下比较两项，再测关键路径。",
+        "crossover": "E_fetch_saved > E_decode_extra，且时序与兼容通过。",
+        "counterexample": "取指不绑定，压缩收益小而解码成本增加。",
+        "transfer": "迁移到数据压缩或网络协议编码。",
+        "question": "压缩编码节省的取指成本是否覆盖解码代价？",
+        "validation": "固定程序语义，测代码大小、I-cache/TLB miss、解码压力与总能量。"
+      },
+      "domain": "foundations",
+      "relatedDomains": [
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "andre-seznec",
+      "name": "André Seznec",
+      "field": "分支预测、历史组织与缓存映射",
+      "award": "Eckert–Mauchly Award · 2025",
+      "core": "预测能力来自信息的组织与选择，不只来自存储容量的增加。",
+      "evidence": "与 Pierre Michaud 合作的 TAGE 论文组合几何递增的历史长度与部分标签，以有限存储利用不同尺度的分支相关性。官方获奖说明同时认可偏斜关联缓存贡献。本条目以 TAGE 为思想提炼的主要依据，不把历史研究的领先程度当作所有现代负载上的保证。",
+      "habits": [
+        "先检查决策所需的相关信息在哪个历史尺度出现。",
+        "区分真正相关与索引碰撞产生的表面相关。",
+        "给不同尺度的信息不同表示，而不是让所有情况共享一个固定窗口。",
+        "将预测准确率与访问延迟、存储和训练过程共同评价。"
+      ],
+      "questions": [
+        "错误来自信息不足、表示丢失，还是不同情境互相污染？",
+        "增加历史或容量之后，新增信息是否真正有用？",
+        "更准确的结果能否在需要决策的时刻到达？"
+      ],
+      "boundary": "分支预测的结构不能直接移植成预取器或通用学习模型。长历史的收益必须扣除别名、训练、访问时间和能耗成本。",
+      "diagnostic": "按分支及阶段拆解误预测，对历史长度、容量与标签做消融；联合报告净执行时间、恢复成本和实现预算。",
+      "notes": [
+        [
+          "e08",
+          "推测工作与净收益"
+        ],
+        [
+          "e12",
+          "局部指标与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "A case for (partially) TAgged GEometric history length branch prediction",
+          "https://jilp.org/vol8/index.html",
+          "2006 · Seznec 与 Michaud 合作论文；期刊目录及全文入口"
+        ],
+        [
+          "IEEE Computer Society：2025 获奖说明",
+          "https://www.computer.org/press-room/eckert-mauchly-award-recipient-2025",
+          "2025 · TAGE 与偏斜关联缓存"
+        ]
+      ],
+      "awardYear": 2025,
+      "challenge": {
+        "lens": "信息组织而非容量崇拜",
+        "skills": [
+          "A1",
+          "A2",
+          "A9"
+        ],
+        "variables": "Δm：每任务减少误预测；R_e：暴露恢复秒/次；H：新增访问和管理时间。",
+        "model": "净时间节省近似 Δm R_e-H；时序与面积另设预算。",
+        "crossover": "Δm R_e>H；更多历史或标签必须带来可兑现信息。",
+        "counterexample": "增加状态扩大访问延迟，或相位变化使信息失效。",
+        "transfer": "迁移到预取预测器或请求路由策略。",
+        "question": "错误来自信息不足、表示丢失，还是不同情境互相污染？",
+        "validation": "按分支及阶段拆解误预测，对历史长度、容量与标签做消融；联合报告净执行时间、恢复成本和实现预算。"
+      },
+      "domain": "cpu",
+      "relatedDomains": []
+    },
+    {
+      "id": "susan-eggers",
+      "name": "Susan Eggers",
+      "field": "SMT、动态资源共享与线程互补",
+      "award": "Eckert–Mauchly Award · 2018",
+      "core": "让独立工作动态共享闲置资源，同时计算共享引入的干扰。",
+      "evidence": "与团队合作的 SMT 研究允许多个线程在同一周期使用超标量执行资源。1997 年论文比较线程级和指令级并行，讨论静态资源划分的不足，并明确考察缓存干扰及更高的存储需求。提炼重点是动态互补，不是把历史仿真收益推广到今天的服务器。",
+      "habits": [
+        "先找执行槽为何空闲，再决定增加上下文还是增加执行资源。",
+        "让线程级并行补充单线程中不足的指令级并行。",
+        "比较共享与静态划分，观察负载变化下的适应能力。",
+        "把资源利用的改善与缓存、预测和带宽干扰同时计入。"
+      ],
+      "questions": [
+        "多个线程需求互补，还是争抢同一资源？",
+        "吞吐提高之后，关键请求是否更慢？",
+        "什么负载应共享一个核心，什么负载应隔离？"
+      ],
+      "boundary": "更高利用率不保证更高的合格吞吐。缓存与带宽竞争、尾延迟、隔离及安全要求可能改变结论；SMT 线程不等同于独立物理核心。",
+      "diagnostic": "固定物理核心与负载，比较 SMT 开关及不同线程配对，测量合格吞吐、尾延迟、执行资源占用和共享缓存与带宽干扰。",
+      "notes": [
+        [
+          "e09",
+          "更多线程与有效服务器"
+        ],
+        [
+          "e03",
+          "同一 SKU 的延迟分布"
+        ]
+      ],
+      "sources": [
+        [
+          "Simultaneous Multithreading 项目资料",
+          "https://dada.cs.washington.edu/smt/",
+          "华盛顿大学 · 团队研究与原始论文入口"
+        ],
+        [
+          "Converting Thread-Level Parallelism to Instruction-Level Parallelism via Simultaneous Multithreading",
+          "https://dada.cs.washington.edu/smt/papers/tlpabstract.html",
+          "1997 · 团队合作论文摘要"
+        ]
+      ],
+      "awardYear": 2018,
+      "challenge": {
+        "lens": "SMT 互补与干扰",
+        "skills": [
+          "A3",
+          "A5",
+          "A7"
+        ],
+        "variables": "G：SLO 合格任务/s；P：平台 W；同物理核心和负载。",
+        "model": "比较 SMT 开关的 G 与 G/P，不将平均吞吐替代各租户 SLO。",
+        "crossover": "G_on/G_off>P_on/P_off 才改善功率效率，且尾部门槛通过。",
+        "counterexample": "线程竞争同一缓存和带宽，吞吐增加但关键租户违约。",
+        "transfer": "迁移到 GPU 多租户或共享 memory pool。",
+        "question": "多个线程需求互补，还是争抢同一资源？",
+        "validation": "固定物理核心与负载，比较 SMT 开关及不同线程配对，测量合格吞吐、尾延迟、执行资源占用和共享缓存与带宽干扰。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "dirk-meyer",
+      "name": "Dirk Meyer",
+      "field": "兼容 ISA 下的实现重组",
+      "core": "保留软件接口，同时重组执行与供给资源来改变性能边界。",
+      "evidence": "K7 合作论文列出 Meyer 与 Weber 等作者；奖项说明记录其高性能处理器贡献。",
+      "habits": [
+        "保留软件接口，同时重组执行与供给资源来改变性能边界。",
+        "先固定任务、正确性与资源边界，再判断 兼容 ISA 下的实现重组 的收益。",
+        "把新增负担显式放入比较：偏向峰值浮点使实际服务前端或内存瓶颈更严重。"
+      ],
+      "questions": [
+        "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
+      "diagnostic": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "A Seventh-Generation x86 Microprocessor：作者提供的合作论文",
+          "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "兼容 ISA 下的实现重组挑战",
+        "skills": [
+          "A3",
+          "A8",
+          "A10"
+        ],
+        "question": "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
+        "variables": "w_i：任务比例；T_i：各任务秒数；P：功率预算；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较固定任务组合 Σw_i T_i 与面积、功率硬约束；不能仅平均 IPC。",
+        "crossover": "资源重组的加权任务收益需覆盖频率和其他任务损失。",
+        "counterexample": "偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
+        "validation": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
+        "transfer": "迁移到 CPU 与加速器资源配比。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "glenn-hinton",
+      "name": "Glenn Hinton",
+      "field": "流水深度、预测与恢复",
+      "core": "频率收益必须同分支失误、依赖等待和功耗一起评估。",
+      "evidence": "Intel 的 Pentium 4 合作论文讨论深流水、执行与前端设计；奖项记录其微处理器贡献。",
+      "habits": [
+        "频率收益必须同分支失误、依赖等待和功耗一起评估。",
+        "先固定任务、正确性与资源边界，再判断 流水深度、预测与恢复 的收益。",
+        "把新增负担显式放入比较：失误重叠与资源竞争使简单 CPI 分解失真。"
+      ],
+      "questions": [
+        "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。失误重叠与资源竞争使简单 CPI 分解失真。",
+      "diagnostic": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Intel Technology Journal：Pentium 4 微架构合作论文",
+          "https://www.intel.com/content/dam/www/public/us/en/documents/research/2001-vol05-iss-1-intel-technology-journal.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "流水深度、预测与恢复挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A7"
+        ],
+        "question": "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
+        "variables": "c0：基础 CPI；m：失误/指令；p：惩罚周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T/N≈(c0+mp)/f；是假设惩罚暴露的近似。",
+        "crossover": "(c0_new+m p_new)/f_new < (c0_old+m p_old)/f_old；解 m 的边界。",
+        "counterexample": "失误重叠与资源竞争使简单 CPI 分解失真。",
+        "validation": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
+        "transfer": "迁移到推测深度与验证成本。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "lieven-eeckhout",
+      "name": "Lieven Eeckhout",
+      "field": "性能模型与归因",
+      "core": "先建立能解释性能差异的模型，再选择需要改变的资源。",
+      "evidence": "Maurice Wilkes 官方说明表彰其架构性能分析与建模贡献。",
+      "habits": [
+        "先建立能解释性能差异的模型，再选择需要改变的资源。",
+        "先固定任务、正确性与资源边界，再判断 性能模型与归因 的收益。",
+        "把新增负担显式放入比较：停顿类别重叠或测量伪影导致错误优化。"
+      ],
+      "questions": [
+        "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。停顿类别重叠或测量伪影导致错误优化。",
+      "diagnostic": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "性能模型与归因挑战",
+        "skills": [
+          "A3",
+          "A9",
+          "A2"
+        ],
+        "question": "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
+        "variables": "T：任务秒；x：资源配置；ΔT/Δx：实测敏感性；参数需从待评估系统测量，以下为条件模型。",
+        "model": "归因不是因果；用受控资源扰动估计 ΔT，再校准重叠项。",
+        "crossover": "资源成本相同时选择可兑现 ΔT 最大的改动，非最大归因栏。",
+        "counterexample": "停顿类别重叠或测量伪影导致错误优化。",
+        "validation": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
+        "transfer": "迁移到推理服务的 compute/communication 归因。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "tim-sherwood",
+      "name": "Tim Sherwood",
+      "field": "程序阶段与代表性评估",
+      "core": "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
+      "evidence": "Maurice Wilkes 官方说明记录其程序分析、架构建模与安全贡献。",
+      "habits": [
+        "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
+        "先固定任务、正确性与资源边界，再判断 程序阶段与代表性评估 的收益。",
+        "把新增负担显式放入比较：短热点片段遗漏启动、GC 或尾部阶段。"
+      ],
+      "questions": [
+        "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。短热点片段遗漏启动、GC 或尾部阶段。",
+      "diagnostic": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "程序阶段与代表性评估挑战",
+        "skills": [
+          "A9",
+          "A3",
+          "A2"
+        ],
+        "question": "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
+        "variables": "w_i：阶段时间权重；T_i：阶段成本；ε：估计误差；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_est=Σw_i T_i；必须验证阶段选择、权重与重构误差。",
+        "crossover": "收益的置信区间须超过采样误差，且覆盖稀有关键阶段。",
+        "counterexample": "短热点片段遗漏启动、GC 或尾部阶段。",
+        "validation": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
+        "transfer": "迁移到多轮 agent 的 CPU/GPU 阶段采样。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 1
+    }
+  ]
+}

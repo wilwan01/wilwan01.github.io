@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -95,7 +95,11 @@
         "magnus-bruce",
         "rabin-sugumar",
         "earl-killian",
-        "rick-hetherington"
+        "rick-hetherington",
+        "ivan-godard",
+        "christian-jacobi",
+        "brad-burgess",
+        "jeff-stuecheli"
       ]
     },
     {
@@ -131,7 +135,9 @@
         "pradeep-dubey",
         "ralph-wittig",
         "dennis-abts",
-        "tushar-krishna"
+        "tushar-krishna",
+        "peter-hofstee",
+        "keith-underwood"
       ]
     },
     {
@@ -219,7 +225,8 @@
         "tom-conte",
         "guy-steele",
         "katherine-yelick",
-        "michael-gschwind"
+        "michael-gschwind",
+        "tim-mattson"
       ]
     },
     {
@@ -294,7 +301,8 @@
         "david-e-shaw",
         "pete-bannon",
         "justin-rattner",
-        "john-shalf"
+        "john-shalf",
+        "todd-takken"
       ]
     },
     {
@@ -330,21 +338,18 @@
       "id": "john-hennessy",
       "name": "John Hennessy",
       "field": "定量评估、软硬件协同设计",
-      "core": "架构选择必须通过完整工作负载和明确基线的定量比较来成立。",
-      "evidence": "Hennessy 与 Patterson 共同建立系统、定量的架构设计和评估方法。共同的图灵演讲及后续文章讨论领域专用软硬件协同、功耗和并行性的约束。本库把定量分解作为 Hennessy 条目的阅读重心，并不把共同成果归为一人独有。",
+      "core": "与 Patterson 共同建立系统、定量的架构设计方法，使 RISC 和软硬件协同成为可验证的设计路线。",
+      "evidence": "官方 2017 图灵奖理由定位于系统、定量的方法及其长期影响。2019 年合著文章解释：通用处理器受能耗与并行利用限制时，专用化需要连同软件、数据表示和工作负载一起设计；不能只更换计算单元。",
       "habits": [
-        "先确定工作负载、比较基线和系统边界，再解释加速来自哪里。",
-        "分解执行时间，优先处理对整体结果影响最大的部分。",
-        "将编译器与硬件作为联动设计对象，而不是默认软件能自动利用新特性。",
-        "当工艺或功耗条件改变时，重新评估过去有效的性能扩展方式。"
+        "把编译器、处理器和完整应用放到同一量化比较中。",
+        "局部设计收益在完整软件栈和功耗预算下还剩多少？"
       ],
       "questions": [
-        "被加速的部分占原始总时间多少？",
-        "局部加速后，剩余部分和通信会不会成为主导？",
-        "如果公平固定功耗或成本，排名是否仍然成立？"
+        "局部设计收益在完整软件栈和功耗预算下还剩多少？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "定量模型的精确外观不能补救错误的工作负载。平均结果可能隐藏尾延迟、阶段差异和规模变化。",
-      "diagnostic": "做端到端时间分解与敏感性分析，分别报告基线、优化部分、剩余部分以及规模扩大后的瓶颈。",
+      "boundary": "RISC 不等于“指令越少越好”；专用化收益依赖稳定负载、软件支持和端到端占比。该文章中的预测不等于后来产品已实现的事实。",
+      "diagnostic": "围绕“局部设计收益在完整软件栈和功耗预算下还剩多少？”测量下列变量：f：可加速时间比例；s：局部加速；h：额外系统时间比例。 将假设与结果分别记录。",
       "notes": [
         [
           "e09",
@@ -370,45 +375,92 @@
       "awardYear": 2001,
       "award": "Eckert–Mauchly Award · 2001",
       "challenge": {
-        "lens": "完整负载与基线",
+        "lens": "把处理器、编译器和实测负载作为联合设计对象，推动",
         "skills": [
           "A2",
           "A3",
+          "A8",
           "A9"
         ],
-        "variables": "f：基线时间中被优化比例；s：该部分加速比；h：新增时间/基线时间。",
-        "model": "固定任务且分段可加时，T_new/T_old=(1-f)+f/s+h。",
-        "crossover": "f(1-1/s)>h；若重叠或负载改变，应重建模型。",
-        "counterexample": "被优化部分很小，局部大幅加速被固定等待淹没。",
-        "transfer": "从 CPU 指令优化迁移到推理 prefill/decode。",
-        "question": "被加速的部分占原始总时间多少？",
-        "validation": "做端到端时间分解与敏感性分析，分别报告基线、优化部分、剩余部分以及规模扩大后的瓶颈。"
+        "variables": "f：可加速时间比例；s：局部加速；h：额外系统时间比例。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T新/T旧=(1-f)+f/s+h，仅适用于固定任务、各阶段时间可加。",
+        "crossover": "f(1-1/s)>h 才产生净收益；并发重叠时须重建模型。",
+        "counterexample": "加速内核仅占少量时间，数据转换和传输反而主导。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "局部设计收益在完整软件栈和功耗预算下还剩多少？",
+        "validation": "围绕“局部设计收益在完整软件栈和功耗预算下还剩多少？”测量下列变量：f：可加速时间比例；s：局部加速；h：额外系统时间比例。 将假设与结果分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "cpu",
         "gpu-ai"
+      ],
+      "contributions": [
+        "把处理器、编译器和实测负载作为联合设计对象，推动 RISC 从指令简化走向完整系统效率。",
+        "建立可比较、可解释的架构评估方法；2019 年共同文章把这一路线延伸到领域专用架构。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Hennessy 的 Stanford/MIPS 与 Patterson 的 Berkeley RISC 轨迹相互印证；图灵奖是共同授予，不能把共同的方法和文章归为个人独有。",
+      "argument": "官方 2017 图灵奖理由定位于系统、定量的方法及其长期影响。2019 年合著文章解释：通用处理器受能耗与并行利用限制时，专用化需要连同软件、数据表示和工作负载一起设计；不能只更换计算单元。",
+      "sourceAudit": [
+        {
+          "title": "John Hennessy and David Patterson Share ACM Turing Award",
+          "authors": "Mark D. Hill / ACM SIGARCH",
+          "date": "2018-04-12",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "locator": "正文引述官方 2017 获奖理由",
+          "type": "官方学术组织文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位；SIGARCH 转引官方 citation",
+          "retrievedSha256": "b36f5284eae29036f605a0bdcad23e278d5dfbed4efebe8c93c34f9fcb3c6922"
+        },
+        {
+          "title": "A New Golden Age for Computer Architecture",
+          "authors": "John L. Hennessy; David A. Patterson",
+          "date": "2019-02",
+          "url": "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "locator": "CACM 62(2), pp.48–60；RISC、领域专用架构章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "a65ddd6bcd9c44a16bfcaba364b31c56ce75f7c868857c957988323528f498e9"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 2017,
+          "citationZh": "共同建立系统、定量的计算机体系结构设计与评估方法，对微处理器行业产生持久影响。",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "paraphrase": true,
+          "sourceNote": "ACM SIGARCH 文章转引官方 citation；原 ACM 页面访问受限。"
+        }
       ]
     },
     {
       "id": "david-patterson",
       "name": "David Patterson",
       "field": "简化接口、系统组合与开放架构",
-      "core": "重新组织系统和接口，可能比追求更昂贵的单个部件更有效。",
-      "evidence": "RAID 合作论文以廉价磁盘的组合、并行与冗余替代单个大型昂贵磁盘，并比较成本、性能和可靠性。与 Hennessy 的共同文章讨论领域专用语言和架构、开放指令集以及敏捷硬件开发。此处将组合与接口作为阅读重心，不是与 Hennessy 划分思想所有权。",
+      "core": "与 Hennessy 共同建立系统、定量的架构设计方法，使 RISC 和软硬件协同成为可验证的设计路线。",
+      "evidence": "官方 2017 图灵奖理由定位于系统、定量的方法及其长期影响。2019 年合著文章解释：通用处理器受能耗与并行利用限制时，专用化需要连同软件、数据表示和工作负载一起设计；不能只更换计算单元。",
       "habits": [
-        "把昂贵部件提供的功能拆开，看能否由不同的系统组织完成。",
-        "比较组合后的完整成本、性能和可靠性，而不是只比较单个元件。",
-        "检查硬件与软件的接口是否保留了可利用的领域结构。",
-        "把可修改、可验证的实现与迭代过程看作架构创新的一部分。"
+        "先定义共同软件接口，再比较不同实现和专用化的完整成本。",
+        "局部设计收益在完整软件栈和功耗预算下还剩多少？"
       ],
       "questions": [
-        "贵部件的优势能否由组织、并行或冗余获得？",
-        "接口丢掉了哪些对优化有用的信息？",
-        "组合之后新增了什么故障、控制和维护成本？"
+        "局部设计收益在完整软件栈和功耗预算下还剩多少？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "廉价部件组合不必然更便宜或更可靠。相关故障、重建、冗余和管理开销必须计入；开放 ISA 本身不保证高性能。",
-      "diagnostic": "在相同服务要求下比较单体与组合方案的总成本、吞吐、故障恢复和维护负担。",
+      "boundary": "RISC 不等于“指令越少越好”；专用化收益依赖稳定负载、软件支持和端到端占比。该文章中的预测不等于后来产品已实现的事实。",
+      "diagnostic": "围绕“局部设计收益在完整软件栈和功耗预算下还剩多少？”测量下列变量：f：可加速时间比例；s：局部加速；h：额外系统时间比例。 将假设与结果分别记录。",
       "notes": [
         [
           "e04",
@@ -429,29 +481,84 @@
           "A New Golden Age for Computer Architecture",
           "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
           "2019 · Hennessy 与 Patterson 合著文章"
+        ],
+        [
+          "John Hennessy and David Patterson Share ACM Turing Award",
+          "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "2018-04-12 · 官方学术组织文章 · 正文引述官方 2017 获奖理由"
         ]
       ],
       "awardYear": 2008,
       "award": "Eckert–Mauchly Award · 2008",
       "challenge": {
-        "lens": "系统组合与接口",
+        "lens": "把处理器、编译器和实测负载作为联合设计对象，推动",
         "skills": [
-          "A1",
-          "A7",
-          "A10"
+          "A2",
+          "A3",
+          "A8",
+          "A9"
         ],
-        "variables": "C：同周期完整成本；Q：满足语义、质量和 SLO 的服务量。",
-        "model": "比较单体 A 与组合 B 的 C_A/Q_A、C_B/Q_B，包含通信和恢复。",
-        "crossover": "C_B/C_A<Q_B/Q_A，且可靠性与部署门槛通过。",
-        "counterexample": "廉价部件组合的协调和故障成本高于部件节省。",
-        "transfer": "迁移到 chiplet 与 scale-out。",
-        "question": "贵部件的优势能否由组织、并行或冗余获得？",
-        "validation": "在相同服务要求下比较单体与组合方案的总成本、吞吐、故障恢复和维护负担。"
+        "variables": "f：可加速时间比例；s：局部加速；h：额外系统时间比例。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T新/T旧=(1-f)+f/s+h，仅适用于固定任务、各阶段时间可加。",
+        "crossover": "f(1-1/s)>h 才产生净收益；并发重叠时须重建模型。",
+        "counterexample": "加速内核仅占少量时间，数据转换和传输反而主导。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "局部设计收益在完整软件栈和功耗预算下还剩多少？",
+        "validation": "围绕“局部设计收益在完整软件栈和功耗预算下还剩多少？”测量下列变量：f：可加速时间比例；s：局部加速；h：额外系统时间比例。 将假设与结果分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "datacenter",
         "gpu-ai"
+      ],
+      "contributions": [
+        "把处理器、编译器和实测负载作为联合设计对象，推动 RISC 从指令简化走向完整系统效率。",
+        "建立可比较、可解释的架构评估方法；2019 年共同文章把这一路线延伸到领域专用架构。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Hennessy 的 Stanford/MIPS 与 Patterson 的 Berkeley RISC 轨迹相互印证；图灵奖是共同授予，不能把共同的方法和文章归为个人独有。",
+      "argument": "官方 2017 图灵奖理由定位于系统、定量的方法及其长期影响。2019 年合著文章解释：通用处理器受能耗与并行利用限制时，专用化需要连同软件、数据表示和工作负载一起设计；不能只更换计算单元。",
+      "sourceAudit": [
+        {
+          "title": "John Hennessy and David Patterson Share ACM Turing Award",
+          "authors": "Mark D. Hill / ACM SIGARCH",
+          "date": "2018-04-12",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "locator": "正文引述官方 2017 获奖理由",
+          "type": "官方学术组织文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位；SIGARCH 转引官方 citation",
+          "retrievedSha256": "b36f5284eae29036f605a0bdcad23e278d5dfbed4efebe8c93c34f9fcb3c6922"
+        },
+        {
+          "title": "A New Golden Age for Computer Architecture",
+          "authors": "John L. Hennessy; David A. Patterson",
+          "date": "2019-02",
+          "url": "https://www.doc.ic.ac.uk/~wl/teachlocal/arch/papers/cacm19golden-age.pdf",
+          "locator": "CACM 62(2), pp.48–60；RISC、领域专用架构章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "a65ddd6bcd9c44a16bfcaba364b31c56ce75f7c868857c957988323528f498e9"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM A.M. Turing Award",
+          "year": 2017,
+          "citationZh": "共同建立系统、定量的计算机体系结构设计与评估方法，对微处理器行业产生持久影响。",
+          "url": "https://www.sigarch.org/john-hennessy-and-david-patterson-share-acm-turing-award/",
+          "paraphrase": true,
+          "sourceNote": "ACM SIGARCH 文章转引官方 citation；原 ACM 页面访问受限。"
+        }
       ]
     },
     {
@@ -1220,21 +1327,18 @@
       "id": "richard-grisenthwaite",
       "name": "Richard Grisenthwaite",
       "field": "ISA 演进、系统契约与安全验证",
-      "core": "架构变化必须同时定义保证、实现边界和软件验证路径。",
-      "evidence": "Arm 作者资料记录其长期架构演进工作；本人 Morello 文章介绍基于 CHERI 原则的实验性架构与生态验证，CCA 文章讨论机密计算基础。实验项目、标准架构与具体实现的保证应分别评价。",
+      "core": "以 Morello 能力指针和 CCA Realm 两条路线，推动 Arm 分别限制内存访问权限与云端软件信任范围。",
+      "evidence": "2022 Morello 文章聚焦能力硬件及软件实验平台；2021 CCA 文章聚焦 Realm 的硬件隔离、管理接口与证明机制。本站把二者归纳为两种不同的权限收缩：指针能访问什么，以及平台管理者能看到什么。",
       "habits": [
-        "先说明架构向软件承诺什么。",
-        "明确攻击者、信任域与保证边界。",
-        "通过原型和软件反馈检验新能力。",
-        "把长期兼容与跨层验证纳入演进。"
+        "分别列出指针权限与平台管理者权限，避免混用两种威胁模型。",
+        "究竟要撤销指针权限，还是撤销平台管理员的数据访问权限？"
       ],
       "questions": [
-        "保证属于 ISA、平台还是具体实现？",
-        "新安全能力解决什么威胁，又没有解决什么？",
-        "软件迁移和验证成本是否可承担？"
+        "究竟要撤销指针权限，还是撤销平台管理员的数据访问权限？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "Morello 是实验性 CHERI 相关架构，不能写成所有 Armv9 产品都具备的能力；安全属性受威胁模型、实现和软件采用限制。",
-      "diagnostic": "定义威胁模型与不变量，检查 ISA/编译/OS 组合；用原型软件、漏洞类别测试及形式方法验证，并核算兼容与部署成本。",
+      "boundary": "能力界限不会自动解决全部时间安全、侧信道或应用逻辑问题；Realm 仍依赖硬件、固件与证明链，不能承诺消除拒绝服务。",
+      "diagnostic": "围绕“究竟要撤销指针权限，还是撤销平台管理员的数据访问权限？”测量下列变量：漏洞类型、信任主体、迁移成本、额外内存/执行成本。 将假设与结果分别记录。",
       "notes": [
         [
           "e13",
@@ -1263,45 +1367,80 @@
         ]
       ],
       "challenge": {
-        "lens": "ISA 契约与安全挑战",
+        "lens": "Morello 将 CHERI 的界限、权限和不",
         "skills": [
           "A1",
-          "A7",
           "A8",
           "A10"
         ],
-        "question": "一种安全能力有额外性能和软件迁移成本：哪些保证必须先成立，哪些成本才可以比较？",
-        "variables": "G_required：明确威胁模型下要求的保证；C：同周期完整服务成本；Q：SLO 合格任务；K：新增迁移成本。",
-        "model": "先证明或验证候选满足 G_required；通过硬门槛后，按 (C_new+K)/Q_new 与满足同等保证的基线比较。",
-        "crossover": "经济边界以相同安全保证为前提；不能用较低成本抵消缺失的安全属性，也不杜撰攻击概率来估算收益。",
-        "counterexample": "保护内存内容，但未覆盖侧信道、可用性或不受约束的软件路径。",
-        "validation": "跨 ISA、编译器和 OS 检查契约，区分形式证明与经验测试；记录防护覆盖、开销、迁移与回退。",
-        "transfer": "迁移到 accelerator 隔离、CXL 多租户或虚拟机机密计算。"
+        "variables": "漏洞类型、信任主体、迁移成本、额外内存/执行成本。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：先构建威胁集合 U；分别列出 Morello 与 Realm 可覆盖的子集 M、R，再量化 U-(M∪R) 的残余风险。",
+        "crossover": "目标风险被覆盖且迁移/运行代价可接受，才采用相应机制。",
+        "counterexample": "程序主动泄露数据，或攻击落在未受覆盖的侧信道。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "究竟要撤销指针权限，还是撤销平台管理员的数据访问权限？",
+        "validation": "围绕“究竟要撤销指针权限，还是撤销平台管理员的数据访问权限？”测量下列变量：漏洞类型、信任主体、迁移成本、额外内存/执行成本。 将假设与结果分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "correctness"
-      ]
+      ],
+      "contributions": [
+        "Morello 将 CHERI 的界限、权限和不可伪造能力标记引入 Arm 研究平台，验证细粒度内存保护能否进入通用软件。",
+        "CCA 以 Realm 隔离运行环境，让管理虚拟机的软件不自动获得读取其中数据的权限。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Arm 架构负责人在两篇署名技术文章中说明团队路线；CHERI 是 Cambridge、SRI 等团队长期工作，Morello 也是多机构合作，不能称其个人发明。",
+      "argument": "2022 Morello 文章聚焦能力硬件及软件实验平台；2021 CCA 文章聚焦 Realm 的硬件隔离、管理接口与证明机制。本站把二者归纳为两种不同的权限收缩：指针能访问什么，以及平台管理者能看到什么。",
+      "sourceAudit": [
+        {
+          "title": "Morello research program hits major milestone with hardware now available for testing",
+          "authors": "Richard Grisenthwaite",
+          "date": "2022-01-20",
+          "url": "https://newsroom.arm.com/blog/morello",
+          "locator": "文章正文；CHERI、合作机构与原型验证",
+          "type": "作者技术文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "2827ac6af7177d90c54ab9364350a98c3f6f5426c5fc0e5755c32c9ca4161da2"
+        },
+        {
+          "title": "Arm Confidential Compute Architecture",
+          "authors": "Richard Grisenthwaite",
+          "date": "2021-06-23",
+          "url": "https://newsroom.arm.com/news/arm-cca-will-put-confidential-compute-in-the-hands-of-every-developer",
+          "locator": "文章正文；Realm、信任模型与证明",
+          "type": "作者技术文章",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "80419607be4cdd661c840a438b4aa9562a31c94037c5ccce814b075f0e745256"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "krste-asanovic",
       "name": "Krste Asanović",
       "field": "开放接口与可演进实现",
-      "core": "把稳定接口、可选扩展和具体实现分开，降低探索架构的耦合。",
-      "evidence": "本人 Berkeley 出版记录涵盖 RISC-V、向量与物理设计工具；开放性之外仍需验证实现质量。",
+      "core": "与团队建立开放、可扩展的 RISC-V 指令集，把软件契约与不同实现的实验空间分开。",
+      "evidence": "2014 文章区分 ISA 与微架构：开放软件接口不要求所有实现相同。2.0 规范把基础指令与扩展分层，使实现可按需求选择；开放不自动带来高性能，更不能替代工具链与兼容治理。",
       "habits": [
-        "分离 ISA 与微架构。",
-        "明确扩展边界。",
-        "检查软件与验证生态。",
-        "比较实现而非标签。"
+        "把基础 ISA 契约和可选扩展的长期兼容成本分开评估。",
+        "可定制的实现是否仍遵守软件赖以运行的共同契约？"
       ],
       "questions": [
-        "开放接口减少了哪项成本，又新增了哪些兼容成本？",
-        "扩展怎样避免软件碎片化？",
-        "实现能否兑现目标负载？"
+        "可定制的实现是否仍遵守软件赖以运行的共同契约？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "开放 ISA 不自动带来性能、低成本或完整软件支持。",
-      "diagnostic": "比较匹配实现，检查工具链、扩展兼容、验证范围与迁移投入。",
+      "boundary": "模块化会增加扩展组合、二进制兼容和验证负担；2014 规范只能支持当时设计观点，不能代替最新规范。",
+      "diagnostic": "围绕“可定制的实现是否仍遵守软件赖以运行的共同契约？”测量下列变量：公共 ISA 覆盖、扩展组合、软件移植/验证成本、任务收益。 将假设与结果分别记录。",
       "notes": [
         [
           "e04",
@@ -1317,47 +1456,93 @@
           "Berkeley：本人出版记录",
           "https://people.eecs.berkeley.edu/~krste/publications.html",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "2014-05-06 · 论文全文 · EECS-2014-54；Introduction 与基础 ISA 章节"
+        ],
+        [
+          "Instruction Sets Should Be Free: The Case For RISC-V",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-146.pdf",
+          "2014-08-06 · 论文全文 · EECS-2014-146，pp.1–7"
         ]
       ],
       "challenge": {
-        "lens": "开放接口挑战",
+        "lens": "RISC-V 用小型基础 ISA 配合可选扩展，",
         "skills": [
           "A1",
           "A8",
           "A10"
         ],
-        "variables": "C_saved：减少授权及适配投入；C_extra：验证、生态和碎片化投入。",
-        "model": "完整成本变化 C_extra-C_saved，另设性能与兼容门槛。",
-        "crossover": "C_saved > C_extra 且目标服务合格。",
-        "counterexample": "自定义扩展导致工具链和二进制割裂。",
-        "transfer": "迁移到 chiplet 或互连接口。",
-        "question": "开放接口减少了哪项成本，又新增了哪些兼容成本？",
-        "validation": "比较匹配实现，检查工具链、扩展兼容、验证范围与迁移投入。"
+        "variables": "公共 ISA 覆盖、扩展组合、软件移植/验证成本、任务收益。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净收益=实现收益-移植成本-额外验证与维护成本；各项须折算到同一任务周期。",
+        "crossover": "专用收益超过长期软件与验证代价，且接口契约明确。",
+        "counterexample": "每个产品增加互不兼容扩展，削弱开放生态的复用。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "可定制的实现是否仍遵守软件赖以运行的共同契约？",
+        "validation": "围绕“可定制的实现是否仍遵守软件赖以运行的共同契约？”测量下列变量：公共 ISA 覆盖、扩展组合、软件移植/验证成本、任务收益。 将假设与结果分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "hpc"
-      ]
+      ],
+      "contributions": [
+        "RISC-V 用小型基础 ISA 配合可选扩展，为教学、研究和产品提供共享接口。",
+        "与 Patterson 的 2014 年文章论证免费、开放 ISA 能降低创新和协作的接口门槛。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Berkeley 研究轨迹贯穿并行处理、向量与开放硬件。此处以署名论文和四人合著规范定位贡献，规范设计与生态建设均属团队成果。",
+      "argument": "2014 文章区分 ISA 与微架构：开放软件接口不要求所有实现相同。2.0 规范把基础指令与扩展分层，使实现可按需求选择；开放不自动带来高性能，更不能替代工具链与兼容治理。",
+      "sourceAudit": [
+        {
+          "title": "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "authors": "Andrew Waterman; Yunsup Lee; David Patterson; Krste Asanović",
+          "date": "2014-05-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "locator": "EECS-2014-54；Introduction 与基础 ISA 章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "9df37f8d73cfb5fd31d9b80d16d17c6e3d2f33ea070db2e00fe34ffe8685a6ea"
+        },
+        {
+          "title": "Instruction Sets Should Be Free: The Case For RISC-V",
+          "authors": "Krste Asanović; David A. Patterson",
+          "date": "2014-08-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-146.pdf",
+          "locator": "EECS-2014-146，pp.1–7",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "dd9811093562dd811b0b391f539ca5f61f531e4c8768ce05947130d0f4568295"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "andrew-waterman",
       "name": "Andrew Waterman",
       "field": "ISA 简洁性与编码取舍",
-      "core": "接口选择要经得起代码、实现复杂度和未来演进的共同检验。",
-      "evidence": "其 Designing a RISC-V ISA 博士论文与压缩指令研究是直接依据；不把 ISA 简洁等同实现简单。",
+      "core": "通过 RISC-V 规范与博士论文，把简洁、模块化的 ISA 设计变成可检验的代码密度与实现取舍。",
+      "evidence": "论文把 ISA 设计拆到编码、寄存器、指令长度与实现复杂度。压缩编码缓解代码体积和取指压力，但必须同时检查译码、对齐、编译器生成代码及实际动态指令序列。",
       "habits": [
-        "列出接口的长期约束。",
-        "测代码与取指行为。",
-        "核算解码和验证成本。",
-        "在多个负载上检验取舍。"
+        "同时测量代码体积、动态取指与译码代价，检查压缩指令的作用路径。",
+        "压缩指令减少的是存储占用，还是运行时关键路径？"
       ],
       "questions": [
-        "压缩编码节省的取指成本是否覆盖解码代价？",
-        "哪些负载没有收益？",
-        "扩展是否保持接口一致性？"
+        "压缩指令减少的是存储占用，还是运行时关键路径？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "代码字节减少不直接等于同比性能或能量提升。",
-      "diagnostic": "固定程序语义，测代码大小、I-cache/TLB miss、解码压力与总能量。",
+      "boundary": "静态代码缩小不等于端到端等比例加速；缓存已充足或瓶颈在数据端时收益会变小。使用历史规范解释设计，不声称其是当前标准。",
+      "diagnostic": "围绕“压缩指令减少的是存储占用，还是运行时关键路径？”测量下列变量：动态取指字节、I-cache 缺失、译码代价、总周期。 将假设与结果分别记录。",
       "notes": [
         [
           "e07",
@@ -1373,27 +1558,77 @@
           "博士论文：Design of the RISC-V ISA",
           "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-1.html",
           "代表性原始资料 · 阅读核对 2026-10-05"
+        ],
+        [
+          "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "2014-05-06 · 论文全文 · EECS-2014-54；Introduction 与基础 ISA 章节"
+        ],
+        [
+          "Design of the RISC-V Instruction Set Architecture",
+          "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/Archive/EECS-2016-1.pdf",
+          "2016-01-03 · 论文全文 · EECS-2016-1；基础 ISA 与压缩指令章节"
         ]
       ],
       "challenge": {
-        "lens": "接口编码挑战",
+        "lens": "参与 RISC-V 基础 ISA 与扩展规范，明",
         "skills": [
-          "A2",
+          "A3",
           "A7",
-          "A8"
+          "A8",
+          "A9"
         ],
-        "variables": "E_fetch_saved：减少取指能量；E_decode_extra：新增解码能量。",
-        "model": "同工作量下比较两项，再测关键路径。",
-        "crossover": "E_fetch_saved > E_decode_extra，且时序与兼容通过。",
-        "counterexample": "取指不绑定，压缩收益小而解码成本增加。",
-        "transfer": "迁移到数据压缩或网络协议编码。",
-        "question": "压缩编码节省的取指成本是否覆盖解码代价？",
-        "validation": "固定程序语义，测代码大小、I-cache/TLB miss、解码压力与总能量。"
+        "variables": "动态取指字节、I-cache 缺失、译码代价、总周期。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：ΔT=减少的暴露取指等待-新增译码/对齐代价；两项须由相同程序测得。",
+        "crossover": "取指收益大于新增前端成本，才有性能净收益。",
+        "counterexample": "代码体积下降但任务受数据访存或计算限制。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "压缩指令减少的是存储占用，还是运行时关键路径？",
+        "validation": "围绕“压缩指令减少的是存储占用，还是运行时关键路径？”测量下列变量：动态取指字节、I-cache 缺失、译码代价、总周期。 将假设与结果分别记录。"
       },
       "domain": "foundations",
       "relatedDomains": [
         "physical-energy"
-      ]
+      ],
+      "contributions": [
+        "参与 RISC-V 基础 ISA 与扩展规范，明确软件可依赖的语义。",
+        "2016 博士论文系统讨论基础整数 ISA、压缩指令与扩展选择的设计理由。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Berkeley 博士研究以 RISC-V 设计为主；规范与压缩指令等成果均有合作者，不能把整套 RISC-V 或产业生态归为其个人独有。",
+      "argument": "论文把 ISA 设计拆到编码、寄存器、指令长度与实现复杂度。压缩编码缓解代码体积和取指压力，但必须同时检查译码、对齐、编译器生成代码及实际动态指令序列。",
+      "sourceAudit": [
+        {
+          "title": "The RISC-V Instruction Set Manual, Volume I: User-Level ISA, Version 2.0",
+          "authors": "Andrew Waterman; Yunsup Lee; David Patterson; Krste Asanović",
+          "date": "2014-05-06",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2014/Archive/EECS-2014-54.pdf",
+          "locator": "EECS-2014-54；Introduction 与基础 ISA 章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "9df37f8d73cfb5fd31d9b80d16d17c6e3d2f33ea070db2e00fe34ffe8685a6ea"
+        },
+        {
+          "title": "Design of the RISC-V Instruction Set Architecture",
+          "authors": "Andrew Waterman",
+          "date": "2016-01-03",
+          "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/Archive/EECS-2016-1.pdf",
+          "locator": "EECS-2016-1；基础 ISA 与压缩指令章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "f128031a1a72f665f3af500a99e40e446e7b241bf14def2993f49ab8478f9c19"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      }
     },
     {
       "id": "sophie-wilson",
@@ -2625,21 +2860,18 @@
       "name": "André Seznec",
       "field": "分支预测、历史组织与缓存映射",
       "award": "Eckert–Mauchly Award · 2025",
-      "core": "预测能力来自信息的组织与选择，不只来自存储容量的增加。",
-      "evidence": "与 Pierre Michaud 合作的 TAGE 论文组合几何递增的历史长度与部分标签，以有限存储利用不同尺度的分支相关性。官方获奖说明同时认可偏斜关联缓存贡献。本条目以 TAGE 为思想提炼的主要依据，不把历史研究的领先程度当作所有现代负载上的保证。",
+      "core": "以 TAGE 分支预测和缓存组织创新，提高处理器对控制流与数据访问的有效利用。",
+      "evidence": "TAGE 用短到长的多个历史表提供候选，标签降低无关分支相撞；最长匹配提供预测，备用预测与 usefulness 状态约束分配。关键突破是组织和选择历史，不只是扩大容量。",
       "habits": [
-        "先检查决策所需的相关信息在哪个历史尺度出现。",
-        "区分真正相关与索引碰撞产生的表面相关。",
-        "给不同尺度的信息不同表示，而不是让所有情况共享一个固定窗口。",
-        "将预测准确率与访问延迟、存储和训练过程共同评价。"
+        "分别检查历史长度、标签别名与 usefulness 分配，再解释预测收益。",
+        "预测准确率改善，是否抵得过新增访问延迟和能耗？"
       ],
       "questions": [
-        "错误来自信息不足、表示丢失，还是不同情境互相污染？",
-        "增加历史或容量之后，新增信息是否真正有用？",
-        "更准确的结果能否在需要决策的时刻到达？"
+        "预测准确率改善，是否抵得过新增访问延迟和能耗？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "分支预测的结构不能直接移植成预取器或通用学习模型。长历史的收益必须扣除别名、训练、访问时间和能耗成本。",
-      "diagnostic": "按分支及阶段拆解误预测，对历史长度、容量与标签做消融；联合报告净执行时间、恢复成本和实现预算。",
+      "boundary": "更长历史不保证更准；表容量、访问延迟、能耗和低复用分支会改变收益。本文参数与评估负载不能直接当作当代 CPU 实测。",
+      "diagnostic": "围绕“预测准确率改善，是否抵得过新增访问延迟和能耗？”测量下列变量：Δm：每指令错预测减少量；P：暴露惩罚周期；δ：新增周期/指令。 将假设与结果分别记录。",
       "notes": [
         [
           "e08",
@@ -2660,47 +2892,102 @@
           "IEEE Computer Society：2025 获奖说明",
           "https://www.computer.org/press-room/eckert-mauchly-award-recipient-2025",
           "2025 · TAGE 与偏斜关联缓存"
+        ],
+        [
+          "ACM/IEEE Computer Society Announce André Seznec Recipient of 2025 Eckert–Mauchly Award",
+          "https://www.acm.org/binaries/content/assets/press-releases/2025/june/eckert-mauchly-award-2025.pdf",
+          "2025-06 · 官方获奖理由 · 官方新闻稿 pp.1–2"
+        ],
+        [
+          "A case for (partially) TAgged GEometric history length branch prediction",
+          "https://www.jilp.org/vol8/v8paper1.pdf",
+          "2006-02 · 论文全文 · JILP 8；TAGE 组织、分配与评估章节"
         ]
       ],
       "awardYear": 2025,
       "challenge": {
-        "lens": "信息组织而非容量崇拜",
+        "lens": "2025 Eckert–Mauchly Awar",
         "skills": [
-          "A1",
           "A2",
+          "A3",
+          "A7",
           "A9"
         ],
-        "variables": "Δm：每任务减少误预测；R_e：暴露恢复秒/次；H：新增访问和管理时间。",
-        "model": "净时间节省近似 Δm R_e-H；时序与面积另设预算。",
-        "crossover": "Δm R_e>H；更多历史或标签必须带来可兑现信息。",
-        "counterexample": "增加状态扩大访问延迟，或相位变化使信息失效。",
-        "transfer": "迁移到预取预测器或请求路由策略。",
-        "question": "错误来自信息不足、表示丢失，还是不同情境互相污染？",
-        "validation": "按分支及阶段拆解误预测，对历史长度、容量与标签做消融；联合报告净执行时间、恢复成本和实现预算。"
+        "variables": "Δm：每指令错预测减少量；P：暴露惩罚周期；δ：新增周期/指令。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：每指令净周期收益≈Δm·P-δ，仅适用于相近重叠与流水线条件。",
+        "crossover": "Δm·P>δ，且功耗/面积预算可接受。",
+        "counterexample": "预测器更准但加长前端关键路径，或错预测已被重叠隐藏。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "预测准确率改善，是否抵得过新增访问延迟和能耗？",
+        "validation": "围绕“预测准确率改善，是否抵得过新增访问延迟和能耗？”测量下列变量：Δm：每指令错预测减少量；P：暴露惩罚周期；δ：新增周期/指令。 将假设与结果分别记录。"
       },
       "domain": "cpu",
-      "relatedDomains": []
+      "relatedDomains": [],
+      "contributions": [
+        "2025 Eckert–Mauchly Award 官方理由表彰其分支预测与缓存方面的开创性贡献。",
+        "与 Pierre Michaud 的 TAGE 工作以几何增长的历史长度和带标签表选择预测信息，减少别名冲突。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "INRIA 研究轨迹覆盖预测和缓存；TAGE 原论文是 Seznec 与 Michaud 合著，此处机制解释限于该论文，不把所有后续工业实现归为个人作品。",
+      "argument": "TAGE 用短到长的多个历史表提供候选，标签降低无关分支相撞；最长匹配提供预测，备用预测与 usefulness 状态约束分配。关键突破是组织和选择历史，不只是扩大容量。",
+      "sourceAudit": [
+        {
+          "title": "ACM/IEEE Computer Society Announce André Seznec Recipient of 2025 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2025-06",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2025/june/eckert-mauchly-award-2025.pdf",
+          "locator": "官方新闻稿 pp.1–2",
+          "type": "官方获奖理由",
+          "contentStatus": "公开网页工具获取 PDF 正文；本地下载受限",
+          "evidenceStrength": "强",
+          "role": "贡献定位"
+        },
+        {
+          "title": "A case for (partially) TAgged GEometric history length branch prediction",
+          "authors": "André Seznec; Pierre Michaud",
+          "date": "2006-02",
+          "url": "https://www.jilp.org/vol8/v8paper1.pdf",
+          "locator": "JILP 8；TAGE 组织、分配与评估章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "d103642b0b7297e2771d316485d604b770d748026b25d54e65437121f32d9524"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE Eckert–Mauchly Award",
+          "year": 2025,
+          "citationZh": "表彰其在分支预测与缓存存储方面的开创性贡献。",
+          "url": "https://www.acm.org/binaries/content/assets/press-releases/2025/june/eckert-mauchly-award-2025.pdf",
+          "paraphrase": true
+        }
+      ]
     },
     {
       "id": "susan-eggers",
       "name": "Susan Eggers",
       "field": "SMT、动态资源共享与线程互补",
       "award": "Eckert–Mauchly Award · 2018",
-      "core": "让独立工作动态共享闲置资源，同时计算共享引入的干扰。",
-      "evidence": "与团队合作的 SMT 研究允许多个线程在同一周期使用超标量执行资源。1997 年论文比较线程级和指令级并行，讨论静态资源划分的不足，并明确考察缓存干扰及更高的存储需求。提炼重点是动态互补，不是把历史仿真收益推广到今天的服务器。",
+      "core": "以 SMT 和多处理器共享研究，让独立线程动态利用单线程无法占满的执行资源。",
+      "evidence": "TOCS 论文将线程级并行映射到宽乱序核心共享的执行能力，并分析取指、缓存和各共享资源。它针对的是单线程依赖和停顿留下的发射空隙，因而不同于只在停顿时切线程。",
       "habits": [
-        "先找执行槽为何空闲，再决定增加上下文还是增加执行资源。",
-        "让线程级并行补充单线程中不足的指令级并行。",
-        "比较共享与静态划分，观察负载变化下的适应能力。",
-        "把资源利用的改善与缓存、预测和带宽干扰同时计入。"
+        "对共享资源逐项量化互补和干扰，同时报告吞吐与线程延迟。",
+        "两个线程是填补空槽，还是争夺同一瓶颈？"
       ],
       "questions": [
-        "多个线程需求互补，还是争抢同一资源？",
-        "吞吐提高之后，关键请求是否更慢？",
-        "什么负载应共享一个核心，什么负载应隔离？"
+        "两个线程是填补空槽，还是争夺同一瓶颈？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "更高利用率不保证更高的合格吞吐。缓存与带宽竞争、尾延迟、隔离及安全要求可能改变结论；SMT 线程不等同于独立物理核心。",
-      "diagnostic": "固定物理核心与负载，比较 SMT 开关及不同线程配对，测量合格吞吐、尾延迟、执行资源占用和共享缓存与带宽干扰。",
+      "boundary": "吞吐提升不保证每线程响应时间改善；线程争用缓存、带宽和队列时可能损害尾延迟与公平性。论文模拟结果不是所有服务的实测保证。",
+      "diagnostic": "围绕“两个线程是填补空槽，还是争夺同一瓶颈？”测量下列变量：总吞吐、单线程/尾延迟、缓存和队列占用、内存带宽。 将假设与结果分别记录。",
       "notes": [
         [
           "e09",
@@ -2721,27 +3008,85 @@
           "Converting Thread-Level Parallelism to Instruction-Level Parallelism via Simultaneous Multithreading",
           "https://dada.cs.washington.edu/smt/papers/tlpabstract.html",
           "1997 · 团队合作论文摘要"
+        ],
+        [
+          "Susan Eggers Named Recipient of 2018 Eckert–Mauchly Award",
+          "https://awards.acm.org/binaries/content/assets/press-releases/2018/june/eckert-mauchly-award-2018.pdf",
+          "2018-06 · 官方获奖理由 · 官方新闻稿 pp.1–2"
+        ],
+        [
+          "Converting Thread-Level Parallelism to Instruction-Level Parallelism via Simultaneous Multithreading",
+          "https://www.cs.washington.edu/research/smt/papers/tlp2ilp.final.pdf",
+          "1997-08 · 论文全文 · ACM TOCS 15(3), pp.322–354；架构与评估章节"
         ]
       ],
       "awardYear": 2018,
       "challenge": {
-        "lens": "SMT 互补与干扰",
+        "lens": "2018 Eckert–Mauchly Awar",
         "skills": [
+          "A2",
           "A3",
           "A5",
-          "A7"
+          "A9"
         ],
-        "variables": "G：SLO 合格任务/s；P：平台 W；同物理核心和负载。",
-        "model": "比较 SMT 开关的 G 与 G/P，不将平均吞吐替代各租户 SLO。",
-        "crossover": "G_on/G_off>P_on/P_off 才改善功率效率，且尾部门槛通过。",
-        "counterexample": "线程竞争同一缓存和带宽，吞吐增加但关键租户违约。",
-        "transfer": "迁移到 GPU 多租户或共享 memory pool。",
-        "question": "多个线程需求互补，还是争抢同一资源？",
-        "validation": "固定物理核心与负载，比较 SMT 开关及不同线程配对，测量合格吞吐、尾延迟、执行资源占用和共享缓存与带宽干扰。"
+        "variables": "总吞吐、单线程/尾延迟、缓存和队列占用、内存带宽。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：吞吐增益比=SMT 总完成率/单线程基线完成率；同时设置延迟与公平性约束，不能只看比值。",
+        "crossover": "线程资源需求互补且共享干扰不破坏服务约束。",
+        "counterexample": "两个线程都饱和内存带宽，资源共享导致服务退化。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "两个线程是填补空槽，还是争夺同一瓶颈？",
+        "validation": "围绕“两个线程是填补空槽，还是争夺同一瓶颈？”测量下列变量：总吞吐、单线程/尾延迟、缓存和队列占用、内存带宽。 将假设与结果分别记录。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "hpc"
+      ],
+      "contributions": [
+        "2018 Eckert–Mauchly Award 表彰同时多线程架构和多处理器共享、一致性方面的贡献。",
+        "SMT 在一个周期中从多个线程发射就绪指令，结合线程级与指令级并行，提高宽发射处理器利用率。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Washington 团队与 DEC 等合作者共同推进 SMT；1997 TOCS 论文包括 Lo、Eggers、Emer、Levy、Stamm、Tullsen 六位作者。此处不将 SMT 说成个人独立发明。",
+      "argument": "TOCS 论文将线程级并行映射到宽乱序核心共享的执行能力，并分析取指、缓存和各共享资源。它针对的是单线程依赖和停顿留下的发射空隙，因而不同于只在停顿时切线程。",
+      "sourceAudit": [
+        {
+          "title": "Susan Eggers Named Recipient of 2018 Eckert–Mauchly Award",
+          "authors": "ACM / IEEE Computer Society",
+          "date": "2018-06",
+          "url": "https://awards.acm.org/binaries/content/assets/press-releases/2018/june/eckert-mauchly-award-2018.pdf",
+          "locator": "官方新闻稿 pp.1–2",
+          "type": "官方获奖理由",
+          "contentStatus": "公开网页工具获取 PDF 正文",
+          "evidenceStrength": "强",
+          "role": "贡献定位"
+        },
+        {
+          "title": "Converting Thread-Level Parallelism to Instruction-Level Parallelism via Simultaneous Multithreading",
+          "authors": "Jack L. Lo; Susan J. Eggers; Joel S. Emer; Henry M. Levy; Rebecca L. Stamm; Dean M. Tullsen",
+          "date": "1997-08",
+          "url": "https://www.cs.washington.edu/research/smt/papers/tlp2ilp.final.pdf",
+          "locator": "ACM TOCS 15(3), pp.322–354；架构与评估章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "e3e7ac139748bacc2a4837b4d55975856619c43ab3809392dba92f36b316e968"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM/IEEE Eckert–Mauchly Award",
+          "year": 2018,
+          "citationZh": "在同时多线程处理器架构，以及多处理器共享和一致性方面作出杰出贡献。",
+          "url": "https://awards.acm.org/binaries/content/assets/press-releases/2018/june/eckert-mauchly-award-2018.pdf",
+          "paraphrase": true
+        }
       ]
     },
     {
@@ -3365,20 +3710,18 @@
       "id": "dirk-meyer",
       "name": "Dirk Meyer",
       "field": "兼容 ISA 下的实现重组",
-      "core": "保留软件接口，同时重组执行与供给资源来改变性能边界。",
-      "evidence": "K7 合作论文列出 Meyer 与 Weber 等作者；奖项说明记录其高性能处理器贡献。",
+      "core": "跨 Alpha 与 x86 的工业设计贡献，以 K7 团队工作展示复杂 ISA 如何通过译码和乱序执行追求高性能。",
+      "evidence": "1999 论文描述三路译码/提交、推测与乱序执行、执行资源和实现约束；突破在保持 x86 软件语义的同时重组内部工作流。本文不把多位作者完成的所有单元划归 Meyer。",
       "habits": [
-        "保留软件接口，同时重组执行与供给资源来改变性能边界。",
-        "先固定任务、正确性与资源边界，再判断 兼容 ISA 下的实现重组 的收益。",
-        "把新增负担显式放入比较：偏向峰值浮点使实际服务前端或内存瓶颈更严重。"
+        "沿译码、就绪、执行、提交的链条定位限制宽度利用率的阶段。",
+        "增宽后增加了真正就绪的工作，还是只增加队列和控制成本？"
       ],
       "questions": [
-        "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "增宽后增加了真正就绪的工作，还是只增加队列和控制成本？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
-      "diagnostic": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
+      "boundary": "宽度、窗口和频率不是独立收益；复杂译码、依赖链和存储供给会限制利用率。模拟或特定设计数字不能直接用于现代处理器排序。",
+      "diagnostic": "围绕“增宽后增加了真正就绪的工作，还是只增加队列和控制成本？”测量下列变量：就绪指令数、发射/提交宽度、译码供给、暴露访存等待。 将假设与结果分别记录。",
       "notes": [
         [
           "e08",
@@ -3390,29 +3733,82 @@
           "A Seventh-Generation x86 Microprocessor：作者提供的合作论文",
           "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "2003 · 官方获奖理由 · 2003 · Dirk Meyer"
         ]
       ],
       "challenge": {
-        "lens": "兼容 ISA 下的实现重组挑战",
+        "lens": "2003 Maurice Wilkes Awar",
         "skills": [
           "A3",
-          "A8",
-          "A10"
+          "A7",
+          "A8"
         ],
-        "question": "兼容 x86 的两个实现，在同功率下应怎样分配整数、浮点与解码资源？",
-        "variables": "w_i：任务比例；T_i：各任务秒数；P：功率预算；参数需从待评估系统测量，以下为条件模型。",
-        "model": "比较固定任务组合 Σw_i T_i 与面积、功率硬约束；不能仅平均 IPC。",
-        "crossover": "资源重组的加权任务收益需覆盖频率和其他任务损失。",
-        "counterexample": "偏向峰值浮点使实际服务前端或内存瓶颈更严重。",
-        "validation": "分段回放生产任务，归因前端、整数、浮点与缓存停顿，验证合格吞吐。",
-        "transfer": "迁移到 CPU 与加速器资源配比。"
+        "variables": "就绪指令数、发射/提交宽度、译码供给、暴露访存等待。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：有效提交率≤min(译码供给,就绪工作,执行容量,提交容量)；仅为诊断上界。",
+        "crossover": "当前瓶颈得到解除且时序/功耗成本未抵消收益。",
+        "counterexample": "依赖或缓存缺失主导，增宽几乎没有净收益。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "增宽后增加了真正就绪的工作，还是只增加队列和控制成本？",
+        "validation": "围绕“增宽后增加了真正就绪的工作，还是只增加队列和控制成本？”测量下列变量：就绪指令数、发射/提交宽度、译码供给、暴露访存等待。 将假设与结果分别记录。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "2003 Maurice Wilkes Award 官方理由定位于 Alpha 与 x86 处理器架构。",
+        "K7 以译码、宽乱序调度、整数/浮点执行和缓存供给协同实现高性能 x86。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "官方理由跨两种架构；本次机制只用署名 K7 论文核验，不由该论文反推个人在 Alpha 各模块的具体职责。Meyer 与 Golden、Weber 等共同署名。",
+      "argument": "1999 论文描述三路译码/提交、推测与乱序执行、执行资源和实现约束；突破在保持 x86 软件语义的同时重组内部工作流。本文不把多位作者完成的所有单元划归 Meyer。",
+      "sourceAudit": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2003",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2003 · Dirk Meyer",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "A Seventh-Generation x86 Microprocessor",
+          "authors": "Michael Golden; Steve Hesley; Alisa Scherer; Matthew Crowley; Scott C. Johnson; Stephan Meier; Dirk Meyer; Jerry D. Moench; Stuart Oberman; Hamid Partovi; Fred Weber; Scott White; Tim Wood; John Yong",
+          "date": "1999-11",
+          "url": "https://www.researchgate.net/publication/2978136_A_seventh-generation_x86_microprocessor",
+          "locator": "IEEE JSSC 34(11), pp.1466–1477；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "52def695dde3ac6d36cb819a5a3b3c0c95e6ed530db8d4da7fd0d4a93d1e72d4"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2003,
+          "citationZh": "在 Alpha 和 x86 处理器设计中作出重要架构贡献。",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ]
     },
     {
       "id": "fred-weber",
@@ -3471,20 +3867,18 @@
       "id": "glenn-hinton",
       "name": "Glenn Hinton",
       "field": "流水深度、预测与恢复",
-      "core": "频率收益必须同分支失误、依赖等待和功耗一起评估。",
-      "evidence": "Intel 的 Pentium 4 合作论文讨论深流水、执行与前端设计；奖项记录其微处理器贡献。",
+      "core": "在 Pentium 4 中以深流水线、译码后 trace cache 和高速执行路径追求可实现的高频性能。",
+      "evidence": "原文把高频目标与流水线、取指供给、分支和执行机制相互关联。trace cache 避免每次重新译码，但深流水线使分支恢复成本更重要；频率收益须乘上每周期有效工作。",
       "habits": [
-        "频率收益必须同分支失误、依赖等待和功耗一起评估。",
-        "先固定任务、正确性与资源边界，再判断 流水深度、预测与恢复 的收益。",
-        "把新增负担显式放入比较：失误重叠与资源竞争使简单 CPI 分解失真。"
+        "将频率提升与 CPI、分支恢复及功率一起比较。",
+        "频率增加后，CPI 和功耗的代价是否仍允许任务变快？"
       ],
       "questions": [
-        "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "频率增加后，CPI 和功耗的代价是否仍允许任务变快？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。失误重叠与资源竞争使简单 CPI 分解失真。",
-      "diagnostic": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
+      "boundary": "频率不能代替任务吞吐；分支差、供给不足或功耗约束会抵消高频收益。此处解释当年设计，不用后见之明宣称所有深流水线必然失败。",
+      "diagnostic": "围绕“频率增加后，CPI 和功耗的代价是否仍允许任务变快？”测量下列变量：旧/新频率 F₀,F₁；CPI₀,CPI₁；相同任务指令数和功耗预算。 将假设与结果分别记录。",
       "notes": [
         [
           "e08",
@@ -3496,29 +3890,82 @@
           "Intel Technology Journal：Pentium 4 微架构合作论文",
           "https://www.intel.com/content/dam/www/public/us/en/documents/research/2001-vol05-iss-1-intel-technology-journal.pdf",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "2002 · 官方获奖理由 · 2002 · Glenn Hinton"
         ]
       ],
       "challenge": {
-        "lens": "流水深度、预测与恢复挑战",
+        "lens": "2002 Maurice Wilkes Awar",
         "skills": [
           "A2",
           "A3",
           "A7"
         ],
-        "question": "频率提高 25%，失误惩罚翻倍，什么分支负载会使深流水变慢？",
-        "variables": "c0：基础 CPI；m：失误/指令；p：惩罚周期；f：Hz；参数需从待评估系统测量，以下为条件模型。",
-        "model": "T/N≈(c0+mp)/f；是假设惩罚暴露的近似。",
-        "crossover": "(c0_new+m p_new)/f_new < (c0_old+m p_old)/f_old；解 m 的边界。",
-        "counterexample": "失误重叠与资源竞争使简单 CPI 分解失真。",
-        "validation": "按失误密度分段测周期、恢复与功耗，校准暴露惩罚；报告模型误差。",
-        "transfer": "迁移到推测深度与验证成本。"
+        "variables": "旧/新频率 F₀,F₁；CPI₀,CPI₁；相同任务指令数和功耗预算。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：固定指令数时加速比=(F₁/F₀)·(CPI₀/CPI₁)；指令流改变须重算。",
+        "crossover": "频率倍率大于 CPI 倍率，且功耗和散热可交付。",
+        "counterexample": "频率提升被错预测恢复与存储等待完全抵消。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "频率增加后，CPI 和功耗的代价是否仍允许任务变快？",
+        "validation": "围绕“频率增加后，CPI 和功耗的代价是否仍允许任务变快？”测量下列变量：旧/新频率 F₀,F₁；CPI₀,CPI₁；相同任务指令数和功耗预算。 将假设与结果分别记录。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "2002 Maurice Wilkes Award 官方理由明确表彰 Pentium 4 设计与其他微架构贡献。",
+        "团队用 trace cache 存放已译码微操作，降低重复译码压力；深流水线与快速执行路径服务于高频设计。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Intel 微架构研究与工业实现轨迹；2001 原文由 Hinton、Sager、Upton、Boggs、Carmean、Kyker、Roussel 七人合著，不能将 NetBurst 全部实现归为其个人独有。",
+      "argument": "原文把高频目标与流水线、取指供给、分支和执行机制相互关联。trace cache 避免每次重新译码，但深流水线使分支恢复成本更重要；频率收益须乘上每周期有效工作。",
+      "sourceAudit": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2002",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2002 · Glenn Hinton",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "The Microarchitecture of the Pentium 4 Processor",
+          "authors": "Glenn Hinton; Dave Sager; Mike Upton; Darrell Boggs; Doug Carmean; Alan Kyker; Patrice Roussel",
+          "date": "2001-Q1",
+          "url": "https://www.intel.com/content/dam/www/public/us/en/documents/research/2001-vol05-iss-1-intel-technology-journal.pdf",
+          "locator": "Intel Technology Journal，合订 PDF pp.16–28",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "7771525a6c3eba9eeea0d85f4339775a4a75ff075def36482ad2d7b28ea30e9f"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2002,
+          "citationZh": "因 Pentium 4 微处理器设计及其他微架构贡献获奖。",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ]
     },
     {
       "id": "david-papworth",
@@ -3683,20 +4130,18 @@
       "id": "lieven-eeckhout",
       "name": "Lieven Eeckhout",
       "field": "性能模型与归因",
-      "core": "先建立能解释性能差异的模型，再选择需要改变的资源。",
-      "evidence": "Maurice Wilkes 官方说明表彰其架构性能分析与建模贡献。",
+      "core": "以区间模拟和多核建模，在可解释性、模拟速度与验证误差之间建立明确取舍。",
+      "evidence": "区间模拟保留导致性能损失的事件及其相互影响，在区间内用分析模型估计推进速度；Sniper 同时处理多核共享资源。2010 与 2011 论文的参照模型/实机验证不同，不能把两套误差结果混成一个准确率。",
       "habits": [
-        "先建立能解释性能差异的模型，再选择需要改变的资源。",
-        "先固定任务、正确性与资源边界，再判断 性能模型与归因 的收益。",
-        "把新增负担显式放入比较：停顿类别重叠或测量伪影导致错误优化。"
+        "在目标事件和规模上校准模型，比较方案差距与模型误差。",
+        "模型省略的事件会不会改变两个方案的优劣顺序？"
       ],
       "questions": [
-        "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "模型省略的事件会不会改变两个方案的优劣顺序？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。停顿类别重叠或测量伪影导致错误优化。",
-      "diagnostic": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
+      "boundary": "平均误差不能保证架构排序正确；共享带宽、同步、瞬态和样本外负载需单独检查。更快模型的价值取决于是否保留待研究问题的关键因果。",
+      "diagnostic": "围绕“模型省略的事件会不会改变两个方案的优劣顺序？”测量下列变量：方案差距 d；各方案误差界 ε；负载/核数/共享资源范围。 将假设与结果分别记录。",
       "notes": [
         [
           "e08",
@@ -3708,48 +4153,122 @@
           "ACM SIGARCH Maurice Wilkes Award：贡献说明",
           "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "2017 · 官方获奖理由 · 2017 · Lieven Eeckhout"
+        ],
+        [
+          "Interval Simulation: Raising the Level of Abstraction in Architectural Simulation",
+          "https://users.elis.ugent.be/~leeckhou/papers/hpca10.pdf",
+          "2010 · 论文全文 · HPCA 2010；模型、M5 对比与适用条件"
+        ],
+        [
+          "Sniper: Exploring the Level of Abstraction for Scalable and Accurate Parallel Multi-Core Simulation",
+          "https://users.elis.ugent.be/~leeckhou/papers/sc11.pdf",
+          "2011 · 论文全文 · SC 2011；模型与实机验证章节"
         ]
       ],
       "challenge": {
-        "lens": "性能模型与归因挑战",
+        "lens": "2017 Maurice Wilkes Awar",
         "skills": [
-          "A3",
-          "A9",
-          "A2"
+          "A1",
+          "A2",
+          "A9"
         ],
-        "question": "CPI stack 中最大一栏是否就是最值得优化的瓶颈？",
-        "variables": "T：任务秒；x：资源配置；ΔT/Δx：实测敏感性；参数需从待评估系统测量，以下为条件模型。",
-        "model": "归因不是因果；用受控资源扰动估计 ΔT，再校准重叠项。",
-        "crossover": "资源成本相同时选择可兑现 ΔT 最大的改动，非最大归因栏。",
-        "counterexample": "停顿类别重叠或测量伪影导致错误优化。",
-        "validation": "对预测瓶颈做资源消融，检查误差与跨负载泛化；不能预测方向即否证模型。",
-        "transfer": "迁移到推理服务的 compute/communication 归因。"
+        "variables": "方案差距 d；各方案误差界 ε；负载/核数/共享资源范围。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：若各方案绝对误差≤ε，则差距 d>2ε 才可在该误差假设下保证排序。",
+        "crossover": "比较差距超过不确定性，并在目标事件与规模上验证。",
+        "counterexample": "均值误差小，却在带宽饱和场景反转架构排序。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "模型省略的事件会不会改变两个方案的优劣顺序？",
+        "validation": "围绕“模型省略的事件会不会改变两个方案的优劣顺序？”测量下列变量：方案差距 d；各方案误差界 ε；负载/核数/共享资源范围。 将假设与结果分别记录。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "2017 Maurice Wilkes Award 官方理由定位于性能分析与建模。",
+        "区间模拟用分支和缓存等事件划分执行区间，以分析模型替代部分逐周期核心模拟。",
+        "Sniper 将这一方法用于多核，并以具体程序和机器检验误差。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Ghent 团队研究贯穿分析模型与快速模拟；2010 论文由 Genbrugge、Eyerman、Eeckhout 合著，2011 Sniper 由 Carlson、Heirman、Eeckhout 合著。",
+      "argument": "区间模拟保留导致性能损失的事件及其相互影响，在区间内用分析模型估计推进速度；Sniper 同时处理多核共享资源。2010 与 2011 论文的参照模型/实机验证不同，不能把两套误差结果混成一个准确率。",
+      "sourceAudit": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2017",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2017 · Lieven Eeckhout",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "Interval Simulation: Raising the Level of Abstraction in Architectural Simulation",
+          "authors": "Davy Genbrugge; Stijn Eyerman; Lieven Eeckhout",
+          "date": "2010",
+          "url": "https://users.elis.ugent.be/~leeckhou/papers/hpca10.pdf",
+          "locator": "HPCA 2010；模型、M5 对比与适用条件",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "81ec3773a480bc845cacd516cbb394102e6822cda121d2fedb74bd20728b2c7d"
+        },
+        {
+          "title": "Sniper: Exploring the Level of Abstraction for Scalable and Accurate Parallel Multi-Core Simulation",
+          "authors": "Trevor E. Carlson; Wim Heirman; Lieven Eeckhout",
+          "date": "2011",
+          "url": "https://users.elis.ugent.be/~leeckhou/papers/sc11.pdf",
+          "locator": "SC 2011；模型与实机验证章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "b2d96e3872082711d8a7c953560aa4e14da889fa4c5c6d15a68a774683389a01"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2017,
+          "citationZh": "在计算机体系结构性能分析与建模方面作出杰出贡献。",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ]
     },
     {
       "id": "tim-sherwood",
       "name": "Tim Sherwood",
       "field": "程序阶段与代表性评估",
-      "core": "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
-      "evidence": "Maurice Wilkes 官方说明记录其程序分析、架构建模与安全贡献。",
+      "core": "以程序阶段识别和代表性采样，缩短长程序评估，同时保留可检查的行为差异。",
+      "evidence": "程序并非随时间均匀变化。论文用基本块执行特征聚类固定指令长度区间，以少量代表区间覆盖常见行为。它加速的是评估过程；样本和状态预热会影响估计。",
       "habits": [
-        "按行为阶段选择代表性样本，避免单一平均值隐藏架构变化。",
-        "先固定任务、正确性与资源边界，再判断 程序阶段与代表性评估 的收益。",
-        "把新增负担显式放入比较：短热点片段遗漏启动、GC 或尾部阶段。"
+        "按指令份额加权 CPI，并独立检查预热和罕见阶段。",
+        "代表点保留了目标指标的重要阶段和起始状态吗？"
       ],
       "questions": [
-        "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
-        "哪类负载或约束会使上述收益反转？",
-        "怎样用受控实验区分机制收益与成本转移？"
+        "代表点保留了目标指标的重要阶段和起始状态吗？",
+        "保持完整任务与约束后，收益是否仍然存在？"
       ],
-      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。短热点片段遗漏启动、GC 或尾部阶段。",
-      "diagnostic": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
+      "boundary": "稀有关键阶段、缓存长记忆与目标变化可能被采样遗漏；指令份额权重下应加权 CPI 再换算 IPC，不能直接平均 IPC。",
+      "diagnostic": "围绕“代表点保留了目标指标的重要阶段和起始状态吗？”测量下列变量：wᵢ：阶段指令份额；CPIᵢ：代表点 CPI；预热与遗漏误差。 将假设与结果分别记录。",
       "notes": [
         [
           "e08",
@@ -3761,29 +4280,86 @@
           "ACM SIGARCH Maurice Wilkes Award：贡献说明",
           "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
           "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ],
+        [
+          "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "2016 · 官方获奖理由 · 2016 · Timothy Sherwood"
+        ],
+        [
+          "Automatically Characterizing Large Scale Program Behavior",
+          "https://cseweb.ucsd.edu/~calder/papers/ASPLOS-02-SimPoint.pdf",
+          "2002-10 · 论文全文 · ASPLOS X；基本块向量、聚类、采样和误差章节"
         ]
       ],
       "challenge": {
-        "lens": "程序阶段与代表性评估挑战",
+        "lens": "2016 Maurice Wilkes Awar",
         "skills": [
-          "A9",
-          "A3",
-          "A2"
+          "A1",
+          "A9"
         ],
-        "question": "一个短样本显示缓存收益 20%，怎样证明它代表整段服务？",
-        "variables": "w_i：阶段时间权重；T_i：阶段成本；ε：估计误差；参数需从待评估系统测量，以下为条件模型。",
-        "model": "T_est=Σw_i T_i；必须验证阶段选择、权重与重构误差。",
-        "crossover": "收益的置信区间须超过采样误差，且覆盖稀有关键阶段。",
-        "counterexample": "短热点片段遗漏启动、GC 或尾部阶段。",
-        "validation": "对长轨迹聚类并保留独立验证集，比较重构总时间及关键阶段。",
-        "transfer": "迁移到多轮 agent 的 CPU/GPU 阶段采样。"
+        "variables": "wᵢ：阶段指令份额；CPIᵢ：代表点 CPI；预热与遗漏误差。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：CPI估计=Σwᵢ·CPIᵢ，Σwᵢ=1；IPC估计=1/CPI估计，仅限单一可比指令流。",
+        "crossover": "节省模拟成本且误差不会遮蔽待比较方案差距。",
+        "counterexample": "罕见同步或延迟尖峰决定服务风险，却在常见阶段聚类中消失。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "代表点保留了目标指标的重要阶段和起始状态吗？",
+        "validation": "围绕“代表点保留了目标指标的重要阶段和起始状态吗？”测量下列变量：wᵢ：阶段指令份额；CPIᵢ：代表点 CPI；预热与遗漏误差。 将假设与结果分别记录。"
       },
       "domain": "cpu",
       "relatedDomains": [
         "memory",
         "physical-energy"
       ],
-      "additionBatch": 1
+      "additionBatch": 1,
+      "contributions": [
+        "2016 Maurice Wilkes Award 表彰推进架构建模和安全的新颖程序分析；官方理由范围比 SimPoint 更广。",
+        "SimPoint 用归一化基本块向量识别相似执行区间，选取代表点并按阶段权重估计全程行为。"
+      ],
+      "contributionBasis": "official-award-paraphrase-and-editorial-explanation",
+      "background": "Sherwood 与 UCSD 合作者 Perelman、Hamerly、Calder 的 2002 论文是此处机制主证据；不将安全方向的全部贡献浓缩为 SimPoint。",
+      "argument": "程序并非随时间均匀变化。论文用基本块执行特征聚类固定指令长度区间，以少量代表区间覆盖常见行为。它加速的是评估过程；样本和状态预热会影响估计。",
+      "sourceAudit": [
+        {
+          "title": "ACM SIGARCH Maurice Wilkes Award recipient list",
+          "authors": "ACM SIGARCH",
+          "date": "2016",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "locator": "2016 · Timothy Sherwood",
+          "type": "官方获奖理由",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "贡献定位",
+          "retrievedSha256": "97f334aebaf0f9c6ffeec5c4cd37ff2824e0b74617f7028ff2aae4576c6ba8d0"
+        },
+        {
+          "title": "Automatically Characterizing Large Scale Program Behavior",
+          "authors": "Timothy Sherwood; Erez Perelman; Greg Hamerly; Brad Calder",
+          "date": "2002-10",
+          "url": "https://cseweb.ucsd.edu/~calder/papers/ASPLOS-02-SimPoint.pdf",
+          "locator": "ASPLOS X；基本块向量、聚类、采样和误差章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "f67a9b33460c3148edde0859279cb94f464e96f8a0c37009e7acd40110d1d1ac"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "awardsVerified": [
+        {
+          "name": "ACM SIGARCH Maurice Wilkes Award",
+          "year": 2016,
+          "citationZh": "以新颖程序分析推进体系结构建模与安全研究。",
+          "url": "https://www.sigarch.org/awards/maurice-wilkes-award/",
+          "paraphrase": true
+        }
+      ]
     },
     {
       "id": "daniel-a-jim-nez",
@@ -15540,6 +16116,738 @@
         "network",
         "datacenter"
       ]
+    },
+    {
+      "id": "ivan-godard",
+      "name": "Ivan Godard",
+      "field": "Mill belt、命名与编译器分工",
+      "domain": "cpu",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "The Belt: Mill CPU architecture talk",
+          "https://millcomputing.com/pptx/2013-07-11_mill_cpu_belt.pptx",
+          "2013-07-11 · 作者讲义/幻灯片 · 官方讲义；幻灯片 36–39"
+        ],
+        [
+          "The Mill CPU: Execution",
+          "https://millcomputing.com/pptx/execution.02.pptx",
+          "2014-02-05 · 作者讲义/幻灯片 · 官方讲义；幻灯片 16 与执行阶段说明"
+        ]
+      ],
+      "core": "Mill 的 belt 设计用短寿命、单赋值结果序列替代大量显式寄存器命名与重命名。",
+      "contributions": [
+        "belt 用结果的相对位置表示操作数，使临时值按产出顺序自然过期。",
+        "编译器用显式保存/恢复处理超出 belt 生命周期的值；execution 讲义定义逻辑阶段和依赖语义。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Mill Computing 的主讲者与设计团队成员；属于厂商架构提案，不能当作已大规模部署或第三方性能验证的产品。",
+      "argument": "2013 belt 讲义强调单赋值、无覆盖引起的名字相关和无需传统寄存器重命名；2014 execution 讲义解释阶段排序与操作数可见性。本站将其提炼为把一部分名字与生命周期管理移到 ISA/编译器边界。",
+      "evidence": "2013 belt 讲义强调单赋值、无覆盖引起的名字相关和无需传统寄存器重命名；2014 execution 讲义解释阶段排序与操作数可见性。本站将其提炼为把一部分名字与生命周期管理移到 ISA/编译器边界。",
+      "habits": [
+        "跟踪值的生命周期与保存恢复次数，核算消除重命名后的软件代价。",
+        "消除的重命名成本是否被保存值、调度和调用成本取代？"
+      ],
+      "questions": [
+        "消除的重命名成本是否被保存值、调度和调用成本取代？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "长寿命值仍需 scratchpad 保存；调用、异常与编译器调度增加成本。厂商宣称的功耗或速度优势未在本次资料中获得独立验证，不纳入结论。",
+      "diagnostic": "围绕“消除的重命名成本是否被保存值、调度和调用成本取代？”测量下列变量：重命名节省、spill/fill 次数与等待、代码尺寸、编译器质量。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "The Belt: Mill CPU architecture talk",
+          "authors": "Ivan Godard",
+          "date": "2013-07-11",
+          "url": "https://millcomputing.com/pptx/2013-07-11_mill_cpu_belt.pptx",
+          "locator": "官方讲义；幻灯片 36–39",
+          "type": "作者讲义/幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        },
+        {
+          "title": "The Mill CPU: Execution",
+          "authors": "Ivan Godard",
+          "date": "2014-02-05",
+          "url": "https://millcomputing.com/pptx/execution.02.pptx",
+          "locator": "官方讲义；幻灯片 16 与执行阶段说明",
+          "type": "作者讲义/幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "belt 用结果的相对位置表示操作数，使临时值按",
+        "skills": [
+          "A1",
+          "A7",
+          "A8"
+        ],
+        "variables": "重命名节省、spill/fill 次数与等待、代码尺寸、编译器质量。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净收益=省下的命名/调度代价-保存恢复及编译器引入的代价；须在相同任务测量。",
+        "crossover": "短寿命值占优且软件工具能控制新增保存成本。",
+        "counterexample": "长依赖链和大量跨调用活跃值导致频繁保存恢复。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "消除的重命名成本是否被保存值、调度和调用成本取代？",
+        "validation": "围绕“消除的重命名成本是否被保存值、调度和调用成本取代？”测量下列变量：重命名节省、spill/fill 次数与等待、代码尺寸、编译器质量。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "peter-hofstee",
+      "name": "H. Peter Hofstee",
+      "field": "Cell SPE、显式数据搬运与异构计算",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "hpc",
+        "compiler-runtime"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Cell Processor architecture / Stanford EE380 talk",
+          "https://web.stanford.edu/class/ee380/Abstracts/Cell_060222.pdf",
+          "日期待核：讲义版权 2005；文件名 060222 · 作者幻灯片 · 幻灯片 3、13 及 SPE/DMA 章节"
+        ],
+        [
+          "The Design and Implementation of a First-Generation CELL Processor",
+          "https://research.ibm.com/publications/the-design-and-implementation-of-a-first-generation-cell-processor",
+          "2005 · 原论文摘要 · IBM Research 官方论文摘要与作者列表"
+        ],
+        [
+          "Stanford EE380: Cell Processor",
+          "https://web.stanford.edu/class/ee380/Abstracts/060222.html",
+          "页面标 2005-02-22；待校正 · 机构报告简介 · 报告简介：chief scientist / SPE chief architect"
+        ]
+      ],
+      "core": "作为 Cell 的首席科学家与 SPE 首席架构师，以显式本地存储和 DMA 推进异构流式计算。",
+      "contributions": [
+        "SPE 将计算与本地数据存储紧密结合，让软件显式安排主存数据搬运。",
+        "Cell 团队把通用 Power 控制核和多个流式计算单元组合，应对频率、功耗与存储延迟约束。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Stanford 机构报告简介明确其 Cell chief scientist 与 SPE chief architect 身份；整颗 Cell 的设计与实现论文是多作者成果，个人角色限于机构明确说明。",
+      "argument": "Stanford 讲义从 power wall、memory wall 出发，展示 SPE 本地存储与异步 DMA：搬运可以提前安排并与计算重叠，但程序必须组织块大小、缓冲和同步。2005 ISSCC 团队摘要证实第一代 Cell 的异构实现背景。",
+      "evidence": "Stanford 讲义从 power wall、memory wall 出发，展示 SPE 本地存储与异步 DMA：搬运可以提前安排并与计算重叠，但程序必须组织块大小、缓冲和同步。2005 ISSCC 团队摘要证实第一代 Cell 的异构实现背景。",
+      "habits": [
+        "先安排数据分块与双缓冲，再测量 DMA 和计算能否重叠。",
+        "显式搬运能被计算覆盖，还是成为新的串行阶段？"
+      ],
+      "questions": [
+        "显式搬运能被计算覆盖，还是成为新的串行阶段？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "不规则访存和低计算密度削弱显式搬运价值；本地存储容量、DMA 粒度和编程成本会成为边界。Stanford 页面年份与文件名存在不一致，日期仍待校正。",
+      "diagnostic": "围绕“显式搬运能被计算覆盖，还是成为新的串行阶段？”测量下列变量：搬运时间 D；计算时间 C；同步/排空 S；缓冲容量。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "Cell Processor architecture / Stanford EE380 talk",
+          "authors": "H. Peter Hofstee",
+          "date": "日期待核：讲义版权 2005；文件名 060222",
+          "url": "https://web.stanford.edu/class/ee380/Abstracts/Cell_060222.pdf",
+          "locator": "幻灯片 3、13 及 SPE/DMA 章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "17301df62a4c91804d6ee30e0913738558cb378c454079e8bcbc4533c210f653"
+        },
+        {
+          "title": "The Design and Implementation of a First-Generation CELL Processor",
+          "authors": "D. C. Pham; ...; H. P. Hofstee; J. A. Kahle 等",
+          "date": "2005",
+          "url": "https://research.ibm.com/publications/the-design-and-implementation-of-a-first-generation-cell-processor",
+          "locator": "IBM Research 官方论文摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "团队实现与作者归属"
+        },
+        {
+          "title": "Stanford EE380: Cell Processor",
+          "authors": "Stanford University / H. Peter Hofstee",
+          "date": "页面标 2005-02-22；待校正",
+          "url": "https://web.stanford.edu/class/ee380/Abstracts/060222.html",
+          "locator": "报告简介：chief scientist / SPE chief architect",
+          "type": "机构报告简介",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "只证明个人职责与背景"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "SPE 将计算与本地数据存储紧密结合，让软件显式",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "variables": "搬运时间 D；计算时间 C；同步/排空 S；缓冲容量。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：稳定流水双缓冲时每块时间≈max(D,C)+S；首尾与不可重叠阶段另计。",
+        "crossover": "块能装入本地存储，且任务规模足以摊薄首尾和同步。",
+        "counterexample": "随机小访问无法合并，搬运和调度开销压过计算。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "显式搬运能被计算覆盖，还是成为新的串行阶段？",
+        "validation": "围绕“显式搬运能被计算覆盖，还是成为新的串行阶段？”测量下列变量：搬运时间 D；计算时间 C；同步/排空 S；缓冲容量。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "christian-jacobi",
+      "name": "Christian Jacobi",
+      "field": "Telum、交易内 AI 与大型机处理器",
+      "domain": "cpu",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "IBM Telum Processor",
+          "https://www.hc33.hotchips.org/assets/program/conference/day1/HC2021.C1.3%20IBM%20Cristian%20Jacobi.pdf",
+          "2021-08 · 作者幻灯片 · Hot Chips 33，17 页；AI 与缓存章节"
+        ],
+        [
+          "IBM Telum Processor: The next-gen microprocessor for IBM Z and IBM LinuxONE",
+          "https://www.ibm.com/new/announcements/ibm-telum-processor-the-next-gen-microprocessor-for-ibm-z-and-ibm-linuxone",
+          "2021-08-23 · 作者技术文章 · IBM 发布文章正文；in-transaction inference"
+        ]
+      ],
+      "core": "Telum 将低延迟 AI 推理放进大型机交易路径，使模型判断能参与交易完成前的决策。",
+      "contributions": [
+        "片上推理加速器服务于交易内推理，降低外部卸载的往返和集成负担。",
+        "Telum 团队以缓存和芯片间协作设计支撑核心与加速器的数据需求。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "IBM 的 Telum Hot Chips 33 讲者；署名发布文章由 Christian Jacobi 与 Elpida Tzortzatos 合著。芯片与软件体系是 IBM 团队贡献，不能将其个人称为全部单元的唯一设计者。",
+      "argument": "2021 幻灯片和发布技术文章共同定位于 in-transaction inference。重要问题是既有交易延迟预算下能否完成模型决策；片上位置减少卸载路径，但收益仍受模型、软件调度和数据就绪影响。",
+      "evidence": "2021 幻灯片和发布技术文章共同定位于 in-transaction inference。重要问题是既有交易延迟预算下能否完成模型决策；片上位置减少卸载路径，但收益仍受模型、软件调度和数据就绪影响。",
+      "habits": [
+        "把推理排队和预处理计入交易尾延迟预算。",
+        "推理结果能在交易截止时间前返回并改变有效决策吗？"
+      ],
+      "questions": [
+        "推理结果能在交易截止时间前返回并改变有效决策吗？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "片上加速器峰值不能直接证明交易尾延迟或准确性改善；大模型、排队、预处理和共享数据路径可能限制收益。原文为厂商一手披露，缺少独立生产对照。",
+      "diagnostic": "围绕“推理结果能在交易截止时间前返回并改变有效决策吗？”测量下列变量：预处理 P；排队 Q；推理 I；交易剩余预算 B；质量指标。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "IBM Telum Processor",
+          "authors": "Christian Jacobi",
+          "date": "2021-08",
+          "url": "https://www.hc33.hotchips.org/assets/program/conference/day1/HC2021.C1.3%20IBM%20Cristian%20Jacobi.pdf",
+          "locator": "Hot Chips 33，17 页；AI 与缓存章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "0515c0347e64e9aaa2e3a87fc23cad49201cbf11e3b37cfcbbe9ff9e43cb8bfc"
+        },
+        {
+          "title": "IBM Telum Processor: The next-gen microprocessor for IBM Z and IBM LinuxONE",
+          "authors": "Christian Jacobi; Elpida Tzortzatos",
+          "date": "2021-08-23",
+          "url": "https://www.ibm.com/new/announcements/ibm-telum-processor-the-next-gen-microprocessor-for-ibm-z-and-ibm-linuxone",
+          "locator": "IBM 发布文章正文；in-transaction inference",
+          "type": "作者技术文章",
+          "contentStatus": "公开网页工具获取文章正文；本地请求被拦截",
+          "evidenceStrength": "强",
+          "role": "机制与归属"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "片上推理加速器服务于交易内推理，降低外部卸载的往",
+        "skills": [
+          "A3",
+          "A5",
+          "A8",
+          "A10"
+        ],
+        "variables": "预处理 P；排队 Q；推理 I；交易剩余预算 B；质量指标。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：P+Q+I≤B 是及时返回的必要条件，且须满足模型质量与服务尾分位。",
+        "crossover": "目标尾分位符合预算并优于相同质量的外部卸载方案。",
+        "counterexample": "推理很快但输入准备或队列等待超过交易预算。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "推理结果能在交易截止时间前返回并改变有效决策吗？",
+        "validation": "围绕“推理结果能在交易截止时间前返回并改变有效决策吗？”测量下列变量：预处理 P；排队 Q；推理 I；交易剩余预算 B；质量指标。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "brad-burgess",
+      "name": "Brad Burgess",
+      "field": "Bobcat、低功耗 x86 与可综合实现",
+      "domain": "cpu",
+      "relatedDomains": [
+        "physical-energy"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Bobcat: AMD’s Low Power x86 Processor",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.24.730-Burgess-AMD-Bobcat-x86.pdf",
+          "2010-08-24 · 作者幻灯片 · Hot Chips 22；架构、可综合设计与电源章节"
+        ],
+        [
+          "Bobcat: AMD’s Low-Power x86 Processor",
+          "https://www.researchgate.net/publication/224211632_Bobcat_AMD%27s_Low-Power_x86_Processor",
+          "2011 · 原论文摘要 · IEEE Micro 31(2), pp.16–25；DOI 10.1109/MM.2011.2"
+        ]
+      ],
+      "core": "Bobcat 用小型乱序 x86 核心与可综合实现，在软件兼容、面积和低功耗目标间建立产品取舍。",
+      "contributions": [
+        "保持 AMD64、SIMD 和虚拟化支持，同时面向较小面积与低功耗设计乱序核心。",
+        "可综合实现提高复用与实现灵活性，但须接受性能与物理设计约束。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "2010 Hot Chips 讲义明确 Brad Burgess 为 chief architect；2011 IEEE Micro 论文由 Burgess、Cohen、Denman、Dundas、Kaplan、Rupley 合著，不能把团队的所有实现细节归为个人成果。",
+      "argument": "Hot Chips 讲义展示双指令译码、乱序执行与电源状态等设计。它选择保留足以利用局部并行的执行组织，同时控制规模；“低功耗”需要在应用、时间和功率之间衡量，不能只比较瞬时瓦数。",
+      "evidence": "Hot Chips 讲义展示双指令译码、乱序执行与电源状态等设计。它选择保留足以利用局部并行的执行组织，同时控制规模；“低功耗”需要在应用、时间和功率之间衡量，不能只比较瞬时瓦数。",
+      "habits": [
+        "用每任务能量和性能门槛比较低功耗核心，而非只比较瓦数。",
+        "较小核心的执行时间增加，会不会抵消功率下降？"
+      ],
+      "questions": [
+        "较小核心的执行时间增加，会不会抵消功率下降？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "峰值单线程不是唯一目标；可综合实现不保证所有工艺同等高效。论文第二来源本次仅取得摘要，具体机制以完整讲义为依据。",
+      "diagnostic": "围绕“较小核心的执行时间增加，会不会抵消功率下降？”测量下列变量：平均功率 P；任务时间 T；面积 A；软件兼容与性能门槛。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "Bobcat: AMD’s Low Power x86 Processor",
+          "authors": "Brad Burgess",
+          "date": "2010-08-24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.24.730-Burgess-AMD-Bobcat-x86.pdf",
+          "locator": "Hot Chips 22；架构、可综合设计与电源章节",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "cabdf25646b06165f0177d26f90890b42295abbc207ca3e6b03999cb019d1421"
+        },
+        {
+          "title": "Bobcat: AMD’s Low-Power x86 Processor",
+          "authors": "Brad Burgess; Brad Cohen; Marvin Denman; Jim Dundas; David Kaplan; Jeff Rupley",
+          "date": "2011",
+          "url": "https://www.researchgate.net/publication/224211632_Bobcat_AMD%27s_Low-Power_x86_Processor",
+          "locator": "IEEE Micro 31(2), pp.16–25；DOI 10.1109/MM.2011.2",
+          "type": "原论文摘要",
+          "contentStatus": "原论文摘要已获取；未取得全文",
+          "evidenceStrength": "中",
+          "role": "设计定位与团队归属",
+          "retrievedSha256": "70e9a2777b02082305ae8d83735885822ad5f4c42fd6572efa7cbf0bf5cd8f2f"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "保持 AMD64、SIMD 和虚拟化支持，同时面",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "variables": "平均功率 P；任务时间 T；面积 A；软件兼容与性能门槛。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：每任务能量 E=P·T；在性能门槛内同时比较 E 与 A，不用功率单项代替效率。",
+        "crossover": "能量/面积收益满足产品门槛，且任务时间可接受。",
+        "counterexample": "功率下降但任务时间增长更快，能量和用户体验变差。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "较小核心的执行时间增加，会不会抵消功率下降？",
+        "validation": "围绕“较小核心的执行时间增加，会不会抵消功率下降？”测量下列变量：平均功率 P；任务时间 T；面积 A；软件兼容与性能门槛。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "jeff-stuecheli",
+      "name": "Jeff Stuecheli",
+      "field": "POWER 缓存、内存与加速器连接",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "network"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "POWER9",
+          "https://www.hpcuserforum.com/presentations/tuscon2018/Tech%20Update_IBM_UFTucson2018.pdf",
+          "2018 · 作者幻灯片 · HPC User Forum Tucson；核心变体与互连页"
+        ],
+        [
+          "The Cache and Memory Subsystems of the IBM POWER8 Processor",
+          "https://research.ibm.com/publications/the-cache-and-memory-subsystems-of-the-ibm-power8-processor",
+          "2015 · 原论文摘要 · IBM J. Research and Development；官方摘要与作者列表"
+        ]
+      ],
+      "core": "以 POWER 的缓存、内存和加速器连接设计，把核心能力扩展到完整异构平台。",
+      "contributions": [
+        "参与 POWER8 缓存与内存子系统：面向不同插槽规模组织片上/缓冲存储和一致性资源。",
+        "POWER9 报告区分 SMT4/SMT8 产品目标，以及 PCIe、NVLink、OpenCAPI 等连接路径的不同角色。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "IBM POWER 技术报告讲者，POWER8 子系统论文合作者；缓存、一致性与接口是多人设计，讲者身份不等于所有模块的唯一发明者。",
+      "argument": "2015 官方论文摘要说明 POWER8 子系统的多插槽扩展目标；2018 POWER9 完整讲义展示针对 Linux 与 PowerVM 的核心变体以及加速器接口。本站提炼的关键是接口、内存和软件生态必须匹配，不能把所有高速接口视为可互换。",
+      "evidence": "2015 官方论文摘要说明 POWER8 子系统的多插槽扩展目标；2018 POWER9 完整讲义展示针对 Linux 与 PowerVM 的核心变体以及加速器接口。本站提炼的关键是接口、内存和软件生态必须匹配，不能把所有高速接口视为可互换。",
+      "habits": [
+        "按接口语义、软件生态和真实数据路径比较异构连接。",
+        "接口更快之后，应用真正受限于哪一段数据路径？"
+      ],
+      "questions": [
+        "接口更快之后，应用真正受限于哪一段数据路径？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "链路标称带宽不是应用带宽；一致性、主机内存、协议、软件和拓扑都会改变有效吞吐。路线图是 2018 当时陈述，不能当作当前状态。",
+      "diagnostic": "围绕“接口更快之后，应用真正受限于哪一段数据路径？”测量下列变量：链路/内存/设备有效带宽；协议与软件开销；访问模式。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "POWER9",
+          "authors": "Jeff Stuecheli",
+          "date": "2018",
+          "url": "https://www.hpcuserforum.com/presentations/tuscon2018/Tech%20Update_IBM_UFTucson2018.pdf",
+          "locator": "HPC User Forum Tucson；核心变体与互连页",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "82a4a0e90f0ebdb6f797fe88d0f0a4cc861c800f9abdb2f19b64e871f23b24b5"
+        },
+        {
+          "title": "The Cache and Memory Subsystems of the IBM POWER8 Processor",
+          "authors": "William J. Starke; Jeff Stuecheli; D. M. Daly; J. S. Dodson 等",
+          "date": "2015",
+          "url": "https://research.ibm.com/publications/the-cache-and-memory-subsystems-of-the-ibm-power8-processor",
+          "locator": "IBM J. Research and Development；官方摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "子系统设计目标与归属"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "参与 POWER8 缓存与内存子系统：面向不同插",
+        "skills": [
+          "A3",
+          "A6",
+          "A8"
+        ],
+        "variables": "链路/内存/设备有效带宽；协议与软件开销；访问模式。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：流式吞吐≤min(主机供给,链路有效带宽,设备消费能力)；排队与延迟另计。",
+        "crossover": "被提升路径原本是瓶颈，且软件能够使用相应接口语义。",
+        "counterexample": "提高链路速率却仍受主存带宽或数据重排限制。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "接口更快之后，应用真正受限于哪一段数据路径？",
+        "validation": "围绕“接口更快之后，应用真正受限于哪一段数据路径？”测量下列变量：链路/内存/设备有效带宽；协议与软件开销；访问模式。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "todd-takken",
+      "name": "Todd Takken",
+      "field": "Blue Gene/L、通信与机架封装",
+      "domain": "hpc",
+      "relatedDomains": [
+        "network",
+        "physical-energy"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "Overview of the Blue Gene/L System Architecture",
+          "https://www.ida.liu.se/~TDDI03/lecture-notes/blueGene.pdf",
+          "2005 · 论文全文 · IBM JRD 49(2/3)；系统、通信网络与应用映射章节"
+        ],
+        [
+          "Packaging the Blue Gene/L Supercomputer",
+          "https://research.ibm.com/publications/packaging-the-blue-genel-supercomputer",
+          "2005 · 原论文摘要 · IBM Research 官方论文摘要与作者列表"
+        ]
+      ],
+      "core": "参与 Blue Gene/L，以低功耗节点、专用通信网络和机架封装协同实现大规模并行。",
+      "contributions": [
+        "Blue Gene/L 团队用多种通信网络分别处理邻近通信、集体操作和其他系统需求。",
+        "封装与散热设计把低功耗计算节点组合到可交付的高密度机架中。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "IBM Blue Gene/L 系统与封装论文均列 T. Takken 为合作者；系统总架构、网络、电路与封装为大型团队成果，本次不声称其独自提出整个系统。",
+      "argument": "2005 系统论文展示 3D torus 和集体网络等不同功能路径；封装论文摘要解释高密度节点的供电、散热与系统目标。本站将两者连接为：规模扩展不仅由节点算力决定，还依赖算法映射、通信和物理可交付性。",
+      "evidence": "2005 系统论文展示 3D torus 和集体网络等不同功能路径；封装论文摘要解释高密度节点的供电、散热与系统目标。本站将两者连接为：规模扩展不仅由节点算力决定，还依赖算法映射、通信和物理可交付性。",
+      "habits": [
+        "一起检查算法通信模式、网络拓扑、同步与机架约束。",
+        "任务分解能否同时匹配通信拓扑和机架功耗预算？"
+      ],
+      "questions": [
+        "任务分解能否同时匹配通信拓扑和机架功耗预算？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "邻近通信适合 torus，不规则全局通信或同步可能限制效率；机架密度不等于每任务成本下降。第二论文只取得官方摘要，封装细节仍需全文。",
+      "diagnostic": "围绕“任务分解能否同时匹配通信拓扑和机架功耗预算？”测量下列变量：节点数 N；计算时间 C；通信 M；同步 S；机架功率预算。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "Overview of the Blue Gene/L System Architecture",
+          "authors": "Alan Gara; Matthias A. Blumrich; Dong Chen; ...; Todd Takken 等",
+          "date": "2005",
+          "url": "https://www.ida.liu.se/~TDDI03/lecture-notes/blueGene.pdf",
+          "locator": "IBM JRD 49(2/3)；系统、通信网络与应用映射章节",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "7adb6daa4a84930e6388e626ef2e5528c2513da2b6022529f66e51b2433797cf"
+        },
+        {
+          "title": "Packaging the Blue Gene/L Supercomputer",
+          "authors": "IBM Blue Gene/L 团队；包括 T. Takken",
+          "date": "2005",
+          "url": "https://research.ibm.com/publications/packaging-the-blue-genel-supercomputer",
+          "locator": "IBM Research 官方论文摘要与作者列表",
+          "type": "原论文摘要",
+          "contentStatus": "公开网页工具获取摘要；未取得全文",
+          "evidenceStrength": "中",
+          "role": "机架封装目标与归属"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "Blue Gene/L 团队用多种通信网络分别处",
+        "skills": [
+          "A4",
+          "A6",
+          "A7"
+        ],
+        "variables": "节点数 N；计算时间 C；通信 M；同步 S；机架功率预算。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T(N)=C(N)+M(N)+S(N)，仅对不能重叠的分解；效率 E=T(1)/(N·T(N))。",
+        "crossover": "通信/同步增幅小于计算减少量，且供电散热约束满足。",
+        "counterexample": "全局交换或慢节点同步使新增节点降低有效效率。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "任务分解能否同时匹配通信拓扑和机架功耗预算？",
+        "validation": "围绕“任务分解能否同时匹配通信拓扑和机架功耗预算？”测量下列变量：节点数 N；计算时间 C；通信 M；同步 S；机架功率预算。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "tim-mattson",
+      "name": "Tim Mattson",
+      "field": "OpenCL、并行编程与性能可移植性",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "hpc"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "OpenCL and the Quest for Portable Performance",
+          "https://indico.cern.ch/event/140118/attachments/121851/172933/ocl-port-perf.pdf",
+          "2011 · 作者幻灯片 · 完整讲义；NDRange、同步和优化案例"
+        ],
+        [
+          "Introduction to OpenCL",
+          "https://didawiki.cli.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/spd/2015/opencl-intro-tim-mattson.pdf",
+          "教程基于 ISC11；当前副本存于 2015 课程目录 · 作者教程 · 完整教程；平台、执行/内存模型与矩阵乘优化"
+        ]
+      ],
+      "core": "用并行编程模型与 OpenCL 教学，把代码可移植和性能可移植明确区分。",
+      "contributions": [
+        "讲义以 NDRange、work-item、work-group 与内存层次组织异构并行工作。",
+        "通过逐步优化案例解释同一代码为何需要按硬件组织重新分块和安排数据。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "Intel Labs 并行计算研究者；OpenCL 为 Khronos 团体标准，讲义贡献不等于个人独自发明 OpenCL。入门材料基于 ISC11 与 Udeepta Bordoloi 共同教程，并致谢其他作者。",
+      "argument": "2011 portable performance 讲义和共同教程反复区分统一编程接口与硬件相关性能：work-group 的同步边界、局部数据复用和主机/设备搬运决定执行效率。本站只将跨讲义反复出现的这一点称为持续关注。",
+      "evidence": "2011 portable performance 讲义和共同教程反复区分统一编程接口与硬件相关性能：work-group 的同步边界、局部数据复用和主机/设备搬运决定执行效率。本站只将跨讲义反复出现的这一点称为持续关注。",
+      "habits": [
+        "迁移设备后重新检查 work-group、局部内存和数据搬运。",
+        "代码能运行之后，数据布局与同步边界是否匹配新设备？"
+      ],
+      "questions": [
+        "代码能运行之后，数据布局与同步边界是否匹配新设备？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "旧版 OpenCL 讲义的同步规则和示例只适用于其当时模型；不能据此描述所有当前版本。一个设备上的最佳组尺寸和内存策略可能在另一设备退化。",
+      "diagnostic": "围绕“代码能运行之后，数据布局与同步边界是否匹配新设备？”测量下列变量：计算 C；搬运 D；同步 S；各设备分块策略与总时间。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "OpenCL and the Quest for Portable Performance",
+          "authors": "Tim Mattson",
+          "date": "2011",
+          "url": "https://indico.cern.ch/event/140118/attachments/121851/172933/ocl-port-perf.pdf",
+          "locator": "完整讲义；NDRange、同步和优化案例",
+          "type": "作者幻灯片",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "16d7a20c67c3873f7e2e9095b0c452bb5b52e12c1b517abeedc61331d757924a"
+        },
+        {
+          "title": "Introduction to OpenCL",
+          "authors": "Tim Mattson; Udeepta Bordoloi；材料另有致谢作者",
+          "date": "教程基于 ISC11；当前副本存于 2015 课程目录",
+          "url": "https://didawiki.cli.di.unipi.it/lib/exe/fetch.php/magistraleinformaticanetworking/spd/2015/opencl-intro-tim-mattson.pdf",
+          "locator": "完整教程；平台、执行/内存模型与矩阵乘优化",
+          "type": "作者教程",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "42fd84dcd88022ab9d0688fcd4d9a56831b908cafc9f67d973dbef7384d10a8a"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "讲义以 NDRange、work-item、wo",
+        "skills": [
+          "A4",
+          "A8",
+          "A9"
+        ],
+        "variables": "计算 C；搬运 D；同步 S；各设备分块策略与总时间。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：非重叠执行 T=C+D+S；可流水时另建 max(C,D) 等模型，不直接套用。",
+        "crossover": "保持相同正确性与任务，优化后端到端收益覆盖移植成本。",
+        "counterexample": "统一源代码可编译，但组尺寸和局部内存假设导致新硬件利用率低。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "代码能运行之后，数据布局与同步边界是否匹配新设备？",
+        "validation": "围绕“代码能运行之后，数据布局与同步边界是否匹配新设备？”测量下列变量：计算 C；搬运 D；同步 S；各设备分块策略与总时间。 将假设与结果分别记录。"
+      }
+    },
+    {
+      "id": "keith-underwood",
+      "name": "Keith Underwood",
+      "field": "FPGA 加速、接口与系统性能",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "hpc",
+        "compiler-runtime"
+      ],
+      "notes": [],
+      "sources": [
+        [
+          "FPGAs vs. CPUs: Trends in Peak Floating-Point Performance",
+          "https://www.researchgate.net/publication/221225167_FPGAs_vs_CPUs_trends_in_peak_floating-point_performance",
+          "2004 · 论文全文 · FPGA 2004；DOI 10.1145/968280.968305；作者上传全文"
+        ],
+        [
+          "Architectures and APIs: Assessing Requirements for Delivering FPGA Performance to Applications",
+          "https://www.researchgate.net/publication/224281845_Architectures_and_APIs_Assessing_Requirements_for_Delivering_FPGA_Performance_to_Applications",
+          "2006 · 论文全文 · SC 2006；DOI 10.1109/SC.2006.13；作者上传全文"
+        ]
+      ],
+      "core": "把 FPGA 加速从峰值运算比较推进到 API 暴露的并行性和系统连接能否兑现应用收益。",
+      "contributions": [
+        "2004 工作比较 FPGA 与 CPU 浮点峰值趋势，明确研究对象是峰值能力。",
+        "2006 合著论文说明标准内核 API 可能隐藏并行性；主机连接与软件接口共同决定 FPGA 应用性能。"
+      ],
+      "contributionBasis": "source-backed-editorial-synthesis",
+      "background": "研究轨迹包括 Sandia 的可重构高性能计算；2006 论文由 Underwood、K. Scott Hemmert、Craig Ulmer 合著，作者公开上传全文，可核验实际内容。",
+      "argument": "2004 文讨论定制数据通路的浮点能力；2006 文进一步分析高带宽、低延迟连接和 API 并行暴露，论证更好的连接仍可能被接口串行化限制。两篇作品显示评估单位从计算资源延伸到完整应用。",
+      "evidence": "2004 文讨论定制数据通路的浮点能力；2006 文进一步分析高带宽、低延迟连接和 API 并行暴露，论证更好的连接仍可能被接口串行化限制。两篇作品显示评估单位从计算资源延伸到完整应用。",
+      "habits": [
+        "把 API 暴露的并行性和调用粒度纳入加速器评估。",
+        "API 是否把硬件可用的并行性暴露给应用了？"
+      ],
+      "questions": [
+        "API 是否把硬件可用的并行性暴露给应用了？",
+        "保持完整任务与约束后，收益是否仍然存在？"
+      ],
+      "boundary": "峰值趋势不能作为当前产品性能预测；定制精度、资源利用、主机往返和开发成本会改变收益。论文应用与架构条件必须保留。",
+      "diagnostic": "围绕“API 是否把硬件可用的并行性暴露给应用了？”测量下列变量：主机时间 H；搬运 D；加速计算 A；调用次数 n；单次开销 o。 将假设与结果分别记录。",
+      "sourceAudit": [
+        {
+          "title": "FPGAs vs. CPUs: Trends in Peak Floating-Point Performance",
+          "authors": "Keith Underwood",
+          "date": "2004",
+          "url": "https://www.researchgate.net/publication/221225167_FPGAs_vs_CPUs_trends_in_peak_floating-point_performance",
+          "locator": "FPGA 2004；DOI 10.1145/968280.968305；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "401dafd23e6a74d50a02f5984cc56530e49e1c72922eb782561b794b8fe0b938"
+        },
+        {
+          "title": "Architectures and APIs: Assessing Requirements for Delivering FPGA Performance to Applications",
+          "authors": "Keith Underwood; K. Scott Hemmert; Craig Ulmer",
+          "date": "2006",
+          "url": "https://www.researchgate.net/publication/224281845_Architectures_and_APIs_Assessing_Requirements_for_Delivering_FPGA_Performance_to_Applications",
+          "locator": "SC 2006；DOI 10.1109/SC.2006.13；作者上传全文",
+          "type": "论文全文",
+          "contentStatus": "正文已获取并核验",
+          "evidenceStrength": "强",
+          "role": "机制与归属",
+          "retrievedSha256": "aca06ddcfdaad9c1d904d4a1415d9dc45426038b1080c1072737dbed1146dd92"
+        }
+      ],
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-06",
+        "standard": "contribution-led-v1",
+        "meaning": "本次所选关键贡献的研究与证据核验完成；不表示穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "2004 工作比较 FPGA 与 CPU 浮点峰",
+        "skills": [
+          "A1",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "variables": "主机时间 H；搬运 D；加速计算 A；调用次数 n；单次开销 o。",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：不能重叠时 T=H+D+A+n·o；重叠、批处理与接口变化必须重新建模。",
+        "crossover": "计算节省大于数据与调用开销，且 API 允许所需并行。",
+        "counterexample": "内核快很多，但串行的小粒度调用和数据移动主导总时间。",
+        "transfer": "迁移时重新定义任务、软件和系统成本，不直接外推原文性能数字。",
+        "question": "API 是否把硬件可用的并行性暴露给应用了？",
+        "validation": "围绕“API 是否把硬件可用的并行性暴露给应用了？”测量下列变量：主机时间 H；搬运 D；加速计算 A；调用次数 n；单次开销 o。 将假设与结果分别记录。"
+      }
     }
-  ]
+  ],
+  "research": {
+    "standard": "contribution-led-v1",
+    "baselineScope": 300,
+    "preservedAdditionalProfiles": [
+      "tushar-krishna"
+    ],
+    "batchLog": "research/batches/2026-10-06.json",
+    "completedThisBatch": 19,
+    "totalProfiles": 259
+  }
 }
