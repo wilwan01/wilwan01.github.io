@@ -98,33 +98,8 @@ stat=page.xpath('//div[@class="stats"]')[0];stat[0].text=str(len(profiles));stat
 intro=page.xpath('//div[@class="intro"]/div[1]/p')[0];intro.text='以最重要贡献为阅读主线，结合官方获奖理由与代表作品，解释突破、机制与适用边界。贡献式展示按已核验研究逐批更新。'
 existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
-# Unprofiled research names belong in the same domain directory, without a
-# second progress section or internal batch/provenance labels.
-profile_ids={p['id'] for p in profiles}
-candidate_domains={'george-yao':'cpu','liu-yi-identity-pending':'cpu'}
-candidate_topics={'george-yao':'服务器 CPU 与平台','liu-yi-identity-pending':'CPU 与处理器架构'}
-seen=set(profile_ids)
-for batch in batches:
- for record in batch['records']:
-  if record['id'] in seen or not record.get('sources'):continue
-  seen.add(record['id'])
-  domain=record.get('domain',candidate_domains.get(record['id'],'foundations'))
-  body=page.xpath('//*[@id="directory-'+domain+'"]//tbody')[0]
-  row=append(body,'tr',id='directory-person-'+record['id'])
-  append(row,'td','—')
-  append(row,'td',record['name'].split('（用户')[0])
-  append(row,'td',record.get('field',candidate_topics.get(record['id'],'计算机体系结构')))
-  detail=append(row,'td')
-  if record['id']=='george-yao':
-   detail.text='曾任海思图灵处理器业务部总经理。 '
-  for source in record['sources']:
-   detail.append(link(source['url'],source['title']))
-# Directory counts include all listed names; profile and skill counts retain
-# their own scope, as names without articles have no profile links.
-directory.xpath('./h2')[0].text=f'按领域浏览 · {len(seen)} 位人物'
-for domain in catalog['domains']:
- sec=page.xpath('//*[@id="directory-'+domain['id']+'"]')[0]
- sec.xpath('./h3')[0][0].tail=f" · {len(sec.xpath('.//tbody/tr'))} 位"
+# Publish only catalog profiles with documented contributions; research candidates
+# remain outside the public directory until their contribution profile is ready.
 (ROOT/'index.html').write_text('<!doctype html>\n'+html.tostring(page,encoding='unicode',method='html')+'\n')
 # Public batch report, readable without JS.
 for batchpath,batch in zip(batchpaths,batches):
