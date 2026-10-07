@@ -1,0 +1,777 @@
+{
+  "screenedAt": "2026-10-07",
+  "scope": "中美AI公司及其公开合作项目的基础设施人物候选；按公司/项目脉络组织，不推断个人国籍。",
+  "status": "screening-only-not-added-to-catalog",
+  "candidateCount": 18,
+  "candidates": [
+    {
+      "id": "jiayi-weng",
+      "name": "Jiayi Weng／翁家翌",
+      "company": "OpenAI",
+      "priority": "P1",
+      "role": "本人履历现称OpenAI研究工程师；2022-07起后训练团队；GPT-4官方明确RL Infrastructure author",
+      "roleDate": "履历于2026-10-07读取，页面未标独立更新日期；官方角色为2023项目时点",
+      "focus": "环境执行、采样/训练负载平衡、RLHF吞吐与数值正确性",
+      "rationale": "优先加入RL系统架构主线；用户提及的“温家毅”应按本人署名更正为“翁家翌”。",
+      "sources": [
+        {
+          "title": "Jiayi Weng 本人履历",
+          "url": "https://trinkle23897.github.io/cv/",
+          "date": "未标更新日期；2026-10-07读取",
+          "primary": true,
+          "verifiedScope": "本人写明中文姓名、OpenAI RL基础设施及公开论文"
+        },
+        {
+          "title": "GPT-4 contributions",
+          "url": "https://openai.com/contributions/gpt-4/",
+          "date": "2023-03",
+          "primary": true,
+          "verifiedScope": "官方分工名单；只证明该项目角色，不证明2026现职或个人独占贡献"
+        },
+        {
+          "title": "EnvPool: A Highly Parallel Reinforcement Learning Environment Execution Engine",
+          "url": "https://papers.nips.cc/paper_files/paper/2022/file/8caaf08e49ddbad6694fae067442ee21-Paper-Datasets_and_Benchmarks.pdf",
+          "date": "2022",
+          "primary": true,
+          "verifiedScope": "已读署名、§1 C++线程池和同步/异步环境执行；工作主体源自Sea AI Lab，脚注注明作者当时已在OpenAI"
+        },
+        {
+          "title": "Tianshou: A Highly Modularized Deep Reinforcement Learning Library",
+          "url": "https://www.jmlr.org/papers/volume23/21-1127/21-1127.pdf",
+          "date": "2022-08",
+          "primary": true,
+          "verifiedScope": "已读署名及§2架构：collector、replay buffer、policy update、异步采样；Weng与Huayu Chen共同一作"
+        }
+      ],
+      "gaps": [
+        "EnvPool/Tianshou为公开系统作品，不能当作OpenAI闭源RLHF系统结构的披露。",
+        "GPT-4o后训练基础设施lead目前来自本人履历，正式档案应再核官方分工。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "philippe-tillet",
+      "name": "Philippe Tillet／Phil Tillet",
+      "company": "OpenAI",
+      "priority": "P1",
+      "role": "GPT-4官方Triton lead；2024本人会议发言标OpenAI，后续本人招聘贴讨论OpenAI自研加速器编译栈",
+      "roleDate": "正式可定日的角色为2023/2024；2026-10-07检索到招聘贴但页面未显示绝对日期",
+      "focus": "tile IR、数据布局、代码生成与新加速器软硬协同",
+      "rationale": "补齐从CUDA专家内核到可编译tile抽象的关键人物。",
+      "sources": [
+        {
+          "title": "GPT-4 contributions",
+          "url": "https://openai.com/contributions/gpt-4/",
+          "date": "2023-03",
+          "primary": true,
+          "verifiedScope": "官方分工名单；只证明该项目角色，不证明2026现职或个人独占贡献"
+        },
+        {
+          "title": "本人发布Triton Conference 2024主题演讲",
+          "url": "https://www.linkedin.com/posts/philippe-tillet-809b5536_keynote-philippe-tillet-openai-activity-7245277697839378434-rbv4",
+          "date": "2024",
+          "primary": true,
+          "verifiedScope": "本人贴文与演讲标题OpenAI"
+        },
+        {
+          "title": "本人转发Software Engineer Triton Compiler岗位",
+          "url": "https://www.linkedin.com/posts/philippe-tillet-809b5536_software-engineer-triton-compiler-activity-7394574022971342848-GLDh",
+          "date": "页面未显示绝对日期；2026-10-07检索",
+          "primary": true,
+          "verifiedScope": "本人贴文涉及自研加速器IR/lowering/codegen和软件硅协同"
+        },
+        {
+          "title": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations",
+          "url": "https://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf",
+          "date": "2019-06-22",
+          "primary": true,
+          "verifiedScope": "取得原论文、署名及摘要/引言；正式审计再读优化段"
+        },
+        {
+          "title": "Introducing Triton: Open-source GPU programming for neural networks",
+          "url": "https://openai.com/index/triton/",
+          "date": "2021-07-28",
+          "primary": true,
+          "verifiedScope": "作者Philippe Tillet；取得技术正文，介绍自动化GPU编程及代码示例"
+        }
+      ],
+      "gaps": [
+        "2019与2021是同一技术路线的不同阶段；正式双作品审计宜补后续独立编译器研究，避免只用同项目两种介绍充数。",
+        "尚未证明其为OpenAI芯片硬件架构负责人，不应如此命名。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "amin-tootoonchian",
+      "name": "Amin Tootoonchian",
+      "company": "OpenAI",
+      "priority": "P1",
+      "role": "GPT-4 Model distribution, systems & networking lead；2026 MRC论文OpenAI作者组",
+      "roleDate": "2026-05论文署名；2023项目分工",
+      "focus": "同步训练尾延迟、网络故障放大、多路径传输",
+      "rationale": "从模型分发与网络系统延伸到真实大规模训练网络，技术与买方系统问题贴合。",
+      "sources": [
+        {
+          "title": "GPT-4 contributions",
+          "url": "https://openai.com/contributions/gpt-4/",
+          "date": "2023-03",
+          "primary": true,
+          "verifiedScope": "官方分工名单；只证明该项目角色，不证明2026现职或个人独占贡献"
+        },
+        {
+          "title": "本人旧主页",
+          "url": "https://atootoon.com/",
+          "date": "未标更新日期；2026-10-07读取",
+          "primary": true,
+          "verifiedScope": "主页仍写London independent researcher；与2026新论文归属不一致，不用旧页面断言已离开OpenAI"
+        },
+        {
+          "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "date": "2026-05",
+          "primary": true,
+          "verifiedScope": "原论文署名、OpenAI归属、§1–2多平面拓扑、§5训练故障结果；已读取正文"
+        },
+        {
+          "title": "The Multipath Reliable Connection (MRC) Transport",
+          "url": "https://arxiv.org/html/2606.18170v1",
+          "date": "2026-06",
+          "primary": true,
+          "verifiedScope": "取得协议论文正文和共同作者名单；与部署论文是不同作品，但仍属同项目"
+        }
+      ],
+      "gaps": [
+        "两篇MRC论文与多机构团队共同署名，需继续核实个人具体设计责任。",
+        "未给2026-10任职/职衔下断言；旧个人主页可能未更新。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "christopher-berner",
+      "name": "Christopher Berner",
+      "company": "OpenAI",
+      "priority": "P2",
+      "role": "2018官方署名集群扩展文章；GPT-4官方Supercomputing lead",
+      "roleDate": "2018/2023",
+      "focus": "扩展时控制面、镜像、DNS、ARP如何成为训练瓶颈",
+      "rationale": "适合补充模型背后的调度、控制面、稳定性和实验迭代架构。",
+      "sources": [
+        {
+          "title": "GPT-4 contributions",
+          "url": "https://openai.com/contributions/gpt-4/",
+          "date": "2023-03",
+          "primary": true,
+          "verifiedScope": "官方分工名单；只证明该项目角色，不证明2026现职或个人独占贡献"
+        },
+        {
+          "title": "Scaling Kubernetes to 2,500 nodes",
+          "url": "https://openai.com/index/scaling-kubernetes-to-2500-nodes/",
+          "date": "2018-01-18",
+          "primary": true,
+          "verifiedScope": "作者Christopher Berner；已读etcd、调度、镜像拉取、网络与ARP机制正文"
+        },
+        {
+          "title": "Dota 2 with Large Scale Deep Reinforcement Learning",
+          "url": "https://arxiv.org/abs/1912.06680",
+          "date": "2019-12-13",
+          "primary": true,
+          "verifiedScope": "已核共同署名与分布式训练系统摘要；正式审计需进一步定位系统段及作者贡献"
+        }
+      ],
+      "gaps": [
+        "不把7,500节点文章自动归给Berner，该文章当前页面未检出作者。",
+        "当前所属机构与职责需要新的一手来源；先按OpenAI历史贡献人物收录候选。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "scott-gray",
+      "name": "Scott Gray",
+      "company": "OpenAI historical",
+      "priority": "P1",
+      "role": "2016官方加入公告、2017稀疏GPU内核作者、2019Sparse Transformer共同作者；2026任职未确认",
+      "roleDate": "2016–2019历史技术贡献；2026现职待核",
+      "focus": "结构稀疏的索引开销、寄存器/共享内存约束与实际利用率",
+      "rationale": "可补齐汇编级GPU优化、稀疏矩阵和attention内核，适合把理论稀疏收益还原到硬件。",
+      "sources": [
+        {
+          "title": "OpenAI Team update",
+          "url": "https://openai.com/index/team-update-august/",
+          "date": "2016-08-16",
+          "primary": true,
+          "verifiedScope": "官方加入公告和Nervana GPU优化背景"
+        },
+        {
+          "title": "GPU Kernels for Block-Sparse Weights",
+          "url": "https://cdn.openai.com/blocksparse/blocksparsepaper.pdf",
+          "date": "2017",
+          "primary": true,
+          "verifiedScope": "已取得12页原文及作者信息；Scott Gray、Alec Radford、Diederik P. Kingma"
+        },
+        {
+          "title": "Generating Long Sequences with Sparse Transformers",
+          "url": "https://arxiv.org/abs/1904.10509",
+          "date": "2019-04",
+          "primary": true,
+          "verifiedScope": "已核作者与稀疏注意力/高效内核贡献摘要；正式审计仍需逐节提取"
+        }
+      ],
+      "gaps": [
+        "仅依据已核实的历史技术贡献列为候选；2026任职尚无已核验的一手证据。",
+        "不采用“Bob内核作者”等未被本人/官方确认的网络推测。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "mark-handley",
+      "name": "Mark Handley",
+      "company": "OpenAI / UCL historical",
+      "priority": "P1",
+      "role": "2026 MRC论文OpenAI作者组、通讯邮箱mjh@openai.com；2017 NDP论文UCL署名",
+      "roleDate": "2026-05",
+      "focus": "拥塞控制、packet trimming、多路径、可容错训练拓扑",
+      "rationale": "非常值得加：经典网络传输研究直接进入AI超级计算机，是机制到大规模部署的完整链条。",
+      "sources": [
+        {
+          "title": "MRC论文署名页",
+          "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "date": "2026-05",
+          "primary": true,
+          "verifiedScope": "OpenAI作者组和通讯作者邮箱明确"
+        },
+        {
+          "title": "Re-architecting datacenter networks and stacks for low latency and high performance",
+          "url": "https://www.cl.cam.ac.uk/teaching/1718/R02/papers/p29-Handley.pdf",
+          "date": "2017",
+          "primary": true,
+          "verifiedScope": "原论文搜索正文确认作者及NDP：浅缓冲、保留header、接收端掌握需求；全文审计待补"
+        },
+        {
+          "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "date": "2026-05",
+          "primary": true,
+          "verifiedScope": "原论文署名、OpenAI归属、§1–2多平面拓扑、§5训练故障结果；已读取正文"
+        }
+      ],
+      "gaps": [
+        "NDP与MRC均为团队工作，不能把多个厂商共同工程归一人。",
+        "精确现职头衔仍待官方个人介绍；不影响其两条技术路线的候选价值。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "james-bradbury",
+      "name": "James Bradbury",
+      "company": "Anthropic",
+      "priority": "P1",
+      "role": "来源时点角色：Head of Compute（NVIDIA官方2026交付报道中的职务表述）",
+      "roleDate": "2026-08-27更新；2026-05-18首发",
+      "focus": "JAX编译与加速器软件接口，结合当前compute职责；连接训练软件栈与买方硬件选择。",
+      "rationale": "JAX编译与加速器软件接口，结合当前compute职责；连接训练软件栈与买方硬件选择。",
+      "sources": [
+        {
+          "url": "https://blogs.nvidia.com/blog/vera-cpu-delivery/",
+          "date": "2026-08-27更新；2026-05-18首发",
+          "locator": "Vera Heads to San Francisco and Anthropic，lines74–82",
+          "evidence": "NVIDIA对实际交付活动的第一方报道，点名Bradbury并标注职务；不称其为Vera设计者或Anthropic Chief Architect。"
+        },
+        {
+          "title": "JAX: composable transformations of Python+NumPy programs",
+          "url": "https://github.com/jax-ml/jax",
+          "date": "2018起的团队软件作品；页面为当前版本",
+          "locator": "What is JAX?；Transformations；Citing JAX lines407–421",
+          "authorship": "官方引用名单列James Bradbury；名单按字母排序，不据排序推断贡献大小。",
+          "contribution": "共同软件作品将自动微分、向量化和JIT变换组合，经XLA映射加速器。已读README机制说明；不能把当前全部功能归于其个人。"
+        }
+      ],
+      "gaps": [
+        "候选筛选仅完成一项具体软件作品及当前角色核验；下一步需追加其本人署名技术演讲或独立作品，避免用2018 JAX论文误认作者。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "sam-mccandlish",
+      "name": "Sam McCandlish",
+      "company": "Anthropic",
+      "priority": "P1",
+      "role": "Co-Founder and Chief Architect",
+      "roleDate": "2026-10-07读取公司页面；页面未标更新日期",
+      "focus": "直接负责训练架构，研究有效批量、并行扩展和时间—计算量权衡，最适合补充AI训练系统的架构判断。",
+      "rationale": "直接负责训练架构，研究有效批量、并行扩展和时间—计算量权衡，最适合补充AI训练系统的架构判断。",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/company/leadership",
+          "locator": "Sam McCandlish，lines67–72",
+          "evidence": "公司当前领导页面明确职务，且说明负责large-scale model training、pretraining、research productivity及RL infrastructure。"
+        },
+        {
+          "title": "An Empirical Model of Large-Batch Training",
+          "url": "https://arxiv.org/pdf/1812.06162",
+          "date": "2018-12-14",
+          "locator": "署名页；§2.3–2.4；§3；§5",
+          "authorship": "Sam McCandlish、Jared Kaplan、Dario Amodei与OpenAI Dota Team；当时署名OpenAI，非Anthropic作品。",
+          "contribution": "梯度噪声尺度用于估计有效批量上限，量化训练时间与计算效率的折中；实际为近似/数量级预测，并有优化假设。",
+          "mechanismRead": true
+        },
+        {
+          "title": "Scaling Laws for Neural Language Models",
+          "url": "https://openai.com/index/scaling-laws-for-neural-language-models/",
+          "date": "2020",
+          "authorship": "官方页面共同作者含Sam McCandlish、Tom Brown等。",
+          "contribution": "模型、数据与计算预算的经验扩展关系；当前仅筛选官方论文入口，未完成完整正文审计。",
+          "mechanismRead": false
+        }
+      ],
+      "gaps": [
+        "Chief Architect职务有公司原始证据，但不能据此声称设计某款芯片；历史OpenAI研究与当前Anthropic职责必须分开。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "tom-brown",
+      "name": "Tom Brown",
+      "company": "Anthropic",
+      "priority": "P1",
+      "role": "Co-Founder and Chief Compute Officer",
+      "roleDate": "2026-10-07读取公司页面；页面未标更新日期",
+      "focus": "算力获取、规模扩展与有效利用的系统负责人，兼有大模型训练经验，适合补充模型需求到算力平台的决策链。",
+      "rationale": "算力获取、规模扩展与有效利用的系统负责人，兼有大模型训练经验，适合补充模型需求到算力平台的决策链。",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/company/leadership",
+          "locator": "Tom Brown，lines40–45",
+          "evidence": "公司当前页面明确其领导算力获取、扩展和有效利用的技术组织。"
+        },
+        {
+          "title": "Language Models are Few-Shot Learners",
+          "url": "https://arxiv.org/pdf/2005.14165",
+          "date": "2020",
+          "locator": "署名页；§2.3 Training Process，PDF p.9",
+          "authorship": "Tom B. Brown等共同作者；OpenAI时期的团队工作。",
+          "contribution": "GPT-3训练将矩阵内模型并行与跨层模型并行结合，并使用梯度噪声尺度指导batch选择；论文共同署名不能证明某个底层并行组件由Brown个人实现。",
+          "mechanismRead": true
+        },
+        {
+          "title": "Scaling Laws for Neural Language Models",
+          "url": "https://openai.com/index/scaling-laws-for-neural-language-models/",
+          "date": "2020",
+          "authorship": "官方作者名单含Tom Brown。",
+          "mechanismRead": false
+        }
+      ],
+      "gaps": [
+        "推荐定位是compute系统/平台决策；不称CPU/GPU微架构设计师。需额外检索本人技术口述，深化个人贡献归属。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "tristan-hume",
+      "name": "Tristan Hume",
+      "company": "Anthropic",
+      "priority": "P1",
+      "role": "来源时点角色：a lead on Anthropic's performance optimization team（公司2026-01文章原文，译为性能优化团队负责人之一）",
+      "roleDate": "2026-01-21",
+      "focus": "最接近底层性能实战：TPU寄存器布局、bank conflicts、SIMD/VLIW、scratchpad与可视化性能分析。",
+      "rationale": "最接近底层性能实战：TPU寄存器布局、bank conflicts、SIMD/VLIW、scratchpad与可视化性能分析。",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+          "date": "2026-01-21",
+          "locator": "署名说明lines15–19",
+          "evidence": "公司署名文章明确其团队lead身份；按2026-01已公开身份描述，不夸大为所有算力/硬件部门负责人。"
+        },
+        {
+          "title": "Designing AI-resistant technical evaluations",
+          "url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+          "date": "2026-01-21",
+          "locator": "The simulated machine；Attempt1；lines50–57、90–95",
+          "authorship": "Tristan Hume独立署名。",
+          "contribution": "说明TPU式模拟加速器的scratchpad、SIMD与VLIW优化任务，并举其在Anthropic处理2D TPU寄存器转置及bank冲突的实例。",
+          "mechanismRead": true
+        }
+      ],
+      "gaps": [
+        "文章中的模拟器是招聘/优化测评装置，不能描述为Anthropic真实芯片；团队Trainium上线经历不全部归其个人。完整人物档案还需第二项独立技术作品。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "chenggang-zhao",
+      "name": "Chenggang Zhao",
+      "company": "DeepSeek",
+      "priority": "P1",
+      "role": "本人公开GitHub列 @deepseek-ai infra；职级与管理范围未核验",
+      "roleDate": "2025 DeepEP/DeepGEMM署名；2026-10-07本人GitHub仍标DeepSeek infra",
+      "focus": "DeepGEMM：低精度GEMM、MoE分组计算与GPU内核组织。；DeepEP：专家并行dispatch/combine通信，关注计算通信协同。；Insights into DeepSeek-V3：模型、低精度计算、网络与硬件瓶颈协同。",
+      "rationale": "本人GitHub明确姓名、DeepSeek AI 与 infra；两个官方小型核心库的引用作者名单都列其首位，另为ISCA2025硬件架构论文第一作者。",
+      "sources": [
+        {
+          "url": "https://github.com/LyricZhao",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://github.com/deepseek-ai/DeepGEMM",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://github.com/deepseek-ai/DeepEP",
+          "title": "一手来源 3"
+        },
+        {
+          "url": "https://arxiv.org/abs/2505.09343",
+          "title": "一手来源 4"
+        }
+      ],
+      "gaps": [
+        "进一步核对关键提交与本人演讲，细分其个人机制负责范围。",
+        "不把V3大作者名单本身当个人架构贡献证据。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "wencong-xiao",
+      "name": "Wencong Xiao · 肖文聪",
+      "company": "ByteDance Seed；此前 Alibaba Cloud PAI",
+      "priority": "P1",
+      "role": "本人主页标现任Seed Training Infra Lead；本轮于2026-10-07读取，主页注明2026-02更新。",
+      "roleDate": "本人主页：2026–present ByteDance；2019–2025 Alibaba PAI",
+      "focus": "AntMan：训练框架与集群调度器协同，实现GPU内存和计算资源动态缩放。；Llumnix：跨模型实例动态重调度与KV状态迁移，改善负载均衡、优先级和尾延迟。",
+      "rationale": "本人直接陈述领导训练基础设施团队；AntMan第一作者，Llumnix共同作者，且均有会议正式作者/机构记录。",
+      "sources": [
+        {
+          "url": "https://wencongxiao.github.io/",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://www.usenix.org/conference/osdi20/presentation/xiao",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://www.usenix.org/conference/osdi24/presentation/sun-biao",
+          "title": "一手来源 3"
+        }
+      ],
+      "gaps": [
+        "现任职由本人主页支持，未追加雇主组织架构独立验证。",
+        "两篇历史成果属于阿里团队，不应标为字节发明。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "ziheng-jiang",
+      "name": "Ziheng Jiang",
+      "company": "ByteDance",
+      "priority": "P1",
+      "role": "可确认2024–2025论文机构关联；2026现任职衔未独立确认。",
+      "roleDate": "2024 NSDI；2025 SIGCOMM与Seed官网论文记录",
+      "focus": "MegaScale：大规模训练中的通信重叠、算子、网络和稳定性共同设计。；MegaScale-Infer：attention/FFN解耦与专家并行推理。",
+      "rationale": "MegaScale第一作者和会议报告关联人物；本人LinkedIn说明MegaScale-Infer的生产系统研究，论文有明确ByteDance机构映射。",
+      "sources": [
+        {
+          "url": "https://www.usenix.org/conference/nsdi24/presentation/jiang-ziheng",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://chaojin0310.github.io/files/papers/SIGCOMM25-MegaScale-Infer.pdf",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://seed.bytedance.com/en/public_papers/comet-fine-grained-computation-communication-overlapping-for-mixture-of-experts",
+          "title": "一手来源 3"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/jiangzh_megascale-infer-serving-mixture-of-experts-activity-7356102219487727616-bg4x",
+          "title": "一手来源 4"
+        }
+      ],
+      "gaps": [
+        "补本人履历与当前团队职责。",
+        "第一作者不证明系统所有组件个人独占。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "haibin-lin",
+      "name": "Haibin Lin",
+      "company": "ByteDance Seed（历史）；SSI（本人主页提及）",
+      "priority": "P1",
+      "role": "本人主页新文本写经历包含SSI Member of Technical Staff及ByteDance Seed；时序不足，禁止写成确定现任字节。",
+      "roleDate": "2024 MegaScale、2025 HybridFlow；任职转换具体年月待补",
+      "focus": "MegaScale训练框架扩展。；HybridFlow/verl：混合控制范式与训练/生成模型重分片，支持RLHF数据流。",
+      "rationale": "本人主页明确LLM训练框架和RL基础设施方向，并自述verl主要贡献者；具名MegaScale与HybridFlow共同作者。",
+      "sources": [
+        {
+          "url": "https://sites.google.com/view/haibinlin/",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://github.com/eric-haibin-lin",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://arxiv.org/abs/2409.19256",
+          "title": "一手来源 3"
+        },
+        {
+          "url": "https://www.usenix.org/conference/nsdi24/presentation/jiang-ziheng",
+          "title": "一手来源 4"
+        }
+      ],
+      "gaps": [
+        "核对SSI入离职月份和当前雇主。",
+        "本人主页贡献者排名只是自述，应对具体版本提交复核。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "ruoyu-qin",
+      "name": "Ruoyu Qin",
+      "company": "Moonshot AI and Tsinghua University",
+      "priority": "P1",
+      "role": "确认发表时关联；2026雇佣身份与职级尚未确认。",
+      "roleDate": "FAST2025正式机构关联；个人站搜索索引提Moonshot Infra Team但正文未成功提取",
+      "focus": "Mooncake：prefill/decode分离，利用CPU、DRAM、SSD和NIC形成以KVCache为中心的分离式推理架构。；全局缓存与SLO约束调度，涉及内存容量、传输和重计算权衡。",
+      "rationale": "Mooncake第一作者及USENIX报告条目，正式会议标注Moonshot AI/Tsinghua。个人主页正文不可提取，未据搜索摘要扩写职衔。",
+      "sources": [
+        {
+          "url": "https://www.usenix.org/conference/fast25/presentation/qin",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://github.com/kvcache-ai/Mooncake",
+          "title": "一手来源 3"
+        },
+        {
+          "url": "https://qinruoyu.com/",
+          "title": "一手来源 4"
+        }
+      ],
+      "gaps": [
+        "补个人组件负责范围以及第二项独立技术作品。",
+        "本轮没有将Mooncake期刊扩展版计为第二独立作品。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "feng-ren",
+      "name": "Feng Ren",
+      "company": "Approaching AI（趋境科技）；此前9# AISoft；Mooncake开放项目协作者",
+      "priority": "P1",
+      "role": "本人主页2026-09更新，标Technical Expert, LLM Inference Systems；不是已证实的Moonshot员工。",
+      "roleDate": "本人主页：2026-07至今Approaching AI；2023-07至2026-07 9# AISoft",
+      "focus": "Mooncake Transfer Engine：推理场景高效数据搬运。；TENT：声明式切片喷洒与弹性数据移动。；SMART：内存分离应用扩展。",
+      "rationale": "本人明确为Mooncake共创者、Transfer Engine作者与核心维护者，自2024聚焦其架构、性能和维护。",
+      "sources": [
+        {
+          "url": "https://libfeng.com/",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://arxiv.org/abs/2604.00368",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://www.usenix.org/conference/fast25/presentation/qin",
+          "title": "一手来源 3"
+        }
+      ],
+      "gaps": [
+        "应补雇主页面或本人技术演讲完整正文。",
+        "不能将Mooncake合作项目参与等同Moonshot雇佣关系。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "wei-lin",
+      "name": "Wei Lin",
+      "company": "Alibaba Cloud PAI / computing platform",
+      "priority": "P1",
+      "role": "2025公司官方帖称PAI & Dataworks负责人；2026职务未确认。",
+      "roleDate": "2019官方webinar；2020 AntMan；2024 Llumnix；2025官方公司社交帖",
+      "focus": "PAI训练负载性能刻画：通信、计算与软硬件映射。；AntMan与Llumnix共同作者：GPU资源共享、推理请求迁移与调度。",
+      "rationale": "阿里官方webinar直接标AI平台高级总监和大数据计算平台架构师；官方2025账号称PAI & Dataworks负责人。",
+      "sources": [
+        {
+          "url": "https://resource.alibabacloud.com/webinar/detail.html?id=1284",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/alibabacloudglobal_apsara2025-alibabacloud-aiinnovation-activity-7387406376425181184-lGAy",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://arxiv.org/abs/1910.05930",
+          "title": "一手来源 3"
+        },
+        {
+          "url": "https://www.usenix.org/conference/osdi20/presentation/xiao",
+          "title": "一手来源 4"
+        },
+        {
+          "url": "https://www.usenix.org/conference/osdi24/presentation/sun-biao",
+          "title": "一手来源 5"
+        }
+      ],
+      "gaps": [
+        "需补本人技术演讲正文，把管理职衔与具体架构决策关联起来。",
+        "本轮不称Qwen首席架构师，也未把PAI全平台成果归其个人。"
+      ],
+      "status": "screened-not-audited"
+    },
+    {
+      "id": "zheming-li",
+      "name": "Zheming Li",
+      "company": "Moonshot AI",
+      "priority": "P2-conditional",
+      "role": "2026现职及职级未独立确认。",
+      "roleDate": "FAST2025正式机构关联",
+      "focus": "Mooncake 以KVCache为中心推理系统共同研究。",
+      "rationale": "Mooncake论文第二作者，USENIX明确Moonshot AI机构；个体架构负责范围尚未从一手履历或演讲核实。",
+      "sources": [
+        {
+          "url": "https://www.usenix.org/conference/fast25/speaker-or-organizer/zheming-li-moonshot-ai",
+          "title": "一手来源 1"
+        },
+        {
+          "url": "https://www.usenix.org/conference/fast25/presentation/qin",
+          "title": "一手来源 2"
+        },
+        {
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "title": "一手来源 3"
+        }
+      ],
+      "gaps": [
+        "补本人公开系统讲解或精确模块负责证据，不能仅凭作者排序称首席架构师。",
+        "补第二项独立技术作品。"
+      ],
+      "status": "screened-not-audited"
+    }
+  ],
+  "identityChecks": {
+    "richard": {
+      "checkedAt": "2026-10-07",
+      "status": "identity-resolution-and-existing-profile-update-candidate",
+      "names": [
+        {
+          "name": "Richard Ho",
+          "catalogId": "richard-ho",
+          "alreadyInCatalog": true,
+          "verifiedRole": "VP of Hardware @ OpenAI",
+          "roleEvidence": {
+            "url": "https://forum.openai.com/public/videos/richard-ho-on-openai-jalapeno-chips-early-performance-2026-08-25",
+            "published": "2026-08-26",
+            "retrieved": "2026-10-07",
+            "scope": "已读官方活动页姓名/职务/摘要；未看完整视频"
+          },
+          "identityEvidence": {
+            "url": "https://www.kisacoresearch.com/content/richard-ho",
+            "scope": "会议主办方简介连接OpenAI、Google TPU、D.E.Shaw Anton经历；与现有两篇C.Richard Ho署名技术作品相符"
+          },
+          "action": "保留现有人物，不重复新增；可补充带日期OpenAI硬件VP身份来源",
+          "limits": "未取得官方视频完整机制内容，不能将活动摘要当第二项芯片技术作品；未据此推断Jalapeño参数"
+        },
+        {
+          "name": "Richard Huang",
+          "alreadyInCatalog": false,
+          "verifiedScope": "搜索索引取得本人LinkedIn履历和本人招聘贴，描述compute finance and strategy team；直接打开返回999",
+          "evidenceUrl": "https://www.linkedin.com/in/richard-huang-51b62b79",
+          "date": "贴文仅显示1y相对日期；2026-10-07检索",
+          "confidence": "中：本人自述搜索索引；精确现职头衔未核",
+          "action": "作为不同人物保留身份备注，不把Huang添加为Ho的别名；硬件负责人语境更符合Ho",
+          "limits": "没有足够架构机制作品，暂不列正式系统架构候选"
+        }
+      ],
+      "jiayi": {
+        "spokenVariants": [
+          "王嘉亿",
+          "温家毅"
+        ],
+        "verifiedName": "Jiayi Weng／翁家翌",
+        "source": "https://trinkle23897.github.io/cv/",
+        "confidence": "高：本人中英文署名；GPT-4官方RL Infrastructure author可交叉核对",
+        "action": "语音转写变体只用于本轮对话识别，不添加为正式姓名别名"
+      }
+    },
+    "alex": {
+      "checkedAt": "2026-10-07",
+      "query": "Anthropic负责infra、名字Alex，用户未给姓氏",
+      "resolution": "unresolved-nonunique",
+      "conclusion": "找到两位有原始来源、与基础设施相关的Alex；尚不能唯一确认用户所指对象。没有充分证据将任何一位称为Anthropic全公司基础设施总负责人。",
+      "candidates": [
+        {
+          "name": "Alex Kleiman",
+          "fit": "Cloud Inference团队manager，最符合负责云推理infra团队的描述；身份尚待与用户所指对象对上。",
+          "supportedRole": "Anthropic software engineering manager / Cloud Inference team",
+          "roleScope": "跨AWS/GCP/Azure的API集成、请求路由、推理执行、容量管理与运维。",
+          "sources": [
+            {
+              "url": "https://www.linkedin.com/posts/alexkleiman_staff-sr-software-engineer-cloud-inference-activity-7425303397379211265-oCl3",
+              "kind": "本人公开招聘帖原文",
+              "date": "页面显示8mo；取得时间2026-10-07，不把相对日期转换为精确日期",
+              "locator": "lines15–22",
+              "evidence": "本人称my team at Anthropic并明确Cloud Inference团队职责；已打开正文。"
+            },
+            {
+              "url": "https://www.linkedin.com/posts/tehmle_staff-senior-software-engineer-cloud-inference-activity-7426338658775101440-86PY",
+              "kind": "同团队管理者Emily Johnston的本人公开转发",
+              "date": "页面显示8mo；取得时间2026-10-07",
+              "locator": "lines15–28",
+              "evidence": "Alex is a new manager on my team，转引Alex Kleiman原帖；已打开正文。"
+            }
+          ],
+          "limit": "不能从团队manager扩大为Head of Infrastructure；未核验两项独立技术作品，不加入本批20人。"
+        },
+        {
+          "name": "Alex Palcuie",
+          "fit": "Anthropic AI Reliability Engineering，直接做Claude大规模系统可靠性；不是已证实的部门总负责人。",
+          "supportedRole": "Member of Technical Staff, AI Reliability Engineering (AIRE), Anthropic",
+          "sources": [
+            {
+              "url": "https://palcu.net/",
+              "kind": "本人当前主页",
+              "date": "取得2026-10-07，页面含mid-2026信息",
+              "locator": "lines2–11",
+              "evidence": "明确MTS at Anthropic；本人称在AIRE团队维护Claude可靠性，曾在Google GCE任SRE八年。"
+            },
+            {
+              "url": "https://qconlondon.com/speakers/alexpalcuie",
+              "kind": "QCon主办方2026讲者页面",
+              "date": "2026讲者内容；页面顶部已切至2027会议导航，不能把导航日期当演讲日期",
+              "locator": "lines28–45",
+              "evidence": "明确MTS in AI Reliability Engineering at Anthropic；演讲Can Claude Fix Itself? Using LLMs for Incident Response。"
+            },
+            {
+              "url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
+              "kind": "Anthropic公司技术复盘",
+              "date": "2025-09-17",
+              "evidence": "文末致谢Alex Palcuie；仅支持参与/协助，不据此认定文章或所有修复由其独立完成。"
+            }
+          ],
+          "limit": "支持可靠性工程人物候选，但无法与只给Alex的线索唯一匹配。"
+        }
+      ],
+      "notConflated": [
+        "Alex Albert的开发者关系/研究产品工作不能无证据转为基础设施负责人",
+        "Alex Cloud的对齐研究不能按名字推为基础设施负责人",
+        "Alex Allain等其他同名现职线索不足以确认infra职责"
+      ],
+      "nextStep": "请用户提供姓氏、以前公司、活动或职位描述中的任意一个线索，即可针对性核验；现阶段明确保留身份未定。"
+    }
+  },
+  "deferredCompanies": [
+    "智谱 / Zhipu",
+    "MiniMax"
+  ],
+  "selectionStandard": [
+    "具名技术作品与公开职责分别核验；职位本身不等于具体机制贡献。",
+    "正式入库仍需两项不同实质一手作品、机制正文及个人/团队归属。",
+    "历史论文机构、本人当前主页和官方现职分别带日期，遇到冲突保留待核。",
+    "本队列不影响已批准并完成的20位扩展批次，也不增加321位正式目录人数。"
+  ]
+}

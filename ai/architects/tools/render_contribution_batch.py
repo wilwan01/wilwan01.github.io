@@ -125,6 +125,8 @@ for batchpath,batch in zip(batchpaths,batches):
   out.append(f'<tr><td>{name}</td><td>{"既有" if x["kind"]=="existing" else "候选"}</td><td>{dict(complete="完成",partial="部分完成",pending="待补")[x["status"]]}</td><td>{esc(x["reason"])} {esc(x["nextAction"] or "")}</td></tr>')
  out.append('</tbody></table><h2>证据与归属说明</h2><ul>')
  for n in batch['notes']:out.append('<li>'+esc(n)+'</li>')
+ if batch.get('followupWatchlist'):
+  out.append('<li><a href="'+esc(batch['followupWatchlist'])+'">后续中美 AI 基础设施人物候选与待核项</a>；候选初筛不计入本批完成数。</li>')
  out.append('</ul><p>已核验内容通过 Pages 部署与公开文件一致性检查。<a href="'+esc(batch['publication'].get('verificationRecord','2026-10-06-deployment.json'))+'">查看上线核验记录</a>。</p></main></html>' if batch['publication']['status']=='published' else '</ul><p>页面提交后须另核对 GitHub Pages 部署与公开 catalog；此日志不预先宣称上线。</p></main></html>')
  (ROOT/Path(batchpath).with_suffix('.html')).write_text('\n'.join(out)+'\n')
 print(f'Rendered {len(profiles)} profiles; audited cards: {sum(p.get("researchStatus",{}).get("standard")=="contribution-led-v1" for p in profiles)}')
