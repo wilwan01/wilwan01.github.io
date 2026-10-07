@@ -1,0 +1,320 @@
+{
+  "date": "2026-10-07",
+  "focus": "Frontier Lab 基础设施人物 · 7位补充核验",
+  "scope": "additional",
+  "baseCommit": "b954e373d12d1bd7810d38670de3128d4782c8cc",
+  "plannedScope": 7,
+  "plannedExisting": 0,
+  "plannedCandidates": 7,
+  "counts": {
+    "complete": 7
+  },
+  "completedExisting": 0,
+  "completedNew": 7,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "paul-barham",
+      "name": "Paul Barham",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "已读取 TensorFlow 与 Pathways 两项不同一手作品的署名和机制正文；共同贡献、历史实现边界及编辑提炼已分开。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "pathways-2022",
+          "title": "Pathways: Asynchronous Distributed Dataflow for ML",
+          "authors": "Paul Barham, Aakanksha Chowdhery, Jeff Dean, Sanjay Ghemawat, Steven Hand, Dan Hurt, Michael Isard, Hyeontaek Lim, Ruoming Pang, Sudip Roy, Brennan Saeta, Parker Schuh, Ryan Sepassi, Laurent El Shafey, Chandramohan A. Thekkath, Yonghui Wu",
+          "date": "2022-03-23",
+          "url": "https://arxiv.org/pdf/2203.12533",
+          "locator": "§4.1–4.6，PDF pp.4–7：虚拟切片、分片图、gang scheduling、并行异步派发与 HBM 对象管理；§5.1/Fig.6 开销边界",
+          "contentStatus": "已下载原始 PDF 并提取文字，读取署名、所列机制正文及派发开销边界；审阅摘记留存在本地。",
+          "type": "论文全文",
+          "evidenceStrength": "强：共同署名的一手技术论文，机制正文已读",
+          "role": "核验共同研究的机制与边界，不以作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tensorflow-osdi-2016",
+          "title": "TensorFlow: A System for Large-Scale Machine Learning",
+          "authors": "Martín Abadi, Paul Barham, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghemawat, Geoffrey Irving, Michael Isard, Manjunath Kudlur, Josh Levenberg, Rajat Monga, Sherry Moore, Derek G. Murray, Benoit Steiner, Paul Tucker, Vijay Vasudevan, Pete Warden, Martin Wicke, Yuan Yu, Xiaoqiang Zheng",
+          "date": "2016-11",
+          "url": "https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf",
+          "locator": "§2.2、§3.3、§4.2–4.4、§5；原刊 pp.267–275：数据流与可变状态、设备放置、分片 embedding、检查点一致性及执行器",
+          "contentStatus": "已通过网页检索工具取得 USENIX 原始 PDF 正文并阅读署名及所列机制；直接文件下载遭 403，未声称已保存此 PDF；本地保留审阅摘记。",
+          "type": "论文全文",
+          "evidenceStrength": "强：共同署名的一手技术论文，机制正文已读",
+          "role": "核验共同研究的机制与边界，不以作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "michael-isard",
+      "name": "Michael Isard",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "已读取 TensorFlow 与 Pathways 两项不同一手作品的署名和机制正文；共同贡献、历史实现边界及编辑提炼已分开。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "pathways-2022",
+          "title": "Pathways: Asynchronous Distributed Dataflow for ML",
+          "authors": "Paul Barham, Aakanksha Chowdhery, Jeff Dean, Sanjay Ghemawat, Steven Hand, Dan Hurt, Michael Isard, Hyeontaek Lim, Ruoming Pang, Sudip Roy, Brennan Saeta, Parker Schuh, Ryan Sepassi, Laurent El Shafey, Chandramohan A. Thekkath, Yonghui Wu",
+          "date": "2022-03-23",
+          "url": "https://arxiv.org/pdf/2203.12533",
+          "locator": "§4.1–4.6，PDF pp.4–7：虚拟切片、分片图、gang scheduling、并行异步派发与 HBM 对象管理；§5.1/Fig.6 开销边界",
+          "contentStatus": "已下载原始 PDF 并提取文字，读取署名、所列机制正文及派发开销边界；审阅摘记留存在本地。",
+          "type": "论文全文",
+          "evidenceStrength": "强：共同署名的一手技术论文，机制正文已读",
+          "role": "核验共同研究的机制与边界，不以作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tensorflow-osdi-2016",
+          "title": "TensorFlow: A System for Large-Scale Machine Learning",
+          "authors": "Martín Abadi, Paul Barham, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghemawat, Geoffrey Irving, Michael Isard, Manjunath Kudlur, Josh Levenberg, Rajat Monga, Sherry Moore, Derek G. Murray, Benoit Steiner, Paul Tucker, Vijay Vasudevan, Pete Warden, Martin Wicke, Yuan Yu, Xiaoqiang Zheng",
+          "date": "2016-11",
+          "url": "https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf",
+          "locator": "§2.2、§3.3、§4.2–4.4、§5；原刊 pp.267–275：数据流与可变状态、设备放置、分片 embedding、检查点一致性及执行器",
+          "contentStatus": "已通过网页检索工具取得 USENIX 原始 PDF 正文并阅读署名及所列机制；直接文件下载遭 403，未声称已保存此 PDF；本地保留审阅摘记。",
+          "type": "论文全文",
+          "evidenceStrength": "强：共同署名的一手技术论文，机制正文已读",
+          "role": "核验共同研究的机制与边界，不以作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "shen-li",
+      "name": "Shen Li",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "两篇不同署名原始论文均取得全文并核验机制；共同贡献与差异化编辑视角已明确分开。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "pytorch-ddp-2020",
+          "title": "PyTorch Distributed: Experiences on Accelerating Data Parallel Training",
+          "authors": "Shen Li, Yanli Zhao, Rohan Varma, Omkar Salpekar, Pieter Noordhuis, Teng Li, Adam Paszke, Jeff Smith, Brian Vaughan, Pritam Damania, Soumith Chintala",
+          "date": "2020-06-28",
+          "url": "https://arxiv.org/pdf/2006.15704",
+          "locator": "§3.1–3.2.3，Algorithm 1，PDF pp.3–5：API、gradient bucketing、autograd hooks、跨进程一致的归约顺序",
+          "type": "论文全文",
+          "contentStatus": "已下载原始 PDF 并提取正文，核验共同署名及所列机制段落；本地保留 PDF 和正文。",
+          "evidenceStrength": "强：团队署名原始技术论文",
+          "role": "核验共同技术贡献、机制及版本边界；不按作者排序推定个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "pytorch-fsdp-2023",
+          "title": "PyTorch FSDP: Experiences on Scaling Fully Sharded Data Parallel",
+          "authors": "Yanli Zhao, Andrew Gu, Rohan Varma, Liang Luo, Chien-Chin Huang, Min Xu, Less Wright, Hamid Shojanazeri, Myle Ott, Sam Shleifer, Alban Desmaison, Can Balioglu, Pritam Damania, Bernard Nguyen, Geeta Chauhan, Yuchen Hao, Ajit Mathews, Shen Li",
+          "date": "2023",
+          "url": "https://www.vldb.org/pvldb/vol16/p3848-huang.pdf",
+          "locator": "§3.2–3.4，原刊 pp.3851–3854：FlatParameter、hybrid sharding、预取与 rate limiter",
+          "type": "论文全文",
+          "contentStatus": "已下载原始 PDF 并提取正文，核验共同署名及所列机制段落；本地保留 PDF 和正文。",
+          "evidenceStrength": "强：团队署名原始技术论文",
+          "role": "核验共同技术贡献、机制及版本边界；不按作者排序推定个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "rohan-varma",
+      "name": "Rohan Varma",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "两篇不同署名原始论文均取得全文并核验机制；共同贡献与差异化编辑视角已明确分开。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "pytorch-ddp-2020",
+          "title": "PyTorch Distributed: Experiences on Accelerating Data Parallel Training",
+          "authors": "Shen Li, Yanli Zhao, Rohan Varma, Omkar Salpekar, Pieter Noordhuis, Teng Li, Adam Paszke, Jeff Smith, Brian Vaughan, Pritam Damania, Soumith Chintala",
+          "date": "2020-06-28",
+          "url": "https://arxiv.org/pdf/2006.15704",
+          "locator": "§3.1–3.2.3，Algorithm 1，PDF pp.3–5：API、gradient bucketing、autograd hooks、跨进程一致的归约顺序",
+          "type": "论文全文",
+          "contentStatus": "已下载原始 PDF 并提取正文，核验共同署名及所列机制段落；本地保留 PDF 和正文。",
+          "evidenceStrength": "强：团队署名原始技术论文",
+          "role": "核验共同技术贡献、机制及版本边界；不按作者排序推定个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "pytorch-fsdp-2023",
+          "title": "PyTorch FSDP: Experiences on Scaling Fully Sharded Data Parallel",
+          "authors": "Yanli Zhao, Andrew Gu, Rohan Varma, Liang Luo, Chien-Chin Huang, Min Xu, Less Wright, Hamid Shojanazeri, Myle Ott, Sam Shleifer, Alban Desmaison, Can Balioglu, Pritam Damania, Bernard Nguyen, Geeta Chauhan, Yuchen Hao, Ajit Mathews, Shen Li",
+          "date": "2023",
+          "url": "https://www.vldb.org/pvldb/vol16/p3848-huang.pdf",
+          "locator": "§3.2–3.4，原刊 pp.3851–3854：FlatParameter、hybrid sharding、预取与 rate limiter",
+          "type": "论文全文",
+          "contentStatus": "已下载原始 PDF 并提取正文，核验共同署名及所列机制段落；本地保留 PDF 和正文。",
+          "evidenceStrength": "强：团队署名原始技术论文",
+          "role": "核验共同技术贡献、机制及版本边界；不按作者排序推定个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "huanqi-cao",
+      "name": "Huanqi Cao",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "已核验两项不同实质一手作品及机制正文；共同贡献、历史机构与编辑推理分列。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "swuc-2022",
+          "title": "Design and Implementation of ShenWei Universal C/C++",
+          "authors": "Huanqi Cao, Jiajie Chen",
+          "date": "2022-08-01",
+          "url": "https://arxiv.org/pdf/2208.00607",
+          "locator": "§2.3、§3、§4；PDF pp.3–6：单源编程目标、属性、调用图推导和两遍编译",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "chukonu-2022",
+          "title": "Chukonu: A Fully-Featured High-Performance Big Data Framework that Integrates a Native Compute Engine into Spark",
+          "authors": "Bowen Yu, Guanyu Feng, Huanqi Cao, Xiaohan Li, Zhenbo Sun, Haojie Wang, Xiaowei Zhu, Weimin Zheng, Wenguang Chen",
+          "date": "2022（PVLDB 15(4)）",
+          "url": "https://pacman.cs.tsinghua.edu.cn/~cwg/publication/chukonu-2021/chukonu-2021.pdf",
+          "locator": "§3–4.2；期刊pp.874–876：DAG splitting、融合、批量接口与紧凑数据布局",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "weiran-he",
+      "name": "Weiran He",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "已核验两项不同实质一手作品及机制正文；共同贡献、历史机构与编辑推理分列。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "mooncake-fast25",
+          "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+          "date": "2025-02",
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "seer-2025-v1",
+          "title": "Seer: Online Context Learning for Fast Synchronous LLM Reinforcement Learning",
+          "authors": "Ruoyu Qin, Weiran He, Weixiao Huang, Yangkun Zhang, Yikai Zhao, Bo Pang, Xinran Xu, Yingdi Shan, Yongwei Wu, Mingxing Zhang",
+          "date": "2025-11-18（v1）",
+          "url": "https://arxiv.org/pdf/2511.14617v1",
+          "locator": "§3.2、§4.1–4.3 / Algorithm 1；PDF pp.5–7：分块rollout、全局KV池、组内长度预测和调度",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "yiran-zhong",
+      "name": "Yiran Zhong",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "通过架构相关性门槛：两项不同一手作品直接涉及 GPU 内存数据流与分布式序列并行；均读取机制正文并核对共同署名，MiniMax 项目关联另有报告附录佐证。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "lightning-attention-2-2024",
+          "title": "Lightning Attention-2: A Free Lunch for Handling Unlimited Sequence Lengths in Large Language Models",
+          "authors": "Zhen Qin, Weigao Sun, Dong Li, Xuyang Shen, Weixuan Sun, Yiran Zhong",
+          "date": "2024-01-15",
+          "url": "https://arxiv.org/pdf/2401.04658",
+          "locator": "v2：p.1 署名/通讯作者；§3.2、Figure 2、Algorithms 1–2（pp.3–5）：块内/块间分离与 SRAM/HBM 数据流",
+          "type": "论文全文",
+          "contentStatus": "已通过原始 arXiv 正文读取署名、所列算法与机制；本地保留来源定位和审阅摘记。",
+          "evidenceStrength": "强：作者署名一手技术正文；两项作品分别聚焦单 GPU 内核与跨 GPU 序列并行。",
+          "role": "核验共同署名贡献；通讯作者身份不等于每个模块均由其个人独立实现。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "lasp-2024",
+          "title": "Linear Attention Sequence Parallelism",
+          "authors": "Weigao Sun, Zhen Qin, Dong Li, Xuyang Shen, Yu Qiao, Yiran Zhong",
+          "date": "2024-04-03",
+          "url": "https://arxiv.org/html/2404.02882v1",
+          "locator": "v1：署名/通讯作者；§2.2 Algorithms 1–3；§2.3 Table 1 通信量；§2.4 状态缓存及 kernel fusion；§2.5 混合并行",
+          "type": "论文全文",
+          "contentStatus": "已通过原始 arXiv 正文读取署名、所列算法与机制；本地保留来源定位和审阅摘记。",
+          "evidenceStrength": "强：作者署名一手技术正文；两项作品分别聚焦单 GPU 内核与跨 GPU 序列并行。",
+          "role": "核验共同署名贡献；通讯作者身份不等于每个模块均由其个人独立实现。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "用户批准核验本轮推荐的7位；原有19位AI公司候选队列另行保留，不混入本批完成数。",
+    "按两项不同实质一手作品、至少一项机制正文的既有标准收录；未达标者在本批逐人记录缺口。",
+    "公开论文共同署名不代表个人独占设计。人物挑战、比较模型与建议实验均为编辑提炼。",
+    "历史机构与来源时点角色分开，不用过期履历断言现职。"
+  ],
+  "publication": {
+    "status": "awaiting-deployment-verification"
+  }
+}
