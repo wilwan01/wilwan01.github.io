@@ -31,7 +31,7 @@ def render(p):
  for w in p.get('awardsVerified',[]):
   x=append(a,'p',f"{w['name']} · {w['year']}：{w['citationZh']}（官方理由的中文转述） ",class_='award-citation');x.append(link(w['url'],'原始来源'))
  if not p.get('awardsVerified'):append(a,'p','以上为基于署名作品的编辑提炼，非官方获奖理由。',class_='contribution-origin')
- append(a,'p','本次关键贡献研究已核验 · 2026-10-06；不表示穷尽个人成果。',class_='profile-number')
+ append(a,'p','本次关键贡献研究已核验 · '+p['researchStatus'].get('verifiedAt',p['researchStatus'].get('batch','')[:10])+'；不表示穷尽个人成果。',class_='profile-number')
  de=append(a,'details',class_='research-detail');append(de,'summary','展开：背景、机制、取舍、诊断与来源')
  append(de,'h3','背景与贡献归属');append(de,'p',p['background'])
  if p.get('sourceFacts'):
@@ -99,7 +99,8 @@ existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
 b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · '+catalog['updated'])
 audited={x['id'] for batch in batches for x in batch['records'] if x['status']=='complete'}
-append(b,'p',f'累计核验 {len(audited)} 位；现有目录 {len(profiles)} 位中尚有 {len(profiles)-len(audited)} 位待推进。计划总范围为原 250 位与 50 名候选；另保留此前已新增的 Tushar Krishna。')
+extra=set(catalog['research'].get('preservedAdditionalProfiles',[])); planned_done=len(audited-extra)
+append(b,'p',f'计划 300 位中累计核验 {planned_done} 位，尚有 {300-planned_done} 位未完成。现有目录共 {len(profiles)} 位，包含原计划之外保留的 Tushar Krishna；收录数不等于完成数。')
 for path,batch in zip(batchpaths,batches):
  pp=append(b,'p',f"{batch['focus']} · 固定 {len(batch['records'])} 位 · 完成 {batch['counts']['complete']} 位：")
  pp.append(link(str(Path(path).with_suffix('.html')),'逐人状态、证据与待办'));pp[-1].tail=' · ';pp.append(link(path,'机器可读来源审计'))

@@ -31,7 +31,7 @@ assert dict(Counter(r['status'] for r in b['records']))==b['counts']
 assert sum(r['status']=='complete' and r['kind']=='existing' for r in b['records'])==b['completedExisting']
 assert sum(r['status']=='complete' and r['kind']=='candidate' for r in b['records'])==b['completedNew']
 assert set(oldby)<=set(by) and by['tushar-krishna']==oldby['tushar-krishna']
-histories=[json.loads(f.read_text()) for f in (ROOT/'research/history').glob('2026-10-06*before.json')]
+histories=[json.loads(f.read_text()) for f in (ROOT/'research/history').glob('*before.json')]
 preserved={p['id']:p for history in histories for p in history['profiles']}
 assert preserved=={p['id']:p for p in old['profiles'] if p['id'] in done}
 for p in old['profiles']:
@@ -42,7 +42,12 @@ for p in old['profiles']:
 normalize=lambda s:re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',s).casefold())
 # Classify primary bodies by their actual format; a specification or patent is
 # not a paper, and a colleague's recollection is not the subject's own interview.
-PRIMARY_BODY_TYPES={'论文全文','作者技术文章','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文','专利说明书全文','技术规范全文','作者演讲文字稿','参与者访谈文字稿'}
+PRIMARY_BODY_TYPES={'论文全文','作者技术文章','作者技术文章全文','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文','专利说明书全文','技术规范全文','作者演讲文字稿','参与者访谈文字稿'}
+# Preserve truthful source formats used by the all-remaining audit instead of
+# mislabelling patents, oral histories, reports and slides as academic papers.
+PRIMARY_BODY_TYPES.update({'本人技术口述史全文','团队技术白皮书全文','团队作者幻灯片','作者技术报告全文','本人技术幻灯片','作者技术幻灯片','作者技术演讲全文','本人技术访谈全文','作者会议幻灯片','专利申请说明书全文','作者论文全文（大学存档）'})
+PRIMARY_BODY_TYPES.update({'本人访谈文字摘录','本人署名技术综述（Intel原稿转载）','专利说明书正文（所列部分）','作者技术报告','专利公开说明书','本人署名技术文章','官方技术演讲逐字稿','官方技术采访正文','专利说明书','本人访谈','官方本人技术论述','作者会议报告'})
+PRIMARY_BODY_TYPES.add('论文正文（所列页）')
 # Explicit aliases are identity checks, not new people.
 aliases={'peter-hofstee':['Peter Hofstee','H. Peter Hofstee'],'tim-mattson':['Tim Mattson','Timothy G. Mattson']}
 seen={}
@@ -69,6 +74,16 @@ for continuation in [item for batch in batches for item in batch.get('continuati
   assert p.get('sourceFacts') and all(f['workId'] in {s['workId'] for s in eligible} for f in p['sourceFacts']),pid
   if continuation.get('requiresMechanismBody'):
    assert any(s.get('mechanismBody') is True for s in eligible),pid
+# New all-remaining batch: two distinct substantive primary works, at least one mechanism body.
+for batch in batches:
+ if batch.get('evidenceGate')!='two-distinct-primary-works-one-body-v1':continue
+ for rec in batch['records']:
+  if rec['status']!='complete':continue
+  p=by[rec['id']];ss=[s for s in p['sourceAudit'] if s.get('primary') and s.get('substantive') and s['type'] in PRIMARY_BODY_TYPES]
+  assert len({s['workId'] for s in ss})>=2,p['id']
+  assert any(s.get('mechanismBody') and s['type'] in PRIMARY_BODY_TYPES for s in ss),p['id']
+  assert p.get('sourceFacts') and all(f['workId'] in {s['workId'] for s in p['sourceAudit']} for f in p['sourceFacts']),p['id']
+  assert all(p['challenge'].get(k) for k in ['lens','skills','question','variables','model','crossover','counterexample','validation','transfer']),p['id']
 for d in c['domains']:assert d['members']==[p['id'] for p in c['profiles'] if p['domain']==d['id']]
 r=html.fromstring((ROOT/'index.html').read_text());ids=[x.get('id') for x in r.xpath('//*[@id]')];assert len(ids)==len(set(ids))
 articles=r.xpath('//article[contains(concat(" ",normalize-space(@class)," ")," profile ")]');assert {a.get('id') for a in articles}==set(by)
