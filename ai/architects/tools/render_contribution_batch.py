@@ -98,10 +98,8 @@ stat=page.xpath('//div[@class="stats"]')[0];stat[0].text=str(len(profiles));stat
 intro=page.xpath('//div[@class="intro"]/div[1]/p')[0];intro.text='以最重要贡献为阅读主线，结合官方获奖理由与代表作品，解释突破、机制与适用边界。贡献式展示按已核验研究逐批更新。'
 existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
-b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · '+catalog['updated'])
-# Present research by technical domain; batch provenance stays in source JSON.
-append(b,'p','按研究方向浏览人物与研究主题。')
-research_members=[dict(p) for p in profiles]
+# Unprofiled research names belong in the same domain directory, without a
+# second progress section or internal batch/provenance labels.
 profile_ids={p['id'] for p in profiles}
 candidate_domains={'george-yao':'cpu','liu-yi-identity-pending':'cpu'}
 candidate_topics={'george-yao':'服务器 CPU 与平台','liu-yi-identity-pending':'CPU 与处理器架构'}
@@ -110,23 +108,19 @@ for batch in batches:
  for record in batch['records']:
   if record['id'] in seen:continue
   seen.add(record['id'])
-  research_members.append({'id':record['id'],'name':record['name'].split('（用户')[0],
-   'domain':record.get('domain',candidate_domains.get(record['id'],'foundations')),
-   'field':record.get('field',candidate_topics.get(record['id'],'计算机体系结构'))})
+  domain=record.get('domain',candidate_domains.get(record['id'],'foundations'))
+  body=page.xpath('//*[@id="directory-'+domain+'"]//tbody')[0]
+  row=append(body,'tr',id='directory-person-'+record['id'])
+  append(row,'td','—')
+  append(row,'td',record['name'].split('（用户')[0])
+  append(row,'td',record.get('field',candidate_topics.get(record['id'],'计算机体系结构')))
+  append(row,'td','—')
+# Directory counts include all listed names; profile and skill counts retain
+# their own scope, as names without articles have no profile links.
+directory.xpath('./h2')[0].text=f'按领域浏览 · {len(seen)} 位人物'
 for domain in catalog['domains']:
- members=[p for p in research_members if p['domain']==domain['id']]
- if not members:continue
- group=append(b,'details',class_='research-detail',id='research-direction-'+domain['id'])
- append(group,'summary',domain['label'])
- table=append(group,'table');head=append(append(table,'thead'),'tr')
- append(head,'th','人物',scope='col');append(head,'th','研究主题',scope='col')
- body=append(table,'tbody')
- for person in members:
-  row=append(body,'tr');cell=append(row,'td')
-  if person['id'] in profile_ids:cell.append(link('#'+person['id'],person['name']))
-  else:cell.text=person['name']
-  append(row,'td',person['field'])
-page.xpath('//main')[0].insert(1,b)
+ sec=page.xpath('//*[@id="directory-'+domain['id']+'"]')[0]
+ sec.xpath('./h3')[0][0].tail=f" · {len(sec.xpath('.//tbody/tr'))} 位"
 (ROOT/'index.html').write_text('<!doctype html>\n'+html.tostring(page,encoding='unicode',method='html')+'\n')
 # Public batch report, readable without JS.
 for batchpath,batch in zip(batchpaths,batches):
