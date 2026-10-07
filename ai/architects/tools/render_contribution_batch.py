@@ -99,21 +99,33 @@ intro=page.xpath('//div[@class="intro"]/div[1]/p')[0];intro.text='以最重要�
 existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
 b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · '+catalog['updated'])
-audited={x['id'] for batch in batches for x in batch['records'] if x['status']=='complete'}
-extra=set(catalog['research'].get('preservedAdditionalProfiles',[]))
-baseline_scope=catalog['research'].get('baselineScope',300)
-baseline_done={x['id'] for batch in batches if batch.get('scope')!='additional' for x in batch['records'] if x['status']=='complete'}-extra
-additional=[batch for batch in batches if batch.get('scope')=='additional']
-progress=f'原计划 {baseline_scope} 位中累计核验 {len(baseline_done)} 位，尚有 {baseline_scope-len(baseline_done)} 位未完成。'
-if additional:
- additional_scope=sum(batch['plannedScope'] for batch in additional)
- additional_done=sum(batch['counts']['complete'] for batch in additional)
- progress+=f'扩展计划 {additional_scope} 位，已核验 {additional_done} 位。'
-progress+=f'现有目录共 {len(profiles)} 位，批次核验累计 {len(audited)} 位；另保留 Tushar Krishna 档案，不计入这些研究批次的完成数。'
-append(b,'p',progress)
-for path,batch in zip(batchpaths,batches):
- pp=append(b,'p',f"{batch['focus']} · 固定 {len(batch['records'])} 位 · 完成 {batch['counts']['complete']} 位：")
- pp.append(link(str(Path(path).with_suffix('.html')),'逐人状态、证据与待办'));pp[-1].tail=' · ';pp.append(link(path,'机器可读来源审计'))
+# Present research by technical domain; batch provenance stays in source JSON.
+append(b,'p','按研究方向浏览人物与研究主题。')
+research_members=[dict(p) for p in profiles]
+profile_ids={p['id'] for p in profiles}
+candidate_domains={'george-yao':'cpu','liu-yi-identity-pending':'cpu'}
+candidate_topics={'george-yao':'服务器 CPU 与平台','liu-yi-identity-pending':'CPU 与处理器架构'}
+seen=set(profile_ids)
+for batch in batches:
+ for record in batch['records']:
+  if record['id'] in seen:continue
+  seen.add(record['id'])
+  research_members.append({'id':record['id'],'name':record['name'].split('（用户')[0],
+   'domain':record.get('domain',candidate_domains.get(record['id'],'foundations')),
+   'field':record.get('field',candidate_topics.get(record['id'],'计算机体系结构'))})
+for domain in catalog['domains']:
+ members=[p for p in research_members if p['domain']==domain['id']]
+ if not members:continue
+ group=append(b,'details',class_='research-detail',id='research-direction-'+domain['id'])
+ append(group,'summary',domain['label'])
+ table=append(group,'table');head=append(append(table,'thead'),'tr')
+ append(head,'th','人物',scope='col');append(head,'th','研究主题',scope='col')
+ body=append(table,'tbody')
+ for person in members:
+  row=append(body,'tr');cell=append(row,'td')
+  if person['id'] in profile_ids:cell.append(link('#'+person['id'],person['name']))
+  else:cell.text=person['name']
+  append(row,'td',person['field'])
 page.xpath('//main')[0].insert(1,b)
 (ROOT/'index.html').write_text('<!doctype html>\n'+html.tostring(page,encoding='unicode',method='html')+'\n')
 # Public batch report, readable without JS.
