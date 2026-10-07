@@ -11,6 +11,7 @@ catalog=json.loads((ROOT/'catalog.json').read_text());profiles=catalog['profiles
 batchpaths=catalog['research'].get('batchLogs',[catalog['research']['batchLog']])
 batches=[json.loads((ROOT/path).read_text()) for path in batchpaths]
 page=html.fromstring((ROOT/'index.html').read_text())
+page.xpath('//meta[@name="description"]')[0].set('content',f'{len(profiles)} 位代表性计算机架构人物的核心思想、思维方式、提问与适用边界。依据公开论文、演讲和访谈，区分来源与归纳。')
 def E(tag,text=None,**attrs):
  e=etree.Element(tag,attrib={k.rstrip('_').replace('_','-'):str(v) for k,v in attrs.items()});e.text=text;return e
 def append(parent,tag,text=None,**attrs):e=E(tag,text,**attrs);parent.append(e);return e
@@ -99,8 +100,17 @@ existing=page.xpath('//*[@id="research-progress"]')
 if existing:existing[0].getparent().remove(existing[0])
 b=E('section',id='research-progress',class_='directory');append(b,'h2','研究进度 · '+catalog['updated'])
 audited={x['id'] for batch in batches for x in batch['records'] if x['status']=='complete'}
-extra=set(catalog['research'].get('preservedAdditionalProfiles',[])); planned_done=len(audited-extra)
-append(b,'p',f'计划 300 位中累计核验 {planned_done} 位，尚有 {300-planned_done} 位未完成。现有目录共 {len(profiles)} 位，包含原计划之外保留的 Tushar Krishna；收录数不等于完成数。')
+extra=set(catalog['research'].get('preservedAdditionalProfiles',[]))
+baseline_scope=catalog['research'].get('baselineScope',300)
+baseline_done={x['id'] for batch in batches if batch.get('scope')!='additional' for x in batch['records'] if x['status']=='complete'}-extra
+additional=[batch for batch in batches if batch.get('scope')=='additional']
+progress=f'原计划 {baseline_scope} 位中累计核验 {len(baseline_done)} 位，尚有 {baseline_scope-len(baseline_done)} 位未完成。'
+if additional:
+ additional_scope=sum(batch['plannedScope'] for batch in additional)
+ additional_done=sum(batch['counts']['complete'] for batch in additional)
+ progress+=f'扩展计划 {additional_scope} 位，已核验 {additional_done} 位。'
+progress+=f'现有目录共 {len(profiles)} 位，批次核验累计 {len(audited)} 位；另保留 Tushar Krishna 档案，不计入这些研究批次的完成数。'
+append(b,'p',progress)
 for path,batch in zip(batchpaths,batches):
  pp=append(b,'p',f"{batch['focus']} · 固定 {len(batch['records'])} 位 · 完成 {batch['counts']['complete']} 位：")
  pp.append(link(str(Path(path).with_suffix('.html')),'逐人状态、证据与待办'));pp[-1].tail=' · ';pp.append(link(path,'机器可读来源审计'))

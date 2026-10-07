@@ -108,7 +108,12 @@
         "dan-hettena",
         "brian-flachs",
         "david-wentzlaff",
-        "bob-montoye"
+        "bob-montoye",
+        "daniel-sanchez",
+        "jose-f-martinez",
+        "antonio-gonzalez",
+        "mark-oskin",
+        "lizy-kurian-john"
       ]
     },
     {
@@ -154,7 +159,11 @@
         "brucek-khailany",
         "greg-diamos",
         "jeremy-fowers",
-        "brandon-reagen"
+        "brandon-reagen",
+        "vivienne-sze",
+        "yu-hsin-chen",
+        "yunji-chen",
+        "tianshi-chen"
       ]
     },
     {
@@ -186,7 +195,11 @@
         "nisha-talagala",
         "damir-jamsek",
         "tony-brewer",
-        "bahar-asgari"
+        "bahar-asgari",
+        "josep-torrellas",
+        "per-stenstrom",
+        "steven-k-reinhardt",
+        "yuan-xie"
       ]
     },
     {
@@ -216,7 +229,10 @@
         "william-kahan",
         "richard-uhlig",
         "andy-warfield",
-        "pratap-subrahmanyam"
+        "pratap-subrahmanyam",
+        "peter-sewell",
+        "robert-watson",
+        "simon-moore"
       ]
     },
     {
@@ -276,7 +292,9 @@
         "gilad-shainer",
         "mark-wade",
         "ron-ho",
-        "nick-mckeown"
+        "nick-mckeown",
+        "li-shiuan-peh",
+        "natalie-enright-jerger"
       ]
     },
     {
@@ -312,7 +330,8 @@
         "pankaj-mehra",
         "will-eatherton",
         "james-markevitch",
-        "eric-chung"
+        "eric-chung",
+        "christina-delimitrou"
       ]
     },
     {
@@ -332,7 +351,8 @@
         "pete-bannon",
         "justin-rattner",
         "john-shalf",
-        "todd-takken"
+        "todd-takken",
+        "david-culler"
       ]
     },
     {
@@ -38037,6 +38057,2249 @@
         "validation": "保持数据集、误差目标和服务量相同，逐项消融量化、稀疏及电压优化。",
         "transfer": "压缩不是终点，必须把删去的数值转化为实际少访存、少乘加，并验证准确率与硬件代价。"
       }
+    },
+    {
+      "id": "josep-torrellas",
+      "name": "Josep Torrellas",
+      "field": "以原子指令块与地址签名，把一致性及并行调试的管理粒度提高一层。",
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness",
+        "cpu"
+      ],
+      "core": "以原子指令块与地址签名，把一致性及并行调试的管理粒度提高一层。",
+      "contributions": [
+        "Bulk Multicore 用读写地址签名检测块间冲突，以原子、隔离且有序提交的指令块支撑顺序一致性。",
+        "DeLorean 记录块提交次序来重放并行执行；确定性分块与预定提交次序进一步压缩日志。"
+      ],
+      "background": "Bulk Multicore 综述及 DeLorean 论文共同作者；本档案聚焦与 Ceze、Montesinos 等人的块执行研究。",
+      "argument": "编辑提炼：把每次访存的追踪问题变为块级管理，可减少元数据，却把代价转移到冲突重执行和提交等待。",
+      "evidence": "The Bulk Multicore Architecture for Improved Programmability（pp.60–62：Architecture、signature operations、chunk commit 与 SC）；DeLorean: Recording and Deterministically Replaying Shared-Memory Multiprocessor Execution Efficiently（§3、Table 2：Order&Size、OrderOnly、PicoLog）",
+      "habits": [
+        "先问正确性必须在哪个粒度对外可见。",
+        "把记录体积与记录时的执行扰动一起衡量。"
+      ],
+      "questions": [
+        "扩大原子块后，省下的一致性与日志成本，何时被冲突重执行和提交等待抵消？"
+      ],
+      "boundary": "签名可能保守地产生假冲突；PicoLog 的近零日志以限制提交次序为条件，不能视作免费重放。",
+      "diagnostic": "扫块长与签名容量，分开计真实/假冲突、提交等待、日志字节及重放正确性。",
+      "notes": [],
+      "sources": [
+        [
+          "The Bulk Multicore Architecture for Improved Programmability",
+          "https://homes.cs.washington.edu/~luisceze/publications/bulkmulticore.pdf",
+          "pp.60–62：Architecture、signature operations、chunk commit 与 SC"
+        ],
+        [
+          "DeLorean: Recording and Deterministically Replaying Shared-Memory Multiprocessor Execution Efficiently",
+          "https://iacoma.cs.uiuc.edu/iacoma-papers/isca08_rep.pdf",
+          "§3、Table 2：Order&Size、OrderOnly、PicoLog"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "bulk-multicore-2009",
+          "title": "The Bulk Multicore Architecture for Improved Programmability",
+          "authors": "Josep Torrellas, Luis Ceze, James Tuck, Calin Cascaval, Pablo Montesinos, Wonsun Ahn, Milos Prvulovic",
+          "date": "2009-12",
+          "url": "https://homes.cs.washington.edu/~luisceze/publications/bulkmulticore.pdf",
+          "locator": "pp.60–62：Architecture、signature operations、chunk commit 与 SC",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "delorean-2008",
+          "title": "DeLorean: Recording and Deterministically Replaying Shared-Memory Multiprocessor Execution Efficiently",
+          "authors": "Pablo Montesinos, Luis Ceze, Josep Torrellas",
+          "date": "2008",
+          "url": "https://iacoma.cs.uiuc.edu/iacoma-papers/isca08_rep.pdf",
+          "locator": "§3、Table 2：Order&Size、OrderOnly、PicoLog",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Bulk Multicore 用读写地址签名检测块间冲突，以原子、隔离且有序提交的指令块支撑顺序一致性。",
+          "workId": "bulk-multicore-2009"
+        },
+        {
+          "text": "DeLorean 记录块提交次序来重放并行执行；确定性分块与预定提交次序进一步压缩日志。",
+          "workId": "delorean-2008"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列论文或专利均为共同工作；署名用于确认参与，不推定机制由该人物单独发明。挑战问题与条件模型为本站编辑综合。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与两项不同实质一手作品的核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以原子指令块与地址签名，把一致性及并行调试的管理粒度提高一层。",
+        "skills": [
+          "A2",
+          "A6",
+          "A8"
+        ],
+        "question": "扩大原子块后，省下的一致性与日志成本，何时被冲突重执行和提交等待抵消？",
+        "variables": "块长度 K；真实/签名假冲突率 p；提交等待 W；每块元数据 M",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：每有效指令成本≈基础执行成本+p×重执行成本/K+W/K+M/K；各项须统一为周期或成本。",
+        "crossover": "增大 K 降低摊销开销，只有其增加的重执行与等待仍小于节省量才有收益。",
+        "counterexample": "多个线程频繁修改同一热点数据，长块反复回滚；严格轮转提交又被一个慢线程拖住。",
+        "validation": "扫块长与签名容量，分开计真实/假冲突、提交等待、日志字节及重放正确性。",
+        "transfer": "用于审查事务批处理与确定性执行：压缩记录所依赖的执行限制也是系统成本。"
+      }
+    },
+    {
+      "id": "daniel-sanchez",
+      "name": "Daniel Sanchez",
+      "field": "让软件表达资源与顺序需求，由硬件高效执行分配和细粒度推测。",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "让软件表达资源与顺序需求，由硬件高效执行分配和细粒度推测。",
+      "contributions": [
+        "Jigsaw 以可组合的缓存 bank 分区构成 shares，提供数据映射、迁移和监控原语，供软件协调容量与位置。",
+        "Swarm 用时间戳任务表达顺序约束，结合分布式任务队列、推测数据前递与选择性回滚发掘有序并行。"
+      ],
+      "background": "与 Beckmann 共同发表 Jigsaw；与 Jeffrey、Subramanian、Yan、Emer 共同发表 Swarm，分别涉及缓存管理与有序并行。",
+      "argument": "编辑提炼：软件应表达真正的需求和依赖；把队列或默认映射造成的偶然串行化与算法必需顺序分开。",
+      "evidence": "Jigsaw: Scalable Software-Defined Caches（§III–IV：shares、data mapping、monitoring 与软件分配）；A Scalable Architecture for Ordered Parallelism（§3–4.2：timestamp tasks、selective aborts、task/commit queues）",
+      "habits": [
+        "先剔除运行时数据结构引入的假依赖。",
+        "同时预算缓存位置、容量与管理成本。"
+      ],
+      "questions": [
+        "把短任务调度移入硬件后，可用并行度能否覆盖回滚、队列占用与缓存迁移成本？"
+      ],
+      "boundary": "Jigsaw 依赖可重配置硬件及有效软件决策；Swarm 是带新任务接口的研究架构，其收益不能直接套到现有 CPU。",
+      "diagnostic": "比较相同算法与输入，分别禁用推测、扩大队列、固定缓存分配，统计提交工作而非仅已执行工作。",
+      "notes": [],
+      "sources": [
+        [
+          "Jigsaw: Scalable Software-Defined Caches",
+          "https://people.csail.mit.edu/sanchez/papers/2013.jigsaw.pact.pdf",
+          "§III–IV：shares、data mapping、monitoring 与软件分配"
+        ],
+        [
+          "A Scalable Architecture for Ordered Parallelism",
+          "https://people.csail.mit.edu/sanchez/papers/2015.swarm.micro.pdf",
+          "§3–4.2：timestamp tasks、selective aborts、task/commit queues"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "jigsaw-2013",
+          "title": "Jigsaw: Scalable Software-Defined Caches",
+          "authors": "Nathan Beckmann, Daniel Sanchez",
+          "date": "2013",
+          "url": "https://people.csail.mit.edu/sanchez/papers/2013.jigsaw.pact.pdf",
+          "locator": "§III–IV：shares、data mapping、monitoring 与软件分配",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "swarm-2015",
+          "title": "A Scalable Architecture for Ordered Parallelism",
+          "authors": "Mark C. Jeffrey, Suvinay Subramanian, Cong Yan, Joel Emer, Daniel Sanchez",
+          "date": "2015",
+          "url": "https://people.csail.mit.edu/sanchez/papers/2015.swarm.micro.pdf",
+          "locator": "§3–4.2：timestamp tasks、selective aborts、task/commit queues",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Jigsaw 以可组合的缓存 bank 分区构成 shares，提供数据映射、迁移和监控原语，供软件协调容量与位置。",
+          "workId": "jigsaw-2013"
+        },
+        {
+          "text": "Swarm 用时间戳任务表达顺序约束，结合分布式任务队列、推测数据前递与选择性回滚发掘有序并行。",
+          "workId": "swarm-2015"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列论文或专利均为共同工作；署名用于确认参与，不推定机制由该人物单独发明。挑战问题与条件模型为本站编辑综合。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与两项不同实质一手作品的核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "让软件表达资源与顺序需求，由硬件高效执行分配和细粒度推测。",
+        "skills": [
+          "A3",
+          "A6",
+          "A8"
+        ],
+        "question": "把短任务调度移入硬件后，可用并行度能否覆盖回滚、队列占用与缓存迁移成本？",
+        "variables": "任务有效工作 t；调度成本 h；重执行比例 r；依赖关键路径 D；缓存重配置成本 C",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：任务有效效率≈t/(t+h+r×t)；总执行时间下界还受关键路径 D 与重配置 C 约束。",
+        "crossover": "短任务越多，降低 h 越重要；若 r 或依赖链增长，更大推测窗口也可能无效。",
+        "counterexample": "严格数据链上的任务没有可跳过的顺序；高频阶段变化使缓存重新分配未及回本。",
+        "validation": "比较相同算法与输入，分别禁用推测、扩大队列、固定缓存分配，统计提交工作而非仅已执行工作。",
+        "transfer": "可用于图计算和在线服务协同设计，但必须把新编程接口与迁移代价列入方案。"
+      }
+    },
+    {
+      "id": "per-stenstrom",
+      "name": "Per Stenström",
+      "field": "识别共享数据的访问模式，让一致性通信随行为调整。",
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "识别共享数据的访问模式，让一致性通信随行为调整。",
+      "contributions": [
+        "1993 年迁移共享协议用最后写者和副本数量识别模式，将后续读缺失与取独占权限合并，减少独立失效请求。",
+        "一致性预测专利把每块消息历史存入 history cache，再索引 pattern memory 预测后续一致性活动。"
+      ],
+      "background": "迁移共享论文共同作者；与 Nilsson、Landin 共同列为一致性消息预测专利发明人。专利署名不证明商品采用。",
+      "argument": "编辑提炼：正确性协议可保持稳定，而常见共享行为可决定更经济的消息路径；收益取决于识别及时性与误判代价。",
+      "evidence": "An Adaptive Cache Coherence Protocol Optimized for Migratory Sharing（共同作者 Mats Brorsson 上传原文；§2.2、§3.3，原刊 pp.110–112）；Coherence message prediction mechanism and multiprocessing computer system employing the same — US20030154351A1（说明书 [0025]–[0029]、Fig.2–3：history cache 与 pattern memory）",
+      "habits": [
+        "从读写序列推导需要多少跨节点往返。",
+        "检查共享模式切换后的恢复路径。"
+      ],
+      "questions": [
+        "提前取得独占权限省下的升级，是否超过误判导致的副本失效和额外搬运？"
+      ],
+      "boundary": "迁移共享优化针对轮流读改的数据，不适用于持续多读者共享；预测机制也不能免除一致性正确性保障。",
+      "diagnostic": "构造迁移读改、多读者、阶段切换三类轨迹；同时检验协议不变量和读/升级/失效消息计数。",
+      "notes": [],
+      "sources": [
+        [
+          "An Adaptive Cache Coherence Protocol Optimized for Migratory Sharing",
+          "https://www.researchgate.net/publication/3556783_An_Adaptive_Cache_Coherence_Protocol_Optimized_For_Migratory_Sharing",
+          "共同作者 Mats Brorsson 上传原文；§2.2、§3.3，原刊 pp.110–112"
+        ],
+        [
+          "Coherence message prediction mechanism and multiprocessing computer system employing the same — US20030154351A1",
+          "https://patents.google.com/patent/US20030154351A1/en",
+          "说明书 [0025]–[0029]、Fig.2–3：history cache 与 pattern memory"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "migratory-sharing-1993",
+          "title": "An Adaptive Cache Coherence Protocol Optimized for Migratory Sharing",
+          "authors": "Per Stenström, Mats Brorsson, Lars Sandberg",
+          "date": "1993-05",
+          "url": "https://www.researchgate.net/publication/3556783_An_Adaptive_Cache_Coherence_Protocol_Optimized_For_Migratory_Sharing",
+          "locator": "共同作者 Mats Brorsson 上传原文；§2.2、§3.3，原刊 pp.110–112",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "coherence-predictor-patent-2003",
+          "title": "Coherence message prediction mechanism and multiprocessing computer system employing the same — US20030154351A1",
+          "authors": "Jim Nilsson, Anders Landin, Per Stenstrom",
+          "date": "2003-08-14",
+          "url": "https://patents.google.com/patent/US20030154351A1/en",
+          "locator": "说明书 [0025]–[0029]、Fig.2–3：history cache 与 pattern memory",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "1993 年迁移共享协议用最后写者和副本数量识别模式，将后续读缺失与取独占权限合并，减少独立失效请求。",
+          "workId": "migratory-sharing-1993"
+        },
+        {
+          "text": "一致性预测专利把每块消息历史存入 history cache，再索引 pattern memory 预测后续一致性活动。",
+          "workId": "coherence-predictor-patent-2003"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列论文或专利均为共同工作；署名用于确认参与，不推定机制由该人物单独发明。挑战问题与条件模型为本站编辑综合。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与两项不同实质一手作品的核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "识别共享数据的访问模式，让一致性通信随行为调整。",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "提前取得独占权限省下的升级，是否超过误判导致的副本失效和额外搬运？",
+        "variables": "迁移识别命中率 a；省去的升级成本 U；误判额外成本 E；监控成本 H",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：每次决策净收益≈a×U−(1−a)×E−H。",
+        "crossover": "仅当 a×U 大于误判和监控成本时启用；阈值会随远近节点延迟与共享人数变化。",
+        "counterexample": "多个核轮流只读同一行却被当作迁移共享，提前独占反而造成缓存行来回迁移。",
+        "validation": "构造迁移读改、多读者、阶段切换三类轨迹；同时检验协议不变量和读/升级/失效消息计数。",
+        "transfer": "可迁移到 NUMA 与芯粒一致性策略评估，先量化实际共享模式，再选择权限转移路径。"
+      }
+    },
+    {
+      "id": "jose-f-martinez",
+      "name": "José F. Martínez",
+      "field": "把相互影响的共享资源联合分配，并控制决策自身的规模成本。",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "datacenter"
+      ],
+      "core": "把相互影响的共享资源联合分配，并控制决策自身的规模成本。",
+      "contributions": [
+        "2008 年联合资源管理框架学习应用性能对分配的响应；用运行时特征与神经网络预测辅助资源决策。",
+        "XChange 将资源分配组织为各核竞价和集中定价，利用预算调节吞吐与公平，并显式处理非线性效用。"
+      ],
+      "background": "与 Bitirgen、İpek 共同发表机器学习资源管理论文，与 Wang 共同发表 XChange；两者探索不同的决策组织方式。",
+      "argument": "编辑提炼：缓存、功耗等资源的价值互相影响；分开优化可能把瓶颈转移给另一资源，而全局搜索又有规模代价。",
+      "evidence": "Coordinated Management of Multiple Interacting Resources in Chip Multiprocessors: A Machine Learning Approach（§III-A：性能模型输入、神经网络训练及过拟合控制）；XChange: A Market-based Approach to Scalable Dynamic Multi-resource Allocation in Multicore Architectures（§3–4：市场预算、效用建模、非线性缓存响应）",
+      "habits": [
+        "测量资源组合的性能响应，而非假设边际收益恒定。",
+        "为决策开销、稳定时间与公平目标单独列账。"
+      ],
+      "questions": [
+        "联合资源调度带来的增益，能否在工作负载下一次变相之前兑现？"
+      ],
+      "boundary": "XChange 的研究结果基于所测多程序模拟；预算公平并不自动保证服务尾延迟，非凸效用也不能套用简化市场收敛保证。",
+      "diagnostic": "在相同功耗与缓存总额下对比等分、独立调节和联合分配；报告吞吐、最差减速、收敛过程与决策开销。",
+      "notes": [],
+      "sources": [
+        [
+          "Coordinated Management of Multiple Interacting Resources in Chip Multiprocessors: A Machine Learning Approach",
+          "https://www.csl.cornell.edu/~martinez/doc/micro08.pdf",
+          "§III-A：性能模型输入、神经网络训练及过拟合控制"
+        ],
+        [
+          "XChange: A Market-based Approach to Scalable Dynamic Multi-resource Allocation in Multicore Architectures",
+          "https://www.csl.cornell.edu/~martinez/doc/hpca15.pdf",
+          "§3–4：市场预算、效用建模、非线性缓存响应"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "coordinated-resources-2008",
+          "title": "Coordinated Management of Multiple Interacting Resources in Chip Multiprocessors: A Machine Learning Approach",
+          "authors": "Ramazan Bitirgen, Engin İpek, José F. Martínez",
+          "date": "2008",
+          "url": "https://www.csl.cornell.edu/~martinez/doc/micro08.pdf",
+          "locator": "§III-A：性能模型输入、神经网络训练及过拟合控制",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "xchange-2015",
+          "title": "XChange: A Market-based Approach to Scalable Dynamic Multi-resource Allocation in Multicore Architectures",
+          "authors": "Xiaodong Wang, José F. Martínez",
+          "date": "2015",
+          "url": "https://www.csl.cornell.edu/~martinez/doc/hpca15.pdf",
+          "locator": "§3–4：市场预算、效用建模、非线性缓存响应",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；正文取得范围见定位信息",
+          "evidenceStrength": "强：作者署名的一手技术正文",
+          "role": "共同贡献、机制及适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "2008 年联合资源管理框架学习应用性能对分配的响应；用运行时特征与神经网络预测辅助资源决策。",
+          "workId": "coordinated-resources-2008"
+        },
+        {
+          "text": "XChange 将资源分配组织为各核竞价和集中定价，利用预算调节吞吐与公平，并显式处理非线性效用。",
+          "workId": "xchange-2015"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列论文或专利均为共同工作；署名用于确认参与，不推定机制由该人物单独发明。挑战问题与条件模型为本站编辑综合。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与两项不同实质一手作品的核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把相互影响的共享资源联合分配，并控制决策自身的规模成本。",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "联合资源调度带来的增益，能否在工作负载下一次变相之前兑现？",
+        "variables": "阶段长度 T；收敛时间 S；吞吐增益 g；监控/搜索成本 C；服务减速上限",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：阶段净收益≈g×max(T−S,0)−C；同时满足每个受保护服务的减速约束。",
+        "crossover": "只有阶段足够长且资源响应模型足够准确，协调优化才有时间回本。",
+        "counterexample": "缓存工作集跨过容量门槛出现性能突变，线性效用低估整块资源的价值；短阶段又使竞价追不上需求。",
+        "validation": "在相同功耗与缓存总额下对比等分、独立调节和联合分配；报告吞吐、最差减速、收敛过程与决策开销。",
+        "transfer": "用于混部资源治理：将预算、性能预测和 SLA 明确分开，避免用平均吞吐替代服务约束。"
+      }
+    },
+    {
+      "id": "david-culler",
+      "name": "David Culler",
+      "domain": "hpc",
+      "relatedDomains": [
+        "network",
+        "compiler-runtime"
+      ],
+      "field": "显式通信成本与并行语言协同",
+      "core": "把远程操作的发起、传输和完成拆开，让程序能够表达局部性并重叠通信。",
+      "contributions": [
+        "Active Messages 团队将消息到达与短处理程序连接，减少一般消息调度负担，并把长计算的调度留给上层。",
+        "Split-C 团队在全局地址空间中保留本地/远程区别，通过分阶段赋值与 sync 分离访问发起和完成。"
+      ],
+      "background": "Active Messages 与 Split-C 论文共同作者；本档案核验通信机制及语言接口，不将整个 Berkeley 并行系统成果归于单人。",
+      "argument": "编辑提炼：统一地址空间可以降低编程障碍，但应保留足够的成本信息，让程序主动安排访问批量、数据布局与完成点。",
+      "evidence": "Active Messages: A Mechanism for Integrated Communication and Computation（§2；§3.3；§4.2；PDF pp.2–4、8、10）；Parallel Programming in Split-C（§1.1；§4 Split-Phase Access；PDF pp.1、6–7）",
+      "habits": [
+        "先消除不必要的远程访问，再隐藏剩余延迟。",
+        "检查接口是否让独立通信能同时在途。"
+      ],
+      "questions": [
+        "远程访问已经异步化，为何运行时间仍随访问次数线性增长？"
+      ],
+      "boundary": "证据来自早期分布式内存系统与原型语言；现代 RDMA、NUMA 和 CXL 的安全、进展及缓存语义需另行验证。",
+      "diagnostic": "分别测空处理程序开销、请求注入率和批次完成时间；保持总字节数不变扫批量，记录进展线程CPU占用与同步成本。",
+      "notes": [],
+      "sources": [
+        [
+          "Active Messages: A Mechanism for Integrated Communication and Computation",
+          "https://www.cs.cmu.edu/~seth/papers/voneicken-isca92.pdf",
+          "§2；§3.3；§4.2；PDF pp.2–4、8、10"
+        ],
+        [
+          "Parallel Programming in Split-C",
+          "https://www.cs.cmu.edu/~seth/papers/culler-sc93.pdf",
+          "§1.1；§4 Split-Phase Access；PDF pp.1、6–7"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "am",
+          "title": "Active Messages: A Mechanism for Integrated Communication and Computation",
+          "authors": "Thorsten von Eicken, David E. Culler, Seth Copen Goldstein, Klaus Erik Schauser",
+          "date": "1992",
+          "url": "https://www.cs.cmu.edu/~seth/papers/voneicken-isca92.pdf",
+          "locator": "§2；§3.3；§4.2；PDF pp.2–4、8、10",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "splitc",
+          "title": "Parallel Programming in Split-C",
+          "authors": "David E. Culler, Andrea Dusseau, Seth Copen Goldstein, Arvind Krishnamurthy, Steven Lumetta, Thorsten von Eicken, Katherine Yelick",
+          "date": "1993",
+          "url": "https://www.cs.cmu.edu/~seth/papers/culler-sc93.pdf",
+          "locator": "§1.1；§4 Split-Phase Access；PDF pp.1、6–7",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Active Messages 团队将消息到达与短处理程序连接，减少一般消息调度负担，并把长计算的调度留给上层。",
+          "workId": "am"
+        },
+        {
+          "text": "Split-C 团队在全局地址空间中保留本地/远程区别，通过分阶段赋值与 sync 分离访问发起和完成。",
+          "workId": "splitc"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同署名支持其参与所列团队工作，不将团队机制归为个人独占发明；挑战问题与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献及两项技术作品核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把远程操作的发起、传输和完成拆开，让程序能够表达局部性并重叠通信。",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "question": "远程访问已经异步化，为何运行时间仍随访问次数线性增长？",
+        "variables": "独立请求数n；往返延迟L；每请求发起成本o；稳态服务间隔g；可重叠计算C；完成屏障成本s",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T≈max(C,n·o,L+(n−1)·g)+s，仅适用于独立请求且发送、传输、计算可按假设重叠的批次。",
+        "crossover": "增加在途请求只能在独立性充足且网络尚未拥塞时隐藏延迟；达到发起或服务速率上限后，批量收益趋缓。",
+        "counterexample": "链式指针追踪必须等上一跳返回才知道下一地址；即使接口异步，单链仍缺少可重叠工作。",
+        "validation": "分别测空处理程序开销、请求注入率和批次完成时间；保持总字节数不变扫批量，记录进展线程CPU占用与同步成本。",
+        "transfer": "用于评估远程内存和异步I/O接口：同时审查表达能力、依赖关系与通信进展。"
+      }
+    },
+    {
+      "id": "steven-k-reinhardt",
+      "name": "Steven K. Reinhardt",
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness",
+        "foundations"
+      ],
+      "field": "可组合模拟与异构一致性",
+      "core": "用明确的模拟接口与访问权限层次，把系统行为变成可检验的机制。",
+      "contributions": [
+        "gem5 2011 团队将 M5 的处理器/系统模拟框架与 GEMS 的内存系统能力整合，区分 timing、atomic 和 functional 访问语义。",
+        "HSC 团队以区域目录和 region buffer 缓存权限；权限命中后的数据请求可直接访问内存，降低逐缓存行目录流量。"
+      ],
+      "background": "gem5 与 Heterogeneous System Coherence 论文共同作者；使用 Steven K. Reinhardt 全名明确身份，模拟器及协议均为团队成果。",
+      "argument": "编辑提炼：高带宽共享内存的瓶颈可能是权限查询通路；证明优化时必须同时验证数据路径、权限撤回及所用模拟精度。",
+      "evidence": "The gem5 Simulator（§2；§3.4 Standard Interfaces；§4；PDF pp.2、4–5）；Heterogeneous System Coherence for Integrated CPU-GPU Systems（§4.1–4.5；Fig.3–4；PDF pp.5–7）",
+      "habits": [
+        "把功能正确、时序准确与实验可重复分开验证。",
+        "观察目录事务数量，而不只看DRAM字节带宽。"
+      ],
+      "questions": [
+        "更宽的内存接口能否兑现带宽，还是请求先堵在目录与权限往返上？"
+      ],
+      "boundary": "gem5论文描述2011版本，不能据此断言当前全部配置支持情况；HSC依赖区域内局部性，区域迁移和假共享会抵消收益。",
+      "diagnostic": "在时序模式下比较逐行目录与区域权限方案；扫区域大小和生产者/消费者切换频率，记录权限命中、失效字节、目录排队及错误执行检查。",
+      "notes": [],
+      "sources": [
+        [
+          "The gem5 Simulator",
+          "https://www.cs.wisc.edu/multifacet/papers/can11_gem5.pdf",
+          "§2；§3.4 Standard Interfaces；§4；PDF pp.2、4–5"
+        ],
+        [
+          "Heterogeneous System Coherence for Integrated CPU-GPU Systems",
+          "https://www.cs.wisc.edu/multifacet/papers/micro13_hsc.pdf",
+          "§4.1–4.5；Fig.3–4；PDF pp.5–7"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "gem5",
+          "title": "The gem5 Simulator",
+          "authors": "Nathan Binkert, Bradford Beckmann, Gabriel Black, Steven K. Reinhardt 等16位共同作者",
+          "date": "2011",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/can11_gem5.pdf",
+          "locator": "§2；§3.4 Standard Interfaces；§4；PDF pp.2、4–5",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "hsc",
+          "title": "Heterogeneous System Coherence for Integrated CPU-GPU Systems",
+          "authors": "Jason Power, Arkaprava Basu, Junli Gu, Sooraj Puthoor, Bradford M. Beckmann, Mark D. Hill, Steven K. Reinhardt, David A. Wood",
+          "date": "2013",
+          "url": "https://www.cs.wisc.edu/multifacet/papers/micro13_hsc.pdf",
+          "locator": "§4.1–4.5；Fig.3–4；PDF pp.5–7",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "gem5 2011 团队将 M5 的处理器/系统模拟框架与 GEMS 的内存系统能力整合，区分 timing、atomic 和 functional 访问语义。",
+          "workId": "gem5"
+        },
+        {
+          "text": "HSC 团队以区域目录和 region buffer 缓存权限；权限命中后的数据请求可直接访问内存，降低逐缓存行目录流量。",
+          "workId": "hsc"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同署名支持其参与所列团队工作，不将团队机制归为个人独占发明；挑战问题与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献及两项技术作品核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "用明确的模拟接口与访问权限层次，把系统行为变成可检验的机制。",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "question": "更宽的内存接口能否兑现带宽，还是请求先堵在目录与权限往返上？",
+        "variables": "每区域访问缓存行数k；区域权限未命中率m；区域迁移率；目录吞吐D；数据通路带宽B；每次有效数据b",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：有效吞吐上界≈min(B/b,D/m)；m应由真实共享轨迹测量，不能直接假定为1/k。",
+        "crossover": "区域权限可跨多个请求复用时目录压力降低；CPU/GPU反复改写同一区域时，撤权成本可能主导。",
+        "counterexample": "两个处理器写不同缓存行却同属一个区域，形成区域级假共享；扩大区域可能减少局部命中而增加整区失效。",
+        "validation": "在时序模式下比较逐行目录与区域权限方案；扫区域大小和生产者/消费者切换频率，记录权限命中、失效字节、目录排队及错误执行检查。",
+        "transfer": "适用于CPU—加速器共享内存与芯粒互连：将控制带宽和数据带宽分别预算。"
+      }
+    },
+    {
+      "id": "antonio-gonzalez",
+      "name": "Antonio González",
+      "domain": "cpu",
+      "relatedDomains": [
+        "compiler-runtime",
+        "physical-energy"
+      ],
+      "field": "推测多线程与能效约束",
+      "core": "把单线程加速拆成可预测输入、可验证执行与可承担的额外工作。",
+      "contributions": [
+        "Mitosis 团队用预计算切片提前生成推测线程输入，并以多版本寄存器、缓存及顺序提交支持验证和回滚。",
+        "本人技术综述将流水线、发射和旁路的复杂度与能耗联系起来，讨论固定功率下提高性能所需的每任务能量下降；这是技术论述而非这些机制的原创归属。"
+      ],
+      "background": "Mitosis共同作者，Trends in Processor Architecture独立作者；后者读取2022修订稿，保留2018初稿时间。",
+      "argument": "编辑提炼：预测正确率只是必要条件；预计算本身、状态保存和失败后的重做都要进入单线程收益及功率预算。",
+      "evidence": "Mitosis: A Speculative Multithreaded Processor Based on Precomputation Slices（§2 Execution Model；§4微架构；§5实验；原刊pp.915–921）；Trends in Processor Architecture（§1；§2.1；§3；PDF pp.1–8、15–16；本次读取v2）",
+      "habits": [
+        "比较预计算切片与被跳过原始代码的长度。",
+        "把执行加速与完成相同任务的能量一起报告。"
+      ],
+      "questions": [
+        "用空闲核心推测执行后续代码，什么时候能同时改善延迟与能耗？"
+      ],
+      "boundary": "Mitosis收益来自论文特定Olden子集和模拟配置，不能外推生产工作负载；综述的历史工艺与未来预测不作为2026现状事实。",
+      "diagnostic": "使用相同二进制语义与任务输入比较；消融切片、值通信和缓存预热；测提交有效工作比例、回滚链长度、任务能量及并发服务吞吐。",
+      "notes": [],
+      "sources": [
+        [
+          "Mitosis: A Speculative Multithreaded Processor Based on Precomputation Slices",
+          "https://cs.uwaterloo.ca/~brecht/courses/702/Possible-Readings/prefetching-to-cache/hardware/mitosis-speculative-multithreads-precomputation-slices.pdf",
+          "§2 Execution Model；§4微架构；§5实验；原刊pp.915–921"
+        ],
+        [
+          "Trends in Processor Architecture",
+          "https://arxiv.org/pdf/1801.05215",
+          "§1；§2.1；§3；PDF pp.1–8、15–16；本次读取v2"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mitosis",
+          "title": "Mitosis: A Speculative Multithreaded Processor Based on Precomputation Slices",
+          "authors": "Carlos Madriles, Carlos García-Quiñones, Jesús Sánchez, Pedro Marcuello, Antonio González, Dean M. Tullsen, Hong Wang, John P. Shen",
+          "date": "2008",
+          "url": "https://cs.uwaterloo.ca/~brecht/courses/702/Possible-Readings/prefetching-to-cache/hardware/mitosis-speculative-multithreads-precomputation-slices.pdf",
+          "locator": "§2 Execution Model；§4微架构；§5实验；原刊pp.915–921",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "gonzalez-trends",
+          "title": "Trends in Processor Architecture",
+          "authors": "Antonio González",
+          "date": "2018初稿；2022-03-11 v2修订",
+          "url": "https://arxiv.org/pdf/1801.05215",
+          "locator": "§1；§2.1；§3；PDF pp.1–8、15–16；本次读取v2",
+          "type": "作者技术文章全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：作者署名原始技术正文；综述仅支持作者论述，不证明所综述机制为其发明。",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Mitosis 团队用预计算切片提前生成推测线程输入，并以多版本寄存器、缓存及顺序提交支持验证和回滚。",
+          "workId": "mitosis"
+        },
+        {
+          "text": "本人技术综述将流水线、发射和旁路的复杂度与能耗联系起来，讨论固定功率下提高性能所需的每任务能量下降；这是技术论述而非这些机制的原创归属。",
+          "workId": "gonzalez-trends"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同署名支持其参与所列团队工作，不将团队机制归为个人独占发明；挑战问题与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献及两项技术作品核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把单线程加速拆成可预测输入、可验证执行与可承担的额外工作。",
+        "skills": [
+          "A1",
+          "A2",
+          "A7",
+          "A8"
+        ],
+        "question": "用空闲核心推测执行后续代码，什么时候能同时改善延迟与能耗？",
+        "variables": "串行区段时间T；切片时间P；验证时间V；失败概率q；平均恢复代价R；额外执行能量Eextra",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：必要的延迟获益条件为可隐藏时间>P+V+q·R；能量获益还要求缩短运行节省的系统能量>Eextra。",
+        "crossover": "切片足够短、输入可预测且空闲资源机会成本低时较有利；满载服务上会与其他请求争用资源。",
+        "counterexample": "切片几乎重算整个前序区段，或者推测工作挤占内存带宽；高正确率仍可能导致负收益。",
+        "validation": "使用相同二进制语义与任务输入比较；消融切片、值通信和缓存预热；测提交有效工作比例、回滚链长度、任务能量及并发服务吞吐。",
+        "transfer": "迁移到辅助线程与预测预取研究时，明确可提交执行和仅提供提示的不同正确性成本。"
+      }
+    },
+    {
+      "id": "mark-oskin",
+      "name": "Mark Oskin",
+      "domain": "cpu",
+      "relatedDomains": [
+        "compiler-runtime",
+        "network"
+      ],
+      "field": "保留命令式语义的数据流执行",
+      "core": "把程序并行性映射到分布式执行资源，同时显式承担内存顺序与操作数通信成本。",
+      "contributions": [
+        "WaveScalar 团队用 wave-ordered memory 将访存顺序信息加入请求，使数据流执行能够保持命令式程序的内存语义。",
+        "后续面积—性能研究联合评估处理单元、指令驻留、匹配存储与分层互连，展示复制计算簇并不保证最佳面积效率。"
+      ],
+      "background": "WaveScalar及其面积—性能研究共同作者；与Swanson、Michelson、Schwerin及后续团队合作，未声称单人发明。",
+      "argument": "编辑提炼：消除集中式取指和调度后，还要追踪新的串行点：访存排序、跨簇操作数以及有限的指令/令牌驻留容量。",
+      "evidence": "WaveScalar（§3 wave-ordered memory；PDF pp.4–5）；Area-Performance Trade-offs in Tiled Dataflow Architectures（§3.3–3.4；§4；Table1–2；PDF pp.5–9）",
+      "habits": [
+        "沿数据依赖检查空间映射距离。",
+        "对计算簇数量、驻留容量和互连分别做消融。"
+      ],
+      "questions": [
+        "增加数据流计算簇，为何有效IPC提高但单位面积性能反而下降？"
+      ],
+      "boundary": "2003和2006论文是特定工艺及模拟工作负载下的架构研究，不代表当代硅实现的产品PPA；WaveScalar也不是DRAM内计算的同义词。",
+      "diagnostic": "固定语义、输入和工艺估算，扫描簇数、指令驻留及互连延迟；报告任务时间、有效操作率、控制膨胀、内存等待和面积分解。",
+      "notes": [],
+      "sources": [
+        [
+          "WaveScalar",
+          "https://homes.cs.washington.edu/~oskin/wavescalar.pdf",
+          "§3 wave-ordered memory；PDF pp.4–5"
+        ],
+        [
+          "Area-Performance Trade-offs in Tiled Dataflow Architectures",
+          "https://homes.cs.washington.edu/~oskin/WaveScalarISCA06.pdf",
+          "§3.3–3.4；§4；Table1–2；PDF pp.5–9"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "wavescalar",
+          "title": "WaveScalar",
+          "authors": "Steven Swanson, Ken Michelson, Andrew Schwerin, Mark Oskin",
+          "date": "2003",
+          "url": "https://homes.cs.washington.edu/~oskin/wavescalar.pdf",
+          "locator": "§3 wave-ordered memory；PDF pp.4–5",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "wave-area",
+          "title": "Area-Performance Trade-offs in Tiled Dataflow Architectures",
+          "authors": "Steven Swanson, Andrew Putnam, Martha Mercaldi, Ken Michelson, Andrew Petersen, Andrew Schwerin, Mark Oskin, Susan J. Eggers",
+          "date": "2006",
+          "url": "https://homes.cs.washington.edu/~oskin/WaveScalarISCA06.pdf",
+          "locator": "§3.3–3.4；§4；Table1–2；PDF pp.5–9",
+          "type": "论文全文",
+          "contentStatus": "已取得PDF可检索正文，阅读署名及所列机制段落；不是仅据摘要或书目认定。",
+          "evidenceStrength": "强：原始团队署名论文及机制正文",
+          "role": "贡献机制、比较假设与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "WaveScalar 团队用 wave-ordered memory 将访存顺序信息加入请求，使数据流执行能够保持命令式程序的内存语义。",
+          "workId": "wavescalar"
+        },
+        {
+          "text": "后续面积—性能研究联合评估处理单元、指令驻留、匹配存储与分层互连，展示复制计算簇并不保证最佳面积效率。",
+          "workId": "wave-area"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同署名支持其参与所列团队工作，不将团队机制归为个人独占发明；挑战问题与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献及两项技术作品核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把程序并行性映射到分布式执行资源，同时显式承担内存顺序与操作数通信成本。",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A7",
+          "A8"
+        ],
+        "question": "增加数据流计算簇，为何有效IPC提高但单位面积性能反而下降？",
+        "variables": "有效操作数；动态控制指令膨胀；跨簇比例；令牌匹配容量；访存顺序关键路径；面积A；完成时间T",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：以相同任务比较效率η=1/(A·T)；新增簇有益要求任务时间下降比例足以抵消面积增加，且不能用新增控制指令抬高的原始IPC替代任务性能。",
+        "crossover": "足够的并行性、局部操作数与驻留容量共同满足时扩簇较有利；其中任一受限都会改变最优配置。",
+        "counterexample": "程序有长依赖链或严格的访存顺序，即使ALU几乎无限，也无法突破关键路径；更远的映射还可能增加通信延迟。",
+        "validation": "固定语义、输入和工艺估算，扫描簇数、指令驻留及互连延迟；报告任务时间、有效操作率、控制膨胀、内存等待和面积分解。",
+        "transfer": "用于CGRA、数据流加速器与芯粒计算阵列：按应用完成时间和完整通信成本评价扩展。"
+      }
+    },
+    {
+      "id": "li-shiuan-peh",
+      "name": "Li-Shiuan Peh",
+      "field": "将片上互连的通信语义与可校准的功耗、面积模型共同纳入架构设计",
+      "domain": "network",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "将片上互连的通信语义与可校准的功耗、面积模型共同纳入架构设计。",
+      "contributions": [
+        "作为共同作者参与ORION 2.0，以参数化模型补充时钟、链路、FIFO与分配器成本，支持早期NoC功耗及面积探索。",
+        "与Enright Jerger、Lipasti共同提出VCTM，在消息传递过程中建立多播树，以树编号路由并减少重复单播。"
+      ],
+      "background": "ORION 2.0与VCTM的共同作者；两篇论文分别把早期PPA估算和一对多通信机制带入片上网络设计。所列成果属于作者团队。",
+      "argument": "编辑提炼：互连方案需要同时回答传什么、怎样传、物理代价怎么算；只用跳数或流量估计能量，会遗漏时钟与控制等成本。",
+      "evidence": "ORION 2.0: A Power-Area Simulator for Interconnection Networks（期刊pp.191–193，§I–II：时钟、链路、FIFO与分配器功耗模型）；Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support（§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构）",
+      "habits": [
+        "先刻画通信模式，再选择路由器机制。",
+        "把结构参数、活动率和工艺参数分开校准。"
+      ],
+      "questions": [
+        "多播减少的链路活动，能否覆盖树表、控制及新增时钟负载？"
+      ],
+      "boundary": "ORION是早期参数模型，迁移到新工艺和新路由器需重校准；VCTM收益依赖目的集复用，不能直接代表芯粒链路或任意一致性协议。",
+      "diagnostic": "固定拓扑、位宽、工作负载和实现目标，对比单播与多播的flit跳数、注入阻塞、时钟及控制能量，并以RTL或实测校准模型。",
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "sources": [
+        [
+          "ORION 2.0: A Power-Area Simulator for Interconnection Networks",
+          "https://vlsicad.ucsd.edu/Publications/Journals/j103.pdf",
+          "期刊pp.191–193，§I–II：时钟、链路、FIFO与分配器功耗模型"
+        ],
+        [
+          "Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support",
+          "https://www.eecg.utoronto.ca/~enright/EnrightJergerN-VirtualCircuit.pdf",
+          "§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "orion2-journal",
+          "title": "ORION 2.0: A Power-Area Simulator for Interconnection Networks",
+          "authors": "Andrew B. Kahng, Bin Li, Li-Shiuan Peh, Kambiz Samadi",
+          "date": "2012-01（在线发表2011-03）",
+          "url": "https://vlsicad.ucsd.edu/Publications/Journals/j103.pdf",
+          "locator": "期刊pp.191–193，§I–II：时钟、链路、FIFO与分配器功耗模型",
+          "type": "论文全文",
+          "contentStatus": "通过作者实验室取得6页期刊PDF正文，阅读§I–II并核对署名；首页前半为上一篇论文结尾，ORION正文从p.191下半开始。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "vctm-2008",
+          "title": "Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support",
+          "authors": "Natalie Enright Jerger, Li-Shiuan Peh, Mikko Lipasti",
+          "date": "2008",
+          "url": "https://www.eecg.utoronto.ca/~enright/EnrightJergerN-VirtualCircuit.pdf",
+          "locator": "§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构",
+          "type": "论文全文",
+          "contentStatus": "通过网页检索工具取得12页PDF正文，阅读§2–3机制；本地直接下载未返回PDF，未声称本地副本有效。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为共同作者参与ORION 2.0，以参数化模型补充时钟、链路、FIFO与分配器成本，支持早期NoC功耗及面积探索。",
+          "workId": "orion2-journal"
+        },
+        {
+          "text": "与Enright Jerger、Lipasti共同提出VCTM，在消息传递过程中建立多播树，以树编号路由并减少重复单播。",
+          "workId": "vctm-2008"
+        }
+      ],
+      "contributionBasis": "依据署名技术作品归纳共同研究贡献；论文未区分个人实施任务，不推断个人独占发明。挑战、模型和迁移均为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本条两项代表作品的贡献与机制核验，不表示穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "让互连功耗模型保留通信语义和实现边界",
+        "skills": [
+          "A2",
+          "A6",
+          "A7",
+          "A9"
+        ],
+        "question": "多播减少的链路活动，能否覆盖树表、控制及新增时钟负载？",
+        "variables": "目的集复用率、flit跳数、活动率、树表容量、时钟与静态功耗",
+        "model": "本站诊断模型（非作者公式）：净节能=减少的重复传输能量−树表及控制开销−额外时钟与静态能量；各项在相同吞吐和时延目标下测量。",
+        "crossover": "目的集反复出现且共享路径较长时，树表建设与维护成本更容易摊薄。",
+        "counterexample": "目的集每次变化且多播很少，表维护和额外硬件可能几乎没有可抵扣的流量收益。",
+        "validation": "回放真实一致性流量，分别消融多播机制与功耗模型新增项，检查P99以及模型对RTL的误差。",
+        "transfer": "评估chiplet或CXL互连时沿用完整成本方法，但重新建立链路与协议模型。"
+      }
+    },
+    {
+      "id": "natalie-enright-jerger",
+      "name": "Natalie Enright Jerger",
+      "field": "从多播复用和数据编码两端减少片上通信的实际代价",
+      "domain": "network",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "从多播复用和数据编码两端减少片上通信的实际代价。",
+      "contributions": [
+        "作为VCTM第一作者与团队设计按需建立和复用多播树的路由器，避免一对多消息重复占用共同路径。",
+        "作为LELC共同作者，研究以NRZI和低能耗线路编码减少链路翻转，同时计入编码后增加的flit与编解码成本。"
+      ],
+      "background": "VCTM第一作者、LELC共同作者；前者与Peh及Lipasti合作，后者为Duke与Toronto联合团队工作。作者顺序不代表未披露的具体实施分工。",
+      "argument": "编辑提炼：减少逻辑消息与减少电气翻转是不同层次的优化，最后都要落到单位有用传输的能量与拥塞成本。",
+      "evidence": "Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support（§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构）；Low-Energy Line Codes for On-Chip Networks（§II–IV，PDF pp.2–4：载荷编码、flit离散扩张、NRZI及Flip-N-Write）",
+      "habits": [
+        "追踪逻辑消息到物理flit的放大。",
+        "把节能与新增占用带宽放在一起比较。"
+      ],
+      "questions": [
+        "编码让每比特更省电，却多发一个flit时，系统仍然获益吗？"
+      ],
+      "boundary": "LELC分析针对片上载荷和明确的链路假设，不自动适用于已压缩或加密流量；VCTM也需要目的集的时间复用。",
+      "diagnostic": "使用真实数据值和突发流量，测量每有效字节的能量、额外flit数、编解码延迟和尾延迟。",
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "sources": [
+        [
+          "Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support",
+          "https://www.eecg.utoronto.ca/~enright/EnrightJergerN-VirtualCircuit.pdf",
+          "§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构"
+        ],
+        [
+          "Low-Energy Line Codes for On-Chip Networks",
+          "https://arxiv.org/pdf/2405.14783",
+          "§II–IV，PDF pp.2–4：载荷编码、flit离散扩张、NRZI及Flip-N-Write"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "vctm-2008",
+          "title": "Virtual Circuit Tree Multicasting: A Case for On-Chip Hardware Multicast Support",
+          "authors": "Natalie Enright Jerger, Li-Shiuan Peh, Mikko Lipasti",
+          "date": "2008",
+          "url": "https://www.eecg.utoronto.ca/~enright/EnrightJergerN-VirtualCircuit.pdf",
+          "locator": "§2–3，PDF pp.3–6：目的集复用、树构建与路由器微架构",
+          "type": "论文全文",
+          "contentStatus": "通过网页检索工具取得12页PDF正文，阅读§2–3机制；本地直接下载未返回PDF，未声称本地副本有效。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "lelc-2024",
+          "title": "Low-Energy Line Codes for On-Chip Networks",
+          "authors": "Beyza Dabak, Major Glenn, Jingyang Liu, Alexander Buck, Siyi Yang, Robert Calderbank, Natalie Enright Jerger, Daniel J. Sorin",
+          "date": "2024-05-23",
+          "url": "https://arxiv.org/pdf/2405.14783",
+          "locator": "§II–IV，PDF pp.2–4：载荷编码、flit离散扩张、NRZI及Flip-N-Write",
+          "type": "论文全文",
+          "contentStatus": "已取得全文并阅读所列机制正文，核对首页作者署名。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为VCTM第一作者与团队设计按需建立和复用多播树的路由器，避免一对多消息重复占用共同路径。",
+          "workId": "vctm-2008"
+        },
+        {
+          "text": "作为LELC共同作者，研究以NRZI和低能耗线路编码减少链路翻转，同时计入编码后增加的flit与编解码成本。",
+          "workId": "lelc-2024"
+        }
+      ],
+      "contributionBasis": "依据署名技术作品归纳共同研究贡献；论文未区分个人实施任务，不推断个人独占发明。挑战、模型和迁移均为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本条两项代表作品的贡献与机制核验，不表示穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "区分减少消息数量与减少物理翻转",
+        "skills": [
+          "A2",
+          "A5",
+          "A7"
+        ],
+        "question": "编码让每比特更省电，却多发一个flit时，系统仍然获益吗？",
+        "variables": "编码率、原始数据分布、flit位宽、链路负载、编解码能量与延迟",
+        "model": "本站诊断模型（非作者公式）：每有效载荷能量=编码后的链路与路由能量+编解码能量；时延另计新增flit序列化和排队，不用每比特节能比例替代系统收益。",
+        "crossover": "低负载、翻转成本高且编码扩张只跨越少量flit边界时更有利；接近饱和时额外带宽占用可反转结论。",
+        "counterexample": "高熵数据在拥塞链路上编码，节省的翻转不足以抵消扩张和排队。",
+        "validation": "按链路利用率扫描能量与P99，包含零值密集、随机及压缩后数据，并计入编解码电路。",
+        "transfer": "可迁移到片上或片间数据表示选择，但不能忽略各物理接口已有编码。"
+      }
+    },
+    {
+      "id": "vivienne-sze",
+      "name": "Vivienne Sze",
+      "field": "以数据搬运能量和工作负载适配性统筹神经网络加速器",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "以数据搬运能量和工作负载适配性统筹神经网络加速器。",
+      "contributions": [
+        "与Chen、Emer共同提出Eyeriss的row-stationary数据流，并在统一硬件资源约束下比较不同数据流的能量。",
+        "作为Eyeriss v2共同作者，参与结合分层mesh和压缩域稀疏处理的设计，使互连适应不同层的复用及带宽需求。"
+      ],
+      "background": "Eyeriss ISCA论文与Eyeriss v2论文的共同作者；与Yu-Hsin Chen、Joel Emer以及v2的Tien-Ju Yang合作。本文从跨层能效分析视角组织共同成果。",
+      "argument": "编辑提炼：模型更小或MAC更少只是算法层指标，硬件必须把它转为更少的高代价访问，同时保持阵列利用率。",
+      "evidence": "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks（§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射）；Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices（§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh）",
+      "habits": [
+        "逐层核算权重、激活和部分和的搬运。",
+        "在相同面积、精度与处理并行度下比较数据流。"
+      ],
+      "questions": [
+        "一个更紧凑的模型，是否因为复用下降而变得更难高效执行？"
+      ],
+      "boundary": "所选作品以CNN和移动端资源约束为主；不能把其具体能效倍数直接外推到大模型训练、Transformer或不同工艺。",
+      "diagnostic": "保持任务精度和批量一致，按层分解计算、DRAM、全局缓冲与局部访问能量，并测PE利用率。",
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "sources": [
+        [
+          "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks",
+          "https://www.cs.cmu.edu/~18742/papers/Chen2016.pdf",
+          "§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射"
+        ],
+        [
+          "Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices",
+          "https://arxiv.org/pdf/1807.07928",
+          "§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "eyeriss-isca2016",
+          "title": "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks",
+          "authors": "Yu-Hsin Chen, Joel Emer, Vivienne Sze",
+          "date": "2016-06",
+          "url": "https://www.cs.cmu.edu/~18742/papers/Chen2016.pdf",
+          "locator": "§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射",
+          "type": "论文全文",
+          "contentStatus": "已下载大学课程存档中的原始IEEE论文PDF，提取全文并阅读§III–V，核对三位作者署名。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "eyeriss-v2-2019",
+          "title": "Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices",
+          "authors": "Yu-Hsin Chen, Tien-Ju Yang, Joel Emer, Vivienne Sze",
+          "date": "2019-05-20（arXiv v2；JETCAS 2019）",
+          "url": "https://arxiv.org/pdf/1807.07928",
+          "locator": "§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh",
+          "type": "论文全文",
+          "contentStatus": "已下载arXiv v2全文，阅读§I–III的机制正文并核对首页作者；不把早期2018预印本与2019版本当作两项作品。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与Chen、Emer共同提出Eyeriss的row-stationary数据流，并在统一硬件资源约束下比较不同数据流的能量。",
+          "workId": "eyeriss-isca2016"
+        },
+        {
+          "text": "作为Eyeriss v2共同作者，参与结合分层mesh和压缩域稀疏处理的设计，使互连适应不同层的复用及带宽需求。",
+          "workId": "eyeriss-v2-2019"
+        }
+      ],
+      "contributionBasis": "依据署名技术作品归纳共同研究贡献；论文未区分个人实施任务，不推断个人独占发明。挑战、模型和迁移均为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本条两项代表作品的贡献与机制核验，不表示穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "用完整搬运账本检验算法压缩是否转化为硬件能效",
+        "skills": [
+          "A1",
+          "A4",
+          "A7",
+          "A9"
+        ],
+        "question": "一个更紧凑的模型，是否因为复用下降而变得更难高效执行？",
+        "variables": "层形状、权重与激活复用、部分和寿命、各级访问次数及能量、PE利用率",
+        "model": "本站诊断模型（非作者公式）：每推理能量=计算能量+各存储层访问次数×每次访问能量+互连与控制能量；比较时固定任务精度及服务量。",
+        "crossover": "压缩节省的计算和访问大于复用损失、索引和低利用率成本时，模型缩小才形成完整系统收益。",
+        "counterexample": "深度可分离卷积降低MAC数，却让依赖高复用的阵列受数据供给限制。",
+        "validation": "对原模型与紧凑模型逐层测量；用同精度同批量基线消融数据流、互连和稀疏支持。",
+        "transfer": "用于评估LLM量化、稀疏化与算子融合时，重建相应数据生命周期和能量参数。"
+      }
+    },
+    {
+      "id": "yu-hsin-chen",
+      "name": "Yu-Hsin Chen",
+      "field": "把卷积复用映射为可执行的数据流、片上网络和稀疏处理机制",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "compiler-runtime"
+      ],
+      "core": "把卷积复用映射为可执行的数据流、片上网络和稀疏处理机制。",
+      "contributions": [
+        "作为第一作者与Emer、Sze提出Eyeriss的row-stationary映射，把多维卷积拆为1D原语，在PE局部及阵列间组织复用与累加。",
+        "作为Eyeriss v2第一作者与团队设计分层mesh，并保持权重和激活的CSC表示以支持压缩域处理。"
+      ],
+      "background": "两篇所选Eyeriss论文的第一作者；2016作品与Emer、Sze合著，v2还包括Tien-Ju Yang。第一作者身份可核验，具体模块个人归属未由论文披露。",
+      "argument": "编辑提炼：数据流要落实到映射、端口、缓冲和调度；减少运算量以后，还须检查负载不均和供数是否限制有效吞吐。",
+      "evidence": "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks（§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射）；Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices（§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh）",
+      "habits": [
+        "把张量维度映射到PE、时间步与存储层。",
+        "随层形状变化检查复用和供数能力。"
+      ],
+      "questions": [
+        "剪枝后的非零计算更少，为什么PE仍可能闲置？"
+      ],
+      "boundary": "CSC索引、负载分布和层形状都会影响有效收益；Eyeriss v2的评估条件不能代表所有稀疏矩阵或服务端加速器。",
+      "diagnostic": "固定模型、数值精度和硬件资源，记录每PE非零工作量、等待输入周期、索引字节和实际完成时间。",
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "sources": [
+        [
+          "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks",
+          "https://www.cs.cmu.edu/~18742/papers/Chen2016.pdf",
+          "§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射"
+        ],
+        [
+          "Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices",
+          "https://arxiv.org/pdf/1807.07928",
+          "§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "eyeriss-isca2016",
+          "title": "Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks",
+          "authors": "Yu-Hsin Chen, Joel Emer, Vivienne Sze",
+          "date": "2016-06",
+          "url": "https://www.cs.cmu.edu/~18742/papers/Chen2016.pdf",
+          "locator": "§III–V，会议论文页码369–373：复用与部分和冲突、数据流比较及1D卷积映射",
+          "type": "论文全文",
+          "contentStatus": "已下载大学课程存档中的原始IEEE论文PDF，提取全文并阅读§III–V，核对三位作者署名。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "eyeriss-v2-2019",
+          "title": "Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices",
+          "authors": "Yu-Hsin Chen, Tien-Ju Yang, Joel Emer, Vivienne Sze",
+          "date": "2019-05-20（arXiv v2；JETCAS 2019）",
+          "url": "https://arxiv.org/pdf/1807.07928",
+          "locator": "§I–III，PDF pp.1–5：紧凑模型挑战、CSC稀疏处理与分层mesh",
+          "type": "论文全文",
+          "contentStatus": "已下载arXiv v2全文，阅读§I–III的机制正文并核对首页作者；不把早期2018预印本与2019版本当作两项作品。",
+          "evidenceStrength": "强：署名作者原始技术论文正文",
+          "role": "核验团队贡献、具体机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为第一作者与Emer、Sze提出Eyeriss的row-stationary映射，把多维卷积拆为1D原语，在PE局部及阵列间组织复用与累加。",
+          "workId": "eyeriss-isca2016"
+        },
+        {
+          "text": "作为Eyeriss v2第一作者与团队设计分层mesh，并保持权重和激活的CSC表示以支持压缩域处理。",
+          "workId": "eyeriss-v2-2019"
+        }
+      ],
+      "contributionBasis": "依据署名技术作品归纳共同研究贡献；论文未区分个人实施任务，不推断个人独占发明。挑战、模型和迁移均为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本条两项代表作品的贡献与机制核验，不表示穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把理论稀疏性变成可调度的有效并行度",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "剪枝后的非零计算更少，为什么PE仍可能闲置？",
+        "variables": "非零分布、CSC索引量、PE间负载不均、缓冲容量、单播与多播带宽、映射参数",
+        "model": "本站诊断模型（非作者公式）：执行时间下界=max(最繁忙PE工作时间，数据供给时间，依赖关键路径)；平均非零率不能替代最繁忙PE的工作量。",
+        "crossover": "当压缩减少的供数和计算超过索引处理、负载不均及重配置代价时，稀疏支持才值得增加复杂度。",
+        "counterexample": "非零集中在少数映射分区，平均稀疏率很高但最慢PE决定完成时间。",
+        "validation": "比较随机稀疏与成簇稀疏，消融稀疏感知映射和灵活互连，记录PE忙闲分布及每层延迟。",
+        "transfer": "适用于稀疏CPU算子、图处理和MoE路由中的负载分配诊断，须重建各自调度成本。"
+      }
+    },
+    {
+      "id": "yuan-xie",
+      "name": "Yuan Xie · 谢源",
+      "aliases": [
+        "Yuan Xie",
+        "谢源"
+      ],
+      "domain": "memory",
+      "relatedDomains": [
+        "physical-energy",
+        "gpu-ai"
+      ],
+      "field": "把存储器物理差异传递到数据放置与系统成本",
+      "core": "从混合缓存到存内计算建模，用存储密度、访问不对称和外围电路成本约束架构选择。",
+      "contributions": [
+        "HCA 团队比较跨层与同层异质缓存；RHCA 以访问计数和 sticky bit 控制快慢区域间迁移，并考察 3D 堆叠。",
+        "MNSIM 团队构建存阻器计算的分层模拟框架，把交叉阵列、矩阵分块、读出转换与外围合并纳入设计空间。"
+      ],
+      "background": "两篇论文共同作者；本档案以混合存储与跨层评估两条已核验技术线定位其贡献，未据此概括全部研究。",
+      "argument": "编辑提炼：高密度阵列只有在数据迁移、读写代价和外围开销纳入后，才构成可用的系统优势。",
+      "evidence": "Hybrid Cache Architecture with Disparate Memory Technologies（§5–6，尤其 §6.1.1、Fig.8：LHCA/RHCA、sticky bit 与饱和计数器控制的缓存行迁移；§7：3D 扩展）；MNSIM: Simulation Platform for Memristor-based Neuromorphic Computing System（§III.A–E、Fig.1：bank/unit 层次、矩阵分块、DAC/ADC 与外围模块；§IV：模拟建模）",
+      "habits": [
+        "把器件特性转成缓存和数据路径参数。",
+        "比较等面积及完整外围成本，而非只比较存储单元。"
+      ],
+      "questions": [
+        "更密的存储阵列所省下的面积，能否覆盖迁移、转换和慢写带来的代价？"
+      ],
+      "boundary": "2009 年 HCA 的器件参数与所测程序属于当时假设；MNSIM 的模拟收益不等于量产存内计算芯片的实测收益。",
+      "diagnostic": "在同容量或同面积两种口径分别比较；扫描写比例、迁移阈值、阵列尺寸与转换精度，记录执行时间、外围面积和总能量。",
+      "notes": [],
+      "sources": [
+        [
+          "Hybrid Cache Architecture with Disparate Memory Technologies",
+          "https://web.ece.ucsb.edu/~yuanxie/Papers/2009-ISCA.pdf",
+          "§5–6，尤其 §6.1.1、Fig.8：LHCA/RHCA、sticky bit 与饱和计数器控制的缓存行迁移；§7：3D 扩展"
+        ],
+        [
+          "MNSIM: Simulation Platform for Memristor-based Neuromorphic Computing System",
+          "https://nicsefc.ee.tsinghua.edu.cn/%2Fnics_file%2Fpdf%2Fpublications%2F2016%2FDATE16_185.pdf",
+          "§III.A–E、Fig.1：bank/unit 层次、矩阵分块、DAC/ADC 与外围模块；§IV：模拟建模"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "hca",
+          "title": "Hybrid Cache Architecture with Disparate Memory Technologies",
+          "authors": "Xiaoxia Wu, Jian Li, Lixin Zhang, Evan Speight, Ram Rajamony, Yuan Xie",
+          "date": "2009",
+          "url": "https://web.ece.ucsb.edu/~yuanxie/Papers/2009-ISCA.pdf",
+          "locator": "§5–6，尤其 §6.1.1、Fig.8：LHCA/RHCA、sticky bit 与饱和计数器控制的缓存行迁移；§7：3D 扩展",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "mnsim",
+          "title": "MNSIM: Simulation Platform for Memristor-based Neuromorphic Computing System",
+          "authors": "Lixue Xia, Boxun Li, Tianqi Tang, Peng Gu, Xiling Yin, Wenqin Huangfu, Pai-Yu Chen, Shimeng Yu, Yu Cao, Yu Wang, Yuan Xie, Huazhong Yang",
+          "date": "2016",
+          "url": "https://nicsefc.ee.tsinghua.edu.cn/%2Fnics_file%2Fpdf%2Fpublications%2F2016%2FDATE16_185.pdf",
+          "locator": "§III.A–E、Fig.1：bank/unit 层次、矩阵分块、DAC/ADC 与外围模块；§IV：模拟建模",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "HCA 团队比较跨层与同层异质缓存；RHCA 以访问计数和 sticky bit 控制快慢区域间迁移，并考察 3D 堆叠。",
+          "workId": "hca"
+        },
+        {
+          "text": "MNSIM 团队构建存阻器计算的分层模拟框架，把交叉阵列、矩阵分块、读出转换与外围合并纳入设计空间。",
+          "workId": "mnsim"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列贡献为共同作者团队成果；署名与机制已有正文支撑，未将合作研究归为个人独占发明。思维方式与挑战为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与证据核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把存储器物理差异传递到数据放置与系统成本",
+        "skills": [
+          "A2",
+          "A4",
+          "A7"
+        ],
+        "question": "更密的存储阵列所省下的面积，能否覆盖迁移、转换和慢写带来的代价？",
+        "variables": "读写比例；快慢区延迟；迁移频率；阵列密度；ADC/DAC 面积与能耗；转换精度",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：净收益=容量/局部性收益−迁移代价−慢访问代价−外围转换代价；各项须在同一目标量纲中比较。",
+        "crossover": "热点足够稳定、写入不密集且外围开销可摊薄时，混合或存内方案更可能获益。",
+        "counterexample": "数据热点快速变化导致反复迁移，或小阵列的转换电路占据大部分面积时，单元密度优势可能消失。",
+        "validation": "在同容量或同面积两种口径分别比较；扫描写比例、迁移阈值、阵列尺寸与转换精度，记录执行时间、外围面积和总能量。",
+        "transfer": "用于审查异质内存、近存计算与芯粒内存方案时，先画出数据实际经过的全部路径。"
+      }
+    },
+    {
+      "id": "yunji-chen",
+      "name": "Yunji Chen · 陈云霁",
+      "aliases": [
+        "Yunji Chen",
+        "陈云霁"
+      ],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "hpc"
+      ],
+      "field": "以权重驻留和分块互连扩展机器学习计算",
+      "core": "把模型存储、计算邻近性与物理布线一同设计，研究专用加速器如何扩展为多芯片系统。",
+      "contributions": [
+        "DaDianNao 以多芯片聚合 eDRAM 存放权重，主要移动神经元数据；节点分块减少集中计算单元与存储间的布线拥塞。",
+        "DianNao 团队以 NFU 和输入、输出、权重缓冲配合分块执行，利用神经网络层局部性降低外部存储压力。"
+      ],
+      "background": "DaDianNao 第一作者、DianNao 共同作者；两项均属 ICT–Inria 联合学术团队成果，作者顺序不证明某个电路模块由其个人独立完成。",
+      "argument": "编辑提炼：扩展加速器时，应同时问模型放在哪里、跨片移动什么，以及物理连线能否支持逻辑带宽。",
+      "evidence": "DaDianNao: A Machine-Learning Supercomputer（§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果）；DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning（§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围）",
+      "habits": [
+        "由参数与激活的大小关系决定数据放置。",
+        "用布局布线约束修正逻辑吞吐估计。"
+      ],
+      "questions": [
+        "把权重留在计算旁边后，瓶颈是否转移到了激活通信、容量不足或布线？"
+      ],
+      "boundary": "DianNao 家族是学术加速器研究；不能把论文结果直接当成寒武纪商业产品规格，也不能把当时 CNN/DNN 的扩展结果外推到任意 Transformer。",
+      "diagnostic": "固定模型、数值精度与服务目标，比较权重驻留和权重流式方案；逐步增加节点，联合记录容量溢出、激活流量、布线面积及有效吞吐。",
+      "notes": [],
+      "sources": [
+        [
+          "DaDianNao: A Machine-Learning Supercomputer",
+          "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果"
+        ],
+        [
+          "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围"
+        ],
+        [
+          "DianNao 项目历史与学术命名说明",
+          "https://novel.ict.ac.cn/tchen/",
+          "2016-05-26 / 2016-08-20 作者说明；仅用于区分四项学术架构与商业 Cambricon 产品，不计入双技术作品门槛"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "dadiannao",
+          "title": "DaDianNao: A Machine-Learning Supercomputer",
+          "authors": "Yunji Chen, Tao Luo, Shaoli Liu, Shijin Zhang, Liqiang He, Jia Wang, Ling Li, Tianshi Chen, Zhiwei Xu, Ninghui Sun, Olivier Temam",
+          "date": "2014",
+          "url": "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "locator": "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "diannao",
+          "title": "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "authors": "Tianshi Chen, Zidong Du, Ninghui Sun, Jia Wang, Chengyong Wu, Yunji Chen, Olivier Temam",
+          "date": "2014",
+          "url": "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "locator": "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "DaDianNao 以多芯片聚合 eDRAM 存放权重，主要移动神经元数据；节点分块减少集中计算单元与存储间的布线拥塞。",
+          "workId": "dadiannao"
+        },
+        {
+          "text": "DianNao 团队以 NFU 和输入、输出、权重缓冲配合分块执行，利用神经网络层局部性降低外部存储压力。",
+          "workId": "diannao"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列贡献为共同作者团队成果；署名与机制已有正文支撑，未将合作研究归为个人独占发明。思维方式与挑战为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与证据核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以权重驻留和分块互连扩展机器学习计算",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A7"
+        ],
+        "question": "把权重留在计算旁边后，瓶颈是否转移到了激活通信、容量不足或布线？",
+        "variables": "权重与激活字节数；节点存储容量；片内/片间带宽；链路跳数；布线面积；有效计算利用率",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：T ≥ max(运算量/有效算力，外部字节/外部带宽，跨片字节/互连带宽)；非重叠通信和同步另计。",
+        "crossover": "模型分片能够驻留且激活通信可以摊薄时，增加存储计算节点可同时缓解容量和吞吐限制。",
+        "counterexample": "权重超出聚合容量、激活很大或节点间通信主导时，继续加算术单元未必提升服务吞吐。",
+        "validation": "固定模型、数值精度与服务目标，比较权重驻留和权重流式方案；逐步增加节点，联合记录容量溢出、激活流量、布线面积及有效吞吐。",
+        "transfer": "迁移到 AI 集群与芯粒分析时，以容量、数据流和物理互连共同约束扩展曲线。"
+      }
+    },
+    {
+      "id": "tianshi-chen",
+      "name": "Tianshi Chen · 陈天石",
+      "aliases": [
+        "Tianshi Chen",
+        "陈天石"
+      ],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "field": "以层级局部性和显式缓冲组织专用加速器",
+      "core": "将神经网络层分解为可复用的计算块，让缓冲、算术流水线与控制共同决定能效。",
+      "contributions": [
+        "DianNao 用 NBin、NBout、SB 和分阶段 NFU 对应输入、部分和与权重的数据复用，采用控制指令支持不同层的分块调度。",
+        "DaDianNao 将局部存储扩展到多个节点，结合驻留权重、eDRAM 分银行和 tile 组织支持更大模型。"
+      ],
+      "background": "DianNao 第一作者、DaDianNao 共同作者；本档案记录共同学术研究，未将论文原型与其后商业处理器作规格等同。",
+      "argument": "编辑提炼：专用化的关键问题是把算法中可预测的复用变成真实少搬运的数据路径，同时保留足够的调度自由度。",
+      "evidence": "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning（§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围）；DaDianNao: A Machine-Learning Supercomputer（§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果）",
+      "habits": [
+        "从循环与部分和生命周期推导缓冲结构。",
+        "检查计算单元等待的是输入、权重还是输出空间。"
+      ],
+      "questions": [
+        "你的数据流真正减少了多少外部传输，又为这种复用付出了多少缓冲和控制成本？"
+      ],
+      "boundary": "固定点精度、所测层形状、工艺和基线影响结果；DianNao 家族的学术名称及其性能数字不代表后续商业 Cambricon 产品。",
+      "diagnostic": "逐层比较分块方式，统计每类数据的装载与复用次数；做缓冲容量和带宽消融，保持任务误差目标一致并检查尾块利用率。",
+      "notes": [],
+      "sources": [
+        [
+          "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围"
+        ],
+        [
+          "DaDianNao: A Machine-Learning Supercomputer",
+          "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果"
+        ],
+        [
+          "DianNao 项目历史与学术命名说明",
+          "https://novel.ict.ac.cn/tchen/",
+          "2016-05-26 / 2016-08-20 作者说明；仅用于区分四项学术架构与商业 Cambricon 产品，不计入双技术作品门槛"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "diannao",
+          "title": "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "authors": "Tianshi Chen, Zidong Du, Ninghui Sun, Jia Wang, Chengyong Wu, Yunji Chen, Olivier Temam",
+          "date": "2014",
+          "url": "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "locator": "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "dadiannao",
+          "title": "DaDianNao: A Machine-Learning Supercomputer",
+          "authors": "Yunji Chen, Tao Luo, Shaoli Liu, Shijin Zhang, Liqiang He, Jia Wang, Ling Li, Tianshi Chen, Zhiwei Xu, Ninghui Sun, Olivier Temam",
+          "date": "2014",
+          "url": "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "locator": "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "DianNao 用 NBin、NBout、SB 和分阶段 NFU 对应输入、部分和与权重的数据复用，采用控制指令支持不同层的分块调度。",
+          "workId": "diannao"
+        },
+        {
+          "text": "DaDianNao 将局部存储扩展到多个节点，结合驻留权重、eDRAM 分银行和 tile 组织支持更大模型。",
+          "workId": "dadiannao"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列贡献为共同作者团队成果；署名与机制已有正文支撑，未将合作研究归为个人独占发明。思维方式与挑战为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与证据核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以层级局部性和显式缓冲组织专用加速器",
+        "skills": [
+          "A3",
+          "A4",
+          "A8",
+          "A9"
+        ],
+        "question": "你的数据流真正减少了多少外部传输，又为这种复用付出了多少缓冲和控制成本？",
+        "variables": "层形状；分块大小；缓冲容量；部分和存活时间；数据复用次数；控制开销；误差目标",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：每次有效运算的搬运成本=输入、权重、部分和的总传输字节/有效运算量；同时约束缓冲面积与精度。",
+        "crossover": "规则数据流、稳定复用和合适分块使显式管理缓冲更容易摊薄控制与存储成本。",
+        "counterexample": "层形状频繁变化、尾块占比高或复用超出缓冲容量时，名义乘加吞吐可能被低利用率和溢出抵消。",
+        "validation": "逐层比较分块方式，统计每类数据的装载与复用次数；做缓冲容量和带宽消融，保持任务误差目标一致并检查尾块利用率。",
+        "transfer": "用于新 AI 加速器评审时，要求展示每层的数据移动账本以及编译器实际生成的调度。"
+      }
+    },
+    {
+      "id": "lizy-kurian-john",
+      "name": "Lizy Kurian John",
+      "aliases": [
+        "Lizy K. John",
+        "Lizy John"
+      ],
+      "domain": "cpu",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "field": "以工作负载特征检验基准代表性与性能可迁移性",
+      "core": "将真实应用特征转成可共享的性能代理，并用相似性分析检验基准集合是否覆盖设计问题。",
+      "contributions": [
+        "Performance Cloning 团队用微架构无关的控制流、局部性与依赖特征合成性能代理，检验其在多种微架构配置中的相关性。",
+        "SPEC CPU2006 研究以 PCA 和聚类分析冗余并挑选代表子集，同时区分子集去重与真实应用分布的代表性。"
+      ],
+      "background": "两篇工作负载研究的共同作者；档案聚焦可核验的基准合成和代表性方法，团队成果不归作个人独占。",
+      "argument": "编辑提炼：评估不仅要让数字可重复，还要验证所选程序保留了影响架构决策的行为。",
+      "evidence": "Performance Cloning: A Technique for Disseminating Proprietary Applications as Benchmarks（§3.1–3.2：微架构无关控制流、局部性及依赖刻画与合成；§5–6：验证与改进边界）；Analysis of Redundancy and Application Balance in the SPEC CPU2006 Benchmark Suite（§3.1–3.3：PCA、层次聚类、代表子集与验证；§4：应用领域平衡）",
+      "habits": [
+        "区别应用固有特征与机器相关计数器表现。",
+        "用未参与构造的配置检验代理的外推能力。"
+      ],
+      "questions": [
+        "这个缩小后的基准仍能选对 CPU 吗，还是只在构造它的机器上拟合得很好？"
+      ],
+      "boundary": "Performance Cloning 的验证集中于当时嵌入式程序；SPEC2006 的代表子集不等于今日云业务流量权重，亦不自动覆盖多租户尾延迟。",
+      "diagnostic": "在未用于生成代理的 CPU、缓存和带宽配置上检验性能排序与误差；加入真实业务权重，并将平均吞吐与尾延迟分别验证。",
+      "notes": [],
+      "sources": [
+        [
+          "Performance Cloning: A Technique for Disseminating Proprietary Applications as Benchmarks",
+          "https://lca.ece.utexas.edu/pubs/IISWC2006-I.pdf",
+          "§3.1–3.2：微架构无关控制流、局部性及依赖刻画与合成；§5–6：验证与改进边界"
+        ],
+        [
+          "Analysis of Redundancy and Application Balance in the SPEC CPU2006 Benchmark Suite",
+          "https://lca.ece.utexas.edu/pubs/isca07-aashish.pdf",
+          "§3.1–3.3：PCA、层次聚类、代表子集与验证；§4：应用领域平衡"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cloning",
+          "title": "Performance Cloning: A Technique for Disseminating Proprietary Applications as Benchmarks",
+          "authors": "Ajay Joshi, Lieven Eeckhout, Robert H. Bell Jr., Lizy John",
+          "date": "2006",
+          "url": "https://lca.ece.utexas.edu/pubs/IISWC2006-I.pdf",
+          "locator": "§3.1–3.2：微架构无关控制流、局部性及依赖刻画与合成；§5–6：验证与改进边界",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "spec",
+          "title": "Analysis of Redundancy and Application Balance in the SPEC CPU2006 Benchmark Suite",
+          "authors": "Aashish Phansalkar, Ajay Joshi, Lizy K. John",
+          "date": "2007",
+          "url": "https://lca.ece.utexas.edu/pubs/isca07-aashish.pdf",
+          "locator": "§3.1–3.3：PCA、层次聚类、代表子集与验证；§4：应用领域平衡",
+          "type": "论文全文",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "支撑共同研究贡献、机制与边界；不推定个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Performance Cloning 团队用微架构无关的控制流、局部性与依赖特征合成性能代理，检验其在多种微架构配置中的相关性。",
+          "workId": "cloning"
+        },
+        {
+          "text": "SPEC CPU2006 研究以 PCA 和聚类分析冗余并挑选代表子集，同时区分子集去重与真实应用分布的代表性。",
+          "workId": "spec"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "所列贡献为共同作者团队成果；署名与机制已有正文支撑，未将合作研究归为个人独占发明。思维方式与挑战为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选关键贡献与证据核验，不代表穷尽全部成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以工作负载特征检验基准代表性与性能可迁移性",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "这个缩小后的基准仍能选对 CPU 吗，还是只在构造它的机器上拟合得很好？",
+        "variables": "指令混合；依赖距离；分支与局部性分布；业务权重；跨配置误差；性能排序稳定性",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：选型误差=Σ业务权重×|预测收益−实测收益|；同时记录候选平台排序是否翻转，避免仅优化平均拟合误差。",
+        "crossover": "代理在新配置上保留瓶颈与相对收益，且业务权重已校准时，才能支持较低成本的筛选。",
+        "counterexample": "两个程序 IPC 相同但对内存带宽、分支预测或共享干扰的敏感性不同，单点拟合会产生错误的采购结论。",
+        "validation": "在未用于生成代理的 CPU、缓存和带宽配置上检验性能排序与误差；加入真实业务权重，并将平均吞吐与尾延迟分别验证。",
+        "transfer": "用于 SIR 与业务算力指标比较时，先找出行为覆盖缺口，再决定补测项目和聚合权重。"
+      }
+    },
+    {
+      "id": "peter-sewell",
+      "name": "Peter Sewell",
+      "aliases": [],
+      "field": "让 ISA 与内存模型成为可执行、可检验的契约",
+      "domain": "correctness",
+      "relatedDomains": [
+        "foundations",
+        "compiler-runtime"
+      ],
+      "core": "把处理器允许的行为写成可执行语义，使硬件优化与软件依赖能够在同一契约下核对。",
+      "contributions": [
+        "与 Pulte、Flur、Deacon、French、Sarkar 共同研究 ARMv8 多副本原子内存模型，给出 Flat 操作模型与公理模型在所覆盖有限执行上的等价性论证。",
+        "参与 Sail 及 ARMv8-A、RISC-V、CHERI-MIPS ISA 语义工作，以轻量依赖类型检查位向量和整数范围，并生成模拟器及证明助手定义。"
+      ],
+      "background": "剑桥计算机科学研究者；这里按两篇共同署名论文定位其形式化 ISA 与并发语义贡献，不把 Arm 规范修订或 Sail 工具归为一人完成。",
+      "argument": "编辑提炼：一项优化是否正确，必须先明确它允许新增哪些可观察行为，再判断软件是否能接受这些行为。",
+      "evidence": "Simplifying ARM Concurrency: Multicopy-Atomic Axiomatic and Operational Models for ARMv8（§1 边界；§5–8 两种模型及 Theorem 8.1；§9–10 测试与工具；项目页另有勘误）；ISA Semantics for ARMv8-A, RISC-V, and CHERI-MIPS（§2 ISA 模型；§3.1 位向量长度与整数范围；§4 证明助手导出）",
+      "habits": [
+        "区分实现上没有观察到与架构上明确禁止。",
+        "同时比较操作执行与公理关系，检查两种描述是否遗漏行为。"
+      ],
+      "questions": [
+        "一个更激进的推测或内存序优化，新增的行为究竟被 ISA 允许，还是仅仅未被现有测试触发？"
+      ],
+      "boundary": "2018 年论文的等价性证明是有限执行上的手工证明；论文明确不覆盖虚拟内存等系统方面，项目页另有勘误。Sail 可执行模型也不能自动证明任意 RTL 实现正确。",
+      "diagnostic": "固定 ISA 版本及勘误，生成 litmus tests；比较公理模型、操作模型和硬件结果；对异常、混合宽度访问、地址翻译另外列出覆盖范围。",
+      "notes": [],
+      "sources": [
+        [
+          "Simplifying ARM Concurrency: Multicopy-Atomic Axiomatic and Operational Models for ARMv8",
+          "https://www.cl.cam.ac.uk/~pes20/armv8-mca/armv8-mca-draft.pdf",
+          "§1 边界；§5–8 两种模型及 Theorem 8.1；§9–10 测试与工具；项目页另有勘误"
+        ],
+        [
+          "ISA Semantics for ARMv8-A, RISC-V, and CHERI-MIPS",
+          "https://www.cl.cam.ac.uk/users/pes20/sail/sail-popl2019.pdf",
+          "§2 ISA 模型；§3.1 位向量长度与整数范围；§4 证明助手导出"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "arm-mca",
+          "title": "Simplifying ARM Concurrency: Multicopy-Atomic Axiomatic and Operational Models for ARMv8",
+          "authors": "Christopher Pulte, Shaked Flur, Will Deacon, Jon French, Susmit Sarkar, Peter Sewell",
+          "date": "2018-01",
+          "url": "https://www.cl.cam.ac.uk/~pes20/armv8-mca/armv8-mca-draft.pdf",
+          "locator": "§1 边界；§5–8 两种模型及 Theorem 8.1；§9–10 测试与工具；项目页另有勘误",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "sail",
+          "title": "ISA Semantics for ARMv8-A, RISC-V, and CHERI-MIPS",
+          "authors": "Alasdair Armstrong, Thomas Bauereiss, Brian Campbell, Alastair Reid, Kathryn E. Gray, Robert M. Norton, Prashanth Mundkur, Mark Wassell, Jon French, Christopher Pulte, Shaked Flur, Ian Stark, Neel Krishnaswami, Peter Sewell",
+          "date": "2019-01",
+          "url": "https://www.cl.cam.ac.uk/users/pes20/sail/sail-popl2019.pdf",
+          "locator": "§2 ISA 模型；§3.1 位向量长度与整数范围；§4 证明助手导出",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Pulte、Flur、Deacon、French、Sarkar 共同研究 ARMv8 多副本原子内存模型，给出 Flat 操作模型与公理模型在所覆盖有限执行上的等价性论证。",
+          "workId": "arm-mca"
+        },
+        {
+          "text": "参与 Sail 及 ARMv8-A、RISC-V、CHERI-MIPS ISA 语义工作，以轻量依赖类型检查位向量和整数范围，并生成模拟器及证明助手定义。",
+          "workId": "sail"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按署名原始技术作品核验共同贡献；挑战、模型与迁移判断是本站编辑提炼，不是人物原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献的两项不同一手作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "让 ISA 与内存模型成为可执行、可检验的契约",
+        "skills": [
+          "A1",
+          "A8"
+        ],
+        "question": "一个更激进的推测或内存序优化，新增的行为究竟被 ISA 允许，还是仅仅未被现有测试触发？",
+        "variables": "允许行为集合；实现行为集合；内存序关系；异常与系统状态覆盖；规范版本",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：正确实现要求 Behaviors(实现) ⊆ Behaviors(规范)；有限测试中未见反例仅提供证据，不能替代集合包含证明。",
+        "crossover": "当性能优化改变跨线程可观察顺序时，必须重新核对契约；只改变内部调度而保持同一允许行为集合时，软件无需看到实现细节。",
+        "counterexample": "单线程模拟器能启动 OS，仍可能漏掉多核并发或 TLB 维护错误；强内存序硬件跑通测试也不证明软件在弱模型下正确。",
+        "validation": "固定 ISA 版本及勘误，生成 litmus tests；比较公理模型、操作模型和硬件结果；对异常、混合宽度访问、地址翻译另外列出覆盖范围。",
+        "transfer": "将同一方法用于新原子指令、CXL 一致性接口和加速器可见内存语义。"
+      }
+    },
+    {
+      "id": "robert-watson",
+      "name": "Robert N. M. Watson",
+      "aliases": [
+        "Robert N.M. Watson",
+        "Robert Watson"
+      ],
+      "field": "把能力权限贯穿 ISA、ABI 和系统软件",
+      "domain": "correctness",
+      "relatedDomains": [
+        "foundations",
+        "compiler-runtime"
+      ],
+      "core": "用不可伪造的能力约束指针权限，并把保护模型落实到调用、分配器、动态链接和内核接口。",
+      "contributions": [
+        "共同提出并实现 CHERI 混合能力系统：用封存的代码/数据能力及受控调用支持保护域隔离，保留与传统虚拟内存协作的路径。",
+        "参与 CheriABI，将能力来源与最小权限原则延伸到 POSIX C 运行时、分配器、动态链接及用户/内核接口，系统分析兼容性修改。"
+      ],
+      "background": "CHERI 与 CheriABI 团队共同作者；本页聚焦保护模型和系统软件落地。2015 架构是研究快照，不作为当前所有 CHERI 实现的指令规范。",
+      "argument": "编辑提炼：安全边界只有穿过真实 ABI 和系统调用后仍然成立，才算成为可部署的架构能力。",
+      "evidence": "CHERI: A Hybrid Capability-System Architecture for Scalable Software Compartmentalization（PDF pp.5–8：sealed code/data capability、对象调用、trusted stack 与软硬件实现）；CheriABI: Enforcing Valid Pointer Provenance and Minimizing Pointer Privilege in the POSIX C Run-time Environment（§3–4：抽象能力、分配器、用户/内核接口、动态链接；§5 兼容性分类）",
+      "habits": [
+        "追踪每条指针的来源、权限和跨域传播。",
+        "把兼容性问题分成指针形状、整数转换、权限及接口几类。"
+      ],
+      "questions": [
+        "引入能力指针之后，哪些分配器或系统接口仍偷偷重建了覆盖整个地址空间的权限？"
+      ],
+      "boundary": "能力指针的 128 位表示不等于 128 位整数 ISA；空间边界与权限机制本身不自动解决释放后使用、侧信道或所有并发错误。本文旧版调用机制不外推新版规范。",
+      "diagnostic": "从分配、派生、跨库调用、系统调用到释放逐段追踪权限；使用实际 C/C++ 应用检查越界、来源丢失和 ABI 不兼容，并单独测试时间安全机制。",
+      "notes": [],
+      "sources": [
+        [
+          "CHERI: A Hybrid Capability-System Architecture for Scalable Software Compartmentalization",
+          "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201505-oakland2015-cheri-compartmentalization.pdf",
+          "PDF pp.5–8：sealed code/data capability、对象调用、trusted stack 与软硬件实现"
+        ],
+        [
+          "CheriABI: Enforcing Valid Pointer Provenance and Minimizing Pointer Privilege in the POSIX C Run-time Environment",
+          "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201904-asplos-cheriabi.pdf",
+          "§3–4：抽象能力、分配器、用户/内核接口、动态链接；§5 兼容性分类"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cheri2015",
+          "title": "CHERI: A Hybrid Capability-System Architecture for Scalable Software Compartmentalization",
+          "authors": "Robert N. M. Watson, Jonathan Woodruff, Peter G. Neumann, Simon W. Moore 等共同作者",
+          "date": "2015-05",
+          "url": "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201505-oakland2015-cheri-compartmentalization.pdf",
+          "locator": "PDF pp.5–8：sealed code/data capability、对象调用、trusted stack 与软硬件实现",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "cheriabi",
+          "title": "CheriABI: Enforcing Valid Pointer Provenance and Minimizing Pointer Privilege in the POSIX C Run-time Environment",
+          "authors": "Brooks Davis, Robert N. M. Watson, Alexander Richardson, Peter G. Neumann, Simon W. Moore 等共同作者",
+          "date": "2019-04",
+          "url": "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201904-asplos-cheriabi.pdf",
+          "locator": "§3–4：抽象能力、分配器、用户/内核接口、动态链接；§5 兼容性分类",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出并实现 CHERI 混合能力系统：用封存的代码/数据能力及受控调用支持保护域隔离，保留与传统虚拟内存协作的路径。",
+          "workId": "cheri2015"
+        },
+        {
+          "text": "参与 CheriABI，将能力来源与最小权限原则延伸到 POSIX C 运行时、分配器、动态链接及用户/内核接口，系统分析兼容性修改。",
+          "workId": "cheriabi"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按署名原始技术作品核验共同贡献；挑战、模型与迁移判断是本站编辑提炼，不是人物原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献的两项不同一手作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把能力权限贯穿 ISA、ABI 和系统软件",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "引入能力指针之后，哪些分配器或系统接口仍偷偷重建了覆盖整个地址空间的权限？",
+        "variables": "权限集合；指针来源；ABI 兼容修改；跨域调用频度；内存占用；时间安全覆盖",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：派生能力的权限应不超出父能力；部署收益取决于漏洞覆盖及可迁移软件比例，同时扣除指针、调用和改造成本。",
+        "crossover": "当细粒度边界减少攻击面且软件移植成本可控时，能力模型更有价值；若关键组件仍依赖广泛环境权限，局部采用的保护收益会受限。",
+        "counterexample": "程序已使用带边界能力，却由受信任代码把过宽权限交给不可信库；硬件检查全部通过，最小权限目标仍未实现。",
+        "validation": "从分配、派生、跨库调用、系统调用到释放逐段追踪权限；使用实际 C/C++ 应用检查越界、来源丢失和 ABI 不兼容，并单独测试时间安全机制。",
+        "transfer": "评估 CPU 安全扩展时，把硬件机制与编译器、分配器及生产软件改造列为同一交付物。"
+      }
+    },
+    {
+      "id": "simon-moore",
+      "name": "Simon Moore",
+      "aliases": [
+        "Simon W. Moore"
+      ],
+      "field": "把能力安全的元数据成本带回真实流水线和内存层次",
+      "domain": "correctness",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "通过能力边界压缩与标签缓存组织，研究细粒度硬件保护如何在真实存储和执行路径上实现。",
+      "contributions": [
+        "参与 CHERI Concentrate：用边界编码及内嵌指数提高压缩能力的精度，同时保留一定范围的暂时越界指针算术以兼容实际 C 软件。",
+        "参与 Efficient Tagged Memory：研究单比特标签与数据的合并缓存、标签缓存及层次标签表，利用空间局部性和无标签区域降低额外访存。"
+      ],
+      "background": "剑桥体系结构研究者、CHERI 硬件团队共同作者；本页突出压缩表示与标签存储的实现问题，两项方案均属论文所列团队共同成果。",
+      "argument": "编辑提炼：一个安全元数据位的容量看似很小，实际代价由访问粒度、命中率、更新频率和关键路径共同决定。",
+      "evidence": "CHERI Concentrate: Practical Compressed Capabilities（§4.2 内嵌指数；§4.4 分配器与精度；§5.3 可表示缓冲区与越界指针算术）；Efficient Tagged Memory（§IV–V 单比特标签存储及合并缓存；§VI 层次标签表、压缩与 FPGA 评估）",
+      "habits": [
+        "先量化真实对象大小和指针密度，再选择编码精度。",
+        "分别计算元数据容量、访存流量和执行时序成本。"
+      ],
+      "questions": [
+        "能力指针压缩省下的容量，是否被边界取整、标签缺失和解码延迟抵消？"
+      ],
+      "boundary": "CHERI Concentrate 的表示宽度描述能力而非通用整数宽度；可表示的暂时越界指针不等于允许越界解引用。标签论文主要研究单比特标签，不能直接外推大型元数据或任意 ASIC。",
+      "diagnostic": "用生产分配器和指针密集/稀疏负载测边界取整、缓存 miss、标签 DRAM 流量与频率；分别消融压缩编码、标签缓存和层次结构。",
+      "notes": [],
+      "sources": [
+        [
+          "CHERI Concentrate: Practical Compressed Capabilities",
+          "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/2019tc-cheri-concentrate.pdf",
+          "§4.2 内嵌指数；§4.4 分配器与精度；§5.3 可表示缓冲区与越界指针算术"
+        ],
+        [
+          "Efficient Tagged Memory",
+          "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201711-iccd2017-efficient-tags.pdf",
+          "§IV–V 单比特标签存储及合并缓存；§VI 层次标签表、压缩与 FPGA 评估"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "concentrate",
+          "title": "CHERI Concentrate: Practical Compressed Capabilities",
+          "authors": "Jonathan Woodruff, Alexandre Joannou, Hongyan Xia, Anthony Fox, Robert Norton, Thomas Bauereiss, David Chisnall, Brooks Davis, Khilan Gudka, Nathaniel W. Filardo, A. Theodore Markettos, Michael Roe, Peter G. Neumann, Robert N. M. Watson, Simon W. Moore",
+          "date": "2019",
+          "url": "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/2019tc-cheri-concentrate.pdf",
+          "locator": "§4.2 内嵌指数；§4.4 分配器与精度；§5.3 可表示缓冲区与越界指针算术",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tags",
+          "title": "Efficient Tagged Memory",
+          "authors": "Alexandre Joannou, Jonathan Woodruff, Robert Kovacsics, Simon W. Moore, Alex Bradbury, Hongyan Xia, Robert N. M. Watson 等共同作者",
+          "date": "2017-11",
+          "url": "https://www.cl.cam.ac.uk/research/security/ctsrd/pdfs/201711-iccd2017-efficient-tags.pdf",
+          "locator": "§IV–V 单比特标签存储及合并缓存；§VI 层次标签表、压缩与 FPGA 评估",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "参与 CHERI Concentrate：用边界编码及内嵌指数提高压缩能力的精度，同时保留一定范围的暂时越界指针算术以兼容实际 C 软件。",
+          "workId": "concentrate"
+        },
+        {
+          "text": "参与 Efficient Tagged Memory：研究单比特标签与数据的合并缓存、标签缓存及层次标签表，利用空间局部性和无标签区域降低额外访存。",
+          "workId": "tags"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按署名原始技术作品核验共同贡献；挑战、模型与迁移判断是本站编辑提炼，不是人物原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献的两项不同一手作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把能力安全的元数据成本带回真实流水线和内存层次",
+        "skills": [
+          "A2",
+          "A4",
+          "A7",
+          "A8"
+        ],
+        "question": "能力指针压缩省下的容量，是否被边界取整、标签缺失和解码延迟抵消？",
+        "variables": "对象大小分布；能力宽度；边界精度；标签密度和缓存命中；额外流量；解码关键路径",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：用成本向量分别记录指针与标签存储字节、边界取整浪费字节、额外标签传输字节及执行时间；在相同保护语义和负载下比较，未经权重与单位换算不相加。",
+        "crossover": "大量小对象与无标签区域有利于精确紧凑编码和标签压缩；密集指针随机访问、低标签命中或要求精确子对象边界时收益可能缩小。",
+        "counterexample": "只有元数据占比很低，却因每次数据缺失都引发独立标签访问而显著增加延迟；容量低不保证访问成本低。",
+        "validation": "用生产分配器和指针密集/稀疏负载测边界取整、缓存 miss、标签 DRAM 流量与频率；分别消融压缩编码、标签缓存和层次结构。",
+        "transfer": "可迁移到内存标记、加密完整性元数据和带权限的远程内存，但应重建各自的元数据密度与一致性模型。"
+      }
+    },
+    {
+      "id": "christina-delimitrou",
+      "name": "Christina Delimitrou",
+      "aliases": [],
+      "field": "以端到端尾延迟约束资源分配",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "physical-energy"
+      ],
+      "core": "将共享节点干扰与微服务依赖纳入资源控制，在满足服务 QoS 的条件下减少过度配置。",
+      "contributions": [
+        "与 Shuang Chen、José F. Martínez 共同提出 PARTIES，利用资源可替代性及尾延迟余量在线调整多个交互服务的资源分区。",
+        "参与 Sinan：结合 CNN 短期尾延迟预测与 Boosted Trees 较远期违约预测，为相互依赖的微服务选择资源配置。"
+      ],
+      "background": "云系统与计算机体系结构研究者；本页选取其共同署名的 PARTIES、Sinan，前者侧重单节点多服务，后者侧重微服务依赖和预测控制。",
+      "argument": "编辑提炼：CPU 利用率不是资源优化目标本身；应问释放一单位资源后，端到端尾延迟还有多少可靠余量。",
+      "evidence": "PARTIES: QoS-Aware Resource Partitioning for Multiple Interactive Services（§3.4 资源可替代性；§4.1–4.3 / Algorithms 1–4：slack、资源调整和迁移；PDF pp.6–9）；Sinan: ML-Based and QoS-Aware Resource Management for Cloud Microservices（§3.1–3.2：CNN 短期预测、Boosted Trees 违约预测；§4.1 调度器与监控）",
+      "habits": [
+        "区分当前瓶颈与削减资源后才出现的排队积压。",
+        "把资源敏感性与共置干扰分开测量。"
+      ],
+      "questions": [
+        "当前 p99 达标时，削减 CPU 是否会在几个控制周期后积累队列，使下游一起违约？"
+      ],
+      "boundary": "PARTIES 的资源可替代性随服务与负载变化，网络带宽在其研究中表现为阈值条件；Sinan 的学习模型须面对流量和调用图漂移。论文收益不直接作为新平台承诺。",
+      "diagnostic": "固定端到端 SLO，回放突发和稳态流量；记录每层排队、p99、CPU/缓存/内存分配和控制开销；与静态配置及单资源控制比较，并测试模型失配时回退。",
+      "notes": [],
+      "sources": [
+        [
+          "PARTIES: QoS-Aware Resource Partitioning for Multiple Interactive Services",
+          "https://people.csail.mit.edu/delimitrou/papers/2019.asplos.parties.pdf",
+          "§3.4 资源可替代性；§4.1–4.3 / Algorithms 1–4：slack、资源调整和迁移；PDF pp.6–9"
+        ],
+        [
+          "Sinan: ML-Based and QoS-Aware Resource Management for Cloud Microservices",
+          "https://people.csail.mit.edu/delimitrou/papers/2021.asplos.sinan.pdf",
+          "§3.1–3.2：CNN 短期预测、Boosted Trees 违约预测；§4.1 调度器与监控"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "parties",
+          "title": "PARTIES: QoS-Aware Resource Partitioning for Multiple Interactive Services",
+          "authors": "Shuang Chen, Christina Delimitrou, José F. Martínez",
+          "date": "2019-04",
+          "url": "https://people.csail.mit.edu/delimitrou/papers/2019.asplos.parties.pdf",
+          "locator": "§3.4 资源可替代性；§4.1–4.3 / Algorithms 1–4：slack、资源调整和迁移；PDF pp.6–9",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "sinan",
+          "title": "Sinan: ML-Based and QoS-Aware Resource Management for Cloud Microservices",
+          "authors": "Yanqi Zhang, Weizhe Hua, Zhuangzhuang Zhou, G. Edward Suh, Christina Delimitrou",
+          "date": "2021-04",
+          "url": "https://people.csail.mit.edu/delimitrou/papers/2021.asplos.sinan.pdf",
+          "locator": "§3.1–3.2：CNN 短期预测、Boosted Trees 违约预测；§4.1 调度器与监控",
+          "type": "论文全文",
+          "contentStatus": "已取得作者托管 PDF，阅读所列机制正文并核对署名；本地保留 PDF、提取文字和审阅摘记。",
+          "evidenceStrength": "强：作者署名原始技术论文；机制与历史版本边界可核对",
+          "role": "核验共同研究的机制、贡献及适用边界；不据作者排序推断个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Shuang Chen、José F. Martínez 共同提出 PARTIES，利用资源可替代性及尾延迟余量在线调整多个交互服务的资源分区。",
+          "workId": "parties"
+        },
+        {
+          "text": "参与 Sinan：结合 CNN 短期尾延迟预测与 Boosted Trees 较远期违约预测，为相互依赖的微服务选择资源配置。",
+          "workId": "sinan"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按署名原始技术作品核验共同贡献；挑战、模型与迁移判断是本站编辑提炼，不是人物原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-expansion20",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献的两项不同一手作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以端到端尾延迟约束资源分配",
+        "skills": [
+          "A3",
+          "A5",
+          "A7",
+          "A9",
+          "A10"
+        ],
+        "question": "当前 p99 达标时，削减 CPU 是否会在几个控制周期后积累队列，使下游一起违约？",
+        "variables": "请求到达率；调用依赖；队列积压；尾延迟余量；资源分区；控制周期；预测误差",
+        "model": "本站条件性诊断模型（编辑提炼，非作者公式）：在每个服务或端到端尾延迟约束满足时最小化资源成本；所需安全余量应覆盖预测误差、控制延迟及队列累积。",
+        "crossover": "资源之间存在替代空间且监控能及时反映变化时，动态配置可提高效率；变化快于控制响应或资源已无余量时应增加保留量、扩容或迁移。",
+        "counterexample": "所有服务 CPU 平均利用率很低，但同步 fan-out 和短时突发使共享缓存、网络或下游队列饱和；继续回收 CPU 会恶化 p99。",
+        "validation": "固定端到端 SLO，回放突发和稳态流量；记录每层排队、p99、CPU/缓存/内存分配和控制开销；与静态配置及单资源控制比较，并测试模型失配时回退。",
+        "transfer": "将 CPU SKU 比较从单机吞吐推进到固定 SLO 下可承载服务量和集群总成本。"
+      }
     }
   ],
   "research": {
@@ -38047,16 +40310,19 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 301,
+    "totalProfiles": 321,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
       "research/batches/2026-10-06-accelerators.json",
       "research/batches/2026-10-06-expansion80.json",
-      "research/batches/2026-10-07-remaining128.json"
+      "research/batches/2026-10-07-remaining128.json",
+      "research/batches/2026-10-07-expansion20.json"
     ],
-    "completedTotal": 300,
+    "completedTotal": 320,
     "remainingCatalog": 1,
-    "remainingPlanned": 0
+    "remainingPlanned": 0,
+    "additionalPlannedScope": 20,
+    "additionalCompleted": 20
   }
 }
