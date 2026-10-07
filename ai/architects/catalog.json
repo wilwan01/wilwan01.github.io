@@ -113,7 +113,8 @@
         "jose-f-martinez",
         "antonio-gonzalez",
         "mark-oskin",
-        "lizy-kurian-john"
+        "lizy-kurian-john",
+        "jianyi-meng"
       ]
     },
     {
@@ -310,7 +311,8 @@
         "natalie-enright-jerger",
         "amin-tootoonchian",
         "mark-handley",
-        "sachin-katti"
+        "sachin-katti",
+        "xia-jing"
       ]
     },
     {
@@ -43436,6 +43438,257 @@
         "validation": "注入数据、tag、地址及多比特错误，追踪首次检测、poison 传播、消费触发和故障升级；检查 CPU、DMA、固件与 OS 的一致处理，并测量保护区域的容量、带宽和时延成本。",
         "transfer": "评估 CPU、CXL 内存扩展及异构共享内存时，验收完整错误传播与恢复链，并将保护成本纳入平台比较。"
       }
+    },
+    {
+      "id": "xia-jing",
+      "name": "夏晶",
+      "aliases": [
+        "Xia Jing",
+        "Jing Xia"
+      ],
+      "field": "以需求反馈和分布式搬运疏通片内供数",
+      "domain": "network",
+      "relatedDomains": [
+        "cpu",
+        "memory",
+        "gpu-ai"
+      ],
+      "core": "从片上网络注入公平性与DMA分布式执行出发，将数据供应、资源分配和完成语义一起纳入算力设计。",
+      "contributions": [
+        "作为CN109995633B共同发明人，披露以注入队列压力和实际注入带宽触发反馈，动态限制上游过路流量，以改善环状NoC节点的带宽分配。",
+        "作为CN116710906A共同发明人，披露由DMA管理模块拆分任务、多个代理并行执行的机制，并将数据搬运与内存控制器或home agent协同。"
+      ],
+      "background": "清华大学集成电路学院2022年官方活动报道明确其为海思鲲鹏处理器首席架构师兼昇腾AI处理器架构师。HPCA2022官方程序列Xia Jing（Huawei）为片上网络论文共同作者；此页不把2022职衔无条件外推为当前职衔。",
+      "argument": "编辑提炼：数据通路更宽不等于计算单元供数更及时；注入机会、集中搬运节点与完成汇聚都可能成为隐藏瓶颈。",
+      "boundary": "收录依据是两个不同专利家族的机制披露，不是声称相应机制已经在某代鲲鹏或昇腾量产，也不将申请文本中的预期收益写成实测结果。环网方案依赖时间窗口和反馈；分布式DMA仍受地址翻译、内存带宽、互联和完成一致性约束。",
+      "evidence": "一种芯片及相关设备（CN109995633B）：权利要求1–10；说明书[0002]–[0023]及具体实施方式，图1–2：注入队列、时间窗、带宽请求与动态节流；一种集成芯片及数据搬运方法（CN116710906A）：说明书背景、发明内容及示例一至四：DMA管理/代理、逐级任务拆分、地址转换、home agent/内存控制器协同及完成汇聚",
+      "habits": [
+        "先区分总带宽不足、注入饥饿与集中执行瓶颈。",
+        "对反馈稳定性、地址转换与完成语义分别设验收条件。"
+      ],
+      "questions": [
+        "峰值带宽仍有余量时，哪些计算节点为什么会长期得不到注入机会，分布式DMA又是否只是把集中瓶颈转移到了内存控制器？"
+      ],
+      "diagnostic": "在环网中扫突发流量、节点位置和反馈窗口；在DMA模型中扫代理数、页大小和源/目的分布。记录最低节点带宽、尾延迟、NoC字节、缓存占用及完成顺序，校验数据与一致性。",
+      "notes": [],
+      "sources": [
+        [
+          "一种芯片及相关设备（CN109995633B）",
+          "https://patents.google.com/patent/CN109995633B/zh",
+          "权利要求1–10；说明书[0002]–[0023]及具体实施方式，图1–2：注入队列、时间窗、带宽请求与动态节流"
+        ],
+        [
+          "一种集成芯片及数据搬运方法（CN116710906A）",
+          "https://patents.google.com/patent/CN116710906A/zh",
+          "说明书背景、发明内容及示例一至四：DMA管理/代理、逐级任务拆分、地址转换、home agent/内存控制器协同及完成汇聚"
+        ],
+        [
+          "清华官方：芯启航海思鲲鹏活动报道",
+          "https://www.ime.tsinghua.edu.cn/info/1076/1257.htm",
+          "2022-01-27正文，姓名、历史角色与1998级电子系校友身份"
+        ],
+        [
+          "HPCA2022官方程序",
+          "https://hpca-conf.org/2022/program/",
+          "Application Defined On-Chip Networks for Heterogeneous Chiplets 作者 Xia Jing（Huawei）；论文正文未取得，不计两作品门槛"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN109995633-family",
+          "title": "一种芯片及相关设备（CN109995633B）",
+          "authors": "郑乔石、吴小文、夏晶、宗雯",
+          "date": "2021-10-01（授权公告）",
+          "url": "https://patents.google.com/patent/CN109995633B/zh",
+          "locator": "权利要求1–10；说明书[0002]–[0023]及具体实施方式，图1–2：注入队列、时间窗、带宽请求与动态节流",
+          "type": "专利说明书全文",
+          "contentStatus": "已通过公开专利正文读取中文具名发明人、权利要求与所列说明书机制；原始专利PDF链接亦已打开。",
+          "evidenceStrength": "强：具名共同发明人的公开专利说明书；证明披露机制，不证明产品采用或实测收益",
+          "role": "核验共同发明贡献；专利家族仅计一次，不推断个人独占发明或量产映射",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "CN116710906-family",
+          "title": "一种集成芯片及数据搬运方法（CN116710906A）",
+          "authors": "曾红义、信恒超、夏晶",
+          "date": "2023-09-05（申请公开）",
+          "url": "https://patents.google.com/patent/CN116710906A/zh",
+          "locator": "说明书背景、发明内容及示例一至四：DMA管理/代理、逐级任务拆分、地址转换、home agent/内存控制器协同及完成汇聚",
+          "type": "专利说明书全文",
+          "contentStatus": "已通过公开专利正文读取中文具名发明人、权利要求与所列说明书机制；原始专利PDF链接亦已打开。",
+          "evidenceStrength": "强：具名共同发明人的公开专利说明书；证明披露机制，不证明产品采用或实测收益",
+          "role": "核验共同发明贡献；专利家族仅计一次，不推断个人独占发明或量产映射",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为CN109995633B共同发明人，披露以注入队列压力和实际注入带宽触发反馈，动态限制上游过路流量，以改善环状NoC节点的带宽分配。",
+          "workId": "CN109995633-family"
+        },
+        {
+          "text": "作为CN116710906A共同发明人，披露由DMA管理模块拆分任务、多个代理并行执行的机制，并将数据搬运与内存控制器或home agent协同。",
+          "workId": "CN116710906-family"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据中文具名的两项不同实质专利说明书核验共同贡献；论文元数据与清华活动记录仅辅助身份。挑战和条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-china-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定作品与机制正文的核验，不代表穷尽生涯成果或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以需求反馈和分布式搬运疏通片内供数",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "峰值带宽仍有余量时，哪些计算节点为什么会长期得不到注入机会，分布式DMA又是否只是把集中瓶颈转移到了内存控制器？",
+        "variables": "每节点注入队列；期望/实得带宽；反馈窗口；DMA代理数；页表开销；内存控制器带宽；完成汇聚延迟",
+        "model": "本站条件性模型：有效搬运率受代理总执行能力、互联和内存带宽中的最小值约束；公平性另以各节点服务下限与最长等待衡量，不能由总吞吐推断。",
+        "crossover": "集中DMA或注入竞争主导时，分散执行与需求反馈更有利；已被DRAM饱和、反馈滞后或地址翻译限制时，增加代理可能无收益。",
+        "counterexample": "增加DMA代理提高并发，却使同一内存控制器队列拥塞；总NoC利用率很高，同时某个中间节点仍因缺空slot而饥饿。",
+        "validation": "在环网中扫突发流量、节点位置和反馈窗口；在DMA模型中扫代理数、页大小和源/目的分布。记录最低节点带宽、尾延迟、NoC字节、缓存占用及完成顺序，校验数据与一致性。",
+        "transfer": "用于CPU/NPU平台的片内互联、内存通路及异构数据搬运评审，把公平性、吞吐与可验证完成语义同时纳入。"
+      }
+    },
+    {
+      "id": "jianyi-meng",
+      "name": "Jianyi Meng",
+      "aliases": [
+        "孟建熠"
+      ],
+      "field": "以软件可用性和数据组织兑现处理器性能",
+      "domain": "cpu",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory",
+        "gpu-ai"
+      ],
+      "core": "把前端供给、指令扩展、编译支持和数据组织共同纳入性能判断，避免以 ISA 名称或峰值算力代替有效工作。",
+      "contributions": [
+        "共同署名玄铁 910 架构论文：以多级分支预取缓冲、级联 BTB 和循环缓冲支持前端供给，结合乱序执行与向量及工具链扩展。论文列其阿里 T-Head 邮箱。",
+        "参与稀疏矩阵乘输出结构预测研究：由同一样本的中间乘积数与非零数估计压缩比，再预测逐行输出规模，并提供多核 CPU 并行实现。"
+      ],
+      "background": "孟建熠；阿里云 2020-04-19 官方活动介绍列其为阿里巴巴集团研究员、平头哥副总裁。本文以 2020 年玄铁 910 和 2022 年稀疏计算论文核验技术贡献；历史职务不直接写成现任职务。",
+      "argument": "编辑提炼：可扩展 ISA 只是入口；收益取决于指令能否被软件使用、流水线能否持续供给，以及真实数据结构是否匹配执行资源。",
+      "evidence": "玄铁 910 ISCA 2020：§II–IV；SpGEMM 输出预测 2022：§IV–V。两项不同一手作品均读取机制正文并核对署名。",
+      "habits": [
+        "同时检查前端、后端与工具链是否支持预期的数据流。",
+        "将估计输出大小的开销、内存预留和不均衡成本合在一起核算。"
+      ],
+      "questions": [
+        "定制扩展在内核中更快，但加入编译覆盖、前端停顿和稀疏数据准备后，端到端还剩多少收益？"
+      ],
+      "boundary": "玄铁 910 论文对应 2020 年实现及当时 RVV 0.7.1，不作为最新 RVV 兼容性或现代服务器性能结论。稀疏输出预测依赖样本代表性及 FLOP/NNZ 误差相关性，不能把均值精度当逐行内存安全保证。",
+      "diagnostic": "在固定功能与精度下做扩展开关、编译选项及前端机制消融；对真实稀疏矩阵测预处理时间、逐行预测误差、重分配次数、线程不均衡及完整运行时间。",
+      "notes": [],
+      "sources": [
+        [
+          "Xuantie-910: A Commercial Multi-Core 12-Stage Pipeline Out-of-Order 64-bit High Performance RISC-V Processor with Vector Extension",
+          "https://ftp.libre-soc.org/466100a052.pdf",
+          "ISCA 2020 原刊 pp.52–64（原文镜像）；署名/阿里邮箱；§II 架构；§III.A–C 分支预测、多级 BTB、loop buffer；§IV 乱序调度。DOI:10.1109/ISCA45697.2020.00016"
+        ],
+        [
+          "Predicting the Output Structure of Sparse Matrix Multiplication with Sampled Compression Ratio",
+          "https://arxiv.org/pdf/2207.13848",
+          "v1 署名与 Alibaba Group 所属；§IV.A–D 采样、压缩比与误差抵消；§V、Algorithms 1–2 多核 CPU/OpenMP 实现（pp.3–5）"
+        ],
+        [
+          "阿里云官方讲师介绍：孟建熠",
+          "https://developer.aliyun.com/live/2680",
+          "2020-04-19 页面讲师介绍：姓名与当时职务，仅身份关联，不计独立技术作品。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "xuantie-910-isca2020",
+          "title": "Xuantie-910: A Commercial Multi-Core 12-Stage Pipeline Out-of-Order 64-bit High Performance RISC-V Processor with Vector Extension",
+          "authors": "Chen Chen, Xiaoyan Xiang, Chang Liu, Yunhai Shang, Ren Guo, Dongqi Liu, Yimin Lu, Ziyi Hao, Jiahui Luo, Zhijian Chen, Chunqiang Li, Yu Pu, Jianyi Meng, Xiaolang Yan, Yuan Xie, Xiaoning Qi",
+          "date": "2020",
+          "url": "https://ftp.libre-soc.org/466100a052.pdf",
+          "locator": "ISCA 2020 原刊 pp.52–64（原文镜像）；署名/阿里邮箱；§II 架构；§III.A–C 分支预测、多级 BTB、loop buffer；§IV 乱序调度。DOI:10.1109/ISCA45697.2020.00016",
+          "type": "论文全文",
+          "contentStatus": "已取得原始论文 PDF 并读取所列机制正文及作者/机构信息；本地保留 PDF、提取文字和审阅记录。",
+          "evidenceStrength": "强：共同署名原始技术论文；第一项为会议原文公开镜像，第二项为作者 arXiv 版本。",
+          "role": "核验共同技术贡献及适用边界，不据作者排序或管理职务推断个人独占各模块。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "spgemm-sampled-compression-2022",
+          "title": "Predicting the Output Structure of Sparse Matrix Multiplication with Sampled Compression Ratio",
+          "authors": "Zhaoyang Du, Yijin Guan, Tianchan Guan, Dimin Niu, Nianxiong Tan, Xiaopeng Yu, Hongzhong Zheng, Jianyi Meng, Xiaolang Yan, Yuan Xie",
+          "date": "2022-07-28",
+          "url": "https://arxiv.org/pdf/2207.13848",
+          "locator": "v1 署名与 Alibaba Group 所属；§IV.A–D 采样、压缩比与误差抵消；§V、Algorithms 1–2 多核 CPU/OpenMP 实现（pp.3–5）",
+          "type": "论文全文",
+          "contentStatus": "已取得原始论文 PDF 并读取所列机制正文及作者/机构信息；本地保留 PDF、提取文字和审阅记录。",
+          "evidenceStrength": "强：共同署名原始技术论文；第一项为会议原文公开镜像，第二项为作者 arXiv 版本。",
+          "role": "核验共同技术贡献及适用边界，不据作者排序或管理职务推断个人独占各模块。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名玄铁 910 架构论文：以多级分支预取缓冲、级联 BTB 和循环缓冲支持前端供给，结合乱序执行与向量及工具链扩展。论文列其阿里 T-Head 邮箱。",
+          "workId": "xuantie-910-isca2020"
+        },
+        {
+          "text": "参与稀疏矩阵乘输出结构预测研究：由同一样本的中间乘积数与非零数估计压缩比，再预测逐行输出规模，并提供多核 CPU 并行实现。",
+          "workId": "spgemm-sampled-compression-2022"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不将管理头衔、获奖简介或团队全部成果转为个人独占贡献。挑战、模型与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-china-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列两项不同一手作品和机制正文核验；不代表全面职业传记或现任职责核验。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "核算定制扩展之外的整条执行路径",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A8",
+          "A9",
+          "A10"
+        ],
+        "question": "定制扩展在内核中更快，但加入编译覆盖、前端停顿和稀疏数据准备后，端到端还剩多少收益？",
+        "variables": "可加速比例 f；内核加速比 s；编译覆盖率；前端停顿；采样开销；预测误差；内存容量；线程不均衡；移植成本",
+        "model": "本站条件模型：T_new≈T_base×[(1−f)+f/s]+T_prepare+T_fallback；其中 f 必须按真实可使用扩展的代码路径测量。稀疏内存估计误差还需转换为重分配和线程等待成本。 准备与回退项仅计相对基线新增、尚未包含于基线串并行项且未被重叠隐藏的开销。",
+        "crossover": "扩展覆盖高频热点且准备/回退成本低时收益可兑现；热点占比低、软件覆盖不足或稀疏结构长尾严重时，更强执行单元也可能闲置。",
+        "counterexample": "矩阵计算内核加速两倍，但输出大小低估导致反复扩容，稀疏行负载集中在少量线程；整体时延更差。",
+        "validation": "固定输入和正确性要求，比较通用路径、扩展路径和完整应用；跟踪前端停顿、内存流量、预处理、逐行输出误差以及长尾负载，不把微基准收益直接移植到生产。",
+        "transfer": "用于 RISC-V CPU 定制、软硬件扩展和稀疏计算平台选型，把工具链支持与完整数据准备成本纳入产品判断。"
+      }
     }
   ],
   "research": {
@@ -43446,7 +43699,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 348,
+    "totalProfiles": 350,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -43456,12 +43709,13 @@
       "research/batches/2026-10-07-expansion20.json",
       "research/batches/2026-10-07-frontier-infra.json",
       "research/batches/2026-10-07-frontier19.json",
-      "research/batches/2026-10-07-nhon-quach.json"
+      "research/batches/2026-10-07-nhon-quach.json",
+      "research/batches/2026-10-07-china-architects.json"
     ],
-    "completedTotal": 347,
+    "completedTotal": 349,
     "remainingCatalog": 1,
-    "remainingPlanned": 0,
-    "additionalPlannedScope": 47,
-    "additionalCompleted": 47
+    "remainingPlanned": 2,
+    "additionalPlannedScope": 51,
+    "additionalCompleted": 49
   }
 }
