@@ -39,7 +39,9 @@ for p in old['profiles']:
  else:
   assert all(s in by[p['id']]['sources'] for s in p['sources']),p['id']
   assert by[p['id']]['notes']==p['notes']
-normalize=lambda s:re.sub(r'[^a-z0-9]','',unicodedata.normalize('NFKD',s).casefold())
+# Keep Chinese and other Unicode letters in aliases while folding Latin accents.
+# ASCII-only normalization collapsed all Chinese-only aliases to the empty key.
+normalize=lambda s:''.join(ch for ch in unicodedata.normalize('NFKD',s).casefold() if ch.isalnum())
 # Classify primary bodies by their actual format; a specification or patent is
 # not a paper, and a colleague's recollection is not the subject's own interview.
 PRIMARY_BODY_TYPES={'论文全文','作者技术文章','作者技术文章全文','作者幻灯片','作者教程','作者讲义/幻灯片','本人访谈文字稿','技术专著全文','专利说明书全文','技术规范全文','作者演讲文字稿','参与者访谈文字稿'}
