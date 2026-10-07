@@ -1,0 +1,5820 @@
+{
+  "baseCommit": "bceabe2b8a4e44e15558eb6b9f222f4a52200770",
+  "profiles": [
+    {
+      "id": "les-kohn",
+      "name": "Les Kohn",
+      "field": "仿真驱动微架构取舍",
+      "core": "用可变的性能模型比较替代设计，再校验模型遗漏。",
+      "evidence": "共同署名的 UltraSPARC-I 仿真论文说明微架构取舍工具；团队成果不归于单人。",
+      "habits": [
+        "用可变的性能模型比较替代设计，再校验模型遗漏。",
+        "固定 g：预测收益；ε：误差区间；K：实现代价 的定义，按完整任务比较。",
+        "先测试最强反例：模型漏掉物理时序或真实工作负载阶段。"
+      ],
+      "questions": [
+        "模型预测快 8%，误差也有 8%，如何决定加入一个机制？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。模型漏掉物理时序或真实工作负载阶段。",
+      "diagnostic": "用独立轨迹及实现反馈校准，做逐机制消融并记录误差。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Les Kohn：代表性公开资料",
+          "https://dl.acm.org/doi/10.1145/217474.217479",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "仿真驱动微架构取舍挑战",
+        "skills": [
+          "A3",
+          "A9",
+          "A10"
+        ],
+        "question": "模型预测快 8%，误差也有 8%，如何决定加入一个机制？",
+        "variables": "g：预测收益；ε：误差区间；K：实现代价；参数需从待评估系统测量，以下为条件模型。",
+        "model": "用区间 g±ε 评估，要求下界与投入门槛匹配。",
+        "crossover": "若收益符号对模型误差敏感，先找能区分方案的实验。",
+        "counterexample": "模型漏掉物理时序或真实工作负载阶段。",
+        "validation": "用独立轨迹及实现反馈校准，做逐机制消融并记录误差。",
+        "transfer": "迁移到服务器预硅采购评估。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "simcha-gochman",
+      "name": "Simcha Gochman",
+      "field": "移动约束下的微架构效率",
+      "core": "按每个任务的性能与能量重新选择预测、执行和缓存机制。",
+      "evidence": "Pentium M 合作论文讨论微架构与性能；不沿用历史功耗作为当前值。",
+      "habits": [
+        "按每个任务的性能与能量重新选择预测、执行和缓存机制。",
+        "固定 P：平均 W；T：秒；E：J；D：截止时间 的定义，按完整任务比较。",
+        "先测试最强反例：额外活动、漏电或外围持续能耗抵消运行缩短。"
+      ],
+      "questions": [
+        "一个机制提高 IPC 却增加活动功率，什么时候降低能耗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。额外活动、漏电或外围持续能耗抵消运行缩短。",
+      "diagnostic": "做机制关闭消融，测周期、活动、整机能量与稳态频率。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Simcha Gochman：代表性公开资料",
+          "https://www.intel.com/content/dam/www/public/us/en/documents/research/2003-vol07-iss-2-intel-technology-journal.pdf",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "移动约束下的微架构效率挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "一个机制提高 IPC 却增加活动功率，什么时候降低能耗？",
+        "variables": "P：平均 W；T：秒；E：J；D：截止时间；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E=P×T；匹配整机边界与频率控制。",
+        "crossover": "P_new/P_old < T_old/T_new，且 T_new≤D。",
+        "counterexample": "额外活动、漏电或外围持续能耗抵消运行缩短。",
+        "validation": "做机制关闭消融，测周期、活动、整机能量与稳态频率。",
+        "transfer": "迁移到服务 CPU 能量预算。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "belli-kuttanna",
+      "name": "Belli Kuttanna",
+      "field": "低功率核心与平台状态",
+      "core": "低功率设计同时管理活动执行和空闲平台，不能只看核心 TDP。",
+      "evidence": "Intel Atom 官方发布记录其主架构师角色与平台功率目标；历史厂商宣称不是本卡测量。",
+      "habits": [
+        "低功率设计同时管理活动执行和空闲平台，不能只看核心 TDP。",
+        "固定 P_a/P_i：活动/空闲 W；T_a：活动秒；H：周期秒 的定义，按完整任务比较。",
+        "先测试最强反例：执行延长阻止休眠，状态转换又昂贵。"
+      ],
+      "questions": [
+        "简单核心任务慢一些，却能让平台更早休眠吗？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。执行延长阻止休眠，状态转换又昂贵。",
+      "diagnostic": "回放间歇请求，测唤醒、驻留、任务能量与尾延迟。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Belli Kuttanna：代表性公开资料",
+          "https://www.intel.com/pressroom/archive/releases/2010/20100504comp.htm",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "低功率核心与平台状态挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "简单核心任务慢一些，却能让平台更早休眠吗？",
+        "variables": "P_a/P_i：活动/空闲 W；T_a：活动秒；H：周期秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E=P_a T_a+P_i(H-T_a)+E_transition。",
+        "crossover": "需比较完整周期能量与唤醒延迟，不能仅比较 P_a。",
+        "counterexample": "执行延长阻止休眠，状态转换又昂贵。",
+        "validation": "回放间歇请求，测唤醒、驻留、任务能量与尾延迟。",
+        "transfer": "迁移到低负载服务器与批处理。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "per-hammarlund",
+      "name": "Per Hammarlund",
+      "field": "核心、uncore 与功率管理",
+      "core": "指令吞吐、内存供给和功率状态需要共同满足平台目标。",
+      "evidence": "Haswell 合作论文覆盖核心、uncore、功率及指令扩展。",
+      "habits": [
+        "指令吞吐、内存供给和功率状态需要共同满足平台目标。",
+        "固定 α：可加速时间比例；s：局部加速；H：新增未重叠秒 的定义，按完整任务比较。",
+        "先测试最强反例：向量功率状态降低其他线程频率。"
+      ],
+      "questions": [
+        "更宽向量提升 kernel 速度，但平台限频后整程序如何变化？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。向量功率状态降低其他线程频率。",
+      "diagnostic": "扫向量占比与并发，记录核心/uncore 频率和整服务延迟。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Per Hammarlund：代表性公开资料",
+          "https://pages.cs.wisc.edu/~rajwar/papers/ieee_micro_haswell.pdf",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "核心、uncore 与功率管理挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A8"
+        ],
+        "question": "更宽向量提升 kernel 速度，但平台限频后整程序如何变化？",
+        "variables": "α：可加速时间比例；s：局部加速；H：新增未重叠秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_new=T_old[(1-α)+α/s]+H；频率变化需重新测各项。",
+        "crossover": "被加速部分节省大于 H 与其他阶段退化。",
+        "counterexample": "向量功率状态降低其他线程频率。",
+        "validation": "扫向量占比与并发，记录核心/uncore 频率和整服务延迟。",
+        "transfer": "迁移到 AVX/AMX 服务部署。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "mike-johnson",
+      "name": "Mike Johnson",
+      "field": "超标量依赖与精确执行",
+      "core": "区分真实依赖、名字依赖和资源冲突，再组织并行执行。",
+      "evidence": "本人著作 Superscalar Microprocessor Design 系统讨论超标量机制。",
+      "habits": [
+        "区分真实依赖、名字依赖和资源冲突，再组织并行执行。",
+        "固定 W：操作数；D：真实依赖关键路径；P：执行资源 的定义，按完整任务比较。",
+        "先测试最强反例：指针链是真依赖，窗口和寄存器扩张均无效。"
+      ],
+      "questions": [
+        "增加重命名资源为何可能无法缩短一条依赖链？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。指针链是真依赖，窗口和寄存器扩张均无效。",
+      "diagnostic": "构造真假依赖分别消融，验证精确异常与提交，测真实应用。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Mike Johnson：代表性公开资料",
+          "https://books.google.com/books/about/Superscalar_Microprocessor_Design.html?id=9o1TAAAAMAAJ",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "超标量依赖与精确执行挑战",
+        "skills": [
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "增加重命名资源为何可能无法缩短一条依赖链？",
+        "variables": "W：操作数；D：真实依赖关键路径；P：执行资源；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(W/P,D)；重命名消除假依赖，不能消除 D。",
+        "crossover": "只有假依赖或资源压力限制时，扩张才可能有效。",
+        "counterexample": "指针链是真依赖，窗口和寄存器扩张均无效。",
+        "validation": "构造真假依赖分别消融，验证精确异常与提交，测真实应用。",
+        "transfer": "迁移到数据流图和并行任务调度。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "suzanne-plummer",
+      "name": "Suzanne Plummer",
+      "field": "工程交付与团队能力",
+      "core": "架构价值需经设计、验证和团队能力兑现，交付风险应显式计入。",
+      "evidence": "AMD 本人及公司公开资料支持工程与技术人才领导角色；没有据此宣称独有的微架构定律。",
+      "habits": [
+        "架构价值需经设计、验证和团队能力兑现，交付风险应显式计入。",
+        "固定 V：上线价值；p：按期合格交付概率；K：额外投入 的定义，按完整任务比较。",
+        "先测试最强反例：覆盖薄弱和团队依赖使峰值方案无法按期交付。"
+      ],
+      "questions": [
+        "性能目标增加 5%，但验证周期显著延长，怎样评估交付？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。覆盖薄弱和团队依赖使峰值方案无法按期交付。",
+      "diagnostic": "记录验证覆盖、缺陷关闭和关键依赖；用里程碑复核情景假设。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Suzanne Plummer：代表性公开资料",
+          "https://www.linkedin.com/posts/amd_suzanne-plummer-amd-rtg-design-engineering-activity-6389927457159471104-trAD",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "工程交付与团队能力挑战",
+        "skills": [
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "性能目标增加 5%，但验证周期显著延长，怎样评估交付？",
+        "variables": "V：上线价值；p：按期合格交付概率；K：额外投入；参数需从待评估系统测量，以下为条件模型。",
+        "model": "情景评估 p×V-K；p 未知时给敏感性范围，不制造预测。",
+        "crossover": "性能收益需在可交付方案中成立；质量门槛不能用价值抵扣。",
+        "counterexample": "覆盖薄弱和团队依赖使峰值方案无法按期交付。",
+        "validation": "记录验证覆盖、缺陷关闭和关键依赖；用里程碑复核情景假设。",
+        "transfer": "迁移到定制 CPU 项目与供应商评审。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "balaram-sinharoy",
+      "name": "Balaram Sinharoy",
+      "field": "SMT、缓存与平衡服务器",
+      "core": "用线程间资源竞争检验 SMT 吞吐，而非以逻辑线程数推导容量。",
+      "evidence": "MICRO keynote 与 IBM POWER7 论文记录其主架构师角色及 SMT、缓存组织。",
+      "habits": [
+        "用线程间资源竞争检验 SMT 吞吐，而非以逻辑线程数推导容量。",
+        "固定 Q_k：k 路合格吞吐；L_k：尾延迟；P_k：W 的定义，按完整任务比较。",
+        "先测试最强反例：每线程已饱和资源，SMT 只增加争用和尾延迟。"
+      ],
+      "questions": [
+        "四路 SMT 增加吞吐，却降低单线程速度，哪些服务适合？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。每线程已饱和资源，SMT 只增加争用和尾延迟。",
+      "diagnostic": "匹配总核心，扫 SMT 配置与负载混部，归因停顿和缓存干扰。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Balaram Sinharoy：代表性公开资料",
+          "https://microarch.org/micro42/keynote1.html",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "SMT、缓存与平衡服务器挑战",
+        "skills": [
+          "A3",
+          "A6",
+          "A9"
+        ],
+        "question": "四路 SMT 增加吞吐，却降低单线程速度，哪些服务适合？",
+        "variables": "Q_k：k 路合格吞吐；L_k：尾延迟；P_k：W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "比较 Q_k/P_k 且 L_k≤SLO；不把线程数当性能倍数。",
+        "crossover": "隐藏空槽的收益大于缓存、端口与带宽竞争。",
+        "counterexample": "每线程已饱和资源，SMT 只增加争用和尾延迟。",
+        "validation": "匹配总核心，扫 SMT 配置与负载混部，归因停顿和缓存干扰。",
+        "transfer": "迁移到 hyperscaler SMT 策略。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "brian-thompto",
+      "name": "Brian Thompto",
+      "field": "POWER 服务器核心与平台协同",
+      "core": "核心增益需要缓存、内存和系统带宽持续供给。",
+      "evidence": "VCEW 2021 POWER10 讲者、2024 processor chair；HC 2020 POWER10 联合讲者。",
+      "habits": [
+        "核心增益需要缓存、内存和系统带宽持续供给。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：高并发时每核带宽下降，单核改进无法扩展。"
+      ],
+      "questions": [
+        "核心吞吐提高而内存带宽固定，怎样判断整机代际收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。高并发时每核带宽下降，单核改进无法扩展。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：高并发时每核带宽下降，单核改进无法扩展。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2021 公开议程",
+          "https://vcew.org/download/vcew-2021-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2024 公开议程",
+          "https://vcew.org/download/vcew-2024-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2020 官方议程",
+          "https://hc32.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "POWER 服务器核心与平台协同挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "核心吞吐提高而内存带宽固定，怎样判断整机代际收益？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "高并发时每核带宽下降，单核改进无法扩展。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：高并发时每核带宽下降，单核改进无法扩展。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V21",
+        "V24",
+        "H20"
+      ],
+      "aliases": [
+        "Brian W Thompto"
+      ]
+    },
+    {
+      "id": "william-starke",
+      "name": "William Starke",
+      "field": "企业服务器的系统平衡",
+      "core": "同时检查单线程路径、共享资源和企业任务约束。",
+      "evidence": "HC 2020 POWER10 联合讲者；2025 next-generation Power 讲者。",
+      "habits": [
+        "同时检查单线程路径、共享资源和企业任务约束。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：锁竞争和共享缓存冲突主导完整事务时间。"
+      ],
+      "questions": [
+        "更强核心加大缓存压力，数据库吞吐是否必然提升？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。锁竞争和共享缓存冲突主导完整事务时间。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：锁竞争和共享缓存冲突主导完整事务时间。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2020 官方议程",
+          "https://hc32.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "企业服务器的系统平衡挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "更强核心加大缓存压力，数据库吞吐是否必然提升？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "锁竞争和共享缓存冲突主导完整事务时间。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：锁竞争和共享缓存冲突主导完整事务时间。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H20",
+        "H25"
+      ]
+    },
+    {
+      "id": "jonathon-evans",
+      "name": "Jonathon Evans",
+      "field": "AI 系统中的 CPU 职责",
+      "core": "按供数、控制和应用任务定义 CPU 需求。",
+      "evidence": "HC 2022 Grace 讲者；2026 Vera 联合讲者。",
+      "habits": [
+        "按供数、控制和应用任务定义 CPU 需求。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：容量足够但频繁往返导致尾延迟恶化。"
+      ],
+      "questions": [
+        "CPU 内存扩容减少 GPU 缺页，何时值得付出跨芯片搬运？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。容量足够但频繁往返导致尾延迟恶化。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：容量足够但频繁往返导致尾延迟恶化。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2022 官方议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "AI 系统中的 CPU 职责挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "CPU 内存扩容减少 GPU 缺页，何时值得付出跨芯片搬运？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "容量足够但频繁往返导致尾延迟恶化。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：容量足够但频繁往返导致尾延迟恶化。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H22",
+        "H26"
+      ]
+    },
+    {
+      "id": "polychronis-xekalakis",
+      "name": "Polychronis Xekalakis",
+      "field": "CPU 与 AI 平台协同",
+      "core": "把 CPU 的工作与加速器等待放入同一关键路径。",
+      "evidence": "HC 2026 Vera CPU 联合讲者；该演讲是合作产品披露，不归为个人独占贡献。",
+      "habits": [
+        "把 CPU 的工作与加速器等待放入同一关键路径。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：GPU 已能独立推进，CPU 加速不在关键路径。"
+      ],
+      "questions": [
+        "CPU 核更快，何时真正缩短 GPU 服务请求？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。GPU 已能独立推进，CPU 加速不在关键路径。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：GPU 已能独立推进，CPU 加速不在关键路径。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "CPU 与 AI 平台协同挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "CPU 核更快，何时真正缩短 GPU 服务请求？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "GPU 已能独立推进，CPU 加速不在关键路径。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：GPU 已能独立推进，CPU 加速不在关键路径。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H26"
+      ]
+    },
+    {
+      "id": "ravi-bhargava",
+      "name": "Ravi Bhargava",
+      "field": "EPYC 核心与平台瓶颈",
+      "core": "按业务数据供给检验核心资源的边际价值。",
+      "evidence": "HC 2023 Zen 4 与第四代 EPYC 联合讲者。",
+      "habits": [
+        "按业务数据供给检验核心资源的边际价值。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：串行指针依赖和内存饱和使更大窗口无效。"
+      ],
+      "questions": [
+        "扩大乱序窗口能否缓解多租户服务的内存瓶颈？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。串行指针依赖和内存饱和使更大窗口无效。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：串行指针依赖和内存饱和使更大窗口无效。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "EPYC 核心与平台瓶颈挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "扩大乱序窗口能否缓解多租户服务的内存瓶颈？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "串行指针依赖和内存饱和使更大窗口无效。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：串行指针依赖和内存饱和使更大窗口无效。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H23"
+      ]
+    },
+    {
+      "id": "brad-cohen",
+      "name": "Brad Cohen",
+      "field": "核心资源配置与代际收益",
+      "core": "把前端、执行和存储资源放到同工作负载下比较。",
+      "evidence": "HC 2024 Zen 5 联合讲者，不推断其个人负责的全部机制。",
+      "habits": [
+        "把前端、执行和存储资源放到同工作负载下比较。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：面积与功率增加导致可部署核心数减少。"
+      ],
+      "questions": [
+        "更宽核心提高峰值，何时会降低单位机架产出？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。面积与功率增加导致可部署核心数减少。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：面积与功率增加导致可部署核心数减少。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "核心资源配置与代际收益挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "更宽核心提高峰值，何时会降低单位机架产出？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "面积与功率增加导致可部署核心数减少。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：面积与功率增加导致可部署核心数减少。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H24"
+      ]
+    },
+    {
+      "id": "mahesh-subramony",
+      "name": "Mahesh Subramony",
+      "field": "CPU/SoC 的持续性能",
+      "core": "核心改进与 SoC 功耗、共享资源需要同时兑现。",
+      "evidence": "HC 2023 Ryzen 7040、2024 Zen 5 联合讲者。",
+      "habits": [
+        "核心改进与 SoC 功耗、共享资源需要同时兑现。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：外围及向量负载挤压核心持续功率。"
+      ],
+      "questions": [
+        "核心性能提高但 SoC 预算固定，什么组合负载会反转收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。外围及向量负载挤压核心持续功率。",
+      "diagnostic": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：外围及向量负载挤压核心持续功率。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "CPU/SoC 的持续性能挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "核心性能提高但 SoC 预算固定，什么组合负载会反转收益？",
+        "variables": "P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=P×T+E_aux；若 P 已含外围，E_aux=0，避免重复计数。",
+        "crossover": "P_new T_new+E_aux,new < P_old T_old+E_aux,old，且任务质量与 D 均合格。",
+        "counterexample": "外围及向量负载挤压核心持续功率。",
+        "validation": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：外围及向量负载挤压核心持续功率。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H23",
+        "H24"
+      ]
+    },
+    {
+      "id": "magnus-bruce",
+      "name": "Magnus Bruce",
+      "field": "Arm 服务器性能与效率",
+      "core": "把核心性能与真实云端任务利用率联合评估。",
+      "evidence": "HC 2023 Neoverse V2 讲者。",
+      "habits": [
+        "把核心性能与真实云端任务利用率联合评估。",
+        "固定比较范围与变量：w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO",
+        "优先检验反例：ISA、软件成熟度与带宽敏感任务改变实际权重。"
+      ],
+      "questions": [
+        "单线程 benchmark 更快，混合在线/离线负载是否仍更高效？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。ISA、软件成熟度与带宽敏感任务改变实际权重。",
+      "diagnostic": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：ISA、软件成熟度与带宽敏感任务改变实际权重。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "Arm 服务器性能与效率挑战",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "单线程 benchmark 更快，混合在线/离线负载是否仍更高效？",
+        "variables": "w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定任务时间模型 T_new/T_old=Σ(w_i/s_i)，Σw_i=1；服务吞吐混合不能直接套用该式。",
+        "crossover": "代表性任务组合及误差区间内仍受益，并独立通过尾延迟与质量门槛。",
+        "counterexample": "ISA、软件成熟度与带宽敏感任务改变实际权重。",
+        "validation": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：ISA、软件成熟度与带宽敏感任务改变实际权重。",
+        "transfer": "迁移到 SIR/业务负载差异和平台采购评估。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H23"
+      ]
+    },
+    {
+      "id": "rabin-sugumar",
+      "name": "Rabin Sugumar",
+      "field": "高吞吐服务器核与带宽",
+      "core": "线程级并行只有在数据及共享资源充足时才能兑现。",
+      "evidence": "HC 2020 ThunderX3 Arm server processor 讲者。",
+      "habits": [
+        "线程级并行只有在数据及共享资源充足时才能兑现。",
+        "固定比较范围与变量：N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W",
+        "优先检验反例：额外线程污染缓存并放大 p99。"
+      ],
+      "questions": [
+        "更多硬件线程隐藏延迟，却增加争用，何时提高合格吞吐？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。额外线程污染缓存并放大 p99。",
+      "diagnostic": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：额外线程污染缓存并放大 p99。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2020 官方议程",
+          "https://hc32.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "高吞吐服务器核与带宽挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "更多硬件线程隐藏延迟，却增加争用，何时提高合格吞吐？",
+        "variables": "N：动态指令；IPC：有效提交率；f：持续 Hz；T_mem：未重叠存储秒；P：整机 W；参数需从待评估系统测量，以下为条件模型。",
+        "model": "受控分解 T≈N/(IPC×f)+T_mem；IPC 需排除已单列的存储停顿，否则重复计数。",
+        "crossover": "执行时间减少必须覆盖存储等待和持续频率退化，并满足整机功率预算。",
+        "counterexample": "额外线程污染缓存并放大 p99。",
+        "validation": "建议验证（尚未执行）：同编译器与语义扫并发、频率及工作集，测提交、前后端停顿、带宽、功率和尾延迟。重点否证：额外线程污染缓存并放大 p99。",
+        "transfer": "迁移到通用服务器 CPU 选型与定制。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H20"
+      ]
+    },
+    {
+      "id": "earl-killian",
+      "name": "Earl Killian",
+      "field": "浮点单元与 ISA 实现取舍",
+      "core": "执行能力需要与依赖、数值和软件使用率匹配。",
+      "evidence": "HC 1989 MIPS R3010 FPU 讲者。",
+      "habits": [
+        "执行能力需要与依赖、数值和软件使用率匹配。",
+        "固定比较范围与变量：r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛",
+        "优先检验反例：依赖和慢操作主导，峰值乘加无法兑现。"
+      ],
+      "questions": [
+        "更高浮点峰值但除法与归约链不变，什么任务会受益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。依赖和慢操作主导，峰值乘加无法兑现。",
+      "diagnostic": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：依赖和慢操作主导，峰值乘加无法兑现。",
+      "notes": [
+        [
+          "e08",
+          "核心数与资源预算"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 1989 官方议程",
+          "https://hc01.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "浮点单元与 ISA 实现取舍挑战",
+        "skills": [
+          "A1",
+          "A7",
+          "A8"
+        ],
+        "question": "更高浮点峰值但除法与归约链不变，什么任务会受益？",
+        "variables": "r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "在约定数值契约 e≤e_max 下比较 Q/E 与时间；位宽缩小不自动推出能耗等比例下降。",
+        "crossover": "通过极端输入和数值稳定性后，收益才可与转换、缩放及溢出保护成本比较。",
+        "counterexample": "依赖和慢操作主导，峰值乘加无法兑现。",
+        "validation": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：依赖和慢操作主导，峰值乘加无法兑现。",
+        "transfer": "迁移到混合精度推理、SIMD 与压缩表示。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H89"
+      ]
+    },
+    {
+      "id": "david-kirk",
+      "name": "David Kirk",
+      "field": "GPU 与高性能计算的系统适配",
+      "core": "并行硬件的优势要以适合的算法、工具和完整任务证明。",
+      "evidence": "本人 NVIDIA 2008 HPC 技术主题演讲提供历史依据；现代应用与模型是本库归纳，不是原演讲的数字。",
+      "habits": [
+        "识别可并行的任务。",
+        "检查存储访问方式。",
+        "将编程成本纳入选择。",
+        "评价完整任务而非单核。"
+      ],
+      "questions": [
+        "GPU 的局部加速能否覆盖搬运与串行部分？",
+        "算法需要怎样重组？",
+        "哪个任务无法获得净收益？"
+      ],
+      "boundary": "历史平台结论不能直接外推到当前 GPU；必须重新测量。",
+      "diagnostic": "记录 CPU/GPU 各阶段与重叠，测完整任务时间、能量和移植成本。",
+      "notes": [
+        [
+          "e12",
+          "局部加速与完整服务"
+        ],
+        [
+          "e14",
+          "服务价值与比较单位"
+        ]
+      ],
+      "sources": [
+        [
+          "本人 NVIDIA HPC 技术主题演讲",
+          "https://www.nvidia.com/content/nvision2008/tech_presentations/Technology_Keynotes/NVISION08-Tech_Keynote-High_Performance_Computing.pdf",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构完整任务挑战",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "variables": "T_c：CPU 原阶段；T_g：GPU 阶段；H：暴露 offload 开销。",
+        "model": "同结果下要求 T_g + H < T_c；重叠依据 trace。",
+        "crossover": "T_c-T_g > H，而非仅 kernel 更快。",
+        "counterexample": "小任务的传输与启动吞没收益。",
+        "transfer": "迁移到 NPU 或压缩 accelerator。",
+        "question": "GPU 的局部加速能否覆盖搬运与串行部分？",
+        "validation": "记录 CPU/GPU 各阶段与重叠，测完整任务时间、能量和移植成本。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": []
+    },
+    {
+      "id": "stephen-jones",
+      "name": "Stephen Jones",
+      "field": "CUDA 契约与执行映射",
+      "core": "把算法的并行结构映射到硬件约束，不把语言特性当作免费性能。",
+      "evidence": "本人 NVIDIA 技术文章讨论高性能 GPU 编程策略；以下关注语言、平台与执行之间的契约。",
+      "habits": [
+        "先描述并行结构。",
+        "检查硬件资源约束。",
+        "区分合法程序与高效映射。",
+        "以完整负载验证优化。"
+      ],
+      "questions": [
+        "更高 occupancy 是否真的减少了暴露等待？",
+        "资源占用换来了多少有用并发？",
+        "同步或访问模式是否才是瓶颈？"
+      ],
+      "boundary": "occupancy 不是性能目标本身；寄存器、spill 和工作分解会相互影响。",
+      "diagnostic": "联合扫描块大小与寄存器配置，测 spill、等待、带宽与整体 goodput。",
+      "notes": [
+        [
+          "e09",
+          "核心与有效吞吐"
+        ],
+        [
+          "e12",
+          "局部加速与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "NVIDIA：本人技术文章列表",
+          "https://developer.nvidia.com/blog/author/stjones/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "映射与驻留挑战",
+        "skills": [
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "variables": "ΔT_hide：隐藏等待；T_spill：新增暴露 spill；T_sync：新增同步。",
+        "model": "只有 ΔT_hide > T_spill + T_sync 才改善此关键路径。",
+        "crossover": "收益由实际等待归因决定，不由 occupancy 单独决定。",
+        "counterexample": "更高驻留导致 spill，性能下降。",
+        "transfer": "迁移到 CPU SMT 或异步流水线。",
+        "question": "更高 occupancy 是否真的减少了暴露等待？",
+        "validation": "联合扫描块大小与寄存器配置，测 spill、等待、带宽与整体 goodput。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ]
+    },
+    {
+      "id": "ian-bratt",
+      "name": "Ian Bratt",
+      "field": "端侧 AI 与系统适配",
+      "core": "模型部署应从实际设备约束与任务需求开始，而非单一算力指标。",
+      "evidence": "本人 Arm 文章讨论 Llama 推理与 AI 在 Arm 上部署；厂商文章用于识别目标，不当作独立比较结论。",
+      "habits": [
+        "固定任务与模型质量。",
+        "纳入内存和设备预算。",
+        "比较完整部署路径。",
+        "检查软件可用性。"
+      ],
+      "questions": [
+        "端侧 CPU 推理何时优于增加异构 offload？",
+        "模型和状态能否放入预算？",
+        "哪个瓶颈限制用户体验？"
+      ],
+      "boundary": "不能用不同质量或上下文长度比较硬件优劣。",
+      "diagnostic": "固定质量与上下文，测启动、状态搬运、内存、能量和响应。",
+      "notes": [
+        [
+          "e12",
+          "局部加速与完整服务"
+        ],
+        [
+          "e14",
+          "服务价值与比较单位"
+        ]
+      ],
+      "sources": [
+        [
+          "Arm：本人 AI 推理文章",
+          "https://newsroom.arm.com/news/ai-inference-everywhere-with-new-llama-llms-on-arm",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "部署适配挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "variables": "T_cpu；T_acc；H：暴露 offload 开销；M：内存需求。",
+        "model": "同质量下比较 T_cpu 与 T_acc+H，并检查 M 与功率限制。",
+        "crossover": "T_cpu-T_acc > H 且部署约束通过。",
+        "counterexample": "任务太小或状态搬运过多，offload 无净收益。",
+        "transfer": "迁移到云端小批量推理。",
+        "question": "端侧 CPU 推理何时优于增加异构 offload？",
+        "validation": "固定质量与上下文，测启动、状态搬运、内存、能量和响应。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "cpu"
+      ]
+    },
+    {
+      "id": "jim-kahle",
+      "name": "Jim Kahle",
+      "field": "异构分工与显式数据组织",
+      "core": "分配不同处理单元的任务时，把数据移动和程序模型一起设计。",
+      "evidence": "IBM 的 Cell 原始论文说明通用核心与 Synergistic Processors 分工。",
+      "habits": [
+        "分配不同处理单元的任务时，把数据移动和程序模型一起设计。",
+        "固定 W：运算秒；H：传输调度秒；s：局部加速 的定义，按完整任务比较。",
+        "先测试最强反例：小任务、分支和不规则访问无法摊销搬运。"
+      ],
+      "questions": [
+        "异构单元运算很快，但本地存储与 DMA 管理需要多少粒度？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。小任务、分支和不规则访问无法摊销搬运。",
+      "diagnostic": "扫块大小和重用，做 DMA 重叠消融，测端到端时间及开发投入。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Jim Kahle：代表性公开资料",
+          "https://research.ibm.com/publications/the-cell-processor-architecture",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构分工与显式数据组织挑战",
+        "skills": [
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "question": "异构单元运算很快，但本地存储与 DMA 管理需要多少粒度？",
+        "variables": "W：运算秒；H：传输调度秒；s：局部加速；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_new≈W/s+H，重叠按关键路径实测。",
+        "crossover": "W(1-1/s)>H；还需满足本地容量和编程成本。",
+        "counterexample": "小任务、分支和不规则访问无法摊销搬运。",
+        "validation": "扫块大小和重用，做 DMA 重叠消融，测端到端时间及开发投入。",
+        "transfer": "迁移到 GPU scratchpad 与 AI 数据流。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "raja-koduri",
+      "name": "Raja Koduri",
+      "field": "异构架构与完整软件栈",
+      "core": "以软件、存储和互连共同兑现 GPU 能力，不只比较峰值算力。",
+      "evidence": "Intel Architecture Day 官方资料讨论架构、内存、互连、安全和软件等支柱。",
+      "habits": [
+        "以软件、存储和互连共同兑现 GPU 能力，不只比较峰值算力。",
+        "固定 F：运算；M：字节；C：持续运算/s；B：B/s；H：其他秒 的定义，按完整任务比较。",
+        "先测试最强反例：kernel 覆盖、数据搬运和通信使利用率低。"
+      ],
+      "questions": [
+        "GPU 峰值翻倍，但编译器和网络不变，服务何时获益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。kernel 覆盖、数据搬运和通信使利用率低。",
+      "diagnostic": "匹配精度与质量，比较 kernel、整模型和整服务，记录软件回退。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Raja Koduri：代表性公开资料",
+          "https://www.intel.com/content/www/us/en/newsroom/resources/press-kits-architecture-day-2020.html",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构架构与完整软件栈挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A8"
+        ],
+        "question": "GPU 峰值翻倍，但编译器和网络不变，服务何时获益？",
+        "variables": "F：运算；M：字节；C：持续运算/s；B：B/s；H：其他秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(F/C,M/B)，完整任务再计暴露 H。",
+        "crossover": "只有计算绑定且软件可用时，增 C 才可能减少任务时间。",
+        "counterexample": "kernel 覆盖、数据搬运和通信使利用率低。",
+        "validation": "匹配精度与质量，比较 kernel、整模型和整服务，记录软件回退。",
+        "transfer": "迁移到跨 GPU 供应商采购。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "ram-sivaramakrishnan",
+      "name": "Ram Sivaramakrishnan",
+      "field": "可重构数据流与专家映射",
+      "core": "让独立专家模型切换、数据流映射与存储分层共同决定服务效率。",
+      "evidence": "SN40L 合作论文记录其署名，讨论 Composition of Experts、数据流与三层存储；CoE 的独立模型组合不等同于单模型内的 MoE 路由。",
+      "habits": [
+        "让数据流映射、存储和通信共同决定专家模型效率。",
+        "固定 F：运算；M：搬运字节；C/B：持续计算/带宽；H_route：路由秒 的定义，按完整任务比较。",
+        "先测试最强反例：专家分布偏斜、小 batch 和低复用使带宽绑定。"
+      ],
+      "questions": [
+        "独立专家模型切换减少任务所需模型规模，却增加权重搬运，何时真正更快？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。专家分布偏斜、小 batch 和低复用使带宽绑定。",
+      "diagnostic": "固定质量与 batch，扫专家数和路由偏斜，测端到端延迟与流量。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Ram Sivaramakrishnan：代表性公开资料",
+          "https://arxiv.org/abs/2405.07518",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "可重构数据流与专家映射挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "独立专家模型切换减少任务所需模型规模，却增加权重搬运，何时真正更快？",
+        "variables": "F：运算；M：搬运字节；C/B：持续计算/带宽；H_route：路由秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(F/C,M/B)，再测未重叠 H_route。",
+        "crossover": "减少计算关键路径须超过权重、通信及重配置开销。",
+        "counterexample": "专家分布偏斜、小 batch 和低复用使带宽绑定。",
+        "validation": "固定质量与 batch，扫专家数和路由偏斜，测端到端延迟与流量。",
+        "transfer": "迁移到多模型推理和存储分层；MoE 需要另核算 token 级路由。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "ron-diamant",
+      "name": "Ron Diamant",
+      "field": "云芯片与分布式训练协同",
+      "core": "完整训练栈的可用性比单芯片峰值更能决定客户产出。",
+      "evidence": "HC 2023 welcome 主席记录、2024 general chair；Amazon Science Trainium 分布式训练论文共同作者。",
+      "habits": [
+        "完整训练栈的可用性比单芯片峰值更能决定客户产出。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：编译、通信及恢复开销增加训练完成时间。"
+      ],
+      "questions": [
+        "自研训练芯片单卡更便宜，何时集群训练仍更贵？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。编译、通信及恢复开销增加训练完成时间。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：编译、通信及恢复开销增加训练完成时间。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Amazon Science：Distributed Training of Large Language Models on AWS Trainium 合作论文",
+          "https://assets.amazon.science/fa/fc/6c9a63824f1fa3655fc757825256/distributed-training-of-large-language-models-on-aws-trainium.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "云芯片与分布式训练协同挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "自研训练芯片单卡更便宜，何时集群训练仍更贵？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "编译、通信及恢复开销增加训练完成时间。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：编译、通信及恢复开销增加训练完成时间。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H23",
+        "C24"
+      ]
+    },
+    {
+      "id": "ronny-krashinsky",
+      "name": "Ronny Krashinsky",
+      "field": "GPU 执行与数据供给",
+      "core": "计算并行必须和寄存器、片上存储及搬运能力匹配。",
+      "evidence": "HC 2022 Hopper 联合讲者；HC 2025 program member/session chair。",
+      "habits": [
+        "计算并行必须和寄存器、片上存储及搬运能力匹配。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：占用率下降与溢出流量使算力无法使用。"
+      ],
+      "questions": [
+        "更多计算单元但寄存器预算固定，何时增加有效吞吐？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。占用率下降与溢出流量使算力无法使用。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：占用率下降与溢出流量使算力无法使用。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2022 官方议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "GPU 执行与数据供给挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "更多计算单元但寄存器预算固定，何时增加有效吞吐？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "占用率下降与溢出流量使算力无法使用。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：占用率下降与溢出流量使算力无法使用。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H22",
+        "C25"
+      ]
+    },
+    {
+      "id": "sean-lie",
+      "name": "Sean Lie",
+      "field": "晶圆级系统的软硬件协同",
+      "core": "大规模片上资源需有能映射真实模型的软件组织。",
+      "evidence": "HC 2020 software co-design、2022 architecture deep dive、2023 cluster、2024 wafer-scale 讲者。",
+      "habits": [
+        "大规模片上资源需有能映射真实模型的软件组织。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：映射不均与故障恢复抵消通信节省。"
+      ],
+      "questions": [
+        "消除芯片间通信，却引入更大故障域，何时真正加快训练？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。映射不均与故障恢复抵消通信节省。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：映射不均与故障恢复抵消通信节省。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2020 官方议程",
+          "https://hc32.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2022 官方议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "晶圆级系统的软硬件协同挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "消除芯片间通信，却引入更大故障域，何时真正加快训练？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "映射不均与故障恢复抵消通信节省。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：映射不均与故障恢复抵消通信节省。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H20",
+        "H22",
+        "H23",
+        "H24"
+      ]
+    },
+    {
+      "id": "jean-philippe-fricker",
+      "name": "Jean-Philippe Fricker",
+      "field": "晶圆到机架的扩展边界",
+      "core": "检查计算、供数和恢复怎样跨越晶圆与机架边界。",
+      "evidence": "HC 2026 Cerebras rack-scale architecture 讲者，官方使用 J.P. 别名。",
+      "habits": [
+        "检查计算、供数和恢复怎样跨越晶圆与机架边界。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：外部供数与跨晶圆同步成为新瓶颈。"
+      ],
+      "questions": [
+        "单晶圆性能很好，增加晶圆数量为何可能失去扩展效率？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。外部供数与跨晶圆同步成为新瓶颈。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：外部供数与跨晶圆同步成为新瓶颈。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "晶圆到机架的扩展边界挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "单晶圆性能很好，增加晶圆数量为何可能失去扩展效率？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "外部供数与跨晶圆同步成为新瓶颈。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：外部供数与跨晶圆同步成为新瓶颈。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H26"
+      ],
+      "aliases": [
+        "J.P. Fricker",
+        "Jean-Philippe (J.P.) Fricker"
+      ]
+    },
+    {
+      "id": "raghu-prabhakar",
+      "name": "Raghu Prabhakar",
+      "field": "数据流映射与分层存储",
+      "core": "评估算子映射和权重驻留怎样共同影响完整推理。",
+      "evidence": "HC 2024 SN40L、2026 SN50 dataflow 讲者；不将多模型组合等同于单模型 MoE。",
+      "habits": [
+        "评估算子映射和权重驻留怎样共同影响完整推理。",
+        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
+        "优先检验反例：重映射和编译启动占据短请求大部分时间。"
+      ],
+      "questions": [
+        "数据流映射减少中间搬运，动态形状下何时仍更快？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。重映射和编译启动占据短请求大部分时间。",
+      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：重映射和编译启动占据短请求大部分时间。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据流映射与分层存储挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "数据流映射减少中间搬运，动态形状下何时仍更快？",
+        "variables": "T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_total=T_setup+n(T_k+T_convert)；并行重叠按实际关键路径去重，M_tmp 另核算容量门槛。",
+        "crossover": "kernel 节省须覆盖启动、转换和临时存储代价，且保持数值/异常契约。",
+        "counterexample": "重映射和编译启动占据短请求大部分时间。",
+        "validation": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：重映射和编译启动占据短请求大部分时间。",
+        "transfer": "迁移到 AI kernel、ML IR 和异构编译。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H24",
+        "H26"
+      ]
+    },
+    {
+      "id": "sudeep-bhoja",
+      "name": "Sudeep Bhoja",
+      "field": "存内计算与完整推理",
+      "core": "把存储访问节省与数据准备、数值及控制开销一起核算。",
+      "evidence": "HC 2025 Corsair、2026 3D DRAM 教程及 VCEW 2026 compute-in-memory 讲者。",
+      "habits": [
+        "把存储访问节省与数据准备、数值及控制开销一起核算。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：小批次与不匹配算子使转换成本主导。"
+      ],
+      "questions": [
+        "存内计算减少外部字节，却增加布局转换，何时节省任务时间？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。小批次与不匹配算子使转换成本主导。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：小批次与不匹配算子使转换成本主导。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "存内计算与完整推理挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "存内计算减少外部字节，却增加布局转换，何时节省任务时间？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "小批次与不匹配算子使转换成本主导。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：小批次与不匹配算子使转换成本主导。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H25",
+        "H26",
+        "V26"
+      ]
+    },
+    {
+      "id": "sherry-xu",
+      "name": "Sherry Xu",
+      "field": "云服务驱动的加速器系统",
+      "core": "按部署服务的吞吐、数值及管理约束检验芯片。",
+      "evidence": "HC 2024 MAIA 100 联合讲者；2025 program member/networking chair。",
+      "habits": [
+        "按部署服务的吞吐、数值及管理约束检验芯片。",
+        "固定比较范围与变量：λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛",
+        "优先检验反例：动态请求和多租户隔离降低有效利用率。"
+      ],
+      "questions": [
+        "加速器峰值提高而请求批次变小，合格服务吞吐如何变化？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。动态请求和多租户隔离降低有效利用率。",
+      "diagnostic": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：动态请求和多租户隔离降低有效利用率。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "云服务驱动的加速器系统挑战",
+        "skills": [
+          "A2",
+          "A5",
+          "A10"
+        ],
+        "question": "加速器峰值提高而请求批次变小，合格服务吞吐如何变化？",
+        "variables": "λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "稳定性必要条件 λ<cμ；合格产出须以测得的 A、恢复时间和 D99 校验，不能据利用率直接推导 p99。",
+        "crossover": "服务能力、可用性和尾延迟均合格后，再比较单位合格请求成本。",
+        "counterexample": "动态请求和多租户隔离降低有效利用率。",
+        "validation": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：动态请求和多租户隔离降低有效利用率。",
+        "transfer": "迁移到 hyperscaler 运维、资源池与 agent 服务。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H24",
+        "C25"
+      ]
+    },
+    {
+      "id": "mahesh-maddury",
+      "name": "Mahesh Maddury",
+      "field": "推荐负载与定制 AI 硅",
+      "core": "从推荐工作流的算子和数据结构选择专用硬件。",
+      "evidence": "HC 2024 next-generation MTIA 联合讲者；2025 program member。",
+      "habits": [
+        "从推荐工作流的算子和数据结构选择专用硬件。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：随机访问和数据准备占据关键路径。"
+      ],
+      "questions": [
+        "embedding 容量增长时，增加乘加阵列是否解决推荐延迟？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。随机访问和数据准备占据关键路径。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：随机访问和数据准备占据关键路径。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "推荐负载与定制 AI 硅挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "embedding 容量增长时，增加乘加阵列是否解决推荐延迟？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "随机访问和数据准备占据关键路径。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：随机访问和数据准备占据关键路径。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H24",
+        "C25"
+      ]
+    },
+    {
+      "id": "sridhar-lakshmanamurthy",
+      "name": "Sridhar Lakshmanamurthy",
+      "field": "训练与推理的架构分化",
+      "core": "按任务阶段核算计算、存储和系统供给。",
+      "evidence": "HC 2025 Ironwood、2026 eighth-generation TPU 联合讲者。",
+      "habits": [
+        "按任务阶段核算计算、存储和系统供给。",
+        "固定比较范围与变量：w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO",
+        "优先检验反例：短序列、小批次和 SLO 使峰值算力失去代表性。"
+      ],
+      "questions": [
+        "一个芯片在训练领先，何种推理流量会改变最优选择？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。短序列、小批次和 SLO 使峰值算力失去代表性。",
+      "diagnostic": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：短序列、小批次和 SLO 使峰值算力失去代表性。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "训练与推理的架构分化挑战",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "一个芯片在训练领先，何种推理流量会改变最优选择？",
+        "variables": "w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定任务时间模型 T_new/T_old=Σ(w_i/s_i)，Σw_i=1；服务吞吐混合不能直接套用该式。",
+        "crossover": "代表性任务组合及误差区间内仍受益，并独立通过尾延迟与质量门槛。",
+        "counterexample": "短序列、小批次和 SLO 使峰值算力失去代表性。",
+        "validation": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：短序列、小批次和 SLO 使峰值算力失去代表性。",
+        "transfer": "迁移到 SIR/业务负载差异和平台采购评估。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H25",
+        "H26"
+      ]
+    },
+    {
+      "id": "paulius-micikevicius",
+      "name": "Paulius Micikevicius",
+      "field": "数值精度与训练计算效率",
+      "core": "精度选择先满足收敛和数值要求，再追求计算效率。",
+      "evidence": "HC 2020 scale-out tutorial chair/讲者；2021 computational characteristics 讲者。",
+      "habits": [
+        "精度选择先满足收敛和数值要求，再追求计算效率。",
+        "固定比较范围与变量：r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛",
+        "优先检验反例：收敛退化和溢出保护增加完整训练成本。"
+      ],
+      "questions": [
+        "低精度每步更快，却需要更多训练步，何时仍节省能量？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。收敛退化和溢出保护增加完整训练成本。",
+      "diagnostic": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：收敛退化和溢出保护增加完整训练成本。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2020 官方议程",
+          "https://hc32.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2021 官方议程",
+          "https://hc33.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "数值精度与训练计算效率挑战",
+        "skills": [
+          "A1",
+          "A7",
+          "A8"
+        ],
+        "question": "低精度每步更快，却需要更多训练步，何时仍节省能量？",
+        "variables": "r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "在约定数值契约 e≤e_max 下比较 Q/E 与时间；位宽缩小不自动推出能耗等比例下降。",
+        "crossover": "通过极端输入和数值稳定性后，收益才可与转换、缩放及溢出保护成本比较。",
+        "counterexample": "收敛退化和溢出保护增加完整训练成本。",
+        "validation": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：收敛退化和溢出保护增加完整训练成本。",
+        "transfer": "迁移到混合精度推理、SIMD 与压缩表示。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H20",
+        "H21"
+      ]
+    },
+    {
+      "id": "pradeep-dubey",
+      "name": "Pradeep Dubey",
+      "field": "异构并行的比较边界",
+      "core": "比较并行方案时先固定任务、质量和全系统资源。",
+      "evidence": "HC 2010 FPGA session chair、2024–25 program/steering 记录支持其技术组织经历；本卡不从组织身份推断独占产品贡献。",
+      "habits": [
+        "比较并行方案时先固定任务、质量和全系统资源。",
+        "固定比较范围与变量：w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO",
+        "优先检验反例：质量、预处理和计量边界不同使速度排序失真。"
+      ],
+      "questions": [
+        "两种加速器采用不同精度和软件，怎样建立公平比较？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。质量、预处理和计量边界不同使速度排序失真。",
+      "diagnostic": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：质量、预处理和计量边界不同使速度排序失真。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2010 官方议程",
+          "https://hc22.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构并行的比较边界挑战",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "两种加速器采用不同精度和软件，怎样建立公平比较？",
+        "variables": "w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定任务时间模型 T_new/T_old=Σ(w_i/s_i)，Σw_i=1；服务吞吐混合不能直接套用该式。",
+        "crossover": "代表性任务组合及误差区间内仍受益，并独立通过尾延迟与质量门槛。",
+        "counterexample": "质量、预处理和计量边界不同使速度排序失真。",
+        "validation": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：质量、预处理和计量边界不同使速度排序失真。",
+        "transfer": "迁移到 SIR/业务负载差异和平台采购评估。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H10",
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "id": "ralph-wittig",
+      "name": "Ralph Wittig",
+      "field": "可重构计算与异构集成",
+      "core": "可编程资源的灵活性必须用映射和数据供给核验。",
+      "evidence": "HC 2010 Xilinx programmable families 合作讲者；2024–25 program/steering。",
+      "habits": [
+        "可编程资源的灵活性必须用映射和数据供给核验。",
+        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
+        "优先检验反例：负载变化过快而映射与重配置成本很高。"
+      ],
+      "questions": [
+        "FPGA 数据流避免指令开销，何时被重配置和供数吞掉收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。负载变化过快而映射与重配置成本很高。",
+      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：负载变化过快而映射与重配置成本很高。",
+      "notes": [
+        [
+          "e10",
+          "计算节省与通信代价"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2010 官方议程",
+          "https://hc22.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "可重构计算与异构集成挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "FPGA 数据流避免指令开销，何时被重配置和供数吞掉收益？",
+        "variables": "T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_total=T_setup+n(T_k+T_convert)；并行重叠按实际关键路径去重，M_tmp 另核算容量门槛。",
+        "crossover": "kernel 节省须覆盖启动、转换和临时存储代价，且保持数值/异常契约。",
+        "counterexample": "负载变化过快而映射与重配置成本很高。",
+        "validation": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：负载变化过快而映射与重配置成本很高。",
+        "transfer": "迁移到 AI kernel、ML IR 和异构编译。"
+      },
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H10",
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "id": "tom-kilburn",
+      "name": "Tom Kilburn",
+      "awardYear": 1983,
+      "award": "Eckert–Mauchly Award · 1983",
+      "field": "虚拟存储、资源管理与系统协同",
+      "core": "把有限物理资源组织成程序能有效使用的系统。",
+      "evidence": "Manchester 的项目记录回顾团队的 Atlas、虚拟存储和系统软件创新；这些是团队成果。本库聚焦存储抽象与实际调度协同。",
+      "habits": [
+        "联合考虑存储与软件管理。",
+        "让抽象减轻程序负担。",
+        "核算抽象背后的实际搬运。",
+        "将操作系统视为机器的一部分。"
+      ],
+      "questions": [
+        "程序看到的资源如何兑现？",
+        "管理机制在哪里产生等待？",
+        "抽象方便性付出了什么成本？"
+      ],
+      "boundary": "虚拟容量不等于物理带宽；缺页、翻译与调度可能改变性能。",
+      "diagnostic": "分解翻译、缺页、搬运和执行时间，检查工作集变化时的退化。",
+      "notes": [
+        [
+          "e07",
+          "大页与放置"
+        ],
+        [
+          "e11",
+          "共享容量与瓶颈"
+        ]
+      ],
+      "sources": [
+        [
+          "Manchester：Kilburn 与团队项目记录",
+          "https://www.curation.cs.manchester.ac.uk/digital60/www.digital60.org/about/biographies/tomkilburn/index.html",
+          "Atlas、虚拟存储与系统软件"
+        ]
+      ],
+      "challenge": {
+        "lens": "虚拟资源兑现成本",
+        "skills": [
+          "A2",
+          "A3",
+          "A4"
+        ],
+        "variables": "N_pf：缺页数；L_pf：暴露秒/缺页；T_trans：翻译时间；T_move：额外搬运。",
+        "model": "按 trace 避免重叠重复计费；容量节省须与 N_pf L_pf+T_trans+T_move 比较。",
+        "crossover": "资源缩减的成本价值超过性能损失且 SLO 合格。",
+        "counterexample": "工作集跨过驻留阈值，缺页与排队非线性增长。",
+        "transfer": "迁移到 DDR/SSD 分层或 CXL 放置。",
+        "question": "程序看到的资源如何兑现？",
+        "validation": "分解翻译、缺页、搬运和执行时间，检查工作集变化时的退化。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "foundations"
+      ]
+    },
+    {
+      "id": "james-pomerene",
+      "name": "James H. Pomerene",
+      "awardYear": 2006,
+      "award": "Eckert–Mauchly Award · 2006",
+      "field": "流水线、可靠存储与存储层次",
+      "core": "快速执行依赖可靠、及时的数据供给。",
+      "evidence": "IEEE 获奖资料记录 IAS、Harvest，以及缓存、可靠存储、流水线和预测的早期贡献。本库将供给、执行与可靠性并重作为阅读重心。",
+      "habits": [
+        "检查运算背后的供给链。",
+        "把可靠性写进数据路径。",
+        "联合安排存储层次与执行。",
+        "区分机制存在与净收益。"
+      ],
+      "questions": [
+        "计算资源是否在等待存储？",
+        "错误检测与恢复怎样影响路径？",
+        "层次成本是否抵消了访问节省？"
+      ],
+      "boundary": "早期机制不是今天实现的完整蓝图；可靠性、带宽和延迟需要在当前器件测量。",
+      "diagnostic": "同时测量供给停顿、存储错误与恢复开销，比较完整路径收益。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径"
+        ],
+        [
+          "e09",
+          "执行与数据供给"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Pomerene 贡献记录",
+          "https://www.computer.org/profiles/james-pomerene",
+          "2006 · 存储、流水线与可靠性"
+        ]
+      ],
+      "challenge": {
+        "lens": "可靠的数据供给",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "variables": "T_supply_saved；T_check：检测暴露成本；pR：平均恢复成本。",
+        "model": "同任务简化要求 T_supply_saved>T_check+pR，可靠性另设门槛。",
+        "crossover": "更快供给必须维持检测覆盖和恢复可行。",
+        "counterexample": "省略保护提高均值却增加不可恢复的数据错误。",
+        "transfer": "迁移到 HBM ECC 或持久存储供给。",
+        "question": "计算资源是否在等待存储？",
+        "validation": "同时测量供给停顿、存储错误与恢复开销，比较完整路径收益。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "correctness"
+      ]
+    },
+    {
+      "id": "ravi-arimilli",
+      "name": "Ravi Arimilli",
+      "field": "多处理器缓存与通信组织",
+      "core": "扩展核心时先核算一致性、目录和内存通路的共享预算。",
+      "evidence": "IBM Fellows 与本人公开研究说明支持多处理器及缓存系统工作；具体模型为归纳。",
+      "habits": [
+        "扩展核心时先核算一致性、目录和内存通路的共享预算。",
+        "固定 N：节点；u：更新/s；f：每次扇出；b：消息字节；B：瓶颈 B/s 的定义，按完整任务比较。",
+        "先测试最强反例：共享写热点使全局广播或失效风暴占主导。"
+      ],
+      "questions": [
+        "增加插槽时，何时一致性流量吞掉计算收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。共享写热点使全局广播或失效风暴占主导。",
+      "diagnostic": "扫读写共享比例与 NUMA 放置，测消息、远端等待和合格吞吐。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "Ravi Arimilli：代表性公开资料",
+          "https://ibmresearchnews.blogspot.com/2014/01/cognitive-systems-speculate-on-big-data.html",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "多处理器缓存与通信组织挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A6"
+        ],
+        "question": "增加插槽时，何时一致性流量吞掉计算收益？",
+        "variables": "N：节点；u：更新/s；f：每次扇出；b：消息字节；B：瓶颈 B/s；参数需从待评估系统测量，以下为条件模型。",
+        "model": "一致性需求近似 Nufb，必须低于可用 B；另查串行往返。",
+        "crossover": "减少计算时间需超过新增 coherence 关键路径和排队。",
+        "counterexample": "共享写热点使全局广播或失效风暴占主导。",
+        "validation": "扫读写共享比例与 NUMA 放置，测消息、远端等待和合格吞吐。",
+        "transfer": "迁移到 chiplet coherence 与 KV 共享。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "thomas-vogelsang",
+      "name": "Thomas Vogelsang",
+      "field": "DRAM 器件约束到系统瓶颈",
+      "core": "先识别 DRAM 的容量、功耗和访问限制，再选择系统组织。",
+      "evidence": "VCEW 2023 DRAM 讲者，2025 memory chair，2026 packaging/thermals chair。",
+      "habits": [
+        "先识别 DRAM 的容量、功耗和访问限制，再选择系统组织。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：容量已足够，任务受串行访问延迟限制。"
+      ],
+      "questions": [
+        "增加 DRAM 容量但持续带宽不变，哪些工作负载仍会受益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。容量已足够，任务受串行访问延迟限制。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：容量已足够，任务受串行访问延迟限制。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2023 公开议程",
+          "https://vcew.org/download/vcew-2023-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2025 preliminary program：计划安排",
+          "https://vcew.org/download/vcew-2025-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "DRAM 器件约束到系统瓶颈挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "增加 DRAM 容量但持续带宽不变，哪些工作负载仍会受益？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "容量已足够，任务受串行访问延迟限制。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：容量已足够，任务受串行访问延迟限制。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V23",
+        "V25",
+        "V26"
+      ]
+    },
+    {
+      "id": "peter-hsu",
+      "name": "Peter Hsu",
+      "field": "Intelligent DRAM 的系统边界",
+      "core": "把计算靠近数据的好处与软件和介质限制一起比较。",
+      "evidence": "VCEW 2005 Intelligent DRAM keynote 讲者；不推断其未公开实现细节。",
+      "habits": [
+        "把计算靠近数据的好处与软件和介质限制一起比较。",
+        "固定比较范围与变量：M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒",
+        "优先检验反例：受限逻辑、布局转换和应用非局部访问增加代价。"
+      ],
+      "questions": [
+        "移到 DRAM 附近的计算少搬字节，何时仍输给 CPU？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。受限逻辑、布局转换和应用非局部访问增加代价。",
+      "diagnostic": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：受限逻辑、布局转换和应用非局部访问增加代价。",
+      "notes": [
+        [
+          "e07",
+          "地址转换与数据放置"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2005 公开议程",
+          "https://vcew.org/download/ieee-vail-2005-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "Intelligent DRAM 的系统边界挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "移到 DRAM 附近的计算少搬字节，何时仍输给 CPU？",
+        "variables": "M：任务实际搬运字节；B：持续有效 B/s；W：操作；C：持续操作/s；H：暴露控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(M/B,W/C)；该式只是不含依赖的下界，实测 H 及关键路径用于校准。",
+        "crossover": "减少的数据搬运暴露时间须超过映射、转换及控制的新增时间。",
+        "counterexample": "受限逻辑、布局转换和应用非局部访问增加代价。",
+        "validation": "建议验证（尚未执行）：扫工作集、冷热状态与并发，分开测实际字节、有效带宽、计算和转换；做机制消融。重点否证：受限逻辑、布局转换和应用非局部访问增加代价。",
+        "transfer": "迁移到 CXL、存内计算与 KV 数据放置。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "cpu",
+        "correctness"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V05"
+      ]
+    },
+    {
+      "id": "algirdas-avizienis",
+      "name": "Algirdas Avizienis",
+      "awardYear": 2012,
+      "award": "Eckert–Mauchly Award · 2012",
+      "field": "容错、可靠性与恢复组织",
+      "core": "把故障作为设计条件，组织检测、隔离和恢复。",
+      "evidence": "IEEE 的获奖资料认可容错架构与计算机算术贡献；UCLA 的研究资料列出硬件、软件及分布式系统的容错研究。本条目强调完整失效路径。",
+      "habits": [
+        "明确故障模型和服务保证。",
+        "区分检测、隔离与恢复职责。",
+        "检查冗余之间的共同失效。",
+        "把恢复过程纳入系统设计。"
+      ],
+      "questions": [
+        "哪些故障能够被发现？",
+        "一个故障会传播到哪里？",
+        "冗余是否共享同一弱点？"
+      ],
+      "boundary": "副本数量不等于独立性；共同原因、检测覆盖和恢复失败必须分别评估。",
+      "diagnostic": "按故障模型注入错误，测量检测覆盖、传播范围和恢复到有效服务的时间。",
+      "notes": [
+        [
+          "e13",
+          "检查点与恢复路径"
+        ],
+        [
+          "e11",
+          "共享资源与隔离"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：容错与算术贡献",
+          "https://www.computer.org/profiles/algirdas-avizienis",
+          "2012 · 获奖资料"
+        ],
+        [
+          "UCLA：研究领域",
+          "https://samueli.ucla.edu/people/algirdas-avizienis/",
+          "硬件、软件与分布式容错"
+        ]
+      ],
+      "challenge": {
+        "lens": "故障、隔离与恢复",
+        "skills": [
+          "A3",
+          "A6",
+          "A9"
+        ],
+        "variables": "λ：故障/小时；R：平均恢复小时；G_degraded：降级合格吞吐。",
+        "model": "低发生率独立近似停机比例 λR；相关故障与降级单独分析。",
+        "crossover": "缩短恢复须保持检测、隔离和正确状态，且新增保护成本合理。",
+        "counterexample": "共同原因故障同时击穿冗余副本。",
+        "transfer": "迁移到分布式训练 checkpoint 与 failover。",
+        "question": "哪些故障能够被发现？",
+        "validation": "按故障模型注入错误，测量检测覆盖、传播范围和恢复到有效服务的时间。"
+      },
+      "domain": "correctness",
+      "relatedDomains": []
+    },
+    {
+      "id": "daniel-siewiorek",
+      "name": "Daniel P. Siewiorek",
+      "awardYear": 1988,
+      "award": "Eckert–Mauchly Award · 1988",
+      "field": "并行系统与可靠性",
+      "core": "评价系统时，同时问它能完成多少工作，以及失效时还能做什么。",
+      "evidence": "IEEE 资料记录其 Cm* 多处理器团队工作，并认可并行架构、可靠性与教育贡献。本库从这些贡献提炼性能与失效行为共同设计的视角。",
+      "habits": [
+        "纳入故障而非只看正常路径。",
+        "联合考虑组织与恢复。",
+        "明确可靠性的比较单位。",
+        "用运行行为检验设计假设。"
+      ],
+      "questions": [
+        "哪些故障会影响服务？",
+        "冗余是否共享同一失效来源？",
+        "恢复过程还能交付多少工作？"
+      ],
+      "boundary": "冗余不是可靠性的充分条件；相关故障、检测覆盖和恢复时间必须独立评估。",
+      "diagnostic": "做故障注入，记录检测覆盖、恢复时间与降级期间合格吞吐。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径"
+        ],
+        [
+          "e11",
+          "共享瓶颈"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Siewiorek 与 Cm* 资料",
+          "https://www.computer.org/profiles/daniel-siewiorek",
+          "1988 · 并行架构与可靠性"
+        ]
+      ],
+      "challenge": {
+        "lens": "降级期间的有效服务",
+        "skills": [
+          "A5",
+          "A7",
+          "A9"
+        ],
+        "variables": "G_up、G_deg：正常/降级合格吞吐；a：正常时间比例。",
+        "model": "时间加权输出近似 aG_up+(1-a)G_deg，另查连续停机与 SLO。",
+        "crossover": "冗余提高的合格输出比例须超过完整成本增幅。",
+        "counterexample": "平均输出较高但连续停机超过业务恢复目标。",
+        "transfer": "迁移到 accelerator fleet 的容量与恢复设计。",
+        "question": "哪些故障会影响服务？",
+        "validation": "做故障注入，记录检测覆盖、恢复时间与降级期间合格吞吐。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "david-seal",
+      "name": "David Seal",
+      "field": "ISA 精确语义与代际兼容",
+      "core": "先使语义、异常与兼容边界无歧义，再允许实现自由。",
+      "evidence": "Arm 官方纪念文章记录 ISA 验证、参考手册及 Armv8 基础工作。",
+      "habits": [
+        "先使语义、异常与兼容边界无歧义，再允许实现自由。",
+        "固定 I：不变量集合；F：兼容失败数；K：迁移投入 的定义，按完整任务比较。",
+        "先测试最强反例：未定义的异常交互成为应用实际依赖。"
+      ],
+      "questions": [
+        "64 位扩展简化实现，但旧软件依赖例外语义，怎样判断可交付性？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。未定义的异常交互成为应用实际依赖。",
+      "diagnostic": "用边界操作数、异常、模式切换与旧二进制检查规范及实现一致性。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "David Seal：代表性公开资料",
+          "https://newsroom.arm.com/blog/remembering-david-seal",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "ISA 精确语义与代际兼容挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "64 位扩展简化实现，但旧软件依赖例外语义，怎样判断可交付性？",
+        "variables": "I：不变量集合；F：兼容失败数；K：迁移投入；参数需从待评估系统测量，以下为条件模型。",
+        "model": "先要求所有规定 I 成立且兼容测试 F=0；性能只在合格集合内比较。",
+        "crossover": "不能用吞吐收益抵扣语义错误；需要明确弃用或兼容路径。",
+        "counterexample": "未定义的异常交互成为应用实际依赖。",
+        "validation": "用边界操作数、异常、模式切换与旧二进制检查规范及实现一致性。",
+        "transfer": "迁移到加速器 ABI 与浮点契约。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "leslie-lamport",
+      "name": "Leslie Lamport",
+      "field": "因果、状态机与规范",
+      "core": "先写安全性和活性，再讨论协议成本与实现优化。",
+      "evidence": "ACM 官方贡献说明列出因果、逻辑时钟、复制状态机及顺序一致性。",
+      "habits": [
+        "先写安全性和活性，再讨论协议成本与实现优化。",
+        "固定 I：安全不变量；F：故障模型；R：往返数；L：秒 的定义，按完整任务比较。",
+        "先测试最强反例：正常路径一致，网络分区或恢复时违反不变量。"
+      ],
+      "questions": [
+        "减少一次复制往返后，协议是否仍满足一致性和进展？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。正常路径一致，网络分区或恢复时违反不变量。",
+      "diagnostic": "模型检查边界状态，注入丢包、重排、重启与分区；按契约检查历史。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "Leslie Lamport：代表性公开资料",
+          "https://awards.acm.org/award_winners/_1205376.cfm",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "因果、状态机与规范挑战",
+        "skills": [
+          "A1",
+          "A6",
+          "A8"
+        ],
+        "question": "减少一次复制往返后，协议是否仍满足一致性和进展？",
+        "variables": "I：安全不变量；F：故障模型；R：往返数；L：秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "先证明在 F 下 I 成立并明确活性条件；延迟近似 R×L 只是成本模型。",
+        "crossover": "合法方案之间才比较往返与吞吐，不能用低延迟抵扣安全失败。",
+        "counterexample": "正常路径一致，网络分区或恢复时违反不变量。",
+        "validation": "模型检查边界状态，注入丢包、重排、重启与分区；按契约检查历史。",
+        "transfer": "迁移到 coherence 协议及多 agent 状态。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "barbara-liskov",
+      "name": "Barbara Liskov",
+      "field": "抽象与可替换契约",
+      "core": "模块替换必须保留可观察的契约，隐藏表示不等于隐藏语义。",
+      "evidence": "MIT 的获奖说明与本人 ACM 访谈记录抽象、语言与系统工作。",
+      "habits": [
+        "模块替换必须保留可观察的契约，隐藏表示不等于隐藏语义。",
+        "固定 P/Q：前后条件；H：可观察历史集合；T：成本 的定义，按完整任务比较。",
+        "先测试最强反例：异常、别名或并发时暴露不同语义。"
+      ],
+      "questions": [
+        "新缓存接口更快，但失败时返回陈旧数据，能否替换旧接口？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。异常、别名或并发时暴露不同语义。",
+      "diagnostic": "检查客户端假设，做并发与异常契约测试，再测端到端成本。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "Barbara Liskov：代表性公开资料",
+          "https://news.mit.edu/2009/turing-liskov-0310",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "抽象与可替换契约挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "新缓存接口更快，但失败时返回陈旧数据，能否替换旧接口？",
+        "variables": "P/Q：前后条件；H：可观察历史集合；T：成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "要求新实现的允许行为满足原契约；性能仅在契约合格集合比较。",
+        "crossover": "若放宽语义，必须显式更改契约和调用者，而非冒充透明替换。",
+        "counterexample": "异常、别名或并发时暴露不同语义。",
+        "validation": "检查客户端假设，做并发与异常契约测试，再测端到端成本。",
+        "transfer": "迁移到加速器 API 和缓存一致性。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "m-frans-kaashoek",
+      "name": "M. Frans Kaashoek",
+      "field": "系统边界与可验证实现",
+      "core": "规范应覆盖并发和崩溃，而非只证明正常执行的局部代码。",
+      "evidence": "MIT CSAIL 资料记录 PDOS、FSCQ 与并发、崩溃安全研究。",
+      "habits": [
+        "规范应覆盖并发和崩溃，而非只证明正常执行的局部代码。",
+        "固定 A：设备及并发假设；I：恢复不变量；H：实现开销 的定义，按完整任务比较。",
+        "先测试最强反例：设备重排、DMA 或写缓存破坏持久化模型。"
+      ],
+      "questions": [
+        "一个已证明的文件系统部署到新设备后，哪些假设要重审？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。设备重排、DMA 或写缓存破坏持久化模型。",
+      "diagnostic": "在持久化边界断电，检查恢复状态并复核设备契约与证明范围。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "M. Frans Kaashoek：代表性公开资料",
+          "https://www.csail.mit.edu/person/frans-kaashoek",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "系统边界与可验证实现挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "一个已证明的文件系统部署到新设备后，哪些假设要重审？",
+        "variables": "A：设备及并发假设；I：恢复不变量；H：实现开销；参数需从待评估系统测量，以下为条件模型。",
+        "model": "证明结论仅在 A 成立时适用；先核对持久化顺序，再比较 H。",
+        "crossover": "部署设备必须满足证明假设；证明覆盖不自动扩展到新接口。",
+        "counterexample": "设备重排、DMA 或写缓存破坏持久化模型。",
+        "validation": "在持久化边界断电，检查恢复状态并复核设备契约与证明范围。",
+        "transfer": "迁移到持久内存与可靠 AI checkpoint。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "debendra-das-sharma",
+      "name": "Debendra Das Sharma",
+      "field": "CXL/UCIe 的协议与互操作边界",
+      "core": "先固定语义与状态责任，再比较链路能力。",
+      "evidence": "VCEW 2021 CXL 讲者；HC 2023 UCIe 教程联合主席与讲者。",
+      "habits": [
+        "先固定语义与状态责任，再比较链路能力。",
+        "固定比较范围与变量：I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节",
+        "优先检验反例：协议合格但共享写热点成为瓶颈。"
+      ],
+      "questions": [
+        "新增内存共享能力却增加一致性事务，何时有系统收益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。协议合格但共享写热点成为瓶颈。",
+      "diagnostic": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：协议合格但共享写热点成为瓶颈。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2021 公开议程",
+          "https://vcew.org/download/vcew-2021-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "CXL/UCIe 的协议与互操作边界挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "新增内存共享能力却增加一致性事务，何时有系统收益？",
+        "variables": "I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "先满足 I；串行关键路径近似 nL+H，存在并发时必须由依赖图重算，b 按实际协议计数。",
+        "crossover": "语义合格后，避免的搬运/等待须超过协议控制及共享状态成本。",
+        "counterexample": "协议合格但共享写热点成为瓶颈。",
+        "validation": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：协议合格但共享写热点成为瓶颈。",
+        "transfer": "迁移到 peer-cache/DRAM 选择、CXL 与 UCIe 边界。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V21",
+        "H23"
+      ]
+    },
+    {
+      "id": "robert-blankenship",
+      "name": "Robert Blankenship",
+      "field": "CXL 一致性与状态控制",
+      "core": "共享能力必须核算状态转移及竞争的关键路径。",
+      "evidence": "HC 2022 CXL2/CXL3 coherency deep dive 讲者。",
+      "habits": [
+        "共享能力必须核算状态转移及竞争的关键路径。",
+        "固定比较范围与变量：I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节",
+        "优先检验反例：更新状态、权限和脏数据约束使最短物理路径不可用。"
+      ],
+      "questions": [
+        "远端缓存命中比本地 DRAM 慢时，应如何选择数据来源？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。更新状态、权限和脏数据约束使最短物理路径不可用。",
+      "diagnostic": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：更新状态、权限和脏数据约束使最短物理路径不可用。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2022 官方议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "CXL 一致性与状态控制挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "远端缓存命中比本地 DRAM 慢时，应如何选择数据来源？",
+        "variables": "I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "先满足 I；串行关键路径近似 nL+H，存在并发时必须由依赖图重算，b 按实际协议计数。",
+        "crossover": "语义合格后，避免的搬运/等待须超过协议控制及共享状态成本。",
+        "counterexample": "更新状态、权限和脏数据约束使最短物理路径不可用。",
+        "validation": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：更新状态、权限和脏数据约束使最短物理路径不可用。",
+        "transfer": "迁移到 peer-cache/DRAM 选择、CXL 与 UCIe 边界。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H22"
+      ]
+    },
+    {
+      "id": "allen-baum",
+      "name": "Allen Baum",
+      "field": "ISA 兼容性测试与覆盖",
+      "core": "未发现失败不等于语义全覆盖，测试需公开覆盖边界。",
+      "evidence": "RISC-V Architectural Compatibility Test 合作资料；HC 2024–25 steering member。",
+      "habits": [
+        "未发现失败不等于语义全覆盖，测试需公开覆盖边界。",
+        "固定比较范围与变量：I：必须成立的语义；F：检测失败数；K：覆盖/维护投入；T：任务秒",
+        "优先检验反例：未覆盖扩展交互、WARL 和异常状态。"
+      ],
+      "questions": [
+        "架构测试全通过，为什么两个实现仍可能运行出不同结果？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。未覆盖扩展交互、WARL 和异常状态。",
+      "diagnostic": "建议验证（尚未执行）：生成边界用例并做差分、异常及扩展组合测试，报告未覆盖状态和版本回退路径。重点否证：未覆盖扩展交互、WARL 和异常状态。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "RISC-V：Architectural Compatibility Test，Allen Baum 与 Ken Dockser",
+          "https://riscv.org/wp-content/uploads/2025/02/Architectural-Compatibility-Test.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "ISA 兼容性测试与覆盖挑战",
+        "skills": [
+          "A1",
+          "A8",
+          "A10"
+        ],
+        "question": "架构测试全通过，为什么两个实现仍可能运行出不同结果？",
+        "variables": "I：必须成立的语义；F：检测失败数；K：覆盖/维护投入；T：任务秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "合格集合要求规定 I 成立；F=0 只表示已执行测试未发现错误，不等于证明全覆盖。",
+        "crossover": "先通过语义及部署门槛，再比较性能、维护和跨实现可用性。",
+        "counterexample": "未覆盖扩展交互、WARL 和异常状态。",
+        "validation": "建议验证（尚未执行）：生成边界用例并做差分、异常及扩展组合测试，报告未覆盖状态和版本回退路径。重点否证：未覆盖扩展交互、WARL 和异常状态。",
+        "transfer": "迁移到 ISA 扩展、协议兼容与加速器 ABI。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "id": "william-kahan",
+      "name": "William Kahan",
+      "field": "浮点语义与数值稳定性",
+      "core": "先定义正确数值结果，再讨论吞吐和近似。",
+      "evidence": "HC 1989 Bumps on the Path to Floating Point Progress keynote，官方以 W. Kahan 列名。",
+      "habits": [
+        "先定义正确数值结果，再讨论吞吐和近似。",
+        "固定比较范围与变量：r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛",
+        "优先检验反例：局部误差很小但累计或消去误差破坏最终结果。"
+      ],
+      "questions": [
+        "更快的近似运算能否用于长链归约和病态输入？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。局部误差很小但累计或消去误差破坏最终结果。",
+      "diagnostic": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：局部误差很小但累计或消去误差破坏最终结果。",
+      "notes": [
+        [
+          "e13",
+          "恢复路径与状态表示"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 1989 官方议程",
+          "https://hc01.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "浮点语义与数值稳定性挑战",
+        "skills": [
+          "A1",
+          "A7",
+          "A8"
+        ],
+        "question": "更快的近似运算能否用于长链归约和病态输入？",
+        "variables": "r：表示位宽；e：输出误差；Q：合格任务数；E：任务 J；D：延迟门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "在约定数值契约 e≤e_max 下比较 Q/E 与时间；位宽缩小不自动推出能耗等比例下降。",
+        "crossover": "通过极端输入和数值稳定性后，收益才可与转换、缩放及溢出保护成本比较。",
+        "counterexample": "局部误差很小但累计或消去误差破坏最终结果。",
+        "validation": "建议验证（尚未执行）：检验极端值、舍入、NaN/Inf 和误差累积；扫精度并测实际流量、能量与质量。重点否证：局部误差很小但累计或消去误差破坏最终结果。",
+        "transfer": "迁移到混合精度推理、SIMD 与压缩表示。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H89"
+      ],
+      "aliases": [
+        "W. Kahan"
+      ]
+    },
+    {
+      "id": "guang-r-gao",
+      "name": "Guang R. Gao",
+      "field": "数据流与并行执行模型",
+      "core": "用依赖关系决定执行就绪，而非让串行表示遮蔽可用并行。",
+      "evidence": "Bob Rau 官方说明记录其 ILP、线程并行编译与微架构贡献。",
+      "habits": [
+        "用依赖关系决定执行就绪，而非让串行表示遮蔽可用并行。",
+        "先固定任务、正确性与资源边界，再判断 数据流与并行执行模型 的收益。",
+        "把新增负担显式放入比较：细粒度依赖管理比运算更贵，或者并行度无法喂满资源。"
+      ],
+      "questions": [
+        "数据流揭示更多并行，却增加 token 和同步开销，交叉点在哪里？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。细粒度依赖管理比运算更贵，或者并行度无法喂满资源。",
+      "diagnostic": "改变任务粒度与并行资源，归因就绪队列、token 流量和关键路径。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据流与并行执行模型挑战",
+        "skills": [
+          "A1",
+          "A6",
+          "A8"
+        ],
+        "question": "数据流揭示更多并行，却增加 token 和同步开销，交叉点在哪里？",
+        "variables": "W：有用计算秒；D：关键路径秒；P：资源；H：调度通信秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(W/P,D)，实际 T≈该下界+未重叠 H。",
+        "crossover": "相对基线缩短的关键路径需大于新增 H。",
+        "counterexample": "细粒度依赖管理比运算更贵，或者并行度无法喂满资源。",
+        "validation": "改变任务粒度与并行资源，归因就绪队列、token 流量和关键路径。",
+        "transfer": "迁移到 AI DAG 调度与 agent 工作流。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "kemal-ebcioglu",
+      "name": "Kemal Ebcioglu",
+      "field": "VLIW、二进制翻译与执行分工",
+      "core": "把并行发现移到工具链时，也把兼容与动态适应成本算进去。",
+      "evidence": "Bob Rau 官方说明记录其 VLIW、ILP 与二进制翻译贡献。",
+      "habits": [
+        "把并行发现移到工具链时，也把兼容与动态适应成本算进去。",
+        "先固定任务、正确性与资源边界，再判断 VLIW、二进制翻译与执行分工 的收益。",
+        "把新增负担显式放入比较：延迟和分支变化使静态计划失效，重翻译成本难摊销。"
+      ],
+      "questions": [
+        "静态调度省硬件，却遇到不可预测内存延迟：何时应让运行时接管？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。延迟和分支变化使静态计划失效，重翻译成本难摊销。",
+      "diagnostic": "扫调用次数与访存扰动，测翻译、回退和有效执行时间。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE Bob Rau Award：贡献说明",
+          "https://www.computer.org/volunteering/awards/rau",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "VLIW、二进制翻译与执行分工挑战",
+        "skills": [
+          "A2",
+          "A8",
+          "A10"
+        ],
+        "question": "静态调度省硬件，却遇到不可预测内存延迟：何时应让运行时接管？",
+        "variables": "s：执行节省/次；J：翻译成本；n：复用次数；h：失配损失/次；参数需从待评估系统测量，以下为条件模型。",
+        "model": "累计净收益=n(s-h)-J；正确性与 ISA 兼容独立验证。",
+        "crossover": "n > J/(s-h)，前提 s>h；失配主导时没有摊销交叉点。",
+        "counterexample": "延迟和分支变化使静态计划失效，重翻译成本难摊销。",
+        "validation": "扫调用次数与访存扰动，测翻译、回退和有效执行时间。",
+        "transfer": "迁移到图编译、shape 特化与运行时重编译。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "frances-e-allen",
+      "name": "Frances E. Allen",
+      "field": "程序分析与合法优化",
+      "core": "先识别控制流和数据依赖，再让编译器兑现可用并行。",
+      "evidence": "ACM 官方获奖说明表彰其优化编译和并行执行贡献。",
+      "habits": [
+        "先识别控制流和数据依赖，再让编译器兑现可用并行。",
+        "固定 W：工作秒；D：依赖秒；P：资源；H：新增调度秒 的定义，按完整任务比较。",
+        "先测试最强反例：别名、reduction 或短循环使并行收益失效。"
+      ],
+      "questions": [
+        "并行化一个循环后更慢，是依赖、粒度还是实现限制？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。别名、reduction 或短循环使并行收益失效。",
+      "diagnostic": "检验依赖和数值契约，扫循环长度与线程数并做优化消融。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "Frances E. Allen：代表性公开资料",
+          "https://www.acm.org/binaries/content/assets/press-releases/2006/2006-turing-award-laureate.pdf",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "程序分析与合法优化挑战",
+        "skills": [
+          "A3",
+          "A6",
+          "A8"
+        ],
+        "question": "并行化一个循环后更慢，是依赖、粒度还是实现限制？",
+        "variables": "W：工作秒；D：依赖秒；P：资源；H：新增调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(W/P,D)，实际额外 H 必须按关键路径计入。",
+        "crossover": "合法变换先保留语义，再要求减少的暴露时间大于 H。",
+        "counterexample": "别名、reduction 或短循环使并行收益失效。",
+        "validation": "检验依赖和数值契约，扫循环长度与线程数并做优化消融。",
+        "transfer": "迁移到图编译与 AI operator fusion。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "tom-conte",
+      "name": "Tom Conte",
+      "field": "编译与架构性能评估",
+      "core": "先保留程序语义，再检查编译和硬件能共同兑现的并行。",
+      "evidence": "Georgia Tech 研究履历说明编译优化、微架构与性能评估；VCEW 2005 program co-chair。",
+      "habits": [
+        "先保留程序语义，再检查编译和硬件能共同兑现的并行。",
+        "固定比较范围与变量：T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节",
+        "优先检验反例：模拟调度忽略缓存、分支与执行端口约束。"
+      ],
+      "questions": [
+        "编译调度减少停顿，何时被实际硬件资源冲突抵消？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。模拟调度忽略缓存、分支与执行端口约束。",
+      "diagnostic": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：模拟调度忽略缓存、分支与执行端口约束。",
+      "notes": [
+        [
+          "e12",
+          "局部优化与整机影响"
+        ]
+      ],
+      "sources": [
+        [
+          "Georgia Tech：Tom Conte 研究方向",
+          "https://ece.gatech.edu/directory/tom-conte",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2005 公开议程",
+          "https://vcew.org/download/ieee-vail-2005-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "编译与架构性能评估挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "编译调度减少停顿，何时被实际硬件资源冲突抵消？",
+        "variables": "T_k：kernel 秒；T_setup：编译/启动秒；T_convert：转换秒；n：复用次数；M_tmp：临时字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_total=T_setup+n(T_k+T_convert)；并行重叠按实际关键路径去重，M_tmp 另核算容量门槛。",
+        "crossover": "kernel 节省须覆盖启动、转换和临时存储代价，且保持数值/异常契约。",
+        "counterexample": "模拟调度忽略缓存、分支与执行端口约束。",
+        "validation": "建议验证（尚未执行）：跨形状、规模和冷热启动检验正确性，统计融合、转换、临时字节和完整应用时间。重点否证：模拟调度忽略缓存、分支与执行端口约束。",
+        "transfer": "迁移到 AI kernel、ML IR 和异构编译。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu",
+        "gpu-ai"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V05"
+      ]
+    },
+    {
+      "id": "kenneth-batcher",
+      "name": "Kenneth E. Batcher",
+      "awardYear": 1990,
+      "award": "Eckert–Mauchly Award · 1990",
+      "field": "排序网络、互连与并行数据组织",
+      "core": "并行计算的组织必须让所需数据交换可实现。",
+      "evidence": "本人原论文将排序网络用于交换组织，比较其硬件规模与交叉开关；其机构资料还记录 STARAN、MPP 及多维访存研究。",
+      "habits": [
+        "从数据交换需求倒推拓扑。",
+        "计算网络深度与元件规模。",
+        "让算法与数据布局协同。",
+        "检查算术以外的连接成本。"
+      ],
+      "questions": [
+        "需要哪些交换模式？",
+        "网络深度和拥塞怎样限制吞吐？",
+        "布局能否减少通信？"
+      ],
+      "boundary": "规则网络的理论复杂度不等于物理实现性能；布线、缓冲和不规则流量仍需分析。",
+      "diagnostic": "测量交换深度、拥塞与布线预算，比较算法和拓扑组合。",
+      "notes": [
+        [
+          "e10",
+          "调度与通信"
+        ],
+        [
+          "e04",
+          "互连与分区"
+        ]
+      ],
+      "sources": [
+        [
+          "Sorting Networks and Their Applications",
+          "https://www.cs.kent.edu/~batcher/sort.pdf",
+          "1968 · 原论文"
+        ],
+        [
+          "本人机构主页",
+          "https://www.cs.kent.edu/~batcher/",
+          "1990 获奖；并行系统与网络"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据交换与拓扑",
+        "skills": [
+          "A4",
+          "A6",
+          "A7"
+        ],
+        "variables": "h：关键路径跳数；α：秒/跳启动；b：字节；B：有效字节/s。",
+        "model": "无拥塞简化路径 T≈hα+b/B；多消息同步与拥塞另建模。",
+        "crossover": "减少交换深度须覆盖布线、拥塞和资源成本。",
+        "counterexample": "逻辑交换深度降低，但热点链路导致排队加剧。",
+        "transfer": "迁移到 chiplet mesh 或集体通信拓扑。",
+        "question": "需要哪些交换模式？",
+        "validation": "测量交换深度、拥塞与布线预算，比较算法和拓扑组合。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "nathan-kalyanasundharam",
+      "name": "Nathan Kalyanasundharam",
+      "field": "封装互连与内存 fabric",
+      "core": "拓扑与协议需共同满足软件可见的共享及隔离需求。",
+      "evidence": "HC 2022 CXL 教程主席/讲者，2023 UCIe 联合主席；2023 议程姓名有拼写变化，作为别名保留。",
+      "habits": [
+        "拓扑与协议需共同满足软件可见的共享及隔离需求。",
+        "固定比较范围与变量：I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节",
+        "优先检验反例：电气互通不等于一致性、管理及故障语义互通。"
+      ],
+      "questions": [
+        "chiplet 接口可互通，是否就能低代价组成共享内存系统？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。电气互通不等于一致性、管理及故障语义互通。",
+      "diagnostic": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：电气互通不等于一致性、管理及故障语义互通。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2022 官方议程",
+          "https://hc34.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "封装互连与内存 fabric挑战",
+        "skills": [
+          "A2",
+          "A4",
+          "A8"
+        ],
+        "question": "chiplet 接口可互通，是否就能低代价组成共享内存系统？",
+        "variables": "I：语义不变量；n：事务数；L：每次暴露延迟秒；H：新增控制秒；b：链路字节；参数需从待评估系统测量，以下为条件模型。",
+        "model": "先满足 I；串行关键路径近似 nL+H，存在并发时必须由依赖图重算，b 按实际协议计数。",
+        "crossover": "语义合格后，避免的搬运/等待须超过协议控制及共享状态成本。",
+        "counterexample": "电气互通不等于一致性、管理及故障语义互通。",
+        "validation": "建议验证（尚未执行）：核对规范，注入竞争、故障和背压，扫读写共享与规模，测关键路径、流量及 p99。重点否证：电气互通不等于一致性、管理及故障语义互通。",
+        "transfer": "迁移到 peer-cache/DRAM 选择、CXL 与 UCIe 边界。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H22",
+        "H23"
+      ],
+      "aliases": [
+        "Nathan Kalyansundharam"
+      ]
+    },
+    {
+      "id": "vladimir-stojanovic",
+      "name": "Vladimir Stojanovic",
+      "field": "光 I/O 的系统边界",
+      "core": "光链路需在相同端点、负载与距离下比较全链路成本。",
+      "evidence": "HC 2010 silicon photonics/memories；2025 optical I/O retimer chiplet 讲者。",
+      "habits": [
+        "光链路需在相同端点、负载与距离下比较全链路成本。",
+        "固定比较范围与变量：b：传输字节；e：有效 J/字节；E_fixed：激光/控制固定 J；H：转换及控制秒",
+        "优先检验反例：固定激光及控制供电超过电链路实际消耗。"
+      ],
+      "questions": [
+        "光 I/O 每字节能量更低，低负载时为何未必省电？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。固定激光及控制供电超过电链路实际消耗。",
+      "diagnostic": "建议验证（尚未执行）：扫距离、负载和温度，测有效字节、固定供电、误码恢复、p99 与维护代价。重点否证：固定激光及控制供电超过电链路实际消耗。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2010 官方议程",
+          "https://hc22.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "光 I/O 的系统边界挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A7"
+        ],
+        "question": "光 I/O 每字节能量更低，低负载时为何未必省电？",
+        "variables": "b：传输字节；e：有效 J/字节；E_fixed：激光/控制固定 J；H：转换及控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_link=b×e+E_fixed；光链路和电链路需使用相同端点与持续时间边界。",
+        "crossover": "较低每字节能量只有覆盖固定能量、转换、封装和维护成本后才构成系统优势。",
+        "counterexample": "固定激光及控制供电超过电链路实际消耗。",
+        "validation": "建议验证（尚未执行）：扫距离、负载和温度，测有效字节、固定供电、误码恢复、p99 与维护代价。重点否证：固定激光及控制供电超过电链路实际消耗。",
+        "transfer": "迁移到光 I/O、scale-up fabric 和机架拓扑。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H10",
+        "H25"
+      ]
+    },
+    {
+      "id": "darius-bunandar",
+      "name": "Darius Bunandar",
+      "field": "光互连与 photonic interposer",
+      "core": "把互连容量与转换、封装和系统管理共同评估。",
+      "evidence": "HC 2025 Passage M1000 3D photonic interposer 讲者。",
+      "habits": [
+        "把互连容量与转换、封装和系统管理共同评估。",
+        "固定比较范围与变量：b：传输字节；e：有效 J/字节；E_fixed：激光/控制固定 J；H：转换及控制秒",
+        "优先检验反例：端点内存和同步限制而非链路速率主导。"
+      ],
+      "questions": [
+        "扩大光互连带宽，何时无法缩短多加速器训练？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。端点内存和同步限制而非链路速率主导。",
+      "diagnostic": "建议验证（尚未执行）：扫距离、负载和温度，测有效字节、固定供电、误码恢复、p99 与维护代价。重点否证：端点内存和同步限制而非链路速率主导。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "光互连与 photonic interposer挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A7"
+        ],
+        "question": "扩大光互连带宽，何时无法缩短多加速器训练？",
+        "variables": "b：传输字节；e：有效 J/字节；E_fixed：激光/控制固定 J；H：转换及控制秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_link=b×e+E_fixed；光链路和电链路需使用相同端点与持续时间边界。",
+        "crossover": "较低每字节能量只有覆盖固定能量、转换、封装和维护成本后才构成系统优势。",
+        "counterexample": "端点内存和同步限制而非链路速率主导。",
+        "validation": "建议验证（尚未执行）：扫距离、负载和温度，测有效字节、固定供电、误码恢复、p99 与维护代价。重点否证：端点内存和同步限制而非链路速率主导。",
+        "transfer": "迁移到光 I/O、scale-up fabric 和机架拓扑。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H25"
+      ]
+    },
+    {
+      "id": "idan-burstein",
+      "name": "Idan Burstein",
+      "field": "DPU/NIC 与基础设施卸载",
+      "core": "卸载需按完整数据路径和主机释放资源核算。",
+      "evidence": "HC 2021 DPU、2025 ConnectX-8、2026 BlueField-4 讲者。",
+      "habits": [
+        "卸载需按完整数据路径和主机释放资源核算。",
+        "固定比较范围与变量：λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛",
+        "优先检验反例：跨设备状态与小请求启动开销主导。"
+      ],
+      "questions": [
+        "NIC 卸载减少 CPU 时间，何时因管理和状态同步增加尾延迟？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。跨设备状态与小请求启动开销主导。",
+      "diagnostic": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：跨设备状态与小请求启动开销主导。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2021 官方议程",
+          "https://hc33.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "DPU/NIC 与基础设施卸载挑战",
+        "skills": [
+          "A2",
+          "A5",
+          "A10"
+        ],
+        "question": "NIC 卸载减少 CPU 时间，何时因管理和状态同步增加尾延迟？",
+        "variables": "λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "稳定性必要条件 λ<cμ；合格产出须以测得的 A、恢复时间和 D99 校验，不能据利用率直接推导 p99。",
+        "crossover": "服务能力、可用性和尾延迟均合格后，再比较单位合格请求成本。",
+        "counterexample": "跨设备状态与小请求启动开销主导。",
+        "validation": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：跨设备状态与小请求启动开销主导。",
+        "transfer": "迁移到 hyperscaler 运维、资源池与 agent 服务。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H21",
+        "H25",
+        "H26"
+      ]
+    },
+    {
+      "id": "gilad-shainer",
+      "name": "Gilad Shainer",
+      "field": "网络拓扑与 AI 扩展",
+      "core": "网络能力需以实际集体通信和任务完成时间证明。",
+      "evidence": "HC 2025 co-packaged photonics、2026 Spectrum-X multiplane 讲者。",
+      "habits": [
+        "网络能力需以实际集体通信和任务完成时间证明。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：热点、拥塞与同步依赖无法由总带宽缓解。"
+      ],
+      "questions": [
+        "网络总带宽提高，但训练迭代不变，是哪里限制扩展？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。热点、拥塞与同步依赖无法由总带宽缓解。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：热点、拥塞与同步依赖无法由总带宽缓解。",
+      "notes": [
+        [
+          "e10",
+          "通信与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2025 官方议程",
+          "https://hc2025.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2026 官方议程",
+          "https://hc2026.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "网络拓扑与 AI 扩展挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "网络总带宽提高，但训练迭代不变，是哪里限制扩展？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "热点、拥塞与同步依赖无法由总带宽缓解。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：热点、拥塞与同步依赖无法由总带宽缓解。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H25",
+        "H26"
+      ]
+    },
+    {
+      "id": "andrew-chien",
+      "name": "Andrew Chien",
+      "field": "能源灵活性与云计算",
+      "core": "把可移动、可延期的计算与能源约束共同设计。",
+      "evidence": "本人 Zero-Carbon Cloud 项目研究动态云与受限或闲置可再生电力；不假设当前电价与碳强度固定。",
+      "habits": [
+        "识别 deadline 灵活度。",
+        "量化中断与迁移。",
+        "区分电量和供电可用性。",
+        "核算真实服务成本。"
+      ],
+      "questions": [
+        "能源节省何时超过中断、迁移和错过 deadline 的代价？",
+        "哪些任务可以移动或延期？",
+        "如何避免只优化电价？"
+      ],
+      "boundary": "可再生可用性、电价与碳排是不同变量；不能互相替代。",
+      "diagnostic": "回放能源与任务 trace，测 deadline、重做、迁移、费用和地点时段碳强度。",
+      "notes": [
+        [
+          "e05",
+          "设施电力约束"
+        ],
+        [
+          "e13",
+          "状态与恢复"
+        ]
+      ],
+      "sources": [
+        [
+          "本人 Zero-Carbon Cloud 项目",
+          "https://people.cs.uchicago.edu/~aachien/lssg/research/zccloud/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "能源灵活性挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "variables": "C_saved：能源节省；C_move、C_redo：迁移和重做成本。",
+        "model": "要求 C_saved>C_move+C_redo，同时满足 deadline；碳排单独记账。",
+        "crossover": "任务弹性足以承受能源变化，且完整成本改善。",
+        "counterexample": "检查点与迁移吞没节省并破坏完成期限。",
+        "transfer": "迁移到训练排程或设施功率限制。",
+        "question": "能源节省何时超过中断、迁移和错过 deadline 的代价？",
+        "validation": "回放能源与任务 trace，测 deadline、重做、迁移、费用和地点时段碳强度。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "jensen-huang",
+      "name": "Jensen Huang · 黄仁勋",
+      "field": "系统与平台战略、计算经济性",
+      "core": "扩大优化边界，直到技术优势成为用户可以使用和购买的结果。",
+      "evidence": "COMPUTEX 2024 演讲将设计对象放到数据中心尺度，并把加速计算与完整平台、计算成本和能耗联系起来。本条目提炼的是系统和平台判断方法，不把产品宣传中的性能倍数视为普遍事实，也不将其角色等同于微架构研究者。",
+      "habits": [
+        "从用户要完成的任务倒推硬件和软件，不从芯片规格直接推导价值。",
+        "遇到网络、软件或供电瓶颈时，扩大设计对象，而不是只继续优化芯片。",
+        "让架构能力通过工具、库和应用路径转化为可使用的性能。",
+        "改变比较分母：从设备价格和占用时间转向相同质量、延迟和可用性下的交付成本。"
+      ],
+      "questions": [
+        "用户最终购买的输出是什么？",
+        "哪一环节阻止硬件优势成为可交付服务？",
+        "应当优化芯片、服务器，还是整个部署系统？"
+      ],
+      "boundary": "全栈设计不是天然胜出。迁移成本、开放接口、供应商依赖和真实利用率都要进入评估；系统叙事不能代替测量。",
+      "diagnostic": "固定服务质量和负载，核对设备、网络、软件及运维总成本与合格输出，测量瓶颈转移后的净收益。",
+      "notes": [
+        [
+          "e05",
+          "昂贵的兆瓦与便宜的加速器"
+        ],
+        [
+          "e14",
+          "GPU 小时与交付服务"
+        ]
+      ],
+      "sources": [
+        [
+          "COMPUTEX 2024 演讲官方摘要",
+          "https://blogs.nvidia.com/blog/computex-2024-jensen-huang/",
+          "2024 · 公开演讲摘要"
+        ]
+      ],
+      "challenge": {
+        "lens": "平台边界与可购买输出",
+        "skills": [
+          "A1",
+          "A7",
+          "A10"
+        ],
+        "variables": "C_platform：设备、网络、软件与运营完整成本；Q：固定质量/SLO 输出。",
+        "model": "比较 C_platform/Q，并明确哪个资源绑定部署。",
+        "crossover": "输出增幅须超过完整成本增幅；用户确有该任务需求。",
+        "counterexample": "组件更快但软件、网络或设施限制使产出不增。",
+        "transfer": "迁移到 GPU-hour 与服务计价比较。",
+        "question": "用户最终购买的输出是什么？",
+        "validation": "固定服务质量和负载，核对设备、网络、软件及运维总成本与合格输出，测量瓶颈转移后的净收益。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai"
+      ]
+    },
+    {
+      "id": "wei-wang",
+      "name": "Wei Wang",
+      "field": "架构反转、策略边界与合格服务经济性",
+      "kind": "author-method",
+      "core": "正确性决定哪些路径合法，经济性决定何时选择哪条路径。技术与负载改变成本次序后，把策略移到能够看见完整代价的层，以合格服务而非局部指标判断架构。",
+      "evidence": "按本项目中组织和完善的五段式 Architecture Notes 框架归纳。E01 区分一致性与供应路径；E02 比较 KV 取回、重算与就近执行；E05 把设备采购放回设施功率约束；E14 区分资源占用与有合同约束的有效产出。本条目提炼文章中的共同推理结构，不是个人传记，也不声称文中的示例是生产实测。",
+      "habits": [
+        "第一段：找继承假设。说明旧机制为何曾经合理，区分必须保持的语义和可以替换的策略。",
+        "第二段：找变化条件。定位工作负载、拓扑、资源价格或约束的变化，用可辩护的数值对比暴露旧假设的反转。",
+        "第三段：建因果与交叉模型。给出同任务、同质量、同 SLO 的比较边界，计算节省、新增成本、重叠及转嫁给其他工作的代价。",
+        "第四段：移动策略边界。比较硬件、接口、编译器、运行时、调度与采购的替代方案，让有完整信息的一层做选择。",
+        "第五段：给证伪诊断与行动。记录实际路径和被拒绝路径的反事实，测瓶颈与尾部，给出何时采用、何时反转以及是否值得交付。"
+      ],
+      "questions": [
+        "这个优化减少了完整服务的成本，还是只把代价转嫁给另一资源、请求或租户？",
+        "哪个变化使旧策略失去优势；在同一契约下，收益在哪个交叉点反转？",
+        "哪一层能看见完整代价，哪个反事实实验会证明我们应该换另一条合法路径？"
+      ],
+      "boundary": "五段式是组织论证的方法，不是每个问题都必然发生反转。语义、质量、安全与 SLO 是门槛；排队、重叠和相关故障须按实际模型处理。不要从局部均值直接外推 fleet 节省；无法建立可靠交叉条件时，结论应是先测量。",
+      "diagnostic": "做受控 A/B 与路径消融：固定工作负载、质量、正确性和 SLO，记录路径选择、暴露等待、搬运字节、重做、功率、合格输出及共租户损失；用采样回放校准被拒绝路径的反事实。在关键变量扫描中寻找结论反转；若局部指标改善但完整 C/W 不降或保证失败，即否定降本主张。",
+      "notes": [
+        [
+          "e01",
+          "合法供应路径与经济性"
+        ],
+        [
+          "e02",
+          "KV 取回、重算与就近执行"
+        ],
+        [
+          "e05",
+          "设施 MW 与有效容量"
+        ],
+        [
+          "e14",
+          "资源小时与服务价值"
+        ]
+      ],
+      "sources": [
+        [
+          "E01：MI Is Correctness, ESF&OD Is Economics",
+          "/ai/notes/e01.html",
+          "本站已发表短文 · 方法依据"
+        ],
+        [
+          "E02：Fetching a KV Prefix vs Recomputing",
+          "/ai/notes/e02.html",
+          "本站已发表短文 · 方法依据"
+        ],
+        [
+          "E05：The Megawatt Constraint",
+          "/ai/notes/e05.html",
+          "本站已发表短文 · 方法依据"
+        ],
+        [
+          "E14：The GPU Hour Is the Wrong Unit of Compute",
+          "/ai/notes/e14.html",
+          "本站已发表短文 · 方法依据"
+        ]
+      ],
+      "challenge": {
+        "lens": "架构反转与完整成本",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A7",
+          "A8",
+          "A9",
+          "A10"
+        ],
+        "question": "一个方案降低了局部成本，却增加共享资源的竞争。你如何证明它让同一契约下的完整服务更便宜，而不是把代价转嫁出去？",
+        "variables": "C：同周期完整成本（美元）；W：相同质量、正确性与 SLO 下的合格任务数。局部分析中的 C_saved、C_added、C_external 必须使用同单位且不重复计费。",
+        "model": "最终比较 C_A/W_A 与 C_B/W_B。固定合格工作量时，净收益要求 C_saved>C_added+C_external。练习采用 E14 的纯示例：A=$2/h、100 合格请求/s；B=$3/h、200 合格请求/s，仅租金每百万合格请求分别约 $5.56 与 $4.17；还须补网络、状态与闲置成本。",
+        "crossover": "B 更便宜当且仅当 W_B/W_A>C_B/C_A。示例中若 A 保持100请求/s、费用口径仅为租金，B 须超过150合格请求/s；语义、质量与 SLO 任一失败均不得作为可比方案。",
+        "counterexample": "KV 命中率上升或 kernel 更快，却因共享链路、临时内存或共租户干扰降低合格输出；小时价格更低却买到更少有用工作。反转结论也可能不成立：数据已在本地且资源充足时，传统复用仍是最好策略。",
+        "validation": "以匹配契约的 A/B、关键变量扫描和拒绝路径回放验证；记录合格输出、完整成本与被转嫁的干扰。若 C/W 的可信范围不支持改善，或保证/尾部违约，则拒绝降本结论。",
+        "transfer": "先用 KV fetch/recompute/route 建模，再迁移到 clean-shared 的 peer/DRAM 选择，最后迁移到 GPU SKU 在固定 MW 下的采购。每次重建状态权威性、共享瓶颈与成本口径，不直接套用数字。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "memory",
+        "gpu-ai",
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "david-perlmutter",
+      "name": "David Perlmutter",
+      "field": "平台而非部件的产品价值",
+      "core": "以完整使用场景组织性能、能量、互连与软件投入。",
+      "evidence": "Intel 官方移动平台发言讨论性能、能效和连通性；方法是对公开平台视角的归纳。",
+      "habits": [
+        "以完整使用场景组织性能、能量、互连与软件投入。",
+        "固定 E_cpu/E_other：任务 J；T：任务秒；C：生命周期成本 的定义，按完整任务比较。",
+        "先测试最强反例：无线、存储或内存常开能量主导总账。"
+      ],
+      "questions": [
+        "CPU 节能但外围等待延长，平台是否更好？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。无线、存储或内存常开能量主导总账。",
+      "diagnostic": "匹配用户流程，测整机能量、等待与软件可用性。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "David Perlmutter：代表性公开资料",
+          "https://www.intc.com/news-events/press-releases/detail/1038/intel-keeps-mobile-engine-humming-fueled-by-silicon",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "平台而非部件的产品价值挑战",
+        "skills": [
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "CPU 节能但外围等待延长，平台是否更好？",
+        "variables": "E_cpu/E_other：任务 J；T：任务秒；C：生命周期成本；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=E_cpu+E_other；比较完整任务时间与 C/Q。",
+        "crossover": "核心收益必须在整个平台的能量与有效产出兑现。",
+        "counterexample": "无线、存储或内存常开能量主导总账。",
+        "validation": "匹配用户流程，测整机能量、等待与软件可用性。",
+        "transfer": "迁移到 AI 服务器 CPU、GPU 与 NIC 配比。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "don-soltis",
+      "name": "Don Soltis",
+      "field": "吞吐核心与负载匹配",
+      "core": "按实际服务的吞吐、延迟和资源供给选择核心组织。",
+      "evidence": "Intel 官方访谈记录 Xeon E-core 与 Sierra Forest 工作。",
+      "habits": [
+        "按实际服务的吞吐、延迟和资源供给选择核心组织。",
+        "固定 N：核心；q：每核任务/s；b：字节/任务；B：B/s 的定义，按完整任务比较。",
+        "先测试最强反例：共享缓存、带宽和单线程延迟使更多核心空转。"
+      ],
+      "questions": [
+        "更多 E-core 在同功率下胜出，但内存带宽固定，边界在哪里？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。共享缓存、带宽和单线程延迟使更多核心空转。",
+      "diagnostic": "按服务类别扫线程数与内存配置，测合格吞吐、P99 和整机功率。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Don Soltis：代表性公开资料",
+          "https://newsroom.intel.com/data-center/tackling-throughput-computing-sierra-forest",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "吞吐核心与负载匹配挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "更多 E-core 在同功率下胜出，但内存带宽固定，边界在哪里？",
+        "variables": "N：核心；q：每核任务/s；b：字节/任务；B：B/s；参数需从待评估系统测量，以下为条件模型。",
+        "model": "Q≤min(Nq,B/b)，另有 SLO 与调度约束。",
+        "crossover": "新增核心只有在非带宽绑定且延迟合格时增加产出。",
+        "counterexample": "共享缓存、带宽和单线程延迟使更多核心空转。",
+        "validation": "按服务类别扫线程数与内存配置，测合格吞吐、P99 和整机功率。",
+        "transfer": "迁移到 P-core/E-core 云实例。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "fernando-j-corbat",
+      "name": "Fernando J. Corbató",
+      "field": "分时资源与交互响应",
+      "core": "共享计算资源时联合管理公平性、隔离、调度与响应时间。",
+      "evidence": "MIT 官方资料记录 CTSS、Multics 与分时系统贡献。",
+      "habits": [
+        "共享计算资源时联合管理公平性、隔离、调度与响应时间。",
+        "固定 q：时间片秒；h：每次切换秒；n：活跃任务 的定义，按完整任务比较。",
+        "先测试最强反例：缓存破坏、I/O 阻塞和优先级反转使简化模型失效。"
+      ],
+      "questions": [
+        "更短时间片提升交互性，却增加切换开销，交叉点在哪？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。缓存破坏、I/O 阻塞和优先级反转使简化模型失效。",
+      "diagnostic": "回放交互与批任务混部，扫 q，测公平性、切换成本与响应分位数。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Fernando J. Corbató：代表性公开资料",
+          "https://www.csail.mit.edu/news/corbato-named-computer-history-museum-fellow",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "分时资源与交互响应挑战",
+        "skills": [
+          "A5",
+          "A8",
+          "A9"
+        ],
+        "question": "更短时间片提升交互性，却增加切换开销，交叉点在哪？",
+        "variables": "q：时间片秒；h：每次切换秒；n：活跃任务；参数需从待评估系统测量，以下为条件模型。",
+        "model": "饱和轮转简化模型有效执行占比 q/(q+h)，等待与 n、任务分布有关。",
+        "crossover": "时间片需同时满足响应门槛与切换预算，不能从均值推 P99。",
+        "counterexample": "缓存破坏、I/O 阻塞和优先级反转使简化模型失效。",
+        "validation": "回放交互与批任务混部，扫 q，测公平性、切换成本与响应分位数。",
+        "transfer": "迁移到多租户 CPU 调度。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 3,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "rob-chappell",
+      "name": "Rob Chappell",
+      "field": "超大规模服务器可维护性",
+      "core": "有效服务能力应包含维护、故障和恢复时间。",
+      "evidence": "VCEW 2025 preliminary program 列 hyperscale server serviceability；2026 compute/system chair。",
+      "habits": [
+        "有效服务能力应包含维护、故障和恢复时间。",
+        "固定比较范围与变量：λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛",
+        "优先检验反例：更换一个部件导致整节点和共享服务长时间停机。"
+      ],
+      "questions": [
+        "集成降低硬件成本，却使更大故障域停机，何时降低生命周期成本？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。更换一个部件导致整节点和共享服务长时间停机。",
+      "diagnostic": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：更换一个部件导致整节点和共享服务长时间停机。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2025 preliminary program：计划安排",
+          "https://vcew.org/download/vcew-2025-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "超大规模服务器可维护性挑战",
+        "skills": [
+          "A2",
+          "A5",
+          "A10"
+        ],
+        "question": "集成降低硬件成本，却使更大故障域停机，何时降低生命周期成本？",
+        "variables": "λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "稳定性必要条件 λ<cμ；合格产出须以测得的 A、恢复时间和 D99 校验，不能据利用率直接推导 p99。",
+        "crossover": "服务能力、可用性和尾延迟均合格后，再比较单位合格请求成本。",
+        "counterexample": "更换一个部件导致整节点和共享服务长时间停机。",
+        "validation": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：更换一个部件导致整节点和共享服务长时间停机。",
+        "transfer": "迁移到 hyperscaler 运维、资源池与 agent 服务。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V25",
+        "V26"
+      ]
+    },
+    {
+      "id": "trevor-cai",
+      "name": "Trevor Cai",
+      "field": "可预测扩展与基础设施",
+      "core": "用关键路径和实际扩展效率核查资源增长。",
+      "evidence": "HC 2024 Predictable Scaling and Infrastructure keynote 讲者；卡片方法为现代教学归纳。",
+      "habits": [
+        "用关键路径和实际扩展效率核查资源增长。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：固定规模下的好结果无法预测新规模的 straggler。"
+      ],
+      "questions": [
+        "计算资源加倍，哪些观测能区分数据、网络和算法扩展瓶颈？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。固定规模下的好结果无法预测新规模的 straggler。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：固定规模下的好结果无法预测新规模的 straggler。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2024 官方议程",
+          "https://hc2024.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "可预测扩展与基础设施挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "计算资源加倍，哪些观测能区分数据、网络和算法扩展瓶颈？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "固定规模下的好结果无法预测新规模的 straggler。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：固定规模下的好结果无法预测新规模的 straggler。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H24"
+      ]
+    },
+    {
+      "id": "carole-jean-wu",
+      "name": "Carole-Jean Wu",
+      "field": "真实 AI 工作流的端到端效率",
+      "core": "把数据预处理、训练与服务纳入同一任务账。",
+      "evidence": "ACM SIGARCH 2025 Maurice Wilkes Award 说明为“For pioneering computer architecture research to enable efficient, scalable, and sustainable machine learning”。HC 2021 AI at Scale tutorial 联合讲者。",
+      "habits": [
+        "把数据预处理、训练与服务纳入同一任务账。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：局部设备能效改善被端到端任务增长抵消。"
+      ],
+      "questions": [
+        "GPU 阶段省电，却增加预处理和存储耗能，系统是否更高效？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。局部设备能效改善被端到端任务增长抵消。",
+      "diagnostic": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：局部设备能效改善被端到端任务增长抵消。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "ACM SIGARCH Maurice Wilkes Award：2025 贡献说明",
+          "https://www.sigarch.org/benefit/awards/acm-sigarch-maurice-wilkes-award/",
+          "代表性公开来源 · 2026-10-05 核对"
+        ],
+        [
+          "Hot Chips 2021 官方议程",
+          "https://hc33.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "真实 AI 工作流的端到端效率挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "GPU 阶段省电，却增加预处理和存储耗能，系统是否更高效？",
+        "variables": "P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=P×T+E_aux；若 P 已含外围，E_aux=0，避免重复计数。",
+        "crossover": "P_new T_new+E_aux,new < P_old T_old+E_aux,old，且任务质量与 D 均合格。",
+        "counterexample": "局部设备能效改善被端到端任务增长抵消。",
+        "validation": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：局部设备能效改善被端到端任务增长抵消。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H21"
+      ]
+    },
+    {
+      "id": "david-kanter",
+      "name": "David Kanter",
+      "field": "机器学习评测的代表性",
+      "core": "固定版本、质量和计量范围，再比较系统结果。",
+      "evidence": "VCEW 2021 MLCommons 讲者；HC 2021 ML performance tutorial chair。",
+      "habits": [
+        "固定版本、质量和计量范围，再比较系统结果。",
+        "固定比较范围与变量：w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO",
+        "优先检验反例：测试样本和实际模型、输入及 SLO 不匹配。"
+      ],
+      "questions": [
+        "MLPerf 排名改善，怎样验证你的业务组合也受益？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。测试样本和实际模型、输入及 SLO 不匹配。",
+      "diagnostic": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：测试样本和实际模型、输入及 SLO 不匹配。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2021 公开议程",
+          "https://vcew.org/download/vcew-2021-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2021 官方议程",
+          "https://hc33.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "机器学习评测的代表性挑战",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "MLPerf 排名改善，怎样验证你的业务组合也受益？",
+        "variables": "w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定任务时间模型 T_new/T_old=Σ(w_i/s_i)，Σw_i=1；服务吞吐混合不能直接套用该式。",
+        "crossover": "代表性任务组合及误差区间内仍受益，并独立通过尾延迟与质量门槛。",
+        "counterexample": "测试样本和实际模型、输入及 SLO 不匹配。",
+        "validation": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：测试样本和实际模型、输入及 SLO 不匹配。",
+        "transfer": "迁移到 SIR/业务负载差异和平台采购评估。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V21",
+        "H21"
+      ]
+    },
+    {
+      "id": "vijay-janapa-reddi",
+      "name": "Vijay Janapa Reddi",
+      "field": "数据中心之外的 AI 能效评测",
+      "core": "模型选择、数据和测量约束共同决定可部署价值。",
+      "evidence": "VCEW 2023 sustainable data-centric AI 讲者、2024 AI chair；Harvard 确认标准姓名，议程 Reddi/Reddy 为别名。",
+      "habits": [
+        "模型选择、数据和测量约束共同决定可部署价值。",
+        "固定比较范围与变量：w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO",
+        "优先检验反例：质量下降使每个合格任务需要更多计算。"
+      ],
+      "questions": [
+        "更小模型推理更快，却增加错误重试，怎样比较有效产出？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。质量下降使每个合格任务需要更多计算。",
+      "diagnostic": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：质量下降使每个合格任务需要更多计算。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2023 公开议程",
+          "https://vcew.org/download/vcew-2023-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2024 公开议程",
+          "https://vcew.org/download/vcew-2024-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Harvard：Vijay Janapa Reddi",
+          "https://edge.seas.harvard.edu/people/vijay-janapa-reddi",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "数据中心之外的 AI 能效评测挑战",
+        "skills": [
+          "A1",
+          "A9",
+          "A10"
+        ],
+        "question": "更小模型推理更快，却增加错误重试，怎样比较有效产出？",
+        "variables": "w_i：目标任务时间或成本占比；s_i：同质量加速比；ε：测量不确定性；D99：SLO；参数需从待评估系统测量，以下为条件模型。",
+        "model": "固定任务时间模型 T_new/T_old=Σ(w_i/s_i)，Σw_i=1；服务吞吐混合不能直接套用该式。",
+        "crossover": "代表性任务组合及误差区间内仍受益，并独立通过尾延迟与质量门槛。",
+        "counterexample": "质量下降使每个合格任务需要更多计算。",
+        "validation": "建议验证（尚未执行）：公开版本、样本和计量边界，跨时间重复测量，使用留出负载与最差子集检查结论。重点否证：质量下降使每个合格任务需要更多计算。",
+        "transfer": "迁移到 SIR/业务负载差异和平台采购评估。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V23",
+        "V24",
+        "VR"
+      ],
+      "aliases": [
+        "Vijay Reddi",
+        "Vijay Janapa Reddy"
+      ]
+    },
+    {
+      "id": "tom-st-john",
+      "name": "Tom St. John",
+      "field": "推理工作流与异构执行",
+      "core": "按请求形态和软件路径组织推理系统。",
+      "evidence": "HC 2023 inference tutorial chair；VCEW 2024 议程列讲者但题目 TBD，2025–26 AI chair。",
+      "habits": [
+        "按请求形态和软件路径组织推理系统。",
+        "固定比较范围与变量：λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛",
+        "优先检验反例：设备边界和动态批次制造新的队列与尾延迟。"
+      ],
+      "questions": [
+        "把推理拆到不同设备，何时降低延迟而非增加排队？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。设备边界和动态批次制造新的队列与尾延迟。",
+      "diagnostic": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：设备边界和动态批次制造新的队列与尾延迟。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2023 官方议程",
+          "https://hc2023.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2024 公开议程",
+          "https://vcew.org/download/vcew-2024-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2025 preliminary program：计划安排",
+          "https://vcew.org/download/vcew-2025-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "推理工作流与异构执行挑战",
+        "skills": [
+          "A2",
+          "A5",
+          "A10"
+        ],
+        "question": "把推理拆到不同设备，何时降低延迟而非增加排队？",
+        "variables": "λ：请求/s；μ：单服务单元处理能力；c：服务单元数；A：可用比例；D99：p99 门槛；参数需从待评估系统测量，以下为条件模型。",
+        "model": "稳定性必要条件 λ<cμ；合格产出须以测得的 A、恢复时间和 D99 校验，不能据利用率直接推导 p99。",
+        "crossover": "服务能力、可用性和尾延迟均合格后，再比较单位合格请求成本。",
+        "counterexample": "设备边界和动态批次制造新的队列与尾延迟。",
+        "validation": "建议验证（尚未执行）：回放突发与混合负载，注入故障/维护，记录恢复、降级、p99 和完整服务成本。重点否证：设备边界和动态批次制造新的队列与尾延迟。",
+        "transfer": "迁移到 hyperscaler 运维、资源池与 agent 服务。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H23",
+        "V24",
+        "V25",
+        "V26"
+      ]
+    },
+    {
+      "id": "greg-papadopoulos",
+      "name": "Greg Papadopoulos",
+      "field": "可扩展系统与数据流",
+      "core": "按系统工作流和依赖结构判断并行价值。",
+      "evidence": "Stanford 公开履历记述 scalable systems、multithreaded/dataflow 与 fault tolerance；HC 2025 PC。",
+      "habits": [
+        "按系统工作流和依赖结构判断并行价值。",
+        "固定比较范围与变量：W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒",
+        "优先检验反例：任务粒度过细与依赖链限制有效并行度。"
+      ],
+      "questions": [
+        "更多并行线程隐藏等待，何时变成调度和通信负担？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。任务粒度过细与依赖链限制有效并行度。",
+      "diagnostic": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：任务粒度过细与依赖链限制有效并行度。",
+      "notes": [
+        [
+          "e14",
+          "服务产出与完整成本"
+        ]
+      ],
+      "sources": [
+        [
+          "Stanford：Greg Papadopoulos 研究经历",
+          "https://stvp.stanford.edu/people/greg-papadopoulos",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "可扩展系统与数据流挑战",
+        "skills": [
+          "A2",
+          "A6",
+          "A9"
+        ],
+        "question": "更多并行线程隐藏等待，何时变成调度和通信负担？",
+        "variables": "W：单资源总工作秒；D：依赖关键路径秒；p：资源数；H(p)：未重叠通信调度秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T(p)≥max(W/p,D)；H(p) 需用实测依赖图定位，不能把理想下界当速度预测。",
+        "crossover": "新增计算并行节省须大于通信、同步、恢复与负载不均衡的新增暴露时间。",
+        "counterexample": "任务粒度过细与依赖链限制有效并行度。",
+        "validation": "建议验证（尚未执行）：固定任务与质量，扫规模、拓扑、分片及故障率，测利用率、通信、straggler 和完整完成时间。重点否证：任务粒度过细与依赖链限制有效并行度。",
+        "transfer": "迁移到 AI 集群、机架互连与多 agent 扇出。"
+      },
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "C25"
+      ]
+    },
+    {
+      "id": "seymour-cray",
+      "name": "Seymour Cray",
+      "field": "物理布局、系统简洁性与超级计算",
+      "core": "逻辑上的快，必须由真实的距离、存储和冷却条件实现。",
+      "evidence": "史密森尼口述访谈中，Cray 讨论简洁性、用户反馈、清晰的设计目标、重新审视技术材料，以及缩短连接距离。访谈也说明白纸设计不意味着清空经验，架构仍受到时间和财务约束。",
+      "habits": [
+        "把布局、连线和冷却当作计算机设计的一部分，而不是最后的安装问题。",
+        "先确立明确的系统目标，减少互相冲突的局部设计决定。",
+        "从客户使用反馈发现下一代真正需要修正的限制。",
+        "重新检查旧方案的技术前提，同时保留已有经验和风险意识。"
+      ],
+      "questions": [
+        "性能损失有多少来自真实距离而非逻辑结构？",
+        "为了更密集的布局，冷却和供电要付出多少代价？",
+        "这个复杂功能是否服务于明确的系统目标？"
+      ],
+      "boundary": "简洁不等于功能越少越好，白纸设计也不等于每代推倒重来。可制造性、可靠性、兼容性和开发风险都要保留。",
+      "diagnostic": "联合检查关键路径、实际连线距离、存储访问与热约束，再比较缩短距离所带来的集成成本。",
+      "notes": [
+        [
+          "e04",
+          "Chiplet 的物理与产品边界"
+        ],
+        [
+          "e05",
+          "设施功率约束"
+        ]
+      ],
+      "sources": [
+        [
+          "Interview with Seymour Cray",
+          "https://americanhistory.si.edu/comphist/cray.htm",
+          "1995 · 史密森尼保存的本人访谈"
+        ]
+      ],
+      "awardYear": 1989,
+      "award": "Eckert–Mauchly Award · 1989",
+      "challenge": {
+        "lens": "距离、时序与整机约束",
+        "skills": [
+          "A3",
+          "A6",
+          "A7"
+        ],
+        "variables": "T_wire_saved：缩短距离的暴露时间；T_extra：新布局代价；P、Θ：功率/温度。",
+        "model": "关键路径净益要求 T_wire_saved>T_extra，且供给、功率和温度通过。",
+        "crossover": "物理距离节省必须在完整布局和散热条件下兑现。",
+        "counterexample": "更紧布局缩短连线却导致热密度与供电限制。",
+        "transfer": "迁移到 chiplet 放置或 scale-up 机柜。",
+        "question": "性能损失有多少来自真实距离而非逻辑结构？",
+        "validation": "联合检查关键路径、实际连线距离、存储访问与热约束，再比较缩短距离所带来的集成成本。"
+      },
+      "domain": "hpc",
+      "relatedDomains": [
+        "physical-energy"
+      ]
+    },
+    {
+      "id": "harvey-cragon",
+      "name": "Harvey G. Cragon",
+      "awardYear": 1986,
+      "award": "Eckert–Mauchly Award · 1986",
+      "field": "器件技术与科学计算系统",
+      "core": "把器件条件转化为能构造的完整计算系统。",
+      "evidence": "IEEE 获奖资料认可其集成电路计算应用和 TI 科学计算机架构贡献。本库据此提出技术条件、组织与工程实现共同评价的阅读视角。",
+      "habits": [
+        "检查器件条件如何改变组织。",
+        "联合考虑运算与数据供给。",
+        "把实现约束写进架构选择。",
+        "区分可构造方案与理想框图。"
+      ],
+      "questions": [
+        "新器件允许什么组织？",
+        "数据路径是否匹配计算？",
+        "哪项实现约束决定上限？"
+      ],
+      "boundary": "这里是依据获奖贡献的有限归纳，不推定其全部个人哲学；新器件不保证系统收益。",
+      "diagnostic": "建立实现约束表，扫描时序、存储供给与资源预算。",
+      "notes": [
+        [
+          "e04",
+          "器件与成品"
+        ],
+        [
+          "e05",
+          "设施预算"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Cragon 获奖资料",
+          "https://www.computer.org/profiles/harvey-cragon",
+          "1986 · 集成电路与科学计算"
+        ]
+      ],
+      "challenge": {
+        "lens": "器件到系统的兑现",
+        "skills": [
+          "A1",
+          "A3",
+          "A7"
+        ],
+        "variables": "T_device_saved；T_supply_extra；T_control_extra：暴露时间。",
+        "model": "新器件净收益要求 T_device_saved>T_supply_extra+T_control_extra。",
+        "crossover": "系统供给和实现约束允许时，器件提升才可兑现。",
+        "counterexample": "计算器件更快，存储和控制仍保持旧瓶颈。",
+        "transfer": "迁移到先进节点或新存储技术。",
+        "question": "新器件允许什么组织？",
+        "validation": "建立实现约束表，扫描时序、存储供给与资源预算。"
+      },
+      "domain": "hpc",
+      "relatedDomains": []
+    },
+    {
+      "id": "tadashi-watanabe",
+      "name": "Tadashi Watanabe · 渡边贞",
+      "awardYear": 1998,
+      "award": "Eckert–Mauchly Award · 1998",
+      "field": "向量流水线与存储供给",
+      "core": "持续吞吐需要向量执行与数据供给保持匹配。",
+      "evidence": "IEEE 资料记录 NEC SX 系列与 Earth Simulator；获奖依据突出多重并行向量流水线和可编程向量缓存。本条目以供给与执行共同设计为重心。",
+      "habits": [
+        "从应用访问模式设计供给。",
+        "比较持续而非峰值吞吐。",
+        "联合安排流水线与存储。",
+        "检查向量长度及启动代价。"
+      ],
+      "questions": [
+        "向量单元是否被持续供给？",
+        "访问规律能否兑现带宽？",
+        "短向量是否被启动开销主导？"
+      ],
+      "boundary": "规则向量负载的优势不能推广到不规则任务；启动、分支与数据搬运仍需计算。",
+      "diagnostic": "扫描向量长度、步长和工作集，比较持续带宽与有效吞吐。",
+      "notes": [
+        [
+          "e09",
+          "计算与内存预算"
+        ],
+        [
+          "e12",
+          "局部内核与服务"
+        ]
+      ],
+      "sources": [
+        [
+          "IEEE：Watanabe 系统与奖项资料",
+          "https://www.computer.org/profiles/tadashi-watanabe",
+          "1998 · 向量流水线与缓存"
+        ]
+      ],
+      "challenge": {
+        "lens": "向量的持续供给",
+        "skills": [
+          "A3",
+          "A4",
+          "A6"
+        ],
+        "variables": "F：峰值运算/s；B_eff：有效字节/s；I：运算/字节；L：向量长度。",
+        "model": "上界 min(F,B_eff I)，短向量还需计启动与收尾。",
+        "crossover": "增加执行宽度仅在供给及向量长度足以维持时有效。",
+        "counterexample": "跨步、不规则或短向量使峰值单元长期空闲。",
+        "transfer": "迁移到 SVE/SME 或 GPU tensor kernel。",
+        "question": "向量单元是否被持续供给？",
+        "validation": "扫描向量长度、步长和工作集，比较持续带宽与有效吞吐。"
+      },
+      "domain": "hpc",
+      "relatedDomains": []
+    },
+    {
+      "id": "pete-bannon",
+      "name": "Pete Bannon",
+      "field": "处理器与片上网络协同",
+      "core": "将内存控制与通信组织纳入处理器性能，而非只优化核心。",
+      "evidence": "Alpha 21364 Network Architecture 合作论文记录 Bannon 的架构角色与网络设计。",
+      "habits": [
+        "将内存控制与通信组织纳入处理器性能，而非只优化核心。",
+        "先固定任务、正确性与资源边界，再判断 处理器与片上网络协同 的收益。",
+        "把新增负担显式放入比较：热点和路由竞争使平均链路利用率掩盖尾部拥塞。"
+      ],
+      "questions": [
+        "核心吞吐翻倍，互连吞吐固定，整机在哪里停止扩展？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。热点和路由竞争使平均链路利用率掩盖尾部拥塞。",
+      "diagnostic": "按消息路径测注入率、拥塞与完成时间，扫并发及拓扑；通信主导即否证核心扩展。",
+      "notes": [
+        [
+          "e10",
+          "规模与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "The Alpha 21364 Network Architecture：合作论文",
+          "https://pages.cs.wisc.edu/~markhill/restricted/ieeemicro_21364network.pdf",
+          "代表性公开来源 · 2026-10-05 核对；下方模型为教学归纳，非原文实测"
+        ]
+      ],
+      "challenge": {
+        "lens": "处理器与片上网络协同挑战",
+        "skills": [
+          "A3",
+          "A5",
+          "A6"
+        ],
+        "question": "核心吞吐翻倍，互连吞吐固定，整机在哪里停止扩展？",
+        "variables": "N：节点；q：每节点消息/s；b：消息字节；B：瓶颈链路 B/s；参数需从待评估系统测量，以下为条件模型。",
+        "model": "链路需求约 Nqb×拓扑穿越系数；需低于可用 B，并检查排队。",
+        "crossover": "计算节省须超过新增通信关键路径与排队；不能从链路峰值推导 P99。",
+        "counterexample": "热点和路由竞争使平均链路利用率掩盖尾部拥塞。",
+        "validation": "按消息路径测注入率、拥塞与完成时间，扫并发及拓扑；通信主导即否证核心扩展。",
+        "transfer": "迁移到训练集群 collective 拓扑。"
+      },
+      "domain": "hpc",
+      "relatedDomains": [
+        "network"
+      ],
+      "additionBatch": 1
+    },
+    {
+      "id": "justin-rattner",
+      "name": "Justin Rattner",
+      "field": "并行系统与应用驱动研究",
+      "core": "从未来任务倒推并行、功率、可靠性与通信预算。",
+      "evidence": "Intel 2001 年公开发言将功率、并行与系统价值并列；代表团队研究方向。",
+      "habits": [
+        "从未来任务倒推并行、功率、可靠性与通信预算。",
+        "固定 W：工作秒；D：关键路径；P：并行度；H：未重叠开销 的定义，按完整任务比较。",
+        "先测试最强反例：应用并行度不足，或故障恢复随规模恶化。"
+      ],
+      "questions": [
+        "并行资源翻倍，但通信与可靠性投入增加，怎样证明扩展值得？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。应用并行度不足，或故障恢复随规模恶化。",
+      "diagnostic": "扫规模与故障率，测合格完成时间和整任务能量。",
+      "notes": [
+        [
+          "e10",
+          "规模与同步"
+        ]
+      ],
+      "sources": [
+        [
+          "Justin Rattner：代表性公开资料",
+          "https://www.intel.com/pressroom/archive/releases/2001/20011015corp.htm",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "并行系统与应用驱动研究挑战",
+        "skills": [
+          "A1",
+          "A6",
+          "A7"
+        ],
+        "question": "并行资源翻倍，但通信与可靠性投入增加，怎样证明扩展值得？",
+        "variables": "W：工作秒；D：关键路径；P：并行度；H：未重叠开销；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T≥max(W/P,D)，用实测 H 校准而非把下界当预测。",
+        "crossover": "减少的计算时间大于通信、调度与恢复新增时间。",
+        "counterexample": "应用并行度不足，或故障恢复随规模恶化。",
+        "validation": "扫规模与故障率，测合格完成时间和整任务能量。",
+        "transfer": "迁移到多 GPU 集群与 agent 扇出。"
+      },
+      "domain": "hpc",
+      "relatedDomains": [
+        "network"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "al-davis",
+      "name": "Al Davis",
+      "field": "非传统执行与存储组织",
+      "core": "用物理成本和任务行为检验传统计算组织是否仍合理。",
+      "evidence": "Utah 本人研究说明包括高性能架构、异步电路、accelerator 与并行；以下是研究方向归纳。",
+      "habits": [
+        "质疑默认组织。",
+        "检查时序与控制代价。",
+        "共同评价存储和计算。",
+        "核算实现与工具成本。"
+      ],
+      "questions": [
+        "改变执行组织减少了什么成本，又把复杂性移到哪里？",
+        "存储能否配合？",
+        "工具与验证负担会怎样变化？"
+      ],
+      "boundary": "非传统组织不是天然更优；原型收益必须覆盖验证和部署。",
+      "diagnostic": "做组织消融，测同任务能量、延迟、存储行为和实现约束。",
+      "notes": [
+        [
+          "e07",
+          "翻译与数据放置"
+        ],
+        [
+          "e12",
+          "局部加速与完整服务"
+        ]
+      ],
+      "sources": [
+        [
+          "Utah：本人研究说明",
+          "https://users.cs.utah.edu/~ald/",
+          "代表性原始资料 · 阅读核对 2026-10-05"
+        ]
+      ],
+      "challenge": {
+        "lens": "组织反思挑战",
+        "skills": [
+          "A1",
+          "A7",
+          "A8"
+        ],
+        "variables": "E_saved：减少原组织能量；E_ctrl_extra：新增控制能量。",
+        "model": "要求 E_saved>E_ctrl_extra，并独立检查时序与验证门槛。",
+        "crossover": "物理节省应在完整实现而非抽象运算中成立。",
+        "counterexample": "控制与接口使原型能量优势消失。",
+        "transfer": "迁移到异步 accelerator 或近数据计算。",
+        "question": "改变执行组织减少了什么成本，又把复杂性移到哪里？",
+        "validation": "做组织消融，测同任务能量、延迟、存储行为和实现约束。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "memory"
+      ]
+    },
+    {
+      "id": "brad-mccredie",
+      "name": "Brad McCredie",
+      "field": "高频实现与系统可靠性",
+      "core": "高频核心必须同时满足功率、存储供给与 RAS 门槛。",
+      "evidence": "IBM POWER6 合作论文列出 Bradley McCredie 并讨论频率、功率、内存与 RAS。",
+      "habits": [
+        "高频核心必须同时满足功率、存储供给与 RAS 门槛。",
+        "固定 T_c：计算秒；T_m：暴露访存秒；s：频率加速 的定义，按完整任务比较。",
+        "先测试最强反例：访存主导或功率限频使高 GHz 无效。"
+      ],
+      "questions": [
+        "频率提高而内存纳秒延迟不变，服务收益如何收敛？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "依据代表性公开工作提炼分析视角，不推断个人私下决策。访存主导或功率限频使高 GHz 无效。",
+      "diagnostic": "扫频率及内存位置，测暴露等待、整任务能量与错误注入恢复。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "Brad McCredie：代表性公开资料",
+          "https://research.ibm.com/publications/design-of-the-power6tm-microprocessor",
+          "[Public] 贡献依据；[Inferred] 方法与挑战模型；参数不是实测值"
+        ]
+      ],
+      "challenge": {
+        "lens": "高频实现与系统可靠性挑战",
+        "skills": [
+          "A3",
+          "A7",
+          "A10"
+        ],
+        "question": "频率提高而内存纳秒延迟不变，服务收益如何收敛？",
+        "variables": "T_c：计算秒；T_m：暴露访存秒；s：频率加速；参数需从待评估系统测量，以下为条件模型。",
+        "model": "T_new≈T_c/s+T_m，频率影响其他项时重新校准。",
+        "crossover": "提高频率只作用于可缩短部分，需满足功率与 RAS。",
+        "counterexample": "访存主导或功率限频使高 GHz 无效。",
+        "validation": "扫频率及内存位置，测暴露等待、整任务能量与错误注入恢复。",
+        "transfer": "迁移到高频 SKU 与数据中心功率预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 2,
+      "evidenceOrigin": {
+        "contribution": "Public",
+        "method": "Inferred",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "eric-fetzer",
+      "name": "Eric Fetzer",
+      "field": "chiplet 分割与集成代价",
+      "core": "拆分收益必须与封装、测试和跨片通信一起核算。",
+      "evidence": "VCEW 2024 chiplet 讲者，2025 compute chair，2026 packaging chair。",
+      "habits": [
+        "拆分收益必须与封装、测试和跨片通信一起核算。",
+        "固定比较范围与变量：Y_d/Y_p：合格裸片/组装条件比例；C_d/C_p：裸片/封装成本；E_io：I/O J；T：任务秒",
+        "优先检验反例：裸片良率改善被组装失败与 I/O 面积抵消。"
+      ],
+      "questions": [
+        "更小裸片提高合格比例，但跨片控制变贵，怎样选择分割粒度？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。裸片良率改善被组装失败与 I/O 面积抵消。",
+      "diagnostic": "建议验证（尚未执行）：扫描分割粒度，核算封装、测试、良率相关性、返修和热约束；用端到端任务测跨片代价。重点否证：裸片良率改善被组装失败与 I/O 面积抵消。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2024 公开议程",
+          "https://vcew.org/download/vcew-2024-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2025 preliminary program：计划安排",
+          "https://vcew.org/download/vcew-2025-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "chiplet 分割与集成代价挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "question": "更小裸片提高合格比例，但跨片控制变贵，怎样选择分割粒度？",
+        "variables": "Y_d/Y_p：合格裸片/组装条件比例；C_d/C_p：裸片/封装成本；E_io：I/O J；T：任务秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "简化尝试成本模型 C_good≈(C_d+C_p)/(Y_d Y_p)，只适用于无返修、同一成本边界；与任务性能、E_io 分别比较。",
+        "crossover": "合格产品成本优势需同时通过热、互连延迟与软件可用性门槛。",
+        "counterexample": "裸片良率改善被组装失败与 I/O 面积抵消。",
+        "validation": "建议验证（尚未执行）：扫描分割粒度，核算封装、测试、良率相关性、返修和热约束；用端到端任务测跨片代价。重点否证：裸片良率改善被组装失败与 I/O 面积抵消。",
+        "transfer": "迁移到异构 chiplet 与多层缓存封装。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V24",
+        "V25",
+        "V26"
+      ]
+    },
+    {
+      "id": "ravi-mahajan",
+      "name": "Ravi Mahajan",
+      "field": "异构封装与架构可行空间",
+      "core": "让互连密度、供电与热路径参与架构选择。",
+      "evidence": "HC 2021 advanced packaging tutorial 合作讲者；VCEW 2026 heterogeneous integration 讲者。",
+      "habits": [
+        "让互连密度、供电与热路径参与架构选择。",
+        "固定比较范围与变量：Y_d/Y_p：合格裸片/组装条件比例；C_d/C_p：裸片/封装成本；E_io：I/O J；T：任务秒",
+        "优先检验反例：持续频率降低，使高密度无法兑现任务吞吐。"
+      ],
+      "questions": [
+        "增加 3D 集成密度却堵住热路径，何时仍优于平面方案？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。持续频率降低，使高密度无法兑现任务吞吐。",
+      "diagnostic": "建议验证（尚未执行）：扫描分割粒度，核算封装、测试、良率相关性、返修和热约束；用端到端任务测跨片代价。重点否证：持续频率降低，使高密度无法兑现任务吞吐。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2021 官方议程",
+          "https://hc33.hotchips.org/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "异构封装与架构可行空间挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "question": "增加 3D 集成密度却堵住热路径，何时仍优于平面方案？",
+        "variables": "Y_d/Y_p：合格裸片/组装条件比例；C_d/C_p：裸片/封装成本；E_io：I/O J；T：任务秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "简化尝试成本模型 C_good≈(C_d+C_p)/(Y_d Y_p)，只适用于无返修、同一成本边界；与任务性能、E_io 分别比较。",
+        "crossover": "合格产品成本优势需同时通过热、互连延迟与软件可用性门槛。",
+        "counterexample": "持续频率降低，使高密度无法兑现任务吞吐。",
+        "validation": "建议验证（尚未执行）：扫描分割粒度，核算封装、测试、良率相关性、返修和热约束；用端到端任务测跨片代价。重点否证：持续频率降低，使高密度无法兑现任务吞吐。",
+        "transfer": "迁移到异构 chiplet 与多层缓存封装。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "H21",
+        "V26"
+      ]
+    },
+    {
+      "id": "david-nellans",
+      "name": "David Nellans",
+      "field": "热提取与 XPU 架构",
+      "core": "把可持续散热能力看作资源配置约束。",
+      "evidence": "VCEW 2026 公开题目为热提取对 XPU 设计的架构影响；具体机制不由题目推断。",
+      "habits": [
+        "把可持续散热能力看作资源配置约束。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：短时 benchmark 隐藏热稳态退化。"
+      ],
+      "questions": [
+        "芯片计算密度提升而散热不变，哪种任务能兑现更高性能？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。短时 benchmark 隐藏热稳态退化。",
+      "diagnostic": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：短时 benchmark 隐藏热稳态退化。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "热提取与 XPU 架构挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "芯片计算密度提升而散热不变，哪种任务能兑现更高性能？",
+        "variables": "P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=P×T+E_aux；若 P 已含外围，E_aux=0，避免重复计数。",
+        "crossover": "P_new T_new+E_aux,new < P_old T_old+E_aux,old，且任务质量与 D 均合格。",
+        "counterexample": "短时 benchmark 隐藏热稳态退化。",
+        "validation": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：短时 benchmark 隐藏热稳态退化。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 4,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V26"
+      ]
+    },
+    {
+      "id": "udit-gupta",
+      "name": "Udit Gupta",
+      "field": "跨栈可持续 AI",
+      "core": "按完整任务核算效率，区分运行与生命周期边界。",
+      "evidence": "VCEW 2025 preliminary program 跨栈可持续 AI 讲者；2026 academic chair。",
+      "habits": [
+        "按完整任务核算效率，区分运行与生命周期边界。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：利用率低与短使用寿命无法摊销新增交付投入。"
+      ],
+      "questions": [
+        "新硬件运行能量更低，何时频繁更换硬件反而不划算？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。利用率低与短使用寿命无法摊销新增交付投入。",
+      "diagnostic": "建议验证（尚未执行）：记录预计利用率及寿命，核查制造能量来源与边界，扫能效改善和任务增长，对比生命周期能量区间。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2025 preliminary program：计划安排",
+          "https://vcew.org/download/vcew-2025-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "VCEW 2026 公开议程",
+          "https://vcew.org/download/vcew-2026-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "跨栈可持续 AI挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "新硬件运行能量更低，何时频繁更换硬件反而不划算？",
+        "variables": "E_op：预计使用期运行 J；E_emb：同边界制造交付 J；Q_life：使用期合格任务；L：使用寿命；各项需独立测量/估算。",
+        "model": "生命周期能量/任务=(E_op+E_emb)/Q_life；以相同功能和评估期比较延长使用与更换方案，运行与制造不重复计入。",
+        "crossover": "更换减少的预计运行能量必须覆盖新增制造交付能量；质量、容量、使用寿命与可用性需独立通过。",
+        "counterexample": "利用率低与短使用寿命无法摊销新增交付投入。",
+        "validation": "建议验证（尚未执行）：记录预计利用率及寿命，核查制造能量来源与边界，扫能效改善和任务增长，对比生命周期能量区间。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 5,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V25",
+        "V26"
+      ]
+    },
+    {
+      "id": "rob-aitken",
+      "name": "Rob Aitken",
+      "field": "能效约束与技术路线",
+      "core": "用持续有效产出与完整能量取代单纯晶体管增长目标。",
+      "evidence": "Arm 公开 performance-per-watt 文章；HC 2024 program co-chair。",
+      "habits": [
+        "用持续有效产出与完整能量取代单纯晶体管增长目标。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：漏电、布线与软件工作增长抵消器件收益。"
+      ],
+      "questions": [
+        "更先进工艺增加晶体管，何时没有改善任务能效？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。漏电、布线与软件工作增长抵消器件收益。",
+      "diagnostic": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：漏电、布线与软件工作增长抵消器件收益。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "Arm：Rob Aitken 的 Performance Per Watt 论述",
+          "https://newsroom.arm.com/blog/performance-per-watt",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "能效约束与技术路线挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "更先进工艺增加晶体管，何时没有改善任务能效？",
+        "variables": "P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=P×T+E_aux；若 P 已含外围，E_aux=0，避免重复计数。",
+        "crossover": "P_new T_new+E_aux,new < P_old T_old+E_aux,old，且任务质量与 D 均合格。",
+        "counterexample": "漏电、布线与软件工作增长抵消器件收益。",
+        "validation": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：漏电、布线与软件工作增长抵消器件收益。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "C24"
+      ]
+    },
+    {
+      "id": "stefan-rusu",
+      "name": "Stefan Rusu",
+      "field": "实现约束与架构规划",
+      "core": "将技术与设计限制作为架构路线的显式输入。",
+      "evidence": "VCEW 2005 Beyond Moore's Law panel 的 Design Perspectives 讲者；HC 2024–25 publications。",
+      "habits": [
+        "将技术与设计限制作为架构路线的显式输入。",
+        "固定比较范围与变量：P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒",
+        "优先检验反例：时序、压降及热热点使峰值频率不可持续。"
+      ],
+      "questions": [
+        "逻辑更紧凑但供电和布线更难，怎样判断可持续性能？",
+        "哪类负载或约束会使上述收益反转？",
+        "怎样用受控实验区分机制收益与成本转移？"
+      ],
+      "boundary": "公开议程确认主题及角色，不代表拥有全部产品贡献；VCEW 闭门讨论不作披露。以下思维方式、问题与模型为教学归纳，非本人原话。时序、压降及热热点使峰值频率不可持续。",
+      "diagnostic": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：时序、压降及热热点使峰值频率不可持续。",
+      "notes": [
+        [
+          "e05",
+          "兆瓦约束"
+        ]
+      ],
+      "sources": [
+        [
+          "VCEW 2005 公开议程",
+          "https://vcew.org/download/ieee-vail-2005-program.pdf",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2024 委员会",
+          "https://hc2024.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ],
+        [
+          "Hot Chips 2025 委员会",
+          "https://hc2025.hotchips.org/about/committees/",
+          "[Public] 公开议程/技术资料；[Inferred] 方法与条件模型；没有执行实验"
+        ]
+      ],
+      "challenge": {
+        "lens": "实现约束与架构规划挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "逻辑更紧凑但供电和布线更难，怎样判断可持续性能？",
+        "variables": "P：同边界平均 W；T：同任务秒；E_aux：未计入 P 的外围 J；D：截止秒；参数需从待评估系统测量，以下为条件模型。",
+        "model": "E_task=P×T+E_aux；若 P 已含外围，E_aux=0，避免重复计数。",
+        "crossover": "P_new T_new+E_aux,new < P_old T_old+E_aux,old，且任务质量与 D 均合格。",
+        "counterexample": "时序、压降及热热点使峰值频率不可持续。",
+        "validation": "建议验证（尚未执行）：匹配输入与质量，扫功率、并发和冷却条件，运行至热稳态，测完整任务能量与尾延迟。重点否证：时序、压降及热热点使峰值频率不可持续。",
+        "transfer": "迁移到 CPU/GPU 平台与机架能量预算。"
+      },
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 6,
+      "evidenceOrigin": {
+        "contribution": "Public evidence of disclosed topic, collaboration or technical role; not sole authorship",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      },
+      "expansionRound": "VCEW-HotChips-2026-10-05",
+      "conferenceSourceKeys": [
+        "V05",
+        "C24",
+        "C25"
+      ]
+    },
+    {
+      "id": "richard-uhlig",
+      "name": "Richard Uhlig",
+      "field": "虚拟化契约与软硬件边界",
+      "core": "先保持来宾可观察语义，再把频繁的软件干预转化为可实现的硬件契约。",
+      "evidence": "Intel官方履历确认其领导多代Intel VT架构定义；Hot Chips 2005系统虚拟机教程列名Richard Uhlig。Intel技术期刊另在VT-x开发致谢中列名。",
+      "habits": [
+        "拆开隔离保证、来宾行为和VMM实现策略。",
+        "区分减少VM退出次数与降低每次退出成本。",
+        "将地址转换、设备路径与调度开销分别测量。"
+      ],
+      "questions": [
+        "硬件已经支持虚拟化，为什么这个负载仍频繁退出到VMM？",
+        "少一次干预是否保持了同样的隔离、异常与迁移语义？",
+        "性能开销由VM退出、页表访问还是设备路径主导？"
+      ],
+      "boundary": "技术工作包含团队合作，不将共同成果归为个人独占。以下思维方式、问题与条件模型为编辑归纳，非本人原话；建议实验尚未执行。退出变少却增加二级页表未命中或设备同步，完整任务仍变慢。",
+      "diagnostic": "建议验证（尚未执行）：固定来宾、VMM、内存布局和设备配置，收集退出原因、转换事件和完整任务延迟；分别改变退出策略及页大小。",
+      "notes": [
+        [
+          "e07",
+          "大页与热点"
+        ]
+      ],
+      "sources": [
+        [
+          "Intel官方履历：Richard (Rich) A. Uhlig",
+          "https://www.intel.com/content/www/us/en/newsroom/biographies/biography-richard-a-uhlig.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] 系统虚拟机教程列名；不证明实际出席"
+        ],
+        [
+          "Intel Technology Journal 2010 Vol.14 Issue3，VT-x章节及致谢",
+          "https://www.intel.com/content/dam/www/public/us/en/documents/research/2010-vol14-iss-3-intel-technology-journal.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ],
+      "challenge": {
+        "lens": "虚拟化契约与软硬件边界挑战",
+        "skills": [
+          "A1",
+          "A3",
+          "A8"
+        ],
+        "question": "硬件已经支持虚拟化，为什么这个负载仍频繁退出到VMM？",
+        "variables": "T0：同任务裸机基线秒；Nx：退出次数；tx：每次退出新增秒；ΔTpt、ΔTio：互不重复的新增地址转换与I/O等待秒；ε：容许开销比例；参数需由待评估系统测量。",
+        "model": "诊断近似：Tvm = T0 + Nx×tx + ΔTpt + ΔTio；重叠部分只计暴露在关键路径上的等待。",
+        "crossover": "Nx×tx + ΔTpt + ΔTio < ε×T0，且隔离、正确性和SLO不变。",
+        "counterexample": "退出变少却增加二级页表未命中或设备同步，完整任务仍变慢。",
+        "validation": "建议验证（尚未执行）：固定来宾、VMM、内存布局和设备配置，收集退出原因、转换事件和完整任务延迟；分别改变退出策略及页大小。",
+        "transfer": "迁移到IOMMU、机密计算与设备直通的语义/性能分解。"
+      },
+      "domain": "correctness",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "additionBatch": 7,
+      "expansionRound": "Annual-Census-12-2026-10-05",
+      "evidenceOrigin": {
+        "contribution": "Public primary-source evidence; collaborative attribution retained",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "mark-wade",
+      "name": "Mark Wade",
+      "field": "光I/O与chiplet接口",
+      "core": "光互连的价值应按完整链路与实际流量检验，包括光源、封装和接口固定成本。",
+      "evidence": "Hot Chips 2019 TeraPHY技术投影片与节目单列名Mark Wade；Ayar Labs官方资料确认其共同创始人与光I/O技术角色。",
+      "habits": [
+        "区分调制器指标、芯粒指标和完整系统指标。",
+        "将光源与电光转换计入链路能量。",
+        "按距离、流量占空比和封装约束找交叉点。"
+      ],
+      "questions": [
+        "低pJ/bit指标计入外置光源和空闲功率了吗？",
+        "低利用率时，光链路仍比电链路节能吗？",
+        "哪项封装、维修或良率成本会抹去通信收益？"
+      ],
+      "boundary": "技术工作包含团队合作，不将共同成果归为个人独占。以下思维方式、问题与条件模型为编辑归纳，非本人原话；建议实验尚未执行。光源固定功耗、热调谐或封装损耗使低流量下光链路不划算。",
+      "diagnostic": "建议验证（尚未执行）：匹配有效距离与带宽，测光源、调谐、转换及封装边界内功率；扫描占空比和温度并记录错误/重试。",
+      "notes": [
+        [
+          "e04",
+          "芯粒与产品良率"
+        ]
+      ],
+      "sources": [
+        [
+          "Hot Chips 2019：TeraPHY技术投影片",
+          "https://old.hotchips.org/hc31/HC31_2.9_AyarLabs_20190820_HC_FINAL.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2019公开议程",
+          "https://hc31.hotchips.org/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Ayar Labs：Mark Wade技术角色",
+          "https://ayarlabs.com/news/ayar-labs-names-mark-wade-ceo",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ],
+      "challenge": {
+        "lens": "光I/O与chiplet接口挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "question": "低pJ/bit指标计入外置光源和空闲功率了吗？",
+        "variables": "D：期间有效bit；ee、eo：电/光链路随数据增加的J/bit；Pe0、Po0：固定W；T：秒；ΔEsetup：光减电的启动/重配置J差；参数需由待评估系统测量。",
+        "model": "Eo−Ee=D×(eo−ee)+(Po0−Pe0)×T+ΔEsetup；固定与增量成本不得重复计数。",
+        "crossover": "D×(ee−eo)>(Po0−Pe0)×T+ΔEsetup，且带宽、延迟、可靠性及完整成本合格。",
+        "counterexample": "光源固定功耗、热调谐或封装损耗使低流量下光链路不划算。",
+        "validation": "建议验证（尚未执行）：匹配有效距离与带宽，测光源、调谐、转换及封装边界内功率；扫描占空比和温度并记录错误/重试。",
+        "transfer": "迁移到AI scale-up、封装光I/O与资源解耦。"
+      },
+      "domain": "network",
+      "relatedDomains": [
+        "physical-energy",
+        "datacenter"
+      ],
+      "additionBatch": 7,
+      "expansionRound": "Annual-Census-12-2026-10-05",
+      "evidenceOrigin": {
+        "contribution": "Public primary-source evidence; collaborative attribution retained",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "gurtej-sandhu",
+      "name": "Gurtej Sandhu",
+      "field": "存储工艺、封装与可用容量",
+      "core": "存储缩放需要同时穿过器件、制造和封装边界，密度提升最终要兑现可用容量及系统成本。",
+      "evidence": "Micron官方履历确认其Si-to-Package技术路线职责以及DRAM/NAND工艺缩放贡献；VCEW 2022公开议程列名其讲解内存技术趋势。",
+      "habits": [
+        "区分原始bit密度与合格可用容量。",
+        "把制造良率、ECC预留和封装纳入成本边界。",
+        "要求容量、带宽和可靠性同时满足目标。"
+      ],
+      "questions": [
+        "每bit成本下降后，每单位合格服务的完整成本是否下降？",
+        "增加层数或密度时，良率、时延和寿命中的哪项先受限？",
+        "更大容量会改善利用率，还是滞留更多低价值数据？"
+      ],
+      "boundary": "技术工作包含团队合作，不将共同成果归为个人独占。以下思维方式、问题与条件模型为编辑归纳，非本人原话；建议实验尚未执行。密度收益被良率损失、预留容量、控制开销或带宽瓶颈抵消。",
+      "diagnostic": "建议验证（尚未执行）：固定生命周期与服务要求，核对良率、合格容量、控制器成本、能量和读写延迟分布；对工作集做容量/带宽敏感度扫描。",
+      "notes": [
+        [
+          "e11",
+          "池化内存尾延迟"
+        ]
+      ],
+      "sources": [
+        [
+          "Micron官方技术履历",
+          "https://www.micron.com/about/blog/blog-authors/author-bio/gurtej-sandhu",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "VCEW 2022公开议程",
+          "https://vcew.org/download/vcew-2022-program.pdf",
+          "[Public] 内存趋势题目与讲者列名；不披露闭门讨论"
+        ]
+      ],
+      "challenge": {
+        "lens": "存储工艺、封装与可用容量挑战",
+        "skills": [
+          "A2",
+          "A7",
+          "A10"
+        ],
+        "question": "每bit成本下降后，每单位合格服务的完整成本是否下降？",
+        "variables": "K：同生命周期的器件/封装/控制器/能源分摊成本；Cr：原始GB；u：ECC、预留与容量可用比例；Cu=Cr×u；参数需由待评估系统测量。",
+        "model": "可用容量成本 k=K/Cu；Cu不代表带宽或延迟合格的服务能力。",
+        "crossover": "K新/(Cr新×u新)<K旧/(Cr旧×u旧)，且同任务的带宽、延迟、耐久和可靠性均达标。",
+        "counterexample": "密度收益被良率损失、预留容量、控制开销或带宽瓶颈抵消。",
+        "validation": "建议验证（尚未执行）：固定生命周期与服务要求，核对良率、合格容量、控制器成本、能量和读写延迟分布；对工作集做容量/带宽敏感度扫描。",
+        "transfer": "迁移到HBM、DDR、NAND与分层存储采购。"
+      },
+      "domain": "memory",
+      "relatedDomains": [
+        "physical-energy",
+        "datacenter"
+      ],
+      "additionBatch": 7,
+      "expansionRound": "Annual-Census-12-2026-10-05",
+      "evidenceOrigin": {
+        "contribution": "Public primary-source evidence; collaborative attribution retained",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "rick-hetherington",
+      "name": "Rick Hetherington",
+      "field": "多线程吞吐与系统平衡",
+      "core": "用并发隐藏等待之前，先确认内存和共享系统能承接新增的在途工作。",
+      "evidence": "Oracle官方OpenSPARC文献目录列出其CMT系统影响报告；VCEW 2013 SPARC T5报告列名，HC2010光互连导论也列名。UltraSPARC T2署名论文含Rick Hetherington。",
+      "habits": [
+        "区分每线程响应时间与整芯片吞吐。",
+        "用在途工作量估计隐藏等待所需并发。",
+        "把共享内存与队列限制纳入线程数选择。"
+      ],
+      "questions": [
+        "增加硬件线程是隐藏内存等待，还是只让更多请求排队？",
+        "线程数继续增加后，哪个共享资源首先饱和？",
+        "吞吐提升与单请求P99如何共同约束平台选择？"
+      ],
+      "boundary": "技术工作包含团队合作，不将共同成果归为个人独占。以下思维方式、问题与条件模型为编辑归纳，非本人原话；建议实验尚未执行。并发将内存推向饱和，平均吞吐小幅上涨但尾延迟陡增。",
+      "diagnostic": "建议验证（尚未执行）：扫描线程数和工作集，测吞吐、P99、内存带宽与队列深度；固定服务SLO比较可用并发。",
+      "notes": [
+        [
+          "e09",
+          "更多核心"
+        ]
+      ],
+      "sources": [
+        [
+          "Oracle OpenSPARC官方文献目录",
+          "https://www.oracle.com/servers/technologies/opensparc-publications.html",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Oracle：UltraSPARC T2署名技术论文",
+          "https://www.oracle.com/technetwork/systems/opensparc/02-t2-a-sscc2007-1530395.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "VCEW 2013公开议程",
+          "https://vcew.org/download/ce-vail-2013-program.pdf",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ],
+      "challenge": {
+        "lens": "多线程吞吐与系统平衡挑战",
+        "skills": [
+          "A3",
+          "A5",
+          "A6"
+        ],
+        "question": "增加硬件线程是隐藏内存等待，还是只让更多请求排队？",
+        "variables": "N：在途请求数；L：平均端到端秒；λ：完成率请求/秒；B：有效内存byte/秒；b：每请求内存byte；稳定系统；参数需由待评估系统测量。",
+        "model": "Little定律 N=λ×L；带宽约束 λ≤B/b。N与L必须使用同一请求边界。",
+        "crossover": "目标λ需约N=λ×L的在途能力，且λ<B/b及P99达标；增加N不能绕过共享带宽上限。",
+        "counterexample": "并发将内存推向饱和，平均吞吐小幅上涨但尾延迟陡增。",
+        "validation": "建议验证（尚未执行）：扫描线程数和工作集，测吞吐、P99、内存带宽与队列深度；固定服务SLO比较可用并发。",
+        "transfer": "迁移到SMT、agentic CPU并发与吞吐型服务器。"
+      },
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "network"
+      ],
+      "additionBatch": 7,
+      "expansionRound": "Annual-Census-12-2026-10-05",
+      "evidenceOrigin": {
+        "contribution": "Public primary-source evidence; collaborative attribution retained",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    },
+    {
+      "id": "michael-gschwind",
+      "name": "Michael Gschwind",
+      "field": "SIMD、异构并行与编译器协同",
+      "core": "硬件暴露的并行性只有经过数据布局、分工和编译器映射，才成为应用收益。",
+      "evidence": "IBM Research收录其与合作者关于Cell SPU标量/SIMD并行及优化编译器的论文；HC2005相关Cell报告列名合作者，HC2015 I/O虚拟化报告列名。",
+      "habits": [
+        "把硬件执行能力与可编译的程序结构对齐。",
+        "同时核算数据分区、搬运和加速计算。",
+        "以未能向量化及不适合卸载的路径检验收益边界。"
+      ],
+      "questions": [
+        "SIMD计算更快后，布局转换和数据搬运是否主导任务？",
+        "编译器无法证明别名或依赖时，硬件吞吐能兑现多少？",
+        "哪个工作集或控制路径使异构卸载收益反转？"
+      ],
+      "boundary": "技术工作包含团队合作，不将共同成果归为个人独占。以下思维方式、问题与条件模型为编辑归纳，非本人原话；建议实验尚未执行。不规则访问、别名或短任务使转换/同步成本大于计算节省。",
+      "diagnostic": "建议验证（尚未执行）：固定应用质量，拆解编译、布局、搬运、内核和同步；扫描输入形状与工作集，核对完整任务速度。",
+      "notes": [
+        [
+          "e12",
+          "内核与服务"
+        ]
+      ],
+      "sources": [
+        [
+          "IBM Research：Cell多核协同处理",
+          "https://research.ibm.com/publications/synergistic-processing-in-cells-multicore-architecture",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "IBM Research：Cell优化编译器",
+          "https://research.ibm.com/publications/optimizing-compiler-for-a-cell-processor",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ],
+        [
+          "Hot Chips 2005公开议程",
+          "https://hc17.hotchips.org/",
+          "[Public] Cell报告共同作者列名"
+        ],
+        [
+          "Hot Chips 2015公开议程",
+          "https://hc27.hotchips.org/",
+          "[Public] 技术内容及署名；[Inferred] 推理方法与挑战模型"
+        ]
+      ],
+      "challenge": {
+        "lens": "SIMD、异构并行与编译器协同挑战",
+        "skills": [
+          "A3",
+          "A4",
+          "A8"
+        ],
+        "question": "SIMD计算更快后，布局转换和数据搬运是否主导任务？",
+        "variables": "Th：原计算秒；Ta：加速计算秒；Td：暴露数据搬运秒；Tl：布局转换秒；Ts：同步/启动秒；不重复计重叠；参数需由待评估系统测量。",
+        "model": "卸载时间 Toff=Ta+Td+Tl+Ts；若有重叠，各项改为关键路径贡献。",
+        "crossover": "Th−Ta>Td+Tl+Ts，且数值质量与容量约束满足。",
+        "counterexample": "不规则访问、别名或短任务使转换/同步成本大于计算节省。",
+        "validation": "建议验证（尚未执行）：固定应用质量，拆解编译、布局、搬运、内核和同步；扫描输入形状与工作集，核对完整任务速度。",
+        "transfer": "迁移到CPU向量化、GPU卸载与专用加速器编译器。"
+      },
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "cpu"
+      ],
+      "additionBatch": 7,
+      "expansionRound": "Annual-Census-12-2026-10-05",
+      "evidenceOrigin": {
+        "contribution": "Public primary-source evidence; collaborative attribution retained",
+        "method": "Inferred editorial synthesis",
+        "challenge": "Inferred conditional model; no experiment executed"
+      }
+    }
+  ]
+}
