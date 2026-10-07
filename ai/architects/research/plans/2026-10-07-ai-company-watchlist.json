@@ -2,7 +2,7 @@
   "screenedAt": "2026-10-07",
   "scope": "中美AI公司及其公开合作项目的基础设施人物候选；按公司/项目脉络组织，不推断个人国籍。",
   "status": "screening-only-not-added-to-catalog",
-  "candidateCount": 18,
+  "candidateCount": 19,
   "candidates": [
     {
       "id": "jiayi-weng",
@@ -651,6 +651,46 @@
         "补第二项独立技术作品。"
       ],
       "status": "screened-not-audited"
+    },
+    {
+      "id": "sachin-katti",
+      "name": "Sachin Katti",
+      "company": "OpenAI",
+      "priority": "P1",
+      "role": "本人公开宣布担任 VP, Compute Strategy & GPT-Infra，负责算力商业策略与执行、容量上线与经济性，以及GPT-Infra产品方向。",
+      "roleDate": "2026-10-07读取本人公告；页面显示2mo，未将相对时间推算为精确任职日期。",
+      "focus": "从数据中心网络与带宽分配，到算力组合、部署效率和软硬件经济性。",
+      "rationale": "用户明确提名；有数据中心网络研究及OpenAI算力职责证据，适合补充AI基础设施选型和系统决策视角。",
+      "sources": [
+        {
+          "title": "Sachin Katti 本人任职公告",
+          "url": "https://www.linkedin.com/posts/sachin-katti-72777943_im-excited-to-share-that-im-stepping-into-activity-7483756579587059712-2EDT",
+          "date": "2026-10-07读取",
+          "verifiedScope": "已读本人完整公告的职责说明；不据此声称全部基础设施或硬件设计由其独自负责。"
+        },
+        {
+          "title": "Sachin Katti Stanford研究主页",
+          "url": "https://web.stanford.edu/~skatti/",
+          "verifiedScope": "已读研究项目与论文列表；仅用于历史技术背景，不以旧主页推断当前雇佣。"
+        },
+        {
+          "title": "pFabric: Minimal Near-Optimal Datacenter Transport",
+          "url": "https://www.stanford.edu/~skatti/pubs/sigcomm13-pfabric.pdf",
+          "date": "2013",
+          "verifiedScope": "已打开原始论文；本轮仅候选定位，尚未完成逐项机制及个人贡献核验。"
+        },
+        {
+          "title": "NUMFabric: Fast and Flexible Bandwidth Allocation in Datacenters",
+          "url": "https://www.stanford.edu/~skatti/pubs/sigcomm16-num.pdf",
+          "date": "2016",
+          "verifiedScope": "已打开原始论文；共同作品，正式档案仍须核验机制与归属。"
+        }
+      ],
+      "gaps": [
+        "任职公告用于角色定位，不能替代两项独立技术作品的完整审计。",
+        "历史学术共同成果与OpenAI当前职责分别记录；继续核对本人架构决策与具体系统机制。"
+      ],
+      "status": "screened-not-audited"
     }
   ],
   "identityChecks": {
@@ -698,70 +738,13 @@
         "action": "语音转写变体只用于本轮对话识别，不添加为正式姓名别名"
       }
     },
-    "alex": {
+    "anthropic": {
       "checkedAt": "2026-10-07",
-      "query": "Anthropic负责infra、名字Alex，用户未给姓氏",
-      "resolution": "unresolved-nonunique",
-      "conclusion": "找到两位有原始来源、与基础设施相关的Alex；尚不能唯一确认用户所指对象。没有充分证据将任何一位称为Anthropic全公司基础设施总负责人。",
-      "candidates": [
-        {
-          "name": "Alex Kleiman",
-          "fit": "Cloud Inference团队manager，最符合负责云推理infra团队的描述；身份尚待与用户所指对象对上。",
-          "supportedRole": "Anthropic software engineering manager / Cloud Inference team",
-          "roleScope": "跨AWS/GCP/Azure的API集成、请求路由、推理执行、容量管理与运维。",
-          "sources": [
-            {
-              "url": "https://www.linkedin.com/posts/alexkleiman_staff-sr-software-engineer-cloud-inference-activity-7425303397379211265-oCl3",
-              "kind": "本人公开招聘帖原文",
-              "date": "页面显示8mo；取得时间2026-10-07，不把相对日期转换为精确日期",
-              "locator": "lines15–22",
-              "evidence": "本人称my team at Anthropic并明确Cloud Inference团队职责；已打开正文。"
-            },
-            {
-              "url": "https://www.linkedin.com/posts/tehmle_staff-senior-software-engineer-cloud-inference-activity-7426338658775101440-86PY",
-              "kind": "同团队管理者Emily Johnston的本人公开转发",
-              "date": "页面显示8mo；取得时间2026-10-07",
-              "locator": "lines15–28",
-              "evidence": "Alex is a new manager on my team，转引Alex Kleiman原帖；已打开正文。"
-            }
-          ],
-          "limit": "不能从团队manager扩大为Head of Infrastructure；未核验两项独立技术作品，不加入本批20人。"
-        },
-        {
-          "name": "Alex Palcuie",
-          "fit": "Anthropic AI Reliability Engineering，直接做Claude大规模系统可靠性；不是已证实的部门总负责人。",
-          "supportedRole": "Member of Technical Staff, AI Reliability Engineering (AIRE), Anthropic",
-          "sources": [
-            {
-              "url": "https://palcu.net/",
-              "kind": "本人当前主页",
-              "date": "取得2026-10-07，页面含mid-2026信息",
-              "locator": "lines2–11",
-              "evidence": "明确MTS at Anthropic；本人称在AIRE团队维护Claude可靠性，曾在Google GCE任SRE八年。"
-            },
-            {
-              "url": "https://qconlondon.com/speakers/alexpalcuie",
-              "kind": "QCon主办方2026讲者页面",
-              "date": "2026讲者内容；页面顶部已切至2027会议导航，不能把导航日期当演讲日期",
-              "locator": "lines28–45",
-              "evidence": "明确MTS in AI Reliability Engineering at Anthropic；演讲Can Claude Fix Itself? Using LLMs for Incident Response。"
-            },
-            {
-              "url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
-              "kind": "Anthropic公司技术复盘",
-              "date": "2025-09-17",
-              "evidence": "文末致谢Alex Palcuie；仅支持参与/协助，不据此认定文章或所有修复由其独立完成。"
-            }
-          ],
-          "limit": "支持可靠性工程人物候选，但无法与只给Alex的线索唯一匹配。"
-        }
-      ],
-      "notConflated": [
-        "Alex Albert的开发者关系/研究产品工作不能无证据转为基础设施负责人",
-        "Alex Cloud的对齐研究不能按名字推为基础设施负责人",
-        "Alex Allain等其他同名现职线索不足以确认infra职责"
-      ],
-      "nextStep": "请用户提供姓氏、以前公司、活动或职位描述中的任意一个线索，即可针对性核验；现阶段明确保留身份未定。"
+      "resolution": "resolved-by-user-clarification",
+      "name": "James Bradbury",
+      "catalogCandidateId": "james-bradbury",
+      "conclusion": "用户明确说明先前Anthropic人物是James Bradbury；撤销Alex姓名待核项，Alex Kleiman与Alex Palcuie不再作为该人物的匹配候选。",
+      "roleSource": "https://blogs.nvidia.com/blog/vera-cpu-delivery/"
     }
   },
   "deferredCompanies": [
@@ -773,5 +756,9 @@
     "正式入库仍需两项不同实质一手作品、机制正文及个人/团队归属。",
     "历史论文机构、本人当前主页和官方现职分别带日期，遇到冲突保留待核。",
     "本队列不影响已批准并完成的20位扩展批次，也不增加321位正式目录人数。"
+  ],
+  "userConfirmedPriorities": [
+    "james-bradbury",
+    "sachin-katti"
   ]
 }
