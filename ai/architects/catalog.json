@@ -164,7 +164,8 @@
         "yu-hsin-chen",
         "yunji-chen",
         "tianshi-chen",
-        "yiran-zhong"
+        "yiran-zhong",
+        "scott-gray"
       ]
     },
     {
@@ -233,7 +234,8 @@
         "pratap-subrahmanyam",
         "peter-sewell",
         "robert-watson",
-        "simon-moore"
+        "simon-moore",
+        "nhon-quach"
       ]
     },
     {
@@ -273,7 +275,12 @@
         "michael-isard",
         "shen-li",
         "rohan-varma",
-        "huanqi-cao"
+        "huanqi-cao",
+        "jiayi-weng",
+        "philippe-tillet",
+        "james-bradbury",
+        "haibin-lin",
+        "tristan-hume"
       ]
     },
     {
@@ -300,7 +307,10 @@
         "ron-ho",
         "nick-mckeown",
         "li-shiuan-peh",
-        "natalie-enright-jerger"
+        "natalie-enright-jerger",
+        "amin-tootoonchian",
+        "mark-handley",
+        "sachin-katti"
       ]
     },
     {
@@ -338,7 +348,17 @@
         "james-markevitch",
         "eric-chung",
         "christina-delimitrou",
-        "weiran-he"
+        "weiran-he",
+        "christopher-berner",
+        "sam-mccandlish",
+        "tom-brown",
+        "chenggang-zhao",
+        "wencong-xiao",
+        "ziheng-jiang",
+        "ruoyu-qin",
+        "feng-ren",
+        "zheming-li",
+        "wei-lin"
       ]
     },
     {
@@ -41116,6 +41136,2306 @@
         "validation": "固定算子、精度与总 token 量，做强扩展；另固定每卡 token 数做弱扩展。采集 HBM、通信时间线和梯度误差，并用目标任务质量门槛检验模型替换是否可接受。",
         "transfer": "用于判断长上下文平台应优先改善片上复用、GPU 互联延迟还是模型并行方式，并避免把理论 FLOPs 节约直接计入采购收益。"
       }
+    },
+    {
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始技术作品核验；挑战与条件模型是本站编辑提炼，并非本人原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献满足两项不同一手技术作品及机制正文核验，不代表穷尽成果或核验当前职衔。",
+        "verifiedAt": "2026-10-07"
+      },
+      "id": "jiayi-weng",
+      "name": "Jiayi Weng",
+      "aliases": [
+        "翁家翌"
+      ],
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter"
+      ],
+      "field": "把 RL 环境执行当作独立吞吐瓶颈",
+      "core": "通过解耦采样、环境执行与策略更新，让 CPU 环境供给跟上加速器，并显式处理慢环境的等待成本。",
+      "contributions": [
+        "共同署名 EnvPool：C++ 固定线程池连接动作队列和预分配状态队列，将 step 拆为 send/recv；异步返回部分已完成环境，避免每轮等齐全部实例。",
+        "与 Huayu Chen 共同一作 Tianshou：以 collector、replay buffer、policy update 分离采样与训练流程，并提供同步/异步环境采样接口。"
+      ],
+      "background": "强化学习系统研究者。EnvPool 2022 首页将工作归于 Sea AI Lab 等机构，并注明翁家翌当时已在 OpenAI；Tianshou 为清华等团队公开工作，两者不构成 OpenAI 闭源 RLHF 实现的披露。",
+      "argument": "编辑提炼：加速器空闲可能源于环境供给和等待规则；增加 GPU 前，应先区分模拟吞吐、样本时效和学习效率。",
+      "habits": [
+        "同时观测环境完成时间分布与训练消费速度。",
+        "区分环境 FPS 提升和达到目标质量的时间。"
+      ],
+      "questions": [
+        "增加 CPU 环境实例后，训练更快了，还是只积累了更多滞后样本？"
+      ],
+      "boundary": "异步采样改变到达顺序；过多环境和固定 batch 可能降低样本效率。EnvPool 结果依赖具体环境、线程数及 NUMA 布局，不能直接外推到 LLM 后训练。",
+      "diagnostic": "固定算法与目标质量，扫描环境数、recv 批量、线程数及 NUMA 绑定；同时比较环境 FPS、GPU 空闲、队列深度、样本年龄和 time-to-quality。",
+      "sourceAudit": [
+        {
+          "workId": "envpool-2022",
+          "title": "EnvPool: A Highly Parallel Reinforcement Learning Environment Execution Engine",
+          "authors": "Jiayi Weng, Min Lin, Shengyi Huang, Bo Liu, Denys Makoviichuk, Viktor Makoviychuk, Zichen Liu, Yufan Song, Ting Luo, Yukun Jiang, Zhongwen Xu, Shuicheng Yan",
+          "date": "2022",
+          "url": "https://papers.nips.cc/paper_files/paper/2022/file/8caaf08e49ddbad6694fae067442ee21-Paper-Datasets_and_Benchmarks.pdf",
+          "locator": "§3.1–3.3、§4.1，PDF pp.4–6：动作/状态队列、异步批量、固定线程池、绑核与 NUMA；首页署名及 OpenAI 脚注",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tianshou-2022",
+          "title": "Tianshou: A Highly Modularized Deep Reinforcement Learning Library",
+          "authors": "Jiayi Weng, Huayu Chen, Dong Yan, Kaichao You, Alexis Duburcq, Minghao Zhang, Yi Su, Hang Su, Jun Zhu",
+          "date": "2022-08",
+          "url": "https://www.jmlr.org/papers/volume23/21-1127/21-1127.pdf",
+          "locator": "§2、Figures 1–2，pp.2–3：collector、buffer、policy update、异步采样；p.1 共同一作脚注",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sources": [
+        [
+          "EnvPool: A Highly Parallel Reinforcement Learning Environment Execution Engine",
+          "https://papers.nips.cc/paper_files/paper/2022/file/8caaf08e49ddbad6694fae067442ee21-Paper-Datasets_and_Benchmarks.pdf",
+          "§3.1–3.3、§4.1，PDF pp.4–6：动作/状态队列、异步批量、固定线程池、绑核与 NUMA；首页署名及 OpenAI 脚注"
+        ],
+        [
+          "Tianshou: A Highly Modularized Deep Reinforcement Learning Library",
+          "https://www.jmlr.org/papers/volume23/21-1127/21-1127.pdf",
+          "§2、Figures 1–2，pp.2–3：collector、buffer、policy update、异步采样；p.1 共同一作脚注"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名 EnvPool：C++ 固定线程池连接动作队列和预分配状态队列，将 step 拆为 send/recv；异步返回部分已完成环境，避免每轮等齐全部实例。",
+          "workId": "envpool-2022"
+        },
+        {
+          "text": "与 Huayu Chen 共同一作 Tianshou：以 collector、replay buffer、policy update 分离采样与训练流程，并提供同步/异步环境采样接口。",
+          "workId": "tianshou-2022"
+        }
+      ],
+      "evidence": "EnvPool: A Highly Parallel Reinforcement Learning Environment Execution Engine（§3.1–3.3、§4.1，PDF pp.4–6：动作/状态队列、异步批量、固定线程池、绑核与 NUMA；首页署名及 OpenAI 脚注）；Tianshou: A Highly Modularized Deep Reinforcement Learning Library（§2、Figures 1–2，pp.2–3：collector、buffer、policy update、异步采样；p.1 共同一作脚注）",
+      "challenge": {
+        "lens": "把 RL 环境执行当作独立吞吐瓶颈",
+        "skills": [
+          "A3",
+          "A5",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "增加 CPU 环境实例后，训练更快了，还是只积累了更多滞后样本？",
+        "variables": "环境时延分布；CPU 线程数；环境数；接收批量；队列长度；样本年龄；策略更新速率",
+        "model": "编辑条件模型：稳态有效吞吐受环境生成、推理和学习中最慢阶段约束；解除等齐屏障可减少尾部等待，但积压与策略滞后必须计入有效样本成本。",
+        "crossover": "环境时间差异大且学习端能消费时，异步更有利；环境高度均匀或算法要求严格同步时，收益会缩小。",
+        "counterexample": "环境 FPS 翻倍而策略更新速率不变，缓存持续增长且样本更旧，最终质量达标时间反而增加。",
+        "validation": "固定算法与目标质量，扫描环境数、recv 批量、线程数及 NUMA 绑定；同时比较环境 FPS、GPU 空闲、队列深度、样本年龄和 time-to-quality。",
+        "transfer": "将 CPU 核数、NUMA 与 GPU 配比转化为 RL/agent 采样—推理—训练流水线的匹配问题。"
+      }
+    },
+    {
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始技术作品核验；挑战与条件模型是本站编辑提炼，并非本人原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献满足两项不同一手技术作品及机制正文核验，不代表穷尽成果或核验当前职衔。",
+        "verifiedAt": "2026-10-07"
+      },
+      "id": "philippe-tillet",
+      "name": "Philippe Tillet",
+      "aliases": [
+        "Phil Tillet"
+      ],
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "memory"
+      ],
+      "field": "用 tile 抽象和输入感知调优连接算法与硬件",
+      "core": "保留数据块级语义，再依据真实输入形状选择布局与内核，缩小可编程性和设备利用率之间的差距。",
+      "contributions": [
+        "与 H. T. Kung、David Cox 共同提出 Triton 2019：tile IR 支持分块数据流和谓词操作，编译器完成预取、层次分块及合并访存等优化。",
+        "与 David Cox 共同提出 ISAAC：用输入和调优参数训练性能预测模型，再搜索候选并在目标 GPU 复测，从而适配不同矩阵和卷积形状。"
+      ],
+      "background": "GPU 编译与自动调优研究者。本页选取其 Harvard 时期的 ISAAC（SC17）和 Triton（MAPL 2019）两项不同作品；不把后续 Triton 发布介绍重复计作第二作品。",
+      "argument": "编辑提炼：一个抽象要同时保留优化所需信息和可搜索的实现空间；“支持该算子”与“在实际 shape 上高效”是两个验收条件。",
+      "habits": [
+        "按真实 shape 分布而非单一方阵衡量性能。",
+        "将编译、搜索、复测开销与重复调用次数一起计算。"
+      ],
+      "questions": [
+        "自动生成内核的收益能否覆盖调优成本，并在未见输入形状上保持？"
+      ],
+      "boundary": "ISAAC 原文测试 Maxwell/Pascal；预测搜索不保证真实硬件全局最优。Triton 2019 的 C/LLVM 设计不等于当前 Python/MLIR 实现，历史结果不能代表当前 GPU。",
+      "diagnostic": "抽取生产 shape 及频率，留出未见形状；比较库函数、生成内核及实测候选，计入首次编译/调优、稳态时延、误选率和数值误差。",
+      "sourceAudit": [
+        {
+          "workId": "triton-mapl-2019",
+          "title": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations",
+          "authors": "Philippe Tillet, H. T. Kung, David Cox",
+          "date": "2019-06-22",
+          "url": "https://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf",
+          "locator": "§4.2–4.3、§5.1–5.2，PDF pp.5–6：tile IR、谓词、预取、层次分块与合并访存",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "isaac-sc-2017",
+          "title": "Input-Aware Auto-Tuning of Compute-Bound HPC Kernels",
+          "authors": "Philippe Tillet, David Cox",
+          "date": "2017-11",
+          "url": "https://arxiv.org/pdf/1802.05371",
+          "locator": "SC17 原文；§5–6，PDF pp.5–7：MLP 性能模型、对数特征、候选搜索和 GPU 复测；arXiv 版本发布于 2018",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sources": [
+        [
+          "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations",
+          "https://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf",
+          "§4.2–4.3、§5.1–5.2，PDF pp.5–6：tile IR、谓词、预取、层次分块与合并访存"
+        ],
+        [
+          "Input-Aware Auto-Tuning of Compute-Bound HPC Kernels",
+          "https://arxiv.org/pdf/1802.05371",
+          "SC17 原文；§5–6，PDF pp.5–7：MLP 性能模型、对数特征、候选搜索和 GPU 复测；arXiv 版本发布于 2018"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 H. T. Kung、David Cox 共同提出 Triton 2019：tile IR 支持分块数据流和谓词操作，编译器完成预取、层次分块及合并访存等优化。",
+          "workId": "triton-mapl-2019"
+        },
+        {
+          "text": "与 David Cox 共同提出 ISAAC：用输入和调优参数训练性能预测模型，再搜索候选并在目标 GPU 复测，从而适配不同矩阵和卷积形状。",
+          "workId": "isaac-sc-2017"
+        }
+      ],
+      "evidence": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations（§4.2–4.3、§5.1–5.2，PDF pp.5–6：tile IR、谓词、预取、层次分块与合并访存）；Input-Aware Auto-Tuning of Compute-Bound HPC Kernels（SC17 原文；§5–6，PDF pp.5–7：MLP 性能模型、对数特征、候选搜索和 GPU 复测；arXiv 版本发布于 2018）",
+      "challenge": {
+        "lens": "用 tile 抽象和输入感知调优连接算法与硬件",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A8",
+          "A9"
+        ],
+        "question": "自动生成内核的收益能否覆盖调优成本，并在未见输入形状上保持？",
+        "variables": "输入形状分布；tile 大小；寄存器/共享内存占用；访存合并率；调优成本；调用次数；预测误差",
+        "model": "编辑条件模型：累计收益约为调用次数乘每次节省时间，再减去编译、搜索和验证成本；硬件资源约束与输入形状共同决定最佳 tile。",
+        "crossover": "热点 shape 重复多且库函数适配差时易回本；shape 高度动态、调用稀少或模型误差大时应缓存配置或回退。",
+        "counterexample": "只在方阵上选出的 tile 用于大量瘦长矩阵，填充和资源占用上升，理论算力更高却运行更慢。",
+        "validation": "抽取生产 shape 及频率，留出未见形状；比较库函数、生成内核及实测候选，计入首次编译/调优、稳态时延、误选率和数值误差。",
+        "transfer": "评估新加速器的软件成熟度时，以真实模型 shape 覆盖、调优成本及性能稳定性验证编译器承诺。"
+      }
+    },
+    {
+      "notes": [],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始技术作品核验；挑战与条件模型是本站编辑提炼，并非本人原话或个人独占发明声明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定贡献满足两项不同一手技术作品及机制正文核验，不代表穷尽成果或核验当前职衔。",
+        "verifiedAt": "2026-10-07"
+      },
+      "id": "amin-tootoonchian",
+      "name": "Amin Tootoonchian",
+      "aliases": [],
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter",
+        "gpu-ai"
+      ],
+      "field": "让训练作业跨过网络故障继续前进",
+      "core": "将多路径、有限乱序状态和端点故障反馈联合设计，以减少同步训练被少数坏路径拖停的风险。",
+      "contributions": [
+        "共同署名 MRC 协议论文：通过 EV 逐包选路、MPR 有界在途窗口、SACK/NACK 和端点路径健康信号，分离包送达与 RDMA 语义处理。",
+        "共同署名 MRC/SRv6 部署论文：把多平面拓扑与静态源路由结合，让端点绕开坏路径，并以链路及交换机故障实验检验剩余路径上的持续进展。"
+      ],
+      "background": "网络与分布式系统研究者；2026 两篇 MRC 原论文均列其为 OpenAI 作者。协议与部署论文是同一合作项目的不同技术作品，不是两套独立方案，也不是独立复现。",
+      "argument": "编辑提炼：训练网络的成功标准应包含故障中的有效进展；可绕路的物理冗余只有与传输语义、状态上界和故障反馈协同才有价值。",
+      "habits": [
+        "区分拥塞、乱序、端点背压和路径失效。",
+        "同时考察尾部通信耗时、剩余容量与作业重启代价。"
+      ],
+      "questions": [
+        "某条路径失效后，传输能否局部恢复并继续训练，还是必须等待控制面收敛或重启作业？"
+      ],
+      "boundary": "MRC 的不少效率/弹性原语是可选能力；RC 与 MRC 端点不可直接互通。路径冗余不能解决端点失效或共同故障域；部署故障结果依赖具体 NIC、拓扑和工作负载。",
+      "diagnostic": "在相同有效带宽下分别注入单链路、整平面和交换机故障；记录传输尾延迟、窗口停滞、重传量、恢复容量与训练步时，核查 NIC 可选功能和协议互操作要求。",
+      "sourceAudit": [
+        {
+          "workId": "mrc-transport-2026",
+          "title": "The Multipath Reliable Connection (MRC) Transport",
+          "authors": "Rip Sohan, Eric Spada, Eric Davis, Mark Handley, Idan Burstein, Tony Hurson, Jithin Jose, Vivek Kashyap, Rong Pan, Sayantan Sur 等；共同作者包括 Amin Tootoonchian（OpenAI OpCo LLC）",
+          "date": "2026-06-16",
+          "url": "https://arxiv.org/html/2606.18170v1",
+          "locator": "§II-A–II-E、§III、Table I：EV、MPR、SACK/NACK、接收端背压、路径探测；署名与机构",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "与部署论文属于同项目的独立协议作品：核验线上原语、接收窗口和可靠性语义；不据署名推断个人负责哪个原语",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "mrc-srv6-deployment-2026",
+          "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "authors": "Joao Araujo, Alex Chow, Mark Handley, Ryder Lewis, Christoph Paasch, Jitendra Padhye, Michael Papamichael, Greg Steinbrecher, Amin Tootoonchian, Lihua Yuan 等 OpenAI、Microsoft、AMD、Broadcom、NVIDIA 共同作者",
+          "date": "2026",
+          "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "locator": "§2.2–2.4、§3、§5.2.2–5.2.3，PDF pp.3–5、8–9：静态 SRv6、路径探测与故障实验；首页 OpenAI 署名组",
+          "type": "论文全文",
+          "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+          "evidenceStrength": "强：共同署名的一手技术正文",
+          "role": "与 MRC 协议论文属于同项目的独立部署作品：核验拓扑/源路由集成和生产故障实验，不视作独立复现",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sources": [
+        [
+          "The Multipath Reliable Connection (MRC) Transport",
+          "https://arxiv.org/html/2606.18170v1",
+          "§II-A–II-E、§III、Table I：EV、MPR、SACK/NACK、接收端背压、路径探测；署名与机构"
+        ],
+        [
+          "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "§2.2–2.4、§3、§5.2.2–5.2.3，PDF pp.3–5、8–9：静态 SRv6、路径探测与故障实验；首页 OpenAI 署名组"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名 MRC 协议论文：通过 EV 逐包选路、MPR 有界在途窗口、SACK/NACK 和端点路径健康信号，分离包送达与 RDMA 语义处理。",
+          "workId": "mrc-transport-2026"
+        },
+        {
+          "text": "共同署名 MRC/SRv6 部署论文：把多平面拓扑与静态源路由结合，让端点绕开坏路径，并以链路及交换机故障实验检验剩余路径上的持续进展。",
+          "workId": "mrc-srv6-deployment-2026"
+        }
+      ],
+      "evidence": "The Multipath Reliable Connection (MRC) Transport（§II-A–II-E、§III、Table I：EV、MPR、SACK/NACK、接收端背压、路径探测；署名与机构）；Resilient AI Supercomputer Networking using MRC and SRv6（§2.2–2.4、§3、§5.2.2–5.2.3，PDF pp.3–5、8–9：静态 SRv6、路径探测与故障实验；首页 OpenAI 署名组）",
+      "challenge": {
+        "lens": "让训练作业跨过网络故障继续前进",
+        "skills": [
+          "A2",
+          "A3",
+          "A5",
+          "A6",
+          "A8"
+        ],
+        "question": "某条路径失效后，传输能否局部恢复并继续训练，还是必须等待控制面收敛或重启作业？",
+        "variables": "可用路径数；共同故障域；MPR 大小；RTT；重传时间；接收端背压；训练步尾延迟；作业重启成本",
+        "model": "编辑条件模型：故障成本包含短时停顿、剩余带宽下降和重启损失；逐包分散与选择性恢复可限制局部损失，但乱序状态、窗口前进和共享故障域会限制扩展。",
+        "crossover": "存在独立健康路径、端点状态有界且反馈及时，局部恢复更有利；所有路径共用失效组件或端点自身失败时须由更高层处理。",
+        "counterexample": "多条逻辑路径共用同一供电或端口组，单次故障同时切断所有路径；增加 EV 数量并不增加真实冗余。",
+        "validation": "在相同有效带宽下分别注入单链路、整平面和交换机故障；记录传输尾延迟、窗口停滞、重传量、恢复容量与训练步时，核查 NIC 可选功能和协议互操作要求。",
+        "transfer": "把训练网络采购从标称速率提升到故障时进展、真实故障域和软硬件协议能力的联合验收。"
+      }
+    },
+    {
+      "id": "christopher-berner",
+      "name": "Christopher Berner",
+      "aliases": [],
+      "field": "控制面与训练流水线的规模边界",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "compiler-runtime",
+        "gpu-ai"
+      ],
+      "core": "控制面与训练流水线的规模边界：将机制与可测量的系统代价连接。",
+      "contributions": [
+        "署名复盘 Kubernetes 扩至 2,500 节点时的 etcd 延迟、监控放大、镜像拉取及 ARP 容量问题。",
+        "共同参与 OpenAI Five 分布式训练系统：CPU rollout、GPU 推理、同步优化器及参数控制器协同，并控制样本陈旧性。"
+      ],
+      "background": "OpenAI 历史工程贡献人物：2018 集群复盘的署名作者，OpenAI Five 论文共同作者；不据历史作品声明当前职位。",
+      "argument": "编辑提炼：增加 GPU 之后，有效学习进度是否仍被控制面、样本生产或参数更新延迟限制？",
+      "evidence": "Scaling Kubernetes to 2,500 nodes（etcd、Kube masters、Docker image pulls、Networking、ARP cache 各节及作者栏）；Dota 2 with Large Scale Deep Reinforcement Learning（§3.2、Figure 2（PDF pp.5–7），§4.4 Data Quality（staleness）：rollout、推理、优化器和控制器）",
+      "habits": [
+        "扩容前查找资源数量增长会放大的元数据操作。",
+        "把学习闭环延迟与每秒处理量同时测量。"
+      ],
+      "questions": [
+        "增加 GPU 之后，有效学习进度是否仍被控制面、样本生产或参数更新延迟限制？"
+      ],
+      "boundary": "2018 Kubernetes 配置属于历史环境，不能原样用于当前生产；OpenAI Five 机制属于团队，不能按字母署名顺序推断主导者。",
+      "diagnostic": "固定学习目标与数据语义，逐级扩容；记录任务启动 p99、控制面请求/写延迟、样本队列、参数版本滞后和达到目标质量的时间；注入控制面故障检验自动化保护。",
+      "notes": [],
+      "sources": [
+        [
+          "Scaling Kubernetes to 2,500 nodes",
+          "https://openai.com/index/scaling-kubernetes-to-2500-nodes/",
+          "etcd、Kube masters、Docker image pulls、Networking、ARP cache 各节及作者栏"
+        ],
+        [
+          "Dota 2 with Large Scale Deep Reinforcement Learning",
+          "https://arxiv.org/pdf/1912.06680",
+          "§3.2、Figure 2（PDF pp.5–7），§4.4 Data Quality（staleness）：rollout、推理、优化器和控制器"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "kubernetes2500-2018",
+          "title": "Scaling Kubernetes to 2,500 nodes",
+          "authors": "Christopher Berner",
+          "date": "2018-01-18",
+          "url": "https://openai.com/index/scaling-kubernetes-to-2500-nodes/",
+          "locator": "etcd、Kube masters、Docker image pulls、Networking、ARP cache 各节及作者栏",
+          "type": "本人署名技术文章",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "openai-five-2019",
+          "title": "Dota 2 with Large Scale Deep Reinforcement Learning",
+          "authors": "OpenAI 团队（Christopher Berner、Greg Brockman、Brooke Chan、Vicki Cheung 等；全文按字母顺序署名）",
+          "date": "2019-12-13；所读 PDF 扉页标注 2021-03-10",
+          "url": "https://arxiv.org/pdf/1912.06680",
+          "locator": "§3.2、Figure 2（PDF pp.5–7），§4.4 Data Quality（staleness）：rollout、推理、优化器和控制器",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "署名复盘 Kubernetes 扩至 2,500 节点时的 etcd 延迟、监控放大、镜像拉取及 ARP 容量问题。",
+          "workId": "kubernetes2500-2018"
+        },
+        {
+          "text": "共同参与 OpenAI Five 分布式训练系统：CPU rollout、GPU 推理、同步优化器及参数控制器协同，并控制样本陈旧性。",
+          "workId": "openai-five-2019"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "技术贡献按署名原始作品核验；团队工作不归为个人独占发明。问题、模型及迁移判断是本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选两项不同一手技术作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "控制面与训练流水线的规模边界",
+        "skills": [
+          "A3",
+          "A5",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "增加 GPU 之后，有效学习进度是否仍被控制面、样本生产或参数更新延迟限制？",
+        "variables": "rollout 速率；推理吞吐；优化器消耗率；参数版本滞后；控制面请求率；恢复时间",
+        "model": "本站条件性诊断模型（编辑提炼）：有效样本处理率受 rollout、推理、优化器中最慢阶段约束；另外监控参数版本滞后与故障恢复损失，不用 GPU 峰值代替学习进度。",
+        "crossover": "均衡各阶段能提高有效吞吐；若新增生产能力只增加排队和陈旧样本，应优先降低闭环延迟。",
+        "counterexample": "计算资源翻倍，但状态服务写延迟和监控请求率恶化，任务无法及时启动，训练收益低于预期。",
+        "validation": "固定学习目标与数据语义，逐级扩容；记录任务启动 p99、控制面请求/写延迟、样本队列、参数版本滞后和达到目标质量的时间；注入控制面故障检验自动化保护。",
+        "transfer": "将 RL、agent rollout 的 CPU/GPU 配比和控制面成本纳入集群采购与容量规划。"
+      }
+    },
+    {
+      "id": "scott-gray",
+      "name": "Scott Gray",
+      "aliases": [],
+      "field": "结构稀疏收益必须兑现为 GPU 数据路径效率",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "core": "结构稀疏收益必须兑现为 GPU 数据路径效率：将机制与可测量的系统代价连接。",
+      "contributions": [
+        "共同发布支持可配置块稀疏权重的 GPU 矩阵/卷积内核，将非零块结构与可并行计算组织结合。",
+        "共同研究 Sparse Transformers：因子化注意力、重计算和分块内核协同，并融合 softmax 减少重复数据读取。"
+      ],
+      "background": "2017 block-sparse 与 2019 Sparse Transformer 论文均列为 OpenAI 共同作者；当前任职未据此推断。",
+      "argument": "编辑提炼：减少理论乘加次数后，访存、块布局和执行粒度是否让稀疏计算真正更快？",
+      "evidence": "GPU Kernels for Block-Sparse Weights（§2 Capabilities、§3.1（PDF pp.2–3）：block layout、block size、带宽与精度）；Generating Long Sequences with Sparse Transformers（§4.3、§5.4–5.6：strided/fixed attention、重计算、block-sparse kernels、混合精度）",
+      "habits": [
+        "把稀疏矩阵映射为真实线程块和内存流量。",
+        "分别核查计算节省与激活扩张。"
+      ],
+      "questions": [
+        "减少理论乘加次数后，访存、块布局和执行粒度是否让稀疏计算真正更快？"
+      ],
+      "boundary": "原论文针对当时 GPU 和内核；其速度数据不能直接外推现代硬件。Sparse Transformer 的模型质量和连接模式相关，不能只保留复杂度结论。",
+      "diagnostic": "固定模型质量、精度与 batch，扫块大小和稀疏率；测 HBM 字节、寄存器压力、占用率、内核时间及端到端训练吞吐，对比优化后的稠密基线。",
+      "notes": [],
+      "sources": [
+        [
+          "GPU Kernels for Block-Sparse Weights",
+          "https://cdn.openai.com/blocksparse/blocksparsepaper.pdf",
+          "§2 Capabilities、§3.1（PDF pp.2–3）：block layout、block size、带宽与精度"
+        ],
+        [
+          "Generating Long Sequences with Sparse Transformers",
+          "https://arxiv.org/pdf/1904.10509",
+          "§4.3、§5.4–5.6：strided/fixed attention、重计算、block-sparse kernels、混合精度"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "blocksparse-2017",
+          "title": "GPU Kernels for Block-Sparse Weights",
+          "authors": "Scott Gray, Alec Radford, Diederik P. Kingma",
+          "date": "2017",
+          "url": "https://cdn.openai.com/blocksparse/blocksparsepaper.pdf",
+          "locator": "§2 Capabilities、§3.1（PDF pp.2–3）：block layout、block size、带宽与精度",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "sparse-transformer-2019",
+          "title": "Generating Long Sequences with Sparse Transformers",
+          "authors": "Rewon Child, Scott Gray, Alec Radford, Ilya Sutskever",
+          "date": "2019-04-23",
+          "url": "https://arxiv.org/pdf/1904.10509",
+          "locator": "§4.3、§5.4–5.6：strided/fixed attention、重计算、block-sparse kernels、混合精度",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发布支持可配置块稀疏权重的 GPU 矩阵/卷积内核，将非零块结构与可并行计算组织结合。",
+          "workId": "blocksparse-2017"
+        },
+        {
+          "text": "共同研究 Sparse Transformers：因子化注意力、重计算和分块内核协同，并融合 softmax 减少重复数据读取。",
+          "workId": "sparse-transformer-2019"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "技术贡献按署名原始作品核验；团队工作不归为个人独占发明。问题、模型及迁移判断是本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选两项不同一手技术作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "结构稀疏收益必须兑现为 GPU 数据路径效率",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A8",
+          "A9"
+        ],
+        "question": "减少理论乘加次数后，访存、块布局和执行粒度是否让稀疏计算真正更快？",
+        "variables": "非零块比例；块大小；激活大小；实际带宽；精度；占用率；布局转换与启动成本",
+        "model": "本站条件性诊断模型（编辑提炼）：T_sparse ≈ T_nonzero_compute + T_exposed_data_movement + T_layout/launch；数据搬运项只计未被计算遮蔽的部分，按关键路径去除重叠。在同等质量约束下与稠密路径比较全程时间，不能仅按非零比例折算速度。",
+        "crossover": "稀疏度足够且块布局适合硬件时可节省工作；块太碎、激活过大或复用不足时，数据路径开销可能吞掉收益。",
+        "counterexample": "非零权重少了，但为了扩大层宽而增加激活读写，内核变成带宽瓶颈，理论 FLOPs 收益没有兑现。",
+        "validation": "固定模型质量、精度与 batch，扫块大小和稀疏率；测 HBM 字节、寄存器压力、占用率、内核时间及端到端训练吞吐，对比优化后的稠密基线。",
+        "transfer": "评估 GPU、专用加速器及长上下文优化时，把算法稀疏结构和实现的数据搬运一起审计。"
+      }
+    },
+    {
+      "id": "mark-handley",
+      "name": "Mark Handley",
+      "aliases": [],
+      "field": "从拥塞信号到故障恢复的端到端传输设计",
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter",
+        "hpc"
+      ],
+      "core": "从拥塞信号到故障恢复的端到端传输设计：将机制与可测量的系统代价连接。",
+      "contributions": [
+        "共同提出 NDP：浅缓冲交换、裁剪 payload 保留 header，结合接收端节奏控制与逐包多路径。",
+        "共同报告 MRC/SRv6：在多平面网络中喷洒数据包，用反馈调整路径并绕过故障，将静态源路由与端点恢复协同。"
+      ],
+      "background": "NDP（2017）署名 UCL；MRC/SRv6（2026）列于 OpenAI 作者组及通讯作者。该日期明确的项目关联不等于未核验的具体职务。",
+      "argument": "编辑提炼：同步训练的最慢通信来自拥塞还是失效路径，协议能否区分并在应用重启前恢复？",
+      "evidence": "Re-architecting datacenter networks and stacks for low latency and high performance（§3.1–3.2.1：浅缓冲、packet trimming、接收端 PULL 与乱序）；Resilient AI Supercomputer Networking using MRC and SRv6（署名页；§2.1–2.3（PDF pp.3–5）：EV、多路径、丢失/拥塞区分与静态 SRv6）",
+      "habits": [
+        "区分拥塞裁剪与真实丢失的信号含义。",
+        "将网络尾延迟和训练恢复成本一起评估。"
+      ],
+      "questions": [
+        "同步训练的最慢通信来自拥塞还是失效路径，协议能否区分并在应用重启前恢复？"
+      ],
+      "boundary": "NDP 与 MRC 是不同系统，不能把 NDP 的接收端 PULL 当成 MRC 的全部控制方式。MRC 为多机构团队成果，依赖相应 NIC/交换机支持；故障绕行不能覆盖所有硬件失效。",
+      "diagnostic": "回放真实 collective 与 incast，注入链路/端口失效和拥塞；测通信 p99/p999、有效训练吞吐、恢复时间、误判及可观测性，检查乱序和重传正确性。",
+      "notes": [],
+      "sources": [
+        [
+          "Re-architecting datacenter networks and stacks for low latency and high performance",
+          "https://www.cl.cam.ac.uk/teaching/1718/R02/papers/p29-Handley.pdf",
+          "§3.1–3.2.1：浅缓冲、packet trimming、接收端 PULL 与乱序"
+        ],
+        [
+          "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "署名页；§2.1–2.3（PDF pp.3–5）：EV、多路径、丢失/拥塞区分与静态 SRv6"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "ndp-2017",
+          "title": "Re-architecting datacenter networks and stacks for low latency and high performance",
+          "authors": "Mark Handley, Costin Raiciu, Alexandru Agache, Andrei Voinescu, Andrew W. Moore, Gianni Antichi, Marcin Wójcik",
+          "date": "2017",
+          "url": "https://www.cl.cam.ac.uk/teaching/1718/R02/papers/p29-Handley.pdf",
+          "locator": "§3.1–3.2.1：浅缓冲、packet trimming、接收端 PULL 与乱序",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "mrc-srv6-2026",
+          "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "authors": "OpenAI、Microsoft、AMD、NVIDIA、Broadcom 多机构作者组；Mark Handley 列于 OpenAI 作者组并为通讯作者",
+          "date": "2026-05",
+          "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+          "locator": "署名页；§2.1–2.3（PDF pp.3–5）：EV、多路径、丢失/拥塞区分与静态 SRv6",
+          "type": "论文全文",
+          "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+          "evidenceStrength": "强：作者署名一手技术正文",
+          "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出 NDP：浅缓冲交换、裁剪 payload 保留 header，结合接收端节奏控制与逐包多路径。",
+          "workId": "ndp-2017"
+        },
+        {
+          "text": "共同报告 MRC/SRv6：在多平面网络中喷洒数据包，用反馈调整路径并绕过故障，将静态源路由与端点恢复协同。",
+          "workId": "mrc-srv6-2026"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "技术贡献按署名原始作品核验；团队工作不归为个人独占发明。问题、模型及迁移判断是本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所选两项不同一手技术作品及机制正文核验，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "从拥塞信号到故障恢复的端到端传输设计",
+        "skills": [
+          "A3",
+          "A5",
+          "A6",
+          "A8",
+          "A10"
+        ],
+        "question": "同步训练的最慢通信来自拥塞还是失效路径，协议能否区分并在应用重启前恢复？",
+        "variables": "路径冗余；ECN/裁剪/丢失信号；接收端容量；乱序窗口；重传时延；故障域；collective 尾部",
+        "model": "本站条件性诊断模型（编辑提炼）：T_step 受最慢参与者影响；比较暴露通信尾部、故障绕行时间与训练重启损失，不能只用平均链路利用率评价网络。",
+        "crossover": "路径有冗余且端点可快速识别、绕过故障时，多路径恢复可减少中断；共享故障域或接收端瓶颈不会由更多路径自动消除。",
+        "counterexample": "平均吞吐很高，但一条失效路径反复拖住 collective；或者各路径最终汇入同一拥塞接收端，喷洒不能扩展其入口容量。",
+        "validation": "回放真实 collective 与 incast，注入链路/端口失效和拥塞；测通信 p99/p999、有效训练吞吐、恢复时间、误判及可观测性，检查乱序和重传正确性。",
+        "transfer": "将 NIC 协议、交换机能力、拓扑冗余和训练可用性作为整体，而不是独立比较端口速率。"
+      }
+    },
+    {
+      "id": "james-bradbury",
+      "name": "James Bradbury",
+      "aliases": [],
+      "field": "用可组合程序变换连接研究代码与加速器效率",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter"
+      ],
+      "core": "让自动微分、批量化与编译可组合，再用有效训练吞吐检验跨设备实现，而非只看硬件忙碌程度。",
+      "contributions": [
+        "JAX 共同软件作者：官方技术文档解释 grad、jit、vmap 的组合，vmap 将批量操作下推至基础算子，jit 经 XLA 编译。",
+        "PaLM 贡献表将其列入训练策略与效率、T5X/Flaxformer 和基建改进；对应正文讨论分片、重计算与 MFU，个人贡献不扩展为独立设计 Pathways。"
+      ],
+      "background": "JAX 官方软件引用列名作者；PaLM 附录明确列其训练效率、T5X/Flaxformer 与基础设施贡献。NVIDIA 2026-08-27 更新的交付报道将其称为 Anthropic Head of Compute；该职务不作为芯片设计贡献证据。",
+      "argument": "编辑提炼：让自动微分、批量化与编译可组合，再用有效训练吞吐检验跨设备实现，而非只看硬件忙碌程度。",
+      "evidence": "JAX: composable transformations of Python+NumPy programs：README：What is JAX、Transformations（grad/jit/vmap 及组合代码）；Citing JAX 软件作者名单按字母序；不采用另篇 SysML 2018 论文署名；PaLM: Scaling Language Modeling with Pathways：§4 Training Infrastructure（pp.9–12）；§4.1 MFU（p.12）；Appendix A（pp.87–88）明确列 Bradbury 的训练效率、T5X/Flaxformer、基建及计算量分析贡献",
+      "habits": [
+        "把编译时间、首次执行与稳态吞吐分开。",
+        "把真实学习工作与内存换计算产生的重复工作分开。"
+      ],
+      "questions": [
+        "增加重计算后硬件 FLOPs 利用率更高，但每秒有效 token 更少，这项优化还成立吗？"
+      ],
+      "boundary": "JAX 作者名单不证明个人实现全部功能；当前文档与历史版本需分开。PaLM 的 MFU 与弱扩展结果依赖具体模型、重计算和互联配置，不能等同模型质量或跨平台普遍收益。",
+      "diagnostic": "固定模型和数学精度，记录编译/执行分离耗时、重计算量、峰值内存、有效 tokens/s、通信时间线和训练结果一致性。改变 batch 与分片策略，核验收益来源。",
+      "notes": [],
+      "sources": [
+        [
+          "JAX: composable transformations of Python+NumPy programs",
+          "https://github.com/jax-ml/jax",
+          "README：What is JAX、Transformations（grad/jit/vmap 及组合代码）；Citing JAX 软件作者名单按字母序；不采用另篇 SysML 2018 论文署名"
+        ],
+        [
+          "PaLM: Scaling Language Modeling with Pathways",
+          "https://www.jmlr.org/papers/volume24/22-1144/22-1144.pdf",
+          "§4 Training Infrastructure（pp.9–12）；§4.1 MFU（p.12）；Appendix A（pp.87–88）明确列 Bradbury 的训练效率、T5X/Flaxformer、基建及计算量分析贡献"
+        ],
+        [
+          "NVIDIA Vera delivery report",
+          "https://blogs.nvidia.com/blog/vera-cpu-delivery/",
+          "2026-08-27更新；Vera Heads to San Francisco and Anthropic：来源时点职务，仅身份关联。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "jax-software-2018",
+          "title": "JAX: composable transformations of Python+NumPy programs",
+          "authors": "James Bradbury, Roy Frostig, Peter Hawkins, Matthew James Johnson, Yash Katariya, Chris Leary, Dougal Maclaurin, George Necula, Adam Paszke, Jake VanderPlas, Skye Wanderman-Milne, Qiao Zhang",
+          "date": "2018起的软件作品；2026-10-07读取官方文档",
+          "url": "https://github.com/jax-ml/jax",
+          "locator": "README：What is JAX、Transformations（grad/jit/vmap 及组合代码）；Citing JAX 软件作者名单按字母序；不采用另篇 SysML 2018 论文署名",
+          "type": "作者软件技术文档",
+          "contentStatus": "已读取官方仓库 README 中程序变换解释及代码示例和软件引用名单；不是论文，不将现有全部功能追溯给单一作者。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "palm-2023",
+          "title": "PaLM: Scaling Language Modeling with Pathways",
+          "authors": "Aakanksha Chowdhery, Sharan Narang, Jacob Devlin et al.（共同作者包括 James Bradbury）",
+          "date": "2023（JMLR 24）",
+          "url": "https://www.jmlr.org/papers/volume24/22-1144/22-1144.pdf",
+          "locator": "§4 Training Infrastructure（pp.9–12）；§4.1 MFU（p.12）；Appendix A（pp.87–88）明确列 Bradbury 的训练效率、T5X/Flaxformer、基建及计算量分析贡献",
+          "type": "论文全文",
+          "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "JAX 共同软件作者：官方技术文档解释 grad、jit、vmap 的组合，vmap 将批量操作下推至基础算子，jit 经 XLA 编译。",
+          "workId": "jax-software-2018"
+        },
+        {
+          "text": "PaLM 贡献表将其列入训练策略与效率、T5X/Flaxformer 和基建改进；对应正文讨论分片、重计算与 MFU，个人贡献不扩展为独立设计 Pathways。",
+          "workId": "palm-2023"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同成果依据原始署名与贡献说明定位；挑战、条件模型及迁移判断为本站编辑提炼，非本人原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定两项不同一手作品及机制正文核验；不代表穷尽职业成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "用可组合程序变换连接研究代码与加速器效率",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "增加重计算后硬件 FLOPs 利用率更高，但每秒有效 token 更少，这项优化还成立吗？",
+        "variables": "编译次数；batch；算子形状；分片；重计算量；显存；有效 tokens/s；通信等待",
+        "model": "本站条件模型：单位有效 token 成本 ≈ 总运行成本/有效训练 token；T_step 包括有效计算、重计算、未隐藏通信及调度；编译摊销另以 T_compile/重复次数计。用 MFU 对照 HFU，避免重计算使分子虚高。",
+        "crossover": "可复用编译结果、批量化形成大算子且重计算释放的内存能提高有效吞吐时有利；形状变化频繁或通信已主导时，局部编译收益可能很小。",
+        "counterexample": "融合内核降低单算子时间，却产生更多编译版本且跨 Pod 梯度等待不变；端到端实验完成时间反而增加。",
+        "validation": "固定模型和数学精度，记录编译/执行分离耗时、重计算量、峰值内存、有效 tokens/s、通信时间线和训练结果一致性。改变 batch 与分片策略，核验收益来源。",
+        "transfer": "用于 CPU 主机、加速器及互联选型时区分编译开销、内存约束与通信约束，按有效实验产出评估采购。"
+      }
+    },
+    {
+      "id": "sam-mccandlish",
+      "name": "Sam McCandlish",
+      "aliases": [],
+      "field": "以有效批量约束训练并行规模",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai",
+        "hpc"
+      ],
+      "core": "把训练到目标质量的时间与计算量一起优化；能分发更多数据不意味着能获得同比例的学习进展。",
+      "contributions": [
+        "共同提出大批量训练经验模型：利用梯度噪声尺度估计有效批量范围，描述达到固定目标时优化步数与样本量之间的折中。",
+        "Scaling Laws 贡献说明明确其与 Jared Kaplan 共同领导研究；将模型规模、训练步数、关键批量与计算预算结合形成经验分配关系。"
+      ],
+      "background": "Anthropic 公司领导页面于 2026-10-07 读取时列其为联合创始人及 Chief Architect。这里核验的两项技术工作均来自此前 OpenAI 时期，不能改写为 Anthropic 的历史成果。",
+      "argument": "编辑提炼：把训练到目标质量的时间与计算量一起优化；能分发更多数据不意味着能获得同比例的学习进展。",
+      "evidence": "An Empirical Model of Large-Batch Training：署名页；§2.2 Eqs.2.8–2.10 梯度噪声；§2.3 Eqs.2.11–2.12 时间/样本折中；§2.4 限制（pp.6–8）；Scaling Laws for Neural Language Models：p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）",
+      "habits": [
+        "固定目标质量比较训练成本，而不是固定步数比较吞吐。",
+        "将算法可并行程度与硬件通信扩展性分别建模。"
+      ],
+      "questions": [
+        "集群规模翻倍后，达到同一验证损失所需 GPU 小时是否反而上升？"
+      ],
+      "boundary": "噪声尺度是带假设的近似预测，依赖优化器、学习率和训练阶段；2020 年扩展拟合不是恒定自然定律，不直接用于新架构、超长上下文或新数据分布的预算承诺。",
+      "diagnostic": "在固定数据、目标验证损失和质量要求下扫描 batch、学习率及 GPU 数；测梯度噪声、优化步数、样本量、通信及 GPU 小时，并跨训练阶段复测。",
+      "notes": [],
+      "sources": [
+        [
+          "An Empirical Model of Large-Batch Training",
+          "https://arxiv.org/pdf/1812.06162",
+          "署名页；§2.2 Eqs.2.8–2.10 梯度噪声；§2.3 Eqs.2.11–2.12 时间/样本折中；§2.4 限制（pp.6–8）"
+        ],
+        [
+          "Scaling Laws for Neural Language Models",
+          "https://arxiv.org/pdf/2001.08361",
+          "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）"
+        ],
+        [
+          "Anthropic leadership",
+          "https://www.anthropic.com/company/leadership",
+          "2026-10-07读取：Sam McCandlish，职务与职责；仅身份背景，不计技术作品。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "large-batch-2018",
+          "title": "An Empirical Model of Large-Batch Training",
+          "authors": "Sam McCandlish, Jared Kaplan, Dario Amodei, OpenAI Dota Team",
+          "date": "2018-12-14",
+          "url": "https://arxiv.org/pdf/1812.06162",
+          "locator": "署名页；§2.2 Eqs.2.8–2.10 梯度噪声；§2.3 Eqs.2.11–2.12 时间/样本折中；§2.4 限制（pp.6–8）",
+          "type": "论文全文",
+          "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "scaling-laws-2020",
+          "title": "Scaling Laws for Neural Language Models",
+          "authors": "Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess, Rewon Child, Scott Gray, Alec Radford, Jeffrey Wu, Dario Amodei",
+          "date": "2020-01-23",
+          "url": "https://arxiv.org/pdf/2001.08361",
+          "locator": "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）",
+          "type": "论文全文",
+          "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出大批量训练经验模型：利用梯度噪声尺度估计有效批量范围，描述达到固定目标时优化步数与样本量之间的折中。",
+          "workId": "large-batch-2018"
+        },
+        {
+          "text": "Scaling Laws 贡献说明明确其与 Jared Kaplan 共同领导研究；将模型规模、训练步数、关键批量与计算预算结合形成经验分配关系。",
+          "workId": "scaling-laws-2020"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同成果依据原始署名与贡献说明定位；挑战、条件模型及迁移判断为本站编辑提炼，非本人原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定两项不同一手作品及机制正文核验；不代表穷尽职业成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以有效批量约束训练并行规模",
+        "skills": [
+          "A1",
+          "A2",
+          "A6",
+          "A7",
+          "A9"
+        ],
+        "question": "集群规模翻倍后，达到同一验证损失所需 GPU 小时是否反而上升？",
+        "variables": "batch B；设备数 P；目标损失 L*；噪声尺度；学习率；步数；每步耗时；样本效率",
+        "model": "本站诊断模型：T_target ≈ S(B,L*)×T_step(B,P)，GPU 时间成本约为 P×T_target；先测 Bcrit(L*) 的范围，再联合优化 batch B 与设备数 P。论文的样本/步数折中不自动包含网络及设备效率。",
+        "crossover": "B 低于有效批量范围且通信可控时，增加并行度较可能缩短时间；接近或超过关键批量后，应检验额外样本计算是否值得换取更小的时间收益。",
+        "counterexample": "每步吞吐增加，但学习率未重调、大 batch 使达到同一验证损失所需样本更多；以 tokens/s 判断会高估集群收益。",
+        "validation": "在固定数据、目标验证损失和质量要求下扫描 batch、学习率及 GPU 数；测梯度噪声、优化步数、样本量、通信及 GPU 小时，并跨训练阶段复测。",
+        "transfer": "用于确定一个训练任务的经济集群规模，并比较增加数据并行、改进通信或提高单卡效率的边际价值。"
+      }
+    },
+    {
+      "id": "tom-brown",
+      "name": "Tom Brown",
+      "aliases": [
+        "Tom B. Brown"
+      ],
+      "field": "让模型预算与训练执行共同满足容量约束",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai",
+        "compiler-runtime"
+      ],
+      "core": "模型规模、批量与并行划分必须一起选择；一个理论上划算的训练方案还需要能装入设备并有效执行。",
+      "contributions": [
+        "Scaling Laws 贡献说明明确其与 Rewon Child、Scott Gray、Alec Radford 共同开发优化的 Transformer 实现，为规模与预算研究提供执行基础。",
+        "GPT-3 贡献说明明确其与多位同事共同实现大模型、训练基础设施和模型并行策略；§2.3 将矩阵内及跨层并行组合，并以梯度噪声指导批量选择。"
+      ],
+      "background": "Anthropic 公司领导页面于 2026-10-07 读取时列其为联合创始人及 Chief Compute Officer。本文技术证据来自其 OpenAI 时期论文；现任职责与历史实现贡献分开记录。",
+      "argument": "编辑提炼：模型规模、批量与并行划分必须一起选择；一个理论上划算的训练方案还需要能装入设备并有效执行。",
+      "evidence": "Scaling Laws for Neural Language Models：p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）；Language Models are Few-Shot Learners：§2.3 Training Process（p.9）；Contributions（p.42）：Tom Brown 等共同实现模型、训练基建及模型并行策略",
+      "habits": [
+        "先验证理论方案在目标硬件上的内存和通信可行性。",
+        "将模型收益预测与可持续端到端效率联合评估。"
+      ],
+      "questions": [
+        "损失预测最优的模型规模，是否因内存、跨层等待或通信而不再是固定交付时间下的最优方案？"
+      ],
+      "boundary": "共同贡献表支持训练系统实现参与，不支持将所有底层组件归为其独创。2020 年模型预算拟合受数据及训练范围限制；训练 compute-efficient 与全生命周期成本最优并不相同。",
+      "diagnostic": "先在目标硬件测多组模型大小与并行布局的内存峰值、通信、有效吞吐及损失进展，再用相同数据和预算约束外推；用小规模实跑检验预测误差。",
+      "notes": [],
+      "sources": [
+        [
+          "Scaling Laws for Neural Language Models",
+          "https://arxiv.org/pdf/2001.08361",
+          "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）"
+        ],
+        [
+          "Language Models are Few-Shot Learners",
+          "https://arxiv.org/pdf/2005.14165",
+          "§2.3 Training Process（p.9）；Contributions（p.42）：Tom Brown 等共同实现模型、训练基建及模型并行策略"
+        ],
+        [
+          "Anthropic leadership",
+          "https://www.anthropic.com/company/leadership",
+          "2026-10-07读取：Tom Brown，职务与职责；仅身份背景，不计技术作品。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "scaling-laws-2020",
+          "title": "Scaling Laws for Neural Language Models",
+          "authors": "Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess, Rewon Child, Scott Gray, Alec Radford, Jeffrey Wu, Dario Amodei",
+          "date": "2020-01-23",
+          "url": "https://arxiv.org/pdf/2001.08361",
+          "locator": "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）",
+          "type": "论文全文",
+          "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "gpt3-2020",
+          "title": "Language Models are Few-Shot Learners",
+          "authors": "Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah et al.",
+          "date": "2020-07-22（v4）",
+          "url": "https://arxiv.org/pdf/2005.14165",
+          "locator": "§2.3 Training Process（p.9）；Contributions（p.42）：Tom Brown 等共同实现模型、训练基建及模型并行策略",
+          "type": "论文全文",
+          "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+          "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+          "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Scaling Laws 贡献说明明确其与 Rewon Child、Scott Gray、Alec Radford 共同开发优化的 Transformer 实现，为规模与预算研究提供执行基础。",
+          "workId": "scaling-laws-2020"
+        },
+        {
+          "text": "GPT-3 贡献说明明确其与多位同事共同实现大模型、训练基础设施和模型并行策略；§2.3 将矩阵内及跨层并行组合，并以梯度噪声指导批量选择。",
+          "workId": "gpt3-2020"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "共同成果依据原始署名与贡献说明定位；挑战、条件模型及迁移判断为本站编辑提炼，非本人原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指本页选定两项不同一手作品及机制正文核验；不代表穷尽职业成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "让模型预算与训练执行共同满足容量约束",
+        "skills": [
+          "A2",
+          "A3",
+          "A6",
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "损失预测最优的模型规模，是否因内存、跨层等待或通信而不再是固定交付时间下的最优方案？",
+        "variables": "参数规模；训练 token；batch；设备内存；并行布局；有效吞吐；目标质量；截止时间",
+        "model": "本站条件模型：在内存容量和截止时间约束下最小化达到质量门槛的总成本；T_train≈所需有效计算/(设备数×单设备可持续算力×端到端效率)，其中效率随模型、batch 及并行划分变化，不能视为常数。",
+        "crossover": "更大模型的样本收益超过内存分片、通信与调度代价时可能有利；设备不足或并行效率急降时，应回到较小模型、不同 batch 或训练时长重新比较。",
+        "counterexample": "按照理论 FLOPs 选择大模型，部署后权重和激活迫使更多跨节点划分，训练超过截止日期；较小模型反而先达到业务质量门槛。",
+        "validation": "先在目标硬件测多组模型大小与并行布局的内存峰值、通信、有效吞吐及损失进展，再用相同数据和预算约束外推；用小规模实跑检验预测误差。",
+        "transfer": "把模型团队的计算需求转为可执行的集群容量及交付时间方案，检验采购更多 GPU、增加带宽或调整模型规模的收益。"
+      }
+    },
+    {
+      "id": "chenggang-zhao",
+      "name": "Chenggang Zhao",
+      "aliases": [],
+      "field": "按瓶颈层级共同设计模型和互连",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "network",
+        "gpu-ai"
+      ],
+      "core": "将数据搬运路径、模型路由和GPU通信资源共同纳入设计，而非只提高标称网络带宽。",
+      "contributions": [
+        "作为Fire-Flyer AI-HPC共同作者，参与HFReduce所体现的CPU辅助归约设计：梯度经PCIe到主存，用CPU向量运算归约，跨节点采用双二叉树通信，再送回GPU。",
+        "共同撰写DeepSeek-V3硬件架构分析，说明节点受限专家路由怎样利用NVLink转发对IB流量去重，并分析通信占用SM及未来硬件卸载需求。"
+      ],
+      "background": "DeepSeek-AI两项论文的共同作者。ISCA25论文明确按名字母排序；本站不把排列第一解释为主要贡献排序，也不将其描述为整个公司infra负责人。",
+      "argument": "编辑提炼：便宜的部件组合能否支撑模型，取决于实际数据路径及算子/通信争用，不能由GPU型号或网卡带宽独立判断。",
+      "evidence": "Fire-Flyer AI-HPC: A Cost-Effective Software-Hardware Co-Design for Deep Learning（HFReduce Algorithm Steps及Advantages：CPU归约、D2H/H2D、双二叉树与NVLink变体）；Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures（§4.2–4.4：硬件感知并行、node-limited routing、IB/NVLink流量去重；首页脚注作者按名字母排序）",
+      "habits": [
+        "按消息经过的内存层级画出完整路径。",
+        "区分已实现的软件机制与论文提出的未来硬件建议。"
+      ],
+      "questions": [
+        "模型并行与路由策略是否把拥塞从一条链路转移到了CPU内存、PCIe或通信SM上？"
+      ],
+      "boundary": "HFReduce针对论文中PCIe型A100集群的层次结构，不能照搬到任意NVSwitch平台；节点受限路由须同时验证模型质量与负载均衡。两篇均是团队贡献；硬件卸载建议不等于已实现功能。",
+      "diagnostic": "固定模型质量、token负载和硬件，分解CPU内存、PCIe、NVLink、NIC传输及SM占用；比较不同路由节点上限与归约路径，测端到端迭代时间、TPOT和有效吞吐。",
+      "notes": [],
+      "sources": [
+        [
+          "Fire-Flyer AI-HPC: A Cost-Effective Software-Hardware Co-Design for Deep Learning",
+          "https://arxiv.org/pdf/2408.14158v2",
+          "HFReduce Algorithm Steps及Advantages：CPU归约、D2H/H2D、双二叉树与NVLink变体"
+        ],
+        [
+          "Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures",
+          "https://arxiv.org/pdf/2505.09343v1",
+          "§4.2–4.4：硬件感知并行、node-limited routing、IB/NVLink流量去重；首页脚注作者按名字母排序"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "firefly-ai-hpc-2024",
+          "title": "Fire-Flyer AI-HPC: A Cost-Effective Software-Hardware Co-Design for Deep Learning",
+          "authors": "Wei An, Xiao Bi, Guanting Chen, Chenggang Zhao 等52位团队作者",
+          "date": "2024-08-31（v2；SC24）",
+          "url": "https://arxiv.org/pdf/2408.14158v2",
+          "locator": "HFReduce Algorithm Steps及Advantages：CPU归约、D2H/H2D、双二叉树与NVLink变体",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "deepseek-hardware-insights-2025",
+          "title": "Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures",
+          "authors": "Chenggang Zhao, Chengqi Deng, Chong Ruan, Damai Dai, Huazuo Gao, Jiashi Li, Liyue Zhang, Panpan Huang, Shangyan Zhou, Shirong Ma, Wenfeng Liang, Ying He, Yuqing Wang, Yuxuan Liu, Y.X. Wei",
+          "date": "2025-05-14（v1；ISCA25）",
+          "url": "https://arxiv.org/pdf/2505.09343v1",
+          "locator": "§4.2–4.4：硬件感知并行、node-limited routing、IB/NVLink流量去重；首页脚注作者按名字母排序",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为Fire-Flyer AI-HPC共同作者，参与HFReduce所体现的CPU辅助归约设计：梯度经PCIe到主存，用CPU向量运算归约，跨节点采用双二叉树通信，再送回GPU。",
+          "workId": "firefly-ai-hpc-2024"
+        },
+        {
+          "text": "共同撰写DeepSeek-V3硬件架构分析，说明节点受限专家路由怎样利用NVLink转发对IB流量去重，并分析通信占用SM及未来硬件卸载需求。",
+          "workId": "deepseek-hardware-insights-2025"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始作品核验团队贡献；不由作者排序推断个人职责。问题、模型、迁移判断是本站编辑提炼，不是作者原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项不同实质一手作品与机制正文核验，不代表穷尽生涯或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "按瓶颈层级共同设计模型和互连",
+        "question": "模型并行与路由策略是否把拥塞从一条链路转移到了CPU内存、PCIe或通信SM上？",
+        "validation": "固定模型质量、token负载和硬件，分解CPU内存、PCIe、NVLink、NIC传输及SM占用；比较不同路由节点上限与归约路径，测端到端迭代时间、TPOT和有效吞吐。",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "variables": "每token跨节点目标数；PCIe/主存/NIC有效带宽；SM通信占用；专家偏斜；路由质量约束",
+        "model": "编辑条件模型：端到端时间受关键路径计算与各级搬运的最大瓶颈约束；重叠必须扣除共享SM、内存和链路争用。流量去重的收益还需减去转发与归约开销。",
+        "crossover": "当跨节点链路弱于节点内互连且专家可集中放置时，路由限制和节点内转发更有利；转发或CPU归约已饱和时，应重新选择路径。",
+        "counterexample": "IB字节下降而SM转发占用和内存争用上升，网络仪表看似更好，实际token吞吐下降。",
+        "transfer": "用于AI集群采购：把GPU、CPU、内存和互连作为可组合系统测量，并把模型质量约束纳入平台定制。"
+      }
+    },
+    {
+      "id": "wencong-xiao",
+      "name": "Wencong Xiao",
+      "aliases": [
+        "肖文聪"
+      ],
+      "field": "让运行时暴露可调度资源和可迁移状态",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "memory",
+        "gpu-ai"
+      ],
+      "core": "通过框架与调度器协同，把GPU共享和请求重调度建立在应用状态与性能反馈之上。",
+      "contributions": [
+        "共同提出AntMan，在mini-batch边界调整GPU内存上限与张量放置，利用训练周期规律支撑保障作业和机会作业共享资源。",
+        "作为Llumnix共同作者，参与用KV append-only性质实现多阶段请求迁移的设计；复制与解码重叠，最终切换配合预分配、提交及中止握手。"
+      ],
+      "background": "本人主页（2026-02更新，本次2026-10-07读取）列ByteDance Seed Training Infra Lead；本页两项技术成果均发表于其Alibaba时期，不标为ByteDance发明。",
+      "argument": "编辑提炼：利用率不是服务承诺；只有运行时提供可调节资源、可迁移状态及反馈信号，调度器才有条件安全回收碎片。",
+      "evidence": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning（§3.1.1及Fig.7：按mini-batch调整显存上限与主机内存放置；正文pp.536–537）；Llumnix: Dynamic Scheduling for Large Language Model Serving（§4.1–4.3、Figs.6–7：KV多阶段live migration、预分配/提交/中止握手；pp.177–178）",
+      "habits": [
+        "把平均利用率和保障任务进度分开监控。",
+        "先核对状态更新规律，再设计迁移协议。"
+      ],
+      "questions": [
+        "提高GPU利用率时，保障作业的进度与在线请求尾延迟是否仍然兑现？"
+      ],
+      "boundary": "AntMan依赖周期性训练生命周期，不能将其典型作业显存规律直接套用到所有大模型；Llumnix迁移需要带宽和目的端容量余量，追加式KV特性不适用于所有可变状态。",
+      "diagnostic": "同时测保障任务mini-batch进度、机会任务吞吐、KV迁移量、最终停顿与p99；回放显存突发和实例退出，注入目的端分配失败，核验回滚及状态正确性。",
+      "notes": [],
+      "sources": [
+        [
+          "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+          "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+          "§3.1.1及Fig.7：按mini-batch调整显存上限与主机内存放置；正文pp.536–537"
+        ],
+        [
+          "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+          "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+          "§4.1–4.3、Figs.6–7：KV多阶段live migration、预分配/提交/中止握手；pp.177–178"
+        ],
+        [
+          "Wencong Xiao本人主页",
+          "https://wencongxiao.github.io/",
+          "2026-02更新；履历辅助，不计第二技术作品"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "antman-2020",
+          "title": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+          "authors": "Wencong Xiao, Shiru Ren, Yong Li, Yang Zhang, Pengyang Hou, Zhi Li, Yihui Feng, Wei Lin, Yangqing Jia",
+          "date": "2020-11",
+          "url": "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+          "locator": "§3.1.1及Fig.7：按mini-batch调整显存上限与主机内存放置；正文pp.536–537",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "llumnix-2024",
+          "title": "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+          "authors": "Biao Sun, Ziming Huang, Hanyu Zhao, Wencong Xiao, Xinyi Zhang, Yong Li, Wei Lin",
+          "date": "2024-07",
+          "url": "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+          "locator": "§4.1–4.3、Figs.6–7：KV多阶段live migration、预分配/提交/中止握手；pp.177–178",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出AntMan，在mini-batch边界调整GPU内存上限与张量放置，利用训练周期规律支撑保障作业和机会作业共享资源。",
+          "workId": "antman-2020"
+        },
+        {
+          "text": "作为Llumnix共同作者，参与用KV append-only性质实现多阶段请求迁移的设计；复制与解码重叠，最终切换配合预分配、提交及中止握手。",
+          "workId": "llumnix-2024"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始作品核验团队贡献；不由作者排序推断个人职责。问题、模型、迁移判断是本站编辑提炼，不是作者原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项不同实质一手作品与机制正文核验，不代表穷尽生涯或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "让运行时暴露可调度资源和可迁移状态",
+        "question": "提高GPU利用率时，保障作业的进度与在线请求尾延迟是否仍然兑现？",
+        "validation": "同时测保障任务mini-batch进度、机会任务吞吐、KV迁移量、最终停顿与p99；回放显存突发和实例退出，注入目的端分配失败，核验回滚及状态正确性。",
+        "skills": [
+          "A3",
+          "A4",
+          "A5",
+          "A8",
+          "A9"
+        ],
+        "variables": "显存上限；mini-batch时间；KV增速；复制带宽；迁移停顿；目的端空闲块；优先级",
+        "model": "编辑条件模型：共享的可用收益为回收空闲资源带来的完成量，减去保障任务干扰及状态移动成本；迁移收敛要求复制能力持续赶上新增状态，并留出最终切换预算。",
+        "crossover": "资源需求可预测或状态追加规律明确时，动态控制空间更大；突发快于反馈、带宽拥塞或目的端容量不足时，应降低共享或中止迁移。",
+        "counterexample": "集群GPU利用率提高，但主机内存回退拖慢保障任务；或者KV迁移因带宽争用无法收敛，在线token间隔违约。",
+        "transfer": "把CPU主存带宽、PCIe和NIC纳入GPU共享与推理实例整合成本，而不只统计显存空闲。"
+      }
+    },
+    {
+      "id": "ziheng-jiang",
+      "name": "Ziheng Jiang",
+      "aliases": [],
+      "field": "通过依赖拆分释放训练与推理的流水空间",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "network",
+        "gpu-ai"
+      ],
+      "core": "把通信依赖与模块资源需求显式分解，以流水和独立部署改善大模型系统效率。",
+      "contributions": [
+        "作为MegaScale共同作者，参与3D并行的计算通信协同：分析算子依赖，预取数据并行all-gather，解耦流水线send/receive以隐藏非关键路径通信。",
+        "作为MegaScale-Infer共同作者，参与attention/FFN分离部署与ping-pong微批流水线，并在SLO、内存容量和硬件成本约束下搜索部署方案。"
+      ],
+      "background": "两篇原始论文均将其关联到ByteDance；本页以2024–2025论文机构为准，未进一步断言2026职务或个人负责全部系统组件。",
+      "argument": "编辑提炼：模块分离与通信重叠创造的是调度机会；只有阶段平衡、微批数量与时延约束共同满足，机会才转成真实收益。",
+      "evidence": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs（§3.2、Fig.3–4；pp.748–749：3D并行通信依赖、预取和send/receive解耦）；MegaScale-Infer: Efficient Mixture-of-Experts Model Serving with Disaggregated Expert Parallelism（§4.1–4.2；pp.596–597：ping-pong微批流水线与受SLO/内存约束的部署搜索）",
+      "habits": [
+        "先列真依赖，再判断哪些通信可以提前。",
+        "用阶段瓶颈及每单位成本吞吐评价解耦。"
+      ],
+      "questions": [
+        "把attention与专家分开、把通信藏进计算之后，关键路径和单位成本吞吐真的改善了吗？"
+      ],
+      "boundary": "训练的参数/梯度同步与在线MoE推理目标不同；分离部署可能增加往返通信，微批增多也会提高单请求延迟。论文中的硬件价格和吞吐数字不是当前采购报价或普遍承诺。",
+      "diagnostic": "固定模型、精度、上下文及SLO，测各模块服务时间、微批间隔、通信暴露时间和单位成本goodput；扫描attention/专家资源配比、微批数及网络争用，并保留同规模基线。",
+      "notes": [],
+      "sources": [
+        [
+          "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+          "https://www.usenix.org/system/files/nsdi24-jiang-ziheng.pdf",
+          "§3.2、Fig.3–4；pp.748–749：3D并行通信依赖、预取和send/receive解耦"
+        ],
+        [
+          "MegaScale-Infer: Efficient Mixture-of-Experts Model Serving with Disaggregated Expert Parallelism",
+          "https://chaojin0310.github.io/files/papers/SIGCOMM25-MegaScale-Infer.pdf",
+          "§4.1–4.2；pp.596–597：ping-pong微批流水线与受SLO/内存约束的部署搜索"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "megascale-2024",
+          "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+          "authors": "Ziheng Jiang, Haibin Lin, Yinmin Zhong 等团队作者",
+          "date": "2024-04",
+          "url": "https://www.usenix.org/system/files/nsdi24-jiang-ziheng.pdf",
+          "locator": "§3.2、Fig.3–4；pp.748–749：3D并行通信依赖、预取和send/receive解耦",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "megascale-infer-2025",
+          "title": "MegaScale-Infer: Efficient Mixture-of-Experts Model Serving with Disaggregated Expert Parallelism",
+          "authors": "Ruidong Zhu, Ziheng Jiang, Chao Jin, Peng Wu, Cesar A. Stuardo, Dongyang Wang, Xinlei Zhang, Huaping Zhou, Haoran Wei, Yang Cheng, Jianzhe Xiao, Xinyi Zhang, Lingjun Liu, Haibin Lin, Li-Wen Chang, Jianxi Ye, Xiao Yu, Xuanzhe Liu, Xin Jin, Xin Liu",
+          "date": "2025-09",
+          "url": "https://chaojin0310.github.io/files/papers/SIGCOMM25-MegaScale-Infer.pdf",
+          "locator": "§4.1–4.2；pp.596–597：ping-pong微批流水线与受SLO/内存约束的部署搜索",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为MegaScale共同作者，参与3D并行的计算通信协同：分析算子依赖，预取数据并行all-gather，解耦流水线send/receive以隐藏非关键路径通信。",
+          "workId": "megascale-2024"
+        },
+        {
+          "text": "作为MegaScale-Infer共同作者，参与attention/FFN分离部署与ping-pong微批流水线，并在SLO、内存容量和硬件成本约束下搜索部署方案。",
+          "workId": "megascale-infer-2025"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "按共同署名原始作品核验团队贡献；不由作者排序推断个人职责。问题、模型、迁移判断是本站编辑提炼，不是作者原话。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项不同实质一手作品与机制正文核验，不代表穷尽生涯或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "通过依赖拆分释放训练与推理的流水空间",
+        "question": "把attention与专家分开、把通信藏进计算之后，关键路径和单位成本吞吐真的改善了吗？",
+        "validation": "固定模型、精度、上下文及SLO，测各模块服务时间、微批间隔、通信暴露时间和单位成本goodput；扫描attention/专家资源配比、微批数及网络争用，并保留同规模基线。",
+        "skills": [
+          "A2",
+          "A3",
+          "A5",
+          "A6",
+          "A7",
+          "A8"
+        ],
+        "variables": "attention/专家服务时间；通信延迟；微批数；参数/梯度依赖；HBM容量；SLO；模块价格",
+        "model": "编辑条件模型：稳态流水吞吐由最慢阶段限制，端到端延迟还包含多次往返与排队；独立扩缩应最大化满足SLO后的吞吐/总成本，而非只最大化局部算子利用率。",
+        "crossover": "阶段资源需求差异大且有足够并发时，解耦与微批更易获益；低并发、严格时延或高网络延迟下，流水填充和往返可能抵消收益。",
+        "counterexample": "FFN利用率显著提升，但attention等待和两次网络往返使TPOT超标，按SLO计的有效吞吐反而下降。",
+        "transfer": "用于异构推理集群配置：按模块需求分配带宽、容量与计算，并以真实请求时延验收资源配比。"
+      }
+    },
+    {
+      "id": "haibin-lin",
+      "name": "Haibin Lin",
+      "aliases": [],
+      "field": "训练框架的控制粒度与持续有效吞吐",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter",
+        "network"
+      ],
+      "core": "以分层控制、通信重叠与故障恢复共同改善训练效率，避免用无故障短跑代表长期生产能力。",
+      "contributions": [
+        "作为MegaScale共同作者，参与三维并行通信重叠、训练诊断以及先写主机内存再异步落盘的检查点研究。",
+        "作为HybridFlow共同作者，参与以单控制器编排模型间数据流、以多控制器执行模型内计算，并通过3D-HybridEngine支持训练/生成阶段重分片的研究。"
+      ],
+      "background": "MegaScale与HybridFlow署名中的ByteDance研究者；记录发表时关联，不据历史署名断言现职。",
+      "argument": "编辑提炼：阶段最优的并行配置未必带来整轮最优；必须纳入模型切换、状态搬运和故障损失。",
+      "boundary": "MegaScale针对其论文中的生产集群；HybridFlow所支持的重分片依赖具体并行布局，不能理解为任意布局之间无成本切换。共同论文机制不等于其个人包办全部系统。",
+      "evidence": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs（§3.2、§4.1–4.4、§5；PDF pp.4–8：三维并行通信重叠、故障诊断、分阶段检查点和训练长尾）；HybridFlow: A Flexible and Efficient RLHF Framework（§2.5、§3–5：混合控制编程模型、ParallelWorker/传输协议与3D-HybridEngine模型重分片）",
+      "habits": [
+        "先核算关键路径中的实际数据搬运与等待。",
+        "将共同论文证据、实现边界与编辑推理分开。"
+      ],
+      "questions": [
+        "训练和生成分别加速后，整轮RL训练为何仍可能变慢？"
+      ],
+      "diagnostic": "固定模型、数据与训练语义，分别采集阶段耗时、重分片及派发时间；长时运行加入故障恢复，报告有效训练进度而非仅峰值MFU。",
+      "notes": [],
+      "sources": [
+        [
+          "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+          "https://arxiv.org/pdf/2402.15627v1",
+          "§3.2、§4.1–4.4、§5；PDF pp.4–8：三维并行通信重叠、故障诊断、分阶段检查点和训练长尾"
+        ],
+        [
+          "HybridFlow: A Flexible and Efficient RLHF Framework",
+          "https://arxiv.org/pdf/2409.19256v2",
+          "§2.5、§3–5：混合控制编程模型、ParallelWorker/传输协议与3D-HybridEngine模型重分片"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "megascale-2024",
+          "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+          "authors": "Ziheng Jiang, Haibin Lin, Yinmin Zhong 等；三人为论文标注的共同贡献作者",
+          "date": "2024-02-23",
+          "url": "https://arxiv.org/pdf/2402.15627v1",
+          "locator": "§3.2、§4.1–4.4、§5；PDF pp.4–8：三维并行通信重叠、故障诊断、分阶段检查点和训练长尾",
+          "type": "论文全文",
+          "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+          "evidenceStrength": "强：具名一手技术论文正文",
+          "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "hybridflow-2024-v2",
+          "title": "HybridFlow: A Flexible and Efficient RLHF Framework",
+          "authors": "Guangming Sheng, Chi Zhang, Zilingfeng Ye, Xibin Wu, Wang Zhang, Ru Zhang, Yanghua Peng, Haibin Lin, Chuan Wu",
+          "date": "2024-10-02（v2）；EuroSys 2025",
+          "url": "https://arxiv.org/pdf/2409.19256v2",
+          "locator": "§2.5、§3–5：混合控制编程模型、ParallelWorker/传输协议与3D-HybridEngine模型重分片",
+          "type": "论文全文",
+          "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+          "evidenceStrength": "强：具名一手技术论文正文",
+          "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为MegaScale共同作者，参与三维并行通信重叠、训练诊断以及先写主机内存再异步落盘的检查点研究。",
+          "workId": "megascale-2024"
+        },
+        {
+          "text": "作为HybridFlow共同作者，参与以单控制器编排模型间数据流、以多控制器执行模型内计算，并通过3D-HybridEngine支持训练/生成阶段重分片的研究。",
+          "workId": "hybridflow-2024-v2"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项不同实质一手作品核验共同贡献；学习视角、条件模型与实验建议为本站编辑提炼，不代表个人独占发明或逐模块分工。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定作品与机制正文的核验，不代表穷尽生涯成果或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "训练框架的控制粒度与持续有效吞吐",
+        "skills": [
+          "A2",
+          "A3",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "训练和生成分别加速后，整轮RL训练为何仍可能变慢？",
+        "variables": "各阶段计算时间；重分片字节与有效带宽；派发开销；检查点停顿；故障频率与重算时间",
+        "model": "本站条件性模型：T_round = 各阶段有效计算时间之和 + 暴露的转换/协调时间；长期有效吞吐再计故障、恢复与重算损失，避免重复计算已重叠部分。",
+        "crossover": "阶段计算足够长且重分片与派发开销较小时，分别优化并行布局有利；频繁切换或小批次可能改变最优方案。",
+        "counterexample": "训练与生成单阶段吞吐都提高，但每次切换搬运更大量参数，最终整轮耗时增加。",
+        "validation": "固定模型、数据与训练语义，分别采集阶段耗时、重分片及派发时间；长时运行加入故障恢复，报告有效训练进度而非仅峰值MFU。",
+        "transfer": "将CPU调度、网络、主机内存和恢复路径纳入大规模训练平台评估。"
+      }
+    },
+    {
+      "id": "ruoyu-qin",
+      "name": "Ruoyu Qin",
+      "aliases": [],
+      "field": "以状态复用和调度重构推理与RL",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai",
+        "memory",
+        "network"
+      ],
+      "core": "让共享KV状态同时服务于计算复用和请求重调度，并针对在线SLO与同步训练长尾采用不同目标。",
+      "contributions": [
+        "作为Mooncake共同作者，参与利用CPU、DRAM、SSD与NIC构建共享KVCache，以及按TTFT/TBT约束联合调度prefill与decode的研究。",
+        "作为Seer共同作者，参与分块rollout、全局KV池及利用同提示词组长度信息优先安排长任务的同步RL系统研究。"
+      ],
+      "background": "Mooncake论文注明其相关工作作为Moonshot AI实习生完成，并与Zheming Li共同贡献；Seer署名关联Moonshot AI与清华。此处保留作品时点，不扩写现任职衔。",
+      "argument": "编辑提炼：共享状态改变的不仅是缓存命中率，还包括哪些工作可以移动、何时移动以及调度应优化什么。",
+      "boundary": "Mooncake针对有逐请求SLO的服务；Seer针对同步分组rollout。两者的最优调度目标不同，不能将长任务优先直接移植到在线短请求。",
+      "evidence": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot（§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输）；Seer: Online Context Learning for Fast Synchronous LLM Reinforcement Learning（§3.2、§4.1–4.3 / Algorithm 1；PDF pp.5–7：分块rollout、全局KV池、组内长度预测和调度）",
+      "habits": [
+        "先核算关键路径中的实际数据搬运与等待。",
+        "将共同论文证据、实现边界与编辑推理分开。"
+      ],
+      "questions": [
+        "共享KV和分块迁移减少了重算，却是否增加了网络等待和在线违约？"
+      ],
+      "diagnostic": "固定模型与采样策略，改变命中率、请求长度偏斜和网络争用；分别测在线goodput、离线makespan以及搬运和重算字节。",
+      "notes": [],
+      "sources": [
+        [
+          "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输"
+        ],
+        [
+          "Seer: Online Context Learning for Fast Synchronous LLM Reinforcement Learning",
+          "https://arxiv.org/pdf/2511.14617v1",
+          "§3.2、§4.1–4.3 / Algorithm 1；PDF pp.5–7：分块rollout、全局KV池、组内长度预测和调度"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mooncake-fast25",
+          "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+          "date": "2025-02",
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "seer-2025-v1",
+          "title": "Seer: Online Context Learning for Fast Synchronous LLM Reinforcement Learning",
+          "authors": "Ruoyu Qin, Weiran He, Weixiao Huang, Yangkun Zhang, Yikai Zhao, Bo Pang, Xinran Xu, Yingdi Shan, Yongwei Wu, Mingxing Zhang",
+          "date": "2025-11-18（v1）",
+          "url": "https://arxiv.org/pdf/2511.14617v1",
+          "locator": "§3.2、§4.1–4.3 / Algorithm 1；PDF pp.5–7：分块rollout、全局KV池、组内长度预测和调度",
+          "type": "论文全文",
+          "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为Mooncake共同作者，参与利用CPU、DRAM、SSD与NIC构建共享KVCache，以及按TTFT/TBT约束联合调度prefill与decode的研究。",
+          "workId": "mooncake-fast25"
+        },
+        {
+          "text": "作为Seer共同作者，参与分块rollout、全局KV池及利用同提示词组长度信息优先安排长任务的同步RL系统研究。",
+          "workId": "seer-2025-v1"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项不同实质一手作品核验共同贡献；学习视角、条件模型与实验建议为本站编辑提炼，不代表个人独占发明或逐模块分工。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定作品与机制正文的核验，不代表穷尽生涯成果或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "以状态复用和调度重构推理与RL",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6",
+          "A9"
+        ],
+        "question": "共享KV和分块迁移减少了重算，却是否增加了网络等待和在线违约？",
+        "variables": "KV复用率；传输字节与带宽；组内输出长度相关性；chunk大小；TTFT/TBT；整轮完成时间",
+        "model": "本站条件性模型：分别比较在线SLO达标goodput与离线整轮makespan；将避免的重算时间、减少的尾部空闲和新增传输调度耗时按相同时间口径对照。",
+        "crossover": "高复用或强长尾且网络有余量时状态共享更有效；低复用和拥塞时可能反转。",
+        "counterexample": "长任务优先减少RL整轮空闲，却使在线短请求等待增加并违反TTFT目标。",
+        "validation": "固定模型与采样策略，改变命中率、请求长度偏斜和网络争用；分别测在线goodput、离线makespan以及搬运和重算字节。",
+        "transfer": "为CPU内存扩展、KV池和推理/训练共享集群选择与目标一致的度量。"
+      }
+    },
+    {
+      "id": "feng-ren",
+      "name": "Feng Ren",
+      "aliases": [],
+      "field": "将传输意图与动态物理路径解耦",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai",
+        "memory",
+        "network"
+      ],
+      "core": "用拓扑和实时健康状态决定数据搬运路径，将故障恢复纳入传输执行而不是留给上层人工协调。",
+      "contributions": [
+        "作为Mooncake共同作者，参与共享KVCache及拓扑感知传输引擎研究，用CPU内存和网络资源减少推理重算。",
+        "作为TENT共同作者，参与声明式传输意图、遥测驱动切片喷洒与双层恢复研究；按目标偏移写入的切片支持安全重试。"
+      ],
+      "background": "Mooncake论文署名清华，TENT v2署名9# AISoft与清华；项目合作不是Moonshot雇佣证据。本人主页将其列为Transfer Engine作者与核心维护者，本页贡献门槛依据两篇共同论文。",
+      "argument": "编辑提炼：传输系统的价值应体现在尾延迟与故障中的可用吞吐，而不只是健康链路总带宽。",
+      "boundary": "TENT v2是预印本；晚绑定和重试仍依赖可达路径、目标内存语义及有效遥测。固定偏移写入的幂等性不能泛化为任意有副作用操作的安全重放。",
+      "evidence": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot（§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输）；TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving（§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试）",
+      "habits": [
+        "先核算关键路径中的实际数据搬运与等待。",
+        "将共同论文证据、实现边界与编辑推理分开。"
+      ],
+      "questions": [
+        "聚合链路带宽充足时，为何一条退化链路仍能拖住整个KV传输？"
+      ],
+      "diagnostic": "固定总字节和拓扑，注入限速、丢包及完成通知丢失；测p50/p99完成时延、CPU成本、重试流量并逐字节校验结果。",
+      "notes": [],
+      "sources": [
+        [
+          "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输"
+        ],
+        [
+          "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+          "https://arxiv.org/pdf/2604.00368v2",
+          "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mooncake-fast25",
+          "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+          "date": "2025-02",
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tent-2026-v2",
+          "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+          "authors": "Feng Ren, Ruoyu Qin, Teng Ma, Shangming Cai, Zheng Liu, Chao Lei, Dejiang Zhu, Ke Yang, Zheming Li, Jialei Cui, Weixiao Huang, Yikai Zhao, Yineng Zhang, Hao Wu, Xiang Gao, Yuhao Fu, Jinlei Jiang, Yongwei Wu, Mingxing Zhang",
+          "date": "2026-07-24（v2）",
+          "url": "https://arxiv.org/pdf/2604.00368v2",
+          "locator": "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试",
+          "type": "论文全文",
+          "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+          "evidenceStrength": "强：具名一手技术论文正文",
+          "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为Mooncake共同作者，参与共享KVCache及拓扑感知传输引擎研究，用CPU内存和网络资源减少推理重算。",
+          "workId": "mooncake-fast25"
+        },
+        {
+          "text": "作为TENT共同作者，参与声明式传输意图、遥测驱动切片喷洒与双层恢复研究；按目标偏移写入的切片支持安全重试。",
+          "workId": "tent-2026-v2"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项不同实质一手作品核验共同贡献；学习视角、条件模型与实验建议为本站编辑提炼，不代表个人独占发明或逐模块分工。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定作品与机制正文的核验，不代表穷尽生涯成果或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "将传输意图与动态物理路径解耦",
+        "skills": [
+          "A3",
+          "A4",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "聚合链路带宽充足时，为何一条退化链路仍能拖住整个KV传输？",
+        "variables": "切片大小；在途队列字节；有效带宽；拓扑惩罚；遥测延迟；链路错误；重试额外流量",
+        "model": "本站条件性模型：请求完成时间受最慢必需切片制约；动态分配应减少尾部等待，同时计入切片调度、观测与重试成本。",
+        "crossover": "大传输、异构链路和局部退化更可能受益；小消息或遥测滞后时调度开销与误判可能抵消收益。",
+        "counterexample": "将流量平均切到四条链路，一条发生灰故障后其余三条早已空闲，但请求仍等待最后切片。",
+        "validation": "固定总字节和拓扑，注入限速、丢包及完成通知丢失；测p50/p99完成时延、CPU成本、重试流量并逐字节校验结果。",
+        "transfer": "评估多NIC、NUMA亲和性及内存分离平台时同时验收正常吞吐与退化恢复。"
+      }
+    },
+    {
+      "id": "zheming-li",
+      "name": "Zheming Li",
+      "aliases": [],
+      "field": "把KV缓存收益兑现为SLO达标吞吐",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "gpu-ai",
+        "memory",
+        "network"
+      ],
+      "core": "联合考察缓存复用、prefill/decode资源分离和实际传输路径，避免将命中率或网络峰值当作用户体验。",
+      "contributions": [
+        "Mooncake论文明确其与Ruoyu Qin共同贡献；共同研究以KVCache为中心的prefill/decode分离及SLO约束调度。",
+        "作为TENT v2共同作者，参与声明式传输与遥测切片调度的团队研究；将链路队列、拓扑与故障状态纳入路径选择。"
+      ],
+      "background": "Mooncake与TENT v2发表时署名Moonshot AI；不按作者排序推断其管理职位或具体模块独占归属。",
+      "argument": "编辑提炼：缓存增加只有在传输和排队成本低于节省的计算、且满足延迟目标时，才增加可售服务能力。",
+      "boundary": "TENT是不同于Mooncake服务架构的传输编排研究，不以Mooncake期刊修订版充当第二作品。缓存命中收益依赖前缀分布、路径争用和解码队列。",
+      "evidence": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot（§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输）；TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving（§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试）",
+      "habits": [
+        "先核算关键路径中的实际数据搬运与等待。",
+        "将共同论文证据、实现边界与编辑推理分开。"
+      ],
+      "questions": [
+        "全局缓存命中率提高后，为什么SLO达标请求容量反而可能下降？"
+      ],
+      "diagnostic": "保持请求轨迹与模型一致，扫前缀长度、热度偏斜、链路退化及缓存容量，记录达标goodput与分段时间线。",
+      "notes": [],
+      "sources": [
+        [
+          "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输"
+        ],
+        [
+          "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+          "https://arxiv.org/pdf/2604.00368v2",
+          "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mooncake-fast25",
+          "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+          "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+          "date": "2025-02",
+          "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+          "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+          "type": "论文全文",
+          "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+          "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+          "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "tent-2026-v2",
+          "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+          "authors": "Feng Ren, Ruoyu Qin, Teng Ma, Shangming Cai, Zheng Liu, Chao Lei, Dejiang Zhu, Ke Yang, Zheming Li, Jialei Cui, Weixiao Huang, Yikai Zhao, Yineng Zhang, Hao Wu, Xiang Gao, Yuhao Fu, Jinlei Jiang, Yongwei Wu, Mingxing Zhang",
+          "date": "2026-07-24（v2）",
+          "url": "https://arxiv.org/pdf/2604.00368v2",
+          "locator": "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试",
+          "type": "论文全文",
+          "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+          "evidenceStrength": "强：具名一手技术论文正文",
+          "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "Mooncake论文明确其与Ruoyu Qin共同贡献；共同研究以KVCache为中心的prefill/decode分离及SLO约束调度。",
+          "workId": "mooncake-fast25"
+        },
+        {
+          "text": "作为TENT v2共同作者，参与声明式传输与遥测切片调度的团队研究；将链路队列、拓扑与故障状态纳入路径选择。",
+          "workId": "tent-2026-v2"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项不同实质一手作品核验共同贡献；学习视角、条件模型与实验建议为本站编辑提炼，不代表个人独占发明或逐模块分工。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定作品与机制正文的核验，不代表穷尽生涯成果或确认当前管理职务。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "把KV缓存收益兑现为SLO达标吞吐",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6",
+          "A8"
+        ],
+        "question": "全局缓存命中率提高后，为什么SLO达标请求容量反而可能下降？",
+        "variables": "命中前缀长度；避免的prefill计算；KV传输耗时；prefill/decode队列；热块复制；TTFT/TBT",
+        "model": "本站条件性模型：一次复用的净时间收益≈避免的计算−新增传输与等待；服务级收益须在TTFT与TBT同时达标条件下测量，不能从命中率直接推出。",
+        "crossover": "长前缀、可用带宽与均衡队列利于复用；热点拥塞或短前缀时本地重算可能更快。",
+        "counterexample": "热点缓存块被许多prefill节点同时读取，命中率提高但共享NIC排队使TTFT恶化。",
+        "validation": "保持请求轨迹与模型一致，扫前缀长度、热度偏斜、链路退化及缓存容量，记录达标goodput与分段时间线。",
+        "transfer": "用于衡量KV池扩容、网络升级与prefill/decode配比的实际采购收益。"
+      }
+    },
+    {
+      "id": "tristan-hume",
+      "name": "Tristan Hume",
+      "aliases": [],
+      "domain": "compiler-runtime",
+      "field": "从硬件追踪到加速器性能诊断",
+      "core": "把难以观测的执行细节变成可重放时间线，再按资源约束优化关键路径。",
+      "contributions": [
+        "与 Chris Lambert 共同实现 Magic-trace：用 Intel Processor Trace 环形缓冲保留事件前历史，以函数触发快照、重建调用栈；Hume 描述了本人后续硬件断点触发及调试工作。",
+        "本人设计 TPU 风格的加速器模拟测评，把 scratchpad、SIMD、VLIW 和并行调度暴露为可优化约束，并用逐指令时间线辅助诊断。"
+      ],
+      "background": "Anthropic 2026 年署名文章称其为性能优化团队负责人之一。Magic-trace 属于此前 Jane Street 工作；模拟测评不等同于生产芯片。",
+      "argument": "编辑提炼：性能优化首先需要足够细的可观测性；平均热点无法解释罕见短延迟事件，理论并行度也不能替代真实指令依赖。",
+      "evidence": "Magic-trace: Diagnosing tricky performance issues easily with Intel Processor Trace A minimum viable product；Directly using kernel APIs and libipt；Hardware breakpoints for seamless triggering；Designing AI-resistant technical evaluations The origin of the take-home；The simulated machine；Version 2",
+      "habits": [
+        "先确定事件时间尺度，再选择采样、插桩或硬件追踪。",
+        "用时间线区分调用次数增加与单次调用变慢。"
+      ],
+      "questions": [
+        "一个平均占比很小的执行片段，是否主导了尾延迟或加速器流水线空洞？"
+      ],
+      "boundary": "硬件追踪存在平台支持、数据量、解码成本和扰动边界；历史文章的处理器支持范围不能直接当作今日规格。模拟器得分也不能外推为生产 TPU 吞吐。",
+      "diagnostic": "对罕见慢请求保留触发前后轨迹，并用关闭追踪的重复实验校准扰动；模拟内核则逐项检查数据依赖、指令槽、scratchpad 和向量利用率。",
+      "notes": [],
+      "sources": [
+        [
+          "Magic-trace: Diagnosing tricky performance issues easily with Intel Processor Trace",
+          "https://blog.janestreet.com/magic-trace/",
+          "A minimum viable product；Directly using kernel APIs and libipt；Hardware breakpoints for seamless triggering"
+        ],
+        [
+          "Designing AI-resistant technical evaluations",
+          "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+          "The origin of the take-home；The simulated machine；Version 2"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "hume-magic-trace-2022",
+          "title": "Magic-trace: Diagnosing tricky performance issues easily with Intel Processor Trace",
+          "authors": "Tristan Hume",
+          "date": "2022-01-11",
+          "url": "https://blog.janestreet.com/magic-trace/",
+          "locator": "A minimum viable product；Directly using kernel APIs and libipt；Hardware breakpoints for seamless triggering",
+          "type": "作者技术文章全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "本人署名明确与 Chris Lambert 共同实现，并分别叙述本人设计、调试和后续触发机制工作。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "hume-accelerator-evaluation-2026",
+          "title": "Designing AI-resistant technical evaluations",
+          "authors": "Tristan Hume",
+          "date": "2026-01-21",
+          "url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+          "locator": "The origin of the take-home；The simulated machine；Version 2",
+          "type": "作者技术文章全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "本人设计的性能工程测评及模拟器；不是 Anthropic 生产加速器设计。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Chris Lambert 共同实现 Magic-trace：用 Intel Processor Trace 环形缓冲保留事件前历史，以函数触发快照、重建调用栈；Hume 描述了本人后续硬件断点触发及调试工作。",
+          "workId": "hume-magic-trace-2022"
+        },
+        {
+          "text": "本人设计 TPU 风格的加速器模拟测评，把 scratchpad、SIMD、VLIW 和并行调度暴露为可优化约束，并用逐指令时间线辅助诊断。",
+          "workId": "hume-accelerator-evaluation-2026"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项独立一手技术作品核验具体贡献；共同作品按团队归属。挑战与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项作品及机制的证据门槛，不代表核验现任管理职责或穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "可观测性是否足以辨认关键路径",
+        "skills": [
+          "A2",
+          "A3",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "一个平均占比很小的执行片段，是否主导了尾延迟或加速器流水线空洞？",
+        "variables": "事件持续时间 d；采样周期 Δ；触发延迟；缓冲窗口；追踪扰动 ε；内存及执行槽占用",
+        "model": "本站近似：随机相位下，单次短事件被周期采样命中的概率约为 min(1,d/Δ)；可用快照必须覆盖触发前因果窗口。性能差异还需大于测量扰动与自然噪声。",
+        "crossover": "短而罕见事件适合触发式完整追踪；长时间稳定热点通常可先用低成本采样。",
+        "counterexample": "追踪显示某函数更慢，却是追踪流量改变缓存行为；关闭追踪后回归消失。",
+        "validation": "比较追踪开关、不同缓冲窗口和触发点；固定输入复现，再验证优化后的端到端尾延迟及正确性。",
+        "transfer": "用于训练运行时、推理调度和 CPU 控制路径的瓶颈诊断，避免凭平均利用率盲目扩容。"
+      }
+    },
+    {
+      "id": "wei-lin",
+      "name": "Wei Lin",
+      "aliases": [],
+      "domain": "datacenter",
+      "field": "训练资源共享与推理请求动态迁移",
+      "core": "让资源分配随任务阶段和实际状态变化，并显式约束共享干扰与迁移成本。",
+      "contributions": [
+        "作为共同作者参与 AntMan：联合设计训练框架与集群调度器，在 mini-batch 边界调整显存上限，并通过 GPU 算子发射节流管理共享干扰。",
+        "作为共同作者参与 Llumnix：利用 KVCache 只追加的性质，将已有状态复制与继续解码重叠，以多阶段迁移支持负载均衡、优先级与弹性调度。"
+      ],
+      "background": "AntMan（2020）及 Llumnix（2024）论文均列其为 Alibaba Group 共同作者。收录依据系统贡献，不称其 Qwen 首席架构师，也不据此确认 2026 年职务。",
+      "argument": "编辑提炼：资源利用率优化必须落实到可收回的分配和可迁移的状态；静态空闲不等于可安全共享。",
+      "evidence": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning p.1 署名；§3.1.1 Memory Management；§3.1.2 Computation Management；§3.2；Llumnix: Dynamic Scheduling for Large Language Model Serving p.1 署名；§4.1；§4.2 Live Migration of LLM Requests，Figures 6–7；§4.3",
+      "habits": [
+        "将可回收显存与持续驻留状态分开核算。",
+        "把全局负载指标追溯到每个实例的排队与资源竞争。"
+      ],
+      "questions": [
+        "迁移与共享释放的容量，是否超过其引入的带宽开销和服务干扰？"
+      ],
+      "boundary": "AntMan 的训练阶段性与 Llumnix 的 append-only KV 状态属于不同前提。近零停顿不代表零迁移带宽或零总迁移时间；长上下文、慢链路及显存紧张都可能限制收益。",
+      "diagnostic": "分别测资源保证任务的进度、共享任务吞吐、迁移总时间与停顿，并扫描 KV 增长速率及有效网络带宽。",
+      "notes": [],
+      "sources": [
+        [
+          "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+          "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+          "p.1 署名；§3.1.1 Memory Management；§3.1.2 Computation Management；§3.2"
+        ],
+        [
+          "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+          "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+          "p.1 署名；§4.1；§4.2 Live Migration of LLM Requests，Figures 6–7；§4.3"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "antman-2020",
+          "title": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+          "authors": "Wencong Xiao, Shiru Ren, Yong Li, Yang Zhang, Pengyang Hou, Zhi Li, Yihui Feng, Wei Lin, Yangqing Jia",
+          "date": "2020-11",
+          "url": "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+          "locator": "p.1 署名；§3.1.1 Memory Management；§3.1.2 Computation Management；§3.2",
+          "type": "论文全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "共同作者；不把团队全部机制独占归因于个人。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "llumnix-2024",
+          "title": "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+          "authors": "Biao Sun, Ziming Huang, Hanyu Zhao, Wencong Xiao, Xinyi Zhang, Yong Li, Wei Lin",
+          "date": "2024-07",
+          "url": "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+          "locator": "p.1 署名；§4.1；§4.2 Live Migration of LLM Requests，Figures 6–7；§4.3",
+          "type": "论文全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "共同作者；不把团队全部机制独占归因于个人。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为共同作者参与 AntMan：联合设计训练框架与集群调度器，在 mini-batch 边界调整显存上限，并通过 GPU 算子发射节流管理共享干扰。",
+          "workId": "antman-2020"
+        },
+        {
+          "text": "作为共同作者参与 Llumnix：利用 KVCache 只追加的性质，将已有状态复制与继续解码重叠，以多阶段迁移支持负载均衡、优先级与弹性调度。",
+          "workId": "llumnix-2024"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项独立一手技术作品核验具体贡献；共同作品按团队归属。挑战与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项作品及机制的证据门槛，不代表核验现任管理职责或穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "动态资源分配能否追上工作负载变化",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "迁移与共享释放的容量，是否超过其引入的带宽开销和服务干扰？",
+        "variables": "初始 KV 状态 S；有效复制带宽 B；状态增长速率 r；排队收益；迁移停顿；保证任务减速率",
+        "model": "本站条件模型：连续复制近似下 T_migrate≈S/(B−r)，要求 B>r；迁移价值约为减少的排队与容量成本减去复制、停顿和干扰成本。",
+        "crossover": "状态增长慢于有效复制速度且负载不均持续足够久时迁移可能有利；瞬时热点和拥塞链路可能不值得迁移。",
+        "counterexample": "集群平均显存占用下降，但迁移抢占网络使高优先级请求的 token 间延迟超标。",
+        "validation": "固定请求分布与 SLO，对比静态调度、只分流和允许迁移；报告 p99 延迟、迁移流量、保证任务减速及单位合格请求成本。",
+        "transfer": "用于评估推理池弹性、GPU 混部及 CPU 内存承接方案，避免把名义空闲全部计为可售容量。"
+      }
+    },
+    {
+      "id": "sachin-katti",
+      "name": "Sachin Katti",
+      "aliases": [],
+      "domain": "network",
+      "field": "以调度机制实现数据中心带宽目标",
+      "core": "把带宽分配目标、包调度和拥塞控制分开设计，再检验收敛能否跟上流量变化。",
+      "contributions": [
+        "作为共同作者参与 pFabric：用包优先级驱动小缓冲交换机的调度与丢弃，将流完成次序与发送速率控制解耦。",
+        "作为共同作者参与 NUMFabric：以效用函数表达带宽目标，用 Swift 的加权 max-min 传输和 xWI 权重推断分层实现网络效用优化。"
+      ],
+      "background": "两项技术作品分别发表于 SIGCOMM 2013 和 2016，属于其 Stanford 时期共同研究。OpenAI 算力策略职责另作角色背景，不将历史论文描述为 OpenAI 部署成果。",
+      "argument": "编辑提炼：提升利用率与兑现业务优先级是两个控制目标；只有收敛时间短于负载变化尺度，静态最优分配才有实际意义。",
+      "evidence": "pFabric: Minimal Near-Optimal Datacenter Transport p.1 署名与 §1 三项机制；p.2 仿真评估与部署边界；NUMFabric: Fast and Flexible Bandwidth Allocation in Datacenters p.1 署名；§2 效用函数；§4.1 Swift；§4.2 xWI",
+      "habits": [
+        "先写清业务效用函数，再选择传输控制参数。",
+        "分别检查调度正确性、带宽利用率与动态收敛。"
+      ],
+      "questions": [
+        "网络控制器算出的优先级与公平份额，是否能在工作负载下一次变化前兑现？"
+      ],
+      "boundary": "pFabric 涉及交换机和端系统修改；NUMFabric 依赖相应包调度能力。论文的仿真结果不是任意生产网络保证，NUMFabric 中 Swift 也不应与其他同名后续协议混同。",
+      "diagnostic": "先确定公平性或流完成时间目标，再测流到达变化下的收敛、缓冲、丢包及尾延迟，并核对目标交换机可实现的队列粒度。",
+      "notes": [],
+      "sources": [
+        [
+          "pFabric: Minimal Near-Optimal Datacenter Transport",
+          "https://www.stanford.edu/~skatti/pubs/sigcomm13-pfabric.pdf",
+          "p.1 署名与 §1 三项机制；p.2 仿真评估与部署边界"
+        ],
+        [
+          "NUMFabric: Fast and Flexible Bandwidth Allocation in Datacenters",
+          "https://www.stanford.edu/~skatti/pubs/sigcomm16-num.pdf",
+          "p.1 署名；§2 效用函数；§4.1 Swift；§4.2 xWI"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "pfabric-2013",
+          "title": "pFabric: Minimal Near-Optimal Datacenter Transport",
+          "authors": "Mohammad Alizadeh, Shuang Yang, Milad Sharif, Sachin Katti, Nick McKeown, Balaji Prabhakar, Scott Shenker",
+          "date": "2013-08",
+          "url": "https://www.stanford.edu/~skatti/pubs/sigcomm13-pfabric.pdf",
+          "locator": "p.1 署名与 §1 三项机制；p.2 仿真评估与部署边界",
+          "type": "论文全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "共同作者；不把团队全部机制独占归因于个人。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "numfabric-2016",
+          "title": "NUMFabric: Fast and Flexible Bandwidth Allocation in Datacenters",
+          "authors": "Kanthi Nagaraj, Dinesh Bharadia, Hongzi Mao, Sandeep Chinchali, Mohammad Alizadeh, Sachin Katti",
+          "date": "2016-08",
+          "url": "https://www.stanford.edu/~skatti/pubs/sigcomm16-num.pdf",
+          "locator": "p.1 署名；§2 效用函数；§4.1 Swift；§4.2 xWI",
+          "type": "论文全文",
+          "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+          "evidenceStrength": "强：作者署名的一手技术作品正文。",
+          "role": "共同作者；不把团队全部机制独占归因于个人。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为共同作者参与 pFabric：用包优先级驱动小缓冲交换机的调度与丢弃，将流完成次序与发送速率控制解耦。",
+          "workId": "pfabric-2013"
+        },
+        {
+          "text": "作为共同作者参与 NUMFabric：以效用函数表达带宽目标，用 Swift 的加权 max-min 传输和 xWI 权重推断分层实现网络效用优化。",
+          "workId": "numfabric-2016"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据两项独立一手技术作品核验具体贡献；共同作品按团队归属。挑战与条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-frontier19",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指选定两项作品及机制的证据门槛，不代表核验现任管理职责或穷尽个人成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "带宽分配是否在流消失前生效",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A6",
+          "A8"
+        ],
+        "question": "网络控制器算出的优先级与公平份额，是否能在工作负载下一次变化前兑现？",
+        "variables": "控制收敛时间 Tc；流持续时间 Tf；负载变化尺度 Tw；RTT；队列能力；优先级误差；链路容量",
+        "model": "本站判据：Tc≪min(Tf,Tw) 时稳态效用优化较有解释力；反之应重点评价暂态完成时间与约束违例，而非只报告稳态吞吐。",
+        "crossover": "短流、突发和频繁权重变化提高快速包调度的价值；稳定长流可能更能容忍较慢控制。",
+        "counterexample": "稳态分配严格公平，但短流在控制收敛前结束，线上 p99 完成时间仍然恶化。",
+        "validation": "在固定拓扑下扫描流大小分布、突发性和权重变更频率；同时报告短流尾延迟、长流吞吐、收敛时间及交换机实现成本。",
+        "transfer": "用于 AI 集群训练通信与推理短流混部的网络评估，不把单一带宽数字当作服务质量保证。"
+      }
+    },
+    {
+      "id": "nhon-quach",
+      "name": "Nhon Quach",
+      "aliases": [],
+      "field": "按错误传播边界配置可靠性保护",
+      "domain": "correctness",
+      "relatedDomains": [
+        "memory",
+        "cpu"
+      ],
+      "core": "将错误检测、隔离、恢复及保护成本共同设计，让局部故障尽可能停留在能够安全处置的范围内。",
+      "contributions": [
+        "署名说明 Itanium 的多级 RAS 隔离：可纠正错误本地修复，未立即消费的坏数据以 poison 延后处理，并按指令、进程、节点及系统选择隔离边界。",
+        "与 Yanru Li、Rahul Gulati 共同提出按区域启用 ECC 的存储方案：检查地址范围，转换读写地址与长度，交织数据和校验位，对非保护区域使用普通通路。"
+      ],
+      "background": "处理器与系统架构研究者。CMU 2006 官方讲座简介记录其曾定义第一代 Itanium RAS 架构；Hot Chips 2025 列为程序委员会共同主席，2026 列为组织委员会副主席。会议职责用于身份交叉核验，正式收录依据为技术作品。",
+      "argument": "编辑提炼：ECC 能检测或修复多少位只是起点；更重要的是错误何时暴露、传播到哪里，以及系统能否保留未受影响的工作。",
+      "evidence": "Itanium 原刊 pp.64–65 的 Error containment/Data poisoning/Error promotion；US9983930B2 说明书 Figures 3A–3C、4、5A–5C 对应机制。",
+      "habits": [
+        "区分错误可检测、可纠正、可隔离和可恢复。",
+        "把错误路径上的验证与状态保存当作正常架构的一部分。"
+      ],
+      "questions": [
+        "一个不可纠正内存错误，能否只影响实际消费它的进程，而不破坏其他任务或系统状态？"
+      ],
+      "boundary": "Itanium 的 poison 需要平台共同遵守传播与消费规则，地址/tag 错误可能要求更大范围隔离。专利是可实施方案披露，不证明量产；细粒度 ECC 示例会明显增加容量与传输开销。",
+      "diagnostic": "注入数据、tag、地址及多比特错误，追踪首次检测、poison 传播、消费触发和故障升级；检查 CPU、DMA、固件与 OS 的一致处理，并测量保护区域的容量、带宽和时延成本。",
+      "notes": [],
+      "sources": [
+        [
+          "High Availability and Reliability in the Itanium Processor",
+          "https://www.cs.virginia.edu/~skadron/cs854_uproc_survey/spring_2001/cs854/itaniumreliability.pdf",
+          "IEEE Micro 20(5), pp.61–69；重点 pp.64–65：Error containment、Data poisoning、Error promotion"
+        ],
+        [
+          "Systems and methods for implementing error correcting code regions in a memory — US9983930B2",
+          "https://patents.google.com/patent/US9983930B2/en",
+          "说明书 Figures 3A–3C、4、5A–5C 对应段落：range check、地址/长度转换、ECC 交织及读取解码；署名与公布日期"
+        ],
+        [
+          "Hot Chips 2025 Committees",
+          "https://hc2025.hotchips.org/about/committees/",
+          "2025：Program Co-Chair，时点机构为 Samsung"
+        ],
+        [
+          "Hot Chips 2026 Committees",
+          "https://hotchips.org/about/committees/",
+          "2026：Organizing Vice Chair；机构栏为空"
+        ],
+        [
+          "RAS Design Practices in Commercial Microprocessors — CMU seminar",
+          "https://research.ece.cmu.edu/~calcm/seminar/100306.html",
+          "2006-10-03：讲者简介和报告摘要；只作历史身份/背景辅助"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "itanium-ras-2000",
+          "title": "High Availability and Reliability in the Itanium Processor",
+          "authors": "Nhon Quach",
+          "date": "2000-09/10",
+          "url": "https://www.cs.virginia.edu/~skadron/cs854_uproc_survey/spring_2001/cs854/itaniumreliability.pdf",
+          "locator": "IEEE Micro 20(5), pp.61–69；重点 pp.64–65：Error containment、Data poisoning、Error promotion",
+          "type": "论文全文",
+          "contentStatus": "已取得大学托管原刊 PDF 的检索正文，读取署名、分层错误隔离、poison 传播及错误升级机制；本地保留审阅摘记。",
+          "evidenceStrength": "强：本人署名原始技术文章，历史机制正文可核查",
+          "role": "本人对 Itanium RAS 机制及设计取舍的技术说明；不将整颗处理器或团队实现归为个人独创",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "ecc-regions-us9983930",
+          "title": "Systems and methods for implementing error correcting code regions in a memory — US9983930B2",
+          "authors": "Nhon Quach, Yanru Li, Rahul Gulati",
+          "date": "2018-05-29",
+          "url": "https://patents.google.com/patent/US9983930B2/en",
+          "locator": "说明书 Figures 3A–3C、4、5A–5C 对应段落：range check、地址/长度转换、ECC 交织及读取解码；署名与公布日期",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已取得并阅读公开专利的发明人、公布日期及所列读写机制正文；本地保留审阅摘记。",
+          "evidenceStrength": "强：共同发明人署名的原始技术说明；不代表量产、性能实测或法律状态结论",
+          "role": "核验按区域保护的 ECC 数据路径共同发明；不据专利推断产品采用或个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "署名说明 Itanium 的多级 RAS 隔离：可纠正错误本地修复，未立即消费的坏数据以 poison 延后处理，并按指令、进程、节点及系统选择隔离边界。",
+          "workId": "itanium-ras-2000"
+        },
+        {
+          "text": "与 Yanru Li、Rahul Gulati 共同提出按区域启用 ECC 的存储方案：检查地址范围，转换读写地址与长度，交织数据和校验位，对非保护区域使用普通通路。",
+          "workId": "ecc-regions-us9983930"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "技术说明与共同发明人身份分别核验；不把 Hot Chips 职务作为技术贡献替代证据。挑战、模型与迁移分析属于本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-07-nhon-quach",
+        "standard": "contribution-led-v1",
+        "meaning": "本页所选两项不同一手技术作品及机制正文核验完成，不代表穷尽生涯成果。",
+        "verifiedAt": "2026-10-07"
+      },
+      "challenge": {
+        "lens": "按错误传播边界配置可靠性保护",
+        "skills": [
+          "A1",
+          "A2",
+          "A7",
+          "A8"
+        ],
+        "question": "一个不可纠正内存错误，能否只影响实际消费它的进程，而不破坏其他任务或系统状态？",
+        "variables": "检测覆盖；错误地址可信度；poison 粒度；共享范围；隔离域；恢复时长；ECC 容量/带宽开销；验证复杂度",
+        "model": "编辑条件模型：总风险取决于错误发生率、检测与恢复失败概率和影响范围；保护方案应同时计入资源与验证成本，不能仅用校验位数量评价。",
+        "crossover": "数据归属明确且所有消费者遵循 poison 语义时，局部隔离可提高可用性；地址损坏、共享内核状态或错误处理状态不可信时，必须扩大隔离范围。",
+        "counterexample": "CPU 能标记 poison，但 DMA 或平台转发时丢失错误标识，坏数据进入另一个任务；单部件 ECC 正确仍不代表端到端隔离成立。",
+        "validation": "注入数据、tag、地址及多比特错误，追踪首次检测、poison 传播、消费触发和故障升级；检查 CPU、DMA、固件与 OS 的一致处理，并测量保护区域的容量、带宽和时延成本。",
+        "transfer": "评估 CPU、CXL 内存扩展及异构共享内存时，验收完整错误传播与恢复链，并将保护成本纳入平台比较。"
+      }
     }
   ],
   "research": {
@@ -41126,7 +43446,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 328,
+    "totalProfiles": 348,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -41134,12 +43454,14 @@
       "research/batches/2026-10-06-expansion80.json",
       "research/batches/2026-10-07-remaining128.json",
       "research/batches/2026-10-07-expansion20.json",
-      "research/batches/2026-10-07-frontier-infra.json"
+      "research/batches/2026-10-07-frontier-infra.json",
+      "research/batches/2026-10-07-frontier19.json",
+      "research/batches/2026-10-07-nhon-quach.json"
     ],
-    "completedTotal": 327,
+    "completedTotal": 347,
     "remainingCatalog": 1,
     "remainingPlanned": 0,
-    "additionalPlannedScope": 27,
-    "additionalCompleted": 27
+    "additionalPlannedScope": 47,
+    "additionalCompleted": 47
   }
 }

@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-07",
+  "focus": "用户补漏 · Nhon Quach 的处理器可靠性架构",
+  "scope": "additional",
+  "baseCommit": "f954a87dc692569ac4d3371592034ad2c5100b4f",
+  "plannedScope": 1,
+  "plannedExisting": 0,
+  "plannedCandidates": 1,
+  "counts": {
+    "complete": 1
+  },
+  "completedExisting": 0,
+  "completedNew": 1,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "nhon-quach",
+      "name": "Nhon Quach",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "用户指出覆盖遗漏后补核：本人 Itanium RAS 原文与共同署名 ECC 区域专利均读取机制正文，达到两项不同一手作品门槛；会议职务仅作身份辅助。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "itanium-ras-2000",
+          "title": "High Availability and Reliability in the Itanium Processor",
+          "authors": "Nhon Quach",
+          "date": "2000-09/10",
+          "url": "https://www.cs.virginia.edu/~skadron/cs854_uproc_survey/spring_2001/cs854/itaniumreliability.pdf",
+          "locator": "IEEE Micro 20(5), pp.61–69；重点 pp.64–65：Error containment、Data poisoning、Error promotion",
+          "type": "论文全文",
+          "contentStatus": "已取得大学托管原刊 PDF 的检索正文，读取署名、分层错误隔离、poison 传播及错误升级机制；本地保留审阅摘记。",
+          "evidenceStrength": "强：本人署名原始技术文章，历史机制正文可核查",
+          "role": "本人对 Itanium RAS 机制及设计取舍的技术说明；不将整颗处理器或团队实现归为个人独创",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        },
+        {
+          "workId": "ecc-regions-us9983930",
+          "title": "Systems and methods for implementing error correcting code regions in a memory — US9983930B2",
+          "authors": "Nhon Quach, Yanru Li, Rahul Gulati",
+          "date": "2018-05-29",
+          "url": "https://patents.google.com/patent/US9983930B2/en",
+          "locator": "说明书 Figures 3A–3C、4、5A–5C 对应段落：range check、地址/长度转换、ECC 交织及读取解码；署名与公布日期",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已取得并阅读公开专利的发明人、公布日期及所列读写机制正文；本地保留审阅摘记。",
+          "evidenceStrength": "强：共同发明人署名的原始技术说明；不代表量产、性能实测或法律状态结论",
+          "role": "核验按区域保护的 ECC 数据路径共同发明；不据专利推断产品采用或个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "用户指出此前覆盖遗漏；本批依据技术作品补录，不以会议委员身份代替贡献证据。",
+    "Itanium署名原文与独立ECC区域专利的机制正文均已核验；专利披露不代表生产采用、实际性能或法律效力结论。",
+    "与原19位候选及另7位新增人物分别计数。"
+  ],
+  "publication": {
+    "status": "awaiting-deployment-verification"
+  }
+}

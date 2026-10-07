@@ -1,8 +1,8 @@
 {
   "screenedAt": "2026-10-07",
   "scope": "中美AI公司及其公开合作项目的基础设施人物候选；按公司/项目脉络组织，不推断个人国籍。",
-  "status": "screening-only-not-added-to-catalog",
-  "candidateCount": 19,
+  "status": "reviewed-and-promoted",
+  "candidateCount": 0,
   "candidates": [
     {
       "id": "jiayi-weng",
@@ -43,11 +43,50 @@
           "verifiedScope": "已读署名及§2架构：collector、replay buffer、policy update、异步采样；Weng与Huayu Chen共同一作"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "EnvPool/Tianshou为公开系统作品，不能当作OpenAI闭源RLHF系统结构的披露。",
         "GPT-4o后训练基础设施lead目前来自本人履历，正式档案应再核官方分工。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已取得两项不同实质一手作品并读取署名和机制正文；共同贡献及实现边界已分开。",
+        "profileUrl": "../../#jiayi-weng",
+        "sourceAudit": [
+          {
+            "workId": "envpool-2022",
+            "title": "EnvPool: A Highly Parallel Reinforcement Learning Environment Execution Engine",
+            "authors": "Jiayi Weng, Min Lin, Shengyi Huang, Bo Liu, Denys Makoviichuk, Viktor Makoviychuk, Zichen Liu, Yufan Song, Ting Luo, Yukun Jiang, Zhongwen Xu, Shuicheng Yan",
+            "date": "2022",
+            "url": "https://papers.nips.cc/paper_files/paper/2022/file/8caaf08e49ddbad6694fae067442ee21-Paper-Datasets_and_Benchmarks.pdf",
+            "locator": "§3.1–3.3、§4.1，PDF pp.4–6：动作/状态队列、异步批量、固定线程池、绑核与 NUMA；首页署名及 OpenAI 脚注",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "tianshou-2022",
+            "title": "Tianshou: A Highly Modularized Deep Reinforcement Learning Library",
+            "authors": "Jiayi Weng, Huayu Chen, Dong Yan, Kaichao You, Alexis Duburcq, Minghao Zhang, Yi Su, Hang Su, Jun Zhu",
+            "date": "2022-08",
+            "url": "https://www.jmlr.org/papers/volume23/21-1127/21-1127.pdf",
+            "locator": "§2、Figures 1–2，pp.2–3：collector、buffer、policy update、异步采样；p.1 共同一作脚注",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "philippe-tillet",
@@ -95,11 +134,50 @@
           "verifiedScope": "作者Philippe Tillet；取得技术正文，介绍自动化GPU编程及代码示例"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "2019与2021是同一技术路线的不同阶段；正式双作品审计宜补后续独立编译器研究，避免只用同项目两种介绍充数。",
         "尚未证明其为OpenAI芯片硬件架构负责人，不应如此命名。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已取得两项不同实质一手作品并读取署名和机制正文；共同贡献及实现边界已分开。",
+        "profileUrl": "../../#philippe-tillet",
+        "sourceAudit": [
+          {
+            "workId": "triton-mapl-2019",
+            "title": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations",
+            "authors": "Philippe Tillet, H. T. Kung, David Cox",
+            "date": "2019-06-22",
+            "url": "https://www.eecs.harvard.edu/~htk/publication/2019-mapl-tillet-kung-cox.pdf",
+            "locator": "§4.2–4.3、§5.1–5.2，PDF pp.5–6：tile IR、谓词、预取、层次分块与合并访存",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "isaac-sc-2017",
+            "title": "Input-Aware Auto-Tuning of Compute-Bound HPC Kernels",
+            "authors": "Philippe Tillet, David Cox",
+            "date": "2017-11",
+            "url": "https://arxiv.org/pdf/1802.05371",
+            "locator": "SC17 原文；§5–6，PDF pp.5–7：MLP 性能模型、对数特征、候选搜索和 GPU 复测；arXiv 版本发布于 2018",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "共同署名技术机制与适用边界；不推断个人独占设计责任",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "amin-tootoonchian",
@@ -140,11 +218,50 @@
           "verifiedScope": "取得协议论文正文和共同作者名单；与部署论文是不同作品，但仍属同项目"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "两篇MRC论文与多机构团队共同署名，需继续核实个人具体设计责任。",
         "未给2026-10任职/职衔下断言；旧个人主页可能未更新。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已取得两项不同实质一手作品并读取署名和机制正文；共同贡献及实现边界已分开。协议与部署是同项目不同作品，分别覆盖传输原语及拓扑/生产故障验证，不按独立复现计算。",
+        "profileUrl": "../../#amin-tootoonchian",
+        "sourceAudit": [
+          {
+            "workId": "mrc-transport-2026",
+            "title": "The Multipath Reliable Connection (MRC) Transport",
+            "authors": "Rip Sohan, Eric Spada, Eric Davis, Mark Handley, Idan Burstein, Tony Hurson, Jithin Jose, Vivek Kashyap, Rong Pan, Sayantan Sur 等；共同作者包括 Amin Tootoonchian（OpenAI OpCo LLC）",
+            "date": "2026-06-16",
+            "url": "https://arxiv.org/html/2606.18170v1",
+            "locator": "§II-A–II-E、§III、Table I：EV、MPR、SACK/NACK、接收端背压、路径探测；署名与机构",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "与部署论文属于同项目的独立协议作品：核验线上原语、接收窗口和可靠性语义；不据署名推断个人负责哪个原语",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "mrc-srv6-deployment-2026",
+            "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+            "authors": "Joao Araujo, Alex Chow, Mark Handley, Ryder Lewis, Christoph Paasch, Jitendra Padhye, Michael Papamichael, Greg Steinbrecher, Amin Tootoonchian, Lihua Yuan 等 OpenAI、Microsoft、AMD、Broadcom、NVIDIA 共同作者",
+            "date": "2026",
+            "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+            "locator": "§2.2–2.4、§3、§5.2.2–5.2.3，PDF pp.3–5、8–9：静态 SRv6、路径探测与故障实验；首页 OpenAI 署名组",
+            "type": "论文全文",
+            "contentStatus": "已通过检索工具取得原始论文正文，读取作者署名及所列机制段；本地保留审阅摘记，不声称已下载完整 PDF。",
+            "evidenceStrength": "强：共同署名的一手技术正文",
+            "role": "与 MRC 协议论文属于同项目的独立部署作品：核验拓扑/源路由集成和生产故障实验，不视作独立复现",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "christopher-berner",
@@ -178,11 +295,50 @@
           "verifiedScope": "已核共同署名与分布式训练系统摘要；正式审计需进一步定位系统段及作者贡献"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "不把7,500节点文章自动归给Berner，该文章当前页面未检出作者。",
         "当前所属机构与职责需要新的一手来源；先按OpenAI历史贡献人物收录候选。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同一手技术作品已取得并阅读机制正文；署名、历史关联及团队边界已核验。",
+        "profileUrl": "../../#christopher-berner",
+        "sourceAudit": [
+          {
+            "workId": "kubernetes2500-2018",
+            "title": "Scaling Kubernetes to 2,500 nodes",
+            "authors": "Christopher Berner",
+            "date": "2018-01-18",
+            "url": "https://openai.com/index/scaling-kubernetes-to-2500-nodes/",
+            "locator": "etcd、Kube masters、Docker image pulls、Networking、ARP cache 各节及作者栏",
+            "type": "本人署名技术文章",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "openai-five-2019",
+            "title": "Dota 2 with Large Scale Deep Reinforcement Learning",
+            "authors": "OpenAI 团队（Christopher Berner、Greg Brockman、Brooke Chan、Vicki Cheung 等；全文按字母顺序署名）",
+            "date": "2019-12-13；所读 PDF 扉页标注 2021-03-10",
+            "url": "https://arxiv.org/pdf/1912.06680",
+            "locator": "§3.2、Figure 2（PDF pp.5–7），§4.4 Data Quality（staleness）：rollout、推理、优化器和控制器",
+            "type": "论文全文",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "scott-gray",
@@ -216,11 +372,50 @@
           "verifiedScope": "已核作者与稀疏注意力/高效内核贡献摘要；正式审计仍需逐节提取"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "仅依据已核实的历史技术贡献列为候选；2026任职尚无已核验的一手证据。",
         "不采用“Bob内核作者”等未被本人/官方确认的网络推测。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同一手技术作品已取得并阅读机制正文；署名、历史关联及团队边界已核验。",
+        "profileUrl": "../../#scott-gray",
+        "sourceAudit": [
+          {
+            "workId": "blocksparse-2017",
+            "title": "GPU Kernels for Block-Sparse Weights",
+            "authors": "Scott Gray, Alec Radford, Diederik P. Kingma",
+            "date": "2017",
+            "url": "https://cdn.openai.com/blocksparse/blocksparsepaper.pdf",
+            "locator": "§2 Capabilities、§3.1（PDF pp.2–3）：block layout、block size、带宽与精度",
+            "type": "论文全文",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "sparse-transformer-2019",
+            "title": "Generating Long Sequences with Sparse Transformers",
+            "authors": "Rewon Child, Scott Gray, Alec Radford, Ilya Sutskever",
+            "date": "2019-04-23",
+            "url": "https://arxiv.org/pdf/1904.10509",
+            "locator": "§4.3、§5.4–5.6：strided/fixed attention、重计算、block-sparse kernels、混合精度",
+            "type": "论文全文",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "mark-handley",
@@ -254,11 +449,50 @@
           "verifiedScope": "原论文署名、OpenAI归属、§1–2多平面拓扑、§5训练故障结果；已读取正文"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "NDP与MRC均为团队工作，不能把多个厂商共同工程归一人。",
         "精确现职头衔仍待官方个人介绍；不影响其两条技术路线的候选价值。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同一手技术作品已取得并阅读机制正文；署名、历史关联及团队边界已核验。",
+        "profileUrl": "../../#mark-handley",
+        "sourceAudit": [
+          {
+            "workId": "ndp-2017",
+            "title": "Re-architecting datacenter networks and stacks for low latency and high performance",
+            "authors": "Mark Handley, Costin Raiciu, Alexandru Agache, Andrei Voinescu, Andrew W. Moore, Gianni Antichi, Marcin Wójcik",
+            "date": "2017",
+            "url": "https://www.cl.cam.ac.uk/teaching/1718/R02/papers/p29-Handley.pdf",
+            "locator": "§3.1–3.2.1：浅缓冲、packet trimming、接收端 PULL 与乱序",
+            "type": "论文全文",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "mrc-srv6-2026",
+            "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+            "authors": "OpenAI、Microsoft、AMD、NVIDIA、Broadcom 多机构作者组；Mark Handley 列于 OpenAI 作者组并为通讯作者",
+            "date": "2026-05",
+            "url": "https://cdn.openai.com/pdf/resilient-ai-supercomputer-networking-using-mrc-and-srv6.pdf",
+            "locator": "署名页；§2.1–2.3（PDF pp.3–5）：EV、多路径、丢失/拥塞区分与静态 SRv6",
+            "type": "论文全文",
+            "contentStatus": "已取得并阅读署名及所列机制正文；PDF 留有本地副本与提取文字，网页留有审阅记录。",
+            "evidenceStrength": "强：作者署名一手技术正文",
+            "role": "核验贡献机制及适用边界；共同署名不证明个人独占设计",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "james-bradbury",
@@ -285,10 +519,49 @@
           "contribution": "共同软件作品将自动微分、向量化和JIT变换组合，经XLA映射加速器。已读README机制说明；不能把当前全部功能归于其个人。"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "候选筛选仅完成一项具体软件作品及当前角色核验；下一步需追加其本人署名技术演讲或独立作品，避免用2018 JAX论文误认作者。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已读取两项不同实质一手作品的机制正文，并核对作者及贡献说明；历史机构、现任职务和团队归因分开。",
+        "profileUrl": "../../#james-bradbury",
+        "sourceAudit": [
+          {
+            "workId": "jax-software-2018",
+            "title": "JAX: composable transformations of Python+NumPy programs",
+            "authors": "James Bradbury, Roy Frostig, Peter Hawkins, Matthew James Johnson, Yash Katariya, Chris Leary, Dougal Maclaurin, George Necula, Adam Paszke, Jake VanderPlas, Skye Wanderman-Milne, Qiao Zhang",
+            "date": "2018起的软件作品；2026-10-07读取官方文档",
+            "url": "https://github.com/jax-ml/jax",
+            "locator": "README：What is JAX、Transformations（grad/jit/vmap 及组合代码）；Citing JAX 软件作者名单按字母序；不采用另篇 SysML 2018 论文署名",
+            "type": "作者软件技术文档",
+            "contentStatus": "已读取官方仓库 README 中程序变换解释及代码示例和软件引用名单；不是论文，不将现有全部功能追溯给单一作者。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "palm-2023",
+            "title": "PaLM: Scaling Language Modeling with Pathways",
+            "authors": "Aakanksha Chowdhery, Sharan Narang, Jacob Devlin et al.（共同作者包括 James Bradbury）",
+            "date": "2023（JMLR 24）",
+            "url": "https://www.jmlr.org/papers/volume24/22-1144/22-1144.pdf",
+            "locator": "§4 Training Infrastructure（pp.9–12）；§4.1 MFU（p.12）；Appendix A（pp.87–88）明确列 Bradbury 的训练效率、T5X/Flaxformer、基建及计算量分析贡献",
+            "type": "论文全文",
+            "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "sam-mccandlish",
@@ -323,10 +596,49 @@
           "mechanismRead": false
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "Chief Architect职务有公司原始证据，但不能据此声称设计某款芯片；历史OpenAI研究与当前Anthropic职责必须分开。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已读取两项不同实质一手作品的机制正文，并核对作者及贡献说明；历史机构、现任职务和团队归因分开。",
+        "profileUrl": "../../#sam-mccandlish",
+        "sourceAudit": [
+          {
+            "workId": "large-batch-2018",
+            "title": "An Empirical Model of Large-Batch Training",
+            "authors": "Sam McCandlish, Jared Kaplan, Dario Amodei, OpenAI Dota Team",
+            "date": "2018-12-14",
+            "url": "https://arxiv.org/pdf/1812.06162",
+            "locator": "署名页；§2.2 Eqs.2.8–2.10 梯度噪声；§2.3 Eqs.2.11–2.12 时间/样本折中；§2.4 限制（pp.6–8）",
+            "type": "论文全文",
+            "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "scaling-laws-2020",
+            "title": "Scaling Laws for Neural Language Models",
+            "authors": "Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess, Rewon Child, Scott Gray, Alec Radford, Jeffrey Wu, Dario Amodei",
+            "date": "2020-01-23",
+            "url": "https://arxiv.org/pdf/2001.08361",
+            "locator": "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）",
+            "type": "论文全文",
+            "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "tom-brown",
@@ -360,10 +672,49 @@
           "mechanismRead": false
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "推荐定位是compute系统/平台决策；不称CPU/GPU微架构设计师。需额外检索本人技术口述，深化个人贡献归属。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已读取两项不同实质一手作品的机制正文，并核对作者及贡献说明；历史机构、现任职务和团队归因分开。",
+        "profileUrl": "../../#tom-brown",
+        "sourceAudit": [
+          {
+            "workId": "scaling-laws-2020",
+            "title": "Scaling Laws for Neural Language Models",
+            "authors": "Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess, Rewon Child, Scott Gray, Alec Radford, Jeffrey Wu, Dario Amodei",
+            "date": "2020-01-23",
+            "url": "https://arxiv.org/pdf/2001.08361",
+            "locator": "p.1 Contributions；§5.1–5.2 关键批量与损失拟合；§6 计算预算分配；Appendix C 外推边界（pp.22–23）",
+            "type": "论文全文",
+            "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "gpt3-2020",
+            "title": "Language Models are Few-Shot Learners",
+            "authors": "Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah et al.",
+            "date": "2020-07-22（v4）",
+            "url": "https://arxiv.org/pdf/2005.14165",
+            "locator": "§2.3 Training Process（p.9）；Contributions（p.42）：Tom Brown 等共同实现模型、训练基建及模型并行策略",
+            "type": "论文全文",
+            "contentStatus": "已取得并读取所列机制正文及署名/贡献说明；正文范围见定位。",
+            "evidenceStrength": "强：原始作者技术作品，贡献归属按原文核验。",
+            "role": "核验技术机制与共同贡献；不将团队成果归为个人独占发明。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "tristan-hume",
@@ -391,10 +742,49 @@
           "mechanismRead": true
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "文章中的模拟器是招聘/优化测评装置，不能描述为Anthropic真实芯片；团队Trainium上线经历不全部归其个人。完整人物档案还需第二项独立技术作品。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同一手技术作品及所列机制正文；贡献归属与任职背景分开记录。",
+        "profileUrl": "../../#tristan-hume",
+        "sourceAudit": [
+          {
+            "workId": "hume-magic-trace-2022",
+            "title": "Magic-trace: Diagnosing tricky performance issues easily with Intel Processor Trace",
+            "authors": "Tristan Hume",
+            "date": "2022-01-11",
+            "url": "https://blog.janestreet.com/magic-trace/",
+            "locator": "A minimum viable product；Directly using kernel APIs and libipt；Hardware breakpoints for seamless triggering",
+            "type": "作者技术文章全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "本人署名明确与 Chris Lambert 共同实现，并分别叙述本人设计、调试和后续触发机制工作。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "hume-accelerator-evaluation-2026",
+            "title": "Designing AI-resistant technical evaluations",
+            "authors": "Tristan Hume",
+            "date": "2026-01-21",
+            "url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+            "locator": "The origin of the take-home；The simulated machine；Version 2",
+            "type": "作者技术文章全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "本人设计的性能工程测评及模拟器；不是 Anthropic 生产加速器设计。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "chenggang-zhao",
@@ -404,7 +794,7 @@
       "role": "本人公开GitHub列 @deepseek-ai infra；职级与管理范围未核验",
       "roleDate": "2025 DeepEP/DeepGEMM署名；2026-10-07本人GitHub仍标DeepSeek infra",
       "focus": "DeepGEMM：低精度GEMM、MoE分组计算与GPU内核组织。；DeepEP：专家并行dispatch/combine通信，关注计算通信协同。；Insights into DeepSeek-V3：模型、低精度计算、网络与硬件瓶颈协同。",
-      "rationale": "本人GitHub明确姓名、DeepSeek AI 与 infra；两个官方小型核心库的引用作者名单都列其首位，另为ISCA2025硬件架构论文第一作者。",
+      "rationale": "本人GitHub与DeepSeek官方项目核实关联；ISCA2025论文按名字母排序，只能据署名确认共同贡献，不能据排序推断个人主导。正式技术档案核验Fire-Flyer与DeepSeek-V3硬件分析两项作品。",
       "sources": [
         {
           "url": "https://github.com/LyricZhao",
@@ -423,11 +813,50 @@
           "title": "一手来源 4"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "进一步核对关键提交与本人演讲，细分其个人机制负责范围。",
         "不把V3大作者名单本身当个人架构贡献证据。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同署名原始技术作品并阅读机制正文；历史机构、共同贡献及编辑推理明确区分。",
+        "profileUrl": "../../#chenggang-zhao",
+        "sourceAudit": [
+          {
+            "workId": "firefly-ai-hpc-2024",
+            "title": "Fire-Flyer AI-HPC: A Cost-Effective Software-Hardware Co-Design for Deep Learning",
+            "authors": "Wei An, Xiao Bi, Guanting Chen, Chenggang Zhao 等52位团队作者",
+            "date": "2024-08-31（v2；SC24）",
+            "url": "https://arxiv.org/pdf/2408.14158v2",
+            "locator": "HFReduce Algorithm Steps及Advantages：CPU归约、D2H/H2D、双二叉树与NVLink变体",
+            "type": "论文全文",
+            "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "deepseek-hardware-insights-2025",
+            "title": "Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures",
+            "authors": "Chenggang Zhao, Chengqi Deng, Chong Ruan, Damai Dai, Huazuo Gao, Jiashi Li, Liyue Zhang, Panpan Huang, Shangyan Zhou, Shirong Ma, Wenfeng Liang, Ying He, Yuqing Wang, Yuxuan Liu, Y.X. Wei",
+            "date": "2025-05-14（v1；ISCA25）",
+            "url": "https://arxiv.org/pdf/2505.09343v1",
+            "locator": "§4.2–4.4：硬件感知并行、node-limited routing、IB/NVLink流量去重；首页脚注作者按名字母排序",
+            "type": "论文全文",
+            "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "wencong-xiao",
@@ -452,11 +881,50 @@
           "title": "一手来源 3"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "现任职由本人主页支持，未追加雇主组织架构独立验证。",
         "两篇历史成果属于阿里团队，不应标为字节发明。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同署名原始技术作品并阅读机制正文；历史机构、共同贡献及编辑推理明确区分。",
+        "profileUrl": "../../#wencong-xiao",
+        "sourceAudit": [
+          {
+            "workId": "antman-2020",
+            "title": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+            "authors": "Wencong Xiao, Shiru Ren, Yong Li, Yang Zhang, Pengyang Hou, Zhi Li, Yihui Feng, Wei Lin, Yangqing Jia",
+            "date": "2020-11",
+            "url": "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+            "locator": "§3.1.1及Fig.7：按mini-batch调整显存上限与主机内存放置；正文pp.536–537",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "llumnix-2024",
+            "title": "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+            "authors": "Biao Sun, Ziming Huang, Hanyu Zhao, Wencong Xiao, Xinyi Zhang, Yong Li, Wei Lin",
+            "date": "2024-07",
+            "url": "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+            "locator": "§4.1–4.3、Figs.6–7：KV多阶段live migration、预分配/提交/中止握手；pp.177–178",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "ziheng-jiang",
@@ -485,11 +953,50 @@
           "title": "一手来源 4"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "补本人履历与当前团队职责。",
         "第一作者不证明系统所有组件个人独占。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同署名原始技术作品并阅读机制正文；历史机构、共同贡献及编辑推理明确区分。",
+        "profileUrl": "../../#ziheng-jiang",
+        "sourceAudit": [
+          {
+            "workId": "megascale-2024",
+            "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+            "authors": "Ziheng Jiang, Haibin Lin, Yinmin Zhong 等团队作者",
+            "date": "2024-04",
+            "url": "https://www.usenix.org/system/files/nsdi24-jiang-ziheng.pdf",
+            "locator": "§3.2、Fig.3–4；pp.748–749：3D并行通信依赖、预取和send/receive解耦",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "megascale-infer-2025",
+            "title": "MegaScale-Infer: Efficient Mixture-of-Experts Model Serving with Disaggregated Expert Parallelism",
+            "authors": "Ruidong Zhu, Ziheng Jiang, Chao Jin, Peng Wu, Cesar A. Stuardo, Dongyang Wang, Xinlei Zhang, Huaping Zhou, Haoran Wei, Yang Cheng, Jianzhe Xiao, Xinyi Zhang, Lingjun Liu, Haibin Lin, Li-Wen Chang, Jianxi Ye, Xiao Yu, Xuanzhe Liu, Xin Jin, Xin Liu",
+            "date": "2025-09",
+            "url": "https://chaojin0310.github.io/files/papers/SIGCOMM25-MegaScale-Infer.pdf",
+            "locator": "§4.1–4.2；pp.596–597：ping-pong微批流水线与受SLO/内存约束的部署搜索",
+            "type": "论文全文",
+            "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "haibin-lin",
@@ -518,11 +1025,50 @@
           "title": "一手来源 4"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "核对SSI入离职月份和当前雇主。",
         "本人主页贡献者排名只是自述，应对具体版本提交复核。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同具名一手技术作品及机制正文已核验；团队归属、历史机构和编辑模型分列。",
+        "profileUrl": "../../#haibin-lin",
+        "sourceAudit": [
+          {
+            "workId": "megascale-2024",
+            "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+            "authors": "Ziheng Jiang, Haibin Lin, Yinmin Zhong 等；三人为论文标注的共同贡献作者",
+            "date": "2024-02-23",
+            "url": "https://arxiv.org/pdf/2402.15627v1",
+            "locator": "§3.2、§4.1–4.4、§5；PDF pp.4–8：三维并行通信重叠、故障诊断、分阶段检查点和训练长尾",
+            "type": "论文全文",
+            "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+            "evidenceStrength": "强：具名一手技术论文正文",
+            "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "hybridflow-2024-v2",
+            "title": "HybridFlow: A Flexible and Efficient RLHF Framework",
+            "authors": "Guangming Sheng, Chi Zhang, Zilingfeng Ye, Xibin Wu, Wang Zhang, Ru Zhang, Yanghua Peng, Haibin Lin, Chuan Wu",
+            "date": "2024-10-02（v2）；EuroSys 2025",
+            "url": "https://arxiv.org/pdf/2409.19256v2",
+            "locator": "§2.5、§3–5：混合控制编程模型、ParallelWorker/传输协议与3D-HybridEngine模型重分片",
+            "type": "论文全文",
+            "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+            "evidenceStrength": "强：具名一手技术论文正文",
+            "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "ruoyu-qin",
@@ -551,11 +1097,50 @@
           "title": "一手来源 4"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "补个人组件负责范围以及第二项独立技术作品。",
         "本轮没有将Mooncake期刊扩展版计为第二独立作品。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同具名一手技术作品及机制正文已核验；团队归属、历史机构和编辑模型分列。",
+        "profileUrl": "../../#ruoyu-qin",
+        "sourceAudit": [
+          {
+            "workId": "mooncake-fast25",
+            "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+            "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+            "date": "2025-02",
+            "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+            "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "seer-2025-v1",
+            "title": "Seer: Online Context Learning for Fast Synchronous LLM Reinforcement Learning",
+            "authors": "Ruoyu Qin, Weiran He, Weixiao Huang, Yangkun Zhang, Yikai Zhao, Bo Pang, Xinran Xu, Yingdi Shan, Yongwei Wu, Mingxing Zhang",
+            "date": "2025-11-18（v1）",
+            "url": "https://arxiv.org/pdf/2511.14617v1",
+            "locator": "§3.2、§4.1–4.3 / Algorithm 1；PDF pp.5–7：分块rollout、全局KV池、组内长度预测和调度",
+            "type": "论文全文",
+            "contentStatus": "已取得本地 PDF 并提取文字，核对署名和所列机制正文。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "feng-ren",
@@ -580,11 +1165,50 @@
           "title": "一手来源 3"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "应补雇主页面或本人技术演讲完整正文。",
         "不能将Mooncake合作项目参与等同Moonshot雇佣关系。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同具名一手技术作品及机制正文已核验；团队归属、历史机构和编辑模型分列。",
+        "profileUrl": "../../#feng-ren",
+        "sourceAudit": [
+          {
+            "workId": "mooncake-fast25",
+            "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+            "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+            "date": "2025-02",
+            "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+            "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "tent-2026-v2",
+            "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+            "authors": "Feng Ren, Ruoyu Qin, Teng Ma, Shangming Cai, Zheng Liu, Chao Lei, Dejiang Zhu, Ke Yang, Zheming Li, Jialei Cui, Weixiao Huang, Yikai Zhao, Yineng Zhang, Hao Wu, Xiang Gao, Yuhao Fu, Jinlei Jiang, Yongwei Wu, Mingxing Zhang",
+            "date": "2026-07-24（v2）",
+            "url": "https://arxiv.org/pdf/2604.00368v2",
+            "locator": "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试",
+            "type": "论文全文",
+            "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+            "evidenceStrength": "强：具名一手技术论文正文",
+            "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "wei-lin",
@@ -617,11 +1241,50 @@
           "title": "一手来源 5"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "需补本人技术演讲正文，把管理职衔与具体架构决策关联起来。",
         "本轮不称Qwen首席架构师，也未把PAI全平台成果归其个人。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同一手技术作品及所列机制正文；贡献归属与任职背景分开记录。",
+        "profileUrl": "../../#wei-lin",
+        "sourceAudit": [
+          {
+            "workId": "antman-2020",
+            "title": "AntMan: Dynamic Scaling on GPU Clusters for Deep Learning",
+            "authors": "Wencong Xiao, Shiru Ren, Yong Li, Yang Zhang, Pengyang Hou, Zhi Li, Yihui Feng, Wei Lin, Yangqing Jia",
+            "date": "2020-11",
+            "url": "https://www.usenix.org/system/files/osdi20-xiao.pdf",
+            "locator": "p.1 署名；§3.1.1 Memory Management；§3.1.2 Computation Management；§3.2",
+            "type": "论文全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "共同作者；不把团队全部机制独占归因于个人。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "llumnix-2024",
+            "title": "Llumnix: Dynamic Scheduling for Large Language Model Serving",
+            "authors": "Biao Sun, Ziming Huang, Hanyu Zhao, Wencong Xiao, Xinyi Zhang, Yong Li, Wei Lin",
+            "date": "2024-07",
+            "url": "https://www.usenix.org/system/files/osdi24-sun-biao.pdf",
+            "locator": "p.1 署名；§4.1；§4.2 Live Migration of LLM Requests，Figures 6–7；§4.3",
+            "type": "论文全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "共同作者；不把团队全部机制独占归因于个人。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "zheming-li",
@@ -646,11 +1309,50 @@
           "title": "一手来源 3"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "补本人公开系统讲解或精确模块负责证据，不能仅凭作者排序称首席架构师。",
         "补第二项独立技术作品。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "两项不同具名一手技术作品及机制正文已核验；团队归属、历史机构和编辑模型分列。",
+        "profileUrl": "../../#zheming-li",
+        "sourceAudit": [
+          {
+            "workId": "mooncake-fast25",
+            "title": "Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
+            "authors": "Ruoyu Qin, Zheming Li, Weiran He, Jialei Cui, Feng Ren, Mingxing Zhang, Yongwei Wu, Weimin Zheng, Xinran Xu",
+            "date": "2025-02",
+            "url": "https://www.usenix.org/system/files/fast25-qin.pdf",
+            "locator": "§2.2–3.2.3；期刊pp.157–160：缓存复用成本、分离架构、拓扑感知传输",
+            "type": "论文全文",
+            "contentStatus": "已通过网页工具取得 USENIX PDF 可检索正文并阅读所列机制；本地直接下载返回403，未声称保有本地PDF。",
+            "evidenceStrength": "强：署名原始技术论文，机制正文可核对",
+            "role": "核验共同技术贡献与适用边界；不推断个人独占发明",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "tent-2026-v2",
+            "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+            "authors": "Feng Ren, Ruoyu Qin, Teng Ma, Shangming Cai, Zheng Liu, Chao Lei, Dejiang Zhu, Ke Yang, Zheming Li, Jialei Cui, Weixiao Huang, Yikai Zhao, Yineng Zhang, Hao Wu, Xiang Gao, Yuhao Fu, Jinlei Jiang, Yongwei Wu, Mingxing Zhang",
+            "date": "2026-07-24（v2）",
+            "url": "https://arxiv.org/pdf/2604.00368v2",
+            "locator": "§3–4.4，PDF pp.5–8：声明式segment、动态路径选择、遥测切片调度、链路健康与幂等重试",
+            "type": "论文全文",
+            "contentStatus": "已下载原始PDF并提取文字，读取署名和所列机制正文；本地保存PDF与文字。",
+            "evidenceStrength": "强：具名一手技术论文正文",
+            "role": "核验共同技术贡献，不依据作者排序分配个人独占成果",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     },
     {
       "id": "sachin-katti",
@@ -686,11 +1388,50 @@
           "verifiedScope": "已打开原始论文；共同作品，正式档案仍须核验机制与归属。"
         }
       ],
-      "gaps": [
+      "status": "audited-added-to-catalog",
+      "initialScreeningGaps": [
         "任职公告用于角色定位，不能替代两项独立技术作品的完整审计。",
         "历史学术共同成果与OpenAI当前职责分别记录；继续核对本人架构决策与具体系统机制。"
       ],
-      "status": "screened-not-audited"
+      "auditOutcome": {
+        "status": "complete",
+        "reason": "已核验两项不同一手技术作品及所列机制正文；贡献归属与任职背景分开记录。",
+        "profileUrl": "../../#sachin-katti",
+        "sourceAudit": [
+          {
+            "workId": "pfabric-2013",
+            "title": "pFabric: Minimal Near-Optimal Datacenter Transport",
+            "authors": "Mohammad Alizadeh, Shuang Yang, Milad Sharif, Sachin Katti, Nick McKeown, Balaji Prabhakar, Scott Shenker",
+            "date": "2013-08",
+            "url": "https://www.stanford.edu/~skatti/pubs/sigcomm13-pfabric.pdf",
+            "locator": "p.1 署名与 §1 三项机制；p.2 仿真评估与部署边界",
+            "type": "论文全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "共同作者；不把团队全部机制独占归因于个人。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          },
+          {
+            "workId": "numfabric-2016",
+            "title": "NUMFabric: Fast and Flexible Bandwidth Allocation in Datacenters",
+            "authors": "Kanthi Nagaraj, Dinesh Bharadia, Hongzi Mao, Sandeep Chinchali, Mohammad Alizadeh, Sachin Katti",
+            "date": "2016-08",
+            "url": "https://www.stanford.edu/~skatti/pubs/sigcomm16-num.pdf",
+            "locator": "p.1 署名；§2 效用函数；§4.1 Swift；§4.2 xWI",
+            "type": "论文全文",
+            "contentStatus": "已读取署名及所列机制正文；审阅定位保存在本轮证据摘记。",
+            "evidenceStrength": "强：作者署名的一手技术作品正文。",
+            "role": "共同作者；不把团队全部机制独占归因于个人。",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-10-07"
+          }
+        ]
+      }
     }
   ],
   "identityChecks": {
@@ -755,10 +1496,15 @@
     "具名技术作品与公开职责分别核验；职位本身不等于具体机制贡献。",
     "正式入库仍需两项不同实质一手作品、机制正文及个人/团队归属。",
     "历史论文机构、本人当前主页和官方现职分别带日期，遇到冲突保留待核。",
-    "本队列不影响已批准并完成的20位扩展批次，也不增加321位正式目录人数。"
+    "原19位已逐人完成本批核验；与另新增7位分开计数，正式目录现为348位。"
   ],
   "userConfirmedPriorities": [
     "james-bradbury",
     "sachin-katti"
-  ]
+  ],
+  "initialCandidateCount": 19,
+  "admittedCount": 19,
+  "reviewedAt": "2026-10-07",
+  "catalogTotal": 348,
+  "auditBatch": "../batches/2026-10-07-frontier19.html"
 }
