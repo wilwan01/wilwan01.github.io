@@ -161,7 +161,7 @@
       },
       "after": {
         "profiles": 38,
-        "sources": 77,
+        "sources": 76,
         "cards": 95
       },
       "new_ids": {
@@ -212,7 +212,6 @@
           "EXP200-B28-A",
           "EXP200-B28-B",
           "E7S01",
-          "E7S02",
           "E7S03",
           "E7S04",
           "S36SRC1",
@@ -266,7 +265,9 @@
         "arya-bofa",
         "arcuri-ubs"
       ],
-      "source_aliases": {},
+      "source_aliases": {
+        "E7S02": "S3D02"
+      },
       "priority_pending": [],
       "real_qa_added": 0,
       "status": "content_validated_ready_for_publication",
@@ -277,12 +278,13 @@
         "Licensed reports, proprietary models and investment performance not audited."
       ],
       "validation": [
-        "All original20 profiles retained; original38 source objects and64 cards/keys preserved",
+        "Original20 profiles retained; original38 source fields and64 cards/keys preserved; one existing source adds explicit new reading scope",
         "200 unique nominations; 100buy100sell; 20priority method samples",
         "Source/profile/card joins, F1-F25/T1-T6 tags, lazy answer separation passed",
         "Six parallel research groups; independent cross-review corrected chronology, page locators and capacity formula",
         "JavaScript syntax and git diff whitespace checks passed",
-        "Candidate source visibility, pre-load profile selection and local draft normalization reviewed"
+        "Candidate source visibility, pre-load profile selection and local draft normalization reviewed",
+        "NVIDIA FY2027 Q2 issuer and CDN URLs deduplicated to S3D02"
       ]
     }
   ],
@@ -331,7 +333,8 @@
     ]
   },
   "source_id_aliases": {
-    "S3D01": "S1D01"
+    "S3D01": "S1D01",
+    "E7S02": "S3D02"
   },
   "real_qa_added": 0,
   "pending": [
