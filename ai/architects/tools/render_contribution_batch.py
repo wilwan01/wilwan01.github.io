@@ -106,7 +106,7 @@ candidate_topics={'george-yao':'服务器 CPU 与平台','liu-yi-identity-pendin
 seen=set(profile_ids)
 for batch in batches:
  for record in batch['records']:
-  if record['id'] in seen:continue
+  if record['id'] in seen or not record.get('sources'):continue
   seen.add(record['id'])
   domain=record.get('domain',candidate_domains.get(record['id'],'foundations'))
   body=page.xpath('//*[@id="directory-'+domain+'"]//tbody')[0]
@@ -114,7 +114,11 @@ for batch in batches:
   append(row,'td','—')
   append(row,'td',record['name'].split('（用户')[0])
   append(row,'td',record.get('field',candidate_topics.get(record['id'],'计算机体系结构')))
-  append(row,'td','—')
+  detail=append(row,'td')
+  if record['id']=='george-yao':
+   detail.text='曾任海思图灵处理器业务部总经理。 '
+  for source in record['sources']:
+   detail.append(link(source['url'],source['title']))
 # Directory counts include all listed names; profile and skill counts retain
 # their own scope, as names without articles have no profile links.
 directory.xpath('./h2')[0].text=f'按领域浏览 · {len(seen)} 位人物'
