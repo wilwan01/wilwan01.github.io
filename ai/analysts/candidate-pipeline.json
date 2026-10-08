@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "as_of": "2026-10-07",
+  "as_of": "2026-10-08",
   "scope": "固定100买方+100卖方提名池；分类按原提名及历史来源角色，不代表200名现任行业研究员；候选、身份初核和方法材料分开。",
   "statusDefinitions": {
     "candidate": "身份、分类或证据仍需补充",
@@ -8,13 +8,13 @@
     "research-ready": "至少两项实质原始材料支持方法样本；不自动认证反复方法或完整投资思想"
   },
   "counts": {
-    "research-ready": 24,
-    "identity-verified": 169,
-    "candidate": 7
+    "research-ready": 76,
+    "identity-verified": 121,
+    "candidate": 3
   },
   "priority_count": 20,
   "existing_profile_matches": 18,
-  "profile_matches": 36,
+  "profile_matches": 78,
   "candidates": [
     {
       "id": "B01",
@@ -150,7 +150,7 @@
       "roleAtSource": "Partner, Deputy Fund Manager",
       "currentRole": "Partner, Deputy Fund Manager",
       "firm": "Polar Capital",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "增长和资本密集度 → 利润池持续性 → 估值与组合约束",
       "identitySources": [
         {
           "url": "https://www.pctannualhighlights.co.uk/Investment-Managers-Report/",
@@ -161,13 +161,69 @@
           "accessLevel": "primary text opened"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required"
+        "共同作者贡献未拆分",
+        "FY2025发表日期未核验",
+        "未审计组合绩效或预测结果"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "unwin-polar",
+      "roleNote": "",
+      "atlasProfileId": "unwin-polar",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS05",
+          "title": "Investment Manager’s Report: Summary — FY2024",
+          "url": "https://www.pctannualhighlights.co.uk/2024/Investment-Managers-Report/",
+          "date": "2024-07-16",
+          "access": "2026-10-08 新读取官方原文；选读 Technology Outlook 下 Earnings Outlook、Valuation、Magnificent 7、Survival of the fittest 及页面署名日期；非完整年报审阅。"
+        },
+        {
+          "id": "O8BAS06",
+          "title": "Investment Manager’s Report: Summary — FY2025",
+          "url": "https://www.pctannualhighlights.co.uk/2025/Investment-Managers-Report/",
+          "date": null,
+          "access": "2026-10-08 新读取官方原文；选读 Mag-7 update、Disruption ahead、Cloud update、AI to the rescue、Technology/AI risks、Concentration risk；FY截至2025-04-30，页面有July 2025图表但无明确发布日期，不把财年末当发表日。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS05",
+          "title": "Investment Manager’s Report: Summary — FY2024",
+          "date": "2024-07-16",
+          "url": "https://www.pctannualhighlights.co.uk/2024/Investment-Managers-Report/",
+          "authors": "Ben Rogoff and Alastair Unwin",
+          "summary": "共同报告比较盈利、估值和资本再投入，讨论软件增长放缓与利润率改善。",
+          "access": "2026-10-08 新读取官方原文；选读 Technology Outlook 下 Earnings Outlook、Valuation、Magnificent 7、Survival of the fittest 及页面署名日期；非完整年报审阅。"
+        },
+        {
+          "id": "O8BAS06",
+          "title": "Investment Manager’s Report: Summary — FY2025",
+          "date": null,
+          "url": "https://www.pctannualhighlights.co.uk/2025/Investment-Managers-Report/",
+          "authors": "Ben Rogoff and Alastair Unwin",
+          "summary": "共同报告提高对大平台资本密集度及软件替代风险的关注，披露相应组合调整。",
+          "access": "2026-10-08 新读取官方原文；选读 Mag-7 update、Disruption ahead、Cloud update、AI to the rescue、Technology/AI risks、Concentration risk；FY截至2025-04-30，页面有July 2025图表但无明确发布日期，不把财年末当发表日。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS05",
+          "claim": "共同把大平台增长、利润率、再投入和估值放在一起评价。",
+          "locator": "Technology Outlook / Magnificent 7；Survival of the fittest",
+          "read_scope": "网页上述章节及署名日期；非完整年报",
+          "evidence_state": "newly-read primary"
+        },
+        {
+          "source_id": "O8BAS06",
+          "claim": "共同提高对资本密集度、软件替代和大平台仓位的警惕。",
+          "locator": "Mag-7 update；Disruption ahead；Concentration risk",
+          "read_scope": "选读这些章节及Cloud update、Technology/AI risks；无发表日",
+          "evidence_state": "newly-read primary"
+        }
+      ]
     },
     {
       "id": "B04",
@@ -321,7 +377,7 @@
       "roleAtSource": "Portfolio Manager, Global Technology Leaders",
       "currentRole": "Portfolio Manager, Global Technology Leaders",
       "firm": "Janus Henderson",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "政策冲击 → 需求与流动性 → 估值纪律",
       "identitySources": [
         {
           "url": "https://www.janushenderson.com/en-gb/investor/article/riding-the-ai-wave-how-can-tech-investors-harness-change-and-volatility/",
@@ -332,13 +388,69 @@
           "accessLevel": "primary text opened"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required"
+        "个人与团队贡献无法逐句拆分",
+        "政策为历史时点",
+        "未核验机构底层估值模型"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "porter-janus",
+      "roleNote": "",
+      "atlasProfileId": "porter-janus",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS02",
+          "title": "Tech stocks and tariffs: 5 key considerations for investors",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/tech-stocks-and-tariffs-5-key-considerations-for-investors/",
+          "date": "2025-04-09",
+          "access": "2026-10-08 新读取官方原文；正文五项考虑与买入时机段落、作者区；历史政策判断仅按2025-04-09口径，不代表现行关税。"
+        },
+        {
+          "id": "B100-RC2",
+          "title": "Riding the AI wave: How can tech investors harness change and volatility?",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/riding-the-ai-wave-how-can-tech-investors-harness-change-and-volatility/",
+          "date": "2025-12-04",
+          "access": "2026-10-07读取文章全文；团队共同署名，不把所有句子归为Clode个人原话。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS02",
+          "title": "Tech stocks and tariffs: 5 key considerations for investors",
+          "date": "2025-04-09",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/tech-stocks-and-tariffs-5-key-considerations-for-investors/",
+          "authors": "Alison Porter, Graeme Clark and Richard Clode",
+          "summary": "团队区分直接关税影响与需求、信心和流动性的间接冲击。",
+          "access": "2026-10-08 新读取官方原文；正文五项考虑与买入时机段落、作者区；历史政策判断仅按2025-04-09口径，不代表现行关税。"
+        },
+        {
+          "id": "B100-RC2",
+          "title": "Riding the AI wave: How can tech investors harness change and volatility?",
+          "date": "2025-12-04",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/riding-the-ai-wave-how-can-tech-investors-harness-change-and-volatility/",
+          "access": "2026-10-07读取文章全文；团队共同署名，不把所有句子归为Clode个人原话。",
+          "authors": "Alison Porter, Graeme Clark and Richard Clode",
+          "summary": "团队预计推理、记忆与物理AI扩大算力需求，同时关注许可、电力、施工限制、循环投资和亏损科技股炒作。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS02",
+          "claim": "团队区分政策事件和经济风险；关注间接需求及流动性。",
+          "locator": "五项考虑1–5；Is now a buying opportunity?",
+          "read_scope": "文章完整分析正文与作者区",
+          "evidence_state": "newly-read primary"
+        },
+        {
+          "source_id": "B100-RC2",
+          "claim": "团队提示电力施工约束和投资循环。",
+          "locator": "AI is transformative；Why do we think skepticism about AI valuations is healthy?",
+          "read_scope": "上述两节及日期署名；图表未复算",
+          "evidence_state": "re-read primary, existing source ID"
+        }
+      ]
     },
     {
       "id": "B08",
@@ -347,7 +459,7 @@
       "roleAtSource": "Portfolio Manager, Global Technology Leaders",
       "currentRole": "Portfolio Manager, Global Technology Leaders",
       "firm": "Janus Henderson",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "AI替代叙事 → 工作流依赖 → 可收费收入",
       "identitySources": [
         {
           "url": "https://www.janushenderson.com/en-gb/investor/article/riding-the-ai-wave-how-can-tech-investors-harness-change-and-volatility/",
@@ -358,13 +470,69 @@
           "accessLevel": "primary text opened"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required"
+        "AI代理实际收费模式需逐公司核验",
+        "核心系统难替代不等于旧收入安全",
+        "市场下跌的因果未独立验证"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "clark-janus",
+      "roleNote": "",
+      "atlasProfileId": "clark-janus",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS02",
+          "title": "Tech stocks and tariffs: 5 key considerations for investors",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/tech-stocks-and-tariffs-5-key-considerations-for-investors/",
+          "date": "2025-04-09",
+          "access": "2026-10-08 新读取官方原文；正文五项考虑与买入时机段落、作者区；历史政策判断仅按2025-04-09口径，不代表现行关税。"
+        },
+        {
+          "id": "O8BAS01",
+          "title": "Quick View: Has AI really eaten software?",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/quick-view-has-ai-really-eaten-software/",
+          "date": "2026-02-04",
+          "access": "2026-10-08 新读取官方原文；正文 Key takeaways 至 concluding paragraph，网页段落125–142；未观看视频或独立核查厂商迁移速度。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS02",
+          "title": "Tech stocks and tariffs: 5 key considerations for investors",
+          "date": "2025-04-09",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/tech-stocks-and-tariffs-5-key-considerations-for-investors/",
+          "authors": "Alison Porter, Graeme Clark and Richard Clode",
+          "summary": "团队区分直接关税影响与需求、信心和流动性的间接冲击。",
+          "access": "2026-10-08 新读取官方原文；正文五项考虑与买入时机段落、作者区；历史政策判断仅按2025-04-09口径，不代表现行关税。"
+        },
+        {
+          "id": "O8BAS01",
+          "title": "Quick View: Has AI really eaten software?",
+          "date": "2026-02-04",
+          "url": "https://www.janushenderson.com/en-gb/investor/article/quick-view-has-ai-really-eaten-software/",
+          "authors": "Graeme Clark",
+          "summary": "讨论AI对席位收入、核心系统与附加模块的不同影响；业务依赖不自动消除商业模式风险。",
+          "access": "2026-10-08 新读取官方原文；正文 Key takeaways 至 concluding paragraph，网页段落125–142；未观看视频或独立核查厂商迁移速度。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS01",
+          "claim": "个人文章区分AI席位、核心系统迁移和模块收入，认为企业上下文仍重要。",
+          "locator": "What are our views on the three main concerns；What does this mean",
+          "read_scope": "完整正文，不验证文中第三方产品性能",
+          "evidence_state": "newly-read primary"
+        },
+        {
+          "source_id": "O8BAS02",
+          "claim": "共同讨论间接需求风险。",
+          "locator": "Considerations 2–3",
+          "read_scope": "完整分析正文及共同作者区",
+          "evidence_state": "newly-read primary"
+        }
+      ]
     },
     {
       "id": "B09",
@@ -592,7 +760,7 @@
       "roleAtSource": "Portfolio Manager, Technology",
       "currentRole": null,
       "firm": "Columbia Threadneedle",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "终端行为变化 → 需求结构 → 技术采用",
       "identitySources": [
         {
           "url": "https://www.columbiathreadneedle.com/en/dk/institutional/insights/artificial-intelligence-and-the-economy-paradigm-shift-or-hype/",
@@ -603,13 +771,69 @@
           "accessLevel": "primary text opened"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required"
+        "2026现职未核验",
+        "宏观增益缺公司份额桥",
+        "没有预测绩效审计"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "narang-columbia",
+      "roleNote": "",
+      "atlasProfileId": "narang-columbia",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "B100-PW1",
+          "title": "A deep dive into the global chip shortage — A roundtable discussion",
+          "url": "https://www.columbiathreadneedle.com/uploads/2021/07/99c0a1fbeae011bf80eda27cfde9f89b/hk_j31619-semicondcutor-chip-shortage-apac.pdf",
+          "date": "2021-06",
+          "access": "2026-10-07读取PDF第1至3页全部圆桌问答；图表未复算，第4页为法律说明。"
+        },
+        {
+          "id": "B100-PW2",
+          "title": "Artificial intelligence and the economy: paradigm shift or hype?",
+          "url": "https://www.columbiathreadneedle.com/en/dk/institutional/insights/artificial-intelligence-and-the-economy-paradigm-shift-or-hype/",
+          "date": "2023-09-27",
+          "access": "2026-10-07读取网页全部圆桌正文，区分三位受访者。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "B100-PW1",
+          "title": "A deep dive into the global chip shortage — A roundtable discussion",
+          "date": "2021-06",
+          "url": "https://www.columbiathreadneedle.com/uploads/2021/07/99c0a1fbeae011bf80eda27cfde9f89b/hk_j31619-semicondcutor-chip-shortage-apac.pdf",
+          "access": "2026-10-07读取PDF第1至3页全部圆桌问答；图表未复算，第4页为法律说明。",
+          "authors": "Paul Wick, Rahul Narang, Sanjay Devgan, David Egan, Charles Mann",
+          "summary": "Wick解释代工集中与高利用率减少供给余量，短期强需求又会诱发后续产能扩张。"
+        },
+        {
+          "id": "B100-PW2",
+          "title": "Artificial intelligence and the economy: paradigm shift or hype?",
+          "date": "2023-09-27",
+          "url": "https://www.columbiathreadneedle.com/en/dk/institutional/insights/artificial-intelligence-and-the-economy-paradigm-shift-or-hype/",
+          "access": "2026-10-07读取网页全部圆桌正文，区分三位受访者。",
+          "authors": "Paul Wick, Rahul Narang and Sanjay Devgan",
+          "summary": "Wick将生成式AI视为知识工作工具，与互联网和移动设备的分发作用有所区别。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "B100-PW1",
+          "claim": "Narang自己回答指出疫情需求错判与科技家庭消费韧性。",
+          "locator": "PDF printed page2 COVID answer；page3 long-term trends answer",
+          "read_scope": "PDF页1–3文字；其他说话者未归其名下",
+          "evidence_state": "re-read primary, existing source ID"
+        },
+        {
+          "source_id": "B100-PW2",
+          "claim": "Narang自己回答讨论AI平台转换、企业用途与采用速度。",
+          "locator": "How does advent compare；areas of opportunity；How fast",
+          "read_scope": "官方Q&A正文相关Narang回答；不采用Wick关于控制权的表述",
+          "evidence_state": "re-read primary, existing source ID"
+        }
+      ]
     },
     {
       "id": "B13",
@@ -645,7 +869,7 @@
       "roleAtSource": "Portfolio Manager; co-manager Franklin Technology Fund",
       "currentRole": "Portfolio Manager; co-manager Franklin Technology Fund",
       "firm": "Franklin Templeton",
-      "focus": "Public and growth equity; technology innovation",
+      "focus": "采用者生产率 → 可兑现公司收益 → 已计价程度",
       "identitySources": [
         {
           "url": "https://www.franklintempleton.com/profiles/jonathan-curtis",
@@ -656,14 +880,69 @@
           "accessLevel": "primary identity text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required",
-        "Official undated biography says former CIO, not current CIO"
+        "完整白皮书未取得",
+        "宏观生产率并非可直接销售TAM",
+        "未核验其收益和定价判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "curtis-franklin",
+      "roleNote": "",
+      "atlasProfileId": "curtis-franklin",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS09",
+          "title": "Podcast: Are investors underestimating AI?",
+          "url": "https://www.franklintempleton.com/corporate/articles/2025/equity/are-investors-underestimating-ai",
+          "date": "2025-07-11",
+          "access": "2026-10-08 新读取官方完整文字稿；官方Franklin Equity Insights索引标示2025-07-11发布，文末观点截至2025-07-01；未与音频校对。"
+        },
+        {
+          "id": "O8BAS10",
+          "title": "The AI productivity boom that no one is talking about",
+          "url": "https://www.franklintempleton.co.uk/articles/2025/equity/the-ai-productivity-boom-that-no-one-is-talking-about",
+          "date": "2025-07-24",
+          "access": "2026-10-08 新读取官方原文；新读取官网文章正文及结论；24 July 2025来自官方Franklin Equity Insights索引；所链PDF下载失败，未声称读完整白皮书。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS09",
+          "title": "Podcast: Are investors underestimating AI?",
+          "date": "2025-07-11",
+          "url": "https://www.franklintempleton.com/corporate/articles/2025/equity/are-investors-underestimating-ai",
+          "authors": "Jonathan Curtis; host John Przygocki",
+          "summary": "讨论AI生产率的公司利润桥、研究工具与人类投资判断边界。",
+          "access": "2026-10-08 新读取官方完整文字稿；官方Franklin Equity Insights索引标示2025-07-11发布，文末观点截至2025-07-01；未与音频校对。"
+        },
+        {
+          "id": "O8BAS10",
+          "title": "The AI productivity boom that no one is talking about",
+          "date": "2025-07-24",
+          "url": "https://www.franklintempleton.co.uk/articles/2025/equity/the-ai-productivity-boom-that-no-one-is-talking-about",
+          "authors": "Jonathan Curtis",
+          "summary": "具名文章将关注从AI供给商扩展到各行业采用者。",
+          "access": "2026-10-08 新读取官方原文；新读取官网文章正文及结论；24 July 2025来自官方Franklin Equity Insights索引；所链PDF下载失败，未声称读完整白皮书。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS09",
+          "claim": "区分AI销售收入、采用者效率与金融研究工具的作用。",
+          "locator": "Opening answers；financial services；quantify knowledge-worker impact",
+          "read_scope": "完整官方文字稿；文末as-of July1日期",
+          "evidence_state": "newly-read primary transcript"
+        },
+        {
+          "source_id": "O8BAS10",
+          "claim": "将AI研究扩展到采用技术的非科技企业。",
+          "locator": "Key takeaways；Why AI’s biggest investment opportunity is not in tech；Our conclusion",
+          "read_scope": "官网短文全部正文；所链完整白皮书未取得",
+          "evidence_state": "newly-read primary short article"
+        }
+      ]
     },
     {
       "id": "B15",
@@ -672,7 +951,7 @@
       "roleAtSource": "Portfolio Manager / Research Analyst",
       "currentRole": "Portfolio Manager / Research Analyst",
       "firm": "Janus Henderson",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "AI供给建设 → 部署与使用 → 采用者利润率",
       "identitySources": [
         {
           "url": "https://www.janushenderson.com/en-de/institutional/who-we-are/our-people/",
@@ -683,14 +962,69 @@
           "accessLevel": "primary identity text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required",
-        "Directory establishes role; specific portfolio responsibilities not yet read"
+        "满载不等于高价付费使用",
+        "需求和盈利判断未独立审计",
+        "长期AGI叙事不是确定现金流"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "fish-janus",
+      "roleNote": "",
+      "atlasProfileId": "fish-janus",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS03",
+          "title": "2025: The year AI comes of age",
+          "url": "https://www.janushenderson.com/en-us/offshore/article/2025-the-year-ai-comes-of-age/",
+          "date": "2025-08-21",
+          "access": "2026-10-08 新读取官方原文；正文 If you build it、Enablers and early adopters、Schumpeter 章节；图表原始数据未复算。"
+        },
+        {
+          "id": "O8BAS04",
+          "title": "Still early innings in the AI investment cycle",
+          "url": "https://www.janushenderson.com/en-us/institutional/article/still-early-innings-in-the-ai-investment-cycle/",
+          "date": "2025-12-02",
+          "access": "2026-10-08 新读取官方原文；官方完整视频文字稿段落99–112；未与音频逐字校对。满载与避免繁荣衰退是作者判断，非独立验证事实。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS03",
+          "title": "2025: The year AI comes of age",
+          "date": "2025-08-21",
+          "url": "https://www.janushenderson.com/en-us/offshore/article/2025-the-year-ai-comes-of-age/",
+          "authors": "Denny Fish",
+          "summary": "把推理算力需求、部署变现及采用者利润率连接，同时提示被替代企业风险。",
+          "access": "2026-10-08 新读取官方原文；正文 If you build it、Enablers and early adopters、Schumpeter 章节；图表原始数据未复算。"
+        },
+        {
+          "id": "O8BAS04",
+          "title": "Still early innings in the AI investment cycle",
+          "date": "2025-12-02",
+          "url": "https://www.janushenderson.com/en-us/institutional/article/still-early-innings-in-the-ai-investment-cycle/",
+          "authors": "Denny Fish",
+          "summary": "提出使能者、增强者、终端使用者三层，并将电力和施工时滞视作供给调节因素。",
+          "access": "2026-10-08 新读取官方原文；官方完整视频文字稿段落99–112；未与音频逐字校对。满载与避免繁荣衰退是作者判断，非独立验证事实。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS03",
+          "claim": "Fish将推理计算、部署变现和采用者利润改善相连。",
+          "locator": "If you build it；Enablers and early adopters",
+          "read_scope": "正文全部分析段，图表底数未复算",
+          "evidence_state": "newly-read primary"
+        },
+        {
+          "source_id": "O8BAS04",
+          "claim": "Fish以三层受益者与建设、电力时滞解释AI扩散。",
+          "locator": "官方transcript第2–10段",
+          "read_scope": "完整嵌入文字稿，未听音频",
+          "evidence_state": "newly-read primary"
+        }
+      ]
     },
     {
       "id": "B16",
@@ -877,7 +1211,7 @@
       "roleAtSource": "Global Technology Equity portfolio manager (dated official commentary, 2023-11-30)",
       "currentRole": null,
       "firm": "T. Rowe Price",
-      "focus": "Technology and growth investing; candidate focus requires individual substantiation",
+      "focus": "关键技术与结构增长 → 基本面改善 → 合理买入价格",
       "identitySources": [
         {
           "url": "https://www.troweprice.com/financial-intermediary/sg/en/funds/sicav/global-technology-equity-fund.html?=Equity&productType=SICAV",
@@ -888,13 +1222,69 @@
           "accessLevel": "official source directly opened; relevant identity text read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required"
+        "第二材料为主持人原始总结、非完整访谈逐字稿",
+        "2026现职未重新核验",
+        "不认证跨所有时期的固定方法"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "rizzo-trowe",
+      "roleNote": "",
+      "atlasProfileId": "rizzo-trowe",
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "methodSources": [
+        {
+          "id": "O8BAS07",
+          "title": "Meet The Manager — Dom Rizzo",
+          "url": "https://www.troweprice.com/financial-intermediary/uk/en/thinking/articles/2024/q2/meet-the-manager-dom-rizzo.html",
+          "date": "2024-04",
+          "access": "2026-10-08 新读取官方原文；完整问答正文；页面仅标April 2024。"
+        },
+        {
+          "id": "O8BAS08",
+          "title": "Behind the Markets Podcast: A Conversation with Dom Rizzo",
+          "url": "https://www.wisdomtree.com/us/insights/blog/behind-the-markets-podcast-a-conversation-with-dom-rizzo",
+          "date": "2023-08-18",
+          "access": "2026-10-08 新读取官方原文；主持人发布的完整文章，不是逐字稿；采访发生2023-08-11，未听音频。主张按主持人转述保留，非Rizzo原话。"
+        }
+      ],
+      "researchSources": [
+        {
+          "id": "O8BAS07",
+          "title": "Meet The Manager — Dom Rizzo",
+          "date": "2024-04",
+          "url": "https://www.troweprice.com/financial-intermediary/uk/en/thinking/articles/2024/q2/meet-the-manager-dom-rizzo.html",
+          "authors": "Dom Rizzo",
+          "summary": "具名问答提出关键技术、结构增长、基本面改善与合理估值四项筛选。",
+          "access": "2026-10-08 新读取官方原文；完整问答正文；页面仅标April 2024。"
+        },
+        {
+          "id": "O8BAS08",
+          "title": "Behind the Markets Podcast: A Conversation with Dom Rizzo",
+          "date": "2023-08-18",
+          "url": "https://www.wisdomtree.com/us/insights/blog/behind-the-markets-podcast-a-conversation-with-dom-rizzo",
+          "authors": "Christopher Gannatti, interviewing and summarizing Dom Rizzo",
+          "summary": "采访主持人原始总结介绍Rizzo四项框架及硬件竞争中软件切换成本。",
+          "access": "2026-10-08 新读取官方原文；主持人发布的完整文章，不是逐字稿；采访发生2023-08-11，未听音频。主张按主持人转述保留，非Rizzo原话。"
+        }
+      ],
+      "source_evidence": [
+        {
+          "source_id": "O8BAS07",
+          "claim": "四项选择框架，并承认很难四项同时完美。",
+          "locator": "Please explain your stock selection process",
+          "read_scope": "完整官方问答",
+          "evidence_state": "newly-read primary"
+        },
+        {
+          "source_id": "O8BAS08",
+          "claim": "采访主持人总结框架，并讨论GPU硬件与CUDA切换壁垒。",
+          "locator": "Framework for Company Evaluation；Semiconductors",
+          "read_scope": "主持人原始文章全文；无音频核对",
+          "evidence_state": "newly-read first-party interviewer account; not verbatim transcript"
+        }
+      ]
     },
     {
       "id": "B21",
@@ -1598,9 +1988,8 @@
       "identitySources": [],
       "status": "candidate",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed",
-        "Exact identity unresolved; do not map to unrelated Paul Lee"
+        "2026-10-08精确姓名搜索仍无可归属一手身份材料；不映射为同名Paul Lee",
+        "缺机构、地区或原始提名来源以完成消歧"
       ],
       "priority": false,
       "profileId": null,
@@ -1747,36 +2136,28 @@
       "name": "J. Paul Meeks",
       "side": "buy",
       "roleAtSource": "Co-Chief Investment Officer (historical)",
-      "currentRole": "Head of Technology Research, Freedom Capital Markets (official site observed 2026-10-07)",
+      "currentRole": "Head of Technology Research, Freedom Capital Markets；2026-10-08官方全文再次核验",
       "firm": "Harvest Portfolio Management (historical)",
       "focus": "Technology",
       "identitySources": [
         {
-          "url": "https://www.harvestportfoliomanagement.com/meeks-harvest-technology-portfolio",
-          "title": "Meeks Technology Portfolio",
-          "date": null,
-          "accessed": "2026-10-07",
-          "accessLevel": "official indexed excerpt only",
-          "whatVerified": "Co-Chief Investment Officer (historical)"
-        },
-        {
           "url": "https://www.freedomcapmkts.com/equityresearch",
           "title": "Freedom Capital Markets Equity Research Team",
           "date": null,
-          "accessed": "2026-10-07",
-          "accessLevel": "opened full page text read",
-          "whatVerified": "Paul Meeks is listed Head of Technology Research; firm distributes equity research to institutional clients"
+          "accessed": "2026-10-08",
+          "accessLevel": "official full page text opened",
+          "whatVerified": "Paul Meeks列Head of Technology Research；机构向美国机构投资者分发股票研究"
         }
       ],
       "status": "candidate",
       "gaps": [
-        "Reclassify current role as sell-side; retain only dated historical buy-side evidence here",
-        "Two substantive primary research sources still required"
+        "现任卖方身份已确认；历史买方方法材料仍不足",
+        "不为凑100位买方而无证据改写角色"
       ],
       "eligibility": "Historical buy-side only; current sell-side verified",
       "priority": false,
       "profileId": null,
-      "roleNote": "Historical buy-side only; current sell-side verified"
+      "roleNote": "原买方提名按历史保留；现任卖方，不能计作现任买方研究员"
     },
     {
       "id": "B46",
@@ -1935,7 +2316,7 @@
       "id": "B50",
       "name": "Douglas Brodie",
       "side": "buy",
-      "roleAtSource": "Investment manager (2025 source)",
+      "roleAtSource": "买方；Baillie Gifford Discovery基金经理（2024–2025来源时）",
       "currentRole": null,
       "firm": "Baillie Gifford",
       "focus": "Discovery and small-cap growth",
@@ -1949,14 +2330,37 @@
           "whatVerified": "Investment manager (2025 source)"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "缺公司级模型和实时持仓",
+        "未核验原始临床数据或公司运营指标",
+        "来源将宏观与股价关联，因果未独立识别"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "O8BB-douglas-brodie",
+      "roleNote": "",
+      "atlasProfileId": "O8BB-douglas-brodie",
+      "methodCertification": "historical method samples; recurring personal method not certified",
+      "methodSources": [
+        {
+          "id": "O8BB-DB24",
+          "title": "Discovery Q2 investment update — July 2024",
+          "date": "2024-07",
+          "url": "https://media.bailliegifford.com/mws/5hwbby2a/20240712084931_baillie-gifford-film-discovery-q2-update-transcript-july-2024.pdf",
+          "authors": "Douglas Brodie; interviewer Bill Chater",
+          "summary": "区分经营进展、执行波折与增长空间收缩，讨论Raspberry Pi工业应用和边缘AI机会。",
+          "access": "2026-10-08：官方PDF实质访谈第1–4页读取；第1页答话标签误写Dougald，封面与主持人明确Douglas；不把主持人的总结归于Brodie。"
+        },
+        {
+          "id": "O8BB-DB25",
+          "title": "Discovery Q2 investment update — July 2025",
+          "date": "2025-07",
+          "url": "https://media.bailliegifford.com/mws/4umpoof3/20250709114359_discovery-q2-update-transcript-jul-2025.pdf",
+          "authors": "Douglas Brodie",
+          "summary": "区分技术驱动和政策驱动的增长，承认组合回撤，并跟踪Sweetgreen等公司的需求和竞争风险。",
+          "access": "2026-10-08：官方PDF第1–2页投资评论完整读取；后续业绩与法规页未作收益审计。"
+        }
+      ]
     },
     {
       "id": "B51",
@@ -2005,7 +2409,7 @@
       "id": "B52",
       "name": "Brett Winton",
       "side": "buy",
-      "roleAtSource": "Chief Futurist and Venture Investment Committee member",
+      "roleAtSource": "买方研究；ARK具名公开评论（2022–2023来源时）",
       "currentRole": null,
       "firm": "ARK Invest",
       "focus": "Technology convergence",
@@ -2019,20 +2423,43 @@
           "whatVerified": "Chief Futurist and Venture Investment Committee member"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "第三方收入年化和融资分类未复算",
+        "合同限制、补贴与外部客户收入须逐案检查",
+        "无预测准确率或基金收益审计"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "O8BB-brett-winton",
+      "roleNote": "",
+      "atlasProfileId": "O8BB-brett-winton",
+      "methodCertification": "historical method samples; recurring personal method not certified",
+      "methodSources": [
+        {
+          "id": "O8BB-BW22",
+          "title": "ARK Venture Commentary, 12/9/2022",
+          "date": "2022-12-15",
+          "url": "https://www.ark-funds.com/articles/venture-fund/ark-venture-commentary-12-9-2022",
+          "authors": "Brett Winton / ARK",
+          "summary": "区分生成式AI流量热潮、持久优势与收费模式；推理成本影响广告模式可行性。",
+          "access": "2026-10-08：官方HTML两个AI小节读取；页面发布日期Dec 15，标题12/9为原始期号，不当作发布日期；第三方App数据未重算。"
+        },
+        {
+          "id": "O8BB-BW23",
+          "title": "ARK Venture Commentary, 7/11/2023",
+          "date": "2023-07-11",
+          "url": "https://www.ark-funds.com/articles/venture-fund/ark-venture-commentary-7-11-2023",
+          "authors": "Brett Winton / ARK",
+          "summary": "讨论数据平台与模型开发协同，同时指出供应商投资回流收入及对竞争的潜在约束。",
+          "access": "2026-10-08：官方HTML三个研究小节完整读取；日期与署名核验；Crunchbase底层数据和具体投资条款未独立审计。"
+        }
+      ]
     },
     {
       "id": "B53",
       "name": "Tasha Keeney",
       "side": "buy",
-      "roleAtSource": "Director of Research Autonomous Technology & Robotics / Director of Investment Analysis",
+      "roleAtSource": "买方研究；ARK自动驾驶研究与联合估值模型作者（2023–2024来源时）",
       "currentRole": null,
       "firm": "ARK Invest",
       "focus": "Autonomy, robotics, financial modeling",
@@ -2046,14 +2473,38 @@
           "whatVerified": "Director of Research Autonomous Technology & Robotics / Director of Investment Analysis"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "未执行公开模拟或审计输入相关性",
+        "未核验安全原始样本与监管资格",
+        "2027及2029估值窗口未作结果审计",
+        "2023与2024预测须保持原始时间与条件，不能用相邻成功替代"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "O8BB-tasha-keeney",
+      "roleNote": "",
+      "atlasProfileId": "O8BB-tasha-keeney",
+      "methodCertification": "historical method samples; recurring personal method not certified",
+      "methodSources": [
+        {
+          "id": "O8BB-TK23",
+          "title": "ARK’s Expected Value For Tesla In 2027: $2,000 Per Share",
+          "date": "2023-04-21",
+          "url": "https://www.ark-invest.com/articles/valuation-models/arks-tesla-price-target-2027",
+          "authors": "Tasha Keeney, Sam Korus and Daniel Maguire",
+          "summary": "公开模型把投产、资本效率与robotaxi推出时间连接至估值分布，并披露样本与模型局限。",
+          "access": "2026-10-08：官方网页正文重点读取Model Inputs、Share Price Forecast、Risks and Limits；核验联合署名和日期；未运行GitHub模拟或重算图表，非2027结果审计。"
+        },
+        {
+          "id": "O8BB-TK24",
+          "title": "Countdown To Cybercab, Tesla’s Multi-Trillion Dollar Robotaxi Opportunity",
+          "date": "2024-10-09",
+          "url": "https://www.ark-invest.com/articles/analyst-research/countdown-to-cybercab",
+          "authors": "Tasha Keeney",
+          "summary": "将兼容车辆、车队扩张、服务利用率与平台抽成连接，并区分地址市场和预测收入。",
+          "access": "2026-10-08：官方网页实质正文读取，包括数据口径注记；未核验供应商安全性原始数据或图表；这是2024预测样本，不代表当前技术/监管状态。"
+        }
+      ]
     },
     {
       "id": "B54",
@@ -2086,7 +2537,7 @@
       "id": "B55",
       "name": "Tom Slater",
       "side": "buy",
-      "roleAtSource": "Head US Equities; Scottish Mortgage manager",
+      "roleAtSource": "买方；Scottish Mortgage基金经理（2024–2025来源时）",
       "currentRole": null,
       "firm": "Baillie Gifford",
       "focus": "Long-term growth",
@@ -2100,20 +2551,43 @@
           "whatVerified": "Head US Equities; Scottish Mortgage manager"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "缺具体持仓成本、交易日期及完整估值模型",
+        "供应商利润压缩与采用扩张必须分别验证",
+        "未审计预测和投资业绩"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "O8BB-tom-slater",
+      "roleNote": "",
+      "atlasProfileId": "O8BB-tom-slater",
+      "methodCertification": "historical method samples; recurring personal method not certified",
+      "methodSources": [
+        {
+          "id": "O8BB-TS24",
+          "title": "Tom Slater: Manager Review — November 2024",
+          "date": "2024-11",
+          "url": "https://www.bailliegifford.com/en/uk/individual-investors/insights/ic-article/sm-articles-2024-q4-tom-slater-manager-review-10051274/",
+          "authors": "Tom Slater",
+          "summary": "在AI成本与资本开支可持续性之间建立约束，并区分技术信心和具体持仓。",
+          "access": "2026-10-08：官方HTML正文读取；重点Artificial Intelligence及Capital Allocation；仅披露月份，未核验交易明细或图表。"
+        },
+        {
+          "id": "O8BB-TS25",
+          "title": "Tom Slater: Manager Review — May 2025",
+          "date": "2025-05",
+          "url": "https://www.bailliegifford.com/en/belgium/professional-investor/insights/ic-article/sm-articles-2025-bg-tom-slater-manager-review-10055356/",
+          "authors": "Tom Slater",
+          "summary": "讨论AI普及下的供应商价值捕获、风险回报及企业适应力。",
+          "access": "2026-10-08：官方HTML正文读取；重点The Rise of AI and the Shifting Shape of Value、Resilience as a Strategic Advantage；未重算基金业绩。"
+        }
+      ]
     },
     {
       "id": "B56",
       "name": "Lawrence Burns",
       "side": "buy",
-      "roleAtSource": "Investment manager",
+      "roleAtSource": "买方；Scottish Mortgage副基金经理（2024–2025来源时）",
       "currentRole": null,
       "firm": "Baillie Gifford",
       "focus": "International concentrated growth",
@@ -2127,14 +2601,37 @@
           "whatVerified": "Investment manager"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "技术参数如GPT-4规模为来源估计，不作为已验证事实",
+        "缺未成功公司对照组及多业务概率校准",
+        "未审计真实交易或组合收益"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "O8BB-lawrence-burns",
+      "roleNote": "",
+      "atlasProfileId": "O8BB-lawrence-burns",
+      "methodCertification": "historical method samples; recurring personal method not certified",
+      "methodSources": [
+        {
+          "id": "O8BB-LB24",
+          "title": "Lawrence Burns on artificial intelligence: manager review",
+          "date": "2024-05",
+          "url": "https://www.scottishmortgage.com/en/uk/individual-investors/insights/ic-article/sm-articles-2024-q2-lawrence-burns-manager-review-10047502",
+          "authors": "Lawrence Burns",
+          "summary": "用硬件、基础设施、应用三层定位受益与时滞，同时保留硬件需求消化期的可能。",
+          "access": "2026-10-08：官方HTML正文读取；The Layers of Artificial Intelligence、Applications、Conclusion；技术参数与市场数字是作者当时陈述，未独立确认。"
+        },
+        {
+          "id": "O8BB-LB25",
+          "title": "Lawrence Burns: Manager Review — May 2025",
+          "date": "2025-05",
+          "url": "https://www.bailliegifford.com/en/belgium/professional-investor/insights/ic-article/sm-articles-2025-bg-lawrence-burns-manager-review-10055358/",
+          "authors": "Lawrence Burns",
+          "summary": "讨论异常优秀企业的多次业务扩张、长期投入与适应能力，并强调新增业务价值的不确定性。",
+          "access": "2026-10-08：官方HTML正文读取；Outliers Address Large Opportunities及Outliers are Adaptable；未重算收益图表。"
+        }
+      ]
     },
     {
       "id": "B57",
@@ -2580,30 +3077,47 @@
       "id": "B71",
       "name": "傅鹏博",
       "side": "buy",
-      "roleAtSource": "董事、副总经理、拟任基金经理（2019招募时）",
+      "roleAtSource": "副总经理、成长价值共同基金经理（2025报告时期）",
       "currentRole": null,
       "firm": "睿远基金",
-      "focus": "投资方法论；非直接 AI 基建覆盖候选",
+      "focus": "AI产业链、PCB/光模块、半导体及投资方法；所选材料属共同管理基金报告",
       "identitySources": [
         {
-          "url": "https://www.foresightfund.com/upload/pdf/1552612078861-ruiyuanchengzhangjiazhihunhexingzhengquantouzijijinzhaomushuomingshu.pdf",
-          "title": "睿远成长价值招募说明书",
-          "date": "2019-03",
-          "accessed": "2026-10-07",
-          "whatVerified": "官方正文已核身份；不将简介计入实质研究材料",
-          "accessLevel": "见核验范围；不等于完整研究报告"
+          "url": "https://www.foresightfund.com/upload/pdf/1774572963264-ruiyuanchengzhangjiazhihunhexingzhengquantouzijijin2025nianniandubaogao.pdf",
+          "title": "睿远成长价值混合2025年年度报告",
+          "date": "2026-03-27",
+          "accessed": "2026-10-08",
+          "whatVerified": "官方报告基金经理表，限定报告时期身份",
+          "accessLevel": "official PDF selected sections read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料",
-        "当前职务未验证；仅确认资料时期角色"
+        "机构及共同管理观点不能归为傅鹏博独著",
+        "未检验实际交易级归因或长期预测结果"
       ],
-      "coverageClass": "methodology",
+      "coverageClass": "methodology-with-direct-AI-commentary",
       "careerStatus": "role-at-source-only",
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "fu-foresight",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8BCS09",
+          "title": "睿远成长价值混合2025年中期报告",
+          "url": "https://www.foresightfund.com/upload/pdf/1756255838958-ruiyuanchengzhangjiazhihunhexingzhengquantouzijijin2025nianzhongqibaogao.pdf",
+          "date": "2025-08-27",
+          "access": "官方70页PDF；印刷pp12–14 §4.4–4.5已读，封面送出日期已核；不是完整归因审计。"
+        },
+        {
+          "id": "O8BCS10",
+          "title": "睿远成长价值混合2025年年度报告",
+          "url": "https://www.foresightfund.com/upload/pdf/1774572963264-ruiyuanchengzhangjiazhihunhexingzhengquantouzijijin2025nianniandubaogao.pdf",
+          "date": "2026-03-27",
+          "access": "官方82页PDF；印刷pp11–12经理表和pp13–14 §4.4.1已读；集中度变化不自动等同主动买入。"
+        }
+      ],
+      "researchUpdateType": "new primary-material research"
     },
     {
       "id": "B72",
@@ -2750,16 +3264,24 @@
       "id": "B76",
       "name": "邱国鹭",
       "side": "buy",
-      "roleAtSource": null,
-      "currentRole": null,
-      "firm": "高毅资产（搜索线索，正文未核）",
+      "roleAtSource": "董事长（2017/2018材料时期）",
+      "currentRole": "董事长、首席执行官",
+      "firm": "高毅资产",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
-      "identitySources": [],
-      "status": "candidate",
+      "identitySources": [
+        {
+          "url": "https://www.gyasset.com/p/site/investTeam?type=5",
+          "title": "高毅资产投资团队",
+          "date": null,
+          "accessed": "2026-10-08",
+          "whatVerified": "官网投资团队正文与导航列姓名和职务；urllib直接读取，非搜索摘要",
+          "accessLevel": "official body read"
+        }
+      ],
+      "status": "research-ready",
       "gaps": [
-        "官方页面搜索命中但正文抓取超时",
-        "现任角色未核验",
-        "两项实质一手材料未读"
+        "未审计真实交易与回报",
+        "样本未覆盖2018年之后的观点演变"
       ],
       "discoverySources": [
         {
@@ -2771,10 +3293,27 @@
         }
       ],
       "coverageClass": "methodology",
-      "careerStatus": "role-at-source-only",
+      "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "qiu-gaoyi",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8BCS01",
+          "title": "邱国鹭：回归投资的本质，做时间的朋友",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=136&type=5",
+          "date": "2017-03-10",
+          "access": "官方正文直接读取：三个维度、管理KPI与回款段；未审计案例收益。"
+        },
+        {
+          "id": "O8BCS02",
+          "title": "邱国鹭：价值投资应该如何数月亮",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=172&type=5",
+          "date": "2018-06-12",
+          "access": "官方短文正文与作者日期已读；非投资执行记录。"
+        }
+      ],
+      "researchUpdateType": "new primary-material research"
     },
     {
       "id": "B77",
@@ -2809,16 +3348,24 @@
       "id": "B78",
       "name": "邓晓峰",
       "side": "buy",
-      "roleAtSource": null,
-      "currentRole": null,
-      "firm": "高毅资产（搜索线索，正文未核）",
+      "roleAtSource": "合伙人、首席投资官（2022/2023材料时期）",
+      "currentRole": "合伙人、首席投资官",
+      "firm": "高毅资产",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
-      "identitySources": [],
-      "status": "candidate",
+      "identitySources": [
+        {
+          "url": "https://www.gyasset.com/p/site/investTeam?type=6",
+          "title": "高毅资产投资团队",
+          "date": null,
+          "accessed": "2026-10-08",
+          "whatVerified": "官网投资团队正文与导航列姓名和职务；urllib直接读取，非搜索摘要",
+          "accessLevel": "official body read"
+        }
+      ],
+      "status": "research-ready",
       "gaps": [
-        "官方页面搜索命中但正文抓取超时",
-        "现任角色未核验",
-        "两项实质一手材料未读"
+        "2023宏观判断未进行结果审计",
+        "演讲由机构/媒体整理，有删节"
       ],
       "discoverySources": [
         {
@@ -2830,25 +3377,50 @@
         }
       ],
       "coverageClass": "methodology",
-      "careerStatus": "role-at-source-only",
+      "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "deng-gaoyi",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8BCS03",
+          "title": "高毅资产邓晓峰：以光伏行业为例，分析产业演进和迭代",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=289&type=6",
+          "date": "2022-08-02",
+          "access": "官方刊载演讲整理；读取行业演进、瓶颈和成熟期段，原文明确部分内容删减。"
+        },
+        {
+          "id": "O8BCS04",
+          "title": "高毅资产·毅路同行｜对话邓晓峰：复苏共识下的思考和分析",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=308&type=6",
+          "date": "2023-02-25",
+          "access": "官方交流整理：工业金属、电动车、逆向投资与时间风险问答已读；日期为网页刊载日。"
+        }
+      ],
+      "researchUpdateType": "new primary-material research"
     },
     {
       "id": "B79",
       "name": "冯柳",
       "side": "buy",
-      "roleAtSource": null,
-      "currentRole": null,
-      "firm": "高毅资产（搜索线索，正文未核）",
+      "roleAtSource": "董事总经理（2019/2020材料时期）",
+      "currentRole": "合伙人、资深基金经理",
+      "firm": "高毅资产",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
-      "identitySources": [],
-      "status": "candidate",
+      "identitySources": [
+        {
+          "url": "https://www.gyasset.com/p/site/investTeam?type=9",
+          "title": "高毅资产投资团队",
+          "date": null,
+          "accessed": "2026-10-08",
+          "whatVerified": "官网投资团队正文与导航列姓名和职务；urllib直接读取，非搜索摘要",
+          "accessLevel": "official body read"
+        }
+      ],
+      "status": "research-ready",
       "gaps": [
-        "官方页面搜索命中但正文抓取超时",
-        "现任角色未核验",
-        "两项实质一手材料未读"
+        "不复制本人交易规则为普适建议",
+        "未验证完整持仓及交易效果"
       ],
       "discoverySources": [
         {
@@ -2860,24 +3432,50 @@
         }
       ],
       "coverageClass": "methodology",
-      "careerStatus": "role-at-source-only",
+      "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "feng-gaoyi",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8BCS05",
+          "title": "高毅资产冯柳再谈投资方法：寻找共识 依靠常识 接受自己的不完美",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=220&type=9",
+          "date": "2019-06-17",
+          "access": "官方转载2019采访：选股流程、风险定价、高仓位调仓及长期客户资金段已读。"
+        },
+        {
+          "id": "O8BCS06",
+          "title": "最新专访：如果你读懂了冯柳，就知道“抄作业”没有用",
+          "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=251&type=9",
+          "date": "2020-05-26",
+          "access": "官方转载采访：成长/价值、加减仓机制、公开持仓限制问答已读；不据采访认证实际风控效果。"
+        }
+      ],
+      "researchUpdateType": "new primary-material research"
     },
     {
       "id": "B80",
       "name": "刘彦春",
       "side": "buy",
-      "roleAtSource": null,
+      "roleAtSource": "新兴成长基金经理、公司副总经理（2025报告时期）",
       "currentRole": null,
-      "firm": "景顺长城（搜索线索，人物正文未核）",
+      "firm": "景顺长城基金",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
-      "identitySources": [],
-      "status": "candidate",
+      "identitySources": [
+        {
+          "url": "https://www.igwfmc.com/upload/dqgg/20260327/2026-03-27%E6%99%AF%E9%A1%BA%E9%95%BF%E5%9F%8E%E6%96%B0%E5%85%B4%E6%88%90%E9%95%BF%E6%B7%B7%E5%90%88%E5%9E%8B%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912025%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+          "title": "景顺长城新兴成长混合2025年年度报告",
+          "date": "2026-03-27",
+          "accessed": "2026-10-08",
+          "whatVerified": "官方报告基金经理表，限定报告时期身份",
+          "accessLevel": "official PDF selected sections read"
+        }
+      ],
+      "status": "research-ready",
       "gaps": [
-        "官方产品页超时；摘要注明经理数据来自Wind，需官方招募文件核验",
-        "缺两项实质一手研究资料"
+        "未核验2026年10月现任管理职务",
+        "复苏时间与因果仍须后续检验"
       ],
       "discoverySources": [
         {
@@ -2891,8 +3489,25 @@
       "coverageClass": "methodology",
       "careerStatus": "role-at-source-only",
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "liu-igw",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8BCS07",
+          "title": "景顺长城新兴成长混合2025年第2季度报告",
+          "url": "https://www.igwfmc.com/upload/dqgg/20250721/2025-07-21%E6%99%AF%E9%A1%BA%E9%95%BF%E5%9F%8E%E6%96%B0%E5%85%B4%E6%88%90%E9%95%BF%E6%B7%B7%E5%90%88%E5%9E%8B%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912025%E5%B9%B4%E7%AC%AC2%E5%AD%A3%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+          "date": "2025-07-21",
+          "access": "官方12页PDF；印刷pp5–7的经理表与§4.4已读，未审计全报告。"
+        },
+        {
+          "id": "O8BCS08",
+          "title": "景顺长城新兴成长混合2025年年度报告",
+          "url": "https://www.igwfmc.com/upload/dqgg/20260327/2026-03-27%E6%99%AF%E9%A1%BA%E9%95%BF%E5%9F%8E%E6%96%B0%E5%85%B4%E6%88%90%E9%95%BF%E6%B7%B7%E5%90%88%E5%9E%8B%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912025%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
+          "date": "2026-03-27",
+          "access": "官方68页PDF；印刷p10经理表及pp13–14 §4.4–4.5已读；2026展望不作已兑现事实。"
+        }
+      ],
+      "researchUpdateType": "new primary-material research"
     },
     {
       "id": "B81",
@@ -3219,9 +3834,11 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料"
+        "没有本人或基金当时交易、持仓与预测命中率审计",
+        "当前PDF存在后续版权/合规页脚，正文日期按封面；未确认全部版本差异",
+        "历史参照类底层数据、因果关系和公司当前财务未独立重算"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
@@ -3250,7 +3867,8 @@
           "date": "2026-05-13",
           "access": "官方10页PDF与官方摘要；核查pp1–6。仅方法层面转述，不把文中媒体引用的OpenAI或Anthropic数字作为独立核实的公司财务。"
         }
-      ]
+      ],
+      "researchUpdateType": "existing evidence alignment only; no new source inspection"
     },
     {
       "id": "B89",
@@ -3476,9 +4094,12 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料"
+        "两份本人演示，但没有跨两场三次可归因问答，不授予稳定个人问答方法认证",
+        "当前职务和2026完整组合未另行确认",
+        "市场结构及AI技术机制表述是作者判断，不是经本次审计的科学事实",
+        "未复现信中第三方研究总量，也未验证具体投资结果"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
@@ -3514,7 +4135,8 @@
           "date": "2024-10-23",
           "access": "官网公开索引列此日期；官方octet-stream读取失败；30页演示公开逐页镜像封面David Einhorn和10/23/24，审阅slides1–2、15–23、27–29。上传者不是原创作者，镜像完整性尚未逐字官方校验。"
         }
-      ]
+      ],
+      "researchUpdateType": "existing evidence alignment only; no new source inspection"
     },
     {
       "id": "B94",
@@ -3534,9 +4156,11 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚需两项实质一手研究材料；身份页不等于研究材料"
+        "投资信具有持仓与营销利益",
+        "未验证HBM预测与未来折价收敛",
+        "没有完整净敞口/对冲账本"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
@@ -3558,7 +4182,8 @@
           "date": "2025-10-31",
           "access": "基金署名信的托管PDF；核查pp2–5及信用章节，非完整预测业绩审计。"
         }
-      ]
+      ],
+      "researchUpdateType": "existing evidence alignment only; no new source inspection"
     },
     {
       "id": "B95",
@@ -3578,9 +4203,12 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "身份核验完成，仍需两项署名投资材料"
+        "未验证2026-10-06完整实时持仓及当前估值",
+        "联合署名与团队材料不能精确拆分个人研究贡献",
+        "没有收益归因或预测命中率独立审计",
+        "尚无三次跨两场可归因问答，不授予稳定个人方法认证"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
@@ -3601,15 +4229,9 @@
           "url": "https://assets.pershingsquareholdings.com/wp-content/uploads/2026/08/13002306/Pershing-Square-Holdings-Ltd.-June-2026-Interim.pdf",
           "date": "2026-08-13",
           "access": "官方59页PDF；本次审阅Investment Manager’s Report / LETTER TO SHAREHOLDERS及署名（物理PDF第8–10页，索引P7–P9）、公司/资本结构章节。材料列表显示2026-08-12，董事长报告签署2026-08-13，信件无独立日期；不是六月期末发表。"
-        },
-        {
-          "id": "B2D06",
-          "title": "PSH 2025 Annual Report — Bill Ackman Letter to Shareholders",
-          "url": "https://assets.pershingsquareholdings.com/wp-content/uploads/2026/02/18175039/Pershing-Square-Holdings-Ltd.-2025-Annual-Report.pdf",
-          "date": "2026-02-18",
-          "access": "官网列表确认发布日期及原PDF；原文件13MB超web读取上限，读取Alpha-File公开逐段原文；审阅印刷pp.6–10，末尾William A. Ackman署名明确。未把镜像页面错误的Q4分类日期当发表日期。"
         }
-      ]
+      ],
+      "researchUpdateType": "existing evidence alignment only; no new source inspection"
     },
     {
       "id": "B96",
@@ -3730,10 +4352,11 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料",
-        "当前职务未验证；仅确认资料时期角色"
+        "仅两封历史信，尚无完整思想演变序列",
+        "集中持有是否适合特定委托、流动性和负债结构需独立证明",
+        "历史回报表未独立审计，存活企业案例存在选择偏差"
       ],
       "careerStatus": "historical",
       "coverageClass": "methodology",
@@ -3755,7 +4378,8 @@
           "date": "2009-06-30",
           "access": "同一作者批准选集中的另一独立半年原信。读取PDF pp156–163、p165署名脚注；未据此认证永久个人哲学。"
         }
-      ]
+      ],
+      "researchUpdateType": "existing evidence alignment only; no new source inspection"
     },
     {
       "id": "B99",
@@ -4182,36 +4806,40 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "没有JPMorgan许可研究全文及其估计模型",
+        "三个议题不构成同机制三次认证",
+        "Lam管理层不披露完整地理制造及材料成本，不能伪精确预测",
+        "未用第三方收益排名证明研究质量或推断当前评级"
       ],
       "priority": false,
       "profileId": "sur-jpm",
       "roleNote": "",
       "methodSources": [
         {
-          "id": "S1D01",
-          "title": "NVIDIA FY2026 Q4 Earnings Call — issuer-hosted corrected transcript",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
-          "date": "2026-02-25",
-          "access": "公司托管FactSet更正稿；核查p2角色名录、pp8–10两位指定Q&A，不是许可研报全文，未音频复核。 / Additional checked scope: 发行人托管FactSet更正稿；核查PDF pp2,15–16具名问题，非许可研报；管理层技术说法未独立全核。"
-        },
-        {
           "id": "S1D02",
           "title": "Lam Research FY2025 Q3 Earnings Call — issuer-hosted edited transcript",
-          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1443/download/LRCX-USQ_Transcript_2025-04-23.pdf",
           "date": "2025-04-23",
+          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1443/download/LRCX-USQ_Transcript_2025-04-23.pdf",
           "access": "Lam investorroom公司文件库托管Refinitiv编辑稿；核查p2身份和pp9–10 Sur问答，管理层未披露产地/成本全量细节。"
+        },
+        {
+          "id": "S1D01",
+          "title": "NVIDIA FY2026 Q4 Earnings Call — issuer-hosted corrected transcript",
+          "date": "2026-02-25",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
+          "access": "公司托管FactSet更正稿；核查p2角色名录、pp8–10两位指定Q&A，不是许可研报全文，未音频复核。 / Additional checked scope: 发行人托管FactSet更正稿；核查PDF pp2,15–16具名问题，非许可研报；管理层技术说法未独立全核。"
         },
         {
           "id": "S1D03",
           "title": "Analog Devices FY2026 Q3 Earnings Call — issuer-hosted transcript",
-          "url": "https://investor.analog.com/static-files/ac142f15-c3fb-44b3-9c2c-4274a48d843a",
           "date": "2026-08-19",
+          "url": "https://investor.analog.com/static-files/ac142f15-c3fb-44b3-9c2c-4274a48d843a",
           "access": "公司托管LSEG编辑稿；核查p2角色、pp6–8指定Q&A，不是分析师研报。Arya结构化名录机构别名有噪声；主持人明确Bank of America Securities，保留差异。"
         }
-      ]
+      ],
+      "researchUpgrade": "existing evidence alignment only; not new research"
     },
     {
       "id": "S06",
@@ -4326,13 +4954,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "未审阅许可研究报告或完整预测模型",
+        "当前任职和收益/预测命中率未在本批审计",
+        "管理层答案需要独立客户与经营数据验证"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "malik-citi",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "S1D01",
+          "title": "NVIDIA FY2026 Q4 Earnings Call — issuer-hosted corrected transcript",
+          "date": "2026-02-25",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
+          "access": "公司托管FactSet更正稿；核查p2角色名录、pp8–10两位指定Q&A，不是许可研报全文，未音频复核。 / Additional checked scope: 发行人托管FactSet更正稿；核查PDF pp2,15–16具名问题，非许可研报；管理层技术说法未独立全核。"
+        },
+        {
+          "id": "O8SAD2",
+          "title": "AMD Q2 2026 Earnings Call",
+          "date": "2026-08-04",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9237/webcast_transcript/AMD2Q26EarningsCallTranscript.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        }
+      ],
+      "researchUpgrade": "new dated primary Q&A research; method sample only"
     },
     {
       "id": "S08",
@@ -4355,13 +5002,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "历史两场公开问答不证明2026当前投资观点",
+        "未审阅许可研报或完整模型，未审计预测业绩",
+        "跨议题样本，未认证同机制的稳定反复模式"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "kumar-piper",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8SAD4",
+          "title": "AMD Q2 2024 Earnings Call",
+          "date": "2024-07-30",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/8899/webcast_transcript/AMD+2Q24call.pdf",
+          "access": "AMD官方页链接PDF直接下载并读取Harsh Kumar p12；未听音频。答复正文标签误作Mitch Haws，后续称Lisa；只归为管理层，不强认具体答者。"
+        },
+        {
+          "id": "O8SAD5",
+          "title": "AMD Q3 2024 Earnings Call",
+          "date": "2024-10-29",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/8900/webcast_transcript/AMD+3Q24call.pdf",
+          "access": "AMD官方页链接PDF直接下载并读取Harsh Kumar pp15–16；未听音频。"
+        }
+      ],
+      "researchUpgrade": "new historical dated primary Q&A research; method sample only"
     },
     {
       "id": "S09",
@@ -4384,9 +5050,10 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "研报全文与持仓不可得",
+        "管理层没有提供所有瓶颈的量化排名"
       ],
       "priority": false,
       "profileId": "muse-cantor",
@@ -4395,25 +5062,26 @@
         {
           "id": "D10",
           "title": "NVIDIA FY2026 Q2 Earnings Call",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q2/NVDA-Q2-2026-Earnings-Call-27-August-2025-5_00-PM-ET.pdf",
           "date": "2025-08-27",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q2/NVDA-Q2-2026-Earnings-Call-27-August-2025-5_00-PM-ET.pdf",
           "access": "公司托管FactSet更正稿；核查具名Q&A及角色名录，不是分析师研报。"
         },
         {
           "id": "D11",
           "title": "NVIDIA FY2026 Q3 Earnings Call",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q3/NVDA-Q3-2026-Earnings-Call-19-November-2025-5_00-PM-ET.pdf",
           "date": "2025-11-19",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q3/NVDA-Q3-2026-Earnings-Call-19-November-2025-5_00-PM-ET.pdf",
           "access": "公司托管更正稿；逐项定位具名Q&A，不把管理层回答归为分析师观点。"
         },
         {
           "id": "D12",
           "title": "Micron FY2026 Q3 Earnings Call — public transcript mirror",
-          "url": "https://www.roic.ai/quote/MU/transcripts/2026-year/3-quarter",
           "date": "2026-06-24",
+          "url": "https://www.roic.ai/quote/MU/transcripts/2026-year/3-quarter",
           "access": "公开逐字稿镜像；核查指定Q&A，转录有噪声，未音频验证；数值不是我们的共识预测。"
         }
-      ]
+      ],
+      "researchUpgrade": "existing evidence alignment only; not new research"
     },
     {
       "id": "S10",
@@ -4494,13 +5162,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "历史两场公开问答不证明2026当前投资观点",
+        "未审阅许可研报或完整模型，未审计预测业绩",
+        "跨议题样本，未认证同机制的稳定反复模式"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "schafer-oppenheimer",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8SAD7",
+          "title": "MaxLinear Oppenheimer 25th Annual Technology Conference — issuer-filed transcript",
+          "date": "2022-08-09",
+          "url": "https://www.sec.gov/Archives/edgar/data/1288469/000110465922088223/tm2223040d1_425.htm",
+          "access": "SEC Rule 425发行人备案正文；读取开头供应、交期和backlog问答，会议日期为2022-08-09。历史材料，不当作2026当前观点。"
+        },
+        {
+          "id": "O8SAD6",
+          "title": "Cirrus Logic Oppenheimer Technology, Internet & Communications Conference",
+          "date": "2024-08-14",
+          "url": "https://s21.q4cdn.com/307563939/files/doc_events/2024/Aug/14/corrected-transcript_-cirrus-logic-inc-crus-us-oppenheimer-technology-internet-communications-conference-14-august-2024-11_35-am-et.pdf",
+          "access": "发行人CDN FactSet更正稿；2026-10-08读取Rick Schafer pp7–9,12–13，未听音频。"
+        }
+      ],
+      "researchUpgrade": "new historical dated primary Q&A research; method sample only"
     },
     {
       "id": "S13",
@@ -4523,9 +5210,11 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "未取得许可研报、目标价模型或投资回报审计",
+        "2026当前雇主角色未独立确认",
+        "Cirrus 2025-11-04和2026-02-03为Dylan Ollivier代问，排除个人方法认证"
       ],
       "priority": false,
       "profileId": "rolland-susquehanna",
@@ -4534,18 +5223,19 @@
         {
           "id": "S2D-B01",
           "title": "Cirrus Logic FY2025 Q2 Earnings Call",
-          "url": "https://s21.q4cdn.com/307563939/files/doc_events/2024/Nov/04/CORRECTED-TRANSCRIPT_-Cirrus-Logic-Inc-CRUS-US-Q2-2025-Earnings-Call-4-November-2024-5_00-PM-ET.pdf",
           "date": "2024-11-04",
+          "url": "https://s21.q4cdn.com/307563939/files/doc_events/2024/Nov/04/CORRECTED-TRANSCRIPT_-Cirrus-Logic-Inc-CRUS-US-Q2-2025-Earnings-Call-4-November-2024-5_00-PM-ET.pdf",
           "access": "发行人托管FactSet更正稿；本地PDF文字提取，核查pp2、6–7本人Q&A；未复核音频，非卖方研报。"
         },
         {
           "id": "S2D-B02",
           "title": "Cirrus Logic FY2026 Q1 Earnings Call",
-          "url": "https://s21.q4cdn.com/307563939/files/doc_financials/2026/q1/Cirrus-Logic_Q1-FY26-Earnings-Call.pdf",
           "date": "2025-08-05",
+          "url": "https://s21.q4cdn.com/307563939/files/doc_financials/2026/q1/Cirrus-Logic_Q1-FY26-Earnings-Call.pdf",
           "access": "发行人托管FactSet更正稿；核查pp2、6–7本人Q&A；未复核音频，不代表完整许可研究。"
         }
-      ]
+      ],
+      "researchUpgrade": "existing evidence alignment only; not new research"
     },
     {
       "id": "S14",
@@ -4626,9 +5316,12 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "仅核查选定NVIDIA问题，未审阅许可卖方研报",
+        "没有相同机制三次跨两电话会的稳定模式认证",
+        "没有预测收益或目标价命中审计",
+        "管理层每GW回报和技术优势仍需独立工作负载证据"
       ],
       "priority": false,
       "profileId": "rakers-wf",
@@ -4637,32 +5330,33 @@
         {
           "id": "D10",
           "title": "NVIDIA FY2026 Q2 Earnings Call",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q2/NVDA-Q2-2026-Earnings-Call-27-August-2025-5_00-PM-ET.pdf",
           "date": "2025-08-27",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q2/NVDA-Q2-2026-Earnings-Call-27-August-2025-5_00-PM-ET.pdf",
           "access": "公司托管FactSet更正稿；核查具名Q&A及角色名录，不是分析师研报。"
         },
         {
           "id": "D11",
           "title": "NVIDIA FY2026 Q3 Earnings Call",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q3/NVDA-Q3-2026-Earnings-Call-19-November-2025-5_00-PM-ET.pdf",
           "date": "2025-11-19",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q3/NVDA-Q3-2026-Earnings-Call-19-November-2025-5_00-PM-ET.pdf",
           "access": "公司托管更正稿；逐项定位具名Q&A，不把管理层回答归为分析师观点。"
         },
         {
           "id": "S1D01",
           "title": "NVIDIA FY2026 Q4 Earnings Call — issuer-hosted corrected transcript",
-          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
           "date": "2026-02-25",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
           "access": "公司托管FactSet更正稿；核查p2角色名录、pp8–10两位指定Q&A，不是许可研报全文，未音频复核。 / Additional checked scope: 发行人托管FactSet更正稿；核查PDF pp2,15–16具名问题，非许可研报；管理层技术说法未独立全核。"
         },
         {
           "id": "S3D02",
           "title": "NVIDIA FY2027 Q2 Earnings Call",
-          "url": "https://investor.nvidia.com/files/content_files/TRANSCRIPT_-NVIDIA-Corp-NVDA-US-Q2-2027-Earnings-Call-26-August-2026-5_00-PM-ET.pdf",
           "date": "2026-08-26",
+          "url": "https://investor.nvidia.com/files/content_files/TRANSCRIPT_-NVIDIA-Corp-NVDA-US-Q2-2027-Earnings-Call-26-August-2026-5_00-PM-ET.pdf",
           "access": "发行人托管FactSet更正稿；核查PDF pp2,14–15。不是分析师预测、目标价或研报；未将管理层回报主张当实证。"
         }
-      ]
+      ],
+      "researchUpgrade": "existing evidence alignment only; not new research"
     },
     {
       "id": "S17",
@@ -4743,9 +5437,11 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "总WFE回答没有给分部季度数字",
+        "未审阅完整Jefferies产能/目标价模型",
+        "扫描OCR保留转录风险，2026-10现职未独立确认"
       ],
       "priority": false,
       "profileId": "curtis-jefferies",
@@ -4754,18 +5450,19 @@
         {
           "id": "S2D-B03",
           "title": "Lam Research FY2026 Q1 Earnings Call",
-          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1467/LRCX%20Q1%202026%20Transcript%2010-22-25.pdf",
           "date": "2025-10-22",
+          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1467/LRCX%20Q1%202026%20Transcript%2010-22-25.pdf",
           "access": "发行人托管Refinitiv更正稿扫描PDF；下载后视觉核查p16具名Q&A，未音频复核；网页全文因大小限制。"
         },
         {
           "id": "S2D-B04",
           "title": "Lam Research FY2026 Q2 Earnings Call",
-          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1474/LRCX%20earnings%20transcript%201-28-26.pdf",
           "date": "2026-01-28",
+          "url": "https://filecache.investorroom.com/mr5ir_lamresearch2/1474/LRCX%20earnings%20transcript%201-28-26.pdf",
           "access": "发行人托管LSEG更正稿扫描PDF；下载后视觉核查p17两次具名Q&A，未音频复核。"
         }
-      ]
+      ],
+      "researchUpgrade": "existing evidence alignment only; not new research"
     },
     {
       "id": "S20",
@@ -4788,13 +5485,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "未审阅许可研究报告或完整预测模型",
+        "当前任职和收益/预测命中率未在本批审计",
+        "管理层答案需要独立客户与经营数据验证"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "omalley-barclays",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8SAD1",
+          "title": "AMD Q1 2026 Earnings Call",
+          "date": "2026-05-05",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9232/webcast_transcript/AMD_1Q_2026_Earnings.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        },
+        {
+          "id": "O8SAD2",
+          "title": "AMD Q2 2026 Earnings Call",
+          "date": "2026-08-04",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9237/webcast_transcript/AMD2Q26EarningsCallTranscript.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        }
+      ],
+      "researchUpgrade": "new dated primary Q&A research; method sample only"
     },
     {
       "id": "S21",
@@ -4817,13 +5533,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "未审阅许可研究报告或完整预测模型",
+        "当前任职和收益/预测命中率未在本批审计",
+        "管理层答案需要独立客户与经营数据验证"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "buchalter-td-cowen",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8SAD1",
+          "title": "AMD Q1 2026 Earnings Call",
+          "date": "2026-05-05",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9232/webcast_transcript/AMD_1Q_2026_Earnings.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        },
+        {
+          "id": "O8SAD2",
+          "title": "AMD Q2 2026 Earnings Call",
+          "date": "2026-08-04",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9237/webcast_transcript/AMD2Q26EarningsCallTranscript.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        }
+      ],
+      "researchUpgrade": "new dated primary Q&A research; method sample only"
     },
     {
       "id": "S22",
@@ -4991,13 +5726,32 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and analyst-specific method extraction pending."
+        "未审阅许可研究报告或完整预测模型",
+        "当前任职和收益/预测命中率未在本批审计",
+        "管理层答案需要独立客户与经营数据验证"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "reitzes-melius",
+      "roleNote": "",
+      "methodSources": [
+        {
+          "id": "O8SAD3",
+          "title": "AMD Q2 2025 Earnings Call",
+          "date": "2025-08-05",
+          "url": "https://d1io3yog0oux5.cloudfront.net/_e6fb18640ea7bfff80a48dc92268a25f/amd/db/841/9167/webcast_transcript/amd2q2025.pdf",
+          "access": "AMD官方Financial Results页链接的PDF；2026-10-08直接下载并读具名问答正文，未听音频；网页搜索解析不可用但原PDF可读取。"
+        },
+        {
+          "id": "S1D01",
+          "title": "NVIDIA FY2026 Q4 Earnings Call — issuer-hosted corrected transcript",
+          "date": "2026-02-25",
+          "url": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/q4/NVDA-Q4-2026-Earnings-Call-25-February-2026-5_00-PM-ET.pdf",
+          "access": "公司托管FactSet更正稿；核查p2角色名录、pp8–10两位指定Q&A，不是许可研报全文，未音频复核。 / Additional checked scope: 发行人托管FactSet更正稿；核查PDF pp2,15–16具名问题，非许可研报；管理层技术说法未独立全核。"
+        }
+      ],
+      "researchUpgrade": "new dated primary Q&A research; method sample only"
     },
     {
       "id": "S28",
@@ -5390,13 +6144,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "bruce-lu-gs",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "S36SRC1",
+          "title": "TSMC Q2 2025 earnings call — Charlie Chan Q&A",
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-07/1f4f86c935f1de837672a6973154e64b26bdae57/TSMC%202Q25%20Transcript.pdf",
+          "date": "2025-07-17",
+          "access": "2026-10-08官方正文选段核读；印刷页9–10，Bruce Lu"
+        },
+        {
+          "id": "S36SRC2",
+          "title": "TSMC Q3 2025 earnings call — Charlie Chan Q&A",
+          "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2025-10/6860312f04fd291d0f26b46c1234f84e6332717e/TSMC%203Q25%20Transcript.pdf",
+          "date": "2025-10-16",
+          "access": "2026-10-08官方正文选段核读；印刷页11–13，Bruce Lu"
+        }
+      ]
     },
     {
       "id": "S39",
@@ -5417,13 +6189,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "gokul-hariharan-jpm",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "S36SRC1",
+          "title": "TSMC Q2 2025 earnings call — Charlie Chan Q&A",
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-07/1f4f86c935f1de837672a6973154e64b26bdae57/TSMC%202Q25%20Transcript.pdf",
+          "date": "2025-07-17",
+          "access": "2026-10-08官方正文选段核读；印刷页6–8，Gokul Hariharan"
+        },
+        {
+          "id": "S36SRC2",
+          "title": "TSMC Q3 2025 earnings call — Charlie Chan Q&A",
+          "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2025-10/6860312f04fd291d0f26b46c1234f84e6332717e/TSMC%203Q25%20Transcript.pdf",
+          "date": "2025-10-16",
+          "access": "2026-10-08官方正文选段核读；印刷页6–7，Gokul Hariharan"
+        }
+      ]
     },
     {
       "id": "S40",
@@ -5982,13 +6772,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "karl-keirstead-ubs",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "S51SRC1",
+          "title": "Microsoft FY2025 Q2 earnings call — Keith Weiss Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q2",
+          "date": "2025-01-29",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：KARL KEIRSTEAD, UBS"
+        },
+        {
+          "id": "O8SB-MS3",
+          "title": "Microsoft FY2025 Q3 earnings call — selected Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q3",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：KARL KEIRSTEAD及AMY HOOD回复"
+        }
+      ]
     },
     {
       "id": "S54",
@@ -6063,13 +6871,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "brent-thill-jefferies",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "S51SRC1",
+          "title": "Microsoft FY2025 Q2 earnings call — Keith Weiss Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q2",
+          "date": "2025-01-29",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：BRENT THILL, Jefferies"
+        },
+        {
+          "id": "O8SB-MS3",
+          "title": "Microsoft FY2025 Q3 earnings call — selected Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q3",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：BRENT THILL及SATYA NADELLA回复"
+        }
+      ]
     },
     {
       "id": "S57",
@@ -6090,16 +6916,34 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "退休，应保留历史方法标签，不计当前卖方100人",
-        "准确退休日期需官方或本人带日期材料确认；搜索命中GS报告说明2026-01-31但正文未取回"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。",
+        "保留退休/历史卖方标签；本批没有重新确认退休日期。"
       ],
       "activeSellSide": false,
       "historical": true,
       "priority": false,
-      "profileId": null,
-      "roleNote": "；历史角色或已转职，不计作当前卖方研究员。"
+      "profileId": "kash-rangan-historical",
+      "roleNote": "；历史角色或已转职，不计作当前卖方研究员。",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "O8SB-MS3",
+          "title": "Microsoft FY2025 Q3 earnings call — selected Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q3",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：KASH RANGAN, Goldman Sachs"
+        },
+        {
+          "id": "S51SRC2",
+          "title": "Microsoft FY2025 Q4 earnings call — Weiss and Moerdler Q&A",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+          "date": "2025-07-30",
+          "access": "2026-10-08官方正文选段核读；HTML Q&A：KASH RANGAN及AMY HOOD回复"
+        }
+      ]
     },
     {
       "id": "S58",
@@ -6369,13 +7213,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "brian-nowak-ms",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "O8SB-META1",
+          "title": "Meta Q1 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；印刷页9–11，Brian Nowak"
+        },
+        {
+          "id": "O8SB-META2",
+          "title": "Meta Q2 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q2/META-Q2-2025-Earnings-Call-Transcript.pdf",
+          "date": "2025-07-30",
+          "access": "2026-10-08官方正文选段核读；印刷页12–13，Brian Nowak"
+        }
+      ]
     },
     {
       "id": "S68",
@@ -6396,13 +7258,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "eric-sheridan-gs",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "O8SB-META1",
+          "title": "Meta Q1 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；印刷页11，Eric Sheridan"
+        },
+        {
+          "id": "O8SB-META2",
+          "title": "Meta Q2 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q2/META-Q2-2025-Earnings-Call-Transcript.pdf",
+          "date": "2025-07-30",
+          "access": "2026-10-08官方正文选段核读；印刷页9–12，Eric Sheridan"
+        }
+      ]
     },
     {
       "id": "S69",
@@ -6423,16 +7303,34 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "aliases": [
         "Douglas Anmuth"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "doug-anmuth-jpm",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "O8SB-META1",
+          "title": "Meta Q1 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；印刷页12–13，Douglas Anmuth"
+        },
+        {
+          "id": "O8SB-META2",
+          "title": "Meta Q2 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q2/META-Q2-2025-Earnings-Call-Transcript.pdf",
+          "date": "2025-07-30",
+          "access": "2026-10-08官方正文选段核读；印刷页13–14，Douglas Anmuth"
+        }
+      ]
     },
     {
       "id": "S70",
@@ -6453,13 +7351,31 @@
           "accessLevel": "primary-full-text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚缺两项实质一手材料与个人方法审阅；覆盖页仅验证身份，未验证投资判断或绩效"
+        "仅研究两次公开问答样本；未取得完整证券研报、估值模型或底层渠道数据。",
+        "未审计预测结果或投资绩效；2025来源角色不等于2026现职核验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "justin-post-bofa",
+      "roleNote": "",
+      "researchStatus": "method-sample; not recurring-method-certified",
+      "methodSources": [
+        {
+          "id": "O8SB-META1",
+          "title": "Meta Q1 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf",
+          "date": "2025-04-30",
+          "access": "2026-10-08官方正文选段核读；印刷页12，Justin Post"
+        },
+        {
+          "id": "O8SB-META2",
+          "title": "Meta Q2 2025 earnings call — selected Q&A",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q2/META-Q2-2025-Earnings-Call-Transcript.pdf",
+          "date": "2025-07-30",
+          "access": "2026-10-08官方正文选段核读；印刷页14–16，Justin Post"
+        }
+      ]
     },
     {
       "id": "S71",
@@ -6494,7 +7410,7 @@
       "id": "S72",
       "name": "Meta Marshall",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Morgan Stanley analyst in the cited dated calls",
       "currentRole": null,
       "firm": "Morgan Stanley",
       "focus": "网络、通信与数字基础设施",
@@ -6509,15 +7425,31 @@
           "accessLevel": "issuer-hosted transcript participant list and attributable Q&A read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "2026-10-07 current employer/title not independently verified; affiliation is historical at source date",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "meta-marshall",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-CIENQ125",
+          "title": "Ciena Q1 2025 Financial Results",
+          "date": "2025-03-11",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+          "access": "2026-10-08，pp.6–7具名问答正文；未听音频。"
+        },
+        {
+          "id": "O8SC-CIENQ325",
+          "title": "Ciena Q3 2025 Financial Results",
+          "date": "2025-09-04",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+          "access": "2026-10-08，pp.11–12具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S73",
@@ -6552,7 +7484,7 @@
       "id": "S74",
       "name": "Simon Leopold",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Raymond James analyst in the cited dated calls",
       "currentRole": null,
       "firm": "Raymond James",
       "focus": "网络、通信与数字基础设施",
@@ -6567,15 +7499,31 @@
           "accessLevel": "issuer-hosted transcript participant list and attributable Q&A read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "2026-10-07 current employer/title not independently verified; affiliation is historical at source date",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "simon-leopold",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-CIENQ125",
+          "title": "Ciena Q1 2025 Financial Results",
+          "date": "2025-03-11",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+          "access": "2026-10-08，pp.9–10具名问答正文；未听音频。"
+        },
+        {
+          "id": "O8SC-CIENQ325",
+          "title": "Ciena Q3 2025 Financial Results",
+          "date": "2025-09-04",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+          "access": "2026-10-08，pp.13–14具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S75",
@@ -6610,7 +7558,7 @@
       "id": "S76",
       "name": "Amit Daryanani",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Evercore analyst in the cited dated calls",
       "currentRole": null,
       "firm": "Evercore",
       "focus": "服务器、硬件与供应链",
@@ -6625,15 +7573,31 @@
           "accessLevel": "issuer-hosted transcript participant list and attributable Q&A read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "2026-10-07 current employer/title not independently verified; affiliation is historical at source date",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "amit-daryanani",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-CIENQ125",
+          "title": "Ciena Q1 2025 Financial Results",
+          "date": "2025-03-11",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+          "access": "2026-10-08，pp.7–8具名问答正文；未听音频。"
+        },
+        {
+          "id": "O8SC-CIENQ325",
+          "title": "Ciena Q3 2025 Financial Results",
+          "date": "2025-09-04",
+          "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+          "access": "2026-10-08，p.17具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S77",
@@ -7115,7 +8079,7 @@
       "id": "S91",
       "name": "Andy Kaplowitz",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Citigroup analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, Citi",
       "firm": "Citi",
       "focus": "电力、散热与工业资本开支",
@@ -7130,15 +8094,31 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "andy-kaplowitz",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.10–12具名问答正文；未听音频。"
+        },
+        {
+          "id": "EXP200-S92-B",
+          "title": "Trane Q4 2025 Earnings",
+          "date": "2026-01-29",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_financials/2025/q4/Trane-Technologies-Q4-2025-Earnings_Transcript.pdf",
+          "access": "2026-10-08，pp.12–13具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S92",
@@ -7233,7 +8213,7 @@
       "id": "S93",
       "name": "Stephen Tusa",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "JPMorgan analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, JP Morgan",
       "firm": "JP Morgan",
       "focus": "电力、散热与工业资本开支",
@@ -7248,21 +8228,37 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "stephen-tusa",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.26–27具名问答正文；未听音频。"
+        },
+        {
+          "id": "EXP200-S92-B",
+          "title": "Trane Q4 2025 Earnings",
+          "date": "2026-01-29",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_financials/2025/q4/Trane-Technologies-Q4-2025-Earnings_Transcript.pdf",
+          "access": "2026-10-08，pp.24–25具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S94",
       "name": "Scott Davis",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Melius Research analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, Melius Research",
       "firm": "Melius Research",
       "focus": "电力、散热与工业资本开支",
@@ -7277,15 +8273,31 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "scott-davis",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.15–16具名问答正文；未听音频。"
+        },
+        {
+          "id": "EXP200-S92-B",
+          "title": "Trane Q4 2025 Earnings",
+          "date": "2026-01-29",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_financials/2025/q4/Trane-Technologies-Q4-2025-Earnings_Transcript.pdf",
+          "access": "2026-10-08，pp.10–11具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S95",
@@ -7320,7 +8332,7 @@
       "id": "S96",
       "name": "Jeff Sprague",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Vertical Research Partners analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, Vertical Research Partners",
       "firm": "Vertical Research Partners",
       "focus": "电力、散热与工业资本开支",
@@ -7335,21 +8347,37 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "jeff-sprague",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.19–21具名问答正文；未听音频。"
+        },
+        {
+          "id": "EXP200-S92-B",
+          "title": "Trane Q4 2025 Earnings",
+          "date": "2026-01-29",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_financials/2025/q4/Trane-Technologies-Q4-2025-Earnings_Transcript.pdf",
+          "access": "2026-10-08，pp.21–22具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S97",
       "name": "Joe Ritchie",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Goldman Sachs analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, Goldman Sachs",
       "firm": "Goldman Sachs",
       "focus": "电力、散热与工业资本开支",
@@ -7364,15 +8392,31 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "joe-ritchie",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.18–19具名问答正文；未听音频。"
+        },
+        {
+          "id": "EXP200-S92-B",
+          "title": "Trane Q4 2025 Earnings",
+          "date": "2026-01-29",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_financials/2025/q4/Trane-Technologies-Q4-2025-Earnings_Transcript.pdf",
+          "access": "2026-10-08，pp.20–21具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S98",
@@ -7407,7 +8451,7 @@
       "id": "S99",
       "name": "Nicole DeBlase",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "Deutsche Bank analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, Deutsche Bank Research",
       "firm": "Deutsche Bank Research",
       "focus": "电力、散热与工业资本开支",
@@ -7422,21 +8466,37 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "nicole-deblase",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-NVTQ225",
+          "title": "nVent Q2 2025 Earnings Call",
+          "date": "2025-08-01",
+          "url": "https://s22.q4cdn.com/268397047/files/doc_financials/2025/q2/Q2-Corrected-Transcript.pdf",
+          "access": "2026-10-08，pp.14–15具名问答正文；未听音频。"
+        },
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，p.23具名问答正文；未听音频。"
+        }
+      ]
     },
     {
       "id": "S100",
       "name": "Deane Dray",
       "side": "sell",
-      "roleAtSource": "Analyst listed by issuer",
+      "roleAtSource": "RBC Capital Markets analyst in the cited dated calls",
       "currentRole": "Issuer-listed coverage analyst, RBC Capital Markets",
       "firm": "RBC Capital Markets",
       "focus": "电力、散热与工业资本开支",
@@ -7451,15 +8511,31 @@
           "accessLevel": "official issuer coverage list full text"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Undated live coverage page can lag staff changes; exact seniority not established",
-        "Two substantive attributed research materials and repeat-method validation pending",
-        "Forecast accuracy and investment performance not audited"
+        "未取得个人付费研究与完整估值模型",
+        "未检验预测结果或投资业绩",
+        "选读历史电话会，不代表全部覆盖或当前判断"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": ""
+      "profileId": "deane-dray",
+      "roleNote": "2026-10-08完成两份历史原始材料选读；机构按电话会当时归属。",
+      "methodSources": [
+        {
+          "id": "O8SC-NVTQ225",
+          "title": "nVent Q2 2025 Earnings Call",
+          "date": "2025-08-01",
+          "url": "https://s22.q4cdn.com/268397047/files/doc_financials/2025/q2/Q2-Corrected-Transcript.pdf",
+          "access": "2026-10-08，pp.7–8具名问答正文；未听音频。"
+        },
+        {
+          "id": "O8SC-TTQ325",
+          "title": "Trane Q3 2025 Earnings",
+          "date": "2025-10-30",
+          "url": "https://s2.q4cdn.com/950394465/files/doc_events/2025/Oct/30/Trane-Technologies-Q3-2025-Earnings-Transcript.pdf",
+          "access": "2026-10-08，pp.25–26具名问答正文；未听音频。"
+        }
+      ]
     }
   ]
 }
