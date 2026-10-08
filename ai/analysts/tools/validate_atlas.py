@@ -41,8 +41,25 @@ for person in people:
     assert not person.get('profileId') or person['profileId'] in groups['profiles'], person['id']
     if person['status'] == 'research-ready':
         sources = person.get('methodSources', []) or person.get('research', {}).get('sources', [])
-        assert len({s['url'] for s in sources}) >= 2, person['id']
+        # Independently dated letters in one anthology are separate artifacts.
+        assert len({(s['url'].rstrip('/'), s.get('date')) for s in sources}) >= 2, person['id']
 assert dict(Counter(p['status'] for p in people)) == cohort['counts']
+assert cohort['profile_matches'] == sum(bool(p.get('profileId')) for p in people)
+assert atlas['role_counts'] == {
+    'buy_side': sum(p['side'] == 'buy' for p in atlas['profiles']),
+    'sell_side': sum(p['side'] == 'sell' for p in atlas['profiles']),
+}
+expected_counts = f"{len(atlas['profiles'])}份方法档案、{len(atlas['sources'])}条来源记录、{len(atlas['cards'])}张合成挑战卡"
+assert expected_counts in atlas['coverage']
+assert f"ANALYST THOUGHT ATLAS / {atlas['as_of']}" in (root / 'thoughts.html').read_text()
+for page in ('thoughts.html', 'index.html'):
+    assert expected_counts in (root / page).read_text(), f'stale public counts in {page}'
+for person in people:
+    for source in person.get('methodSources', []):
+        if source.get('id'):
+            assert source['id'] in groups['sources'], (person['id'], source['id'])
+for profile in atlas['profiles']:
+    assert any(c['profile'] == profile['id'] for c in atlas['cards']), profile['id']
 report = {'profiles': len(atlas['profiles']), 'sources': len(atlas['sources']), 'cards': len(atlas['cards']),
           'candidates': len(people), 'priority': 20, 'checks': 'IDs, source/profile joins, answer separation, skill tags, cohort counts and evidence-state references passed'}
 print(json.dumps(report, ensure_ascii=False, indent=2))

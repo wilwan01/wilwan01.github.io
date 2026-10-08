@@ -1,0 +1,462 @@
+{
+  "as_of": "2026-10-08",
+  "stage": "pre-publication validation",
+  "counts": {
+    "profiles": 80,
+    "sources": 120,
+    "synthetic_cards": 155,
+    "candidate_pool": 200,
+    "method_materials": 76,
+    "identity_only": 121,
+    "pending_identity_or_classification": 3
+  },
+  "preservation": {
+    "existing_profiles": 38,
+    "existing_sources": 76,
+    "existing_cards": 95,
+    "existing_answer_keys": 95,
+    "status": "all existing objects retained; existing sources only append explicit additional reading scope"
+  },
+  "checks": [
+    "unique IDs and all source/profile/card joins",
+    "answer keys separate and complete",
+    "F1–F25/T1–T6 tags",
+    "candidate counts and profile links",
+    "public counts agree across atlas, index and thoughts",
+    "syntax and whitespace",
+    "original source-time roles and coauthors preserved",
+    "cross-group exercise arithmetic and attribution spot checks; noted wording fixes applied"
+  ],
+  "cross_reviews": [
+    {
+      "file": "oct08-review-buy-a.json",
+      "review": {
+        "reviewer": "sell-b independent cross-review",
+        "reviewed_file": "oct08-buy-a.json",
+        "as_of": "2026-10-08",
+        "actual_card_count": 14,
+        "arithmetic": "14张全部重算；按答案所用假设，数值均正确。需消除下列题干歧义以使答案唯一。",
+        "required_clarifications": [
+          {
+            "id": "O8BA11",
+            "field": "question",
+            "issue": "份额升25%可读为相对增长25%，答案却按份额从20%升至25%。",
+            "fix": "改为：份额从20%升至25%。"
+          },
+          {
+            "id": "O8BA12",
+            "field": "question",
+            "issue": "PE降35没有明确终值/倍数。",
+            "fix": "改为：PE从50倍降至35倍。"
+          },
+          {
+            "id": "O8BA13",
+            "field": "question",
+            "issue": "增效10%不必然等于劳动成本节约10%；若指生产率提高10%，同产出所需劳动下降9.09%。",
+            "fix": "改为：同等产出所需劳动成本可减少10%，全部兑现。保留原答案。"
+          },
+          {
+            "id": "O8BA08",
+            "field": "constraint",
+            "issue": "一半客户付费不必然等于收入机会减半，因为客户规模未知。",
+            "fix": "改为：收入机会中只有一半实际转为付费收入；或明确客户机会规模相同。"
+          },
+          {
+            "id": "O8BA04",
+            "field": "constraint",
+            "issue": "现金4000万隐含其余40套都已当期收款；验收与确认本身不保证到账。",
+            "fix": "加：其余40套当期全额付款，忽略税费及其他现金流。"
+          }
+        ],
+        "primary_source_spot_checks": [
+          {
+            "source_id": "O8BAS06",
+            "url": "https://www.pctannualhighlights.co.uk/2025/Investment-Managers-Report/",
+            "result": "通过。页面列Ben Rogoff、Alastair Unwin共同角色；资本密集度和共同调整措辞对应正文Mag-7 update。报告期截至2025-04-30、图表July2025，不据此冒认发表日。date:null及共同署名边界保留。"
+          },
+          {
+            "source_id": "O8BAS02",
+            "url": "https://www.janushenderson.com/en-gb/investor/article/tech-stocks-and-tariffs-5-key-considerations-for-investors/",
+            "result": "通过。三人作者区明确Alison Porter、Graeme Clark、Richard Clode。团队归属与历史政策口径已写明。"
+          },
+          {
+            "source_id": "O8BAS08",
+            "url": "https://www.wisdomtree.com/us/insights/blog/behind-the-markets-podcast-a-conversation-with-dom-rizzo",
+            "result": "通过。2023-08-18发表，作者Christopher Gannatti；正文第一方采访总结明确Dom团队四框架。handoff没有冒称为逐字稿、Rizzo个人署名报告或已听录音。"
+          }
+        ],
+        "scope_limit": "本次新打开3个风险较高的一手来源抽查共同作者、undated与主持人转述；未将其余来源宣称为独立全文复核。",
+        "status": "pass after five wording clarifications; no numerical correction needed"
+      }
+    },
+    {
+      "file": "oct08-review-buy-b.json",
+      "review": {
+        "reviewer": "sell_c_oct08",
+        "as_of": "2026-10-08",
+        "target": "oct08-buy-b.json",
+        "status": "pass_with_minor_self_containment_clarifications",
+        "cards_checked": 11,
+        "arithmetic_result": "all checked answers correct within displayed rounding",
+        "numeric_checks": {
+          "TS1": "revenue10000→12000;gross profit6000→6000;constraint3500 (-41.6667%)",
+          "TS2": "EPS17.28,345.6,15.2%,4.82966%;constraint266.2;max buy200",
+          "LB1": "100 is final external customer spend; 155 includes intermediate turnover; 12 financing is not customer demand",
+          "LB2": "baseNPV−2.95267;break-even33.275%;constraintNPV−8.21187;break-even38.40769%",
+          "DB1": "10000→17200→7600 contributions, final −24%",
+          "DB2": "200 designs*1000*50=10000000;constraint1250000",
+          "BW1": "19000→59000",
+          "BW2": "grossprofit30;cash net−70;funding gap40",
+          "TK1": "380→225.28926;simulation sample size not probability calibration",
+          "TK2": "12000 vehicles;platform revenue108m→72m;contribution48m",
+          "TK3": "0.1 and0.2 accidents/million miles; intervention counterfactual unidentifiable"
+        },
+        "source_spotchecks": [
+          {
+            "source_id": "O8BB-BW22",
+            "method": "fresh official web full-text inspection",
+            "verified": "Page dated Dec15 2022, title issue Dec9, by Brett Winton. Generative AI Tops the App Store section explicitly differentiates durability and computational costs versus ad models. Metadata and BW1 attribution pass."
+          },
+          {
+            "source_id": "O8BB-TK23",
+            "method": "fresh official web full-text selected sections",
+            "verified": "April21 2023 and joint authors Tasha Keeney/Sam Korus/Daniel Maguire confirmed at lines109–117. Five safety caveats at201 include driver disengagement, weather and fleet differences. Launch-date sensitivity and million-simulation average at233–237; independent-input model limits265–266. Cards label reconstructed synthetic cases and do not endorse old forecast."
+          }
+        ],
+        "required_fixes": [],
+        "suggested_clarifications": [
+          {
+            "severity": "low",
+            "card": "O8BB-DB2",
+            "field": "question",
+            "suggestion": "将“2%提出工业设计，其中10%量产，每设计采购1000块”写成“2%各提出一个互不重复的工业设计，其中10%量产，每个量产设计全年采购1000块”。明确开发者→设计1:1及年分母。",
+            "effect": "no numeric changes"
+          },
+          {
+            "severity": "low",
+            "card": "O8BB-TK1",
+            "field": "question/boundary",
+            "suggestion": "题干明确“成功/未成功价值500/100均为原基准下今天现值”；约束明确“仅成功现金流整体再后移两年，失败价值时点不变”。当前boundary给了现值口径，搬入题干更独立可解。",
+            "effect": "no numeric changes"
+          }
+        ],
+        "limitations": [
+          "Other eight source records inspected for metadata consistency and attribution boundary but not independently refetched.",
+          "No real investment performance, robotaxi safety or source-model numerical forecast verification claimed.",
+          "Most transfer stages are qualitative; arithmetic check does not certify learner mastery."
+        ]
+      }
+    },
+    {
+      "file": "oct08-review-buy-c.json",
+      "review": {
+        "reviewer": "sell_c_oct08",
+        "as_of": "2026-10-08",
+        "target": "oct08-buy-c.json",
+        "status": "pass_with_metadata_corrections",
+        "arithmetic": {
+          "cards_checked": 10,
+          "result": "all numeric answers independently recalculated; no arithmetic errors",
+          "checks": [
+            "C01 400→372→325.5",
+            "C02 10−8=2;10−2=8;8−3=5 under stipulated all-other-adjustments-zero",
+            "C03 revenue300→180;GM90→36;less impairment20 gives16",
+            "C04 1.5^0.5−1=22.474%;1.5^0.2−1=8.447%;100*1.1^5=161.051",
+            "C05 gap8;8/.95=8.4211",
+            "C06 12/80=.15;(60+12)/80−1=−.10",
+            "C07 1.05*.98−1=.029;105*18=1890",
+            "C08 30+80−90=20;90/100−1=−.10",
+            "C09 120*.9*9=972;972*.9=874.8",
+            "C10 15/105=14.2857%;90+15*.6=99"
+          ]
+        },
+        "source_spotchecks": [
+          {
+            "id": "O8BCS06",
+            "url": "https://www.gyasset.com/p/site/investTeamNewsArticle?id=251&type=9",
+            "method": "fresh web official full text",
+            "verified": "Title, 2020-05-26 date, Shanghai Securities News and Zhao Mingchao attribution; valuation protection at lines70–74; liquidity/temporary funding and partial holdings at lines127–134. Supports C05/C06 without claiming verified returns."
+          },
+          {
+            "id": "O8BCS01",
+            "method": "fresh web timed out; separately inspected previously downloaded local original text",
+            "verified": "Management KPI/receivables passage supports C02. This is independent inspection of inherited downloaded evidence, not fresh HTTP verification."
+          },
+          {
+            "id": "O8BCS05",
+            "method": "independent reading of local original text; fresh web check requested",
+            "verified": "2019 interview discusses high allocation, stock-switching/opportunity cost, stable customers; the exact partial-disclosure/liquidity/no-view-change passage belongs to 2020 S06."
+          }
+        ],
+        "requested_corrections": [
+          {
+            "severity": "medium",
+            "target": "sources.O8BCS05.access and locator",
+            "issue": "Currently lists public-holdings-incomplete/funding-transfer/copying-investments Q&A, which describes S06 (2020), not the inspected S05 (2019).",
+            "suggestion": "Replace with 选股流程、风险定价、高仓位迭代、机会成本及稳定客户资金段. For C05 locator explicitly map S05 to high-allocation/opportunity-cost Q&A and S06 to partial-holdings/funding-transfer Q&A, or cite S06 alone."
+          },
+          {
+            "severity": "low",
+            "target": "sources.O8BCS07.locator and O8BCS08.locator",
+            "issue": "Quarterly source locator currently also names annual-report sections and vice versa.",
+            "suggestion": "Set S07 locator 季报§4.4; S08 年报§4.4–4.5."
+          }
+        ],
+        "limitations": [
+          "Fund-report primary PDFs not independently reopened in this review; verified the attribution boundary in handoff remains fund-manager/team authored rather than personal sole authorship.",
+          "C09 constraint intentionally overrides initial all-good-units-sold boundary; no numerical contradiction.",
+          "Synthetic transfer questions in this batch are mostly qualitative and not proof of mastery."
+        ]
+      }
+    },
+    {
+      "file": "oct08-review-sell-b.json",
+      "review": {
+        "reviewed_at": "2026-10-08",
+        "reviewer": "buy_c_oct08",
+        "target": "oct08-sell-b.json",
+        "result": "pass with one wording clarification recommended",
+        "scope": "独立重读6份发行人官方转录中的9位具名问答，对9卡初题/约束/迁移作算术与模型边界核查。未审计音频或真实投资结果。",
+        "checks": [
+          {
+            "card": "O8SB-BL01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "TSMC Q3 2025 pp11–13",
+            "calculation": "125台；约束原80产出翻倍160，新100×1.6=160，缺0；物流120。"
+          },
+          {
+            "card": "O8SB-GH01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "TSMC Q3 2025 pp6–7",
+            "calculation": "30%→22%；43/150=28.6667%；云20%→25%。"
+          },
+          {
+            "card": "O8SB-KK01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Microsoft FY25 Q3 Keirstead具名段",
+            "calculation": "实际110对预期100；AI2/10=20%。跨期移位2不增加累计需求；需澄清新增8仅当前一笔。"
+          },
+          {
+            "card": "O8SB-BT01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Microsoft FY25 Q2 Thill具名段",
+            "calculation": "收入90；算力108；迁移104；打平量+25%。"
+          },
+          {
+            "card": "O8SB-KR01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Microsoft FY25 Q4 Rangan具名段",
+            "calculation": "支出增速50%→20%；FCF30→28；另扣本金为23，已有边界防双扣。"
+          },
+          {
+            "card": "O8SB-BN01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Meta Q1 2025 pp9–11 Nowak",
+            "calculation": "留存40万→50万；完成32万→25万，−21.875%；迁移付费2万→1.5万。"
+          },
+          {
+            "card": "O8SB-ES01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Meta Q2 2025 pp9–12 Sheridan",
+            "calculation": "首年21；全年42；独立3年寿命敏感性52；物流3与12。"
+          },
+          {
+            "card": "O8SB-DA01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Meta Q2 2025 pp13–14 Anmuth；另核Q1 pp12–13",
+            "calculation": "年金2.486851991；现值102.1713与114.6056；迁移租赁59.6844。"
+          },
+          {
+            "card": "O8SB-JP01",
+            "arithmetic": "pass",
+            "named_question_alignment": "pass",
+            "locator": "Meta Q2 2025 pp14–16 Post",
+            "calculation": "12对9；归因后6对9；迁移8对7，约束2对7。"
+          }
+        ],
+        "issues": [
+          {
+            "severity": "minor",
+            "card": "O8SB-KK01",
+            "issue": "约束“假定非AI的8为持续新增”容易被理解为下季度继续新增8，届时两季度合计可能16；答案8把它解释成当前8不被跨季冲销。",
+            "recommended_text": "假定本季非AI超预期8不在下季被抵消；除上述AI收入提前2外，下季实际收入与原预测相同。两个季度累计超预期多少？"
+          }
+        ],
+        "anmuth_financing_boundary": {
+          "result": "pass",
+          "source_facts": "Q1追问硬件/数据中心成本和合作利弊；Q2追问能否引入融资伙伴。Susan Li表示探索合作且当时无已完成交易。",
+          "assessment": "卡片未把探索写成已签合同；初始现金下降与全生命周期义务分离正确。10%及所有付款为合成，不是Meta真实融资成本。不能认定真实交易债务出表或成本下降。",
+          "source_url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q2/META-Q2-2025-Earnings-Call-Transcript.pdf",
+          "locator": "印刷pp13–14；lines496–541"
+        },
+        "source_reuse": "源更新additional_readings已包括旧TSMC/Microsoft新增具名阅读；合并时保留旧作者/来源范围并追加新范围。"
+      }
+    },
+    {
+      "file": "oct08-review-sell-c.json",
+      "review": {
+        "reviewer": "buy_a_oct08",
+        "reviewed_file": "oct08-sell-c.json",
+        "as_of": "2026-10-08",
+        "scope": "All 10 card calculations and prompt completeness; issuer PDF spot-check of Ciena network-equipment exchanges for Meta Marshall, Simon Leopold, Amit Daryanani in Q1 and Q3 2025.",
+        "summary": {
+          "cards_reviewed": 10,
+          "arithmetic_errors": 0,
+          "wording_fixes": 2,
+          "attribution_exchanges_checked": 6,
+          "attribution_errors": 0
+        },
+        "required_fixes": [
+          {
+            "card_id": "O8SC-S72-01",
+            "issue": "临时退款4未明确流向和会计位置；客户退款可能减收入，现答案假设成本返还使毛利增加4且收入不变。",
+            "replacement_question": "合成，金额单位相同：收入100、毛利40；次季收入120、毛利52，其中包含供应商一次性成本返还4，已减少销售成本，未改变收入。次季报告与剔除该返还后的毛利率各多少？",
+            "replacement_constraint": "进一步证实，按相同收入120的桥接口径，产品组合变化另贡献毛利2；再剔除后毛利率多少？可否断言剩余变化全由规模降本？",
+            "answer_change_required": false
+          },
+          {
+            "card_id": "O8SC-S74-01",
+            "issue": "传统DCI收入100可能被理解为已实现收入；140答案要求100为未发生新订单替代前的基线。验收等于收入亦需显式题设。",
+            "replacement_question": "合成：某供应商原计划本年传统DCI收入100；新增训练互连订单60，导致原计划DCI采购取消20。假定收入在验收时确认，剩余原订单及新订单均本年验收。总收入多少？",
+            "replacement_constraint": "若新订单仅有金额30在本年验收，但原20采购已取消，其余条件不变，本年收入多少？",
+            "answer_change_required": false
+          }
+        ],
+        "card_checks": [
+          {
+            "card_id": "O8SC-S72-01",
+            "arithmetic": "pass",
+            "self_contained": "fix wording",
+            "recalculation": "52/120=43.333%;48/120=40%;46/120=38.333%. Residual attribution correctly rejected."
+          },
+          {
+            "card_id": "O8SC-S74-01",
+            "arithmetic": "pass",
+            "self_contained": "fix wording",
+            "recalculation": "100−20+60=140;100−20+30=110;CPU100+30−18=112万,+12%."
+          },
+          {
+            "card_id": "O8SC-S76-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "(240−135)/100−1=5%;(20%−0.4×35%)/0.6=10%;HBM weighted growth20%."
+          },
+          {
+            "card_id": "O8SC-S91-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "(30+10)/(100+100)=20%;organic30%;(40−8)/200=16%;19/200=9.5%."
+          },
+          {
+            "card_id": "O8SC-S94-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "700×1.4+300×1.02=1286;280/286=97.902%;700×0.8+300×1.1=890;portfolio−7.3%."
+          },
+          {
+            "card_id": "O8SC-S96-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "40×25%=10,price offset6⇒−4;100×25%−15=10 loss;cloud120−(40+40×1.2)=32."
+          },
+          {
+            "card_id": "O8SC-S97-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "A10×100×2=2000;B40×10×2=800;recognized400/640;cloud100000/50000=2."
+          },
+          {
+            "card_id": "O8SC-S93-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "(35−5)/95=31.579%;(35−4−2)/95=30.526%;geometric averaging cannot use linear weight formula."
+          },
+          {
+            "card_id": "O8SC-S99-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "1000×0.6×2=1200;1300×0.45×2=1170,−2.5%;500×2=1000;software100k→90k,−10%."
+          },
+          {
+            "card_id": "O8SC-S100-01",
+            "arithmetic": "pass",
+            "self_contained": "pass",
+            "recalculation": "100×10×0.5=500;100×6×0.7=420;130×6×0.7=546,+9.2%;IP10m→9m,−10%."
+          }
+        ],
+        "source_checks": [
+          {
+            "candidate_id": "S72",
+            "analyst": "Meta Marshall",
+            "source_id": "O8SC-CIENQ125",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+            "locator": "PDF pages6–7; retrieved text lines 205–230",
+            "finding": "pass",
+            "checked_claim": "cloud seasonality and tariff assumptions; management response separate",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          },
+          {
+            "candidate_id": "S72",
+            "analyst": "Meta Marshall",
+            "source_id": "O8SC-CIENQ325",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+            "locator": "PDF pages11–12; retrieved text lines 318–341",
+            "finding": "pass",
+            "checked_claim": "margin mix versus company initiatives; tariff benefit",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          },
+          {
+            "candidate_id": "S74",
+            "analyst": "Simon Leopold",
+            "source_id": "O8SC-CIENQ125",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+            "locator": "PDF pages9–10; retrieved text lines 320–350",
+            "finding": "pass",
+            "checked_claim": "geographic manufacturing exposure and reengineering flexibility",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          },
+          {
+            "candidate_id": "S74",
+            "analyst": "Simon Leopold",
+            "source_id": "O8SC-CIENQ325",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+            "locator": "PDF pages13–14; retrieved text lines 394–415",
+            "finding": "pass",
+            "checked_claim": "new DCI application versus legacy DCI and routing/switching drivers",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          },
+          {
+            "candidate_id": "S76",
+            "analyst": "Amit Daryanani",
+            "source_id": "O8SC-CIENQ125",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q1/CIENA-Q1-2025-Financial-Results-Transcript.pdf",
+            "locator": "PDF pages7–8; retrieved text lines 232–269",
+            "finding": "pass",
+            "checked_claim": "nonrecurring margin benefits and weaker-than-historical revenue seasonality",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          },
+          {
+            "candidate_id": "S76",
+            "analyst": "Amit Daryanani",
+            "source_id": "O8SC-CIENQ325",
+            "url": "https://s25.q4cdn.com/550667411/files/doc_financials/2025/q3/Transcript-Cienas-Fiscal-Third-Quarter-2025-Financial-Results-Conference-Call.pdf",
+            "locator": "PDF page17; retrieved text lines 497–523",
+            "finding": "pass",
+            "checked_claim": "cloud acceleration versus other-business deceleration",
+            "access": "2026-10-08 independently opened issuer PDF and read named question/answer text; no audio reviewed"
+          }
+        ],
+        "additional_note": "Ciena Q1 PDF pp8–9 confirms Joe Cardoso explicitly says he is on for Samik; handoff correctly does not attribute that exchange to Samik. Source locators use PDF page ordinal (tool pageno+1). Other seven industrial-equipment profiles were not independently attribution-audited in this scoped review."
+      }
+    }
+  ],
+  "live_verification": "performed after publication; not claimed by this pre-publication file"
+}
