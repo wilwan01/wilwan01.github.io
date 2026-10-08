@@ -1,0 +1,704 @@
+{
+  "stage": "pre-publication",
+  "date": "2026-10-08",
+  "before": {
+    "profiles": 80,
+    "sources": 120,
+    "cards": 155
+  },
+  "after": {
+    "profiles": 165,
+    "sources": 238,
+    "cards": 242
+  },
+  "reviewed_candidates": 124,
+  "cohort_counts": {
+    "research-ready": 163,
+    "identity-verified": 34,
+    "candidate": 3
+  },
+  "existing_profiles_modified": [
+    "wood-ark",
+    "druckenmiller-duquesne"
+  ],
+  "checks": [
+    "validator passed",
+    "all 124 remaining candidates have dated outcomes",
+    "all 155 existing cards and answer keys preserved",
+    "JavaScript syntax passed",
+    "git whitespace passed"
+  ],
+  "cross_reviews": {
+    "review-sell-3.json": {
+      "reviewer": "remaining_sell1",
+      "date": "2026-10-08",
+      "file": "sell-3.json",
+      "profilesReviewed": 20,
+      "cardsReviewed": 20,
+      "arithmetic": "20张卡逐项复算通过；S89新增卡20/35、35/25、110/90均正确。",
+      "findings": [
+        {
+          "id": "R2S3-S85-01",
+          "severity": "clarify-before-merge",
+          "issue": "NOI不会普遍与出租率线性，出租率还须是年度平均值。",
+          "fix": "明确教学假设：NOI随全年平均计费出租率线性变化，第二年平均100%；迁移贡献同理。",
+          "resolution": "已回读最终版，题设或日期说明已修正。"
+        },
+        {
+          "id": "R2S3-S87-01",
+          "severity": "fix-before-merge",
+          "issue": "总项目资本×股权比例不等于股本投入，若存在项目债务则20和60的答案不成立。",
+          "fix": "首问100及迁移200均明确为所需股本总额；约束贷款60为额外不替代原股本，担保单独计算。",
+          "resolution": "已回读最终版，题设或日期说明已修正。"
+        },
+        {
+          "id": "R2S3-S90-01",
+          "severity": "clarify-before-merge",
+          "issue": "当期利润增加2隐含新增资本化资产当期未开始折旧。",
+          "fix": "首问明确当期未开始折旧，新增资产之后5年计提。",
+          "resolution": "已回读最终版，题设或日期说明已修正。"
+        },
+        {
+          "id": "R2S3-EQIXQ225",
+          "severity": "date-evidence-check",
+          "issue": "ROIC标题为2025-07-31，source.date为2025-07-30。",
+          "fix": "附官方call日期链接；如官方确为7月30日，保留该date并备注镜像时间差。",
+          "resolution": "已回读最终版，题设或日期说明已修正。"
+        }
+      ],
+      "sourceChecks": [
+        {
+          "person": "Eric Luebchow",
+          "urls": [
+            "https://www.roic.ai/quote/EQIX/transcripts/2025-year/2-quarter",
+            "https://www.fool.com/earnings/call-transcripts/2025/10/29/equinix-eqix-q3-2025-earnings-call-transcript/"
+          ],
+          "readScope": "Q2本人询问稳定期和预租降低风险；Q3本人问定价与2026 AFFO融资变量，紧接管理层答复已独立读取。",
+          "result": "两场均本人具名，卡片转述未把管理层回答归为本人观点。未听原录音。"
+        },
+        {
+          "person": "Frank Louthan",
+          "urls": [
+            "https://www.roic.ai/quote/EQIX/transcripts/2025-year/2-quarter",
+            "https://www.fool.com/earnings/call-transcripts/2025/10/29/equinix-eqix-q3-2025-earnings-call-transcript/"
+          ],
+          "readScope": "Q2利息资本化与既往处理；Q3 cross-connect ARPU、密度/组合以及跨区域复制性。",
+          "result": "两场均具名。Q2管理层纠正早已资本化，当前paraphrase保持问法与回答边界，无误归因。未听原录音。"
+        }
+      ],
+      "status": "passed after verified corrections",
+      "remaining_followups": []
+    },
+    "review-buy-2.json": {
+      "reviewer": "remaining_buy1",
+      "date": "2026-10-08",
+      "file": "research/remaining/buy-2.json",
+      "sha256": "e2eef8f11a1e5abe4cfa29e1f65272b5c86c9462259e8dc17848512962735af9",
+      "scope": "10张最终卡全部模型/三阶段算术/题干；抽核Ryan Jacob与Peter Seilern来源",
+      "overall": "算术10/10通过；一处题干现金可得性缺假设，一处镜像边界文字不一致；修正后可用。未改被审文件。",
+      "card_checks": [
+        {
+          "id": "R2B2-B43-01",
+          "arithmetic": "pass",
+          "independent_calculation": "10800万元收入；7560万元毛利；5940/7000−1=−15.1429%；1.3×0.8−1=4%"
+        },
+        {
+          "id": "R2B2-B44-01",
+          "arithmetic": "pass",
+          "independent_calculation": "5+20×0.75×0.4=11；12−11=1；8−30×10%=5；但原题未限制其他75资产变现"
+        },
+        {
+          "id": "R2B2-B59-01",
+          "arithmetic": "pass",
+          "independent_calculation": "20+10×20%=22；20+10×8%=20.8；10×(8%−10%)=−0.2；80×10%−6=2"
+        },
+        {
+          "id": "R2B2-B47-01",
+          "arithmetic": "pass",
+          "independent_calculation": "1.3×1.2−1=56%；1.1×0.75−1=−17.5%；(157.5+2)/150−1=6.333%"
+        },
+        {
+          "id": "R2B2-B48-01",
+          "arithmetic": "pass",
+          "independent_calculation": "0.6×0.4+0.4×0.1=28%；0.6×0.4+0.4×0.3=36%；三等权都跌20%，总跌20%"
+        },
+        {
+          "id": "R2B2-B42-01",
+          "arithmetic": "pass",
+          "independent_calculation": "4×25%×50%=50%；50%×20%=10%；100×90%×70%=63MW"
+        },
+        {
+          "id": "R2B2-B58-01",
+          "arithmetic": "pass",
+          "independent_calculation": "20+5×40%=22；20−5×40%=18；100−40−30=30，90−36−30=24"
+        },
+        {
+          "id": "R2B2-B51-01",
+          "arithmetic": "pass",
+          "independent_calculation": "0.2×3=0.6；0.2×6/1.2=1；800/135=5.9259倍，增长492.59%"
+        },
+        {
+          "id": "R2B2-B41-01",
+          "arithmetic": "pass",
+          "independent_calculation": "120×55%/70−1=−5.7143%；10−6=4；4×20%=0.8"
+        },
+        {
+          "id": "R2B2-B60-01",
+          "arithmetic": "pass",
+          "independent_calculation": "30−50×40%=10；30−50×50%=5；6−4=2；残差不可全称效率"
+        }
+      ],
+      "issues": [
+        {
+          "severity": "medium",
+          "id": "R2B2-B44-01",
+          "issue": "NAV100只有锁定20和现金5定义，剩余75的变现性未知，不能唯一回答现金缺7。约束还应明确为付款前的独立情景。",
+          "fix": "补其余75在付款期限内不可变现、不可借款，无其他现金流；约束解锁出售发生在付款前。"
+        },
+        {
+          "severity": "medium",
+          "id": "R2B2-B60-01",
+          "issue": "boundary称只有第二份镜像，但W2和W4 access都记录原文镜像。",
+          "fix": "改两份均公开原文镜像读取，未核官方字节；保留三人共同署名。"
+        },
+        {
+          "severity": "low",
+          "id": "R2B2-B51-01",
+          "issue": "每股数增20%措辞错误。",
+          "fix": "改稀释股数增加20%。"
+        }
+      ],
+      "source_checks": [
+        {
+          "ids": [
+            "R2B2-J2"
+          ],
+          "url": "https://www.jacobmutualfunds.com/blog/managementcommentary-january-2026",
+          "checked": "标题2026年1月、页面Jan13；Ryan/Darren信末各自基金署名，Hayden Cook为网页byline；第13–15段为Snowflake/Internet Fund，摘要和归属限制准确。",
+          "result": "pass"
+        },
+        {
+          "ids": [
+            "R2B2-S1",
+            "R2B2-S2"
+          ],
+          "urls": [
+            "https://www.seilernfunds.com/blog/letter-from-peter-seilern/",
+            "https://www.seilernfunds.com/seilern-philosophy/"
+          ],
+          "checked": "个人信具名Peter，2024-09-26；本人解释制度可复制及ten golden rules。机构页无日期，无个人署名，规则7为低资本强度/高ROIC；现有boundary准确限制为个人信+机构背景。",
+          "result": "pass with attribution limit；不是两份个人独著或跨期个人认证"
+        }
+      ],
+      "date_check": "全部sources date_basis已区分L1、A16、A20报告期末与发表日；L2发表未知保留null。其余部分月份来自路径/目录已披露，未全面外部验证。",
+      "limitations": [
+        "仅抽查两位共3份原始网页，未重新读取全部PDF或镜像。",
+        "合成卡验证不构成预测命中率或投资业绩认证。"
+      ]
+    },
+    "review-buy-1-danoff.json": {
+      "reviewer": "remaining_sell2",
+      "date": "2026-10-08",
+      "candidate": "B24",
+      "card": "R2B1-B24-01",
+      "status": "pass; optional wording clarification sent to author",
+      "arithmetic": {
+        "stage1": "(10*30-50-40)/(10*100)=21%",
+        "stage2": "(10*20-50-40)/1000=11%; 低于12%一百分点",
+        "transfer": "(100-20-25)/500=11%; 低于12%一百分点"
+      },
+      "wording_note": "constraint还超过门槛多少建议改高于或低于门槛多少，避免预设达标；已发作者",
+      "source_spot_checks": [
+        {
+          "id": "R2B1-DA20",
+          "url": "https://the-long-view.simplecast.com/episodes/will-danoff/transcript",
+          "result": "独立web读取具名本人问答；6/12个月复核管理层执行及高资本回报/客户价值转述支持。2020-01-29由Morningstar自身搜索结果日期佐证。"
+        },
+        {
+          "id": "R2B1-DA26I",
+          "url": "https://the-long-view.simplecast.com/episodes/will-danoff-be-very-careful-of-unprofitable-companies-1CsuaI3d",
+          "result": "独立web读取具名本人问答：门店投入/盈亏平衡/单位经济性、跟踪管理层执行、竞争后盈利记录均支持。2026-06-23由Apple播客官方节目分发条目发布时间佐证；Morningstar主域本轮403，Simplecast正文不显示日历日期，不宣称核到录制日。"
+        }
+      ],
+      "limits": "只检验新增一张卡和两份本人正文归因，未审计历史投资收益；编辑合成回报明确不等于IRR。"
+    },
+    "review-buy-1.json": {
+      "reviewer": "remaining_buy2",
+      "date": "2026-10-08",
+      "reviewed_file": "/workspace/scratch/a1328aaaac16/research/remaining/buy-1.json",
+      "reviewed_sha256": "da0f280c55ca4170f1ec128efc0c9b5872d6d44d2dff4d46cc0ef48af5137a87",
+      "reviewed_card_count": 9,
+      "arithmetic": {
+        "result": "9张卡的基本、约束和迁移阶段算术均通过；NPV另用Python复算。",
+        "checks": {
+          "B02": "10800/6100；9200/4500；迁移+5%，均通过",
+          "B06": "26.22088655；8.84297521；-18.92561983；迁移0.82644628，四舍五入通过",
+          "B17": "9880、8840、38700，通过",
+          "B19": "12.5、-30、-12.5、0，通过",
+          "B21": "7.10743802、9.71074380、9.50413223，四舍五入通过",
+          "B22": "60000、10000、-10000，通过",
+          "B23": "54/37.037%；52/19.231%；90/11.111%，通过",
+          "B29": "每仓+20%；总付费代理+44%；迁移+20%，算术通过但代理范围须明确",
+          "B33": "平均店-20%、同店-20%、每客户-20%，通过"
+        }
+      },
+      "recommendations": [
+        {
+          "id": "R2B1-B02-01",
+          "severity": "clarity",
+          "finding": "现金成本相减未必是会计毛利，boundary已经承认该点但题干和答案仍称毛利。",
+          "suggested_fix": "统一称现金贡献（收入减列示现金成本），或明确成本即全部会计销售成本。"
+        },
+        {
+          "id": "R2B1-B06-01",
+          "severity": "assumption",
+          "finding": "NPV用年末收80作为净现金流，但题干只说收而未给费用。",
+          "suggested_fix": "写净现金流80，已扣全部运维、税费及后续投入；无其他现金流。"
+        },
+        {
+          "id": "R2B1-B29-01",
+          "severity": "boundary",
+          "finding": "总付费代理+44%仍含采样仓库翻倍；仅提示代理有效不足以消除覆盖变化。",
+          "suggested_fix": "答案补每仓付费代理5到3.6，降28%；+44%仅为不同覆盖范围下样本总代理，不是同队列或全企业收入增速。"
+        },
+        {
+          "id": "R2B1-ME26Q2/R2B1-WE26Q2",
+          "severity": "date_basis",
+          "finding": "2026-06-30是报告期末，不能默认为发表日。",
+          "suggested_fix": "source和timeline明确date_basis=period end; publication unknown。"
+        },
+        {
+          "id": "R2B1-SO26",
+          "severity": "date_basis",
+          "finding": "2025是已知准备年，不是已核定发表年。",
+          "suggested_fix": "补date_basis=preparation year; publication unknown，或日期置空并另留年份说明。"
+        },
+        {
+          "id": "all_cards",
+          "severity": "optional_tag_precision",
+          "finding": "9卡全用F6/F16/F18，与具体练习有偏差。",
+          "suggested_fix": "NPV加入F10/F21，流动性加入F11/F22，渠道归一化加入F17/F25；不是算术阻断项。"
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "profile": "nick-evans",
+          "result": "两份官方PDF具名问答与材料期身份一致；2024-05见PDF第1页末，2026-01见第2页末。摘要的AI分类、软件风险和CapEx现金影响均可定位，未将其业绩或技术预测独立认证。",
+          "urls": [
+            "https://www.polarcapital.co.uk/static/documents/Global_Technology_Video_-_The_Magnificent_7_and_positioning_for_a_market_broadening_-_May_2024.pdf",
+            "https://www.polarcapital.co.uk/static/documents/Global_Tech_Video_Transcript_-_January_2026.pdf"
+          ],
+          "locators": [
+            "2024 PDF p1 AI enabler/beneficiary/adopter段、署名月份",
+            "2026 PDF pp1–2 AI lens/software/CapEx段、p2末署名月份"
+          ]
+        },
+        {
+          "profile": "thomas-laffont",
+          "result": "两项Coatue官网全文均明确合著名单，日期分别2026-07-20与2026-02-12；正文和利益冲突披露支持目前团队归属及局限表述。未核验被投企业收入或工程效率宣传数据。",
+          "urls": [
+            "https://www.coatue.com/blog/perspective/our-partnership-with-databricks",
+            "https://www.coatue.com/blog/press/our-partnership-with-anthropic-enterprise-intelligence-has-liftoff"
+          ],
+          "locators": [
+            "Databricks标题下日期/五人名单、三阶段产品论证、Disclosures",
+            "Anthropic标题下日期/四人名单、public GitHub repos段、Disclosures"
+          ]
+        }
+      ],
+      "scope_limit": "仅上述9卡及两位的四个来源，不覆盖后续新增人物；未修改被审文件。"
+    },
+    "review-sell-1.json": {
+      "reviewer": "remaining_buy2",
+      "date": "2026-10-08",
+      "reviewed_file": "/workspace/scratch/a1328aaaac16/research/remaining/sell-1.json",
+      "reviewed_sha256": "d50805c743f513dfcb9259ef38c196864ff7ea1bbbf53e76b0a44e856e3116d4",
+      "reviewed_card_count": 17,
+      "arithmetic_result": "17张卡全部三阶段算术通过；以下为模型表述和假设修订，未发现数值答案错误。",
+      "arithmetic_checks": {
+        "S10": "42%/36%/20%",
+        "S11": "35%/-10%/20%",
+        "S14": "120/117/-4%",
+        "S17": "620/710/1400",
+        "S18": "8%/-4%/10.5%，十进制基准200万美元",
+        "S22": "138/52.17%；116.4/-15.65%；130/46.15%",
+        "S25": "50%/60%；80%与量50%；31.25%/80%→70%",
+        "S28": "2/3.2每股(+60%)/2每股不变",
+        "S29": "25%/75%；-15%；-20%",
+        "S30": "10/-10/-3",
+        "S32": "33.33%/42.86%；35.71%与10%",
+        "S33": "20%/-10%/20%",
+        "S37": "66.67%/108.33%/50%",
+        "S23": "8%/20%；0%；25%",
+        "S26": "48(+20%)/42(+5%)/20%→24%",
+        "S31": "48/52；30/70；90",
+        "S34": "20%/90%；50%；40"
+      },
+      "recommendations": [
+        {
+          "id": "R2S1-S28-C1",
+          "severity": "model_definition",
+          "finding": "model写经营利润率后又扣固定成本，与题干贡献率不一致，可能重复扣固定成本。",
+          "suggested_fix": "用扣除变动成本后的贡献率（尚未扣固定成本）。"
+        },
+        {
+          "id": "R2S1-S14-C1",
+          "severity": "model_definition",
+          "finding": "model采用率乘单位版税漏掉普通产品版税，但题干和答案是加权费率。",
+          "suggested_fix": "版税=量×[CSS采用率×CSS费率+(1−CSS采用率)×普通费率]。"
+        },
+        {
+          "id": "R2S1-S31-C1",
+          "severity": "scope_assumption",
+          "finding": "剩余订单52/70含交付但未验收，未必等于某公司公布的backlog口径。",
+          "suggested_fix": "称未确认收入的原订单金额（包括已交付未验收），题干明确按验收确认且订单额与收入一比一；不映射实际ASML backlog。"
+        },
+        {
+          "id": "R2S1-S25-C1",
+          "severity": "clarity",
+          "finding": "约束问错多少但答案仅列收入和量增速。",
+          "suggested_fix": "补会把量增长夸大30个百分点（80%对50%）。"
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "profile": "Sandeep Deshpande",
+          "sources": [
+            "R2S2-ASML424",
+            "R2S2-ASML125"
+          ],
+          "result": "独立读两项ROIC公开全文镜像具名段。2025-01-29末段JPMorgan身份、订单与High-NA量产时间矛盾；2025-04-16末段同比订单覆盖及第三阶段High-NA订单问题，均归属准确。日期与电话会开场一致。",
+          "urls": [
+            "https://www.roic.ai/quote/ASML/transcripts/2024-year/4-quarter",
+            "https://www.roic.ai/quote/ASML/transcripts/2025-year/1-quarter"
+          ],
+          "boundary": "共享来源ID跨sell-2合并依赖已核对存在；镜像仍未逐字核对官方录音。"
+        },
+        {
+          "profile": "Sara Russo",
+          "sources": [
+            "R2S2-ASML424"
+          ],
+          "result": "独立读镜像首次Sara段，Bernstein身份、为何减少bookings披露以及3bn EUV订单对2025指导或2026覆盖问题，概括准确。",
+          "urls": [
+            "https://www.roic.ai/quote/ASML/transcripts/2024-year/4-quarter"
+          ],
+          "boundary": "Arm2023第二项本轮web internal error、直接请求30秒超时，未独立完成第二源核对，不推翻原采集。"
+        },
+        {
+          "profile": "Gus Richard",
+          "sources": [
+            "R2S1-POWI305",
+            "R2S1-ALTR410"
+          ],
+          "result": "独立读两份SEC原始电话会归档。2005 First Albany具名段确实剔准备金转回/推迟爬坡并问降本与让利；2011 Piper Jaffray具名段追问28nm样品是否到客户及仍在fab。历史角色和概括准确，没有支持当前任职的越界。",
+          "urls": [
+            "https://www.sec.gov/Archives/edgar/data/833640/000119312505207677/dex992.htm",
+            "https://www.sec.gov/Archives/edgar/data/768251/000076825111000005/conferencecalltranscript.htm"
+          ]
+        },
+        {
+          "profile": "Pierre Ferragu",
+          "sources": [
+            "R2S1-MSI412"
+          ],
+          "result": "独立读Motorola官方PDF p8；2013-01-23、Bernstein身份与由收入/毛利/营业利润率反推费用及新品采用节奏均准确。",
+          "urls": [
+            "https://www.motorolasolutions.com/content/dam/msi/investors/doc_events/2013/q4-2012-earnings-conference-call.pdf"
+          ],
+          "boundary": "Arm2023第二项本轮访问失败，第二源未独立复核；profile明确历史角色，未误认现职。"
+        }
+      ],
+      "scope_limit": "未改被审文件；不覆盖此hash之后新卡/改动；归因审查仅上述具名段，不是全来源重读。",
+      "post_review_fix_verification": {
+        "sha256": "aec247bc3488b61108efb836949b29f6524ac4f76db8c6d6cb022467a6e27e29",
+        "result": "负责代理已修复四项建议，复读字段确认全部落实。卡数仍17。"
+      }
+    },
+    "review-sell-2.json": {
+      "reviewer": "remaining_buy3",
+      "date": "2026-10-08",
+      "target": "sell-2.json",
+      "scope": "19张卡全部独立算术与条件复核；2位分析师3项原始具名材料抽核。",
+      "card_checks": [
+        {
+          "card_id": "R2S2-S41-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S42-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S43-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S44-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S45-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S46-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S47-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S48-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S49-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S50-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S54-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S55-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S58-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S59-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S60-01",
+          "status": "fixed-and-rechecked",
+          "finding": "算术1/109/−3%正确，但剔除一次前移不能证明可重复；作者已接受改为剔除已识别跨期因素后的超额。 已复读正式sell-2.json，修正落盘且题目/model/答案一致。"
+        },
+        {
+          "card_id": "R2S2-S61-01",
+          "status": "fixed-and-rechecked",
+          "finding": "25%效率提升若指单位时间吞吐，成本降幅应20%，现金节省4、净−2。作者已接受明确改为工时降低25%，保留5与−1。 已复读正式sell-2.json，修正落盘且题目/model/答案一致。"
+        },
+        {
+          "card_id": "R2S2-S62-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S63-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        },
+        {
+          "card_id": "R2S2-S64-01",
+          "status": "pass",
+          "finding": "独立按题设重算三个阶段，数值正确，未发现必要条件缺失。"
+        }
+      ],
+      "source_checks": [
+        {
+          "profile": "rishi-jaluria",
+          "url": "https://s27.q4cdn.com/928340662/files/doc_financials/2023/q1/5_Transcript_Q1-2023.pdf",
+          "locator": "印刷p10，Rishi Nitya Jaluria问答",
+          "result": "直接读取发行人托管PDF，具名询问内部GenAI效率和产品迭代；与卡片转述一致。"
+        },
+        {
+          "profile": "rishi-jaluria",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q1",
+          "locator": "RISHI JALURIA问答，网页行414起",
+          "result": "直接读取官方逐字稿，提问Copilot重分类数字及策略；身份与题材对应，未把管理层回答视为分析师结论。"
+        },
+        {
+          "profile": "derrick-wood",
+          "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/q4-fy2022-earnings-transcript.pdf",
+          "locator": "印刷p12，James Derrick Wood问答",
+          "result": "原文operator称Derrick Wood、发言标签James Derrick Wood；问Creative/Document ARR构成及季节性，与转述一致。"
+        }
+      ],
+      "limitations": [
+        "仅抽核2人3项来源，未重新阅读全部来源。",
+        "第三方镜像仍需保留转录错误边界；未听录音。"
+      ],
+      "outcome": "19卡复核完成；17卡直接通过、2卡修正后复核通过。2位分析师3份原始具名材料抽核通过。"
+    },
+    "review-buy-3.json": {
+      "reviewer": "remaining_sell2",
+      "file": "/workspace/scratch/a1328aaaac16/research/remaining/buy-3.json",
+      "date": "2026-10-08",
+      "status": "pass-after-clarifications",
+      "arithmetic": [
+        {
+          "candidate": "B66",
+          "result": "pass",
+          "recomputed": [
+            0.19999999999999996,
+            0.09999999999999998,
+            -0.125,
+            0.33333333333333326
+          ]
+        },
+        {
+          "candidate": "B70",
+          "result": "pass",
+          "recomputed": [
+            -0.2,
+            30,
+            -10,
+            70.0
+          ]
+        },
+        {
+          "candidate": "B72",
+          "result": "pass",
+          "recomputed": [
+            0.10000000000000009,
+            57.142857142857146,
+            42.857142857142854,
+            57.04285714285714
+          ]
+        },
+        {
+          "candidate": "B75",
+          "result": "pass",
+          "recomputed": [
+            1.25,
+            1.125,
+            10,
+            20
+          ]
+        },
+        {
+          "candidate": "B77",
+          "result": "pass",
+          "recomputed": [
+            6.655000000000002,
+            199.65000000000006,
+            -0.11266666666666636,
+            -3
+          ]
+        },
+        {
+          "candidate": "B82",
+          "result": "pass",
+          "recomputed": [
+            0.03,
+            20,
+            0.07,
+            -20,
+            -15
+          ]
+        },
+        {
+          "candidate": "B87",
+          "result": "pass",
+          "recomputed": [
+            100,
+            240,
+            -33.1,
+            66.9
+          ]
+        },
+        {
+          "candidate": "B89",
+          "result": "pass",
+          "recomputed": [
+            92.0,
+            0.1499999999999999,
+            71.0,
+            -0.11250000000000004,
+            -9
+          ]
+        },
+        {
+          "candidate": "B99",
+          "result": "pass",
+          "recomputed": [
+            0.04761904761904767,
+            0.01904761904761898,
+            -0.08333333333333326
+          ]
+        },
+        {
+          "candidate": "B100",
+          "result": "pass",
+          "recomputed": [
+            160,
+            0.5,
+            -0.25
+          ]
+        },
+        {
+          "candidate": "B91",
+          "result": "pass",
+          "recomputed": [
+            10.5,
+            33.333333333333336
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "card": "R2B3-B75-C1",
+          "issue": "经营现金流110未注明付息前，可能重复扣利息",
+          "resolution": "作者已改付息前经营现金流110，正式JSON与脚本均修订",
+          "status": "resolved"
+        },
+        {
+          "card": "R2B3-B89-C1",
+          "issue": "成功收益120与终值概念可能混淆",
+          "resolution": "作者已改成功时回收终值120",
+          "status": "resolved"
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "candidate": "B77",
+          "sources": [
+            "R2B3-B77A",
+            "R2B3-B77B"
+          ],
+          "checked_files": [
+            "buy3-evidence/B77a.txt",
+            "buy3-evidence/B77b.txt"
+          ],
+          "result": "官网正文明确本人书序及发言实录；2019-03-21活动/2019-03-28刊载、2025-07-31刊载吻合；分红增长估值与价值投资进化的转述支持。"
+        },
+        {
+          "candidate": "B82",
+          "sources": [
+            "R2B3-B82A",
+            "R2B3-B82B"
+          ],
+          "checked_files": [
+            "buy3-evidence/B82a.txt",
+            "buy3-evidence/B82b.txt"
+          ],
+          "result": "Wesco p3浮存金/承保原文、p7 Munger署名及2010-02-26日期吻合；Berkshire附文p39标题至p43 Munger署名明确，不把Buffett正文归给Munger；2014为财年，2015发布边界已写。"
+        }
+      ],
+      "limits": "来源为独立读取已下载原件文本及官网正文，不重复计数；未独立审计个人投资表现。"
+    }
+  }
+}
