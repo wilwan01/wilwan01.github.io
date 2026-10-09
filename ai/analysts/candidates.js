@@ -22,7 +22,7 @@
   }
   async function init() {
     try {
-      const response = await fetch('candidate-pipeline.json?v=20261008-remaining');
+      const response = await fetch('candidate-pipeline.json?v=20261009-completion');
       if (!response.ok) throw Error('candidate data unavailable');
       const data = await response.json(); candidates = data.candidates;
       const totals = Object.fromEntries(Object.keys(labels).map(k => [k,candidates.filter(c => c.status === k).length]));

@@ -1,0 +1,523 @@
+{
+  "stage": "pre-publication",
+  "date": "2026-10-09",
+  "before": {
+    "profiles": 165,
+    "sources": 238,
+    "cards": 242
+  },
+  "after": {
+    "profiles": 198,
+    "sources": 304,
+    "cards": 275
+  },
+  "reviewed_candidates": 37,
+  "cohort_counts": {
+    "research-ready": 196,
+    "identity-verified": 2,
+    "candidate": 2
+  },
+  "new_profiles": 33,
+  "checks": [
+    "source/profile joins and evidence threshold validator passed",
+    "all 242 prior cards and keys preserved",
+    "all 165 prior profiles and 238 prior source records preserved",
+    "all 37 candidate outcomes updated and prior outcomes retained",
+    "JavaScript syntax and whitespace passed"
+  ],
+  "cross_reviews": {
+    "review-root-sources.json": {
+      "reviewer": "root",
+      "date": "2026-10-09",
+      "checks": [
+        {
+          "person": "Chris Hohn",
+          "url": "https://www.tcifund.com/files/corporateengageement/alphabet/15th%20November%202022.pdf",
+          "scope": "Original PDF pages 1–4 independently read visually",
+          "result": "Dated 15 November 2022, TCI letter to Pichai; Christopher Hohn signature on p4. Cost/compensation, margin and repurchase claims attributed to letter, not verified realized outcomes."
+        },
+        {
+          "person": "Chris Hohn",
+          "url": "https://www.tcifund.com/files/corporateengageement/alphabet/20th%20January%202023.pdf",
+          "scope": "Original one-page signed letter independently read visually",
+          "result": "Date, signature and cost/headcount/compensation/capital allocation requests verified as his contemporaneous advocacy, not realized performance."
+        },
+        {
+          "person": "Stephen Mandel",
+          "url": "https://aletteraday.substack.com/p/letter-298-steve-mandel-paul-buser",
+          "scope": "Independently opened public transcript mirror; read named Steve statements in AI and valuation sections, lines390–414",
+          "result": "FCF yield, reinvestment return and dependence on external capital correctly attributed. Mirror title #302 differs from URL slug #298; flagged to author."
+        }
+      ],
+      "arithmetic": {
+        "group1": "6 cards passed; B04 payer clarified; historical-role B13 inventory bridge recalculated",
+        "group2": "4 cards passed; independent NAV, cash-flow timing and runway checked",
+        "group3": "5 cards passed",
+        "group4": "6 cards passed",
+        "group6": "6 cards passed; fixed period comparison and cash contribution wording",
+        "group5": "6 cards passed; all three stages recalculated"
+      }
+    },
+    "review-group-1.json": {
+      "reviewer": "finish_g2",
+      "review_date": "2026-10-09",
+      "reviewed_file": "research/oct09/group-1.json",
+      "arithmetic": [
+        {
+          "card": "O9G1-B04-01",
+          "result": "pass",
+          "checks": [
+            "40→20，72−48=24；950×1%−5=4.5；54.5/50−1=9%"
+          ]
+        },
+        {
+          "card": "O9G1-B10-01",
+          "result": "pass",
+          "checks": [
+            "上涨基金5%/基准10%，下跌−4%/−8%；三等权组合10%"
+          ]
+        },
+        {
+          "card": "O9G1-B18-01",
+          "result": "pass",
+          "checks": [
+            "40×1.5=60；100/1.5=66.6667；90×1.5=135；芯片利润50→10，−80%"
+          ]
+        },
+        {
+          "card": "O9G1-B25-01",
+          "result": "pass",
+          "checks": [
+            "三年10折现24.8685；五年37.9079；差13.0394；五年6折现22.7447；持仓20/110=18.1818%"
+          ]
+        },
+        {
+          "card": "O9G1-B30-01",
+          "result": "pass",
+          "checks": [
+            "1000×10%×50%×2=100→200；300×30%×1.8=162，−19%；渗透10%→25%，剩余900→300"
+          ]
+        },
+        {
+          "card": "O9G1-B13-01",
+          "result": "pass",
+          "checks": [
+            "20+140−120=40；100+10−40=70；收入140×2=280→70×2=140，−50%；利润140×(2−1)−40=100→70×(2−1)−40=30，−70%；积压200+80−100=180，减少20。渠道采购=同期供应商确认出货且无其他客户，题干口径明确。"
+          ]
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "candidate": "B04",
+          "source_ids": [
+            "O9G1-B04-S1",
+            "O9G1-B04-S2"
+          ],
+          "result": "pass",
+          "notes": "独立打开原发布者两PDF并阅读：2023文末页明确Zhao/14 Aug 2023，独有数据和非科技采用者段支持；2026采访页1本人姓名、页2明确数据优势重估及盈利/估值拆分。文件月份不假装具体录制日期。未采用原文未核技术数字。"
+        },
+        {
+          "candidate": "B18",
+          "source_ids": [
+            "O9G1-B18-S1",
+            "O9G1-B18-S2"
+          ],
+          "result": "pass",
+          "notes": "独立打开T.Rowe两原PDF，封面2017Sep/2018Nov、Josh Spencer署名；前者按用量云/稳态SaaS利润率及估值，后者供给集中/资本强度/谷底利润方法段支持归纳。"
+        },
+        {
+          "candidate": "B13",
+          "source_ids": [
+            "O9G1-B13-S1",
+            "O9G1-B13-S2"
+          ],
+          "result": "pass with explicit cross-role boundary",
+          "notes": "独立检索TSMC官方同文件英文/简中入口，2004原问答姓名与Schwab Soundview卖方身份相符，库存和毛利率追问明确。原记录chinese入口本次open报错，english/schinese入口索引实际原文可读。独立打开2022 Fortune原报道，具名买方身份可核；不追加转述该25词限额原文内容。档案/卡已明确2004卖方问答+2022买方报道选段，不能认作双买方完整原文或稳定思想。"
+        }
+      ],
+      "suggestions": [
+        {
+          "card": "O9G1-B10-01",
+          "issue": "技能标签与组合权重风险模型不符",
+          "recommended": "F22/F23/F14",
+          "status": "owner accepted and updated group-1.json"
+        },
+        {
+          "card": "O9G1-B25-01",
+          "issue": "原称FCF10，约束又说未扣维持增长投入；改为发现原估遗漏投入",
+          "recommended": "明确新证据发现每年4现金投入遗漏，需要重算原估FCF",
+          "status": "owner accepted and updated group-1.json"
+        }
+      ],
+      "limits": "全部6卡算术及题干已复算；抽查3人6份来源（B13第一份官方文档采用同文件其他语言目录索引读取）；未核验其他三人全部资料，未做投资业绩或稳定个人思想认证。",
+      "result": "pass after accepted wording/tag fixes; sixth cross-role card also passed"
+    },
+    "review-group-6.json": {
+      "reviewer": "finish_g5",
+      "date": "2026-10-09",
+      "scope": "全部6张三阶段卡独立复算，2人4份实质材料抽核及日期出处",
+      "cards": [
+        {
+          "id": "O9G6-S35-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        },
+        {
+          "id": "O9G6-S15-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        },
+        {
+          "id": "O9G6-S24-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        },
+        {
+          "id": "O9G6-B86-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        },
+        {
+          "id": "O9G6-B92-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        },
+        {
+          "id": "O9G6-B96-C1",
+          "result": "pass",
+          "checks": "题干、边界、三阶段算术与独立答案一致"
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "id": "O9G6-ASML416",
+          "url": "https://www.roic.ai/quote/ASML:UW/transcripts/2016-year/4-quarter",
+          "result": "本人提问/机构Morgan Stanley与2017-01-18日期核对通过；605–636原文PPA与现金口径边界吻合。"
+        },
+        {
+          "id": "O9G6-ASML117",
+          "url": "https://www.roic.ai/quote/ASML:LI/transcripts/2017-year/1-quarter",
+          "result": "2017-04-19本人提问；888–907收入组合/服务/单工具毛利桥核对通过。"
+        },
+        {
+          "id": "O9G6-KLGS25",
+          "url": "https://www.bishoprockcap.com/assets/library/seth-klarman/July%202025%20Seth%20Klarman%20on%20finding%20value%20and%20maintaining%20discipline%20(transcript)",
+          "result": "02:13–04:45本人发言核对通过；Goldman官方确认录制2025-05-27、发布2025-07-23。自动转录和未听音频限制保留。"
+        },
+        {
+          "id": "O9G6-KLCO25",
+          "url": "https://www.bishoprockcap.com/assets/library/seth-klarman/August%202025%20Seth%20Klarman%20-%20Contrarian%20Investing,%20Discipline,%20and%20Building%20Baupost%20(transcript)",
+          "result": "04:22–06:47 Telecor/Electro Rent现金扣除及每股分拆成本原文核对通过；Apple发行页确认2025-08-01。保留本人历史回忆非审计实绩。"
+        }
+      ],
+      "issues": [],
+      "limitations": "只抽核所列来源，不声称全部12来源独立重读；未核音频，镜像逐字准确性未认证。"
+    },
+    "review-group-5.json": {
+      "reviewer": "finish_g6",
+      "target": "group-5.json",
+      "date": "2026-10-09",
+      "cards_reviewed": 6,
+      "arithmetic": "all pass",
+      "checks": [
+        {
+          "id": "O9G5-B68-C1",
+          "result": "2000→1800; cost72 gives2160; breakeven73.333; cloud40→30 pass"
+        },
+        {
+          "id": "O9G5-B69-C1",
+          "result": "2000→2400; paid2%1600; breakeven2.5%; robot4000→3000 pass"
+        },
+        {
+          "id": "O9G5-B73-C1",
+          "result": "100→90; constraint125; revenue100; transfer1.2 pass"
+        },
+        {
+          "id": "O9G5-B74-C1",
+          "result": "80→75 −6.25%; 60 −25%; breakevenEPS3.2; transfer+8% pass"
+        },
+        {
+          "id": "O9G5-B83-C1",
+          "result": "8.19; −10.59; success201.31; transfer−0.41 pass; request terminal-cash definition clarification accepted by owner"
+        },
+        {
+          "id": "O9G5-B84-C1",
+          "result": "12mo runway; debt case7mo and gap20; transfer7.5mo gap4 pass"
+        }
+      ],
+      "source_spot_checks": [
+        {
+          "person": "Philip Fisher",
+          "sources": [
+            "O9G5-B83A",
+            "O9G5-B83B"
+          ],
+          "result": "Read authorized chapter excerpts directly from AbeBooks and Amazon. Separate original books, correct author, 1996 and 2007 copyright edition dates explicitly distinguished from original 1958/1960 arguments. R&D profit lag and delayed repricing claims supported; not full-book access."
+        },
+        {
+          "person": "Peter Lynch",
+          "sources": [
+            "O9G5-B84A",
+            "O9G5-B84B"
+          ],
+          "result": "PBS original retrieval failed this review; read RBCPA complete public mirror with original PBS link, matched company-research/winner-retention claims. PBS official indexed tapes metadata confirms 1997-01-14 broadcast date, not interview recording date. Read Brewbooks 11:20–16:52 and balance-sheet passages supporting constraints. Opened NPC official Gil Klein 2013-12-06 memoir: explicitly identifies both Lynch and Mandela events on 1994-10-07, Lynch moved to Hotel Washington; therefore 10/7 event date is not inferred just from Mandela date. Mirror headline10/8 conflict correctly disclosed."
+        }
+      ],
+      "source_urls": [
+        "https://www.abebooks.co.uk/9780471119289/Common-Stocks-Uncommon-Profits-Writings-0471119288/plp",
+        "https://www.amazon.com/Paths-Wealth-Through-Common-Stocks/dp/0470139498",
+        "https://www.rbcpa.com/commentary-archive/pbs-interview-with-peter-lynch/",
+        "https://brewbooks.blog/2021/02/22/transcript-of-peter-lynch-8-october-1994-lecture-to-the-national-press-club/",
+        "https://www.press.org/newsroom/past-npc-president-klein-remembers-nelson-mandelas-visit-club",
+        "https://www.pbs.org/wgbh/pages/frontline/shows/betting/etal/tapes.html"
+      ],
+      "conclusion": "pass with B83 non-numeric wording clarification owner implementing"
+    },
+    "review-group-2.json": {
+      "reviewer": "finish_g1",
+      "date": "2026-10-09",
+      "target": "group-2.json",
+      "checkpoint": false,
+      "cards_reviewed": [
+        {
+          "id": "O9G2-B34-01",
+          "status": "pass"
+        },
+        {
+          "id": "O9G2-B35-01",
+          "status": "pass"
+        },
+        {
+          "id": "O9G2-B36-01",
+          "status": "pass"
+        },
+        {
+          "id": "O9G2-B32-01",
+          "status": "pass"
+        }
+      ],
+      "arithmetic_notes": [
+        "Mandel: 2%, 40, -20, -33.33正确；次年现金变化不改当期FCF已明确。",
+        "Halvorsen: gross140/net20, gain2.8%; L110/S90 stress-20%; single short-5%正确。",
+        "Sundheim: NPV24.3426, delayed3.9478, IRR20%/9.5445%正确。",
+        "Scott新卡：收入100、现金贡献-20、盈亏采用率13.33%、续航1.5年；降价收入120、贡献-8、盈亏22.22%；迁移贡献-30、续航2年，全部通过。"
+      ],
+      "source_checks": [
+        {
+          "person": "Stephen Mandel",
+          "urls": [
+            "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/steve-mandel-investing-behind-change-invest-like-the-best-ep-235",
+            "https://aletteraday.substack.com/p/letter-298-steve-mandel-paul-buser"
+          ],
+          "read": "2021 09:15–12:33; 2025 Valuation Frameworks段",
+          "result": "pass；本人商业可复制性及FCF/再投资观点可定位。"
+        },
+        {
+          "person": "Dan Sundheim",
+          "urls": [
+            "https://cheekypint.transistor.fm/15/transcript",
+            "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/dan-sundheim-the-art-of-public-and-private-market-investing-invest-like-the-best-ep460"
+          ],
+          "read": "2025 07:02–11:44; 2026 12:00–20:16",
+          "result": "pass；IRR提前兑现、模型训练与采用速度及类比局限归属本人。"
+        }
+      ],
+      "issues": [],
+      "final": true,
+      "notes": "最终4卡；末加Scott已独审题干和全部算术；来源两人四份抽查已完成，Scott来源限制由本组/根审另核。"
+    },
+    "review-group-3.json": {
+      "reviewer": "finish_g4",
+      "date": "2026-10-09",
+      "scope": "全部5张合成卡题干及三阶段算术；Dan Niles与James Anderson各两份原始材料归因日期抽核；Meeks补充访问范围检查",
+      "cards": [
+        {
+          "id": "O9G3-B38-01",
+          "result": "pass",
+          "reason": "各阶段输入齐全，独立复算与答案相符，未把合成数字归给真人"
+        },
+        {
+          "id": "O9G3-B40-01",
+          "result": "pass",
+          "reason": "各阶段输入齐全，独立复算与答案相符，未把合成数字归给真人"
+        },
+        {
+          "id": "O9G3-B45-01",
+          "result": "pass",
+          "reason": "各阶段输入齐全，独立复算与答案相符，未把合成数字归给真人"
+        },
+        {
+          "id": "O9G3-B49-01",
+          "result": "pass",
+          "reason": "各阶段输入齐全，独立复算与答案相符，未把合成数字归给真人"
+        },
+        {
+          "id": "O9G3-B54-01",
+          "result": "pass",
+          "reason": "各阶段输入齐全，独立复算与答案相符，未把合成数字归给真人"
+        }
+      ],
+      "source_spotchecks": [
+        {
+          "ids": [
+            "O9G3-N1",
+            "O9G3-N2"
+          ],
+          "result": "pass",
+          "urls": [
+            "https://transcripts.cnn.com/show/fmjc/date/2024-10-23/segment/01",
+            "https://transcripts.cnn.com/show/ebo/date/2025-04-07/segment/01"
+          ],
+          "evidence": "直接打开CNN官方2024-10-23和2025-04-07逐字稿；前者NILES毛利/EPS/估值/小仓位，后者NILES政策持续与准入评论，排除主持/Quest/Ives。"
+        },
+        {
+          "ids": [
+            "O9G3-A1",
+            "O9G3-A2"
+          ],
+          "result": "pass",
+          "urls": [
+            "https://www.bailliegifford.com/en/ireland/professional-investor/insights/ic-article/2021-q3-rethinking-risk-author-interview-ins-ar-0856/?printversion=true",
+            "https://www.bailliegifford.com/en/uk/individual-investors/insights/ic-article/2022-q1-trust-44-influencers-collecting-thoughts-in-an-evolving-world-10008352/"
+          ],
+          "evidence": "官方正文明确August2021及April2022；JA与JK分栏核对，2022文章有集中回报、规模递增、Microsoft反思。月份精度保留。"
+        }
+      ],
+      "additional_access_check": {
+        "ids": [
+          "O9G3-M1",
+          "O9G3-M2"
+        ],
+        "result": "scope-reviewed-independent-full-body-not-yet-reproduced",
+        "evidence": "精确标题search2命中Yahoo原页，但本轮搜索输出仅摘要；search1命中本人LinkedIn交叉支持2024基建/暂停买入解释。作者已诚实写搜索服务正文与直连429、未核音频，不改写成直接读全页。"
+      },
+      "blocking_issues": [],
+      "edits_required": []
+    },
+    "review-group-4.json": {
+      "reviewer": "finish_g3",
+      "date": "2026-10-09",
+      "file": "research/oct09/group-4.json",
+      "outcome": "pass",
+      "blocking_issues": [],
+      "card_checks": [
+        {
+          "candidate": "B57",
+          "status": "pass",
+          "calculations": [
+            "(60-12)/12=4年",
+            "48/18=2.6667年",
+            "3*18-48=6",
+            "4*(5+5)-30=10"
+          ]
+        },
+        {
+          "candidate": "B61",
+          "status": "pass",
+          "calculations": [
+            "100*.4-25-20=-5",
+            "-5+10=5",
+            "100*.25-25-20=-20",
+            "80*.3-18-8=-2"
+          ]
+        },
+        {
+          "candidate": "B62",
+          "status": "pass",
+          "calculations": [
+            "100万*(100-60)-3000万=1000万",
+            "130万*(85-60)-3000万=250万",
+            "60+4000万/130万=90.7692",
+            "12万*(400-200)-2000万=400万"
+          ]
+        },
+        {
+          "candidate": "B64",
+          "status": "pass",
+          "calculations": [
+            "1000万*.4*.1*200=8000万",
+            "2000万*.25*.06*200=6000万，-25%",
+            "1000*.6*.2*10万=1200万"
+          ]
+        },
+        {
+          "candidate": "B65",
+          "status": "pass",
+          "calculations": [
+            "144/1.2^2-100=0",
+            "(.6*144+.4*20)/1.44-100=-34.4444",
+            "69/1.1-60=2.72727"
+          ]
+        },
+        {
+          "candidate": "B67",
+          "status": "pass",
+          "calculations": [
+            "80万*40+20万*60-3000万=1400万",
+            "50万*30+50万*45-3000万=750万，-46.4286%",
+            "80*50+20*100=6000",
+            "50*45+50*90=6750"
+          ]
+        }
+      ],
+      "question_checks": "全部六卡题干给足数量、价格、成本、时间及贴现假设；三阶段题与独立答案可对应。合成案例未冒称作者真实预测。",
+      "source_checks": [
+        {
+          "candidate": "B61",
+          "url": "https://www.jiemian.com/article/3905765.html",
+          "tool_ref": "turn580view0",
+          "scope": "L198–206、231–249、273–279、305–313",
+          "attribution": "冯明远本人问答；研发投入与竞争失败区分可核。",
+          "date": "2020-02-14，L382原文显示08:00",
+          "status": "pass"
+        },
+        {
+          "candidate": "B61",
+          "url": "https://www.chnfund.com/article/AR2020101510331068621443",
+          "tool_ref": "turn582view0",
+          "scope": "L74、78–79",
+          "attribution": "冯明远具名投资标准及分散；L88–90李舒阳周期观点未误归。",
+          "date": "2020-10-15，L59页面日期",
+          "status": "pass"
+        },
+        {
+          "candidate": "B65",
+          "url": "https://edu.chinaamc.com/c/2021-12-28/513383.shtml",
+          "tool_refs": [
+            "turn584view0",
+            "turn590view1"
+          ],
+          "scope": "L144、194、240、243、254",
+          "attribution": "官方收录朱昂访谈，周克平本人回答；未来现金流与项目制支持。",
+          "date": "2021-12-28为URL刊载路径日期；实际采访日未核。",
+          "status": "pass_with_date_boundary"
+        },
+        {
+          "candidate": "B65",
+          "url": "https://www.chnfund.com/article/AR2022061116242760113822",
+          "tool_refs": [
+            "turn584view1",
+            "turn590view0"
+          ],
+          "scope": "L73、92、133、177、254、283",
+          "attribution": "多人圆桌，已限定周克平具名段；前期投入后置回报支持。",
+          "date": "2022-06-11 16:11，L59页面日期",
+          "status": "pass"
+        }
+      ],
+      "minor_findings": [
+        {
+          "issue": "冯明远首稿可用原文日期，无须仅靠同文转载。",
+          "status": "accepted_fixed",
+          "resolution": "作者已更新date_basis、access和候选材料记录。"
+        },
+        {
+          "issue": "周克平首稿日期只在URL路径见，不能等同实际采访日。",
+          "status": "accepted_fixed",
+          "resolution": "作者已明确路径刊载日及采访日未核。"
+        }
+      ],
+      "review_boundary": "独立读取冯明远、周克平各2材料；未声称重新核读Pye、刘格菘、陈颖、金梓才每份全文。全部6卡算术及题干均复核。"
+    }
+  }
+}
