@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "as_of": "2026-10-08",
+  "as_of": "2026-10-09",
   "scope": "固定100买方+100卖方提名池；分类按原提名及历史来源角色，不代表200名现任行业研究员；候选、身份初核和方法材料分开。",
   "statusDefinitions": {
     "candidate": "身份、分类或证据仍需补充",
@@ -8,13 +8,13 @@
     "research-ready": "至少两项实质原始材料支持方法样本；不自动认证反复方法或完整投资思想"
   },
   "counts": {
-    "research-ready": 163,
-    "identity-verified": 34,
-    "candidate": 3
+    "research-ready": 196,
+    "identity-verified": 2,
+    "candidate": 2
   },
   "priority_count": 20,
   "existing_profile_matches": 18,
-  "profile_matches": 163,
+  "profile_matches": 196,
   "candidates": [
     {
       "id": "B01",
@@ -270,23 +270,58 @@
           "accessLevel": "primary identity text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required",
-        "Source confirms November 2023 role only; current role unverified"
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "xuesong-zhao",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取2023年8月Zhao具名AI基金材料，以及2024年12月发表的团队2025展望全文。后者仅Global Technology Team署名；列出Zhao传记不足以证明每段为其个人观点，故仅一份个人实质材料，不升级。",
+        "date": "2026-10-09",
+        "outcome": "补读两份不同日期的实质材料，建立本人方法样本及独立三阶段合成练习。仅提炼作者的可变假设；2023文中GPT-4参数等未经核验技术断言不作为事实采用。",
         "checkedUrls": [
           "https://www.polarcapital.co.uk/static/documents/Polar_Capital_Artificial_Intelligence_Fund_-_August_2023.pdf",
-          "https://view.ceros.com/polar/polar-capital-outlooks-uk-2025"
+          "https://www.polarcapital.co.uk/static/documents/Polar_Capital_Artificial_Intelligence_Video_Transcript_-_May_2026.pdf"
         ],
-        "nextEvidence": "第二份Zhao个人具名正文或明确列为作者的共同研究；以及2026现职确认。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "xuesong-zhao",
+      "methodSources": [
+        {
+          "id": "O9G1-B04-S1",
+          "title": "AI: We are only scraping the surface",
+          "date": "2023-08-14",
+          "url": "https://www.polarcapital.co.uk/static/documents/Polar_Capital_Artificial_Intelligence_Fund_-_August_2023.pdf",
+          "authors": "Xuesong Zhao",
+          "summary": "把独有数据及非科技采用者纳入AI受益研究，考察技术如何改变成本和商业模式。",
+          "access": "2026-10-09 原发布者PDF第1、4–5页，末页正文明确本人署名与日期。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B04-S2",
+          "title": "Artificial Intelligence Fund video transcript",
+          "date": "2026-05",
+          "url": "https://www.polarcapital.co.uk/static/documents/Polar_Capital_Artificial_Intelligence_Video_Transcript_-_May_2026.pdf",
+          "authors": "Xuesong Zhao",
+          "summary": "软件功能可被复制时重估原有数据优势；区分盈利修正与估值重估。",
+          "access": "2026-10-09 官方PDF下载转文本，实读第1–2页；日期来自文件名，正文无具体录制日。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取2023年8月Zhao具名AI基金材料，以及2024年12月发表的团队2025展望全文。后者仅Global Technology Team署名；列出Zhao传记不足以证明每段为其个人观点，故仅一份个人实质材料，不升级。",
+          "checkedUrls": [
+            "https://www.polarcapital.co.uk/static/documents/Polar_Capital_Artificial_Intelligence_Fund_-_August_2023.pdf",
+            "https://view.ceros.com/polar/polar-capital-outlooks-uk-2025"
+          ],
+          "nextEvidence": "第二份Zhao个人具名正文或明确列为作者的共同研究；以及2026现职确认。"
+        }
+      ]
     },
     {
       "id": "B05",
@@ -685,25 +720,60 @@
           "accessLevel": "primary annual report identity section opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required",
-        "2024 report verifies historical position, not October 2026 current appointment"
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "mike-seidenberg",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取2024年度报告第6、7网页机构论述，涉及AI、网络安全、量子及估值风险；同一报告不能算两份，且未建立段落个人署名。下载2022文件实际为视频介绍页，无访谈正文；另一个视频页面直接读取失败。",
+        "date": "2026-10-09",
+        "outcome": "补读两份不同日期的实质材料，建立本人方法样本及独立三阶段合成练习。机器转录未作音频复核；组合情景仅为教学，不是经理风险预测。",
         "checkedUrls": [
-          "https://insights.allianzgi.com/story/att-annual-financial-report-2024/page/6",
-          "https://insights.allianzgi.com/story/att-annual-financial-report-2024/page/7",
-          "https://www.allianztechnologytrust.com/api/sitecore/ArticleFeature/DownloadEditorial?id=bdb54e3a0e214bc8942d7b3f96c692fa",
-          "https://www.allianztechnologytrust.com/en-gb/videos-podcasts-and-reading/beyond-the-hype-a-disciplined-approach-to-tech-investing"
+          "https://www.theaic.co.uk/aic/news/industry-news/mike-seidenberg-i-couldnt-sleep-with-full-index-weights-to-magnificent-seven",
+          "https://www.fundcalibre.com/episode-371-finding-real-value-in-tech-investing/"
         ],
-        "nextEvidence": "两份Mike具名管理报告或公开视频完整可读取问答，不以机构主题页替代个人论证。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "mike-seidenberg",
+      "methodSources": [
+        {
+          "id": "O9G1-B10-S1",
+          "title": "I couldn’t sleep with full index weights to Magnificent Seven",
+          "date": "2024-10-21",
+          "url": "https://www.theaic.co.uk/aic/news/industry-news/mike-seidenberg-i-couldnt-sleep-with-full-index-weights-to-magnificent-seven",
+          "authors": "Mike Seidenberg",
+          "summary": "承认低配巨头可能拖累相对表现，但把股东承受的集中风险纳入组合选择。",
+          "access": "2026-10-09 AIC公开转载Citywire原访谈摘段；已读本人完整回答，仅该问答，不冒充一小时全片。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B10-S2",
+          "title": "371. Finding real value in tech investing",
+          "date": "2025-10-16",
+          "url": "https://www.fundcalibre.com/episode-371-finding-real-value-in-tech-investing/",
+          "authors": "Mike Seidenberg",
+          "summary": "在高增长、合理估值增长和低估值可选性间配置；网络安全需求持续不保证供应商不会过时。",
+          "access": "2026-10-09 原采访机构公开完整机器转录；实读mega-cap、AI、cyber和valuation段；2025-10-09录制，10-16发布；未核音频，转录有错误。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取2024年度报告第6、7网页机构论述，涉及AI、网络安全、量子及估值风险；同一报告不能算两份，且未建立段落个人署名。下载2022文件实际为视频介绍页，无访谈正文；另一个视频页面直接读取失败。",
+          "checkedUrls": [
+            "https://insights.allianzgi.com/story/att-annual-financial-report-2024/page/6",
+            "https://insights.allianzgi.com/story/att-annual-financial-report-2024/page/7",
+            "https://www.allianztechnologytrust.com/api/sitecore/ArticleFeature/DownloadEditorial?id=bdb54e3a0e214bc8942d7b3f96c692fa",
+            "https://www.allianztechnologytrust.com/en-gb/videos-podcasts-and-reading/beyond-the-hype-a-disciplined-approach-to-tech-investing"
+          ],
+          "nextEvidence": "两份Mike具名管理报告或公开视频完整可读取问答，不以机构主题页替代个人论证。"
+        }
+      ]
     },
     {
       "id": "B11",
@@ -851,7 +921,7 @@
       "id": "B13",
       "name": "Shekhar Pramanick",
       "side": "buy",
-      "roleAtSource": "Co-manager since 2015, SunAmerica Series Trust Technology Portfolio, Columbia subadviser (2016 prospectus)",
+      "roleAtSource": "2004 Schwab Soundview卖方分析师；2022 Columbia Seligman买方经理；2025年末STK Technology Team Member",
       "currentRole": null,
       "firm": "Columbia Threadneedle",
       "focus": "Technology and growth investing; candidate focus requires individual substantiation",
@@ -863,25 +933,68 @@
           "accessed": "2026-10-07",
           "whatVerified": "Co-manager since 2015, SunAmerica Series Trust Technology Portfolio, Columbia subadviser (2016 prospectus)",
           "accessLevel": "primary identity text opened and read"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1471420/000119312526096585/d69918dncsr.htm",
+          "title": "Columbia Seligman Premium Technology Growth Fund 2025 Annual Report",
+          "date": "2025-12-31",
+          "accessed": "2026-10-09",
+          "whatVerified": "第2页及Item 8列其为Technology Team Member/Portfolio Manager；日期为报告期末，非发表日。",
+          "accessLevel": "官方SEC年报正文实读"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary research sources and thesis extraction required",
-        "Historical 2016 role only; current employer and appointment unverified"
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": "",
+      "profileId": "shekhar-pramanick",
+      "roleNote": "候选归买方池按较新买方经历；方法材料跨角色，2004提问清楚标为卖方，不用历史职务确认现职。",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "核查SEC 2024基金简式招募文件，并保留已读2016历史经理身份；前者为基金目标/风险/管理等监管文件，未得到两份个人方法正文。搜索找到历史卖方短引语，不能冒充买方投资样本。",
+        "date": "2026-10-09",
+        "outcome": "补读TSMC 2004 Q2官方具名问答，配2022买方原采访，完成跨角色的有限方法样本。2004提问来自Schwab Soundview卖方时期，2022来自Columbia Seligman买方时期；不是两份买方著述，不认证长期稳定方法。",
         "checkedUrls": [
-          "https://www.sec.gov/Archives/edgar/data/1352280/000119312524224357/d844722d497k.htm",
-          "https://www.sec.gov/Archives/edgar/data/892538/000119312516580011/d174923d497k.htm"
+          "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/english/2004/Q2/04Q2%20Conf%20Call-Transcript.pdf",
+          "https://fortune.com/2022/01/20/metaverse-investing-13-stocks-to-buy-in-2022/"
         ],
-        "nextEvidence": "当前买方任职的明确日期证据及两份具名投资论证；招募说明书与旧卖方短引语不足。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "shekhar-pramanick",
+      "methodSources": [
+        {
+          "id": "O9G1-B13-S1",
+          "title": "TSMC Q2 2004 Earnings Conference Call — Pramanick Q&A",
+          "date": "2004-07-29",
+          "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/english/2004/Q2/04Q2%20Conf%20Call-Transcript.pdf",
+          "authors": "Shekhar Pramanick",
+          "summary": "卖方时期追问出货指引是否已考虑库存风险，并追问收入增长能否转成毛利率改善。",
+          "access": "2026-10-09 TSMC IR官方承载的Thomson完整逐字稿，下载后读第7–8页本人具名提问；2004-07-29为会议日；当时Schwab Soundview。管理层回答不归给提问人。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B13-S2",
+          "title": "Investing in the metaverse: 13 stocks to buy for 2022 — attributed interview portions",
+          "date": "2022-01-20",
+          "url": "https://fortune.com/2022/01/20/metaverse-investing-13-stocks-to-buy-in-2022/",
+          "authors": "Shekhar Pramanick",
+          "summary": "考察芯片需求与公司盈利。",
+          "access": "2026-10-09 Fortune原采访正文The infrastructure bet节，仅使用Pramanick具名段；其他受访者观点排除。本人为Columbia Seligman买方经理。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "核查SEC 2024基金简式招募文件，并保留已读2016历史经理身份；前者为基金目标/风险/管理等监管文件，未得到两份个人方法正文。搜索找到历史卖方短引语，不能冒充买方投资样本。",
+          "checkedUrls": [
+            "https://www.sec.gov/Archives/edgar/data/1352280/000119312524224357/d844722d497k.htm",
+            "https://www.sec.gov/Archives/edgar/data/892538/000119312516580011/d174923d497k.htm"
+          ],
+          "nextEvidence": "当前买方任职的明确日期证据及两份具名投资论证；招募说明书与旧卖方短引语不足。"
+        }
+      ]
     },
     {
       "id": "B14",
@@ -1196,23 +1309,58 @@
           "accessLevel": "official source directly opened; relevant identity text read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Historical technology-fund role only; current New Horizons/small-cap mandate must be verified",
-        "Two substantive primary works required"
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "josh-spencer",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取2017年12月T. Rowe Price AI文章第2–3页Spencer具名引语，关于算力成本、数据与人才；与Ken Allen同一机构文章，已按人区分。检索到2020年9月25日WealthTrack访谈入口，但本轮未取得完整口述正文，不把简介视作第二篇。",
+        "date": "2026-10-09",
+        "outcome": "补读两份不同日期的实质材料，建立本人方法样本及独立三阶段合成练习。历史技术基金方法样本，不把2017/2018职务冒充现职；原文看多不等于事后验证。",
         "checkedUrls": [
-          "https://www.troweprice.com/content/dam/tpd/Articles/PDFs/AI_Price_Perspective_NOV-17_GL_P4.pdf",
-          "https://wealthtrack.com/next-generation-great-investor-josh-spencer-on-taking-over-t-rowe-prices-new-horizons-fund/"
+          "https://www.troweprice.com/content/dam/ide/articles/pdfs/258759_PP_Cloud_Computing.pdf",
+          "https://www.troweprice.com/content/dam/tpd/Articles/PDFs/semiconductor-stocks-buying-when-the-chips-are-down.pdf"
         ],
-        "nextEvidence": "读取WealthTrack完整原始采访或另一份Spencer具名管理问答；补当前New Horizons/small-cap角色。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "josh-spencer",
+      "methodSources": [
+        {
+          "id": "O9G1-B18-S1",
+          "title": "Cloud computing: still in its early stages and spreading globally",
+          "date": "2017-09",
+          "url": "https://www.troweprice.com/content/dam/ide/articles/pdfs/258759_PP_Cloud_Computing.pdf",
+          "authors": "Josh Spencer",
+          "summary": "将客户成本、扩容弹性与SaaS稳态利润率结合，同时保留估值约束。",
+          "access": "2026-10-09 官方PDF第1–3页实质正文，本人具名；PDF封面2017-09，非搜索抓取年份。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B18-S2",
+          "title": "Semiconductor stocks: buying when the chips are down",
+          "date": "2018-11",
+          "url": "https://www.troweprice.com/content/dam/tpd/Articles/PDFs/semiconductor-stocks-buying-when-the-chips-are-down.pdf",
+          "authors": "Josh Spencer",
+          "summary": "用供给集中度、扩产资本强度和终端内容增长检验周期底部利润，而非只外推峰值。",
+          "access": "2026-10-09 官方PDF第1–3页，本人具名，2018-11；历史判断未作事后成功认证。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取2017年12月T. Rowe Price AI文章第2–3页Spencer具名引语，关于算力成本、数据与人才；与Ken Allen同一机构文章，已按人区分。检索到2020年9月25日WealthTrack访谈入口，但本轮未取得完整口述正文，不把简介视作第二篇。",
+          "checkedUrls": [
+            "https://www.troweprice.com/content/dam/tpd/Articles/PDFs/AI_Price_Perspective_NOV-17_GL_P4.pdf",
+            "https://wealthtrack.com/next-generation-great-investor-josh-spencer-on-taking-over-t-rowe-prices-new-horizons-fund/"
+          ],
+          "nextEvidence": "读取WealthTrack完整原始采访或另一份Spencer具名管理问答；补当前New Horizons/small-cap角色。"
+        }
+      ]
     },
     {
       "id": "B19",
@@ -1733,28 +1881,63 @@
           "accessLevel": "primary full text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "One substantive Q&A read; a second independent primary work and complete thesis extraction are still required.",
-        "Role dated to May 31, 2026; no separate October 2026 role confirmation."
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "aliases": [
         "Steven Wymer"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "steve-wymer",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "重读Growth Company问答第1–3页，实际2026年5月31日；不同URL的RD_QAA_025仍是同一滚动版本，顾问网址重定向至报告入口。Morningstar 2019访谈返回403。没有凑成两篇。",
+        "date": "2026-10-09",
+        "outcome": "补读两份不同日期的实质材料，建立本人方法样本及独立三阶段合成练习。2018为未逐字核验的公开镜像，2026为滚动官方文档；日期是报告期间终点。",
         "checkedUrls": [
-          "https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/SHDOCS/FDGRX/hosts/sh_comm_pmqa.000025.RETAIL_pdf.pdf",
-          "https://consultant.fidelity.com/app/proxy/content?literatureURL=%2FRD_QAA_025.PDF",
-          "https://institutional.fidelity.com/app/proxy/content?literatureURL=%2FRD_QAA_025.PDF",
-          "https://www.morningstar.com/stocks/investing-insights-hear-fund-managers-year"
+          "https://www.readkong.com/page/fidelity-growth-company-fund-key-takeaways-5851471",
+          "https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/SHDOCS/FDGRX/hosts/sh_comm_pmqa.000025.RETAIL_pdf.pdf"
         ],
-        "nextEvidence": "另一明确日期的归档问答或可读原始Wymer访谈；不能凭URL不同重复计数。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "steve-wymer",
+      "methodSources": [
+        {
+          "id": "O9G1-B25-S1",
+          "title": "Fidelity Growth Company Fund PM Q&A — May 2018",
+          "date": "2018-05-31",
+          "url": "https://www.readkong.com/page/fidelity-growth-company-fund-key-takeaways-5851471",
+          "authors": "Steve Wymer",
+          "summary": "看三至五年增长机会和商业模式延展性，同时因组合构建调整高确信持仓。",
+          "access": "2026-10-09 Fidelity原问答公开第三方全文镜像，第2–3页正文与经理姓名可见；未取得2018官方存档逐字校验。日期是报告截至日。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B25-S2",
+          "title": "Fidelity Growth Company Fund PM Q&A — May 2026",
+          "date": "2026-05-31",
+          "url": "https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/SHDOCS/FDGRX/hosts/sh_comm_pmqa.000025.RETAIL_pdf.pdf",
+          "authors": "Steve Wymer",
+          "summary": "把持续AI采用与企业投资回报及基建约束相连；增长持仓仍需管理集中度。",
+          "access": "2026-10-09 官方滚动PDF第2–4页，实际头部为2026-05-31；截至日不等于发布日；未复制来源未独立核验的业绩或IPO数字。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "重读Growth Company问答第1–3页，实际2026年5月31日；不同URL的RD_QAA_025仍是同一滚动版本，顾问网址重定向至报告入口。Morningstar 2019访谈返回403。没有凑成两篇。",
+          "checkedUrls": [
+            "https://www.fidelity.com/bin-public/060_www_fidelity_com/documents/SHDOCS/FDGRX/hosts/sh_comm_pmqa.000025.RETAIL_pdf.pdf",
+            "https://consultant.fidelity.com/app/proxy/content?literatureURL=%2FRD_QAA_025.PDF",
+            "https://institutional.fidelity.com/app/proxy/content?literatureURL=%2FRD_QAA_025.PDF",
+            "https://www.morningstar.com/stocks/investing-insights-hear-fund-managers-year"
+          ],
+          "nextEvidence": "另一明确日期的归档问答或可读原始Wymer访谈；不能凭URL不同重复计数。"
+        }
+      ]
     },
     {
       "id": "B26",
@@ -2099,23 +2282,58 @@
           "accessLevel": "primary full text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary materials and complete thesis extraction still required; identity verification is not research readiness.",
-        "Role verified at June 2026 conference; no separate October 2026 confirmation."
+        "未审计预测准确率或风险调整业绩；两份材料仅支持有限方法样本",
+        "来源时期身份不自动外推至2026年10月现职"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "alex-sacerdote",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "下载并读取Columbia Graham & Doddsville 2015第25期Sacerdote访谈有关S曲线及竞争优势的段落。Colossus 2026年6月9日原节目页仅公开简介/章节目录，完整逐字稿要求登录；不将目录当正文。",
+        "date": "2026-10-09",
+        "outcome": "补读两份不同日期的实质材料，建立本人方法样本及独立三阶段合成练习。2026第三方机器稿未核音频；只取清楚的框架段，不将转录中的具体估值、公司历史或投资业绩当作已核事实。",
         "checkedUrls": [
           "https://business.columbia.edu/sites/default/files-efs/imce-uploads/Graham%20%26%20Doddsville_Issue%2025_0.pdf",
-          "https://colossus.com/episode/investing-on-the-s-curve/"
+          "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/alex-sacerdote-how-to-invest-through-technology-cycles-invest-like-the-best-ep477"
         ],
-        "nextEvidence": "第二份Sacerdote实质公开原始访谈或具名信；持仓申报与会议传记不替代。"
-      }
+        "nextEvidence": "补更多具名材料、现职和预测检验，暂不认证稳定个人方法。"
+      },
+      "atlasProfileId": "alex-sacerdote",
+      "methodSources": [
+        {
+          "id": "O9G1-B30-S1",
+          "title": "Graham & Doddsville Issue XXV — Alex Sacerdote",
+          "date": "2015",
+          "url": "https://business.columbia.edu/sites/default/files-efs/imce-uploads/Graham%20%26%20Doddsville_Issue%2025_0.pdf",
+          "authors": "Alex Sacerdote",
+          "summary": "把采用拐点与竞争优势、未被价格反映的盈利能力联合考察；市场增长不保证每家厂商获利。",
+          "access": "2026-10-09 Columbia原始刊物，2015年秋刊，第6–12页访谈；重点读第7–9页S曲线和退出案例。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        },
+        {
+          "id": "O9G1-B30-S2",
+          "title": "Invest Like the Best EP477 — Investing on the S-Curve",
+          "date": "2026-06-09",
+          "url": "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/alex-sacerdote-how-to-invest-through-technology-cycles-invest-like-the-best-ep477",
+          "authors": "Alex Sacerdote",
+          "summary": "区分采用速度与市场上限，并在渗透路径偏离时修正假设；企业整合难度也影响采用速度。",
+          "access": "2026-10-09 公开第三方机器逐字稿，实读19:23–29:40；官方Colossus节目页核对身份、节目号和日期，官方完整稿需登录，未访问。未核音频；明显转录错误不作为事实。",
+          "retrieval_level": "公开正文已读；归属与读取边界见access"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "下载并读取Columbia Graham & Doddsville 2015第25期Sacerdote访谈有关S曲线及竞争优势的段落。Colossus 2026年6月9日原节目页仅公开简介/章节目录，完整逐字稿要求登录；不将目录当正文。",
+          "checkedUrls": [
+            "https://business.columbia.edu/sites/default/files-efs/imce-uploads/Graham%20%26%20Doddsville_Issue%2025_0.pdf",
+            "https://colossus.com/episode/investing-on-the-s-curve/"
+          ],
+          "nextEvidence": "第二份Sacerdote实质公开原始访谈或具名信；持仓申报与会议传记不替代。"
+        }
+      ]
     },
     {
       "id": "B31",
@@ -2137,27 +2355,39 @@
       ],
       "status": "identity-verified",
       "gaps": [
-        "Two substantive primary materials and complete thesis extraction still required; identity verification is not research readiness.",
-        "Historical affiliation only; current title and role require separate dated primary evidence."
+        "需可合法读取的本人完整公开访谈/签名信两份；主持人问题与嘉宾观点分列，不将团队信单独归个人。"
       ],
       "priority": false,
       "profileId": null,
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "检索个人访谈并打开Tiger Global官方入口，未取得两份Coleman个人投资论证；既有2019 SEC控制关系脚注仅证明历史关联。有关私下LP通话的媒体转述未当原始采访读。",
+        "date": "2026-10-09",
+        "outcome": "已核2025 Robin Hood面板入口，但所读Alpha-File为AI生成摘要且将嘉宾Homan误写Sloan，不能归成本人完整论证。2009Q1信件入口明确声明原文因版权/保密要求已撤除；2026周年信页只提供有限转述且正文登录受限。未取得两份可核的Coleman原始方法正文。",
         "checkedUrls": [
-          "https://www.tigerglobal.com/",
-          "https://www.sec.gov/Archives/edgar/data/1639825/000095012319005677/filename1.htm"
+          "https://alpha-file.com/content/4399",
+          "https://beta.robinhood.org/news/13th-annual-investors-conference-2025/",
+          "https://www.marketfolly.com/2009_05_03_archive.html",
+          "https://hedgefundalpha.com/investor-letters/tiger-global-25th-anniversary/"
         ],
-        "nextEvidence": "公开签名投资信、完整公开讲话或采访两份；另需现职证据，不能以持仓/控制关系反推方法。"
-      }
+        "nextEvidence": "需可合法读取的本人完整公开访谈/签名信两份；主持人问题与嘉宾观点分列，不将团队信单独归个人。"
+      },
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "检索个人访谈并打开Tiger Global官方入口，未取得两份Coleman个人投资论证；既有2019 SEC控制关系脚注仅证明历史关联。有关私下LP通话的媒体转述未当原始采访读。",
+          "checkedUrls": [
+            "https://www.tigerglobal.com/",
+            "https://www.sec.gov/Archives/edgar/data/1639825/000095012319005677/filename1.htm"
+          ],
+          "nextEvidence": "公开签名投资信、完整公开讲话或采访两份；另需现职证据，不能以持仓/控制关系反推方法。"
+        }
+      ]
     },
     {
       "id": "B32",
       "name": "Scott Shleifer",
       "side": "buy",
-      "roleAtSource": "Named as a person controlling Tiger Global Management, LLC in Peloton draft S-1 dated May 23, 2019",
+      "roleAtSource": "Partner, Tiger Global Management（2022-10-26 FII官方议程）",
       "currentRole": null,
       "firm": "Tiger Global",
       "focus": "Buy-side identity verified historically; individual investment specialty not established by this ownership footnote",
@@ -2169,26 +2399,75 @@
           "accessed": "2026-10-07",
           "whatVerified": "Related-party ownership footnote 2 and beneficial-ownership footnote 14 state Tiger Global Management is controlled by Chase Coleman and Scott Shleifer. This is a control relationship, not an accounting Controller job title.",
           "accessLevel": "primary full text opened and read"
+        },
+        {
+          "url": "https://fii-institute.org/wp-content/uploads/2022/07/FII6-Program-2022.10.26.1356KSA.docx-1.pdf",
+          "title": "FII6 official program",
+          "date": "2022-10-26",
+          "accessed": "2026-10-09",
+          "whatVerified": "PDF第34页列Scott Shleifer为Tiger Global Partner；不是当前顾问职务确认",
+          "accessLevel": "primary program full text read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary materials and complete thesis extraction still required; identity verification is not research readiness.",
-        "Historical affiliation only; current title and role require separate dated primary evidence.",
-        "Reported advisory transition not independently verified in primary material in this pass."
+        "第二来源仅为原报道所载本人论证选段，未取得完整通话/音频；第一来源转录未核音频",
+        "当前职务及顾问转型未由日期明确原始材料确认；不认证稳定个人哲学或基金业绩"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "scott-shleifer",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "打开Wharton Scott Shleifer人物页，属于人物介绍入口；未取得两份具名方法正文。既有SEC为2019控制关系，未把历史控制关系外推成现任职务或把顾问转型二手报道当确认。",
+        "date": "2026-10-09",
+        "outcome": "补齐2022 FII公开完整转录与2023原报道所载本人实质论证选段，形成窄方法样本；第二份不是完整通话，明确保留范围。",
         "checkedUrls": [
-          "https://magazine.wharton.upenn.edu/scott-shleifer/",
-          "https://www.sec.gov/Archives/edgar/data/1639825/000095012319005677/filename1.htm"
+          "https://aletteraday.substack.com/p/letter-307-scott-shleifer-and-hani",
+          "https://fii-institute.org/wp-content/uploads/2022/07/FII6-Program-2022.10.26.1356KSA.docx-1.pdf",
+          "https://techcrunch.com/2023/02/01/tiger-global-india-returns-way-below-average-but-firm-remains-bullish-says-scott-shleifer/"
         ],
-        "nextEvidence": "当前角色的日期明确原始证据及两份本人实质研究/访谈。"
-      }
+        "nextEvidence": "补2023完整通话/录音和当前职务原始确认；未做业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G2-SH22",
+          "title": "Where VC Flows From Here — Scott Shleifer and Hani Enaya",
+          "date": "2022-10-26",
+          "authors": "Scott Shleifer，主持Hani Enaya；Kevin Gee转录",
+          "url": "https://aletteraday.substack.com/p/letter-307-scott-shleifer-and-hani",
+          "original_url": "https://fii-institute.org/wp-content/uploads/2022/07/FII6-Program-2022.10.26.1356KSA.docx-1.pdf",
+          "mirror_publication_date": "2025-11-25",
+          "date_basis": "FII官方议程Day2，2022-10-26；镜像发表于2025-11-25",
+          "summary": "本人讨论低渗透率市场的增长空间、高增量利润及融资依赖；属于单次方法材料，不能由此认证稳定策略或把多年后利润用于上市时点估值。",
+          "access": "2026-10-09 已读取完整公开转录的渗透率、成本及融资段；官方议程第34页核对嘉宾、主持及日期。",
+          "retrieval_level": "第三方公开完整转录；作者自述转录错误自负，未核原音频"
+        },
+        {
+          "id": "O9G2-SH23",
+          "title": "Tiger Global India investor-call remarks — original reporting selected passages",
+          "date": "2023-02-01",
+          "event_date": "2023-01-31",
+          "date_basis": "原刊2023-02-01；文中前日Tuesday通话为2023-01-31",
+          "authors": "Scott Shleifer（具名引语）；Manish Singh（原报道记者）",
+          "url": "https://techcrunch.com/2023/02/01/tiger-global-india-returns-way-below-average-but-firm-remains-bullish-says-scott-shleifer/",
+          "summary": "增长需转为利润。",
+          "access": "2026-10-09 原刊正文已读，仅取本人直接引语段；未取得完整通话或录音，媒体叙述不作为本人论证。",
+          "retrieval_level": "原报道所载本人实质论证选段；非完整采访或官方逐字稿",
+          "scope": "只支持增长与利润验证这一窄方法维度；未认证所引基金业绩或投资金额。"
+        }
+      ],
+      "atlasProfileId": "scott-shleifer",
+      "methodCertification": "limited method-sample; one full transcript and one original-report attributed passage; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "打开Wharton Scott Shleifer人物页，属于人物介绍入口；未取得两份具名方法正文。既有SEC为2019控制关系，未把历史控制关系外推成现任职务或把顾问转型二手报道当确认。",
+          "checkedUrls": [
+            "https://magazine.wharton.upenn.edu/scott-shleifer/",
+            "https://www.sec.gov/Archives/edgar/data/1639825/000095012319005677/filename1.htm"
+          ],
+          "nextEvidence": "当前角色的日期明确原始证据及两份本人实质研究/访谈。"
+        }
+      ]
     },
     {
       "id": "B33",
@@ -2305,27 +2584,67 @@
           "accessLevel": "primary full text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary materials and complete thesis extraction still required; identity verification is not research readiness.",
-        "Founder identity verified; current executive title unresolved because official roster is explicitly forward-dated January 1, 2027."
+        "两份公开材料仅支持有限方法样本，未认证完整或稳定个人投资哲学",
+        "镜像转录未逐字比对原音频/官方原件；未审计预测结果和投资业绩"
       ],
       "aliases": [
         "Steve Mandel"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "stephen-mandel",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "打开2021 Investing Behind Change及2025 Lessons from Steve Mandel两份Colossus原节目页，公开部分仅简介和章节；完整稿受登录限制。保留既有官网2027年1月生效前瞻职位的边界，不当2026现职。",
+        "date": "2026-10-09",
+        "outcome": "补齐两份独立实质材料正文，形成有归因边界的方法档案及三阶段合成练习；公开镜像不冒充官方校订。",
         "checkedUrls": [
+          "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/steve-mandel-investing-behind-change-invest-like-the-best-ep-235",
+          "https://aletteraday.substack.com/p/letter-298-steve-mandel-paul-buser",
           "https://colossus.com/episode/mandel-investing-behind-change/",
-          "https://colossus.com/episode/lessons-from-steve-mandel/",
-          "https://www.lonepinecapital.com/team/"
+          "https://colossus.com/episode/lessons-from-steve-mandel/"
         ],
-        "nextEvidence": "两份合法可读完整Mandel访谈/具名信；另需非前瞻名单的当前职务。"
-      }
+        "nextEvidence": "继续补原音频/官方原件对照、完整模型与预测结果；来源期身份不自动等于当前职务。"
+      },
+      "atlasProfileId": "stephen-mandel",
+      "methodSources": [
+        {
+          "id": "O9G2-M21",
+          "title": "Steve Mandel — Investing Behind Change",
+          "date": "2021-07-20",
+          "authors": "Steve Mandel，访谈主持 Patrick O’Shaughnessy",
+          "url": "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/steve-mandel-investing-behind-change-invest-like-the-best-ep-235",
+          "summary": "从可复制的单位经济与管理质量理解业务安全边际；由具体公司发现多年变迁，而非从主题标签倒推股票。",
+          "access": "2026-10-09 公开完整转录已读00:09–00:22投资方法段；节目原页核日期与人物；自动转录存在姓名错字。",
+          "retrieval_level": "公开原始材料转录/信件镜像；非官方校订，未核对原音频或官方文件字节",
+          "original_url": "https://colossus.com/episode/mandel-investing-behind-change/"
+        },
+        {
+          "id": "O9G2-M25",
+          "title": "Lessons from Steve Mandel",
+          "date": "2025-09-15",
+          "authors": "Steve Mandel；主持Rick Buhrman、Paul Buser；Kevin Gee转录",
+          "url": "https://aletteraday.substack.com/p/letter-298-steve-mandel-paul-buser",
+          "summary": "以自由现金流收益率、再投资回报与融资依赖共同看估值；高回报扩张导致的低FCF不能直接视为劣质，AI赢家也可能因买价过高给投资者低回报。",
+          "access": "2026-10-09 公开完整转录已读Valuation Frameworks and Non-Linear Thinking等章节；镜像发布日期2025-10-21，节目日期由Colossus原页核为2025-09-15。",
+          "retrieval_level": "公开原始材料转录/信件镜像；非官方校订，未核对原音频或官方文件字节",
+          "original_url": "https://colossus.com/episode/lessons-from-steve-mandel/",
+          "mirror_publication_date": "2025-10-21"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "打开2021 Investing Behind Change及2025 Lessons from Steve Mandel两份Colossus原节目页，公开部分仅简介和章节；完整稿受登录限制。保留既有官网2027年1月生效前瞻职位的边界，不当2026现职。",
+          "checkedUrls": [
+            "https://colossus.com/episode/mandel-investing-behind-change/",
+            "https://colossus.com/episode/lessons-from-steve-mandel/",
+            "https://www.lonepinecapital.com/team/"
+          ],
+          "nextEvidence": "两份合法可读完整Mandel访谈/具名信；另需非前瞻名单的当前职务。"
+        }
+      ]
     },
     {
       "id": "B35",
@@ -2345,22 +2664,60 @@
           "accessLevel": "primary full text opened and read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive primary materials and complete thesis extraction still required; identity verification is not research readiness."
+        "两份公开材料仅支持有限方法样本，未认证完整或稳定个人投资哲学",
+        "镜像转录未逐字比对原音频/官方原件；未审计预测结果和投资业绩"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "andreas-halvorsen",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "重读Viking官方团队页可核CEO、投资监督、资本配置及风险管理职责，非实质方法材料。Stanford原活动文章检索有投资引语但直接打开失败；未用搜索摘要拼成两份方法正文。",
+        "date": "2026-10-09",
+        "outcome": "补齐两份独立实质材料正文，形成有归因边界的方法档案及三阶段合成练习；公开镜像不冒充官方校订。",
         "checkedUrls": [
-          "https://vikingglobal.com/our-team/",
-          "https://www.gsb.stanford.edu/experience/news-history/invested-purpose-insights-stanford-gsb-investors"
+          "https://pdfcoffee.com/viking-onshore-4q-2008-letter-pdf-free.html",
+          "https://www.gurufocus.com/news/101623/andreas-halvorsen-2q10-investor-letter?mobile=true"
         ],
-        "nextEvidence": "可读取Stanford完整问答和另一份本人具名实质材料；团队传记不计方法来源。"
-      }
+        "nextEvidence": "继续补原音频/官方原件对照、完整模型与预测结果；来源期身份不自动等于当前职务。"
+      },
+      "atlasProfileId": "andreas-halvorsen",
+      "methodSources": [
+        {
+          "id": "O9G2-H09",
+          "title": "Viking 4Q 2008 investor letter",
+          "date": "2009-01-09",
+          "authors": "O. Andreas Halvorsen（信件主文）；附件另有Dave Ott邮件",
+          "url": "https://pdfcoffee.com/viking-onshore-4q-2008-letter-pdf-free.html",
+          "summary": "把多空选股价差、净敞口与总敞口分开；降低总杠杆可能牺牲账面收益，却保留融资安全与危机中继续研究交易的能力。",
+          "access": "2026-10-09 公开信件转录正文已读页1–3，抬头明确From: O. Andreas Halvorsen、January 9, 2009；附件Dave Ott邮件不是Halvorsen个人原话；未认证上传者身份或官方字节一致。",
+          "retrieval_level": "公开原始材料转录/信件镜像；非官方校订，未核对原音频或官方文件字节",
+          "date_basis": "信件抬头日期，报告期为2008Q4"
+        },
+        {
+          "id": "O9G2-H10",
+          "title": "Andreas Halvorsen 2Q10 Investor Letter",
+          "date": "2010-07-30",
+          "authors": "O. Andreas Halvorsen（转载信件主文）",
+          "url": "https://www.gurufocus.com/news/101623/andreas-halvorsen-2q10-investor-letter?mobile=true",
+          "summary": "检视高确信度持仓、分散度和多空激励；多头与空头的流动性及损失不对称，不能按同样集中规则处理。",
+          "access": "2026-10-09 公开长篇信件主文转载已读开头From: O. Andreas Halvorsen及集中度、做空激励、总敞口段；原信无可确认具体写信日，date用镜像公布日，报告期2010Q2；未取得原附件及官方原件字节核验。",
+          "retrieval_level": "公开原始材料转录/信件镜像；非官方校订，未核对原音频或官方文件字节",
+          "date_basis": "GuruFocus镜像发布时间2010-07-30；原信确切写作日未知"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "重读Viking官方团队页可核CEO、投资监督、资本配置及风险管理职责，非实质方法材料。Stanford原活动文章检索有投资引语但直接打开失败；未用搜索摘要拼成两份方法正文。",
+          "checkedUrls": [
+            "https://vikingglobal.com/our-team/",
+            "https://www.gsb.stanford.edu/experience/news-history/invested-purpose-insights-stanford-gsb-investors"
+          ],
+          "nextEvidence": "可读取Stanford完整问答和另一份本人具名实质材料；团队传记不计方法来源。"
+        }
+      ]
     },
     {
       "id": "B36",
@@ -2380,23 +2737,60 @@
           "whatVerified": "Founder and CIO"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "两份公开材料仅支持有限方法样本，未认证完整或稳定个人投资哲学",
+        "镜像转录未逐字比对原音频/官方原件；未审计预测结果和投资业绩"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "dan-sundheim",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取2025年10月22日Cheeky Pint完整官方逐字稿的投资方法段落，涉及三年IRR、退出倍数、Netflix规模与Costco卖出复盘。2026年2月24日Colossus原页仅简介/目录，完整稿需登录；目前只有一份充分方法正文。",
+        "date": "2026-10-09",
+        "outcome": "补齐两份独立实质材料正文，形成有归因边界的方法档案及三阶段合成练习；公开镜像不冒充官方校订。",
         "checkedUrls": [
           "https://cheekypint.transistor.fm/15/transcript",
+          "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/dan-sundheim-the-art-of-public-and-private-market-investing-invest-like-the-best-ep460",
           "https://colossus.com/episode/the-art-of-public-private-market-investing/"
         ],
-        "nextEvidence": "第二份Dan Sundheim可读原始访谈/投资信；不把同一节目重托管或媒体摘录算独立材料。"
-      }
+        "nextEvidence": "继续补原音频/官方原件对照、完整模型与预测结果；来源期身份不自动等于当前职务。"
+      },
+      "atlasProfileId": "dan-sundheim",
+      "methodSources": [
+        {
+          "id": "O9G2-D25",
+          "title": "Dan Sundheim of D1 Capital on the art of public market investing",
+          "date": "2025-10-22",
+          "authors": "Dan Sundheim；Cheeky Pint访谈",
+          "url": "https://cheekypint.transistor.fm/15/transcript",
+          "summary": "三年预期回报依赖退出倍数；股价提前兑现会降低未来IRR，但过早卖出长期优秀企业同样有机会成本。",
+          "access": "2026-10-09 节目官方完整逐字稿，已读00:07:02–00:11:44的IRR、退出估值及Netflix投资段。",
+          "retrieval_level": "原节目公开完整逐字稿正文"
+        },
+        {
+          "id": "O9G2-D26",
+          "title": "Dan Sundheim — The Art of Public and Private Market Investing",
+          "date": "2026-02-24",
+          "authors": "Dan Sundheim；主持Patrick O’Shaughnessy",
+          "url": "https://podscripts.co/podcasts/invest-like-the-best-with-patrick-oshaughnessy/dan-sundheim-the-art-of-public-and-private-market-investing-invest-like-the-best-ep460",
+          "summary": "把LLM训练视为前置固定投资，并检验采用速度、后续资本供给与回报；Netflix式成本摊薄与Spotify式个性化黏性是类比，模型商品化及延迟采用可能破坏回报。",
+          "access": "2026-10-09 公开完整转录已读约00:12–00:20资本回报、Netflix/Spotify类比与业务聚焦段；动态广告造成时间戳与官方show notes略有差别，未逐秒核音频。",
+          "retrieval_level": "公开原始材料转录/信件镜像；非官方校订，未核对原音频或官方文件字节",
+          "original_url": "https://colossus.com/episode/the-art-of-public-private-market-investing/"
+        }
+      ],
+      "methodCertification": "method-sample only; recurring pattern not certified",
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取2025年10月22日Cheeky Pint完整官方逐字稿的投资方法段落，涉及三年IRR、退出倍数、Netflix规模与Costco卖出复盘。2026年2月24日Colossus原页仅简介/目录，完整稿需登录；目前只有一份充分方法正文。",
+          "checkedUrls": [
+            "https://cheekypint.transistor.fm/15/transcript",
+            "https://colossus.com/episode/the-art-of-public-private-market-investing/"
+          ],
+          "nextEvidence": "第二份Dan Sundheim可读原始访谈/投资信；不把同一节目重托管或媒体摘录算独立材料。"
+        }
+      ]
     },
     {
       "id": "B37",
@@ -2414,32 +2808,49 @@
           "accessed": "2026-10-07",
           "accessLevel": "official indexed excerpt only",
           "whatVerified": "Director and President of SCGE GenPar (historical)"
+        },
+        {
+          "url": "https://investors.paloaltonetworks.com/static-files/a0989215-0ba7-439f-988f-192b4204fa03",
+          "title": "Palo Alto Networks IR — SEC Form3",
+          "date": "2012-07-19",
+          "accessed": "2026-10-09",
+          "whatVerified": "说明脚注1确认SCGE GenPar Director and President；本人2012-07-19签名，未证明现职",
+          "accessLevel": "issuer-hosted primary filing full text read"
         }
       ],
       "status": "identity-verified",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed",
-        "Historical methodology candidate; do not present as active current manager"
+        "两份SCGE/Lyle具名方法正文及当前职务确认；持仓和受益所有权只证明关联。"
       ],
       "priority": false,
       "profileId": null,
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "精确姓名+SCGE letter/interview搜索仅定位持仓二手聚合；重新打开SEC Form 3，仅支持历史身份，不含方法。",
+        "date": "2026-10-09",
+        "outcome": "新增读取发行人IR托管2012-07-19 Form3主文与本人签字，以及2012-09-07 FormD。前者确认历史Director/President与投票投资权，但两文件均无投资论证。扩展检索Christopher/Chris Lyle及SCGE访谈/投资信仍只定位持仓聚合，未将同名航空专家或别家基金投资信移植到本人。",
         "checkedUrls": [
-          "https://www.sec.gov/Archives/edgar/data/1537530/000118143112041381/xslF345X02/rrd351248.xml"
+          "https://investors.paloaltonetworks.com/static-files/a0989215-0ba7-439f-988f-192b4204fa03",
+          "https://www.sec.gov/Archives/edgar/data/1509636/000150963612000001/xslFormDX01/primary_doc.xml"
         ],
-        "nextEvidence": "需SCGE署名投资信或完整公开访谈两份，13F不能推导动机。"
-      }
+        "nextEvidence": "两份SCGE/Lyle具名方法正文及当前职务确认；持仓和受益所有权只证明关联。"
+      },
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "精确姓名+SCGE letter/interview搜索仅定位持仓二手聚合；重新打开SEC Form 3，仅支持历史身份，不含方法。",
+          "checkedUrls": [
+            "https://www.sec.gov/Archives/edgar/data/1537530/000118143112041381/xslF345X02/rrd351248.xml"
+          ],
+          "nextEvidence": "需SCGE署名投资信或完整公开访谈两份，13F不能推导动机。"
+        }
+      ]
     },
     {
       "id": "B38",
       "name": "Dan Niles",
       "side": "buy",
       "roleAtSource": "Founder and Portfolio Manager",
-      "currentRole": null,
+      "currentRole": "Founder and Portfolio Manager, Niles Investment Management（2026-10-09官网核验）",
       "firm": "Niles Investment Management",
       "focus": "Technology long/short and risk",
       "identitySources": [
@@ -2452,23 +2863,53 @@
           "whatVerified": "Founder and Portfolio Manager"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "两次不同情景的公开发言；政策判断是当时观点，不是已证因果。",
+        "未完成完整方法及结果审计"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "dan-niles",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "检索2025 outlook与官方站点；已取官网Dan Niles页，RiskReversal节目页仅摘要/音视频入口，未获得两份已核对逐字稿。",
+        "date": "2026-10-09",
+        "outcome": "已补齐两项独立实质材料，形成有限方法档案及合成练习：盈利改善如何与估值和仓位上限联动？。两次不同情景的公开发言；政策判断是当时观点，不是已证因果。",
         "checkedUrls": [
-          "https://www.nilesinvestmentmanagement.com/danniles",
-          "https://riskreversal.substack.com/p/cash-is-king-dan-niles-2025-investing-797"
+          "https://transcripts.cnn.com/show/fmjc/date/2024-10-23/segment/01",
+          "https://transcripts.cnn.com/show/ebo/date/2025-04-07/segment/01",
+          "https://www.nilesinvestmentmanagement.com/"
         ],
-        "nextEvidence": "读取两个完整署名策略文本或访谈逐字稿；不可把节目摘要升级。"
-      }
+        "nextEvidence": "继续检验反例、决策执行与长期结果；两篇材料不等于完整方法认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G3-N1",
+          "title": "CNN First Move: Dan Niles on Tesla earnings and risk",
+          "url": "https://transcripts.cnn.com/show/fmjc/date/2024-10-23/segment/01",
+          "date": "2024-10-23",
+          "access": "2026-10-09：CNN官方逐字稿本人段落已读；rush transcript，未核音频。",
+          "date_basis": "节目播出日期"
+        },
+        {
+          "id": "O9G3-N2",
+          "title": "CNN Outfront: Dan Niles on trade policy",
+          "url": "https://transcripts.cnn.com/show/ebo/date/2025-04-07/segment/01",
+          "date": "2025-04-07",
+          "access": "2026-10-09：CNN官方逐字稿本人段落已读；不把Richard Quest或Dan Ives段归给Niles。",
+          "date_basis": "节目播出日期"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "检索2025 outlook与官方站点；已取官网Dan Niles页，RiskReversal节目页仅摘要/音视频入口，未获得两份已核对逐字稿。",
+          "checkedUrls": [
+            "https://www.nilesinvestmentmanagement.com/danniles",
+            "https://riskreversal.substack.com/p/cash-is-king-dan-niles-2025-investing-797"
+          ],
+          "nextEvidence": "读取两个完整署名策略文本或访谈逐字稿；不可把节目摘要升级。"
+        }
+      ]
     },
     {
       "id": "B39",
@@ -2481,18 +2922,29 @@
       "identitySources": [],
       "status": "candidate",
       "gaps": [
-        "2026-10-08精确姓名搜索仍无可归属一手身份材料；不映射为同名Paul Lee",
-        "缺机构、地区或原始提名来源以完成消歧"
+        "精确姓名缺可复核机构身份；不能同名替换"
       ],
       "priority": false,
       "profileId": null,
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "精确姓名Paul W. T. Lee检索未找到可消歧的一手身份材料；不等同Redington治理Paul Lee或Paragon财富顾问。",
-        "checkedUrls": [],
-        "nextEvidence": "需机构、地区或原提名链接；保留candidate。"
-      }
+        "date": "2026-10-09",
+        "outcome": "再次以精确全名及投资语境检索，未取得Paul W. T. Lee可消歧的机构身份；返回Redington治理人员、Paragon财富经理等不同候选，未建立等同关系，维持未确认。",
+        "checkedUrls": [
+          "https://www.ecgi.global/network/our-members/paul-lee",
+          "https://www.connectgroup.global/news/paul-lee-joins-the-speaker-line-up-at-the-world-family-office-forum-asia"
+        ],
+        "nextEvidence": "需要原提名来源或机构、地区线索；在消歧前不能归属论文／观点。"
+      },
+      "methodSources": [],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "精确姓名Paul W. T. Lee检索未找到可消歧的一手身份材料；不等同Redington治理Paul Lee或Paragon财富顾问。",
+          "checkedUrls": [],
+          "nextEvidence": "需机构、地区或原提名链接；保留candidate。"
+        }
+      ]
     },
     {
       "id": "B40",
@@ -2512,22 +2964,51 @@
           "whatVerified": "Founder/President and Portfolio Manager"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "公开持仓倡议与预录问题；管理层服务收入回答不归给Jackson；没有审核其百倍收益说法。",
+        "未完成完整方法及结果审计"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "eric-jackson",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "已取EMJ官方履历全文，只支持Founder/President及PM；搜索命中Reuters访谈与媒体价格目标，但未获得两份足够完整原始方法文本。",
+        "date": "2026-10-09",
+        "outcome": "已补齐两项独立实质材料，形成有限方法档案及合成练习：困境平台的价值能否熬过现金期限？。公开持仓倡议与预录问题；管理层服务收入回答不归给Jackson；没有审核其百倍收益说法。",
         "checkedUrls": [
-          "https://emjcapital.ltd/about-eric-jackson/"
+          "https://www.thenew.money/article/eric-jackson-overlooked-opportunities-and-hunting-the-next-100x",
+          "https://au.investing.com/news/transcripts/earnings-call-transcript-opendoor-q3-2025-reveals-challenges-93CH-4110021"
         ],
-        "nextEvidence": "补本人署名公开研究或完整可读采访；不使用媒体股价目标拼个人方法。"
-      }
+        "nextEvidence": "继续检验反例、决策执行与长期结果；两篇材料不等于完整方法认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G3-J1",
+          "title": "The Eric Jackson Interview: Overlooked Opportunities And Hunting The Next 100X",
+          "url": "https://www.thenew.money/article/eric-jackson-overlooked-opportunities-and-hunting-the-next-100x",
+          "date": "2026-01-06",
+          "access": "2026-10-09：原采访发布方书面Q&A正文已读；本人持仓倡议，未审计收益和目标。",
+          "date_basis": "页面显示发表日期"
+        },
+        {
+          "id": "O9G3-J2",
+          "title": "Opendoor Q3 2025 earnings call: Eric Jackson video question",
+          "url": "https://au.investing.com/news/transcripts/earnings-call-transcript-opendoor-q3-2025-reveals-challenges-93CH-4110021",
+          "date": "2025-11-07",
+          "access": "2026-10-09：公开完整逐字稿镜像，已读Jackson提问和紧随回复；存在自动转写错误，未核音频；只归属提问，不归属管理层承诺。",
+          "date_basis": "澳洲镜像显示发表日07/11/2025；不是独立核实的通话日期"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "已取EMJ官方履历全文，只支持Founder/President及PM；搜索命中Reuters访谈与媒体价格目标，但未获得两份足够完整原始方法文本。",
+          "checkedUrls": [
+            "https://emjcapital.ltd/about-eric-jackson/"
+          ],
+          "nextEvidence": "补本人署名公开研究或完整可读采访；不使用媒体股价目标拼个人方法。"
+        }
+      ]
     },
     {
       "id": "B41",
@@ -2750,7 +3231,7 @@
       "name": "J. Paul Meeks",
       "side": "buy",
       "roleAtSource": "Co-Chief Investment Officer (historical)",
-      "currentRole": "Head of Technology Research, Freedom Capital Markets；2026-10-08官方全文再次核验",
+      "currentRole": "Head of Technology Research, Freedom Capital Markets（2026-10-09官方团队页核验）",
       "firm": "Harvest Portfolio Management (historical)",
       "focus": "Technology",
       "identitySources": [
@@ -2763,27 +3244,57 @@
           "whatVerified": "Paul Meeks列Head of Technology Research；机构向美国机构投资者分发股票研究"
         }
       ],
-      "status": "candidate",
+      "status": "research-ready",
       "gaps": [
-        "现任卖方身份已确认；历史买方方法材料仍不足",
-        "不为凑100位买方而无证据改写角色"
+        "两次采访属历史买方时期；现任卖方另记。搜索返回带时间戳正文，直连429；Lisa Su插播和主持人提问不归Meeks。",
+        "未完成完整方法及结果审计"
       ],
-      "eligibility": "Historical buy-side only; current sell-side verified",
+      "eligibility": "Historical buy-side methodology; current sell-side verified",
       "priority": false,
-      "profileId": null,
-      "roleNote": "原买方提名按历史保留；现任卖方，不能计作现任买方研究员",
+      "profileId": "paul-meeks",
+      "roleNote": "候选归类按2024–2025历史买方材料保留；不计作现任买方分析师",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "重读Freedom官方研究团队页，现任Head of Technology Research为卖方；原买方提名只能保留为历史候选。 进一步按Harvest官网检索找到两项历史采访路径；直接请求两个页面均404，未取得可复核正文，不能据摘要升级。 进一步按Harvest官网检索找到两项历史采访路径；直接请求两个页面均404，未取得可复核正文，不能据摘要升级。",
+        "date": "2026-10-09",
+        "outcome": "已补齐两项独立实质材料，形成有限方法档案及合成练习：AI资本开支如何转成供应商可兑现收入？。两次采访属历史买方时期；现任卖方另记。搜索返回带时间戳正文，直连429；Lisa Su插播和主持人提问不归Meeks。",
         "checkedUrls": [
-          "https://www.freedomcapmkts.com/equityresearch",
-          "https://www.harvestportfoliomanagement.com/news/tech-investor-paul-meeks-predicts-ongoing-ai-infrastructure-development-for-the-next-few-years",
-          "https://www.harvestportfoliomanagement.com/news/navigating-the-tech-landscape-insights-on-ai-and-emerging-tech-trends-paul-meeks-on-benzinga",
-          "https://www.harvestportfoliomanagement.com/news/tech-investor-paul-meeks-predicts-ongoing-ai-infrastructure-development-for-the-next-few-years",
-          "https://www.harvestportfoliomanagement.com/news/navigating-the-tech-landscape-insights-on-ai-and-emerging-tech-trends-paul-meeks-on-benzinga"
+          "https://finance.yahoo.com/video/ai-capex-pivotal-figure-tech-162421261.html",
+          "https://finance.yahoo.com/video/why-tech-investor-buying-strike-100022413.html",
+          "https://www.freedomcapmkts.com/equityresearch"
         ],
-        "nextEvidence": "恢复两项Harvest时期实质采访或其他可读原文；现任Freedom卖方与历史买方分开。"
-      }
+        "nextEvidence": "继续检验反例、决策执行与长期结果；两篇材料不等于完整方法认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G3-M1",
+          "title": "AI capex will be pivotal figure in tech, chip earnings",
+          "url": "https://finance.yahoo.com/video/ai-capex-pivotal-figure-tech-162421261.html",
+          "date": "2024-08-01",
+          "access": "2026-10-09：搜索服务返回Yahoo原始页面的带时间戳采访正文，已读00:00–09:14；直连429，未核音频，非whole-page直读。",
+          "date_basis": "页面显示发表日期"
+        },
+        {
+          "id": "O9G3-M2",
+          "title": "Why this tech investor is on a buying strike",
+          "url": "https://finance.yahoo.com/video/why-tech-investor-buying-strike-100022413.html",
+          "date": "2025-04-01",
+          "access": "2026-10-09：搜索服务返回Yahoo原始页面带时间戳采访正文，已读00:00–08:20；直连429，未核音频。",
+          "date_basis": "页面显示发表日期"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "重读Freedom官方研究团队页，现任Head of Technology Research为卖方；原买方提名只能保留为历史候选。 进一步按Harvest官网检索找到两项历史采访路径；直接请求两个页面均404，未取得可复核正文，不能据摘要升级。 进一步按Harvest官网检索找到两项历史采访路径；直接请求两个页面均404，未取得可复核正文，不能据摘要升级。",
+          "checkedUrls": [
+            "https://www.freedomcapmkts.com/equityresearch",
+            "https://www.harvestportfoliomanagement.com/news/tech-investor-paul-meeks-predicts-ongoing-ai-infrastructure-development-for-the-next-few-years",
+            "https://www.harvestportfoliomanagement.com/news/navigating-the-tech-landscape-insights-on-ai-and-emerging-tech-trends-paul-meeks-on-benzinga",
+            "https://www.harvestportfoliomanagement.com/news/tech-investor-paul-meeks-predicts-ongoing-ai-infrastructure-development-for-the-next-few-years",
+            "https://www.harvestportfoliomanagement.com/news/navigating-the-tech-landscape-insights-on-ai-and-emerging-tech-trends-paul-meeks-on-benzinga"
+          ],
+          "nextEvidence": "恢复两项Harvest时期实质采访或其他可读原文；现任Freedom卖方与历史买方分开。"
+        }
+      ]
     },
     {
       "id": "B46",
@@ -2980,23 +3491,51 @@
           "whatVerified": "Appointed boutique equity investment team leader"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed",
-        "Historical methodology candidate; do not present as active current manager"
+        "原发布方两篇采访报道；Ely个人明确引语和记者转述分开；不复制个股清单或未核收益，非现任确认。",
+        "未完成完整方法及结果审计"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "alex-ely",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "Alex Ely+Macquarie+disruption检索含大量同名建筑师；打开2015 Macquarie收购公告仅支持历史管理角色，不能作为两份研究。",
+        "date": "2026-10-09",
+        "outcome": "已补齐两项独立实质材料，形成有限方法档案及合成练习：长期替代趋势是否足够补偿估值风险？。原发布方两篇采访报道；Ely个人明确引语和记者转述分开；不复制个股清单或未核收益，非现任确认。",
         "checkedUrls": [
-          "https://www.macquarie.com/au/en/about/news/2015/delaware-investments-to-acquire-bennett-lawrence-mgmt-llc.html"
+          "https://www.businessinsider.com/stocks-to-buy-outperform-innovation-disruption-macquarie-growth-small-caps-2022-4",
+          "https://www.businessinsider.com/stocks-to-buy-massive-growth-couple-years-growth-investment-chief-2022-6"
         ],
-        "nextEvidence": "需Macquarie美国成长股票团队署名研究/原访谈两份；排除同名建筑师。"
-      }
+        "nextEvidence": "继续检验反例、决策执行与长期结果；两篇材料不等于完整方法认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G3-E1",
+          "title": "Macquarie growth chief: disruptive themes and 13 holdings",
+          "url": "https://www.businessinsider.com/stocks-to-buy-outperform-innovation-disruption-macquarie-growth-small-caps-2022-4",
+          "date": "2022-04-28",
+          "access": "2026-10-09：原采访发布方公开返回正文已读；编辑报道含本人具名引语，非本人独著或完整录音转录。",
+          "date_basis": "页面显示发表日期"
+        },
+        {
+          "id": "O9G3-E2",
+          "title": "Growth-investment chief explains his three-part investing strategy",
+          "url": "https://www.businessinsider.com/stocks-to-buy-massive-growth-couple-years-growth-investment-chief-2022-6",
+          "date": "2022-06-27",
+          "access": "2026-10-09：原采访发布方公开返回正文已读；只提炼流程段，未验证文中表现和股票预测。",
+          "date_basis": "页面显示发表日期"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "Alex Ely+Macquarie+disruption检索含大量同名建筑师；打开2015 Macquarie收购公告仅支持历史管理角色，不能作为两份研究。",
+          "checkedUrls": [
+            "https://www.macquarie.com/au/en/about/news/2015/delaware-investments-to-acquire-bennett-lawrence-mgmt-llc.html"
+          ],
+          "nextEvidence": "需Macquarie美国成长股票团队署名研究/原访谈两份；排除同名建筑师。"
+        }
+      ]
     },
     {
       "id": "B50",
@@ -3219,27 +3758,56 @@
           "whatVerified": "Managing Partner and CIO Innovation"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "2021仅JA发言归Anderson，John Kay的回答保留其本人归属；日期只知月份；2022自我反思不等于完整收益审计。",
+        "未完成完整方法及结果审计"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "james-anderson",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取Lingotto官方媒体目录及Money Maze 2025-02-06节目页；所谓transcript区是富文本占位模板，只有节目概要，不能声称逐字稿已读。 补读Behind the Balance Sheet完整2025访谈中Anderson本人关于AI长期机会、短期资本回报和循环融资的段落；第二份2019官方Baillie Gifford PDF请求403，仅一份实质正文达标。 补读Behind the Balance Sheet完整2025访谈中Anderson本人关于AI长期机会、短期资本回报和循环融资的段落；第二份2019官方Baillie Gifford PDF请求403，仅一份实质正文达标。",
+        "date": "2026-10-09",
+        "outcome": "已补齐两项独立实质材料，形成有限方法档案及合成练习：少数大赢家与无法量化的不确定性如何共存？。2021仅JA发言归Anderson，John Kay的回答保留其本人归属；日期只知月份；2022自我反思不等于完整收益审计。",
         "checkedUrls": [
-          "https://www.lingotto.com/innovation/news-and-press",
-          "https://www.moneymazepodcast.com/podcast/james-anderson",
-          "https://behindthebalancesheet.com/podcasts-singles/54-the-innovation-fans/",
-          "https://media.bailliegifford.com/mws/rfymqkoc/20240422131021_ltggxv-fifteen-years-of-ltgg-2019-spread-bgmj-ex-us.pdf",
-          "https://behindthebalancesheet.com/podcasts-singles/54-the-innovation-fans/",
-          "https://media.bailliegifford.com/mws/rfymqkoc/20240422131021_ltggxv-fifteen-years-of-ltgg-2019-spread-bgmj-ex-us.pdf"
+          "https://www.bailliegifford.com/en/ireland/professional-investor/insights/ic-article/2021-q3-rethinking-risk-author-interview-ins-ar-0856/?printversion=true",
+          "https://www.bailliegifford.com/en/uk/individual-investors/insights/ic-article/2022-q1-trust-44-influencers-collecting-thoughts-in-an-evolving-world-10008352/"
         ],
-        "nextEvidence": "再取得一份Anderson可归属原始研究；Morgan段不归给Anderson。"
-      }
+        "nextEvidence": "继续检验反例、决策执行与长期结果；两篇材料不等于完整方法认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G3-A1",
+          "title": "Rethinking Risk: Uncertainty and Investment Returns",
+          "url": "https://www.bailliegifford.com/en/ireland/professional-investor/insights/ic-article/2021-q3-rethinking-risk-author-interview-ins-ar-0856/?printversion=true",
+          "date": "2021-08",
+          "access": "2026-10-09：Baillie Gifford官方双人对话已读；只归属JA明确发言，John Kay回答不转归Anderson。",
+          "date_basis": "原文August2021制作批准，日不详"
+        },
+        {
+          "id": "O9G3-A2",
+          "title": "Collecting thoughts",
+          "url": "https://www.bailliegifford.com/en/uk/individual-investors/insights/ic-article/2022-q1-trust-44-influencers-collecting-thoughts-in-an-evolving-world-10008352/",
+          "date": "2022-04",
+          "access": "2026-10-09：Baillie Gifford官方署名正文已读；历史Scottish Mortgage时期，不表述为当前Lingotto持仓。",
+          "date_basis": "原文April2022／Spring2022，日不详"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取Lingotto官方媒体目录及Money Maze 2025-02-06节目页；所谓transcript区是富文本占位模板，只有节目概要，不能声称逐字稿已读。 补读Behind the Balance Sheet完整2025访谈中Anderson本人关于AI长期机会、短期资本回报和循环融资的段落；第二份2019官方Baillie Gifford PDF请求403，仅一份实质正文达标。 补读Behind the Balance Sheet完整2025访谈中Anderson本人关于AI长期机会、短期资本回报和循环融资的段落；第二份2019官方Baillie Gifford PDF请求403，仅一份实质正文达标。",
+          "checkedUrls": [
+            "https://www.lingotto.com/innovation/news-and-press",
+            "https://www.moneymazepodcast.com/podcast/james-anderson",
+            "https://behindthebalancesheet.com/podcasts-singles/54-the-innovation-fans/",
+            "https://media.bailliegifford.com/mws/rfymqkoc/20240422131021_ltggxv-fifteen-years-of-ltgg-2019-spread-bgmj-ex-us.pdf",
+            "https://behindthebalancesheet.com/podcasts-singles/54-the-innovation-fans/",
+            "https://media.bailliegifford.com/mws/rfymqkoc/20240422131021_ltggxv-fifteen-years-of-ltgg-2019-spread-bgmj-ex-us.pdf"
+          ],
+          "nextEvidence": "再取得一份Anderson可归属原始研究；Morgan段不归给Anderson。"
+        }
+      ]
     },
     {
       "id": "B55",
@@ -3367,23 +3935,50 @@
           "whatVerified": "约2026-02-20退出LTGG基金及团队"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g4-b57",
       "roleNote": "历史LTGG样本候选，不列为当前LTGG经理。",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "检索Michael Pye定位SEC 2026-01-27补充文件，正文明确约2026-02-20起退出LTGG基金与团队；官网研究目录请求超时。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；只使用可归属本人回答。",
         "checkedUrls": [
-          "https://www.sec.gov/Archives/edgar/data/1120543/000110465926006672/tm264045d1_497.htm",
-          "https://www.bailliegifford.com/en/uk/institutional-investor/insights/"
+          "https://media.bailliegifford.com/mws/xefj51ce/ltgg-q1-investment-update-transcript.pdf",
+          "https://media.bailliegifford.com/mws/elujt4z5/baillie-gifford-film-ltgg-q4-update-transcript-jan-2024.pdf"
         ],
-        "nextEvidence": "补历史具名研究正文两份，不能继续表述现任LTGG经理。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B57-A",
+          "title": "LTGG Q1 investment update",
+          "date": "2023-04",
+          "url": "https://media.bailliegifford.com/mws/xefj51ce/ltgg-q1-investment-update-transcript.pdf",
+          "access": "2026-10-09读取；官网PDF逐字稿文本已读；文件仅列月份，非具体日；实际阅读范围：PDF第1–2页，MP回答财务韧性和适应能力"
+        },
+        {
+          "id": "O9G4-B57-B",
+          "title": "Long Term Global Growth Q4 investment update",
+          "date": "2024-01",
+          "url": "https://media.bailliegifford.com/mws/elujt4z5/baillie-gifford-film-ltgg-q4-update-transcript-jan-2024.pdf",
+          "access": "2026-10-09读取；官网PDF截图直接阅读第1–3页；文本提取失败；文件仅列月份；实际阅读范围：PDF第1–3页图像，MP回答持仓增长、自由现金流及规模效应"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "检索Michael Pye定位SEC 2026-01-27补充文件，正文明确约2026-02-20起退出LTGG基金与团队；官网研究目录请求超时。",
+          "checkedUrls": [
+            "https://www.sec.gov/Archives/edgar/data/1120543/000110465926006672/tm264045d1_497.htm",
+            "https://www.bailliegifford.com/en/uk/institutional-investor/insights/"
+          ],
+          "nextEvidence": "补历史具名研究正文两份，不能继续表述现任LTGG经理。"
+        }
+      ]
     },
     {
       "id": "B58",
@@ -3573,23 +4168,50 @@
           "whatVerified": "PDF第3–4页确认冯明远为信澳新能源产业基金经理、首席投资官，任职起始2016-10-19；报告期末2026-03-31。履历与二季度报告一致。"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Identity verified from two directly opened official reports; titles are bounded by reporting dates, not asserted current as of access date.",
-        "Two substantive dated sources with detailed reasoning extraction still required for research-ready status; identity/brief fund strategy passages alone do not establish reusable personal method."
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g4-b61",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "已下载并逐段读2026Q1新能源产业与2026Q2研究优选报告4.4；内容仅为行业配置和新兴制造主题，缺估值、竞争机制与反证条件，不足形成个人方法。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；只使用可归属本人回答。",
         "checkedUrls": [
-          "https://www.fscinda.com/upload/pdf/1784595707272-xinaoyanjiuyouxuanhunhexingzhengquantouzijijin2026niandi2jidubaogao.pdf",
-          "https://www.fscinda.com/upload/pdf/1776733370924-xinaoxinnengyuanchanyegupiaoxingzhengquantouzijijin2026niandi1jidubaogao.pdf"
+          "https://www.jiemian.com/article/3905765.html",
+          "https://www.chnfund.com/article/AR2020101510331068621443"
         ],
-        "nextEvidence": "需冯明远完整访谈或更详细投资运作论证，不能因读了两份短季报自动升级。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B61-A",
+          "title": "专访冯明远：每月看5家公司",
+          "date": "2020-02-14",
+          "url": "https://www.jiemian.com/article/3905765.html",
+          "access": "2026-10-09读取；原刊全文问答已读，交叉复核页面日期；实际阅读范围：投资与研究两节，规模、卖出条件、亏损原因、产业演进"
+        },
+        {
+          "id": "O9G4-B61-B",
+          "title": "科技为矛周期为盾：选出跑得又快又远的公司",
+          "date": "2020-10-15",
+          "url": "https://www.chnfund.com/article/AR2020101510331068621443",
+          "access": "2026-10-09读取；公开原始材料正文已读；实际阅读范围：寻找好公司一节；五因素、产业链研究和分散"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "已下载并逐段读2026Q1新能源产业与2026Q2研究优选报告4.4；内容仅为行业配置和新兴制造主题，缺估值、竞争机制与反证条件，不足形成个人方法。",
+          "checkedUrls": [
+            "https://www.fscinda.com/upload/pdf/1784595707272-xinaoyanjiuyouxuanhunhexingzhengquantouzijijin2026niandi2jidubaogao.pdf",
+            "https://www.fscinda.com/upload/pdf/1776733370924-xinaoxinnengyuanchanyegupiaoxingzhengquantouzijijin2026niandi1jidubaogao.pdf"
+          ],
+          "nextEvidence": "需冯明远完整访谈或更详细投资运作论证，不能因读了两份短季报自动升级。"
+        }
+      ]
     },
     {
       "id": "B62",
@@ -3609,22 +4231,49 @@
           "whatVerified": "基金经理"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g4-b62",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "检索广发2025/2026季度报告并打开009314官方产品页；可确认刘格菘履历，但报告正文链接未提取，媒体持仓综述未用作方法证据。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；机构报告归因保留。",
         "checkedUrls": [
-          "https://www.gffunds.com.cn/funds/?fundcode=009314"
+          "https://www.gffunds.com.cn/jjgg/dqgg/202510/P020251028324901714324.pdf",
+          "https://www.9fzt.com/detail/fund_005911_2_10708415.html"
         ],
-        "nextEvidence": "需科技先锋/双擎升级两期4.4策略正文及可归属分析。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B62-A",
+          "title": "广发双擎升级混合2025年第3季度报告",
+          "date": "2025-10-28",
+          "url": "https://www.gffunds.com.cn/jjgg/dqgg/202510/P020251028324901714324.pdf",
+          "access": "2026-10-09读取；官方PDF文字及第7–8页截图已读；实际阅读范围：PDF第6页经理表；第7–8页§4.4"
+        },
+        {
+          "id": "O9G4-B62-B",
+          "title": "广发双擎升级混合2025年年度报告",
+          "date": "2026-03-30",
+          "url": "https://www.9fzt.com/detail/fund_005911_2_10708415.html",
+          "access": "2026-10-09读取；九方智投公开原报告全文镜像；相关段落直接阅读；官网PDF检索命中但打开失败，未做字节校验；实际阅读范围：原报告第11–12页经理表、第14页§4.4和§4.5"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "检索广发2025/2026季度报告并打开009314官方产品页；可确认刘格菘履历，但报告正文链接未提取，媒体持仓综述未用作方法证据。",
+          "checkedUrls": [
+            "https://www.gffunds.com.cn/funds/?fundcode=009314"
+          ],
+          "nextEvidence": "需科技先锋/双擎升级两期4.4策略正文及可归属分析。"
+        }
+      ]
     },
     {
       "id": "B63",
@@ -3721,29 +4370,56 @@
           "whatVerified": "PDF第12–13页陈颖履历与官方产品页一致；首席投资官、成长投资部总经理、基金经理兼投资经理，投资决策委员会名单亦列总经理助理。金鹰科技创新基金经理自2021-05-18起。说明书内容截止2026-08-31，不能当作报告后任职变更证明。"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Identity disambiguated as 金鹰基金陈颖 using matching technical-career biography; do not conflate with other same-name fund managers.",
-        "Two substantive dated primary sources with detailed reasoning extraction still required for research-ready status; biographies and appointment disclosures are insufficient."
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g4-b64",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "打开金鹰科技创新001167官方产品页；检索命中2026Q1/Q2报告目录，但页面提取未给报告PDF直链，既有招募书仅身份不能替代研究。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；机构报告归因保留。",
         "checkedUrls": [
-          "https://www.gefund.com.cn/main/jjcp/product/001167/detail.html"
+          "https://pdf.dfcfw.com/pdf/H2_AN202503311649465138_1.pdf",
+          "https://pdf.dfcfw.com/pdf/H2_AN202603311820899764_1.pdf"
         ],
-        "nextEvidence": "取得两期定期报告的投资策略正文或陈颖完整访谈，保持金鹰技术背景消歧。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B64-A",
+          "title": "金鹰科技创新股票2024年年度报告",
+          "date": "2025-03-31",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202503311649465138_1.pdf",
+          "access": "2026-10-09读取；东方财富公开原报告PDF镜像文本已读；截图超时，未与官网副本逐字节校验；实际阅读范围：印刷第13页经理表、第15–16页§4.4和§4.5"
+        },
+        {
+          "id": "O9G4-B64-B",
+          "title": "金鹰科技创新股票2025年年度报告",
+          "date": "2026-03-31",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202603311820899764_1.pdf",
+          "access": "2026-10-09读取；东方财富公开原报告PDF镜像文本已读；截图超时，未与官网副本逐字节校验；实际阅读范围：印刷第13页经理表、第16–17页§4.4和§4.5"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "打开金鹰科技创新001167官方产品页；检索命中2026Q1/Q2报告目录，但页面提取未给报告PDF直链，既有招募书仅身份不能替代研究。",
+          "checkedUrls": [
+            "https://www.gefund.com.cn/main/jjcp/product/001167/detail.html"
+          ],
+          "nextEvidence": "取得两期定期报告的投资策略正文或陈颖完整访谈，保持金鹰技术背景消歧。"
+        }
+      ]
     },
     {
       "id": "B65",
       "name": "周克平",
       "side": "buy",
       "roleAtSource": "基金经理（2021年材料）",
-      "currentRole": null,
+      "currentRole": "2025-03-06已卸任华夏创新未来基金经理；2026-10-09后续职务未核验",
       "firm": "华夏基金",
       "focus": "科技成长",
       "identitySources": [
@@ -3754,25 +4430,60 @@
           "accessed": "2026-10-07",
           "accessLevel": "official indexed excerpt only",
           "whatVerified": "基金经理（2021年材料）"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2025-04-22/1223199033.PDF",
+          "title": "华夏创新未来2025年第1季度报告",
+          "date": "2025-04-22",
+          "accessed": "2026-10-09",
+          "accessLevel": "官方披露PDF §4.1经理表直接阅读",
+          "whatVerified": "印刷第5页列周克平于2025-03-06离任；不推断后续职位"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed",
-        "Historical methodology candidate; do not present as active current manager"
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": "",
+      "profileId": "o9g4-b65",
+      "roleNote": "历史华夏方法样本，不表述为当前在管经理。",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "取得并阅读2021年华夏官网完整问答，属于一份实质方法材料；没有凑足第二份独立材料，维持原状态。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；只使用可归属本人回答。",
         "checkedUrls": [
-          "https://edu.chinaamc.com/c/2021-12-28/513383.shtml"
+          "https://edu.chinaamc.com/c/2021-12-28/513383.shtml",
+          "https://www.chnfund.com/article/AR2022061116242760113822",
+          "https://static.cninfo.com.cn/finalpage/2025-04-22/1223199033.PDF"
         ],
-        "nextEvidence": "第二份本人访谈/署名文或明确经理归属的基金报告投资分析正文；另查2025年后任职变化。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B65-A",
+          "title": "为什么科技投资进入了基本面投资时代",
+          "date": "2021-12-28",
+          "url": "https://edu.chinaamc.com/c/2021-12-28/513383.shtml",
+          "access": "2026-10-09读取；官方刊载访谈正文已读；日期取URL刊载路径，实际访谈发生日未核；实际阅读范围：投资框架问答，四类资产、现金流、DCF、组合管理"
+        },
+        {
+          "id": "O9G4-B65-B",
+          "title": "九大头部基金经理最新发声",
+          "date": "2022-06-11",
+          "url": "https://www.chnfund.com/article/AR2022061116242760113822",
+          "access": "2026-10-09读取；公开原始材料正文已读；实际阅读范围：周克平回答科创板结构因素、制度流动性、盈利估值三问"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "取得并阅读2021年华夏官网完整问答，属于一份实质方法材料；没有凑足第二份独立材料，维持原状态。",
+          "checkedUrls": [
+            "https://edu.chinaamc.com/c/2021-12-28/513383.shtml"
+          ],
+          "nextEvidence": "第二份本人访谈/署名文或明确经理归属的基金报告投资分析正文；另查2025年后任职变化。"
+        }
+      ]
     },
     {
       "id": "B66",
@@ -3846,22 +4557,49 @@
           "whatVerified": "副总经理、权益投资总监、基金经理（2026招募书）"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "有限公开方法样本，不是完整个人体系或投资业绩认证",
+        "现职与资料期角色分别核验"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g4-b67",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "已打开2026年官方招募说明书，但本轮人名定位未命中，未将产品策略与个人方法混同；未取得两份经理投资分析。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立实质材料，补齐有限方法档案及三阶段合成练习；机构报告归因保留。",
         "checkedUrls": [
-          "https://big5.sse.com.cn/site/cht/www.sse.com.cn/disclosure/fund/announcement/c/new/2026-07-03/501026_20260703_Y3DK.pdf"
+          "https://static.cninfo.com.cn/finalpage/2025-03-29/1222955470.PDF",
+          "https://www.hongdianfund.com/FundAnnouncement/Detail/501046/0000000000001pk5ia"
         ],
-        "nextEvidence": "财通所管基金两期§4.4投资运作评论，附经理任职表及报告期。"
-      }
+        "nextEvidence": "继续补充反面时期及真实执行证据，不将方法样本等同完整方法或业绩认证。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G4-B67-A",
+          "title": "财通多策略福鑫2024年年度报告",
+          "date": "2025-03-29",
+          "url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222955470.PDF",
+          "access": "2026-10-09读取；巨潮公开披露PDF文本直接阅读；截图超时；实际阅读范围：第10页经理表、第12–13页§4.4和§4.5"
+        },
+        {
+          "id": "O9G4-B67-B",
+          "title": "财通多策略福鑫2025年年度报告",
+          "date": "2026-03-31",
+          "url": "https://www.hongdianfund.com/FundAnnouncement/Detail/501046/0000000000001pk5ia",
+          "access": "2026-10-09读取；虹点基金销售平台公开原报告全文；网页HTML直接取得并读取相关章节；交易所原件打开失败，未做字节校验；实际阅读范围：§4.1.2经理表，§4.4.1与§4.5（原报告第10、12–13页）"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "已打开2026年官方招募说明书，但本轮人名定位未命中，未将产品策略与个人方法混同；未取得两份经理投资分析。",
+          "checkedUrls": [
+            "https://big5.sse.com.cn/site/cht/www.sse.com.cn/disclosure/fund/announcement/c/new/2026-07-03/501026_20260703_Y3DK.pdf"
+          ],
+          "nextEvidence": "财通所管基金两期§4.4投资运作评论，附经理任职表及报告期。"
+        }
+      ]
     },
     {
       "id": "B68",
@@ -3881,23 +4619,49 @@
           "whatVerified": "副总经理（2023任命公告）"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed",
-        "Historical methodology candidate; do not present as active current manager"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b68",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取官方高管任命公告入口，内容是任命而非投资论证；未取得两份实质方法材料。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。基金报告作者为管理人；经理表只证明报告期任职，不证明本人独著或独立完成所有决策。",
         "checkedUrls": [
-          "https://www.assetmanagement.hsbc.com.hk/api/v1/download/document/cne100002425/hk/zh/announcement%20of%20change%20of%20senior%20management%202023-03-01"
+          "https://static.cninfo.com.cn/finalpage/2023-03-17/1216142063.PDF",
+          "https://pdf.dfcfw.com/pdf/H2_AN202507211712818307_1.pdf"
         ],
-        "nextEvidence": "汇丰晋信所管产品两期报告投资运作分析及经理表，或本人完整采访。"
-      }
+        "nextEvidence": "补充其他时期实质材料和真实决策复盘；当前职务需独立现职来源，不由历史报告推断。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B68A",
+          "title": "汇丰晋信低碳先锋2022年年度报告",
+          "date": "2023-03-17",
+          "url": "https://static.cninfo.com.cn/finalpage/2023-03-17/1216142063.PDF",
+          "access": "2026-10-09读取；巨潮公开原始报告PDF正文"
+        },
+        {
+          "id": "O9G5-B68B",
+          "title": "汇丰晋信低碳先锋2025年第2季度报告",
+          "date": "2025-07-21",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202507211712818307_1.pdf",
+          "access": "2026-10-09读取；东方财富托管的管理人原始PDF；非基金官网，未逐字与官网版本比对"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取官方高管任命公告入口，内容是任命而非投资论证；未取得两份实质方法材料。",
+          "checkedUrls": [
+            "https://www.assetmanagement.hsbc.com.hk/api/v1/download/document/cne100002425/hk/zh/announcement%20of%20change%20of%20senior%20management%202023-03-01"
+          ],
+          "nextEvidence": "汇丰晋信所管产品两期报告投资运作分析及经理表，或本人完整采访。"
+        }
+      ]
     },
     {
       "id": "B69",
@@ -3917,22 +4681,49 @@
           "whatVerified": "基金经理"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "Two substantive dated primary sources still required unless deep research attached",
-        "Current title not independently confirmed; roleAtSource is dated or official-page as-observed"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b69",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "取得长城产品官方页面正文，含产品策略和经理入口；产品授权范围不等于本人实际投资推理。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。基金报告作者为管理人；经理表只证明报告期任职，不证明本人独著或独立完成所有决策。",
         "checkedUrls": [
-          "https://www.ccfund.com.cn/main/jjcp/cache/004666.shtml"
+          "https://pdf.dfcfw.com/pdf/H2_AN202503291648950276_1.pdf",
+          "https://pdf.dfcfw.com/pdf/H2_AN202508291736331254_1.pdf"
         ],
-        "nextEvidence": "定位尤国梁报告期任职的两份基金报告§4.4实质运作评论。"
-      }
+        "nextEvidence": "补充其他时期实质材料和真实决策复盘；当前职务需独立现职来源，不由历史报告推断。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B69A",
+          "title": "长城久嘉创新成长2024年年度报告",
+          "date": "2025-03-29",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202503291648950276_1.pdf",
+          "access": "2026-10-09读取；东方财富托管的管理人原始PDF；非基金官网，未逐字比对官网"
+        },
+        {
+          "id": "O9G5-B69B",
+          "title": "长城久嘉创新成长2025年中期报告",
+          "date": "2025-08-29",
+          "url": "https://pdf.dfcfw.com/pdf/H2_AN202508291736331254_1.pdf",
+          "access": "2026-10-09读取；东方财富托管的管理人原始PDF；非基金官网，未逐字比对官网"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "取得长城产品官方页面正文，含产品策略和经理入口；产品授权范围不等于本人实际投资推理。",
+          "checkedUrls": [
+            "https://www.ccfund.com.cn/main/jjcp/cache/004666.shtml"
+          ],
+          "nextEvidence": "定位尤国梁报告期任职的两份基金报告§4.4实质运作评论。"
+        }
+      ]
     },
     {
       "id": "B70",
@@ -4104,23 +4895,51 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚需两项实质一手研究材料；身份页不等于研究材料"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b73",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取兴证全球谢治宇专属栏目，现有可读文本主要为视频标题/留言，未取得可归属本人完整问答。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。基金报告作者为管理人；经理表只证明报告期任职，不证明本人独著或独立完成所有决策。",
         "checkedUrls": [
-          "https://cloud.xqfunds.com/index.php/XQXZY"
+          "https://www.xqfunds.com/data/20250421174551herun.pdf",
+          "https://www.xqfunds.com/data/20251027155643herun.pdf"
         ],
-        "nextEvidence": "两场官方视频的可核对逐字稿，或经理在任两期基金报告投资评论。"
-      }
+        "nextEvidence": "补充其他时期实质材料和真实决策复盘；当前职务需独立现职来源，不由历史报告推断。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B73A",
+          "title": "兴全合润2025年第1季度报告",
+          "date": "2025-04-22",
+          "url": "https://www.xqfunds.com/data/20250421174551herun.pdf",
+          "access": "2026-10-09读取；基金官网原始PDF正文；日期取封面送出日期而非URL"
+        },
+        {
+          "id": "O9G5-B73B",
+          "title": "兴全合润2025年第3季度报告",
+          "date": "2025-10-28",
+          "url": "https://www.xqfunds.com/data/20251027155643herun.pdf",
+          "access": "2026-10-09读取；基金官网原始PDF正文；日期取封面送出日期而非URL"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取兴证全球谢治宇专属栏目，现有可读文本主要为视频标题/留言，未取得可归属本人完整问答。",
+          "checkedUrls": [
+            "https://cloud.xqfunds.com/index.php/XQXZY"
+          ],
+          "nextEvidence": "两场官方视频的可核对逐字稿，或经理在任两期基金报告投资评论。"
+        }
+      ]
     },
     {
       "id": "B74",
@@ -4140,9 +4959,10 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "已有两项官方内容，但第二篇营销转述较多；保持身份核验级，需独立时期本人署名报告升级"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "research": {
         "thesis": "以商业模式、护城河和产业趋势选择成长企业，同时评估远期回报与组合均衡。",
@@ -4175,17 +4995,44 @@
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b74",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读到2020-07-07官方完整访谈；2024-04-23官方回顾中本人评论过短，不按第二份实质材料升级。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。基金报告作者为管理人；经理表只证明报告期任职，不证明本人独著或独立完成所有决策。",
         "checkedUrls": [
-          "https://www.jsfund.cn/main/a/20240423/483631.shtml",
-          "https://www.jsfund.cn/main/a/20200707/431636.shtml"
+          "https://www.jsfund.cn/main/a/20200707/431636.shtml",
+          "https://static.cninfo.com.cn/finalpage/2025-07-21/1224231330.PDF"
         ],
-        "nextEvidence": "第二份本人完整访谈或嘉实成长基金经理报告，不能用一句观点摘要凑足。"
-      }
+        "nextEvidence": "补充其他时期实质材料和真实决策复盘；当前职务需独立现职来源，不由历史报告推断。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B74A",
+          "title": "嘉实基金归凯：成长需要想象力",
+          "date": "2020-07-07",
+          "url": "https://www.jsfund.cn/main/a/20200707/431636.shtml",
+          "access": "2026-10-09读取；嘉实官网转载采访正文；仅归属直接引述，排除宣传绩效描述"
+        },
+        {
+          "id": "O9G5-B74B",
+          "title": "嘉实泰和2025年第2季度报告",
+          "date": "2025-07-21",
+          "url": "https://static.cninfo.com.cn/finalpage/2025-07-21/1224231330.PDF",
+          "access": "2026-10-09读取；巨潮公开管理人原始PDF正文；实质运作评论，不只产品投资范围"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读到2020-07-07官方完整访谈；2024-04-23官方回顾中本人评论过短，不按第二份实质材料升级。",
+          "checkedUrls": [
+            "https://www.jsfund.cn/main/a/20240423/483631.shtml",
+            "https://www.jsfund.cn/main/a/20200707/431636.shtml"
+          ],
+          "nextEvidence": "第二份本人完整访谈或嘉实成长基金经理报告，不能用一句观点摘要凑足。"
+        }
+      ]
     },
     {
       "id": "B75",
@@ -4677,24 +5524,51 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料",
-        "当前职务未验证；仅确认资料时期角色"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "careerStatus": "historical",
       "coverageClass": "methodology",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b83",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取Fisher Investments官方Philip Fisher书目页；书籍介绍不等于原书实质论证。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。两本不同原著的授权节选，保留原著与再版日期，不将目录或Ken Fisher序言计入。",
         "checkedUrls": [
-          "https://www.fisherinvestments.com/en-us/resource-library/investing-books/philip-fisher"
+          "https://www.abebooks.co.uk/9780471119289/Common-Stocks-Uncommon-Profits-Writings-0471119288/plp",
+          "https://www.amazon.com/Paths-Wealth-Through-Common-Stocks/dp/0470139498"
         ],
-        "nextEvidence": "两份有出处的本人原著章节/授权全文；保持历史研究对象，不写现任。"
-      }
+        "nextEvidence": "补充可访问的完整原著/官方原始访谈或音频，对照检验方法边界；保持历史方法对象。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B83A",
+          "title": "Common Stocks and Uncommon Profits：Clues from the Past 授权节选",
+          "date": "1996",
+          "url": "https://www.abebooks.co.uk/9780471119289/Common-Stocks-Uncommon-Profits-Writings-0471119288/plp",
+          "access": "2026-10-09读取；AbeBooks呈现出版社授权原著节选，页面明确Reprinted by permission；未读全书；不把Ken Fisher序言归于Philip"
+        },
+        {
+          "id": "O9G5-B83B",
+          "title": "Paths to Wealth Through Common Stocks：Chapter One 授权节选",
+          "date": "2007",
+          "url": "https://www.amazon.com/Paths-Wealth-Through-Common-Stocks/dp/0470139498",
+          "access": "2026-10-09读取；Amazon展示Wiley授权原著节选，明确Reprinted by permission；不是读全书或读评论；Wiley直接样章PDF403"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取Fisher Investments官方Philip Fisher书目页；书籍介绍不等于原书实质论证。",
+          "checkedUrls": [
+            "https://www.fisherinvestments.com/en-us/resource-library/investing-books/philip-fisher"
+          ],
+          "nextEvidence": "两份有出处的本人原著章节/授权全文；保持历史研究对象，不写现任。"
+        }
+      ]
     },
     {
       "id": "B84",
@@ -4714,25 +5588,54 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "PBS直接访谈正文403未读",
-        "仍缺两项实质一手资料",
-        "当前职务未核验"
+        "未审计真实完整决策与结果",
+        "方法样本不代表个人全部观点"
       ],
       "careerStatus": "historical",
       "coverageClass": "methodology",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g5-b84",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "成功取得PBS Frontline完整历史访谈文本，读到Magellan与Chrysler等问答；目前只有一份独立实质访谈。",
+        "date": "2026-10-09",
+        "outcome": "两份独立实质材料已核并补入有限方法档案、三阶段合成练习和独立答案。PBS历史保存文本重读并以公开镜像核对；独立演讲主体第三方转录，主办方校正日期，未含Q&A。",
         "checkedUrls": [
-          "https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html"
+          "https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html",
+          "https://brewbooks.blog/2021/02/22/transcript-of-peter-lynch-8-october-1994-lecture-to-the-national-press-club/",
+          "https://www.rbcpa.com/commentary-archive/pbs-interview-with-peter-lynch/",
+          "https://www.pbs.org/wgbh/pages/frontline/shows/betting/etal/tapes.html",
+          "https://www.press.org/newsroom/past-npc-president-klein-remembers-nelson-mandelas-visit-club"
         ],
-        "nextEvidence": "第二份Fidelity官方本人文章或独立主办方演讲全文，并核对日期。"
-      }
+        "nextEvidence": "补充可访问的完整原著/官方原始访谈或音频，对照检验方法边界；保持历史方法对象。"
+      },
+      "methodSources": [
+        {
+          "id": "O9G5-B84A",
+          "title": "PBS FRONTLINE：Interview with Peter Lynch",
+          "date": "1997-01-14",
+          "url": "https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html",
+          "access": "2026-10-09读取；重读2026-10-08已保存PBS完整采访文本；10月9日原网址403，以公开RBCPA转载交叉核对；不是本日重新抓取官网成功"
+        },
+        {
+          "id": "O9G5-B84B",
+          "title": "Peter Lynch National Press Club 演讲主体转录",
+          "date": "1994-10-07",
+          "url": "https://brewbooks.blog/2021/02/22/transcript-of-peter-lynch-8-october-1994-lecture-to-the-national-press-club/",
+          "access": "2026-10-09读取；公开第三方个人转录，已读演讲主体；不含后续Q&A，未逐秒核音频；原题10/8与NPC官方回顾10/7冲突，采用主办方日期"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "成功取得PBS Frontline完整历史访谈文本，读到Magellan与Chrysler等问答；目前只有一份独立实质访谈。",
+          "checkedUrls": [
+            "https://www.pbs.org/wgbh/pages/frontline/shows/betting/pros/lynch.html"
+          ],
+          "nextEvidence": "第二份Fidelity官方本人文章或独立主办方演讲全文，并核对日期。"
+        }
+      ]
     },
     {
       "id": "B85",
@@ -4811,7 +5714,7 @@
       "id": "B86",
       "name": "Seth Klarman",
       "side": "buy",
-      "roleAtSource": "CEO & Portfolio Manager",
+      "roleAtSource": "Baupost CEO及组合经理（2025访谈时）",
       "currentRole": "CEO & Portfolio Manager",
       "firm": "Baupost",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
@@ -4825,23 +5728,52 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚需两项实质一手研究材料；身份页不等于研究材料"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g6-seth-klarman",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "尝试Goldman Sachs官方逐字稿PDF，虽HTTP成功但正文只有1字符，未视为阅读成功。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
-          "https://www.goldmansachs.com/pdfs/insights/goldman-sachs-talks/seth-klarman/transcript.pdf"
+          "https://www.bishoprockcap.com/assets/library/seth-klarman/July%202025%20Seth%20Klarman%20on%20finding%20value%20and%20maintaining%20discipline%20(transcript)",
+          "https://www.bishoprockcap.com/assets/library/seth-klarman/August%202025%20Seth%20Klarman%20-%20Contrarian%20Investing,%20Discipline,%20and%20Building%20Baupost%20(transcript)"
         ],
-        "nextEvidence": "可读的官方访谈逐字稿和第二份有日期本人署名实质论证；官网简介不足。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-KLGS25",
+          "url": "https://www.bishoprockcap.com/assets/library/seth-klarman/July%202025%20Seth%20Klarman%20on%20finding%20value%20and%20maintaining%20discipline%20(transcript)",
+          "title": "Seth Klarman — Goldman Sachs Talks",
+          "date": "2025-05-27",
+          "locator": "02:13–04:45",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。 此镜像标有自动转录置信度，未验证每个词；仅作有限样本。"
+        },
+        {
+          "sourceId": "O9G6-KLCO25",
+          "url": "https://www.bishoprockcap.com/assets/library/seth-klarman/August%202025%20Seth%20Klarman%20-%20Contrarian%20Investing,%20Discipline,%20and%20Building%20Baupost%20(transcript)",
+          "title": "Seth Klarman — Value Investing with Legends",
+          "date": "2025-08-01",
+          "locator": "04:22–06:47",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。 此镜像标有自动转录置信度，未验证每个词；仅作有限样本。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "尝试Goldman Sachs官方逐字稿PDF，虽HTTP成功但正文只有1字符，未视为阅读成功。",
+          "checkedUrls": [
+            "https://www.goldmansachs.com/pdfs/insights/goldman-sachs-talks/seth-klarman/transcript.pdf"
+          ],
+          "nextEvidence": "可读的官方访谈逐字稿和第二份有日期本人署名实质论证；官网简介不足。"
+        }
+      ]
     },
     {
       "id": "B87",
@@ -5173,7 +6105,7 @@
       "id": "B92",
       "name": "David Tepper",
       "side": "buy",
-      "roleAtSource": "投资管理人",
+      "roleAtSource": "Appaloosa管理人（2010/2018访谈时）；不据历史材料更新现职",
       "currentRole": null,
       "firm": "Appaloosa Management",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
@@ -5187,24 +6119,52 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "仍缺两项实质一手研究材料",
-        "当前职务未验证；仅确认资料时期角色"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "coverageClass": "methodology",
       "careerStatus": "role-at-source-only",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g6-david-tepper",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "读取CMU官方Tepper简历PDF，身份可核但不含投资论证；未把成功经历作为方法证据。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
-          "https://www.cmu.edu/sites/default/files/2025-05/bio-tepper-david.pdf"
+          "https://www.bishoprockcap.com/assets/library/david-tepper/2010,%20September%20CNBC%20Transcript%20CNBC's%20'Squawk%20Box'%20Sits%20Down%20with%20Appaloosa%20Management%20President%20&%20Founder%20David%20Tepper.pdf",
+          "https://www.bishoprockcap.com/assets/library/david-tepper/2018,%20September%20CNBC%20Exclusive%20CNBC%20Transcript%20Appaloosa%20Management's%20David%20Tepper%20Speaks%20with%20CNBC's%20Scott%20Wapner%20(live.pdf"
         ],
-        "nextEvidence": "两份主办方完整投资访谈/演讲问答，包含估值、概率或仓位的具体推理。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-TEP10",
+          "url": "https://www.bishoprockcap.com/assets/library/david-tepper/2010,%20September%20CNBC%20Transcript%20CNBC's%20'Squawk%20Box'%20Sits%20Down%20with%20Appaloosa%20Management%20President%20&%20Founder%20David%20Tepper.pdf",
+          "title": "CNBC Squawk Box — David Tepper excerpts",
+          "date": "2010-09-24",
+          "locator": "pp.1,3；CNBC发布的unofficial transcript excerpts之公开镜像",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。 2010为节目方选摘，2018为unofficial transcript；不冒充原站全文字节核验。"
+        },
+        {
+          "sourceId": "O9G6-TEP18",
+          "url": "https://www.bishoprockcap.com/assets/library/david-tepper/2018,%20September%20CNBC%20Exclusive%20CNBC%20Transcript%20Appaloosa%20Management's%20David%20Tepper%20Speaks%20with%20CNBC's%20Scott%20Wapner%20(live.pdf",
+          "title": "CNBC interview — David Tepper with Scott Wapner",
+          "date": "2018-09-13",
+          "locator": "pp.4–6；CNBC unofficial transcript公开镜像",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。 2010为节目方选摘，2018为unofficial transcript；不冒充原站全文字节核验。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "读取CMU官方Tepper简历PDF，身份可核但不含投资论证；未把成功经历作为方法证据。",
+          "checkedUrls": [
+            "https://www.cmu.edu/sites/default/files/2025-05/bio-tepper-david.pdf"
+          ],
+          "nextEvidence": "两份主办方完整投资访谈/演讲问答，包含估值、概率或仓位的具体推理。"
+        }
+      ]
     },
     {
       "id": "B93",
@@ -5367,7 +6327,7 @@
       "id": "B96",
       "name": "Chris Hohn",
       "side": "buy",
-      "roleAtSource": "Founder",
+      "roleAtSource": "TCI Founder and Managing Director（2022–2023签名时）",
       "currentRole": "Founder",
       "firm": "TCI Fund Management",
       "focus": "投资方法论；非直接 AI 基建覆盖候选",
@@ -5381,24 +6341,53 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "尚需两项实质一手研究材料；身份页不等于研究材料"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "coverageClass": "methodology",
       "careerStatus": "current-role-verified",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g6-chris-hohn",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "定位TCI致Alphabet两封公开信，但本地403、检索PDF无正文且截图未取得可检查图像；不宣称已读。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
-          "https://www.tcifund.com/files/corporateengageement/alphabet/20th%20January%202023.pdf",
-          "https://www.tcifund.com/files/corporateengageement/alphabet/15th%20November%202022.pdf"
+          "https://www.tcifund.com/files/corporateengageement/alphabet/15th%20November%202022.pdf",
+          "https://www.tcifund.com/files/corporateengageement/alphabet/20th%20January%202023.pdf"
         ],
-        "nextEvidence": "下载/OCR读取2022-11-15与2023-01-20两封信并核对署名、费用与资本配置推理。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-HOHN22",
+          "url": "https://www.tcifund.com/files/corporateengageement/alphabet/15th%20November%202022.pdf",
+          "title": "TCI letter to Alphabet CEO",
+          "date": "2022-11-15",
+          "locator": "pp.1–4",
+          "accessLevel": "已视觉读取官方4页原信，核对日期、抬头及签名。"
+        },
+        {
+          "sourceId": "O9G6-HOHN23",
+          "url": "https://www.tcifund.com/files/corporateengageement/alphabet/20th%20January%202023.pdf",
+          "title": "TCI follow-up letter to Alphabet CEO",
+          "date": "2023-01-20",
+          "locator": "p.1",
+          "accessLevel": "已视觉读取官方1页原信，核对日期、抬头及签名。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "定位TCI致Alphabet两封公开信，但本地403、检索PDF无正文且截图未取得可检查图像；不宣称已读。",
+          "checkedUrls": [
+            "https://www.tcifund.com/files/corporateengageement/alphabet/20th%20January%202023.pdf",
+            "https://www.tcifund.com/files/corporateengageement/alphabet/15th%20November%202022.pdf"
+          ],
+          "nextEvidence": "下载/OCR读取2022-11-15与2023-01-20两封信并核对署名、费用与资本配置推理。"
+        }
+      ]
     },
     {
       "id": "B97",
@@ -6542,7 +7531,7 @@
       "id": "S15",
       "name": "Matt Bryson",
       "side": "sell",
-      "roleAtSource": "AMD covering analyst",
+      "roleAtSource": "Wedbush分析师（2024及2026来源时）",
       "currentRole": "AMD covering analyst",
       "firm": "Wedbush",
       "focus": [
@@ -6559,22 +7548,51 @@
           "accessLevel": "见核验范围；不等于完整研究报告"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "需两份可访问的本人实质问答/文章正文。"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g6-matt-bryson",
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "官方SMCI覆盖名单核实Matt Bryson/Wedbush；Yahoo具名访谈正文访问429，不能用标题形成方法。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
-          "https://ir.supermicro.com/stock-information/analyst-coverage/default.aspx",
-          "https://finance.yahoo.com/video/why-the-memory-chip-supply-shortage-wont-hurt-suppliers-151813508.html"
+          "https://www.roic.ai/quote/AXTI/transcripts/2024-year/1-quarter",
+          "https://www.fool.com/earnings/call-transcripts/2026/08/07/diebold-nixdorf-dbd-q2-2026-earnings-call-transcript/"
         ],
-        "nextEvidence": "需两份可访问的本人实质问答/文章正文。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-AXT124",
+          "url": "https://www.roic.ai/quote/AXTI/transcripts/2024-year/1-quarter",
+          "title": "AXT Q1 2024 earnings call",
+          "date": "2024-05-02",
+          "locator": "Matthew Bryson Q&A; lines 652–751",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。"
+        },
+        {
+          "sourceId": "O9G6-DBD226",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/diebold-nixdorf-dbd-q2-2026-earnings-call-transcript/",
+          "title": "Diebold Nixdorf Q2 2026 earnings call",
+          "date": "2026-08-07",
+          "locator": "Matthew Bryson Q&A; lines 311–320",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "官方SMCI覆盖名单核实Matt Bryson/Wedbush；Yahoo具名访谈正文访问429，不能用标题形成方法。",
+          "checkedUrls": [
+            "https://ir.supermicro.com/stock-information/analyst-coverage/default.aspx",
+            "https://finance.yahoo.com/video/why-the-memory-chip-supply-shortage-wont-hurt-suppliers-151813508.html"
+          ],
+          "nextEvidence": "需两份可访问的本人实质问答/文章正文。"
+        }
+      ]
     },
     {
       "id": "S16",
@@ -7012,9 +8030,9 @@
       "id": "S24",
       "name": "Cody Acree",
       "side": "sell",
-      "roleAtSource": "AMD covering analyst",
-      "currentRole": "AMD covering analyst",
-      "firm": "The Benchmark Company",
+      "roleAtSource": "Drexel Hamilton（2016）、Benchmark（2024）分析师；现职StoneX另核",
+      "currentRole": "Equity Research Analyst",
+      "firm": "StoneX",
       "focus": [
         "Semiconductors",
         "AI infrastructure"
@@ -7027,24 +8045,61 @@
           "accessed": "2026-10-07",
           "whatVerified": "Issuer lists analyst and firm covering AMD.",
           "accessLevel": "见核验范围；不等于完整研究报告"
+        },
+        {
+          "url": "https://www.stonex.com/en-us/business/equity-research/cody-acree/",
+          "title": "StoneX Cody Acree official bio",
+          "date": null,
+          "accessed": "2026-10-09",
+          "whatVerified": "官网正文明确从Benchmark加入StoneX，现任Equity Research Analyst。",
+          "accessLevel": "official full text read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "缺第二份实质原始材料；StoneX转职线索尚缺官方证据。"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "priority": false,
-      "profileId": null,
-      "roleNote": "",
+      "profileId": "o9g6-cody-acree",
+      "roleNote": "现职StoneX官网已核；2016与2024具名问答分别归于当时Drexel Hamilton与Benchmark。",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "已读2016 Intersil并购具名提问，关注买方转型与管理团队保留；Yahoo访谈429未读正文。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
           "https://www.sec.gov/Archives/edgar/data/1096325/000119312516708642/d257613ddefa14a.htm",
-          "https://finance.yahoo.com/video/nvidias-margins-outlook-little-concerning-221015488.html"
+          "https://investors.semtech.com/media/document/32bb4187-40aa-4071-906a-bba6e05f78b4/assets/SMTC-USQ_Transcript_2024-03-28.pdf?disposition=inline"
         ],
-        "nextEvidence": "缺第二份实质原始材料；StoneX转职线索尚缺官方证据。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-ISIL16",
+          "url": "https://www.sec.gov/Archives/edgar/data/1096325/000119312516708642/d257613ddefa14a.htm",
+          "title": "Renesas acquisition of Intersil conference call",
+          "date": "2016-09-13",
+          "locator": "Cody Acree Q&A, transcript pp.4–5",
+          "accessLevel": "已读发行人或监管机构托管具名原始正文；未听电话会录音。"
+        },
+        {
+          "sourceId": "O9G6-SMTC424",
+          "url": "https://investors.semtech.com/media/document/32bb4187-40aa-4071-906a-bba6e05f78b4/assets/SMTC-USQ_Transcript_2024-03-28.pdf?disposition=inline",
+          "title": "Semtech Q4 FY2024 earnings call",
+          "date": "2024-03-28",
+          "locator": "Cody Acree Q&A, p.8",
+          "accessLevel": "已读发行人或监管机构托管具名原始正文；未听电话会录音。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "已读2016 Intersil并购具名提问，关注买方转型与管理团队保留；Yahoo访谈429未读正文。",
+          "checkedUrls": [
+            "https://www.sec.gov/Archives/edgar/data/1096325/000119312516708642/d257613ddefa14a.htm",
+            "https://finance.yahoo.com/video/nvidias-margins-outlook-little-concerning-221015488.html"
+          ],
+          "nextEvidence": "缺第二份实质原始材料；StoneX转职线索尚缺官方证据。"
+        }
+      ]
     },
     {
       "id": "S25",
@@ -7613,7 +8668,7 @@
       "id": "S35",
       "name": "François Meunier",
       "side": "sell",
-      "roleAtSource": "Head of equity markets and NK Generation Alpha portfolio manager",
+      "roleAtSource": "Morgan Stanley分析师（2017来源时）；现职Norman K资管已另核",
       "currentRole": "Head of equity markets; portfolio manager, NK Generation Alpha",
       "firm": "Norman K",
       "focus": [
@@ -7645,25 +8700,54 @@
           "accessLevel": "primary page full text read"
         }
       ],
-      "status": "identity-verified",
+      "status": "research-ready",
       "gaps": [
-        "缺两份具名实质研究；不得继续列为现任卖方。"
+        "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
       ],
       "roleStatus": "historical-sell-side",
       "priority": false,
-      "profileId": null,
+      "profileId": "o9g6-francois-meunier",
       "roleNote": "官方现职为资管股票市场负责人及组合经理；原sell分类为历史提名，不能统计为现任卖方。",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "官方Norman K团队页核实已任股票市场负责人及NK Generation Alpha组合经理；基金页视频仅有标题，历史Morgan Stanley资料不等于两份方法。",
+        "date": "2026-10-09",
+        "outcome": "已读两份独立具名实质材料，补入有限方法样本及三阶段合成练习；不等于长期方法认证。",
         "checkedUrls": [
-          "https://www.norman-k.com/who-are-we/the-norman-k-team/",
-          "https://www.norman-k.com/norman-k-asset-management-professional/",
-          "https://www.morganstanley.com/ideas/tmt-barcelona-2015",
-          "https://www.norman-k.com/who-are-we/the-norman-k-team/"
+          "https://www.roic.ai/quote/ASML:UW/transcripts/2016-year/4-quarter",
+          "https://www.roic.ai/quote/ASML:LI/transcripts/2017-year/1-quarter"
         ],
-        "nextEvidence": "缺两份具名实质研究；不得继续列为现任卖方。"
-      }
+        "nextEvidence": "两份公开材料仅支持有限方法样本；尚缺私人完整模型、预测复盘及跨时期方法检验。"
+      },
+      "methodSources": [
+        {
+          "sourceId": "O9G6-ASML416",
+          "url": "https://www.roic.ai/quote/ASML:UW/transcripts/2016-year/4-quarter",
+          "title": "ASML Q4 2016 earnings call",
+          "date": "2017-01-18",
+          "locator": "Francois Meunier Q&A; lines 605–636",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。"
+        },
+        {
+          "sourceId": "O9G6-ASML117",
+          "url": "https://www.roic.ai/quote/ASML:LI/transcripts/2017-year/1-quarter",
+          "title": "ASML Q1 2017 earnings call",
+          "date": "2017-04-19",
+          "locator": "Francois Meunier Q&A; lines 888–907",
+          "accessLevel": "公开原始访谈/电话会转录镜像；已读具名实质段落，未听原录音或与官方文件逐字节核对；可能存在转录错误。"
+        }
+      ],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "官方Norman K团队页核实已任股票市场负责人及NK Generation Alpha组合经理；基金页视频仅有标题，历史Morgan Stanley资料不等于两份方法。",
+          "checkedUrls": [
+            "https://www.norman-k.com/who-are-we/the-norman-k-team/",
+            "https://www.norman-k.com/norman-k-asset-management-professional/",
+            "https://www.morganstanley.com/ideas/tmt-barcelona-2015",
+            "https://www.norman-k.com/who-are-we/the-norman-k-team/"
+          ],
+          "nextEvidence": "缺两份具名实质研究；不得继续列为现任卖方。"
+        }
+      ]
     },
     {
       "id": "S36",
@@ -7923,22 +9007,33 @@
       "identitySources": [],
       "status": "candidate",
       "gaps": [
-        "全名与机构尚无法唯一确定；历史Dataquest缩写线索不足以认证原提名",
-        "CHM原件已下载并抽取正文；两处贡献者名单均只有C.S. Kim缩写，缺唯一身份与本人问答，不能补成方法档案"
+        "仍需原提名完整姓名或机构。Dataquest文献缩写与物理/器件学者同名不能建立唯一身份；不据同名强行补档。"
       ],
       "priority": false,
       "profileId": null,
       "roleNote": "",
       "lastResearch": {
-        "date": "2026-10-08",
-        "outcome": "精确缩写检索未能唯一绑定本提名；实际下载并检索历史Dataquest原件，贡献分析师名单出现C.S. Kim，但正文仍没有足以绑定本提名的全名/当前机构；另两同名结果仅检索结果，不作为身份原证据。",
+        "date": "2026-10-09",
+        "outcome": "再次检索精确缩写、半导体与Dataquest组合；历史缩写线索仍无可唯一绑定原提名的全名与机构，未以同名研究者替代。",
         "checkedUrls": [
           "https://archive.computerhistory.org/resources/access/text/2013/04/102723334-05-01-acc.pdf",
-          "https://www.linkedin.com/in/charles-kim-692a7541b",
-          "https://mst.elsevierpure.com/en/persons/chang-soo-kim/"
+          "https://link.springer.com/content/pdf/10.1007/b100866.pdf"
         ],
-        "nextEvidence": "需原提名机构或完整姓名，再与历史Dataquest作者身份匹配；不以物理学者或同名顾问替代。"
-      }
+        "nextEvidence": "仍需原提名完整姓名或机构。Dataquest文献缩写与物理/器件学者同名不能建立唯一身份；不据同名强行补档。"
+      },
+      "methodSources": [],
+      "researchHistory": [
+        {
+          "date": "2026-10-08",
+          "outcome": "精确缩写检索未能唯一绑定本提名；实际下载并检索历史Dataquest原件，贡献分析师名单出现C.S. Kim，但正文仍没有足以绑定本提名的全名/当前机构；另两同名结果仅检索结果，不作为身份原证据。",
+          "checkedUrls": [
+            "https://archive.computerhistory.org/resources/access/text/2013/04/102723334-05-01-acc.pdf",
+            "https://www.linkedin.com/in/charles-kim-692a7541b",
+            "https://mst.elsevierpure.com/en/persons/chang-soo-kim/"
+          ],
+          "nextEvidence": "需原提名机构或完整姓名，再与历史Dataquest作者身份匹配；不以物理学者或同名顾问替代。"
+        }
+      ]
     },
     {
       "id": "S41",
