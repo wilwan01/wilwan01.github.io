@@ -1,0 +1,626 @@
+{
+  "version": 1,
+  "as_of": "2026-10-11",
+  "scope": {
+    "zh": "聚焦影响AI芯片、存储、设备与材料的出口管制、关税、产业政策与反垄断事件；不含AI模型监管（如欧盟AI法案）。条目按日期排列，每条标注证据级别与未核实之处。",
+    "en": "Covers export controls, tariffs, industrial policy and antitrust events that bear on AI chips, memory, equipment and materials. AI-model regulation (e.g. the EU AI Act) is out of scope. Entries are dated and carry an evidence level and what was not verified."
+  },
+  "evidence_levels": {
+    "primary-read": {
+      "zh": "已打开并阅读官方或公司原始文件",
+      "en": "Official or company primary document opened and read"
+    },
+    "primary-located": {
+      "zh": "已定位官方文件（联邦公报等），细节取自摘要",
+      "en": "Official document located (e.g. Federal Register); details taken from summaries"
+    },
+    "secondary-authoritative": {
+      "zh": "权威二手来源（如国会研究服务处）",
+      "en": "Authoritative secondary source (e.g. Congressional Research Service)"
+    },
+    "secondary": {
+      "zh": "律所、智库或媒体摘要，未核对原文",
+      "en": "Law-firm, think-tank or press summaries; primary text not checked"
+    }
+  },
+  "nodes": {
+    "accelerator": {
+      "zh": "加速器",
+      "en": "Accelerators"
+    },
+    "memory": {
+      "zh": "存储/HBM",
+      "en": "Memory / HBM"
+    },
+    "equipment": {
+      "zh": "制造设备",
+      "en": "Equipment"
+    },
+    "fab": {
+      "zh": "晶圆制造",
+      "en": "Fabs"
+    },
+    "packaging": {
+      "zh": "封装",
+      "en": "Packaging"
+    },
+    "materials": {
+      "zh": "关键材料",
+      "en": "Materials"
+    },
+    "network": {
+      "zh": "网络",
+      "en": "Networking"
+    },
+    "datacenter": {
+      "zh": "数据中心",
+      "en": "Data centres"
+    }
+  },
+  "kinds": {
+    "export-control": {
+      "zh": "出口管制",
+      "en": "Export control"
+    },
+    "tariff": {
+      "zh": "关税",
+      "en": "Tariff"
+    },
+    "industrial": {
+      "zh": "产业政策",
+      "en": "Industrial policy"
+    },
+    "antitrust": {
+      "zh": "反垄断",
+      "en": "Antitrust"
+    }
+  },
+  "events": [
+    {
+      "id": "P01",
+      "date": "2022-08-09",
+      "region": "US",
+      "kind": "industrial",
+      "title": {
+        "zh": "美国《芯片与科学法案》签署",
+        "en": "US CHIPS and Science Act signed"
+      },
+      "summary": {
+        "zh": "拨款约527亿美元用于半导体制造、研发、人才培养与盟友协作（FY2022–FY2027），并含25%的先进制造投资税收抵免。",
+        "en": "Appropriates about $52.7B for semiconductor manufacturing, R&D, workforce and allied coordination (FY2022–FY2027), plus a 25% advanced-manufacturing investment tax credit."
+      },
+      "nodes": [
+        "fab",
+        "equipment",
+        "packaging"
+      ],
+      "evidence": "secondary-authoritative",
+      "sources": [
+        {
+          "label": "Congressional Research Service: CHIPS Act FAQ (R47523)",
+          "url": "https://www.congress.gov/crs-product/R47523",
+          "type": "analysis"
+        },
+        {
+          "label": "EY: CHIPS and Science Act tax credits",
+          "url": "https://www.ey.com/en_us/services/tax/chips-and-science-act-includes-tax-credits-r-d-incentives",
+          "type": "analysis"
+        }
+      ],
+      "caveat": {
+        "zh": "奖励发放与后续政策走向本页未核查。",
+        "en": "Award disbursement and later policy direction were not checked here."
+      },
+      "links": {
+        "earnings": [
+          "QA018",
+          "QA020",
+          "QA023",
+          "QA024"
+        ],
+        "note": {
+          "zh": "相关性为编辑判断：英特尔代工产能与客户承诺问答。",
+          "en": "Editorial relation: Intel foundry capacity and customer-commitment questions."
+        }
+      }
+    },
+    {
+      "id": "P02",
+      "date": "2022-10-07",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS 发布先进计算与半导体制造出口管制",
+        "en": "BIS advanced-computing and semiconductor-manufacturing export controls"
+      },
+      "summary": {
+        "zh": "限制中国购买和制造部分高端芯片：先进计算与超算最终用途管制，以及部分半导体制造设备管制；分阶段生效（10月7日、10月12日、10月21日）。",
+        "en": "Restricts the PRC's ability to buy and make certain high-end chips: advanced-computing and supercomputer end-use controls plus controls on some chipmaking items, effective in phases (Oct 7, Oct 12, Oct 21, 2022)."
+      },
+      "nodes": [
+        "accelerator",
+        "equipment",
+        "fab"
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "BIS press release, 7 Oct 2022",
+          "url": "https://www.bis.gov/press-release/commerce-implements-new-export-controls-advanced-computing-semiconductor-manufacturing-items-peoples",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "规则文本与受控性能阈值未在此核对；见联邦公报。",
+        "en": "Rule text and control thresholds were not checked here; see the Federal Register."
+      },
+      "links": {
+        "earnings": [
+          "QA012"
+        ],
+        "reports": [
+          "nvidia-en.html",
+          "amd-en.html",
+          "huawei-en.html",
+          "hygon-en.html",
+          "cambricon-en.html"
+        ],
+        "note": {
+          "zh": "相关报告为同一市场背景，页面不一定讨论该规则。",
+          "en": "Related reports share the market context; they do not necessarily discuss this rule."
+        }
+      }
+    },
+    {
+      "id": "P03",
+      "date": "2023-03-08",
+      "date_note": {
+        "zh": "荷兰政府3月8日公布方案，措施自2023年9月起生效；各来源对具体日期说法不一。",
+        "en": "Dutch government announced plans on 8 Mar 2023; measures took effect from Sept 2023; sources differ on exact dates."
+      },
+      "region": "NL / JP",
+      "kind": "export-control",
+      "title": {
+        "zh": "荷兰、日本跟进半导体设备出口管制",
+        "en": "Netherlands and Japan add chipmaking-equipment controls"
+      },
+      "summary": {
+        "zh": "2023年1月美、荷、日达成谅解后，荷兰对最先进DUV浸没式光刻设备要求许可，日本对23类设备实施管制。",
+        "en": "After a January 2023 US–Dutch–Japanese understanding, the Netherlands required licences for the most advanced DUV immersion tools and Japan controlled 23 equipment types."
+      },
+      "nodes": [
+        "equipment",
+        "fab"
+      ],
+      "evidence": "secondary",
+      "sources": [
+        {
+          "label": "CSIS: Japan and the Netherlands announce plans",
+          "url": "https://www.csis.org/analysis/japan-and-netherlands-announce-plans-new-export-controls-semiconductor-equipment",
+          "type": "analysis"
+        },
+        {
+          "label": "ASML statement on additional export controls",
+          "url": "https://www.asml.com/en/news/press-releases/2023/statement-regarding-additional-export-controls",
+          "type": "company"
+        },
+        {
+          "label": "Mayer Brown: Japan and Netherlands restrictions",
+          "url": "https://www.mayerbrown.com/en/insights/publications/2023/02/japan-and-the-netherlands-agree-to-new-restrictions-on-exports-of-chipmaking-equipment-to-china",
+          "type": "analysis"
+        }
+      ],
+      "caveat": {
+        "zh": "发布与生效日期来源不一致，引用前请核对荷兰政府公告。",
+        "en": "Publication and effective dates differ across sources; check Dutch government publications before citing."
+      },
+      "links": {
+        "earnings": [
+          "QA138",
+          "QA139",
+          "QA140"
+        ],
+        "note": {
+          "zh": "相关性为编辑判断：ASML EUV/设备瓶颈问答。",
+          "en": "Editorial relation: ASML EUV and equipment-bottleneck questions."
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "date": "2023-08-01",
+      "date_note": {
+        "zh": "商务部7月3日公告，8月1日起实施。",
+        "en": "MOFCOM announced on 3 Jul 2023; effective 1 Aug 2023."
+      },
+      "region": "CN",
+      "kind": "export-control",
+      "title": {
+        "zh": "中国对镓、锗实施出口许可",
+        "en": "China adds export licensing for gallium and germanium"
+      },
+      "summary": {
+        "zh": "商务部对镓、锗相关物项实施出口许可，被广泛视为对2022年10月至2023年7月期间一系列管制的回应；2024年12月进一步限制对美出口。",
+        "en": "MOFCOM introduced export licensing for gallium and germanium items, widely read as a response to the Oct 2022–Jul 2023 controls; a Dec 2024 directive tightened exports to the US."
+      },
+      "nodes": [
+        "materials"
+      ],
+      "evidence": "secondary",
+      "sources": [
+        {
+          "label": "CSIS: China's gallium supply-chain leverage",
+          "url": "https://www.csis.org/analysis/beyond-rare-earths-chinas-growing-threat-gallium-supply-chains",
+          "type": "analysis"
+        },
+        {
+          "label": "CFR: Dismantling China's supply-chain weapon",
+          "url": "https://www.cfr.org/reports/dismantling-chinas-supply-chain-weapon",
+          "type": "analysis"
+        }
+      ],
+      "caveat": {
+        "zh": "未取得商务部原始公告；2025年底的暂停与到期安排说法不一。",
+        "en": "Primary MOFCOM notices were not retrieved; the late-2025 suspension and expiry arrangements are described inconsistently."
+      },
+      "links": {
+        "note": {
+          "zh": "站内暂无直接对应的财报问答。",
+          "en": "No directly matching earnings question on this site."
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "date": "2023-10-17",
+      "date_note": {
+        "zh": "10月17日发布，10月25日刊于联邦公报，11月17日生效。",
+        "en": "Released 17 Oct; published in the Federal Register 25 Oct; effective 17 Nov 2023."
+      },
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS 更新先进计算与设备管制",
+        "en": "BIS updates advanced-computing and equipment controls"
+      },
+      "summary": {
+        "zh": "两项临时最终规则扩展并收紧2022年10月管制（先进计算物项、超算与半导体最终用途、半导体制造物项）。",
+        "en": "Two interim final rules expand and tighten the October 2022 controls (advanced-computing items, supercomputer and semiconductor end uses, semiconductor manufacturing items)."
+      },
+      "nodes": [
+        "accelerator",
+        "equipment"
+      ],
+      "evidence": "primary-located",
+      "sources": [
+        {
+          "label": "Federal Register: Export Controls on Semiconductor Manufacturing Items (2023-23049)",
+          "url": "https://www.federalregister.gov/documents/2023/10/25/2023-23049/export-controls-on-semiconductor-manufacturing-items",
+          "type": "primary"
+        },
+        {
+          "label": "BIS press release: Commerce strengthens restrictions",
+          "url": "https://www.bis.gov/press-release/commerce-strengthens-restrictions-advanced-computing-semiconductors-semiconductor-manufacturing-equipment",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "性能阈值细节来自二手摘要，未在联邦公报原文中核对。",
+        "en": "Performance-threshold details come from secondary summaries and were not checked in the rule text."
+      },
+      "links": {
+        "earnings": [
+          "QA012"
+        ]
+      }
+    },
+    {
+      "id": "P06",
+      "date": "2024-12-02",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS 对 HBM、设备与实体清单加严",
+        "en": "BIS adds HBM, equipment and Entity List controls"
+      },
+      "summary": {
+        "zh": "临时最终规则将高带宽内存（HBM）纳入管制并新增24类制造设备与3类软件工具管制；同时新增约140家实体清单实体。",
+        "en": "An interim final rule controls high-bandwidth memory (HBM) and adds 24 types of manufacturing equipment and 3 software-tool types; about 140 Entity List additions came the same day."
+      },
+      "nodes": [
+        "memory",
+        "equipment",
+        "fab"
+      ],
+      "evidence": "secondary",
+      "sources": [
+        {
+          "label": "WilmerHale client alert",
+          "url": "https://www.wilmerhale.com/en/insights/client-alerts/20241206-bis-issues-sweeping-additional-restrictions-on-semiconductors-and-advanced-computing-entity-list-designations",
+          "type": "law-firm"
+        },
+        {
+          "label": "Alston & Bird: Export controls on computing and semiconductor items",
+          "url": "https://www.alston.com/en/insights/publications/2024/12/export-controls-computing-semiconductor-items",
+          "type": "law-firm"
+        },
+        {
+          "label": "Covington summary",
+          "url": "https://www.cov.com/en/news-and-insights/insights/2024/12/us-department-of-commerce-strengthens-export-controls-on-advanced-computing-and-semiconductor-manufacturing-items",
+          "type": "law-firm"
+        }
+      ],
+      "caveat": {
+        "zh": "数量与阈值来自律所摘要；原规则文本未在此打开。",
+        "en": "Counts and thresholds come from law-firm summaries; the rule text was not opened here."
+      },
+      "links": {
+        "earnings": [
+          "QA057",
+          "QA154",
+          "QA152",
+          "QA156",
+          "QA158"
+        ],
+        "bridge": [
+          "B1",
+          "B8"
+        ],
+        "note": {
+          "zh": "相关性为编辑判断：HBM 客户资质与出货问答。",
+          "en": "Editorial relation: HBM customer-qualification and shipment questions."
+        }
+      }
+    },
+    {
+      "id": "P07",
+      "date": "2025-04-04",
+      "region": "CN",
+      "kind": "export-control",
+      "title": {
+        "zh": "中国对七种中重稀土及磁体实施出口许可",
+        "en": "China adds export licensing on seven rare-earth elements and magnets"
+      },
+      "summary": {
+        "zh": "2025年4月4日起，七种中重稀土元素及相关磁体出口需许可；后续范围与暂停安排来源说法不一。",
+        "en": "From 4 Apr 2025, exports of seven medium and heavy rare-earth elements and related magnets require licences; later scope changes and suspensions are described inconsistently."
+      },
+      "nodes": [
+        "materials"
+      ],
+      "evidence": "secondary",
+      "sources": [
+        {
+          "label": "CFR: Dismantling China's supply-chain weapon",
+          "url": "https://www.cfr.org/reports/dismantling-chinas-supply-chain-weapon",
+          "type": "analysis"
+        },
+        {
+          "label": "Global Trade Alert: China's critical-raw-material export controls",
+          "url": "https://globaltradealert.org/blog/chinese-export-controls-on-critical-raw-materials-inventory",
+          "type": "analysis"
+        }
+      ],
+      "caveat": {
+        "zh": "未取得商务部原始公告；2025年10月后的扩大与延期安排需核对官方公告。",
+        "en": "Primary MOFCOM notices were not retrieved; check official notices for the post-Oct 2025 expansion and delay."
+      },
+      "links": {
+        "note": {
+          "zh": "站内暂无直接对应的财报问答。",
+          "en": "No directly matching earnings question on this site."
+        }
+      }
+    },
+    {
+      "id": "P08",
+      "date": "2025-04-09",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "H20 出口需许可（NVIDIA 8-K）",
+        "en": "H20 exports to China require a licence (NVIDIA 8-K)"
+      },
+      "summary": {
+        "zh": "美国政府要求向中国（含香港、澳门）及 D:5 国家出口 H20 需许可，且“在可预见的将来”持续；NVIDIA 预计一季度最多约55亿美元相关费用。2025年8月起部分获准向特定中国客户出货（据其后续 8-K）。",
+        "en": "The US government required a licence for H20 exports to China (incl. Hong Kong and Macau) and D:5 countries “for the indefinite future”; NVIDIA expected up to about $5.5B of charges in the quarter. Some licences for certain China customers followed from Aug 2025 (per later 8-Ks)."
+      },
+      "nodes": [
+        "accelerator"
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "NVIDIA Form 8-K, April 2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000082/nvda-20250409.htm",
+          "type": "primary"
+        },
+        {
+          "label": "CNBC: NVIDIA $5.5B charge",
+          "url": "https://www.cnbc.com/2025/04/15/nvidia-says-it-will-record-5point5-billion-quarterly-charge-tied-to-h20-processors-exported-to-china.html",
+          "type": "news"
+        }
+      ],
+      "caveat": {
+        "zh": "8月许可与最终费用4.5亿美元以后续公司文件为准，本页只读取了4月8-K。",
+        "en": "The August licences and the final charge ($4.5B) rest on later company filings; only the April 8-K was read here."
+      },
+      "links": {
+        "earnings": [
+          "QA012"
+        ],
+        "reports": [
+          "nvidia-en.html"
+        ]
+      }
+    },
+    {
+      "id": "P09",
+      "date": "2025-05-13",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS 撤销“AI 扩散规则”并发布指引",
+        "en": "BIS rescinds the AI Diffusion Rule and issues guidance"
+      },
+      "summary": {
+        "zh": "撤销2025年1月15日发布、原定5月15日生效的AI扩散规则；承诺将来发布替代规则，并就华为昇腾芯片、AI模型训练最终用途与供应链转运风险发布三份指引。",
+        "en": "Rescinds the AI Diffusion Rule (issued 15 Jan 2025, due to bind from 15 May); promises a replacement rule and issues three guidance documents on Huawei Ascend chips, AI-model training end uses and diversion risks."
+      },
+      "nodes": [
+        "accelerator",
+        "datacenter"
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "BIS press release, 13 May 2025",
+          "url": "https://www.bis.gov/press-release/department-commerce-announces-rescission-biden-era-artificial-intelligence-diffusion-rule-strengthens",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "替代规则是否已发布本页未核查。",
+        "en": "Whether a replacement rule has since been published was not checked here."
+      },
+      "links": {
+        "reports": [
+          "huawei-en.html"
+        ],
+        "note": {
+          "zh": "相关报告为同一市场背景。",
+          "en": "Related report shares the market context."
+        }
+      }
+    },
+    {
+      "id": "P10",
+      "date": "2025-09-15",
+      "region": "CN",
+      "kind": "antitrust",
+      "title": {
+        "zh": "市场监管总局初步认定 NVIDIA 违反 Mellanox 并购附加条件",
+        "en": "SAMR preliminary finding on NVIDIA's Mellanox merger conditions"
+      },
+      "summary": {
+        "zh": "市场监管总局宣布初步调查认为 NVIDIA 违反2020年 Mellanox 收购的附加条件；调查继续，NVIDIA 称遵守法律并将配合。",
+        "en": "China's SAMR announced a preliminary finding that NVIDIA breached conditions attached to its 2020 Mellanox acquisition; the probe continued and NVIDIA said it complies with the law."
+      },
+      "nodes": [
+        "network",
+        "accelerator"
+      ],
+      "evidence": "secondary",
+      "sources": [
+        {
+          "label": "JURIST report",
+          "url": "https://www.jurist.org/news/2025/09/china-finds-nvidia-violated-antimonopoly-law-in-preliminary-probe/",
+          "type": "news"
+        },
+        {
+          "label": "NVIDIA Form 10-Q (Oct 2025)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm",
+          "type": "primary-located"
+        }
+      ],
+      "caveat": {
+        "zh": "最终处罚情况本页未核查；10-Q 原文未在此逐段阅读。",
+        "en": "Final penalties were not checked; the 10-Q text was not read line by line here."
+      },
+      "links": {
+        "reports": [
+          "nvidia-en.html"
+        ]
+      }
+    },
+    {
+      "id": "P11",
+      "date": "2026-01-14",
+      "date_note": {
+        "zh": "1月14日签署，1月15日起对窄类先进计算芯片征收。",
+        "en": "Signed 14 Jan; the duty applies from 15 Jan 2026 to a narrow category of advanced chips."
+      },
+      "region": "US",
+      "kind": "tariff",
+      "title": {
+        "zh": "第232条款：对特定先进计算芯片征收25%关税",
+        "en": "Section 232: 25% tariff on a narrow set of advanced chips"
+      },
+      "summary": {
+        "zh": "总统公告11002对特定先进计算芯片及衍生品征收25%关税；美国数据中心、研发、初创企业等用途获豁免；第二阶段（更广关税与抵扣机制）视谈判而定。",
+        "en": "Proclamation 11002 imposes a 25% duty on certain advanced computing chips and derivatives; US data-centre, R&D and startup uses are exempt; a broader phase two with an offset programme depends on negotiations."
+      },
+      "nodes": [
+        "accelerator",
+        "datacenter"
+      ],
+      "evidence": "primary-located",
+      "sources": [
+        {
+          "label": "CBP CSMS guidance on Section 232 semiconductor duties",
+          "url": "https://content.govdelivery.com/accounts/USDHSCBP/bulletins/4047318",
+          "type": "primary"
+        },
+        {
+          "label": "EY: Section 232 proclamation summary",
+          "url": "https://globaltaxnews.ey.com/news/2026-0209-us-section-232-proclamation-imposes-25-percent-tariff-on-certain-semiconductors",
+          "type": "analysis"
+        }
+      ],
+      "caveat": {
+        "zh": "第二阶段是否已实施本页未核查；请查联邦公报与 CBP 通告。",
+        "en": "Whether phase two has been imposed was not checked; see the Federal Register and CBP notices."
+      },
+      "links": {
+        "note": {
+          "zh": "站内暂无直接对应的财报问答。",
+          "en": "No directly matching earnings question on this site."
+        }
+      }
+    },
+    {
+      "id": "P12",
+      "date": "2026-01-15",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS：H200 / MI325X 对华许可改为个案审查",
+        "en": "BIS: H200 / MI325X licences to China move to case-by-case review"
+      },
+      "summary": {
+        "zh": "《先进计算商品许可审查政策修订》将总处理性能低于21,000且DRAM带宽低于6,500 GB/s的芯片（如 H200、MI325X）由“推定拒绝”改为个案审查；仅限美国直接出口，转口与境外转让仍推定拒绝；并非通用许可。",
+        "en": "“Revision to License Review Policy for Advanced Computing Commodities” moves chips below 21,000 total processing performance and 6,500 GB/s DRAM bandwidth (e.g. H200, MI325X) from presumption of denial to case-by-case review; direct US exports only, reexports and in-country transfers stay presumption of denial; not a general licence."
+      },
+      "nodes": [
+        "accelerator",
+        "memory"
+      ],
+      "evidence": "primary-located",
+      "sources": [
+        {
+          "label": "Federal Register 2026-00789 (91 FR 1684)",
+          "url": "https://www.federalregister.gov/documents/2026/01/15/2026-00789/revision-to-license-review-policy-for-advanced-computing-commodities",
+          "type": "primary"
+        },
+        {
+          "label": "Baker McKenzie summary",
+          "url": "https://sanctionsnews.bakermckenzie.com/bis-revises-license-review-policy-for-advanced-computing-commodities-ai-semiconductors-to-china-and-macau-when-exported-from-the-united-states/",
+          "type": "law-firm"
+        }
+      ],
+      "caveat": {
+        "zh": "阈值与条件取自律所摘要与公报检索结果，未逐条核对规则全文；数量上限、买家名单等来自博客，未采纳。",
+        "en": "Thresholds and conditions come from law-firm summaries and the Federal Register record located in search; the full rule text was not checked. Volume caps and buyer lists reported by blogs are not adopted."
+      },
+      "links": {
+        "earnings": [
+          "QA012"
+        ],
+        "reports": [
+          "nvidia-en.html",
+          "amd-en.html"
+        ]
+      }
+    }
+  ]
+}

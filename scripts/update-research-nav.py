@@ -13,11 +13,21 @@ LINKS = (
     ("/ai/architects/", "架构师思想"),
     ("/ai/notes/", "Architecture Notes"),
     ("/ai/bridge/", "技术 × 投资"),
+    ("/ai/policy/", "政策与地缘"),
+    ("/ai/standards/", "标准与联盟"),
+    ("/ai/method/", "方法与术语"),
+    ("/ai/search.html", "搜索"),
 )
 ENGLISH = (
     "Product Analysis", "Earnings Analysis",
     "Analyst Mode", "Hot Chips", "Architect Mode", "Architecture Notes", "Tech x Invest",
+    "Policy", "Standards", "Method & Glossary", "Search",
 )
+# Section language, so readers know before clicking. "both" sections carry no mark.
+SECTION_LANG = {
+    "/ai/earnings/": "en", "/ai/hot-chips/": "en", "/ai/notes/": "en",
+    "/ai/analysts/": "zh", "/ai/architects/": "zh", "/ai/bridge/": "zh",
+}
 NAV = re.compile(r'<nav\b(?=[^>]*\bclass\s*=\s*[\"\'][^\"\']*\bresearch-nav\b)[^>]*>.*?</nav\s*>', re.I | re.S)
 STYLE = re.compile(r'<link\b(?=[^>]*\bhref\s*=\s*[\"\']/ai/research-nav\.css(?:\?[^\"\']*)?[\"\'])[^>]*>', re.I)
 
@@ -30,8 +40,16 @@ def render(path, english=False):
     links = []
     for (href, zh_label), en_label in zip(LINKS, ENGLISH):
         label = en_label if english else zh_label
+        section = SECTION_LANG.get(href)
+        extra = ""
+        if section == "zh" and english:
+            label += " (中文)"
+            extra = ' hreflang="zh"'
+        elif section == "en" and not english:
+            label += " (EN)"
+            extra = ' hreflang="en"'
         attrs = ' aria-current="page"' if href == current else ""
-        links.append(f'<a href="{href}"{attrs}>{html.escape(label)}</a>')
+        links.append(f'<a href="{href}"{attrs}{extra}>{html.escape(label)}</a>')
     label = 'AI research navigation' if english else 'AI 研究导航'
     theme = 'AI Infrastructure Research' if english else 'AI 基础设施研究'
     brand = f'<span class="research-name">{theme}</span>'
@@ -42,7 +60,8 @@ def update(path):
     after, count = NAV.subn("", before)
     body = re.search(r'<body\b[^>]*>', after, re.I)
     if not body:
-        raise ValueError(f"Missing body: {path}")
+        print(f"Skipped (no <body>, treated as a fragment): {path.relative_to(ROOT)}")
+        return False
     language = re.search(r'<html\b[^>]*\blang=["\']([^"\']+)', before, re.I)
     english = bool(language and language.group(1).lower().startswith("en"))
     after = after[:body.end()] + render(path, english) + after[body.end():]

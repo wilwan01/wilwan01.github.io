@@ -1,0 +1,831 @@
+{
+  "version": 1,
+  "as_of": "2026-10-11",
+  "note": {
+    "zh": "定义为通用技术说明，面向本站阅读；具体产品参数以厂商和标准文本为准。",
+    "en": "Definitions are general technical explanations written for reading this site; specific product figures follow vendor and standards documents."
+  },
+  "categories": {
+    "memory": {
+      "zh": "内存",
+      "en": "Memory"
+    },
+    "packaging": {
+      "zh": "封装",
+      "en": "Packaging"
+    },
+    "interconnect": {
+      "zh": "互连",
+      "en": "Interconnect"
+    },
+    "compute": {
+      "zh": "计算",
+      "en": "Compute"
+    },
+    "workload": {
+      "zh": "负载与指标",
+      "en": "Workloads and metrics"
+    },
+    "economics": {
+      "zh": "商业与财务",
+      "en": "Business and finance"
+    },
+    "policy": {
+      "zh": "政策",
+      "en": "Policy"
+    },
+    "meta": {
+      "zh": "站点",
+      "en": "Site"
+    }
+  },
+  "terms": [
+    {
+      "id": "2-5d-3d",
+      "en": "2.5D / 3D packaging",
+      "zh": "2.5D / 3D封装",
+      "cat": "packaging",
+      "def_zh": "2.5D把多个裸片并排放在中介层上；3D把裸片垂直堆叠。",
+      "def_en": "2.5D places dies side by side on an interposer; 3D stacks dies vertically.",
+      "see": [
+        {
+          "label": "技术×投资 B5",
+          "url": "/ai/bridge/#B5"
+        }
+      ]
+    },
+    {
+      "id": "asic",
+      "en": "ASIC",
+      "zh": "专用集成电路",
+      "cat": "compute",
+      "def_zh": "为特定任务定制的芯片；云厂商自研AI芯片常属此类。",
+      "def_en": "A chip customised for a specific job; cloud providers' in-house AI chips are usually ASICs.",
+      "see": [
+        {
+          "label": "技术×投资 B9",
+          "url": "/ai/bridge/#B9"
+        }
+      ]
+    },
+    {
+      "id": "asp",
+      "en": "ASP",
+      "zh": "平均售价",
+      "cat": "economics",
+      "def_zh": "单位产品的平均销售价格；收入增长要拆成数量与ASP两部分看。",
+      "def_en": "Average selling price per unit; revenue growth should be split into volume and ASP.",
+      "see": []
+    },
+    {
+      "id": "base-die",
+      "en": "Base die",
+      "zh": "基底裸片",
+      "cat": "memory",
+      "def_zh": "HBM堆叠最底层的裸片，承载与处理器的接口和部分逻辑；定制HBM变体可以改写这一层。",
+      "def_en": "The bottom die of an HBM stack; it carries the interface to the processor and some logic, and custom HBM variants can change this layer.",
+      "see": [
+        {
+          "label": "技术×投资 B1",
+          "url": "/ai/bridge/#B1"
+        }
+      ]
+    },
+    {
+      "id": "low-precision",
+      "en": "BF16 / FP8 / FP4",
+      "zh": "BF16 / FP8 / FP4",
+      "cat": "compute",
+      "def_zh": "低精度数值格式：用更少的位表示数值，以换取吞吐与内存，但需要模型与软件配合保证精度。",
+      "def_en": "Low-precision number formats that trade accuracy for throughput and memory; models and software must keep quality acceptable.",
+      "see": []
+    },
+    {
+      "id": "bis",
+      "en": "BIS",
+      "zh": "美国商务部工业与安全局",
+      "cat": "policy",
+      "def_zh": "美国商务部下负责出口管制的机构。",
+      "def_en": "The US Commerce Department bureau responsible for export controls.",
+      "see": [
+        {
+          "label": "政策 P02",
+          "url": "/ai/policy/#P02"
+        }
+      ]
+    },
+    {
+      "id": "coherence",
+      "en": "Cache coherence",
+      "zh": "缓存一致性",
+      "cat": "memory",
+      "def_zh": "保证多个缓存中同一数据副本保持一致的协议；一致性不等于消除放置敏感性。",
+      "def_en": "Protocol that keeps copies of the same data consistent across caches; coherence does not remove placement sensitivity.",
+      "see": [
+        {
+          "label": "标准 S04",
+          "url": "/ai/standards/#S04"
+        },
+        {
+          "label": "技术×投资 B11",
+          "url": "/ai/bridge/#B11"
+        }
+      ]
+    },
+    {
+      "id": "capex",
+      "en": "CapEx",
+      "zh": "资本开支",
+      "cat": "economics",
+      "def_zh": "购置厂房、设备与数据中心等长期资产的支出；产出滞后于开支。",
+      "def_en": "Spending on long-lived assets such as fabs, equipment and data centres; output lags spending.",
+      "see": []
+    },
+    {
+      "id": "chiplet",
+      "en": "Chiplet",
+      "zh": "芯粒",
+      "cat": "packaging",
+      "def_zh": "把一个系统拆成多个较小裸片并在封装内互连，用以提高良率、混合工艺或复用IP。",
+      "def_en": "Splitting a system into several smaller dies connected inside one package to improve yield, mix process nodes or reuse IP.",
+      "see": [
+        {
+          "label": "技术×投资 B5",
+          "url": "/ai/bridge/#B5"
+        },
+        {
+          "label": "标准 S03",
+          "url": "/ai/standards/#S03"
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "en": "Country Group D:5",
+      "zh": "D:5国家组",
+      "cat": "policy",
+      "def_zh": "美国出口管理条例中受武器禁运的国家组；管制可延伸到总部设在这些国家的公司。",
+      "def_en": "The group of US-arms-embargoed countries in the export regulations; controls can extend to companies headquartered there.",
+      "see": [
+        {
+          "label": "政策 P08",
+          "url": "/ai/policy/#P08"
+        }
+      ]
+    },
+    {
+      "id": "cowos",
+      "en": "CoWoS",
+      "zh": "CoWoS（晶圆上芯片封装）",
+      "cat": "packaging",
+      "def_zh": "台积电的2.5D先进封装技术系列，常用于把GPU/加速器与HBM集成在一个封装内。",
+      "def_en": "TSMC's family of 2.5D advanced-packaging technologies, commonly used to integrate GPUs or accelerators with HBM in one package.",
+      "see": []
+    },
+    {
+      "id": "cpo",
+      "en": "CPO (co-packaged optics)",
+      "zh": "共封装光学",
+      "cat": "packaging",
+      "def_zh": "把光引擎放进与交换芯片或计算芯片同一封装内，以缩短电链路；可维修性与可靠性是常见的追问。",
+      "def_en": "Placing optical engines in the same package as a switch or compute chip to shorten electrical links; serviceability and reliability are common questions.",
+      "see": [
+        {
+          "label": "技术×投资 B5",
+          "url": "/ai/bridge/#B5"
+        }
+      ]
+    },
+    {
+      "id": "cxl",
+      "en": "CXL (Compute Express Link)",
+      "zh": "计算快速链路",
+      "cat": "memory",
+      "def_zh": "具有一致性与内存语义的开放互连，用于主机与加速器、内存扩展器等设备之间的连接。",
+      "def_en": "Open interconnect with coherence and memory semantics, linking a host to accelerators, memory expanders and other devices.",
+      "see": [
+        {
+          "label": "标准 S04",
+          "url": "/ai/standards/#S04"
+        }
+      ]
+    },
+    {
+      "id": "dpu",
+      "en": "DPU",
+      "zh": "数据处理器",
+      "cat": "interconnect",
+      "def_zh": "可编程的网络与基础设施卸载处理器，承担网络、存储与安全任务。",
+      "def_en": "A programmable processor offloading networking, storage and security tasks from the host.",
+      "see": []
+    },
+    {
+      "id": "dram",
+      "en": "DRAM",
+      "zh": "动态随机存取存储器",
+      "cat": "memory",
+      "def_zh": "用电容保存数据、需要周期刷新的主内存技术；DDR、LPDDR、GDDR与HBM都是其变体。",
+      "def_en": "Main-memory technology that stores bits in capacitors and needs periodic refresh; DDR, LPDDR, GDDR and HBM are variants.",
+      "see": []
+    },
+    {
+      "id": "ecc",
+      "en": "ECC",
+      "zh": "纠错码",
+      "cat": "memory",
+      "def_zh": "在内存或链路中加入冗余位以检测并纠正少量错误。",
+      "def_en": "Redundant bits added to memory or links so small errors can be detected and corrected.",
+      "see": []
+    },
+    {
+      "id": "eccn",
+      "en": "ECCN",
+      "zh": "出口管制分类编号",
+      "cat": "policy",
+      "def_zh": "美国出口管制条例中对物项的分类编号，例如先进计算芯片适用的3A090。",
+      "def_en": "Export Control Classification Number in the US export rules, such as 3A090 for advanced-computing chips.",
+      "see": []
+    },
+    {
+      "id": "emib",
+      "en": "EMIB",
+      "zh": "EMIB（嵌入式多芯片互连桥）",
+      "cat": "packaging",
+      "def_zh": "英特尔的封装技术，用嵌入基板的小型硅桥连接相邻裸片。",
+      "def_en": "Intel's packaging technology that links adjacent dies through small silicon bridges embedded in the substrate.",
+      "see": []
+    },
+    {
+      "id": "entity-list",
+      "en": "Entity List",
+      "zh": "实体清单",
+      "cat": "policy",
+      "def_zh": "BIS列出的受限制对象清单，向其出口通常需要许可。",
+      "def_en": "BIS's list of restricted parties, to which exports generally require a licence.",
+      "see": [
+        {
+          "label": "政策 P06",
+          "url": "/ai/policy/#P06"
+        }
+      ]
+    },
+    {
+      "id": "flops",
+      "en": "FLOPS / TFLOPS",
+      "zh": "浮点运算次数 / 每秒万亿次",
+      "cat": "compute",
+      "def_zh": "每秒浮点运算次数；峰值值取决于数值格式，不等于实际任务吞吐。",
+      "def_en": "Floating-point operations per second; the peak depends on the number format and is not delivered task throughput.",
+      "see": []
+    },
+    {
+      "id": "fdpr",
+      "en": "Foreign direct product rule",
+      "zh": "外国直接产品规则",
+      "cat": "policy",
+      "def_zh": "美国出口管制中把管制延伸到使用美国技术在境外生产的产品的规则。",
+      "def_en": "A US export-control rule extending controls to products made abroad using US technology.",
+      "see": [
+        {
+          "label": "政策 P06",
+          "url": "/ai/policy/#P06"
+        }
+      ]
+    },
+    {
+      "id": "fpga",
+      "en": "FPGA",
+      "zh": "现场可编程门阵列",
+      "cat": "compute",
+      "def_zh": "可在制造后重新配置逻辑的芯片，灵活但通常效率低于固定功能芯片。",
+      "def_en": "A chip whose logic can be reconfigured after manufacture: flexible, but usually less efficient than fixed-function silicon.",
+      "see": []
+    },
+    {
+      "id": "gpu",
+      "en": "GPU",
+      "zh": "图形处理器",
+      "cat": "compute",
+      "def_zh": "高度并行的处理器，现为AI训练与推理的主要加速器。",
+      "def_en": "A massively parallel processor, now the main accelerator for AI training and inference.",
+      "see": []
+    },
+    {
+      "id": "hbm",
+      "en": "HBM (High Bandwidth Memory)",
+      "zh": "高带宽内存",
+      "cat": "memory",
+      "def_zh": "多层DRAM裸片垂直堆叠，通过很宽的接口与处理器在同一封装内互连，以较低功耗提供很高带宽。",
+      "def_en": "DRAM dies stacked vertically and connected to the processor inside the same package through a very wide interface, giving high bandwidth at modest power.",
+      "see": [
+        {
+          "label": "技术×投资 B1",
+          "url": "/ai/bridge/#B1"
+        },
+        {
+          "label": "标准 S05",
+          "url": "/ai/standards/#S05"
+        }
+      ]
+    },
+    {
+      "id": "hot-chips",
+      "en": "Hot Chips",
+      "zh": "Hot Chips",
+      "cat": "meta",
+      "def_zh": "每年举行的高性能芯片研讨会，本站整理其年度问答模式。",
+      "def_en": "The annual symposium on high-performance chips; this site compiles patterns from its Q&A.",
+      "see": [
+        {
+          "label": "Hot Chips",
+          "url": "/ai/hot-chips/"
+        }
+      ]
+    },
+    {
+      "id": "hybrid-bonding",
+      "en": "Hybrid bonding",
+      "zh": "混合键合",
+      "cat": "packaging",
+      "def_zh": "裸片间不用焊料凸点、直接铜对铜加介质键合的连接方式，可得到更细间距。",
+      "def_en": "Die-to-die bonding without solder bumps, joining copper pads and dielectric directly, giving finer pitch.",
+      "see": []
+    },
+    {
+      "id": "inference-training",
+      "en": "Inference / Training",
+      "zh": "推理 / 训练",
+      "cat": "workload",
+      "def_zh": "训练更新模型参数；推理使用已训练模型生成结果，两者对内存、网络与延迟的要求不同。",
+      "def_en": "Training updates model parameters; inference uses a trained model to produce outputs; they stress memory, network and latency differently.",
+      "see": []
+    },
+    {
+      "id": "ir-coverage",
+      "en": "IR analyst coverage list",
+      "zh": "IR分析师覆盖名单",
+      "cat": "meta",
+      "def_zh": "公司投资者关系页面公布的覆盖其股票的分析师名单；不等于完整的市场覆盖。",
+      "def_en": "The list of analysts covering a company's stock, published on its investor-relations page; it is not full market coverage.",
+      "see": [
+        {
+          "label": "Method",
+          "url": "/ai/method/"
+        }
+      ]
+    },
+    {
+      "id": "isa",
+      "en": "ISA",
+      "zh": "指令集架构",
+      "cat": "compute",
+      "def_zh": "软件与处理器之间的接口约定，如x86、Arm、RISC-V。",
+      "def_en": "The contract between software and processor, such as x86, Arm or RISC-V.",
+      "see": []
+    },
+    {
+      "id": "known-good-die",
+      "en": "Known-good die (KGD)",
+      "zh": "已知良品裸片",
+      "cat": "packaging",
+      "def_zh": "在封装前经过测试判定合格的裸片；裸片合格不等于封装后的产品合格。",
+      "def_en": "A die tested and judged good before packaging; a good die does not guarantee a good packaged product.",
+      "see": [
+        {
+          "label": "技术×投资 B5",
+          "url": "/ai/bridge/#B5"
+        }
+      ]
+    },
+    {
+      "id": "kv-cache",
+      "en": "KV cache",
+      "zh": "KV缓存",
+      "cat": "memory",
+      "def_zh": "大模型推理中保存已处理词元的注意力键/值张量，避免重复计算；随上下文长度与并发增长，常成为内存容量与带宽压力来源。",
+      "def_en": "Attention key/value tensors kept during LLM inference so earlier tokens need not be recomputed; it grows with context length and concurrency and is a source of memory capacity and bandwidth pressure.",
+      "see": [
+        {
+          "label": "技术×投资 B8",
+          "url": "/ai/bridge/#B8"
+        }
+      ]
+    },
+    {
+      "id": "lpddr",
+      "en": "LPDDR",
+      "zh": "低功耗DDR",
+      "cat": "memory",
+      "def_zh": "面向移动与能效场景的DDR内存，功耗低、带宽中等。",
+      "def_en": "DDR memory aimed at mobile and energy-efficient designs: low power, moderate bandwidth.",
+      "see": []
+    },
+    {
+      "id": "mfu",
+      "en": "MFU",
+      "zh": "模型FLOPs利用率",
+      "cat": "compute",
+      "def_zh": "训练实际达到的FLOPs占硬件峰值的比例；高MFU不等于低成本词元。",
+      "def_en": "Share of hardware peak FLOPs a training run actually achieves; high MFU does not imply cheap tokens.",
+      "see": []
+    },
+    {
+      "id": "mlperf",
+      "en": "MLPerf",
+      "zh": "MLPerf",
+      "cat": "workload",
+      "def_zh": "MLCommons发布的机器学习基准套件；结果只在其规定的负载与规则下可比。",
+      "def_en": "The machine-learning benchmark suite published by MLCommons; results compare only under its stated workloads and rules.",
+      "see": [
+        {
+          "label": "技术×投资 B10",
+          "url": "/ai/bridge/#B10"
+        }
+      ]
+    },
+    {
+      "id": "mofcom",
+      "en": "MOFCOM",
+      "zh": "商务部",
+      "cat": "policy",
+      "def_zh": "中国商务部，负责出口许可与贸易管制公告。",
+      "def_en": "China's Ministry of Commerce, which issues export-licensing and trade-control notices.",
+      "see": [
+        {
+          "label": "政策 P04",
+          "url": "/ai/policy/#P04"
+        }
+      ]
+    },
+    {
+      "id": "nic",
+      "en": "NIC",
+      "zh": "网卡",
+      "cat": "interconnect",
+      "def_zh": "把服务器接入网络的适配器；AI网卡常集成RDMA与拥塞控制。",
+      "def_en": "The adapter connecting a server to the network; AI NICs often integrate RDMA and congestion control.",
+      "see": []
+    },
+    {
+      "id": "npu",
+      "en": "NPU",
+      "zh": "神经网络处理器",
+      "cat": "compute",
+      "def_zh": "面向神经网络推理的处理单元，常见于终端与边缘设备。",
+      "def_en": "A processing unit aimed at neural-network inference, common in client and edge devices.",
+      "see": []
+    },
+    {
+      "id": "numa",
+      "en": "NUMA",
+      "zh": "非统一内存访问",
+      "cat": "memory",
+      "def_zh": "访问内存的时间取决于内存相对处理器的位置；放置不当会损失性能。",
+      "def_en": "Memory access time depends on where the memory sits relative to the processor; poor placement costs performance.",
+      "see": []
+    },
+    {
+      "id": "nvlink",
+      "en": "NVLink",
+      "zh": "NVLink",
+      "cat": "interconnect",
+      "def_zh": "NVIDIA的高带宽GPU互连；NVLink Fusion是其面向合作伙伴的半定制方案。",
+      "def_en": "NVIDIA's high-bandwidth GPU interconnect; NVLink Fusion is its programme for partners building semi-custom systems.",
+      "see": [
+        {
+          "label": "标准 S08",
+          "url": "/ai/standards/#S08"
+        }
+      ]
+    },
+    {
+      "id": "tail-latency",
+      "en": "P99 / tail latency",
+      "zh": "P99 / 尾延迟",
+      "cat": "workload",
+      "def_zh": "最慢1%请求的延迟；平均延迟改善时尾延迟仍可能恶化。",
+      "def_en": "Latency of the slowest 1% of requests; the tail can worsen even when the average improves.",
+      "see": []
+    },
+    {
+      "id": "pam4",
+      "en": "PAM4",
+      "zh": "PAM4（四电平脉冲幅度调制）",
+      "cat": "interconnect",
+      "def_zh": "每个符号携带2比特的信号方式，用来提高链路速率，代价是对噪声更敏感。",
+      "def_en": "A signalling scheme carrying 2 bits per symbol to raise link rates, at the cost of greater noise sensitivity.",
+      "see": []
+    },
+    {
+      "id": "pcie",
+      "en": "PCIe",
+      "zh": "PCIe（PCI Express）",
+      "cat": "interconnect",
+      "def_zh": "主机与加速器、网卡、存储之间的通用高速I/O总线，每代速率翻倍。",
+      "def_en": "The general high-speed I/O bus between host and accelerators, NICs and storage; the rate roughly doubles each generation.",
+      "see": [
+        {
+          "label": "标准 S06",
+          "url": "/ai/standards/#S06"
+        }
+      ]
+    },
+    {
+      "id": "pim",
+      "en": "PIM (processing-in-memory)",
+      "zh": "存内计算",
+      "cat": "memory",
+      "def_zh": "把计算单元放在内存阵列内部或紧邻处，以减少数据搬运；收益取决于主机侧与顺序开销是否同步下降。",
+      "def_en": "Placing compute inside or next to memory arrays to cut data movement; the gain depends on host-side and ordering overheads falling as well.",
+      "see": []
+    },
+    {
+      "id": "accelerator-pod",
+      "en": "Pod",
+      "zh": "算力池（Pod）",
+      "cat": "interconnect",
+      "def_zh": "由加速器与交换机组成的一个纵向扩展域；UALink 1.0规范以单个Pod最多1,024个加速器为目标。",
+      "def_en": "A scale-up domain of accelerators and switches; UALink 1.0 targets up to 1,024 accelerators per pod.",
+      "see": [
+        {
+          "label": "标准 S01",
+          "url": "/ai/standards/#S01"
+        }
+      ]
+    },
+    {
+      "id": "ppa",
+      "en": "PPA",
+      "zh": "性能、功耗、面积",
+      "cat": "economics",
+      "def_zh": "芯片设计的三项基本取舍；脱离完整系统的PPA不足以判断成本。",
+      "def_en": "The three basic trade-offs in chip design; PPA alone, without the whole system, cannot settle cost.",
+      "see": []
+    },
+    {
+      "id": "prefill-decode",
+      "en": "Prefill / Decode",
+      "zh": "预填充 / 解码",
+      "cat": "workload",
+      "def_zh": "大模型推理的两个阶段：预填充一次处理整段输入，解码逐词元生成，二者瓶颈不同。",
+      "def_en": "The two phases of LLM inference: prefill processes the whole prompt at once, decode generates token by token; their bottlenecks differ.",
+      "see": [
+        {
+          "label": "技术×投资 B10",
+          "url": "/ai/bridge/#B10"
+        }
+      ]
+    },
+    {
+      "id": "case-by-case",
+      "en": "Presumption of denial / case-by-case review",
+      "zh": "推定拒绝 / 个案审查",
+      "cat": "policy",
+      "def_zh": "许可申请的默认审查立场：推定拒绝默认不批，个案审查则逐项评估，但都不是通用许可。",
+      "def_en": "The default stance on licence applications: presumption of denial means refusal unless shown otherwise; case-by-case means individual assessment; neither is a general licence.",
+      "see": [
+        {
+          "label": "政策 P12",
+          "url": "/ai/policy/#P12"
+        }
+      ]
+    },
+    {
+      "id": "rdma",
+      "en": "RDMA",
+      "zh": "远程直接内存访问",
+      "cat": "interconnect",
+      "def_zh": "网卡直接读写远端内存而不经过对方CPU，降低延迟与CPU开销。",
+      "def_en": "A network card reading or writing remote memory without involving the remote CPU, cutting latency and CPU overhead.",
+      "see": []
+    },
+    {
+      "id": "samr",
+      "en": "SAMR",
+      "zh": "国家市场监督管理总局",
+      "cat": "policy",
+      "def_zh": "中国负责反垄断审查等事务的市场监管机构。",
+      "def_en": "China's market regulator, responsible for antitrust review among other matters.",
+      "see": [
+        {
+          "label": "政策 P10",
+          "url": "/ai/policy/#P10"
+        }
+      ]
+    },
+    {
+      "id": "sca",
+      "en": "SCA (strategic customer agreement)",
+      "zh": "战略客户协议（SCA）",
+      "cat": "economics",
+      "def_zh": "美光在财报问答中使用的多年期客户协议；据其10-K，协议含具约束力的数量承诺，多数定价设有上下限价格带。",
+      "def_en": "Multi-year customer agreements Micron discusses in its earnings Q&A; per its 10-K they carry binding volume commitments, with most pricing subject to minimum and maximum bands.",
+      "see": [
+        {
+          "label": "技术×投资 B1",
+          "url": "/ai/bridge/#B1"
+        }
+      ]
+    },
+    {
+      "id": "scale-out",
+      "en": "Scale-out",
+      "zh": "横向扩展",
+      "cat": "interconnect",
+      "def_zh": "通过网络在多个节点或机架之间扩展，带宽低于机内互连但规模更大。",
+      "def_en": "Scaling across nodes or racks over a network: lower bandwidth than in-node links but larger reach.",
+      "see": [
+        {
+          "label": "标准 S02",
+          "url": "/ai/standards/#S02"
+        },
+        {
+          "label": "技术×投资 B7",
+          "url": "/ai/bridge/#B7"
+        }
+      ]
+    },
+    {
+      "id": "scale-up",
+      "en": "Scale-up",
+      "zh": "纵向扩展",
+      "cat": "interconnect",
+      "def_zh": "在机内或机架内把大量加速器连成一个高带宽、低延迟的域，使其像一台大机器工作。",
+      "def_en": "Linking many accelerators inside a node or rack into one high-bandwidth, low-latency domain that behaves like a single large machine.",
+      "see": [
+        {
+          "label": "标准 S01",
+          "url": "/ai/standards/#S01"
+        },
+        {
+          "label": "标准 S07",
+          "url": "/ai/standards/#S07"
+        },
+        {
+          "label": "标准 S08",
+          "url": "/ai/standards/#S08"
+        },
+        {
+          "label": "技术×投资 B7",
+          "url": "/ai/bridge/#B7"
+        }
+      ]
+    },
+    {
+      "id": "section-232",
+      "en": "Section 232",
+      "zh": "第232条",
+      "cat": "policy",
+      "def_zh": "美国《1962年贸易扩展法》条款，授权以国家安全为由调整进口。",
+      "def_en": "A provision of the US Trade Expansion Act of 1962 allowing import adjustments on national-security grounds.",
+      "see": [
+        {
+          "label": "政策 P11",
+          "url": "/ai/policy/#P11"
+        }
+      ]
+    },
+    {
+      "id": "slo",
+      "en": "SLO",
+      "zh": "服务水平目标",
+      "cat": "workload",
+      "def_zh": "对延迟、可用性等服务质量设定的目标，比较方案时需要在同一SLO下进行。",
+      "def_en": "A target for service quality such as latency or availability; options should be compared under the same SLO.",
+      "see": []
+    },
+    {
+      "id": "smt",
+      "en": "SMT",
+      "zh": "同时多线程",
+      "cat": "compute",
+      "def_zh": "一个核同时运行多个硬件线程以提高利用率，代价是线程间干扰与隔离问题。",
+      "def_en": "One core running several hardware threads at once to raise utilisation, at the cost of interference and isolation questions.",
+      "see": [
+        {
+          "label": "技术×投资 B11",
+          "url": "/ai/bridge/#B11"
+        }
+      ]
+    },
+    {
+      "id": "sram",
+      "en": "SRAM",
+      "zh": "静态随机存取存储器",
+      "cat": "memory",
+      "def_zh": "速度快、面积大、无需刷新的片上存储，常用作缓存和片上缓冲。",
+      "def_en": "Fast, area-hungry on-chip memory that needs no refresh; used for caches and on-chip buffers.",
+      "see": []
+    },
+    {
+      "id": "take-or-pay",
+      "en": "Take-or-pay",
+      "zh": "照付不议",
+      "cat": "economics",
+      "def_zh": "买方承诺购买约定数量，不取货也需付款的合同条款。",
+      "def_en": "A contract term in which the buyer commits to a volume and pays even if it does not take delivery.",
+      "see": []
+    },
+    {
+      "id": "tco",
+      "en": "TCO",
+      "zh": "总拥有成本",
+      "cat": "economics",
+      "def_zh": "购置、能耗、设施与运维等全部成本之和，按每单位服务量折算后才可比较。",
+      "def_en": "The sum of purchase, energy, facility and operating costs, comparable only once normalised per unit of service.",
+      "see": []
+    },
+    {
+      "id": "tdp",
+      "en": "TDP",
+      "zh": "热设计功耗",
+      "cat": "compute",
+      "def_zh": "散热系统需要持续带走的设计热功率，不等于瞬时峰值电功率。",
+      "def_en": "The design heat power a cooling system must carry continuously; it is not instantaneous peak electrical power.",
+      "see": []
+    },
+    {
+      "id": "tpp",
+      "en": "TPP (total processing performance)",
+      "zh": "总处理性能",
+      "cat": "policy",
+      "def_zh": "BIS用于界定先进计算芯片受控范围的综合性能指标。",
+      "def_en": "The aggregate performance metric BIS uses to define which advanced-computing chips are controlled.",
+      "see": [
+        {
+          "label": "政策 P12",
+          "url": "/ai/policy/#P12"
+        }
+      ]
+    },
+    {
+      "id": "tpu",
+      "en": "TPU",
+      "zh": "张量处理器",
+      "cat": "compute",
+      "def_zh": "Google为神经网络工作负载设计的专用加速器。",
+      "def_en": "Google's purpose-built accelerator for neural-network workloads.",
+      "see": []
+    },
+    {
+      "id": "tsv",
+      "en": "TSV (through-silicon via)",
+      "zh": "硅通孔",
+      "cat": "packaging",
+      "def_zh": "贯穿硅裸片的垂直导线，用来连接堆叠的裸片，例如HBM各层。",
+      "def_en": "A vertical conductor through a silicon die that connects stacked dies, for example the layers of an HBM stack.",
+      "see": []
+    },
+    {
+      "id": "ualink",
+      "en": "UALink",
+      "zh": "UALink",
+      "cat": "interconnect",
+      "def_zh": "由UALink联盟定义的开放纵向扩展互连，面向加速器与交换机之间的加载/存储通信。",
+      "def_en": "Open scale-up interconnect defined by the UALink Consortium for load/store communication between accelerators and switches.",
+      "see": [
+        {
+          "label": "标准 S01",
+          "url": "/ai/standards/#S01"
+        }
+      ]
+    },
+    {
+      "id": "ucie",
+      "en": "UCIe",
+      "zh": "UCIe（通用芯粒互连）",
+      "cat": "packaging",
+      "def_zh": "开放的芯粒互连标准，定义封装内裸片之间的物理层、协议与管理。",
+      "def_en": "Open chiplet interconnect standard defining the physical layer, protocols and management between dies in a package.",
+      "see": [
+        {
+          "label": "标准 S03",
+          "url": "/ai/standards/#S03"
+        }
+      ]
+    },
+    {
+      "id": "uec",
+      "en": "Ultra Ethernet (UEC)",
+      "zh": "超以太网（UEC）",
+      "cat": "interconnect",
+      "def_zh": "超以太网联盟的以太网通信栈规范，面向AI与HPC的横向扩展网络。",
+      "def_en": "The Ultra Ethernet Consortium's Ethernet communication-stack specification for AI and HPC scale-out networks.",
+      "see": [
+        {
+          "label": "标准 S02",
+          "url": "/ai/standards/#S02"
+        }
+      ]
+    },
+    {
+      "id": "xpu",
+      "en": "XPU",
+      "zh": "XPU",
+      "cat": "compute",
+      "def_zh": "对CPU之外的加速器（含定制ASIC）的泛称，多见于定制芯片业务的表述。",
+      "def_en": "Umbrella term for accelerators other than CPUs, including custom ASICs; common in custom-silicon business language.",
+      "see": []
+    }
+  ]
+}
