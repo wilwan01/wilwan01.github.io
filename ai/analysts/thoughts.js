@@ -2,6 +2,7 @@
 const byId=id=>document.getElementById(id);
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const TKEY='ai-analyst-thoughts-v1';let atlas,profileId,cardId,step=0,attempts={},answerKeys,pendingProfileId;
+try{pendingProfileId=new URLSearchParams(location.search).get('profile')||undefined}catch{}
 try{const p=JSON.parse(localStorage.getItem(TKEY)||'{}');if(p&&typeof p==='object'&&!Array.isArray(p))attempts=p}catch{}
 const steps=['识别假设并建模','加入约束、反驳与修正','陌生领域迁移'];
 const selected=()=>atlas.cards.find(c=>c.id===cardId);
