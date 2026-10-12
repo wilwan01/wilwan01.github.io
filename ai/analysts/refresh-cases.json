@@ -1,0 +1,88 @@
+{
+  "cutoff_at": "2026-10-12T09:12:42+01:00",
+  "cases": [
+    {
+      "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
+      "source_disclosure_id": "005930.KS_2026Q3_preliminary_20261008",
+      "company": "Samsung",
+      "evidence_type": "official_preliminary_guidance",
+      "skills": [
+        "F2",
+        "F3",
+        "F4",
+        "F6",
+        "F11",
+        "F14",
+        "F18"
+      ],
+      "real_analyst_question": null,
+      "management_testimony": "2026 Q3 estimated group revenue KRW195tn and operating profit KRW107.4tn, K-IFRS.",
+      "researcher_inference": "Implied group operating margin 55.08%; this does not identify memory/HBM profitability or cash generation.",
+      "hidden_uncertainty": "利润来自价格、出货、产品组合还是其他业务/一次性项？集团数字能否推导内存盈利？",
+      "kpi": "按业务的收入与经营利润、DRAM/NAND bit出货与ASP、HBM产品组合、库存、CFO和CapEx。",
+      "model_revision": "集团经营利润采用初步估计并保留区间；分部增量未分配。ΔOP_group = ΔOP_memory + ΔOP_other + reconciliation；不把全部增量归给HBM。",
+      "counterexample": "内存利润上升但终端业务受元件成本挤压，或非现金调整抬高集团利润；集团盈利不能代表各业务均改善。",
+      "falsification": "若最终K-IFRS经营利润落在107.3–107.5tn之外，替换初步值并查明修订原因；若分部内存增量不足以解释集团增量，则否定“全部由内存驱动”。区间是已公布估计范围，不是统计置信区间。",
+      "next_evidence_date": "2026-10-29",
+      "transfer_question": "合成迁移题：一家陌生电力设备集团只披露收入和集团利润，数据中心业务与住宅业务并存。写出两套相同集团利润、不同数据中心利润的分部情景，并列出最先索取的数据。",
+      "synthetic_transfer": true,
+      "question_attribution": "researcher-authored training; no analyst persona claimed",
+      "sources": [
+        {
+          "title": "Samsung Electronics Announces Earnings Guidance for Third Quarter 2026 – Samsung Global Newsroom",
+          "url": "https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026",
+          "source_ref": "turn37view0",
+          "retrieved_on": "2026-10-12",
+          "evidence_kind": "official_page_opened",
+          "locator": "Announcement and K-IFRS estimate/comparator table, lines 65–87"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261012-TSMC-MONTHLY",
+      "source_disclosure_id": "TSM_202609_monthly_revenue_20261008",
+      "company": "TSMC",
+      "evidence_type": "official_monthly_revenue",
+      "skills": [
+        "F2",
+        "F4",
+        "F5",
+        "F6",
+        "F11",
+        "F14",
+        "F18"
+      ],
+      "real_analyst_question": null,
+      "management_testimony": "September consolidated monthly revenue NT$511,857m, unaudited.",
+      "researcher_inference": "July–September sum NT$1,494,243m. September −0.6% MoM coexists with +54.6% YoY; neither identifies a demand turning point alone.",
+      "hidden_uncertainty": "营收增长是否来自晶圆量、ASP、先进制程/封装组合、汇率或确认时点？收入信号能否推导利润或客户部署？",
+      "kpi": "同币种季度收入、产品/制程组合、晶圆出货、利用率、ASP、实际汇率、毛利率、CFO与应收。",
+      "model_revision": "只约束Q3 TWD收入；R_Q3 = R_Jul + R_Aug + R_Sep。利润 = 收入 × 毛利率 − 费用，毛利率与费用未知，暂不修改EPS/FCF。不得用本日现汇折算后声称超过历史USD指引。",
+      "counterexample": "旺季产品组合或汇率改变足以推高收入，即使AI收入份额不变；高收入与启动成本上升也可同时存在。",
+      "falsification": "若最终季度同口径TWD收入与1,494,243m不一致，先做月报修订/合并口径/舍入核对；若新增收入由非AI客户解释，则否定“月报已证明AI份额提升”。",
+      "next_evidence_date": "2026-10-15",
+      "transfer_question": "合成迁移题：一家陌生光模块商三个月收入连续增长，库存与应收增长更快。哪条现金流证据能区分终端部署、渠道备货和提前确认？保留两套相同收入、不同现金流的情景。",
+      "synthetic_transfer": true,
+      "question_attribution": "researcher-authored training; no real call or affiliation inferred",
+      "sources": [
+        {
+          "title": "TSMC 2026 monthly revenue - Taiwan Semiconductor Manufacturing Company Limited",
+          "url": "https://investor.tsmc.com/english/monthly-revenue/2026",
+          "source_ref": "turn24view1",
+          "retrieved_on": "2026-10-12",
+          "evidence_kind": "official_page_opened",
+          "locator": "2026 Monthly Revenue table and unaudited note, lines 295–317"
+        },
+        {
+          "title": "www.sec.gov",
+          "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000680/tsm-revenue20261008.htm",
+          "source_ref": "turn37view1",
+          "retrieved_on": "2026-10-12",
+          "evidence_kind": "official_page_opened",
+          "locator": "September revenue table, lines 79–88; monthly report, lines 103–110"
+        }
+      ]
+    }
+  ],
+  "counting_rule": "Two researcher-compiled disclosure cases; zero additional real analyst questions."
+}
