@@ -41,7 +41,8 @@
         "douglas-engelbart",
         "keith-diefendorff",
         "andrew-herbert",
-        "john-mashey"
+        "john-mashey",
+        "stuart-biles"
       ]
     },
     {
@@ -118,7 +119,9 @@
         "stephen-robinson",
         "chris-abernathy",
         "kevin-lepak",
-        "pradeep-kanapathipillai"
+        "pradeep-kanapathipillai",
+        "ronak-singhal",
+        "sailesh-kottapalli"
       ]
     },
     {
@@ -240,7 +243,8 @@
         "peter-sewell",
         "robert-watson",
         "simon-moore",
-        "nhon-quach"
+        "nhon-quach",
+        "gilles-pokam"
       ]
     },
     {
@@ -285,7 +289,8 @@
         "philippe-tillet",
         "james-bradbury",
         "haibin-lin",
-        "tristan-hume"
+        "tristan-hume",
+        "alexander-heinecke"
       ]
     },
     {
@@ -44390,6 +44395,577 @@
         "validation": "分别记录 replay、flush、误依赖等待及完整运行时间；对压缩路径扫描可压缩性、页大小与并发访问，测完整搬运时间和能量，并验证与 load/store 交互时的正确性。",
         "transfer": "用于 CPU 访存调度和内存压缩方案评审，以完整执行代价检验局部指标改善。"
       }
+    },
+    {
+      "id": "ronak-singhal",
+      "name": "Ronak Singhal",
+      "aliases": [],
+      "field": "CPU 微架构与核/Uncore 协同",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "把核内并行、缓存过滤、内存带宽与功耗管理作为完整性能路径评估。",
+      "contributions": [
+        "公开阐释 Nehalem 的模块化核/Uncore、SMT 和三级缓存设计，说明 inclusive LLC 如何过滤 snoop 并支持扩展。",
+        "公开阐释 90nm Pentium 4 的微架构演进，包括缓存、缓冲、Hyper-Threading 与指令集扩展。"
+      ],
+      "background": "两份 Hot Chips 原始幻灯片均由 Ronak Singhal 署名，分别对应 2004 年 Pentium 4 与 2008 年 Nehalem。这里记录其具名技术阐释及团队架构成果，不将演讲署名推断为全部机制的个人发明。",
+      "argument": "编辑解读：核内并行度只有在缓存、访存和功耗预算同时支持时才转化为应用收益。",
+      "evidence": "已核验两项不同的一手技术作品及所列机制正文。",
+      "habits": [
+        "沿完整数据路径寻找瓶颈。",
+        "分开核内收益与平台收益。"
+      ],
+      "questions": [
+        "增加执行并行度之后，瓶颈是否移到内存、共享缓存或功耗？"
+      ],
+      "boundary": "不同代际的工艺、频率和平台不可混同；SMT 与 inclusive LLC 的收益依赖工作负载，演讲数据不等于今日平台实测。",
+      "diagnostic": "固定频率与内存配置，比较 SMT 开关、工作集和线程数，记录运行时间、带宽、缓存失效和能量。",
+      "notes": [],
+      "sources": [
+        [
+          "Inside Intel Core Microarchitecture (Nehalem)",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc20/3_Tues/HC20.26.630.pdf",
+          "幻灯片 7、9–14：模块化、执行结构、缓存与 SMT"
+        ],
+        [
+          "Intel Pentium 4 Processor on 90nm Technology",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc16/3_Tue/15_HC16_Sess10_Pres3_bw.pdf",
+          "幻灯片 1–10：署名、结构、缓存与缓冲"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "singhal-nehalem-2008",
+          "title": "Inside Intel Core Microarchitecture (Nehalem)",
+          "authors": "Ronak Singhal",
+          "date": "2008-08-26",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc20/3_Tues/HC20.26.630.pdf",
+          "locator": "幻灯片 7、9–14：模块化、执行结构、缓存与 SMT",
+          "type": "作者幻灯片",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "singhal-pentium4-2004",
+          "title": "Intel Pentium 4 Processor on 90nm Technology",
+          "authors": "Ronak Singhal",
+          "date": "2004-08-24",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc16/3_Tue/15_HC16_Sess10_Pres3_bw.pdf",
+          "locator": "幻灯片 1–10：署名、结构、缓存与缓冲",
+          "type": "作者幻灯片",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "公开阐释 Nehalem 的模块化核/Uncore、SMT 和三级缓存设计，说明 inclusive LLC 如何过滤 snoop 并支持扩展。",
+          "workId": "singhal-nehalem-2008"
+        },
+        {
+          "text": "公开阐释 90nm Pentium 4 的微架构演进，包括缓存、缓冲、Hyper-Threading 与指令集扩展。",
+          "workId": "singhal-pentium4-2004"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据具名技术作品的编辑提炼；团队贡献与个人独占明确区分。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-five-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列关键贡献与技术作品核验，不代表完整职业经历或现职核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "CPU 微架构与核/Uncore 协同",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "增加执行并行度之后，瓶颈是否移到内存、共享缓存或功耗？",
+        "variables": "IPC、频率、线程数、缓存命中、内存带宽、功耗",
+        "model": "编辑条件模型：应用吞吐受执行能力与内存服务能力中更紧的约束限制；SMT 增益须扣除共享资源竞争。",
+        "crossover": "执行空槽多且访存仍有余量时，额外线程更可能提高吞吐。",
+        "counterexample": "SMT 提高总 IPC，却因缓存干扰恶化关键线程尾延迟。",
+        "validation": "固定频率与内存配置，比较 SMT 开关、工作集和线程数，记录运行时间、带宽、缓存失效和能量。",
+        "transfer": "用于高密度 CPU 与在线/离线混部评估。"
+      }
+    },
+    {
+      "id": "sailesh-kottapalli",
+      "name": "Sailesh Kottapalli",
+      "aliases": [],
+      "field": "Xeon 系统架构与可扩展 Uncore",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "network",
+        "datacenter"
+      ],
+      "core": "服务器扩展能力取决于核、缓存、一致性代理、内存与互连的共同设计。",
+      "contributions": [
+        "与 Jeff Baxter 共同阐释 Nehalem-EX：分片 LLC、双向环、Caching/Home Agent 与 QPI 协同支持多路扩展。",
+        "联合发布 2023 年 Xeon 架构资料，阐释 P-core/E-core 共用平台与计算/I/O chiplet 分离的模块化方向。"
+      ],
+      "background": "2009 年 Hot Chips 资料由 Kottapalli 与 Baxter 署名；2023 年 Intel 官方技术简报列其为当时的 Senior Fellow and Chief Architect。条目聚焦这些历史技术作品，不据旧资料标注现职。",
+      "argument": "编辑解读：可复用核并不意味着可复用的系统扩展曲线；一致性、请求队列与跨芯片通信决定规模上限。",
+      "evidence": "已核验两项不同的一手技术作品及所列机制正文。",
+      "habits": [
+        "由核心向外逐级追踪数据流。",
+        "把模块复用与系统瓶颈分开。"
+      ],
+      "questions": [
+        "核心数增加时，每核可用的内存、一致性和互连服务能力是否同步增长？"
+      ],
+      "boundary": "Nehalem-EX 与 2023 年平台属于不同代际；公开规划不等同所有量产 SKU 的配置。团队平台成果不归为个人独占。",
+      "diagnostic": "扫描线程数、NUMA 放置和共享数据比例，测本地/远端延迟、带宽及吞吐拐点。",
+      "notes": [],
+      "sources": [
+        [
+          "Nehalem-EX CPU Architecture",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.122-Kottapalli-Intel-NHM-EX.pdf",
+          "幻灯片 7–16：LLC、环、代理与多路拓扑"
+        ],
+        [
+          "Unveiling Intel’s 2024 Xeon Architecture",
+          "https://download.intel.com/newsroom/2023/data-center-hpc/Hot_Chips_23_Granite_Rapids_Sierra_Forest_Xeon_Press_Briefing.pdf",
+          "幻灯片 1、3–5：署名、P/E 平台与计算/I/O 分离"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "kottapalli-nehalemex-2009",
+          "title": "Nehalem-EX CPU Architecture",
+          "authors": "Sailesh Kottapalli、Jeff Baxter",
+          "date": "2009",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.122-Kottapalli-Intel-NHM-EX.pdf",
+          "locator": "幻灯片 7–16：LLC、环、代理与多路拓扑",
+          "type": "作者幻灯片",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "kottapalli-xeon-2023",
+          "title": "Unveiling Intel’s 2024 Xeon Architecture",
+          "authors": "Sailesh Kottapalli、Matt Langman、Ryan Tabrah",
+          "date": "2023-08",
+          "url": "https://download.intel.com/newsroom/2023/data-center-hpc/Hot_Chips_23_Granite_Rapids_Sierra_Forest_Xeon_Press_Briefing.pdf",
+          "locator": "幻灯片 1、3–5：署名、P/E 平台与计算/I/O 分离",
+          "type": "团队作者幻灯片",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Jeff Baxter 共同阐释 Nehalem-EX：分片 LLC、双向环、Caching/Home Agent 与 QPI 协同支持多路扩展。",
+          "workId": "kottapalli-nehalemex-2009"
+        },
+        {
+          "text": "联合发布 2023 年 Xeon 架构资料，阐释 P-core/E-core 共用平台与计算/I/O chiplet 分离的模块化方向。",
+          "workId": "kottapalli-xeon-2023"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据具名技术作品的编辑提炼；团队贡献与个人独占明确区分。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-five-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列关键贡献与技术作品核验，不代表完整职业经历或现职核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "Xeon 系统架构与可扩展 Uncore",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "核心数增加时，每核可用的内存、一致性和互连服务能力是否同步增长？",
+        "variables": "核心数、LLC 分片、队列深度、NUMA 访问、内存带宽、互连跳数",
+        "model": "编辑条件模型：每核有效带宽≈可持续系统带宽/活跃核心数；跨域共享和协议开销需另计。",
+        "crossover": "当核增加速度超过内存与互连服务能力时，平台资源而非核数主导收益。",
+        "counterexample": "更多核心带来更高理论峰值，但远端共享与链路拥塞降低吞吐。",
+        "validation": "扫描线程数、NUMA 放置和共享数据比例，测本地/远端延迟、带宽及吞吐拐点。",
+        "transfer": "用于多路 CPU、chiplet 和高密度服务器配置选择。"
+      }
+    },
+    {
+      "id": "gilles-pokam",
+      "name": "Gilles Pokam",
+      "aliases": [],
+      "field": "确定性重放与软硬件协同调试",
+      "domain": "correctness",
+      "relatedDomains": [
+        "cpu",
+        "memory"
+      ],
+      "core": "记录足以重建执行的信息，把难复现的并发故障变成可重放的证据。",
+      "contributions": [
+        "共同提出 BugNet：利用寄存器检查点与后续 load 值记录，重放故障前的应用执行。",
+        "共同完成 QuickRec 原型：将内存竞争记录硬件与记录/重放软件栈结合，并处理 TSO 与非原子 x86 指令的重放问题。"
+      ],
+      "background": "BugNet（ISCA 2005）署名 Narayanasamy、Pokam、Calder；QuickRec（ISCA 2013）为 Intel/UIUC 多人合作，公开演讲由 Cristiano Pereira 主讲。明确区分共同作者与现场讲者。",
+      "argument": "编辑解读：调试能力依赖哪些非确定性被捕获，而不只是日志数量。应用重放边界必须与硬件和 OS 的记录职责一致。",
+      "evidence": "已核验两项不同的一手技术作品及所列机制正文。",
+      "habits": [
+        "先明确可重放状态与外部输入边界。",
+        "用端到端原型检验内存模型细节。"
+      ],
+      "questions": [
+        "记录是否足以唯一重建失败执行，尤其跨线程访存顺序？"
+      ],
+      "boundary": "BugNet 不重放整个 OS；QuickRec 为研究原型，不能据此断言商用 Xeon 已部署同样机制。",
+      "diagnostic": "对含数据竞争、上下文切换和非原子访存的程序做重复重放，核对执行与输出，并测日志带宽、开销和覆盖窗口。",
+      "notes": [],
+      "sources": [
+        [
+          "BugNet: Continuously Recording Program Execution for Deterministic Replay Debugging",
+          "https://cseweb.ucsd.edu/~calder/papers/ISCA-05-BugNet.pdf",
+          "第 1 页摘要与 Introduction：寄存器、load 值和重放边界"
+        ],
+        [
+          "QuickRec: Prototyping an Intel Architecture Extension for Record and Replay of Multithreaded Programs",
+          "https://iacoma.cs.uiuc.edu/iacoma-papers/PRES/present_isca13_1.pdf",
+          "幻灯片 1、3–8：署名、HW/SW 原型、MRR、TSO 与 IAV"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "bugnet-isca2005",
+          "title": "BugNet: Continuously Recording Program Execution for Deterministic Replay Debugging",
+          "authors": "Satish Narayanasamy、Gilles Pokam、Brad Calder",
+          "date": "2005-06",
+          "url": "https://cseweb.ucsd.edu/~calder/papers/ISCA-05-BugNet.pdf",
+          "locator": "第 1 页摘要与 Introduction：寄存器、load 值和重放边界",
+          "type": "论文全文",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "quickrec-isca2013",
+          "title": "QuickRec: Prototyping an Intel Architecture Extension for Record and Replay of Multithreaded Programs",
+          "authors": "Gilles Pokam 等 Intel/UIUC 作者；Cristiano Pereira 主讲",
+          "date": "2013-06",
+          "url": "https://iacoma.cs.uiuc.edu/iacoma-papers/PRES/present_isca13_1.pdf",
+          "locator": "幻灯片 1、3–8：署名、HW/SW 原型、MRR、TSO 与 IAV",
+          "type": "团队作者幻灯片",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出 BugNet：利用寄存器检查点与后续 load 值记录，重放故障前的应用执行。",
+          "workId": "bugnet-isca2005"
+        },
+        {
+          "text": "共同完成 QuickRec 原型：将内存竞争记录硬件与记录/重放软件栈结合，并处理 TSO 与非原子 x86 指令的重放问题。",
+          "workId": "quickrec-isca2013"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据具名技术作品的编辑提炼；团队贡献与个人独占明确区分。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-five-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列关键贡献与技术作品核验，不代表完整职业经历或现职核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "确定性重放与软硬件协同调试",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "记录是否足以唯一重建失败执行，尤其跨线程访存顺序？",
+        "variables": "检查点大小、load 日志、竞争顺序、记录带宽、重放覆盖、运行开销",
+        "model": "编辑条件模型：可覆盖时间≈日志容量/平均记录速率；正确性另需证明日志捕获了目标边界内所有必要非确定性。",
+        "crossover": "故障稀有且难复现时，可重放证据的价值上升，但记录成本须可持续。",
+        "counterexample": "日志很小、运行很快，却漏记 store-buffer 相关顺序，无法重放原始失败。",
+        "validation": "对含数据竞争、上下文切换和非原子访存的程序做重复重放，核对执行与输出，并测日志带宽、开销和覆盖窗口。",
+        "transfer": "用于生产故障诊断、并发验证与硬件可观测性设计。"
+      }
+    },
+    {
+      "id": "alexander-heinecke",
+      "name": "Alexander Heinecke",
+      "aliases": [],
+      "field": "LIBXSMM 与高性能 AI 计算内核",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "hpc",
+        "memory"
+      ],
+      "core": "让代码生成匹配具体张量形状和硬件，同时核算数据布局与调度开销。",
+      "contributions": [
+        "共同开发 LIBXSMM，以专用代码生成和按需 JIT 支持小矩阵计算，避免通用库在小规模问题上的额外成本。",
+        "共同提出面向 SIMD CPU 的 JIT 直接卷积方案，将布局、分块、预取与层融合结合，减少数据移动。"
+      ],
+      "background": "Heinecke 是 SC15 LIBXSMM 技术文稿第一作者，也是 2018 年直接卷积论文共同作者。按软件/硬件协同与性能内核贡献收录，不将其表述为 CPU 核设计负责人。",
+      "argument": "编辑解读：算子峰值只是局部指标；专门化的收益需要覆盖生成、分发、布局转换和跨层数据流成本。",
+      "evidence": "已核验两项不同的一手技术作品及所列机制正文。",
+      "habits": [
+        "让矩阵形状和硬件约束共同驱动代码生成。",
+        "把布局与融合纳入性能评价。"
+      ],
+      "questions": [
+        "专门化内核节省的时间，是否覆盖生成、分发和布局转换成本？"
+      ],
+      "boundary": "小矩阵及特定卷积的收益不能外推到所有矩阵形状、模型或 CPU；论文特定平台结果不是当前 LLM 推理基准。",
+      "diagnostic": "分别测冷启动与热调用，扫描形状、调用次数和线程数，同时报告内核与端到端时间。",
+      "notes": [],
+      "sources": [
+        [
+          "LIBXSMM: A High Performance Library for Small Matrix Multiplications",
+          "https://sc15.supercomputing.org/sites/all/themes/SC15images/tech_poster/poster_files/post137s2-file3.pdf",
+          "第 1 页 II Implementation：frontend、backend、dispatch 与 JIT"
+        ],
+        [
+          "Anatomy Of High-Performance Deep Learning Convolutions On SIMD Architectures",
+          "https://arxiv.org/abs/1808.05567",
+          "Introduction 与 II Implementation：直接卷积、布局、分块、JIT 与融合"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "libxsmm-sc15",
+          "title": "LIBXSMM: A High Performance Library for Small Matrix Multiplications",
+          "authors": "Alexander Heinecke、Hans Pabst、Greg Henry",
+          "date": "2015",
+          "url": "https://sc15.supercomputing.org/sites/all/themes/SC15images/tech_poster/poster_files/post137s2-file3.pdf",
+          "locator": "第 1 页 II Implementation：frontend、backend、dispatch 与 JIT",
+          "type": "作者技术报告全文",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "simd-convolution-2018",
+          "title": "Anatomy Of High-Performance Deep Learning Convolutions On SIMD Architectures",
+          "authors": "Evangelos Georganas、Sasikanth Avancha、Kunal Banerjee、Dhiraj Kalamkar、Greg Henry、Hans Pabst、Alexander Heinecke",
+          "date": "2018-08-16",
+          "url": "https://arxiv.org/abs/1808.05567",
+          "locator": "Introduction 与 II Implementation：直接卷积、布局、分块、JIT 与融合",
+          "type": "论文全文",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同开发 LIBXSMM，以专用代码生成和按需 JIT 支持小矩阵计算，避免通用库在小规模问题上的额外成本。",
+          "workId": "libxsmm-sc15"
+        },
+        {
+          "text": "共同提出面向 SIMD CPU 的 JIT 直接卷积方案，将布局、分块、预取与层融合结合，减少数据移动。",
+          "workId": "simd-convolution-2018"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据具名技术作品的编辑提炼；团队贡献与个人独占明确区分。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-five-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列关键贡献与技术作品核验，不代表完整职业经历或现职核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "LIBXSMM 与高性能 AI 计算内核",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "专门化内核节省的时间，是否覆盖生成、分发和布局转换成本？",
+        "variables": "形状、调用次数、JIT 时间、分发成本、布局流量、缓存容量",
+        "model": "编辑条件模型：N×(T通用−T专用)>T生成+T额外布局时，专门化才有净收益；所有时间需在相同执行边界测量。",
+        "crossover": "形状稳定、调用可复用且生成成本能摊销时更有价值。",
+        "counterexample": "微内核更快，但形状高度动态或布局转换使端到端执行变慢。",
+        "validation": "分别测冷启动与热调用，扫描形状、调用次数和线程数，同时报告内核与端到端时间。",
+        "transfer": "用于 CPU AI 推理内核、张量编译器与库选择。"
+      }
+    },
+    {
+      "id": "stuart-biles",
+      "name": "Stuart Biles",
+      "aliases": [
+        "Stuart D. Biles",
+        "Stuart David Biles"
+      ],
+      "field": "可伸缩向量 ISA 与紧耦合加速",
+      "domain": "foundations",
+      "relatedDomains": [
+        "cpu",
+        "compiler-runtime",
+        "gpu-ai"
+      ],
+      "core": "把软件可移植的语义与硬件实现宽度解耦，并明确专用加速器接入执行流的代价。",
+      "contributions": [
+        "共同撰写 Arm SVE 架构论文，阐释向量长度无关编程、逐元素谓词与自动向量化机制。",
+        "共同发明紧耦合加速器方案，以可配置功能单元执行指令子图，并与处理器操作数和执行管线衔接。"
+      ],
+      "background": "Stuart Biles 为 SVE 论文共同作者；US7350055B2 将 Stuart D. Biles 与 Flautner、Mahlke、Clark 列为共同发明人。依具名技术作品收录，不以管理职衔替代贡献证据。",
+      "argument": "编辑解读：ISA 应保留实现自由度，同时让编译器能表达并行性；加速器收益也受操作数供给、旁路和流水线衔接影响。",
+      "evidence": "已核验两项不同的一手技术作品及所列机制正文。",
+      "habits": [
+        "分开架构语义与实现参数。",
+        "将执行单元收益与集成成本一起核算。"
+      ],
+      "questions": [
+        "增加向量宽度或专用执行单元后，软件与数据通路能否有效利用新增并行性？"
+      ],
+      "boundary": "SVE 是团队成果；向量长度无关不保证性能随宽度线性增长。专利披露不证明量产采用，也不作为其 AMD 具体项目归属证据。",
+      "diagnostic": "跨向量长度检验同一程序的正确性与性能，测谓词利用率、带宽和标量部分；对加速子图计入操作数供给与接入开销。",
+      "notes": [],
+      "sources": [
+        [
+          "The ARM Scalable Vector Extension",
+          "https://arxiv.org/pdf/1803.06185",
+          "第 1 页署名；§1–2：VLA、谓词与向量化；§4：实现挑战"
+        ],
+        [
+          "Tightly coupled accelerator — US7350055B2",
+          "https://patents.google.com/patent/US7350055B2/en",
+          "发明人列表；图 14A/B 相关说明：功能单元矩阵与流水线接入"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "sve-micro2017",
+          "title": "The ARM Scalable Vector Extension",
+          "authors": "Nigel Stephens、Stuart Biles 等 Arm 作者",
+          "date": "2017（arXiv 2018）",
+          "url": "https://arxiv.org/pdf/1803.06185",
+          "locator": "第 1 页署名；§1–2：VLA、谓词与向量化；§4：实现挑战",
+          "type": "论文全文",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US7350055-family",
+          "title": "Tightly coupled accelerator — US7350055B2",
+          "authors": "Stuart D. Biles、Krisztian Flautner、Scott Mahlke、Nathan Clark",
+          "date": "2008-03-25",
+          "url": "https://patents.google.com/patent/US7350055B2/en",
+          "locator": "发明人列表；图 14A/B 相关说明：功能单元矩阵与流水线接入",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核验署名及所列技术正文。",
+          "evidenceStrength": "一手署名作品；支持团队贡献及公开机制，不证明个人独占。",
+          "role": "核验关键技术贡献及其边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同撰写 Arm SVE 架构论文，阐释向量长度无关编程、逐元素谓词与自动向量化机制。",
+          "workId": "sve-micro2017"
+        },
+        {
+          "text": "共同发明紧耦合加速器方案，以可配置功能单元执行指令子图，并与处理器操作数和执行管线衔接。",
+          "workId": "US7350055-family"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "依据具名技术作品的编辑提炼；团队贡献与个人独占明确区分。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-five-architects",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列关键贡献与技术作品核验，不代表完整职业经历或现职核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "可伸缩向量 ISA 与紧耦合加速",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A9"
+        ],
+        "question": "增加向量宽度或专用执行单元后，软件与数据通路能否有效利用新增并行性？",
+        "variables": "向量长度、谓词利用率、可向量化比例、带宽、加速器接口成本",
+        "model": "编辑条件模型：向量吞吐受有效 lane 利用率与内存服务能力共同限制；加速器净收益=被替代路径时间−加速执行及接入时间。",
+        "crossover": "可向量化工作充足、数据供给匹配且接入成本低时，额外并行硬件才更有价值。",
+        "counterexample": "更宽向量因带宽或谓词稀疏而空转；短子图的加速收益被接口开销抵消。",
+        "validation": "跨向量长度检验同一程序的正确性与性能，测谓词利用率、带宽和标量部分；对加速子图计入操作数供给与接入开销。",
+        "transfer": "用于 SVE/RVV 编程模型与紧耦合加速器评审。"
+      }
     }
   ],
   "research": {
@@ -44400,7 +44976,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 356,
+    "totalProfiles": 361,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -44413,12 +44989,13 @@
       "research/batches/2026-10-07-nhon-quach.json",
       "research/batches/2026-10-07-china-architects.json",
       "research/batches/2026-10-13-server-cpu-five.json",
-      "research/batches/2026-10-13-pradeep-kanapathipillai.json"
+      "research/batches/2026-10-13-pradeep-kanapathipillai.json",
+      "research/batches/2026-10-13-five-architects.json"
     ],
-    "completedTotal": 355,
+    "completedTotal": 360,
     "remainingCatalog": 1,
     "remainingPlanned": 2,
-    "additionalPlannedScope": 57,
-    "additionalCompleted": 55
+    "additionalPlannedScope": 62,
+    "additionalCompleted": 60
   }
 }
