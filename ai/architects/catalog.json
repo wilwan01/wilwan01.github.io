@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07",
+  "updated": "2026-10-13",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -114,7 +114,10 @@
         "antonio-gonzalez",
         "mark-oskin",
         "lizy-kurian-john",
-        "jianyi-meng"
+        "jianyi-meng",
+        "stephen-robinson",
+        "chris-abernathy",
+        "kevin-lepak"
       ]
     },
     {
@@ -312,7 +315,8 @@
         "amin-tootoonchian",
         "mark-handley",
         "sachin-katti",
-        "xia-jing"
+        "xia-jing",
+        "mahesh-wagh"
       ]
     },
     {
@@ -420,7 +424,8 @@
         "jeff-burns",
         "ken-shepard",
         "massoud-pedram",
-        "jeremy-holleman"
+        "jeremy-holleman",
+        "krishnakanth-sistla"
       ]
     }
   ],
@@ -43689,6 +43694,581 @@
         "validation": "固定输入和正确性要求，比较通用路径、扩展路径和完整应用；跟踪前端停顿、内存流量、预处理、逐行输出误差以及长尾负载，不把微基准收益直接移植到生产。",
         "transfer": "用于 RISC-V CPU 定制、软硬件扩展和稀疏计算平台选型，把工具链支持与完整数据准备成本纳入产品判断。"
       }
+    },
+    {
+      "id": "stephen-robinson",
+      "name": "Stephen Robinson",
+      "aliases": [],
+      "field": "从前端供给到高密度 E-core 的系统平衡",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy",
+        "datacenter"
+      ],
+      "core": "增加核心密度之前，先核对指令供给、共享缓存与内存是否能够支撑有效吞吐。",
+      "contributions": [
+        "共同署名 Sierra Forest 技术报告，披露按需指令长度解码、双三宽解码器及两核或四核共享 L2 的 E-core 组织。",
+        "共同署名 Clearwater Forest 报告，介绍更宽前后端、更大的乱序窗口与基于 CPU tile、base tile 的三维集成。"
+      ],
+      "background": "2023 Hot Chips 材料列其为 Intel Fellow、Efficiency Core Architect；2025 材料列其为 Lead x86 CPU Architect、Intel Fellow。此处依据设计方技术报告收录，不据头衔推断其掌握云运营商完整 TCO。",
+      "argument": "编辑提炼：增加核心密度之前，先核对指令供给、共享缓存与内存是否能够支撑有效吞吐。",
+      "evidence": "两项不同的一手技术作品；署名与机制定位见来源。",
+      "habits": [
+        "从实际瓶颈和资源约束出发比较方案。",
+        "将机制收益与验证成本、适用范围一起判断。"
+      ],
+      "questions": [
+        "核心数增加后，满足同一尾延迟约束的有效吞吐是否同步增加？"
+      ],
+      "boundary": "两代报告中的团队机制不等于个人独占发明。Clearwater Forest 材料中的性能预测有仿真与时间条件，不能当量产实测；吞吐密度也不能替代单请求时延或生产成本。",
+      "diagnostic": "固定业务、内存配置和 SLA，扫描并发与核心数，记录吞吐、P99、带宽及整机功耗。",
+      "notes": [],
+      "sources": [
+        [
+          "Sierra Forest — Hot Chips 2023",
+          "https://hc2023.hotchips.org/assets/program/conference/day1/CPU2/HC2023.Intel.Soltis.FINAL.pdf",
+          "PDF pp.2、5–9：署名、解码与共享 L2"
+        ],
+        [
+          "Clearwater Forest — Hot Chips 2025",
+          "https://hc2025.hotchips.org/assets/program/conference/day1/10_intel_soltis_v3.pdf",
+          "PDF pp.1、6–14：署名、核心流水线、L2 与三维集成"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "sierra-forest-hc2023",
+          "title": "Sierra Forest — Hot Chips 2023",
+          "authors": "Don Soltis、Stephen Robinson",
+          "date": "2023-08",
+          "url": "https://hc2023.hotchips.org/assets/program/conference/day1/CPU2/HC2023.Intel.Soltis.FINAL.pdf",
+          "locator": "PDF pp.2、5–9：署名、解码与共享 L2",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "clearwater-forest-hc2025",
+          "title": "Clearwater Forest — Hot Chips 2025",
+          "authors": "Don Soltis、Stephen Robinson",
+          "date": "2025-08",
+          "url": "https://hc2025.hotchips.org/assets/program/conference/day1/10_intel_soltis_v3.pdf",
+          "locator": "PDF pp.1、6–14：署名、核心流水线、L2 与三维集成",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名 Sierra Forest 技术报告，披露按需指令长度解码、双三宽解码器及两核或四核共享 L2 的 E-core 组织。",
+          "workId": "sierra-forest-hc2023"
+        },
+        {
+          "text": "共同署名 Clearwater Forest 报告，介绍更宽前后端、更大的乱序窗口与基于 CPU tile、base tile 的三维集成。",
+          "workId": "clearwater-forest-hc2025"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不把团队成果归为个人独占。模型、挑战与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-server-cpu-five",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列技术作品核验，不代表完整职业传记、现职或买方 TCO 决策权核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "从前端供给到高密度 E-core 的系统平衡",
+        "skills": [
+          "A2",
+          "A3",
+          "A6",
+          "A7",
+          "A9"
+        ],
+        "question": "核心数增加后，满足同一尾延迟约束的有效吞吐是否同步增加？",
+        "variables": "核心数 N；单核吞吐 r；可用带宽 B；每请求流量 b；功耗；P99；资源争用",
+        "model": "本站条件模型：有效吞吐 Q≤min(N×r, B/b)，并须满足同一 P99 与正确性约束；成本比较使用实际 Q。",
+        "crossover": "计算可并行且带宽充足时密度收益更易兑现；共享资源饱和后需重新配置。",
+        "counterexample": "核心增加但内存带宽不变，排队扩大，合规吞吐反而下降。",
+        "validation": "固定业务、内存配置和 SLA，扫描并发与核心数，记录吞吐、P99、带宽及整机功耗。",
+        "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
+      }
+    },
+    {
+      "id": "chris-abernathy",
+      "name": "Chris Abernathy",
+      "aliases": [],
+      "field": "把前端预测收益与访问能耗共同核算",
+      "domain": "cpu",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "前端优化要同时减少供给停顿和不必要的预测结构访问，并计入错误与恢复代价。",
+      "contributions": [
+        "与 Andrea Pellegrini 共同署名 Neoverse N1 报告，介绍服务器核心、私有 L2、一致性指令缓存和 mesh 集成。",
+        "共同发明 Branch target look up suppression：利用次级分支目标结构及覆盖信息，在满足条件时抑制主结构查找。"
+      ],
+      "background": "2019 Hot Chips 报告列其为 Arm CPEG Senior Principal Engineer。档案核验其 Arm 时期的署名作品；没有据公开简历片段确定现任职务或任职起止。",
+      "argument": "编辑提炼：前端优化要同时减少供给停顿和不必要的预测结构访问，并计入错误与恢复代价。",
+      "evidence": "两项不同的一手技术作品；署名与机制定位见来源。",
+      "habits": [
+        "从实际瓶颈和资源约束出发比较方案。",
+        "将机制收益与验证成本、适用范围一起判断。"
+      ],
+      "questions": [
+        "减少预测器访问所省的能量，是否被新增元数据访问和误判恢复抵消？"
+      ],
+      "boundary": "专利披露不证明该机制已用于 N1、Cortex-X3 或 AMD 产品；两项作品之间不建立未经披露的量产映射。设计方性能优化也不等同于买方运营 TCO 所有权。",
+      "diagnostic": "用同一程序与频率进行机制消融，测能量、前端停顿、误判恢复和完整执行时间。",
+      "notes": [],
+      "sources": [
+        [
+          "Arm Neoverse N1 CPU",
+          "https://old.hotchips.org/hc31/HC31_1.2_20190816_Arm_Neoverse_N1_CPU.pdf",
+          "PDF pp.1、4–11：署名、平台组织、缓存与前端"
+        ],
+        [
+          "Branch target look up suppression — US20200073666A1",
+          "https://patents.google.com/patent/US20200073666A1/en",
+          "发明人；Description/Summary；图1–6：主次级查找与覆盖标志"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "neoverse-n1-hc2019",
+          "title": "Arm Neoverse N1 CPU",
+          "authors": "Andrea Pellegrini、Chris Abernathy",
+          "date": "2019-08",
+          "url": "https://old.hotchips.org/hc31/HC31_1.2_20190816_Arm_Neoverse_N1_CPU.pdf",
+          "locator": "PDF pp.1、4–11：署名、平台组织、缓存与前端",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US20200073666-family",
+          "title": "Branch target look up suppression — US20200073666A1",
+          "authors": "Yasuo Ishii、Muhammad Umar Farooq、Chris Abernathy",
+          "date": "2020-03-05",
+          "url": "https://patents.google.com/patent/US20200073666A1/en",
+          "locator": "发明人；Description/Summary；图1–6：主次级查找与覆盖标志",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Andrea Pellegrini 共同署名 Neoverse N1 报告，介绍服务器核心、私有 L2、一致性指令缓存和 mesh 集成。",
+          "workId": "neoverse-n1-hc2019"
+        },
+        {
+          "text": "共同发明 Branch target look up suppression：利用次级分支目标结构及覆盖信息，在满足条件时抑制主结构查找。",
+          "workId": "US20200073666-family"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不把团队成果归为个人独占。模型、挑战与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-server-cpu-five",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列技术作品核验，不代表完整职业传记、现职或买方 TCO 决策权核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "把前端预测收益与访问能耗共同核算",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "减少预测器访问所省的能量，是否被新增元数据访问和误判恢复抵消？",
+        "variables": "主结构访问能量；次级结构及元数据能量；抑制比例；误判率；恢复周期；前端停顿",
+        "model": "本站条件模型：净节能≈被抑制访问数×单次能量−新增元数据与控制能量；另测对执行时间的影响。",
+        "crossover": "覆盖信息可靠且访问可大量抑制时获益；低覆盖或控制开销高时收益收窄。",
+        "counterexample": "小结构命中率很高，但新增查询延迟让关键取指路径变慢。",
+        "validation": "用同一程序与频率进行机制消融，测能量、前端停顿、误判恢复和完整执行时间。",
+        "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
+      }
+    },
+    {
+      "id": "krishnakanth-sistla",
+      "name": "Krishnakanth Sistla",
+      "aliases": [
+        "Krishnakanth V. Sistla"
+      ],
+      "field": "把配置与活动反馈纳入处理器功耗约束",
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "datacenter"
+      ],
+      "core": "功耗控制既要识别平台配置的功率分配，也要跟踪短时活动变化，不能只依赖名义频率。",
+      "contributions": [
+        "共同发明配置感知的确定性性能机制：依据启用核心、加速器、内存和 I/O 等配置确定性能状态，并向固件或系统软件提供信息。",
+        "共同发明多核功耗管理机制：用数字活动传感与活动累积值跟踪动态负载，并在预算约束下实施指令节流。"
+      ],
+      "background": "以 Intel 专利所列 Krishnakanth V. Sistla / Krishnakanth Sistla 署名及公开技术活动核验。使用完整姓名作为目录主名；不把其他同名 Sistla 的成果并入。所列证据属于处理器设计机制。",
+      "argument": "编辑提炼：功耗控制既要识别平台配置的功率分配，也要跟踪短时活动变化，不能只依赖名义频率。",
+      "evidence": "两项不同的一手技术作品；署名与机制定位见来源。",
+      "habits": [
+        "从实际瓶颈和资源约束出发比较方案。",
+        "将机制收益与验证成本、适用范围一起判断。"
+      ],
+      "questions": [
+        "在同一功率上限下，性能波动来自资源配置差异，还是控制回路响应不足？"
+      ],
+      "boundary": "两件专利为不同家族，证明共同披露而非量产部署。确定性性能状态不保证应用时延；节流机制收益与传感精度、响应时间及负载相关。没有证据据此确认买方 TCO 决策权。",
+      "diagnostic": "固定功率上限，分别扫配置与突发负载，测瞬时功率、频率、节流驻留和业务尾延迟。",
+      "notes": [],
+      "sources": [
+        [
+          "Configuration-aware deterministic performance — US9417681B2",
+          "https://patents.google.com/patent/US9417681B2/en",
+          "发明人；Description：配置、P1 性能状态与 ROM/MSR、BIOS/ACPI 路径"
+        ],
+        [
+          "Managing power consumption in a multi-core processor — US9069555B2",
+          "https://patents.google.com/patent/US9069555B2/en",
+          "发明人；Description：digital activity sensors、累积活动、动态电容预算及节流"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US9417681-family",
+          "title": "Configuration-aware deterministic performance — US9417681B2",
+          "authors": "Ankush Varma、Krishnakanth V. Sistla 等",
+          "date": "2016-08-16",
+          "url": "https://patents.google.com/patent/US9417681B2/en",
+          "locator": "发明人；Description：配置、P1 性能状态与 ROM/MSR、BIOS/ACPI 路径",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US9069555-family",
+          "title": "Managing power consumption in a multi-core processor — US9069555B2",
+          "authors": "Eric Fetzer、Don Soltis、Krishnakanth Sistla 等",
+          "date": "2015-06-30",
+          "url": "https://patents.google.com/patent/US9069555B2/en",
+          "locator": "发明人；Description：digital activity sensors、累积活动、动态电容预算及节流",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发明配置感知的确定性性能机制：依据启用核心、加速器、内存和 I/O 等配置确定性能状态，并向固件或系统软件提供信息。",
+          "workId": "US9417681-family"
+        },
+        {
+          "text": "共同发明多核功耗管理机制：用数字活动传感与活动累积值跟踪动态负载，并在预算约束下实施指令节流。",
+          "workId": "US9069555-family"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不把团队成果归为个人独占。模型、挑战与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-server-cpu-five",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列技术作品核验，不代表完整职业传记、现职或买方 TCO 决策权核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "把配置与活动反馈纳入处理器功耗约束",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A7",
+          "A9"
+        ],
+        "question": "在同一功率上限下，性能波动来自资源配置差异，还是控制回路响应不足？",
+        "variables": "配置；活动强度；功率上限；传感误差；控制延迟；节流比例；P99",
+        "model": "本站条件模型：P_total=P_static+P_dynamic(activity,V,f)+P_uncore；功率估计和控制须留出误差与响应延迟裕量。",
+        "crossover": "配置预算准确且活动反馈及时可降低超限风险；响应慢或误差大时须更多裕量。",
+        "counterexample": "平均功率合规，但突发活动在控制生效前已超过瞬时预算。",
+        "validation": "固定功率上限，分别扫配置与突发负载，测瞬时功率、频率、节流驻留和业务尾延迟。",
+        "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
+      }
+    },
+    {
+      "id": "kevin-lepak",
+      "name": "Kevin Lepak",
+      "aliases": [
+        "Kevin M. Lepak"
+      ],
+      "field": "用数据局部性检验多芯粒扩展收益",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "network",
+        "physical-energy"
+      ],
+      "core": "多芯粒与共享内存的价值取决于数据流和一致性通信；封装经济性必须和访问代价一起评估。",
+      "contributions": [
+        "共同署名并讲解首代 EPYC 架构：四 die 组织、Infinity Fabric 连接以及一致性探测过滤和响应汇聚。",
+        "与 Mikko Lipasti 提出 Temporally Silent Stores：识别数据暂时改变后恢复旧值的行为，研究扩展 MESI 以减少通信缺失。"
+      ],
+      "background": "2017 Hot Chips 报告列其为 AMD Senior Fellow、Enterprise Server Architecture；早期论文署名 Kevin M. Lepak。这里收录两项不同时期的共同技术作品，不将团队整颗处理器归于个人。",
+      "argument": "编辑提炼：多芯粒与共享内存的价值取决于数据流和一致性通信；封装经济性必须和访问代价一起评估。",
+      "evidence": "两项不同的一手技术作品；署名与机制定位见来源。",
+      "habits": [
+        "从实际瓶颈和资源约束出发比较方案。",
+        "将机制收益与验证成本、适用范围一起判断。"
+      ],
+      "questions": [
+        "封装成本降低后，跨 die 访问与一致性通信会吃掉多少有效吞吐？"
+      ],
+      "boundary": "2002 论文的通信缺失下降不是等比例运行时间加速，作者明确没有直接报告性能收益；也不能据此推断 EPYC 采用该机制。EPYC 设计方 TCO 论证不证明掌握客户采购价格、利用率与运维成本。",
+      "diagnostic": "固定线程数，比较 NUMA 放置、远端比例、探测流量、尾延迟与整机功耗。",
+      "notes": [],
+      "sources": [
+        [
+          "AMD EPYC — Hot Chips 2017",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.22-Tuesday-Pub/HC29.22.90-Server-Pub/HC29.22.921-EPYC-Lepak-AMD-v2.pdf",
+          "PDF pp.1、3、14–15：署名、多 die 与一致性互连"
+        ],
+        [
+          "Temporally Silent Stores",
+          "https://pharm.ece.wisc.edu/papers/asplos2002_final.pdf",
+          "pp.1–3：署名、§1–2 定义与 MESI 扩展思路；性能测量边界"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "epyc-hc2017",
+          "title": "AMD EPYC — Hot Chips 2017",
+          "authors": "Kevin Lepak、Gerry Talbot、Sean White、Noah Beck、Sam Naffziger",
+          "date": "2017-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.22-Tuesday-Pub/HC29.22.90-Server-Pub/HC29.22.921-EPYC-Lepak-AMD-v2.pdf",
+          "locator": "PDF pp.1、3、14–15：署名、多 die 与一致性互连",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "temporally-silent-stores-asplos2002",
+          "title": "Temporally Silent Stores",
+          "authors": "Kevin M. Lepak、Mikko H. Lipasti",
+          "date": "2002-10",
+          "url": "https://pharm.ece.wisc.edu/papers/asplos2002_final.pdf",
+          "locator": "pp.1–3：署名、§1–2 定义与 MESI 扩展思路；性能测量边界",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名并讲解首代 EPYC 架构：四 die 组织、Infinity Fabric 连接以及一致性探测过滤和响应汇聚。",
+          "workId": "epyc-hc2017"
+        },
+        {
+          "text": "与 Mikko Lipasti 提出 Temporally Silent Stores：识别数据暂时改变后恢复旧值的行为，研究扩展 MESI 以减少通信缺失。",
+          "workId": "temporally-silent-stores-asplos2002"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不把团队成果归为个人独占。模型、挑战与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-server-cpu-five",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列技术作品核验，不代表完整职业传记、现职或买方 TCO 决策权核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "用数据局部性检验多芯粒扩展收益",
+        "skills": [
+          "A2",
+          "A3",
+          "A4",
+          "A6",
+          "A7",
+          "A9"
+        ],
+        "question": "封装成本降低后，跨 die 访问与一致性通信会吃掉多少有效吞吐？",
+        "variables": "本地/远端访问比例；访问延迟；探测流量；带宽；封装成本；实际吞吐",
+        "model": "本站条件模型：平均访问成本≈p_local×L_local+(1−p_local)×L_remote；排队与重叠效应须另行实测。",
+        "crossover": "数据分区与拓扑匹配时更易获益；共享写密集或远端争用可能抵消扩展收益。",
+        "counterexample": "芯粒良率改善降低芯片成本，却因线程与内存放置不当拉低业务吞吐。",
+        "validation": "固定线程数，比较 NUMA 放置、远端比例、探测流量、尾延迟与整机功耗。",
+        "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
+      }
+    },
+    {
+      "id": "mahesh-wagh",
+      "name": "Mahesh Wagh",
+      "aliases": [],
+      "field": "从 CXL 协议能力走到可运营的内存系统",
+      "domain": "network",
+      "relatedDomains": [
+        "memory",
+        "datacenter",
+        "correctness"
+      ],
+      "core": "内存池化的收益必须跨越地址映射、资源绑定、一致性、安全与故障处置的完整路径。",
+      "contributions": [
+        "与 Rick Sodke 署名解释 CXL 2.0 内存池化：区分 SLD/MLD，说明交换与 Fabric Manager 绑定管理，并澄清解绑并不自动清零。",
+        "与 Debendra Das Sharma 署名 CXL 3.1 白皮书，介绍 GIM/PBR 内存连接、点对点通信以及可信执行和 RAS 扩展。"
+      ],
+      "background": "以 CXL 联盟两项具名技术作品收录；3.1 白皮书列其为 Technical Task Force 共同主席。这里体现互连与服务器系统设计贡献，不据联盟角色推断终端用户 TCO 所有权。",
+      "argument": "编辑提炼：内存池化的收益必须跨越地址映射、资源绑定、一致性、安全与故障处置的完整路径。",
+      "evidence": "两项不同的一手技术作品；署名与机制定位见来源。",
+      "habits": [
+        "从实际瓶颈和资源约束出发比较方案。",
+        "将机制收益与验证成本、适用范围一起判断。"
+      ],
+      "questions": [
+        "节省的闲置内存成本，是否覆盖交换设备、时延、管理与隔离成本？"
+      ],
+      "boundary": "协议支持不意味着特定设备、操作系统或生产平台已实现。不同版本功能和 direct-attached 等适用条件须分开核对；池化容量收益不自动等于总成本下降。",
+      "diagnostic": "按具体协议版本与设备能力验证分配、回收、清零、并发访问和故障恢复，记录 P99 与有效容量。",
+      "notes": [],
+      "sources": [
+        [
+          "CXL 2.0 Specification Memory Pooling — Questions from the Webinar, Part 1",
+          "https://computeexpresslink.org/blog/compute-express-link-cxl-2-0-specification-memory-pooling-questions-from-the-webinar-part-1-2389/",
+          "署名；SLD/MLD、Fabric Manager、绑定/解绑与清零问答"
+        ],
+        [
+          "CXL 3.1 White Paper",
+          "https://computeexpresslink.org/wp-content/uploads/2023/12/CXL_3.1-White-Paper_FINAL.pdf",
+          "pp.1–3：署名、GIM/PBR、P2P、TSP 与 RAS"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cxl2-pooling-wagh-2021",
+          "title": "CXL 2.0 Specification Memory Pooling — Questions from the Webinar, Part 1",
+          "authors": "Mahesh Wagh、Rick Sodke",
+          "date": "2021-05-03",
+          "url": "https://computeexpresslink.org/blog/compute-express-link-cxl-2-0-specification-memory-pooling-questions-from-the-webinar-part-1-2389/",
+          "locator": "署名；SLD/MLD、Fabric Manager、绑定/解绑与清零问答",
+          "type": "本人署名技术文章",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "cxl31-whitepaper-2023",
+          "title": "CXL 3.1 White Paper",
+          "authors": "Debendra Das Sharma、Mahesh Wagh",
+          "date": "2023-11",
+          "url": "https://computeexpresslink.org/wp-content/uploads/2023/12/CXL_3.1-White-Paper_FINAL.pdf",
+          "locator": "pp.1–3：署名、GIM/PBR、P2P、TSP 与 RAS",
+          "type": "团队技术白皮书全文",
+          "contentStatus": "已读取署名及所列机制正文。",
+          "evidenceStrength": "一手共同署名技术作品；支持共同贡献，不支持个人独占归属或未经验证的部署推断。",
+          "role": "核验技术贡献、机制与适用边界",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "与 Rick Sodke 署名解释 CXL 2.0 内存池化：区分 SLD/MLD，说明交换与 Fabric Manager 绑定管理，并澄清解绑并不自动清零。",
+          "workId": "cxl2-pooling-wagh-2021"
+        },
+        {
+          "text": "与 Debendra Das Sharma 署名 CXL 3.1 白皮书，介绍 GIM/PBR 内存连接、点对点通信以及可信执行和 RAS 扩展。",
+          "workId": "cxl31-whitepaper-2023"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项署名技术作品支持共同贡献；不把团队成果归为个人独占。模型、挑战与迁移判断为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-server-cpu-five",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列技术作品核验，不代表完整职业传记、现职或买方 TCO 决策权核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "从 CXL 协议能力走到可运营的内存系统",
+        "skills": [
+          "A1",
+          "A2",
+          "A4",
+          "A6",
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "节省的闲置内存成本，是否覆盖交换设备、时延、管理与隔离成本？",
+        "variables": "闲置容量；池化比例；交换与设备成本；尾延迟；管理成本；清零时间；故障域",
+        "model": "本站条件模型：净收益=减少的闲置容量成本−新增设备与运营成本−性能损失折算；所有项用同一周期和服务目标。",
+        "crossover": "容量碎片显著且负载可容忍访问代价时更有机会；带宽敏感或隔离要求高时需谨慎建模。",
+        "counterexample": "内存利用率提高，却因交换拥塞和重新分配清零拖慢服务恢复。",
+        "validation": "按具体协议版本与设备能力验证分配、回收、清零、并发访问和故障恢复，记录 P99 与有效容量。",
+        "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
+      }
     }
   ],
   "research": {
@@ -43699,7 +44279,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 350,
+    "totalProfiles": 355,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -43710,12 +44290,13 @@
       "research/batches/2026-10-07-frontier-infra.json",
       "research/batches/2026-10-07-frontier19.json",
       "research/batches/2026-10-07-nhon-quach.json",
-      "research/batches/2026-10-07-china-architects.json"
+      "research/batches/2026-10-07-china-architects.json",
+      "research/batches/2026-10-13-server-cpu-five.json"
     ],
-    "completedTotal": 349,
+    "completedTotal": 354,
     "remainingCatalog": 1,
     "remainingPlanned": 2,
-    "additionalPlannedScope": 51,
-    "additionalCompleted": 49
+    "additionalPlannedScope": 56,
+    "additionalCompleted": 54
   }
 }
