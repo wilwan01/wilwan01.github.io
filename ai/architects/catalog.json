@@ -121,7 +121,8 @@
         "kevin-lepak",
         "pradeep-kanapathipillai",
         "ronak-singhal",
-        "sailesh-kottapalli"
+        "sailesh-kottapalli",
+        "krishnan-geeyarpuram"
       ]
     },
     {
@@ -44966,6 +44967,129 @@
         "validation": "跨向量长度检验同一程序的正确性与性能，测谓词利用率、带宽和标量部分；对加速子图计入操作数供给与接入开销。",
         "transfer": "用于 SVE/RVV 编程模型与紧耦合加速器评审。"
       }
+    },
+    {
+      "id": "krishnan-geeyarpuram",
+      "name": "Krishnan Geeyarpuram",
+      "aliases": [
+        "Geeyarpuram N. Santhanakrishnan"
+      ],
+      "field": "服务器 Uncore、一致性与定制 AI 系统",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "network",
+        "datacenter"
+      ],
+      "core": "把 CPU、I/O 和 Uncore 放在同一事务路径中设计，在提高并发度的同时保留顺序与前进性保证。",
+      "contributions": [
+        "共同发明 CPU 核与集成 I/O 共用缓存一致性代理的机制：支持 I/O 数据直接进入 LLC，并通过资源预留、冲突处理与仲裁避免死锁。",
+        "共同发明弱序事务卸载机制：将事务从核内 line-fill buffer 转移至 Uncore 扩展缓冲，提前释放核内资源，同时跟踪最终完成。"
+      ],
+      "background": "Hot Interconnects 2025 官方介绍将其列为 NVIDIA Senior Distinguished Engineer、产品架构高级总监，负责下一代服务器处理器与定制芯片，并列出 Intel Xeon、Apple Watch 经历；他在该会主讲 NVLink Fusion。本人职业页面列出的两项专利编号，将 Krishnan Geeyarpuram 与专利署名 Geeyarpuram N. Santhanakrishnan 关联。具体机制贡献以下列共同发明专利为据。",
+      "argument": "编辑提炼：集成 I/O 可以减少代理和数据绕行，但共享资源必须保证 posted 请求前进；将排队移出核心可以缩短资源占用，却不能把缓冲接收当作最终写入完成。",
+      "evidence": "两项不同专利家族的机制正文已核验；会议简介仅用于身份、经历与演讲主题，不当作演讲全文。",
+      "habits": [
+        "同时检查性能资源和协议前进性。",
+        "区分资源释放、请求接收和事务最终完成。"
+      ],
+      "questions": [
+        "减少核内阻塞后，Uncore 是否成为新的队列瓶颈？共享代理能否在最坏 I/O 顺序下持续前进？"
+      ],
+      "boundary": "专利是共同披露，不证明其在某代 Xeon、Apple Watch 或 NVIDIA Vera 中量产采用。NVLink Fusion 的会议摘要支持演讲主题与角色，不支持将整个平台归为其个人发明；本次未核验演讲全文。",
+      "diagnostic": "混合 CPU 与 I/O 流量，扫描 posted/non-posted 请求、地址冲突和缓冲压力；测 LFB 占用、Uncore 队列、端到端延迟，并检查顺序及死锁场景。",
+      "notes": [],
+      "sources": [
+        [
+          "Providing common caching agent for core and integrated input/output (IO) module",
+          "https://patents.google.com/patent/US8984228B2/en",
+          "Description、图 1–5：共同 caching agent、I/O 数据进入 LLC、posted 请求资源预留与死锁规避"
+        ],
+        [
+          "Posting weakly ordered transactions",
+          "https://patents.google.com/patent/US8347035B2/en",
+          "Description、图 1–6：LFB 卸载、Uncore 扩展缓冲、状态跟踪与完成通知"
+        ],
+        [
+          "Hot Interconnects 2025：Building Custom AI Infrastructure with NVLink Fusion",
+          "https://hoti.org/invitedtalk-krishnan.html",
+          "官方讲者简介与摘要；身份、经历与主题，不作为已读演讲全文。"
+        ],
+        [
+          "Krishnan Geeyarpuram：本人职业页面的专利列表",
+          "https://www.linkedin.com/in/krishnan-geeyarpuram-590b9b16",
+          "公开检索内容列出 US8984228 与 US8347035；用于姓名关联，不作为额外技术作品。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US8984228B2-family",
+          "title": "Providing common caching agent for core and integrated input/output (IO) module",
+          "authors": "Yen-Cheng Liu、Robert G. Blankenship、Geeyarpuram N. Santhanakrishnan 等",
+          "date": "2015-03-17",
+          "url": "https://patents.google.com/patent/US8984228B2/en",
+          "locator": "Description、图 1–5：共同 caching agent、I/O 数据进入 LLC、posted 请求资源预留与死锁规避",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核验共同发明人及所列机制正文；本人职业页面列出对应专利编号以关联姓名。",
+          "evidenceStrength": "一手共同发明披露，不证明具体产品采用或个人独占。",
+          "role": "技术机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US8347035B2-family",
+          "title": "Posting weakly ordered transactions",
+          "authors": "Geeyarpuram N. Santhanakrishnan、Julius Mandelblat、Ehud Cohen 等",
+          "date": "2013-01-01",
+          "url": "https://patents.google.com/patent/US8347035B2/en",
+          "locator": "Description、图 1–6：LFB 卸载、Uncore 扩展缓冲、状态跟踪与完成通知",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核验共同发明人及所列机制正文；本人职业页面列出对应专利编号以关联姓名。",
+          "evidenceStrength": "一手共同发明披露，不证明具体产品采用或个人独占。",
+          "role": "技术机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发明 CPU 核与集成 I/O 共用缓存一致性代理的机制：支持 I/O 数据直接进入 LLC，并通过资源预留、冲突处理与仲裁避免死锁。",
+          "workId": "US8984228B2-family"
+        },
+        {
+          "text": "共同发明弱序事务卸载机制：将事务从核内 line-fill buffer 转移至 Uncore 扩展缓冲，提前释放核内资源，同时跟踪最终完成。",
+          "workId": "US8347035B2-family"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据共同发明专利提炼技术贡献；官方会议简介补充经历。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-krishnan-geeyarpuram",
+        "standard": "contribution-led-v1",
+        "meaning": "完成指两项所列技术作品与机制正文核验，不代表产品采用、现职或全部职业经历核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "Uncore 资源释放与协议前进性",
+        "skills": [
+          "A3",
+          "A4",
+          "A5",
+          "A8"
+        ],
+        "question": "核内缓冲更早释放后，端到端事务能否更快且正确地完成？",
+        "variables": "LFB 容量、占用时间、Uncore 缓冲、posted 请求预留、I/O 顺序、LLC 污染、完成延迟",
+        "model": "编辑条件模型：稳定状态下，平均在途事务数≈到达率×驻留时间；卸载降低核内驻留时间，但系统吞吐仍受下游服务率限制。",
+        "crossover": "核内缓冲受限且 Uncore 有服务余量时，卸载更可能有益；下游饱和时可能只是转移排队。",
+        "counterexample": "LFB 阻塞减少，但 Uncore 队列拉长、尾延迟恶化，或共享代理缺少前进性资源而死锁。",
+        "validation": "扫描 CPU/I/O 混合流量、写合并与地址冲突，检查事务最终完成与顺序，并测两级队列占用及尾延迟。",
+        "transfer": "用于服务器 I/O 集成、缓存一致性与加速器接入方案评审。"
+      }
     }
   ],
   "research": {
@@ -44976,7 +45100,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 361,
+    "totalProfiles": 362,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -44990,12 +45114,13 @@
       "research/batches/2026-10-07-china-architects.json",
       "research/batches/2026-10-13-server-cpu-five.json",
       "research/batches/2026-10-13-pradeep-kanapathipillai.json",
-      "research/batches/2026-10-13-five-architects.json"
+      "research/batches/2026-10-13-five-architects.json",
+      "research/batches/2026-10-13-krishnan-geeyarpuram.json"
     ],
-    "completedTotal": 360,
+    "completedTotal": 361,
     "remainingCatalog": 1,
     "remainingPlanned": 2,
-    "additionalPlannedScope": 62,
-    "additionalCompleted": 60
+    "additionalPlannedScope": 63,
+    "additionalCompleted": 61
   }
 }
