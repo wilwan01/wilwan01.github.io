@@ -1,0 +1,120 @@
+{
+  "id": "yan-xie",
+  "name": "谢炎",
+  "status": "needs_more_evidence",
+  "reviewedAt": "2026-10-13",
+  "qualifyingWorkIds": [
+    "m100-isca2026"
+  ],
+  "reason": "按本次批准的严格门槛暂留待补证：M100 项目负责人及共同作者已确认；原采访保留，但本次不计为第二项合格技术作品。",
+  "nextAction": "补第二项可归属到同一人的实质技术作品并定位个人贡献范围；不将项目负责等同于模块独占设计。",
+  "previousProfilePreserved": {
+    "id": "yan-xie",
+    "name": "谢炎",
+    "aliases": [
+      "Yan Xie"
+    ],
+    "field": "理想 M100 数据流与系统协同",
+    "domain": "gpu-ai",
+    "relatedDomains": [
+      "compiler-runtime"
+    ],
+    "core": "以张量粒度和显式数据移动协调芯片、编译器与整车系统。",
+    "contributions": [
+      "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
+      "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。"
+    ],
+    "background": "论文作者注明确标记 Project lead；技术模块为团队成果。访谈用于本人设计论述，不作为独立性能测试。",
+    "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+    "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+    "habits": [
+      "先明确映射、供数和控制的分工，再评价峰值算力。"
+    ],
+    "questions": [
+      "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？"
+    ],
+    "boundary": "中央分发器仍存在；数据驱动执行不等于无指令或整颗SoC无缓存。性能结论限于指定模型、精度与比较条件。",
+    "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+    "notes": [],
+    "sources": [
+      [
+        "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+        "https://arxiv.org/html/2604.17862v1",
+        "作者注；§III-A、IV-A、IV-B"
+      ],
+      [
+        "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+        "https://www.bianews.com/news/details?id=237730",
+        "本人关于互联、低精度联合设计及 XCU 整合的回答"
+      ]
+    ],
+    "sourceAudit": [
+      {
+        "workId": "m100-isca2026",
+        "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+        "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+        "date": "2026-04-20",
+        "url": "https://arxiv.org/html/2604.17862v1",
+        "locator": "作者注；§III-A、IV-A、IV-B",
+        "type": "论文全文",
+        "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+        "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+        "role": "机制与贡献归属",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-10-13"
+      },
+      {
+        "workId": "xie-interview-2026",
+        "title": "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+        "authors": "谢炎（受访者）；晚点访谈转载",
+        "date": "2026-05",
+        "url": "https://www.bianews.com/news/details?id=237730",
+        "locator": "本人关于互联、低精度联合设计及 XCU 整合的回答",
+        "type": "本人技术访谈全文",
+        "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+        "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+        "role": "机制与贡献归属",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-10-13"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "text": "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
+        "workId": "m100-isca2026"
+      },
+      {
+        "text": "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。",
+        "workId": "xie-interview-2026"
+      }
+    ],
+    "awardsVerified": [],
+    "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-10-13-dataflow",
+      "standard": "contribution-led-v1",
+      "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+      "verifiedAt": "2026-10-13"
+    },
+    "challenge": {
+      "lens": "数据流与可编程性",
+      "skills": [
+        "A1",
+        "A2",
+        "A7"
+      ],
+      "question": "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？",
+      "variables": "张量大小、分发周期、SRAM占用、同步等待、尾延迟",
+      "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+      "crossover": "重复执行、映射稳定且供数充足时更有利。",
+      "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+      "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+      "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+    }
+  }
+}
