@@ -117,7 +117,8 @@
         "jianyi-meng",
         "stephen-robinson",
         "chris-abernathy",
-        "kevin-lepak"
+        "kevin-lepak",
+        "pradeep-kanapathipillai"
       ]
     },
     {
@@ -44269,6 +44270,126 @@
         "validation": "按具体协议版本与设备能力验证分配、回收、清零、并发访问和故障恢复，记录 P99 与有效容量。",
         "transfer": "用于服务器平台评审：把公开机制转换为可测量的假设，再由实际工作负载与运营数据检验。"
       }
+    },
+    {
+      "id": "pradeep-kanapathipillai",
+      "name": "Pradeep Kanapathipillai",
+      "aliases": [],
+      "field": "把访存预测与数据搬运优化落到微架构机制",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "correctness",
+        "physical-energy"
+      ],
+      "core": "区分不同访存失败的恢复代价，并把数据压缩收益与顺序约束、缓冲和搬运开销一起核算。",
+      "contributions": [
+        "共同发明 load/store 依赖预测优化：区分 replay 与 flush 历史，用不同置信度阈值决定是否等待较老 store，减少不必要的保守调度。",
+        "共同发明硬件压缩与解压引擎：结合预取、读写缓冲及分组打包，并处理引擎访问与普通 load/store 的顺序关系。"
+      ],
+      "background": "2025 年 IEEE Micro 的 Oryon 论文作者介绍列其为 Qualcomm 工程副总裁，研究领域包括 CPU 架构、设计与验证；他与 Gerard Williams 共同署名该文。以下具体机制以两件 Apple 名下、不同家族的具名专利为证据，不根据授权年份推断当时雇主。",
+      "argument": "编辑提炼：相同的依赖预测错误可能需要不同恢复路径；相同的压缩比也可能对应不同执行成本。判断优化应落到真正减少的停顿和数据流量。",
+      "evidence": "两项不同专利家族的署名及机制正文已核验；Oryon 论文的公开摘要与作者介绍补充身份和研究方向，不计作已读全文。",
+      "habits": [
+        "把 replay 与 flush 分开计量，避免用单一错误率掩盖代价差异。",
+        "把数据压缩、搬运与内存顺序作为一条完整路径评估。"
+      ],
+      "questions": [
+        "避免的流水线冲刷与节省的数据搬运，能否覆盖额外等待、控制和恢复成本？"
+      ],
+      "boundary": "专利证明共同披露，不证明 Apple 某款芯片或 Qualcomm Oryon 采用相同机制；不把团队成果归为个人独占。Apple 属于终端系统自研芯片语境，其经历不能直接等同 hyperscaler 买方完整运营 TCO 决策权。",
+      "diagnostic": "分别记录 replay、flush、误依赖等待及完整运行时间；对压缩路径扫描可压缩性、页大小与并发访问，测完整搬运时间和能量，并验证与 load/store 交互时的正确性。",
+      "notes": [],
+      "sources": [
+        [
+          "Load/store dependency predictor optimization for replayed loads — US10437595B1",
+          "https://patents.google.com/patent/US10437595B1/en",
+          "Summary；图4–6及相关说明：flush/replay 标志、置信度阈值和 load 发射"
+        ],
+        [
+          "Hardware compression and decompression engine — US11500638B1",
+          "https://patents.google.com/patent/US11500638B1/en",
+          "Summary；图6–10及相关说明：缓冲、分组打包、解压流水线与内存顺序"
+        ],
+        [
+          "Qualcomm Oryon CPU in Snapdragon X Elite: Micro-Architecture and Design — 作者介绍",
+          "https://ieeexplore.ieee.org/abstract/document/11002606/authors",
+          "IEEE Micro 2025；共同署名、Qualcomm 职务及研究领域；公开摘要/作者信息，未取得全文。"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US10437595-family",
+          "title": "Load/store dependency predictor optimization for replayed loads — US10437595B1",
+          "authors": "Pradeep Kanapathipillai、Stephan G. Meier、Gerard R. Williams III、Mridul Agarwal、Kulin N. Kothari",
+          "date": "2019-10-08",
+          "url": "https://patents.google.com/patent/US10437595B1/en",
+          "locator": "Summary；图4–6及相关说明：flush/replay 标志、置信度阈值和 load 发射",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读取具名发明人及所列说明书机制正文。",
+          "evidenceStrength": "一手共同发明披露；不证明具体产品采用或实测收益。",
+          "role": "核验共同技术贡献与机制边界；同一专利家族只计一次。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US11500638-family",
+          "title": "Hardware compression and decompression engine — US11500638B1",
+          "authors": "Aditya Kesiraju、James Vash、Pradeep Kanapathipillai、Mridul Agarwal、Zhaoming Hu、Tyler Huberty、Charles Tucker",
+          "date": "2022-11-15",
+          "url": "https://patents.google.com/patent/US11500638B1/en",
+          "locator": "Summary；图6–10及相关说明：缓冲、分组打包、解压流水线与内存顺序",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读取具名发明人及所列说明书机制正文。",
+          "evidenceStrength": "一手共同发明披露；不证明具体产品采用或实测收益。",
+          "role": "核验共同技术贡献与机制边界；同一专利家族只计一次。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发明 load/store 依赖预测优化：区分 replay 与 flush 历史，用不同置信度阈值决定是否等待较老 store，减少不必要的保守调度。",
+          "workId": "US10437595-family"
+        },
+        {
+          "text": "共同发明硬件压缩与解压引擎：结合预取、读写缓冲及分组打包，并处理引擎访问与普通 load/store 的顺序关系。",
+          "workId": "US11500638-family"
+        }
+      ],
+      "award": null,
+      "awardYear": null,
+      "awardsVerified": [],
+      "contributionBasis": "两项不同家族的一手具名专利支持共同贡献；挑战和条件模型为本站编辑提炼。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-pradeep-kanapathipillai",
+        "standard": "contribution-led-v1",
+        "meaning": "完成仅指所列独立技术作品与机制正文核验，不代表现职、产品采用或完整职业传记核验。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "按恢复代价而非事件次数判断优化",
+        "skills": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A7",
+          "A9"
+        ],
+        "question": "避免的流水线冲刷与节省的数据搬运，能否覆盖额外等待、控制和恢复成本？",
+        "variables": "replay/flush 频率与代价；误依赖等待；压缩比；缓冲容量；引擎吞吐；内存顺序停顿；能量",
+        "model": "本站条件模型：预测路径代价≈N_replay×C_replay+N_flush×C_flush+T_false_wait；压缩路径比较完整 T_read+T_engine+T_write，流水重叠须以实际关键路径计量，不能简单重复相加。",
+        "crossover": "恢复代价差异大且分类可靠时，分级预测更有价值；数据可压缩且搬运受限时，压缩更可能获益。",
+        "counterexample": "误依赖等待下降，但新增 flush 使总时间变长；压缩比提高，但引擎和顺序等待占据关键路径。",
+        "validation": "分别记录 replay、flush、误依赖等待及完整运行时间；对压缩路径扫描可压缩性、页大小与并发访问，测完整搬运时间和能量，并验证与 load/store 交互时的正确性。",
+        "transfer": "用于 CPU 访存调度和内存压缩方案评审，以完整执行代价检验局部指标改善。"
+      }
     }
   ],
   "research": {
@@ -44279,7 +44400,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 355,
+    "totalProfiles": 356,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -44291,12 +44412,13 @@
       "research/batches/2026-10-07-frontier19.json",
       "research/batches/2026-10-07-nhon-quach.json",
       "research/batches/2026-10-07-china-architects.json",
-      "research/batches/2026-10-13-server-cpu-five.json"
+      "research/batches/2026-10-13-server-cpu-five.json",
+      "research/batches/2026-10-13-pradeep-kanapathipillai.json"
     ],
-    "completedTotal": 354,
+    "completedTotal": 355,
     "remainingCatalog": 1,
     "remainingPlanned": 2,
-    "additionalPlannedScope": 56,
-    "additionalCompleted": 54
+    "additionalPlannedScope": 57,
+    "additionalCompleted": 55
   }
 }
