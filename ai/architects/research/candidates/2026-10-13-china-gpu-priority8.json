@@ -1,0 +1,477 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "batchId": "2026-10-13-china-gpu-priority8",
+  "scope": "candidate-research-only",
+  "focus": "GPU、AI芯片与推理系统：八位优先候选",
+  "admissionState": "profiles-prepared",
+  "publicationState": "pr-review",
+  "catalogChanged": true,
+  "counts": {
+    "priorityCandidates": 8,
+    "twoTechnicalBodiesReviewed": 8,
+    "technicalEvidenceGap": 0,
+    "newCatalogProfiles": 8
+  },
+  "gate": {
+    "technicalRule": "two-distinct-primary-works-one-body-v1",
+    "notice": "已转换为正式profile结构并完成本地准备；部署状态单独核验。",
+    "remainingIntegration": [
+      "提交及部署验证"
+    ]
+  },
+  "dedupAudit": {
+    "method": "完整catalog JSON，中英文姓名、别名和机构交叉检查",
+    "completeCatalogRead": true,
+    "baseCommit": "55dd046ec457ed403c9ea16321f696389b2be7dd",
+    "catalogProfiles": 362,
+    "result": "八位均无同名同人条目；刘少礼与另一15人包重合，统一为shaoli-liu。"
+  },
+  "works": [
+    {
+      "workId": "amd-matrix-broadcast-us11609785",
+      "title": "Matrix data broadcast architecture",
+      "authors": "Li Peng; Jian Yang; Chi Tang",
+      "date": "2023-03-21",
+      "url": "https://patents.google.com/patent/US11609785B2/en",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人及 AMD 申请人栏；矩阵广播请求聚合、接收掩码与计算单元映射说明段落",
+      "contentStatus": "已读署名与所列机制正文；未完成中文同族首页的交叉读取。",
+      "mechanism": "由软件安排共享数据的工作组与计算单元映射；硬件跟踪广播标识、地址及接收者，聚合请求后获取一份数据并分发至目标计算单元。",
+      "boundary": "共同署名专利，不证明个人独占贡献或任何指定GPU量产采用；CN113094099B为同族而非第二作品。"
+    },
+    {
+      "workId": "metax-gpu-memory-expansion-us12614243",
+      "title": "GPU processor system",
+      "authors": "Jian Yang",
+      "date": "2026-04-28",
+      "url": "https://patents.google.com/patent/US12614243B2/en",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人及 MetaX 申请人栏；Detailed Description，图1对应系统、独立扩展控制器及跨芯片互联段落",
+      "contentStatus": "已读署名与所列机制正文。",
+      "mechanism": "为GPU增设带独立控制器的显存扩展模块，经非QPI跨芯片链路访问；GPU原控制器不直接控制扩展内存。实施例区分本地HBM/GDDR与较大容量、较低带宽的DDR/LPDDR扩展。",
+      "boundary": "专利列举的互联选项不是已部署产品清单；不把扩容等同于本地HBM带宽，也不把非QPI解释为某一种已确认协议。"
+    },
+    {
+      "workId": "s3-fixed-block-compression-us5956431",
+      "title": "System and method for fixed-rate block-based image compression with inferred pixel values",
+      "authors": "Konstantine I. Iourcha; Krishna S. Nayak; Zhou Hong",
+      "date": "1999-09-21",
+      "url": "https://patents.google.com/patent/US5956431A/en",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "S3发明人栏；图3至图4对应分块、颜色量化、码字与位图编码；固定码率及块随机访问说明",
+      "contentStatus": "已读共同署名及所列编码/解码机制正文。",
+      "mechanism": "把图像拆成固定尺寸块，使用颜色码字和像素选择信息构造定长压缩块，由解码端推导像素值并支持块级随机访问。",
+      "boundary": "有损编码的质量、压缩率和解码复杂度存在取舍；只归属共同发明，不写成洪洲独自发明整个S3TC体系。"
+    },
+    {
+      "workId": "futurewei-alu-centric-us10726516",
+      "title": "Arithmetic logic unit (ALU)-centric operations in graphics processing units (GPUs)",
+      "authors": "Zhou Hong; Yufei Zhang",
+      "date": "2020-07-28",
+      "url": "https://patents.google.com/patent/US10726516B2/en",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "FutureWei及发明人栏；图8至图9对应anchor register、像素映射、滑动窗口缓存和点积累加段落",
+      "contentStatus": "已读共同署名及所列机制正文。",
+      "mechanism": "由L1把像素及边界填充按锚寄存器规则放入GPR，ALU利用滑动窗口缓冲重用像素并执行点积、累加，减少卷积邻域数据的重复搬运。",
+      "boundary": "属于FutureWei时期专利，不自动归为壁仞产品机制；寄存器压力和窗口缓冲成本需独立评估。"
+    },
+    {
+      "workId": "enflame-transcendental-cn109271134",
+      "title": "超越函数运算方法及装置、存储介质及电子设备",
+      "authors": "刘彦",
+      "date": "2019-01-25",
+      "url": "https://patents.google.com/patent/CN109271134A/zh",
+      "type": "专利申请说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人、燧原申请人栏及发明内容中的独立运算单元、输入归一化、共同迭代参数段落",
+      "contentStatus": "已读署名与所列机制正文。",
+      "mechanism": "将超越函数任务分配到独立运算单元，规范化自变量并生成共同迭代参数，以支持多个运算单元并行迭代。",
+      "boundary": "不据专利推定具体邃思型号已采用；精度、迭代次数和共享控制代价仍需结合实现约束。"
+    },
+    {
+      "workId": "enflame-cluster-cn109739802",
+      "title": "计算集群及计算集群配置方法",
+      "authors": "江斌；刘彦；李翔；胡维",
+      "date": "2019-06-18",
+      "url": "https://patents.google.com/patent/CN109739802B/zh",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人栏；发明内容、具体实施方式中层/子集群映射、模块内全互联、模块间芯片级直连及虚拟分片段落",
+      "contentStatus": "已读共同署名与所列机制正文。",
+      "mechanism": "把网络层和功能节点映射到子集群及计算节点，模块内加速卡和芯片采用点对点全互联，邻接模块以芯片级链路连接；另描述多租户虚拟分片。",
+      "boundary": "网络层映射和全互联均为披露方案，不是所有训练负载的最优拓扑；不将专利中的带宽宣称当作测量结果。"
+    },
+    {
+      "workId": "cambricon-isa-isca2016",
+      "title": "Cambricon: An Instruction Set Architecture for Neural Networks",
+      "authors": "Shaoli Liu、Zidong Du、Jinhua Tao、Dong Han、Tao Luo、Yuan Xie、Yunji Chen、Tianshi Chen",
+      "date": "2016",
+      "url": "https://reconfigdeeplearning.wordpress.com/wp-content/uploads/2017/02/2016-isca_cambricon-an-instruction-set-architecture-for-neural-networks_cyj.pdf",
+      "type": "论文正文（所列页）",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "原论文镜像：首页署名；§II、表I及scratchpad说明",
+      "contentStatus": "已核验署名及所列机制正文。",
+      "mechanism": "以标量、向量、矩阵及控制指令表达神经网络；向量/矩阵操作数存放于软件可见scratchpad，长度受其容量而非固定向量寄存器宽度约束。",
+      "boundary": "第一作者参与的团队研究；不等于全部商业MLU产品的个人设计。"
+    },
+    {
+      "workId": "cambricon-x-micro2016",
+      "title": "Cambricon-X: An accelerator for sparse neural networks",
+      "authors": "Shijin Zhang等；Shaoli Liu为共同作者",
+      "date": "2016",
+      "url": "https://dl.acm.org/doi/10.5555/3195638.3195662",
+      "type": "出版信息与摘要",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "reviewedLocator": "出版条目及署名；ACM与IEEE PDF读取失败",
+      "contentStatus": "未取得可审阅的机制正文；不计入本轮已完成技术作品门槛。",
+      "mechanism": null,
+      "boundary": "共同作者身份不等于项目单独负责人；待核原文的稀疏索引与数据通路。"
+    },
+    {
+      "workId": "iluvatar-differentiable-hardware-cn115936966",
+      "title": "硬件构造差异编程的计算机化方法",
+      "authors": "吕坚平",
+      "date": "2023-04-07",
+      "url": "https://patents.google.com/patent/CN115936966A/zh",
+      "type": "专利申请说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人及申请人栏；计算图、可微分图形环路与ISP环路说明段落",
+      "contentStatus": "已读署名及所列机制正文。",
+      "mechanism": "把可微的软硬件计算节点接入计算图，保留输出对输入/参数的导数并向上游传播梯度，讨论图形流水线及ISP参数的端到端联合优化。",
+      "boundary": "属于架构方案披露，不是已量产可微GPU的证据；可微性、梯度存储、反馈精度与硬件代价仍是约束。"
+    },
+    {
+      "workId": "iluvatar-rasterization-cn117456070",
+      "title": "光栅化及渲染方法、图形处理硬件、电子设备及存储介质",
+      "authors": "邵平平；吕坚平；戴宇",
+      "date": "2024-01-26",
+      "url": "https://patents.google.com/patent/CN117456070A/zh",
+      "type": "专利申请说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人栏；分层屏幕分区、图元列表、共享存储、光栅化指令和覆盖掩码段落",
+      "contentStatus": "已读共同署名与所列机制正文。",
+      "mechanism": "按屏幕区域、块、tile与像素组划分任务，共享存储保存图元列表；指令调用专用光栅化硬件产生覆盖信息，再由线程执行后续像素处理。",
+      "boundary": "是专用覆盖计算与可编程处理的组合，不应描述成完全软件光栅化；不推定具体天数产品已采用。"
+    },
+    {
+      "workId": "denglin-tensor-address-cn115658146",
+      "title": "一种AI芯片、张量处理方法及电子设备",
+      "authors": "王平；罗前；顾铭秋",
+      "date": "2023",
+      "url": "https://patents.google.com/patent/CN115658146B/zh",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人及登临申请人栏；张量寻址引擎、矢量寄存器与计算引擎分离段落",
+      "contentStatus": "已读共同署名与所列机制正文。",
+      "mechanism": "将张量地址生成与运算解耦，按起止地址、步长和形状取得操作数并放入矢量寄存器，使执行单元不必重复承担全部寻址过程。",
+      "boundary": "收益取决于规则张量访问、复用和缓冲容量；WO同族文献不作为第二作品。"
+    },
+    {
+      "workId": "denglin-heterogeneous-queues-us11789895",
+      "title": "On-chip heterogeneous AI processor with distributed tasks queues allowing for parallel task execution",
+      "authors": "Ping Wang; Jianwen Li",
+      "date": "2023-10-17",
+      "url": "https://patents.google.com/patent/US11789895B2/en",
+      "type": "专利说明书全文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "发明人及登临申请人栏；Detailed Description中TU/CU、各单元任务队列及控制器分图段落",
+      "contentStatus": "已读共同署名与所列机制正文。",
+      "mechanism": "在片内组合专用矩阵处理单元与可编程GPGPU单元，控制器把计算图拆成子任务并送入对应单元队列，使不同类型任务能够并行执行。",
+      "boundary": "异构并行并不消除跨单元依赖、共享数据和队列背压；不把专利等同于已验证的GPU+产品全部实现。"
+    },
+    {
+      "workId": "ktransformers-sosp2025",
+      "title": "KTransformers: Unleashing the Full Potential of CPU/GPU Hybrid Inference for MoE Models",
+      "authors": "Hongtao Chen; Weiyu Xie; Boxin Zhang等；前三位同等贡献",
+      "date": "2025",
+      "url": "https://madsys.cs.tsinghua.edu.cn/publication/ktransformers-unleashing-the-full-potential-of-cpu/gpu-hybrid-inference-for-moe-models/SOSP25-chen.pdf",
+      "type": "论文正文（所列页）",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "PDF第1页署名与同等贡献脚注；第7至8页Expert Deferral、图9及相应公式",
+      "contentStatus": "已查看首页和机制页图像，并读取对应正文。",
+      "mechanism": "结合CPU专家计算与GPU侧任务；Expert Deferral在decode时把部分专家输出延至后续层合并，解除部分依赖以增加CPU/GPU重叠。",
+      "boundary": "Expert Deferral会改变模型计算语义，不是无损的纯调度优化；论文明确不在prefill中使用该机制。共同第一作者不等于独占全部系统贡献。"
+    },
+    {
+      "workId": "vertexsurge-asplos2024",
+      "title": "VertexSurge: Variable Length Graph Pattern Match on Billion-edge Graphs",
+      "authors": "Weiyu Xie; Mingxing Zhang; Xia Liao; Kang Chen; Jinlei Jiang; Yongwei Wu",
+      "date": "2024",
+      "url": "https://madsys.cs.tsinghua.edu.cn/publication/vertexsurge-variable-length-graph-pattern-match-on-billion-edge-graphs/ASPLOS24-Xie.pdf",
+      "type": "论文正文（所列页）",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "reviewedLocator": "PDF第1页署名；第6页§4.1和图4；§6.3中的内存布局、SIMD与预取说明",
+      "contentStatus": "已查看首页和机制页图像，并读取对应正文。",
+      "mechanism": "以位矩阵表示多源可达性，VExpand以列级位运算替代逐路径展开，并结合布局、SIMD、边排序和预取减少访存开销。",
+      "boundary": "归类为面向微架构的软件系统优化，不是GPU芯片设计；速度与带宽利用率受图结构、查询和评测平台限制。"
+    },
+    {
+      "workId": "metax-bandwidth-cn120336220",
+      "title": "一种带宽管理系统",
+      "authors": "许新任；彭莉",
+      "date": "2025-08-15",
+      "url": "https://patents.google.com/patent/CN120336220B/zh",
+      "reviewedLocator": "发明人栏；发明内容与具体实施方式，通道速率与缓存占用反馈",
+      "mechanism": "综合读返回通道宽度、时钟和访问长度估算命令速率，再利用实时缓存占用调整发射间隔。",
+      "boundary": "专利未提供独立产品测量；控制延迟和突发流量仍需验证。",
+      "type": "专利说明书正文（所列部分）",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "contentStatus": "已核验署名及所列机制正文。"
+    },
+    {
+      "workId": "cambricon-f-isca2019",
+      "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+      "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+      "date": "2019",
+      "url": "https://dl.yongwei.site/F.pdf",
+      "reviewedLocator": "首页署名；§3.1，图6及FISA本地/分形指令说明",
+      "mechanism": "以相同ISA递归组织父子节点：本地指令交给LFU，分形指令分解至FFU子节点，分层存储与通信支持跨规模执行。",
+      "boundary": "共同作者贡献；递归抽象不能消除通信、归约及数据复制代价。",
+      "type": "论文正文（所列页）",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "contentStatus": "已核验署名及所列机制正文。"
+    }
+  ],
+  "records": [
+    {
+      "candidateId": "li-peng-metax",
+      "name": "彭莉",
+      "aliases": [
+        "Li Peng",
+        "Jessie Li Peng"
+      ],
+      "companyAssociation": "沐曦 / MetaX",
+      "proposedCategory": "GPU与SoC硬件架构",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "amd-matrix-broadcast-us11609785",
+        "metax-bandwidth-cn120336220"
+      ],
+      "proposedContribution": "矩阵共享数据的请求聚合与跨计算单元广播（与共同发明人合作）。",
+      "identityNotes": "中文AMD同族专利CN113094099A将彭莉与Li Peng署名关联；沐曦带宽管理专利同时列许新任与彭莉。以共同发明为贡献依据。",
+      "identitySources": [
+        "https://patents.google.com/patent/CN113094099A/zh"
+      ],
+      "remaining": [],
+      "editorialQuestion": "何时广播节省的内存流量超过请求聚合等待和片上多播成本？",
+      "profileId": "li-peng-metax",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "jian-yang-metax",
+      "name": "杨建",
+      "aliases": [
+        "Jian Yang"
+      ],
+      "companyAssociation": "沐曦 / MetaX",
+      "proposedCategory": "GPU软件生态与异构系统架构",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "amd-matrix-broadcast-us11609785",
+        "metax-gpu-memory-expansion-us12614243"
+      ],
+      "proposedContribution": "围绕共享矩阵数据广播与GPU外接显存扩展进行软硬件/存储系统协同。",
+      "identityNotes": "上海科技大学2024年讲座将杨建介绍为沐曦联合创始人、CTO兼首席软件架构师，并列出海思、AMD经历；此为历史职务。AMD中文同族列杨建，沐曦专利列Jian Yang。",
+      "identitySources": [
+        "https://sist.shanghaitech.edu.cn/sist_en/2024/0401/c11304a1093468/page.htm",
+        "https://patents.google.com/patent/CN113094099A/zh"
+      ],
+      "remaining": [],
+      "editorialQuestion": "GPU外接大容量内存的容量价值何时足以抵消带宽和访问延迟损失？",
+      "profileId": "jian-yang-metax",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "zhou-hong-biren",
+      "name": "洪洲",
+      "aliases": [
+        "Zhou Hong"
+      ],
+      "companyAssociation": "壁仞科技 / Biren",
+      "proposedCategory": "GPU图形与计算微架构",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "s3-fixed-block-compression-us5956431",
+        "futurewei-alu-centric-us10726516"
+      ],
+      "proposedContribution": "共同参与固定码率图像块压缩，以及面向卷积的寄存器/滑动窗口数据复用。",
+      "identityNotes": "壁仞2025年招股书将Zhou HONG列为CTO，并记载1995–2003年S3与2016–2020年Futurewei经历，与下列专利时期相符。上海创芯学院2026年活动继续以洪洲、壁仞联合创始人和CTO介绍。",
+      "identitySources": [
+        "https://www.hkexnews.hk/listedco/listconews/sehk/2025/1222/2025122200020_c.pdf",
+        "https://www.sisi.edu.cn/2026/0923/c17042a1127608/page.htm"
+      ],
+      "remaining": [],
+      "editorialQuestion": "压缩和寄存器邻域复用能减少多少数据移动，又分别增加哪些质量损失和局部存储成本？",
+      "profileId": "zhou-hong-biren",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "yan-liu-enflame",
+      "name": "刘彦",
+      "aliases": [
+        "Yan Liu"
+      ],
+      "companyAssociation": "燧原科技 / Enflame",
+      "proposedCategory": "AI计算单元与加速器互联",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "enflame-transcendental-cn109271134",
+        "enflame-cluster-cn109739802"
+      ],
+      "proposedContribution": "超越函数的并行迭代控制，以及面向网络层映射的芯片级直连计算集群。",
+      "identityNotes": "两项专利均以刘彦中文署名、燧原为申请人。中国计算机学会2021年活动介绍其为燧原首席芯片架构师；只保留这一历史身份。",
+      "identitySources": [
+        "https://www.yocsef.org.cn/YOCSEF/Branches/Shanghai/News/2021-05-13/728570.shtml"
+      ],
+      "remaining": [],
+      "editorialQuestion": "共享迭代控制与定制集群拓扑分别在什么工作负载变化下失去效率优势？",
+      "profileId": "yan-liu-enflame",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "shaoli-liu-cambricon",
+      "name": "刘少礼",
+      "aliases": [
+        "Shaoli Liu"
+      ],
+      "companyAssociation": "寒武纪 / Cambricon",
+      "proposedCategory": "神经网络ISA与稀疏加速器",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "cambricon-isa-isca2016",
+        "cambricon-f-isca2019"
+      ],
+      "proposedContribution": "作为Cambricon ISA第一作者及Cambricon-F共同作者，研究神经网络指令表达与递归计算组织。",
+      "identityNotes": "2016年Cambricon ISA原论文列Shaoli Liu为第一作者，并列计算所与Cambricon机构；2019年Cambricon-F列为共同作者。条目聚焦这些研究贡献。",
+      "identitySources": [],
+      "remaining": [],
+      "editorialQuestion": "待原文核验：神经网络ISA的通用性与稀疏索引开销如何共同决定加速收益？",
+      "profileId": "shaoli-liu",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "jianping-lu-iluvatar",
+      "name": "吕坚平",
+      "aliases": [
+        "Jianping Lu"
+      ],
+      "companyAssociation": "天数智芯 / Iluvatar CoreX",
+      "proposedCategory": "GPU图形与可微计算架构",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "iluvatar-differentiable-hardware-cn115936966",
+        "iluvatar-rasterization-cn117456070"
+      ],
+      "proposedContribution": "可微计算图中的硬件反馈路径，以及专用覆盖计算与线程处理结合的光栅化方案。",
+      "identityNotes": "所列专利以吕坚平中文署名、天数智芯为申请人。公司2022年署名文章介绍其为CTO；不据此推断当前职务或其参与英伟达H100设计。",
+      "identitySources": [
+        "https://www.iluvatar.com/newsDetails?code=wkywdH100GPU&topicId=495"
+      ],
+      "remaining": [],
+      "editorialQuestion": "固定功能图形流水线应暴露多少梯度与调度能力，才能兼顾可微编程和能效？",
+      "profileId": "jianping-lu-iluvatar",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "ping-wang-denglin",
+      "name": "王平",
+      "aliases": [
+        "Ping Wang"
+      ],
+      "companyAssociation": "登临科技 / Denglin",
+      "proposedCategory": "片内异构AI处理器",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "denglin-tensor-address-cn115658146",
+        "denglin-heterogeneous-queues-us11789895"
+      ],
+      "proposedContribution": "张量寻址与执行解耦，以及异构计算单元的分布式任务队列。",
+      "identityNotes": "两项技术作品以登临为申请人；异构处理器的中文同族CN112465129B列王平，与美国同族Ping Wang交叉对应。条目不预设未经核验的现任头衔。",
+      "identitySources": [
+        "https://patents.google.com/patent/CN112465129B/zh"
+      ],
+      "remaining": [],
+      "editorialQuestion": "何种任务粒度能使异构单元并行收益超过队列管理、同步和中间数据搬运开销？",
+      "profileId": "ping-wang-denglin",
+      "admissionState": "profile-prepared"
+    },
+    {
+      "candidateId": "weiyu-xie",
+      "name": "谢威宇",
+      "aliases": [
+        "Weiyu Xie"
+      ],
+      "companyAssociation": "趋境科技 / Approaching.AI；清华MADSys研究经历",
+      "proposedCategory": "AI推理与高性能系统软件",
+      "technicalEvidenceStatus": "two-technical-bodies-reviewed",
+      "workIds": [
+        "ktransformers-sosp2025",
+        "vertexsurge-asplos2024"
+      ],
+      "proposedContribution": "共同第一作者参与CPU/GPU混合MoE推理；第一作者研究面向微架构优化的可变长度图查询。",
+      "identityNotes": "本人主页列2024年起任趋境科技引擎架构师。KTransformers论文中为共同第一作者，VertexSurge为第一作者；主分类为系统软件。",
+      "identitySources": [
+        "https://www.xieweiyu.me/about"
+      ],
+      "remaining": [],
+      "editorialQuestion": "区分保持语义的CPU/GPU执行优化与改变模型语义的Expert Deferral，分别评估延迟收益和质量代价。",
+      "profileId": "weiyu-xie",
+      "admissionState": "profile-prepared"
+    }
+  ],
+  "excludedEvidence": [
+    {
+      "reference": "WO2022236780A1",
+      "reason": "实际为显示/电路板相关文献，不能作为MetaX预取技术证据。"
+    },
+    {
+      "reference": "CN110782009A",
+      "reason": "同名刘彦机构不符，不能拼接到燧原人物。"
+    },
+    {
+      "reference": "同一专利的中美公开文本、申请与授权版本",
+      "reason": "同一技术作品或家族不得仅按不同URL重复计为两项证据。"
+    },
+    {
+      "reference": "ACM/IEEE论文的二手笔记与转载摘要",
+      "reason": "不能替代未读到的原文机制正文。"
+    }
+  ]
+}
