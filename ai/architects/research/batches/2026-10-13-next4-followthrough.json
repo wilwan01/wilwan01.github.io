@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-13",
+  "focus": "中国AI架构候选：共同贡献与系统范围复核",
+  "scope": "additional",
+  "baseCommit": "7e4d1a5626fd91bc2152a1bd0e7ec192c1d810fb",
+  "plannedScope": 4,
+  "plannedExisting": 0,
+  "plannedCandidates": 4,
+  "counts": {
+    "complete": 1,
+    "partial": 2,
+    "pending": 1
+  },
+  "completedExisting": 0,
+  "completedNew": 1,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "jun-liang-cambricon",
+      "name": "梁军",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "两项不同专利的共同署名及机制正文已核，英文同族身份链和全库别名去重已完成；只收录所列贡献。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "liang-descriptor-wo2020200244",
+          "title": "数据处理方法及装置以及相关产品 — WO2020200244A1",
+          "authors": "刘少礼、王秉睿、周晓勇、庄毅敏、兰慧盈、梁军、李震、吴健华、郝勇峥",
+          "date": "2020-10-08",
+          "url": "https://patents.google.com/patent/WO2020200244A1/zh",
+          "locator": "Inventor / Original Assignee；具体实施方式 S11a/S12a、张量接口单元、描述符管理及前序依赖处理",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已直接审阅署名、优先权与所列实施方式文字；未宣称审阅全部附图。",
+          "evidenceStrength": "原始专利说明书；共同署名支持共同贡献，不证明独创整个ISA或量产采用。",
+          "role": "张量寻址、管理状态与依赖控制；中文身份归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13",
+          "independenceKey": "descriptor-priorities-2019-04",
+          "priorityAnchors": [
+            "CN201910272625.6",
+            "CN201910272411.9",
+            "CN201910272660.8",
+            "CN201910320091.X",
+            "CN201910319165.8",
+            "CN201910340177.9",
+            "CN201910341003.4"
+          ]
+        },
+        {
+          "workId": "liang-accumulation-wo2022111014",
+          "title": "Accumulation device and method, and readable storage medium — US20230229393A1",
+          "authors": "Enhe LIU、Qi LI、Boyu QIAN、Shaoli LIU、Jun LIANG",
+          "date": "2023-07-20",
+          "url": "https://patents.justia.com/patent/20230229393",
+          "locator": "Cross-Reference to Related Applications；Detailed Description 的指数分组、对阶、补码累加、剩余输入再处理；Claims 3–4、6、15；Inventors",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已直接审阅美国同族的原始说明书镜像文字；PCT/CN2021/119947 与 CN202011364680.7 交叉一致。同族只计一项。未审阅全部附图。",
+          "evidenceStrength": "共同发明人及独立技术机制已核；Claim 6 的 all 1 与 Claim 15 的 not all 0 存在 sticky-bit 表述差异，未消除此差异。",
+          "role": "阶码差分组累加机制及英文署名身份链；不支持IEEE逐位等价、测得PPA收益或产品采用",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13",
+          "independenceKey": "accumulation-cn2020113646807",
+          "priorityAnchors": [
+            "CN202011364680.7"
+          ],
+          "sameWorkAliases": [
+            "WO2022111014A1",
+            "CN114546331A",
+            "CN114546331B",
+            "US20230229393A1"
+          ],
+          "originalWorkUrl": "https://patents.google.com/patent/WO2022111014A1/en"
+        }
+      ]
+    },
+    {
+      "id": "tianyi-shan-iluvatar",
+      "name": "单天逸",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "保留2026年1月本人技术访谈；新增定位4月19日CCF活动，但活动报道不是第二项完整技术作品。",
+      "nextAction": "取得该场关于Vibe Coding与硬件设计的署名幻灯片、实录或实现文档；未达标不建人物卡。"
+    },
+    {
+      "id": "yalin-zhang-enflame",
+      "name": "张亚林",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "复核方向确定为datacenter：系统产品化、软件栈与部署经济性；现有材料不支持个人GPU/GCU微架构主设计者。",
+      "nextAction": "继续补第二项可归属本人、包含具体系统设计机制的作品；运营访谈不充当该证据。"
+    },
+    {
+      "id": "lidong-zhao-enflame",
+      "name": "赵立东",
+      "kind": "candidate",
+      "status": "pending",
+      "reason": "按原结论暂缓。机构履历支持历史工程背景，不替代作品级技术贡献。",
+      "nextAction": "未取得两项合格技术作品前不入库。"
+    }
+  ],
+  "notes": [
+    "本批只新增梁军一位，其他三位不计入正式目录。",
+    "专利共同署名、团队机制和独立性能验证分开；未认定現任职务或量产采用。",
+    "美国、国际与中国同族不重复计数；sticky-bit原文差异保留。",
+    "原next4候选稿保留为初筛历史快照，以本批及followthrough记录为当前状态。"
+  ],
+  "publication": {
+    "status": "prepared",
+    "target": "https://wilwan01.github.io/ai/architects/",
+    "note": "仅表示仓库整合准备完成；部署状态须另查GitHub Pages。"
+  }
+}

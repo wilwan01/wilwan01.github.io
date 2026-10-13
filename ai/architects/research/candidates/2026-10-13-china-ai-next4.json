@@ -7,7 +7,14 @@
   "admissionState": "not-admitted",
   "catalogChanged": false,
   "publicationState": "research-branch-only",
-  "counts": {"candidates": 4, "priorityTechnicalFollowup": 2, "systemScopeReview": 1, "deferredAttribution": 1, "gatePassed": 0, "newCatalogProfiles": 0},
+  "counts": {
+    "candidates": 4,
+    "priorityTechnicalFollowup": 2,
+    "systemScopeReview": 1,
+    "deferredAttribution": 1,
+    "gatePassed": 0,
+    "newCatalogProfiles": 0
+  },
   "evidenceGate": "two-distinct-primary-works-one-body-v1",
   "auditPolicy": "不改变正式入库门槛；本稿将直接审阅、索引正文片段和人物背景分开。索引片段虽包含技术正文，本轮仍保留直接来源复核事项，不据此提前宣布人物完成。",
   "dedupAudit": {
@@ -36,7 +43,15 @@
       "mechanism": "指令引用描述符标识，读取形状和地址信息后生成张量访问地址；描述符注册、修改、注销另有管理路径，遇到前序依赖或不可操作状态时阻塞或缓存指令。",
       "attribution": "梁军是共同发明人；只支持对公开方案的共同贡献，不支持独创整个寒武纪ISA或指定量产产品已采用。",
       "independenceKey": "descriptor-priorities-2019-04",
-      "priorityAnchors": ["CN201910272625.6", "CN201910272411.9", "CN201910272660.8", "CN201910320091.X", "CN201910319165.8", "CN201910340177.9", "CN201910341003.4"]
+      "priorityAnchors": [
+        "CN201910272625.6",
+        "CN201910272411.9",
+        "CN201910272660.8",
+        "CN201910320091.X",
+        "CN201910319165.8",
+        "CN201910340177.9",
+        "CN201910341003.4"
+      ]
     },
     {
       "workId": "liang-accumulation-wo2022111014",
@@ -55,8 +70,13 @@
       "mechanism": "以最大阶码为参考，按阶码差阈值把输入分组；对选中集群进行尾数对齐、补码转换和定点累加。",
       "attribution": "共同署名方案。分组不能写成随意丢弃小数项；未核完整轮次、舍入和异常值处理，不能声称IEEE逐位等价或测得面积收益。",
       "independenceKey": "accumulation-cn2020113646807",
-      "priorityAnchors": ["CN202011364680.7"],
-      "sameWorkAliases": ["CN114546331B", "US20230229393A1"],
+      "priorityAnchors": [
+        "CN202011364680.7"
+      ],
+      "sameWorkAliases": [
+        "CN114546331B",
+        "US20230229393A1"
+      ],
       "remaining": "恢复专利直接页面或原始PDF并核对机制上下文，再决定计入正式证据。"
     },
     {
@@ -76,7 +96,13 @@
       "mechanism": "受访者说明多类Attention操作的调度瓶颈，以及把指令级行为、CPU/GPU/网卡/PCIe、拓扑与软件策略联合建模的评估方法。",
       "attribution": "支持技术负责人公开解释团队方案，不证明所有机制由其个人独创。TPC广播、多指令协同等编辑介绍不升级为个人发明。",
       "independenceKey": "iluvatar-2026-01-conference-interview",
-      "boundaries": ["同次发布会或同篇采访转载不算第二作品", "不把20%/60%宣传比较写成独立测量", "不采信动态warp调度绝对首创表述", "模型仿真能力不等于对任意模型零误差预测", "2026-2027路线图不是全部已经交付"]
+      "boundaries": [
+        "同次发布会或同篇采访转载不算第二作品",
+        "不把20%/60%宣传比较写成独立测量",
+        "不采信动态warp调度绝对首创表述",
+        "模型仿真能力不等于对任意模型零误差预测",
+        "2026-2027路线图不是全部已经交付"
+      ]
     },
     {
       "workId": "zhang-gtic2020-system-design",
@@ -137,84 +163,148 @@
     {
       "candidateId": "jun-liang-cambricon",
       "name": "梁军",
-      "searchAliases": ["Jun Liang", "Liang Jun"],
+      "searchAliases": [
+        "Jun Liang",
+        "Liang Jun"
+      ],
       "aliasesVerifiedForCatalog": [],
       "companyAssociation": "寒武纪（历史技术作品归属，不认定现任）",
       "disposition": "priority-technical-followup",
       "proposedDomain": "gpu-ai",
       "gatePassed": false,
       "admitted": false,
-      "workIds": ["liang-descriptor-wo2020200244", "liang-accumulation-wo2022111014"],
+      "workIds": [
+        "liang-descriptor-wo2020200244",
+        "liang-accumulation-wo2022111014"
+      ],
       "contributionDraft": "共同参与张量描述符寻址与依赖控制；浮点分组累加作为第二条待复核技术线。",
       "identityBoundary": "中文姓名与寒武纪申请人、共同发明人相互对应；不凭常见英文名跨公司拼接专利。",
-      "remaining": ["第二专利的直接来源复核及误差/舍入边界", "最终人物身份链与中英文目录去重", "转为正式人物卡并执行原站校验"],
+      "remaining": [
+        "第二专利的直接来源复核及误差/舍入边界",
+        "最终人物身份链与中英文目录去重",
+        "转为正式人物卡并执行原站校验"
+      ],
       "editorialChallenge": "描述符减少了哪些重复地址工作，又引入多少描述符依赖、管理状态和阻塞？浮点分组的吞吐与数值误差如何共同评估？",
       "challengeOrigin": "editorial-proposal-not-attributed-quote"
     },
     {
       "candidateId": "tianyi-shan-iluvatar",
       "name": "单天逸",
-      "searchAliases": ["Tianyi Shan", "Shan Tianyi"],
+      "searchAliases": [
+        "Tianyi Shan",
+        "Shan Tianyi"
+      ],
       "aliasesVerifiedForCatalog": [],
       "companyAssociation": "天数智芯",
-      "roleAsOf": {"date": "2026-01-29", "title": "AI与加速计算技术负责人", "sourceWorkId": "shan-infoq-2026-01-29"},
+      "roleAsOf": {
+        "date": "2026-01-29",
+        "title": "AI与加速计算技术负责人",
+        "sourceWorkId": "shan-infoq-2026-01-29"
+      },
       "disposition": "priority-technical-followup",
       "proposedDomain": "gpu-ai",
       "gatePassed": false,
       "admitted": false,
-      "workIds": ["shan-infoq-2026-01-29"],
+      "workIds": [
+        "shan-infoq-2026-01-29"
+      ],
       "contributionDraft": "GPU多类操作调度与指令级系统性能建模的公开技术论述。",
       "identityBoundary": "2026采访提供技术负责人身份，不再仅用旧CTO标签。英文拼写仅作检索词；不与UCSD计算机安全研究者Tianyi Shan合并。",
-      "remaining": ["第二项独立且可归属本人的实质技术作品", "英文署名身份链与目录去重", "把团队方案、本人论述和独立性能验证分开"],
+      "remaining": [
+        "第二项独立且可归属本人的实质技术作品",
+        "英文署名身份链与目录去重",
+        "把团队方案、本人论述和独立性能验证分开"
+      ],
       "editorialChallenge": "同时提高warp驻留和多类指令重叠时，如何排除寄存器、执行端口和互联争用导致的尾延迟回退？",
       "challengeOrigin": "editorial-proposal-not-attributed-quote"
     },
     {
       "candidateId": "yalin-zhang-enflame",
       "name": "张亚林",
-      "searchAliases": ["Yalin Zhang", "Zhang Yalin"],
+      "searchAliases": [
+        "Yalin Zhang",
+        "Zhang Yalin"
+      ],
       "aliasesVerifiedForCatalog": [],
       "companyAssociation": "燧原科技",
-      "roleAsOf": {"date": "2024-07-12", "title": "创始人、COO（采访当时）", "sourceWorkId": "zhang-tmtpost2024-operations"},
+      "roleAsOf": {
+        "date": "2024-07-12",
+        "title": "创始人、COO（采访当时）",
+        "sourceWorkId": "zhang-tmtpost2024-operations"
+      },
       "disposition": "system-scope-review",
       "proposedDomain": "datacenter",
       "gatePassed": false,
       "admitted": false,
-      "workIds": ["zhang-gtic2020-system-design", "zhang-tmtpost2024-operations"],
+      "workIds": [
+        "zhang-gtic2020-system-design",
+        "zhang-tmtpost2024-operations"
+      ],
       "contributionDraft": "AI芯片到软件栈、集群交付及成本回收的系统产品化方法。",
       "identityBoundary": "两项本人资料可对应同一人，但目前不足以把其写成某颗GPU/GCU的个人主架构师。",
-      "remaining": ["是否以系统架构/基础设施经济性而非芯片微架构纳入的范围复核", "第二项具体设计机制与个人职责证据", "完整目录去重"],
+      "remaining": [
+        "是否以系统架构/基础设施经济性而非芯片微架构纳入的范围复核",
+        "第二项具体设计机制与个人职责证据",
+        "完整目录去重"
+      ],
       "editorialChallenge": "迁移成本、可用率与有效利用率改变后，芯片局部性能优势还能否兑现机群全生命周期的成本优势？",
       "challengeOrigin": "editorial-proposal-not-attributed-quote"
     },
     {
       "candidateId": "lidong-zhao-enflame",
       "name": "赵立东",
-      "searchAliases": ["Lidong Zhao", "Zhao Lidong"],
-      "aliasesVerifiedForCatalog": ["Lidong Zhao"],
+      "searchAliases": [
+        "Lidong Zhao",
+        "Zhao Lidong"
+      ],
+      "aliasesVerifiedForCatalog": [
+        "Lidong Zhao"
+      ],
       "companyAssociation": "燧原科技",
       "disposition": "deferred-attribution",
       "proposedDomain": null,
       "gatePassed": false,
       "admitted": false,
-      "workIds": ["zhao-gsa-biography"],
+      "workIds": [
+        "zhao-gsa-biography"
+      ],
       "contributionDraft": null,
       "identityBoundary": "工程和管理经历得到机构履历支持，但没有可通过本轮证据门槛的个人技术作品；不把同名材料学研究成果并入。",
-      "remaining": ["两项可归属本人的不同实质技术作品，至少一项机制正文", "中英文署名、年代及机构交叉核验"],
+      "remaining": [
+        "两项可归属本人的不同实质技术作品，至少一项机制正文",
+        "中英文署名、年代及机构交叉核验"
+      ],
       "editorialChallenge": null,
       "challengeOrigin": null
     }
   ],
   "excludedEvidence": [
-    {"reference": "CN111986553B", "url": "https://patents.google.com/patent/CN111986553B/zh", "reason": "直接打开后实为基于语义标签的地图关联，不能作为此前检索所称的张亚林处理器技术证据。"},
-    {"reference": "US6320983B1", "url": "https://patents.google.com/patent/US6320983B1/en", "reason": "直接页面未读到，发明人和S3归属本轮未核实；仅保留未验证线索，不记为赵立东作品。"},
-    {"reference": "Tianyi Shan at UCSD", "url": "https://tianyishan.github.io/", "reason": "计算机安全研究者的院校与时间线不能直接拼接到天数智芯单天逸；本稿不建立该英文别名映射。"},
-    {"reference": "专利同族、同一访谈转载与同次发布会复述", "reason": "不同网址不等于不同作品，不重复计数。"}
+    {
+      "reference": "CN111986553B",
+      "url": "https://patents.google.com/patent/CN111986553B/zh",
+      "reason": "直接打开后实为基于语义标签的地图关联，不能作为此前检索所称的张亚林处理器技术证据。"
+    },
+    {
+      "reference": "US6320983B1",
+      "url": "https://patents.google.com/patent/US6320983B1/en",
+      "reason": "直接页面未读到，发明人和S3归属本轮未核实；仅保留未验证线索，不记为赵立东作品。"
+    },
+    {
+      "reference": "Tianyi Shan at UCSD",
+      "url": "https://tianyishan.github.io/",
+      "reason": "计算机安全研究者的院校与时间线不能直接拼接到天数智芯单天逸；本稿不建立该英文别名映射。"
+    },
+    {
+      "reference": "专利同族、同一访谈转载与同次发布会复述",
+      "reason": "不同网址不等于不同作品，不重复计数。"
+    }
   ],
   "validation": {
     "candidateDataValidation": "run-local-validator",
     "fullSiteValidation": "not-run",
     "catalogIntegration": "not-performed",
     "note": "只验证本稿结构、引用、独立作品计数和状态一致性，不等于事实全部核实或正式目录验证通过。"
-  }
+  },
+  "snapshotStatus": "historical-initial-screening",
+  "supersededBy": "2026-10-13-next4-followthrough.json"
 }
