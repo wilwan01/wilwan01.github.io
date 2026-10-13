@@ -1,0 +1,362 @@
+{
+  "date": "2026-10-13",
+  "focus": "GPU、AI加速与异构系统：八位技术贡献",
+  "scope": "additional",
+  "baseCommit": "55dd046ec457ed403c9ea16321f696389b2be7dd",
+  "plannedScope": 8,
+  "plannedExisting": 0,
+  "plannedCandidates": 8,
+  "counts": {
+    "complete": 8
+  },
+  "completedExisting": 0,
+  "completedNew": 8,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "li-peng-metax",
+      "name": "彭莉",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "减少重复供数，同时让命令发射速率匹配返回通道与缓存承受能力。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "amd-matrix-broadcast-us11609785",
+          "title": "Matrix data broadcast architecture",
+          "authors": "Li Peng; Jian Yang; Chi Tang",
+          "date": "2023-03-21",
+          "url": "https://patents.google.com/patent/US11609785B2/en",
+          "locator": "发明人及 AMD 申请人栏；矩阵广播请求聚合、接收掩码与计算单元映射说明段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读机制正文，并用CN113094099A核对中文署名和同族。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "metax-bandwidth-cn120336220",
+          "title": "一种带宽管理系统",
+          "authors": "许新任；彭莉",
+          "date": "2025-08-15",
+          "url": "https://patents.google.com/patent/CN120336220B/zh",
+          "locator": "发明人栏；发明内容与具体实施方式，通道速率与缓存占用反馈",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "jian-yang-metax",
+      "name": "杨建",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "在GPU容量、带宽与共享数据复用之间设计系统边界。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "amd-matrix-broadcast-us11609785",
+          "title": "Matrix data broadcast architecture",
+          "authors": "Li Peng; Jian Yang; Chi Tang",
+          "date": "2023-03-21",
+          "url": "https://patents.google.com/patent/US11609785B2/en",
+          "locator": "发明人及 AMD 申请人栏；矩阵广播请求聚合、接收掩码与计算单元映射说明段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读署名与所列机制正文；未完成中文同族首页的交叉读取。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "metax-gpu-memory-expansion-us12614243",
+          "title": "GPU processor system",
+          "authors": "Jian Yang",
+          "date": "2026-04-28",
+          "url": "https://patents.google.com/patent/US12614243B2/en",
+          "locator": "发明人及 MetaX 申请人栏；Detailed Description，图1对应系统、独立扩展控制器及跨芯片互联段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "zhou-hong-biren",
+      "name": "洪洲",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "用块压缩和邻域复用降低图形与卷积执行的数据移动。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "s3-fixed-block-compression-us5956431",
+          "title": "System and method for fixed-rate block-based image compression with inferred pixel values",
+          "authors": "Konstantine I. Iourcha; Krishna S. Nayak; Zhou Hong",
+          "date": "1999-09-21",
+          "url": "https://patents.google.com/patent/US5956431A/en",
+          "locator": "S3发明人栏；图3至图4对应分块、颜色量化、码字与位图编码；固定码率及块随机访问说明",
+          "type": "专利说明书全文",
+          "contentStatus": "已读共同署名及所列编码/解码机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "futurewei-alu-centric-us10726516",
+          "title": "Arithmetic logic unit (ALU)-centric operations in graphics processing units (GPUs)",
+          "authors": "Zhou Hong; Yufei Zhang",
+          "date": "2020-07-28",
+          "url": "https://patents.google.com/patent/US10726516B2/en",
+          "locator": "FutureWei及发明人栏；图8至图9对应anchor register、像素映射、滑动窗口缓存和点积累加段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读共同署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "yan-liu-enflame",
+      "name": "刘彦",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "将计算单元的执行结构与集群的数据流映射共同纳入加速器设计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "enflame-transcendental-cn109271134",
+          "title": "超越函数运算方法及装置、存储介质及电子设备",
+          "authors": "刘彦",
+          "date": "2019-01-25",
+          "url": "https://patents.google.com/patent/CN109271134A/zh",
+          "locator": "发明人、燧原申请人栏及发明内容中的独立运算单元、输入归一化、共同迭代参数段落",
+          "type": "专利申请说明书全文",
+          "contentStatus": "已读署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "enflame-cluster-cn109739802",
+          "title": "计算集群及计算集群配置方法",
+          "authors": "江斌；刘彦；李翔；胡维",
+          "date": "2019-06-18",
+          "url": "https://patents.google.com/patent/CN109739802B/zh",
+          "locator": "发明人栏；发明内容、具体实施方式中层/子集群映射、模块内全互联、模块间芯片级直连及虚拟分片段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读共同署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "shaoli-liu",
+      "name": "刘少礼",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "用可编程指令与递归执行组织兼顾神经网络表达能力和硬件效率。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "cambricon-isa-isca2016",
+          "title": "Cambricon: An Instruction Set Architecture for Neural Networks",
+          "authors": "Shaoli Liu、Zidong Du、Jinhua Tao、Dong Han、Tao Luo、Yuan Xie、Yunji Chen、Tianshi Chen",
+          "date": "2016",
+          "url": "https://reconfigdeeplearning.wordpress.com/wp-content/uploads/2017/02/2016-isca_cambricon-an-instruction-set-architecture-for-neural-networks_cyj.pdf",
+          "locator": "原论文镜像：首页署名；§II、表I及scratchpad说明",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页署名；§3.1，图6及FISA本地/分形指令说明",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "jianping-lu-iluvatar",
+      "name": "吕坚平",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "在专用图形数据通路中保留可编程与可微优化接口。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "iluvatar-differentiable-hardware-cn115936966",
+          "title": "硬件构造差异编程的计算机化方法",
+          "authors": "吕坚平",
+          "date": "2023-04-07",
+          "url": "https://patents.google.com/patent/CN115936966A/zh",
+          "locator": "发明人及申请人栏；计算图、可微分图形环路与ISP环路说明段落",
+          "type": "专利申请说明书全文",
+          "contentStatus": "已读署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "iluvatar-rasterization-cn117456070",
+          "title": "光栅化及渲染方法、图形处理硬件、电子设备及存储介质",
+          "authors": "邵平平；吕坚平；戴宇",
+          "date": "2024-01-26",
+          "url": "https://patents.google.com/patent/CN117456070A/zh",
+          "locator": "发明人栏；分层屏幕分区、图元列表、共享存储、光栅化指令和覆盖掩码段落",
+          "type": "专利申请说明书全文",
+          "contentStatus": "已读共同署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "ping-wang-denglin",
+      "name": "王平",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "把规则张量寻址与异构计算调度从运算数据通路中解耦。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "denglin-tensor-address-cn115658146",
+          "title": "一种AI芯片、张量处理方法及电子设备",
+          "authors": "王平；罗前；顾铭秋",
+          "date": "2023",
+          "url": "https://patents.google.com/patent/CN115658146B/zh",
+          "locator": "发明人及登临申请人栏；张量寻址引擎、矢量寄存器与计算引擎分离段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读共同署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "denglin-heterogeneous-queues-us11789895",
+          "title": "On-chip heterogeneous AI processor with distributed tasks queues allowing for parallel task execution",
+          "authors": "Ping Wang; Jianwen Li",
+          "date": "2023-10-17",
+          "url": "https://patents.google.com/patent/US11789895B2/en",
+          "locator": "发明人及登临申请人栏；Detailed Description中TU/CU、各单元任务队列及控制器分图段落",
+          "type": "专利说明书全文",
+          "contentStatus": "已读共同署名与所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "weiyu-xie",
+      "name": "谢威宇",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以数据表示和执行重叠改善CPU/GPU推理与图查询效率。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "ktransformers-sosp2025",
+          "title": "KTransformers: Unleashing the Full Potential of CPU/GPU Hybrid Inference for MoE Models",
+          "authors": "Hongtao Chen; Weiyu Xie; Boxin Zhang等；前三位同等贡献",
+          "date": "2025",
+          "url": "https://madsys.cs.tsinghua.edu.cn/publication/ktransformers-unleashing-the-full-potential-of-cpu/gpu-hybrid-inference-for-moe-models/SOSP25-chen.pdf",
+          "locator": "PDF第1页署名与同等贡献脚注；第7至8页Expert Deferral、图9及相应公式",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已查看首页和机制页图像，并读取对应正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "vertexsurge-asplos2024",
+          "title": "VertexSurge: Variable Length Graph Pattern Match on Billion-edge Graphs",
+          "authors": "Weiyu Xie; Mingxing Zhang; Xia Liao; Kang Chen; Jinlei Jiang; Yongwei Wu",
+          "date": "2024",
+          "url": "https://madsys.cs.tsinghua.edu.cn/publication/vertexsurge-variable-length-graph-pattern-match-on-billion-edge-graphs/ASPLOS24-Xie.pdf",
+          "locator": "PDF第1页署名；第6页§4.1和图4；§6.3中的内存布局、SIMD与预取说明",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已查看首页和机制页图像，并读取对应正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "完整362人基线目录按姓名、别名交叉去重，八位均为新增。",
+    "刘少礼以Cambricon ISA及Cambricon-F正文满足门槛；Cambricon-X仍只保留为未核正文线索。",
+    "专利不证明指定产品采用；团队成果不归为个人独创。"
+  ],
+  "publication": {
+    "status": "prepared",
+    "target": "https://wilwan01.github.io/ai/architects/"
+  }
+}
