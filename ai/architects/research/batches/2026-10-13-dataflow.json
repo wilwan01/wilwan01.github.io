@@ -1,0 +1,392 @@
+{
+  "date": "2026-10-13",
+  "focus": "数据流、可重构与可编程AI架构",
+  "scope": "additional",
+  "baseCommit": "7e4d1a5626fd91bc2152a1bd0e7ec192c1d810fb",
+  "plannedScope": 9,
+  "plannedExisting": 0,
+  "plannedCandidates": 9,
+  "counts": {
+    "complete": 8,
+    "partial": 1
+  },
+  "completedExisting": 0,
+  "completedNew": 8,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "yan-xie",
+      "name": "谢炎",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以张量粒度和显式数据移动协调芯片、编译器与整车系统。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "m100-isca2026",
+          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+          "date": "2026-04-20",
+          "url": "https://arxiv.org/html/2604.17862v1",
+          "locator": "作者注；§III-A、IV-A、IV-B",
+          "type": "论文全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "xie-interview-2026",
+          "title": "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+          "authors": "谢炎（受访者）；晚点访谈转载",
+          "date": "2026-05",
+          "url": "https://www.bianews.com/news/details?id=237730",
+          "locator": "本人关于互联、低精度联合设计及 XCU 整合的回答",
+          "type": "本人技术访谈全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "min-luo",
+      "name": "罗旻",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "将计算图中的数据移动落实为可调度的硬件通路。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "m100-isca2026",
+          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+          "date": "2026-04-20",
+          "url": "https://arxiv.org/html/2604.17862v1",
+          "locator": "作者注；§III-A、IV-A、IV-B",
+          "type": "论文全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN106846255",
+          "title": "图像旋转实现方法及装置",
+          "authors": "赵艳云、张师群、罗旻、鲍东山",
+          "date": "2017-06-13",
+          "url": "https://patents.google.com/patent/CN106846255A/zh",
+          "locator": "发明人、申请人；旋转单元、地址变换与行列互换说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "shouyi-yin",
+      "name": "尹首一",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "让计算阵列资源分配适应稀疏度和逐层精度需求。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "CN107609641",
+          "title": "稀疏神经网络架构及其实现方法",
+          "authors": "尹首一、李宁、欧阳鹏、刘雷波、魏少军",
+          "date": "2020-07-03",
+          "url": "https://patents.google.com/patent/CN107609641B/zh",
+          "locator": "发明人；图2–4及输入去零、调度说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN107451659",
+          "title": "用于位宽分区的神经网络加速器及其实现方法",
+          "authors": "尹首一、郭建辛、欧阳鹏、唐士斌、涂锋斌、刘雷波、魏少军",
+          "date": "2020-04-10",
+          "url": "https://patents.google.com/patent/CN107451659B/zh",
+          "locator": "发明人；图1、3–5及多位宽CP流水线说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "peng-ouyang",
+      "name": "欧阳鹏",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "把输入压缩、精度分区和数据供给一起设计。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "CN107609641",
+          "title": "稀疏神经网络架构及其实现方法",
+          "authors": "尹首一、李宁、欧阳鹏、刘雷波、魏少军",
+          "date": "2020-07-03",
+          "url": "https://patents.google.com/patent/CN107609641B/zh",
+          "locator": "发明人；图2–4及输入去零、调度说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN107451659",
+          "title": "用于位宽分区的神经网络加速器及其实现方法",
+          "authors": "尹首一、郭建辛、欧阳鹏、唐士斌、涂锋斌、刘雷波、魏少军",
+          "date": "2020-04-10",
+          "url": "https://patents.google.com/patent/CN107451659B/zh",
+          "locator": "发明人；图1、3–5及多位宽CP流水线说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "dongrui-fan",
+      "name": "范东睿",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "把片上通信拓扑与指令复用纳入数据流映射。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "CN108287729",
+          "title": "一种数据流指令映射方法",
+          "authors": "李易、欧焱、张浩、范东睿、叶笑春",
+          "date": "2018-07-17",
+          "url": "https://patents.google.com/patent/CN108287729A/zh",
+          "locator": "发明人；映射步骤及图14–15的Mesh实例",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN112015473",
+          "title": "基于数据流架构的稀疏卷积神经网络加速方法及系统",
+          "authors": "吴欣欣、范志华、轩伟、李文明、叶笑春、范东睿",
+          "date": "2023-06-27",
+          "url": "https://patents.google.com/patent/CN112015473B/zh",
+          "locator": "发明人；图1–5及跨通道、跨PE指令共享机制",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "wayne-luk",
+      "name": "陆永青",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "将定制数据通路和集群通信共同纳入映射优化。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "axel-fpga2010",
+          "title": "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "authors": "Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "locator": "首页署名；§3–4",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "convex-fpt2010",
+          "title": "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "authors": "Qiang Liu、Tim Todman、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "locator": "首页署名；§III计算、通信模型",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "kuen-hung-tsoi",
+      "name": "蔡权雄",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "让FPGA专用计算通过系统级映射转化为端到端收益。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "axel-fpga2010",
+          "title": "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "authors": "Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "locator": "首页署名；§3–4",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "convex-fpt2010",
+          "title": "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "authors": "Qiang Liu、Tim Todman、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "locator": "首页署名；§III计算、通信模型",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "jian-ouyang",
+      "name": "欧阳剑",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "结合可编程小核与专用计算逻辑覆盖多样化工作负载。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "xpu-hotchips2017",
+          "title": "XPU – A Programmable FPGA Accelerator for Diverse Workloads",
+          "authors": "Jian Ouyang、Ephrem Wu、Jing Wang、Yupeng Li、Hanlin Xie",
+          "date": "2017",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.40-Processors-Pub/HC29.21.410-XPU-FPGA-Ouyang-Baidu.pdf",
+          "locator": "封面；幻灯片8–11",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "ouyang-champery2020",
+          "title": "The Challenges and Industry Perspectives of Building an AI Chip",
+          "authors": "Jian Ouyang",
+          "date": "2020",
+          "url": "https://exascale.info/assets/pdf/champery20-ouyang.pdf",
+          "locator": "封面；幻灯片26–28、35–37、45–47",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "yuli-zhang",
+      "name": "张羽立",
+      "kind": "candidate",
+      "status": "partial",
+      "reason": "M100论文包含Yuli Zhang共同署名；未取得第二项独立且身份明确的实质技术作品。",
+      "nextAction": "补核第二项技术作品及中文/英文身份连接，不推断其现职或独占架构模型职责。",
+      "sources": [
+        {
+          "workId": "m100-isca2026",
+          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+          "date": "2026-04-20",
+          "url": "https://arxiv.org/html/2604.17862v1",
+          "locator": "作者注；§III-A、IV-A、IV-B",
+          "type": "论文全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "吕坚平保留原固定批次及既有技术贡献，本批仅补充英文别名和官方产品名称。",
+    "M100论文将谢炎明确列为项目负责人；罗旻和张羽立为共同作者，不从作者排序推断模块分工。",
+    "罗旻的跨公司身份连接包含二手履历报道；专利贡献与M100采用关系分开。",
+    "同一论文的预印本、正式版、会议演讲和转载不得重复计为独立技术作品。",
+    "昆仑条目使用XPU；天数产品引用官方天垓100（BI-V100）。",
+    "不把数据流概括成整芯片无指令、无PC或无缓存；瓶颈作为待测条件表达，不作所有产品的既成结论。"
+  ],
+  "publication": {
+    "status": "prepared",
+    "target": "https://wilwan01.github.io/ai/architects/"
+  }
+}

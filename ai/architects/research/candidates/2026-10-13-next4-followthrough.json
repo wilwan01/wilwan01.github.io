@@ -10,7 +10,7 @@
     "gatePassed": 1,
     "newCatalogProfiles": 1,
     "remainingCandidates": 3,
-    "catalogProfiles": 379
+    "catalogProfiles": 387
   },
   "admittedIds": [
     "jun-liang-cambricon"
@@ -21,9 +21,9 @@
     "lidong-zhao-enflame"
   ],
   "dedupAudit": {
-    "baseCommit": "7e4d1a5626fd91bc2152a1bd0e7ec192c1d810fb",
-    "catalogBlob": "2c28862eb57ebcae28a4625bae2cb50910fbc12a",
-    "parsedProfiles": 378,
+    "baseCommit": "e2a3b985455dcf15a1abc36251efdda9eac74844",
+    "catalogBlob": "32108915a36dd8f79e5a5a404d38d5226ae3314c",
+    "parsedProfiles": 386,
     "normalization": "NFKD-casefold-Unicode-alnum; ids/names/aliases",
     "queryAliases": {
       "jun-liang-cambricon": [
@@ -139,5 +139,14 @@
     "integrationAssertions": "passed",
     "fullSiteValidation": "run-original-validator-separately",
     "deployment": "not-verified-by-this-script"
+  },
+  "concurrentReconciliation": {
+    "upstream": "e2a3b985455dcf15a1abc36251efdda9eac74844",
+    "retainedUpstreamProfiles": 386,
+    "finalProfiles": 387,
+    "addedByThisPR": [
+      "jun-liang-cambricon"
+    ],
+    "preserved": "All upstream profile fields, eight dataflow admissions and Iluvatar naming changes."
   }
 }

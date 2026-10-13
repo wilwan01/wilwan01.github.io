@@ -12,11 +12,24 @@
     "fixedBatches": 17,
     "fixedBatchRecords": 383,
     "auditedProfiles": 378,
-    "checks": ["historical profiles and sources retained", "unique normalized aliases", "two independent substantive primary works and mechanism-body gates", "domain membership", "directory, sidebar, skills and count consistency", "internal links"]
+    "checks": [
+      "historical profiles and sources retained",
+      "unique normalized aliases",
+      "two independent substantive primary works and mechanism-body gates",
+      "domain membership",
+      "directory, sidebar, skills and count consistency",
+      "internal links"
+    ]
   },
   "integration": {
-    "admittedIds": ["jun-liang-cambricon"],
-    "notAdmittedIds": ["tianyi-shan-iluvatar", "yalin-zhang-enflame", "lidong-zhao-enflame"],
+    "admittedIds": [
+      "jun-liang-cambricon"
+    ],
+    "notAdmittedIds": [
+      "tianyi-shan-iluvatar",
+      "yalin-zhang-enflame",
+      "lidong-zhao-enflame"
+    ],
     "existingProfilesUnchanged": 378,
     "byteIdempotence": "passed",
     "gitDiffCheck": "passed"
@@ -29,7 +42,10 @@
   "browserChecks": {
     "mode": "offline DOM rendering of downloaded CI artifact, with exact local CSS and JavaScript inlined; no external requests",
     "engine": "Chromium via Playwright",
-    "viewportWidths": [1440, 390],
+    "viewportWidths": [
+      1440,
+      390
+    ],
     "profileDetailsExpansion": "passed",
     "liangNameFilterResults": 1,
     "clearedFilterResults": 379,
@@ -37,8 +53,16 @@
     "limitation": "The environment blocked localhost URL navigation; this is an offline interaction/rendering test, not a live-site HTTP or deployment test."
   },
   "artifactHashes": {
-    "catalog.json": {"gitBlob": "7798e25e4243a7807bb70373ee477bb649d01641", "sha256": "c0df8edc2b2504961237706ae226d62aa4a4312be2cbf1c53488b23759dc1496"},
-    "index.html": {"gitBlob": "c26a230b02f81bb2755924f60fad3c4402b21fd2", "sha256": "a0b5f76bcfbe49392da7af9213e2c71b5656d1d85b36f808e12486f36959f7bc"}
+    "catalog.json": {
+      "gitBlob": "7798e25e4243a7807bb70373ee477bb649d01641",
+      "sha256": "c0df8edc2b2504961237706ae226d62aa4a4312be2cbf1c53488b23759dc1496"
+    },
+    "index.html": {
+      "gitBlob": "c26a230b02f81bb2755924f60fad3c4402b21fd2",
+      "sha256": "a0b5f76bcfbe49392da7af9213e2c71b5656d1d85b36f808e12486f36959f7bc"
+    }
   },
-  "deployment": "Not asserted by this validation receipt; verify the Pages run for the eventual merged commit separately."
+  "deployment": "Not asserted by this validation receipt; verify the Pages run for the eventual merged commit separately.",
+  "snapshotStatus": "historical-pre-concurrent-reconciliation",
+  "supersededBy": "2026-10-13-next4-reconciled-validation.json"
 }

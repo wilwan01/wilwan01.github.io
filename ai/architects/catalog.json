@@ -189,6 +189,14 @@
         "jonathan-ross",
         "michael-james",
         "simon-knowles",
+        "yan-xie",
+        "min-luo",
+        "shouyi-yin",
+        "peng-ouyang",
+        "dongrui-fan",
+        "wayne-luk",
+        "kuen-hung-tsoi",
+        "jian-ouyang",
         "jun-liang-cambricon"
       ]
     },
@@ -45691,7 +45699,8 @@
       "id": "jianping-lu-iluvatar",
       "name": "吕坚平",
       "aliases": [
-        "Jianping Lu"
+        "Jianping Lu",
+        "Chien-Ping Lu"
       ],
       "field": "GPU图形与可微计算架构",
       "domain": "gpu-ai",
@@ -45703,7 +45712,7 @@
         "共同参与的技术方案：把可微的软硬件计算节点接入计算图，保留输出对输入/参数的导数并向上游传播梯度，讨论图形流水线及ISP参数的端到端联合优化。",
         "共同参与的技术方案：按屏幕区域、块、tile与像素组划分任务，共享存储保存图元列表；指令调用专用光栅化硬件产生覆盖信息，再由线程执行后续像素处理。"
       ],
-      "background": "所列专利以吕坚平中文署名、天数智芯为申请人。公司2022年署名文章介绍其为CTO；不据此推断当前职务或其参与英伟达H100设计。",
+      "background": "所列专利以吕坚平中文署名、天数智芯为申请人。公司2022年署名文章介绍其为CTO；不据此推断当前职务或其参与英伟达H100设计。 本批对照产品命名：官方资料使用天垓100加速卡（BI-V100），不采用未经证实的BI-M100名称。",
       "argument": "编辑条件模型：暴露更多控制或梯度信息的价值须大于接口、存储与调度成本。",
       "evidence": "两项不同技术作品的署名与所列机制正文；同族文献仅计一次。",
       "habits": [
@@ -45730,6 +45739,11 @@
           "天数智芯：吕坚平署名文章",
           "https://www.iluvatar.com/newsDetails?code=wkywdH100GPU&topicId=495",
           "2022年历史身份，不作为H100设计归属。"
+        ],
+        [
+          "天数智芯天垓100产品页",
+          "https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-xlxl-tg100",
+          "官方型号为天垓100加速卡（BI-V100）；不据此推断吕坚平独占整芯片架构。"
         ]
       ],
       "sourceAudit": [
@@ -46901,6 +46915,931 @@
       }
     },
     {
+      "id": "yan-xie",
+      "name": "谢炎",
+      "aliases": [
+        "Yan Xie"
+      ],
+      "field": "理想 M100 数据流与系统协同",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "以张量粒度和显式数据移动协调芯片、编译器与整车系统。",
+      "contributions": [
+        "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
+        "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。"
+      ],
+      "background": "论文作者注明确标记 Project lead；技术模块为团队成果。访谈用于本人设计论述，不作为独立性能测试。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？"
+      ],
+      "boundary": "中央分发器仍存在；数据驱动执行不等于无指令或整颗SoC无缓存。性能结论限于指定模型、精度与比较条件。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "https://arxiv.org/html/2604.17862v1",
+          "作者注；§III-A、IV-A、IV-B"
+        ],
+        [
+          "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+          "https://www.bianews.com/news/details?id=237730",
+          "本人关于互联、低精度联合设计及 XCU 整合的回答"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "m100-isca2026",
+          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+          "date": "2026-04-20",
+          "url": "https://arxiv.org/html/2604.17862v1",
+          "locator": "作者注；§III-A、IV-A、IV-B",
+          "type": "论文全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "xie-interview-2026",
+          "title": "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+          "authors": "谢炎（受访者）；晚点访谈转载",
+          "date": "2026-05",
+          "url": "https://www.bianews.com/news/details?id=237730",
+          "locator": "本人关于互联、低精度联合设计及 XCU 整合的回答",
+          "type": "本人技术访谈全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
+          "workId": "m100-isca2026"
+        },
+        {
+          "text": "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。",
+          "workId": "xie-interview-2026"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？",
+        "variables": "张量大小、分发周期、SRAM占用、同步等待、尾延迟",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "min-luo",
+      "name": "罗旻",
+      "aliases": [
+        "Min Luo"
+      ],
+      "field": "理想 M100 与图像数据通路",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "将计算图中的数据移动落实为可调度的硬件通路。",
+      "contributions": [
+        "共同署名 M100 论文，参与编排式数据流系统；论文未披露其独占模块分工。",
+        "新岸线共同署名图像旋转专利，以访问地址变换配合单元内像素重排实现旋转。"
+      ],
+      "background": "M100署名为Min Luo；新岸线专利署名为罗旻。2025年21世纪经济报道将理想罗旻与此前新岸线芯片主管经历连接，身份链包含二手履历证据。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "地址重排与片上缓冲应如何配合，减少转置和旋转的外存流量？"
+      ],
+      "boundary": "专利是技术披露，不能据此认定M100采用该图像旋转模块；不把管理总负责等同于全部微架构发明。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "https://arxiv.org/html/2604.17862v1",
+          "作者注；§III-A、IV-A、IV-B"
+        ],
+        [
+          "图像旋转实现方法及装置",
+          "https://patents.google.com/patent/CN106846255A/zh",
+          "发明人、申请人；旋转单元、地址变换与行列互换说明"
+        ],
+        [
+          "罗旻新岸线与理想履历衔接（身份辅助）",
+          "https://finance.sina.com.cn/roll/2025-05-22/doc-inexmwyx1644524.shtml",
+          "21世纪经济报道2025年报道；二手履历，不计技术作品"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "m100-isca2026",
+          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+          "date": "2026-04-20",
+          "url": "https://arxiv.org/html/2604.17862v1",
+          "locator": "作者注；§III-A、IV-A、IV-B",
+          "type": "论文全文",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN106846255",
+          "title": "图像旋转实现方法及装置",
+          "authors": "赵艳云、张师群、罗旻、鲍东山",
+          "date": "2017-06-13",
+          "url": "https://patents.google.com/patent/CN106846255A/zh",
+          "locator": "发明人、申请人；旋转单元、地址变换与行列互换说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名 M100 论文，参与编排式数据流系统；论文未披露其独占模块分工。",
+          "workId": "m100-isca2026"
+        },
+        {
+          "text": "新岸线共同署名图像旋转专利，以访问地址变换配合单元内像素重排实现旋转。",
+          "workId": "CN106846255"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "地址重排与片上缓冲应如何配合，减少转置和旋转的外存流量？",
+        "variables": "访问连续性、块大小、片上缓冲、DMA带宽",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "shouyi-yin",
+      "name": "尹首一",
+      "aliases": [
+        "Shouyi Yin"
+      ],
+      "field": "可重构神经网络与精度映射",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "让计算阵列资源分配适应稀疏度和逐层精度需求。",
+      "contributions": [
+        "共同发明输入去零与稀疏调度方案，降低无效乘加并改善PE负载分配。",
+        "共同发明多位宽处理单元分区及层间位宽转换方案。"
+      ],
+      "background": "清华大学官方页面确认研究身份；清微智能历史资料列其为首席科学家。技术贡献以清华署名专利为锚点。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "稀疏率、精度节省与调度额外成本在何处达到盈亏平衡？"
+      ],
+      "boundary": "这里核验的是具体机制，未将专利自动等同于TX8实现；可重构不意味着任意模型无需编译或迁移。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "稀疏神经网络架构及其实现方法",
+          "https://patents.google.com/patent/CN107609641B/zh",
+          "发明人；图2–4及输入去零、调度说明"
+        ],
+        [
+          "用于位宽分区的神经网络加速器及其实现方法",
+          "https://patents.google.com/patent/CN107451659B/zh",
+          "发明人；图1、3–5及多位宽CP流水线说明"
+        ],
+        [
+          "清华大学：尹首一",
+          "https://www.ime.tsinghua.edu.cn/info/1040/1567.htm",
+          "机构身份"
+        ],
+        [
+          "Thinker作者与摘要",
+          "https://researchportal.hkust.edu.hk/en/publications/a-high-energy-efficient-reconfigurable-hybrid-neural-network-proc/",
+          "大学论文记录；不冒充全文核验"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN107609641",
+          "title": "稀疏神经网络架构及其实现方法",
+          "authors": "尹首一、李宁、欧阳鹏、刘雷波、魏少军",
+          "date": "2020-07-03",
+          "url": "https://patents.google.com/patent/CN107609641B/zh",
+          "locator": "发明人；图2–4及输入去零、调度说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN107451659",
+          "title": "用于位宽分区的神经网络加速器及其实现方法",
+          "authors": "尹首一、郭建辛、欧阳鹏、唐士斌、涂锋斌、刘雷波、魏少军",
+          "date": "2020-04-10",
+          "url": "https://patents.google.com/patent/CN107451659B/zh",
+          "locator": "发明人；图1、3–5及多位宽CP流水线说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发明输入去零与稀疏调度方案，降低无效乘加并改善PE负载分配。",
+          "workId": "CN107609641"
+        },
+        {
+          "text": "共同发明多位宽处理单元分区及层间位宽转换方案。",
+          "workId": "CN107451659"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "稀疏率、精度节省与调度额外成本在何处达到盈亏平衡？",
+        "variables": "非零分布、PE利用率、位宽、转换与访存成本",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "peng-ouyang",
+      "name": "欧阳鹏",
+      "aliases": [
+        "Peng Ouyang"
+      ],
+      "field": "可重构计算阵列与数据供给",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "把输入压缩、精度分区和数据供给一起设计。",
+      "contributions": [
+        "参与输入去零及队列控制机制的共同发明，避免PE消耗周期处理零值。",
+        "参与按网络层位宽组织多CP流水线的共同发明，配合层间数据转换。"
+      ],
+      "background": "清微智能2019年官方新闻列为CTO并记录可重构神经网络主题演讲；历史职衔不推定为2026年现职。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "减少的计算量是否真正转化为吞吐，而非新的供数或流水线瓶颈？"
+      ],
+      "boundary": "两项专利同为团队成果；不据Thinker历史职务独占归因TX8全部架构。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "稀疏神经网络架构及其实现方法",
+          "https://patents.google.com/patent/CN107609641B/zh",
+          "发明人；图2–4及输入去零、调度说明"
+        ],
+        [
+          "用于位宽分区的神经网络加速器及其实现方法",
+          "https://patents.google.com/patent/CN107451659B/zh",
+          "发明人；图1、3–5及多位宽CP流水线说明"
+        ],
+        [
+          "清微智能历史技术演讲",
+          "https://www.tsingmicro.com/news?page=8",
+          "2019年CTO历史称谓与演讲；不推定现职"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN107609641",
+          "title": "稀疏神经网络架构及其实现方法",
+          "authors": "尹首一、李宁、欧阳鹏、刘雷波、魏少军",
+          "date": "2020-07-03",
+          "url": "https://patents.google.com/patent/CN107609641B/zh",
+          "locator": "发明人；图2–4及输入去零、调度说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN107451659",
+          "title": "用于位宽分区的神经网络加速器及其实现方法",
+          "authors": "尹首一、郭建辛、欧阳鹏、唐士斌、涂锋斌、刘雷波、魏少军",
+          "date": "2020-04-10",
+          "url": "https://patents.google.com/patent/CN107451659B/zh",
+          "locator": "发明人；图1、3–5及多位宽CP流水线说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "参与输入去零及队列控制机制的共同发明，避免PE消耗周期处理零值。",
+          "workId": "CN107609641"
+        },
+        {
+          "text": "参与按网络层位宽组织多CP流水线的共同发明，配合层间数据转换。",
+          "workId": "CN107451659"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "减少的计算量是否真正转化为吞吐，而非新的供数或流水线瓶颈？",
+        "variables": "队列深度、稀疏不均衡、层间位宽、流水线平衡",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "dongrui-fan",
+      "name": "范东睿",
+      "aliases": [
+        "Dong-Rui Fan",
+        "Dongrui Fan"
+      ],
+      "field": "数据流映射与指令复用",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "把片上通信拓扑与指令复用纳入数据流映射。",
+      "contributions": [
+        "共同发明拓扑感知数据流映射：让共享结果的接收节点沿适宜路径布局，减少多目的包过早拆分。",
+        "共同发明稀疏卷积指令共享：识别重复指令并复用地址，降低反复加载成本。"
+      ],
+      "background": "中科院计算所及论文署名确认研究身份。此处以两项数据流专利建立技术贡献，不依赖商业宣传。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "就近放置是否反而破坏多目的包复用，增加网络拥堵？"
+      ],
+      "boundary": "数据流依然可能有指令和控制逻辑；不能从架构类别推断高光D35整芯片没有PC，也不将这些专利等同于D35已采用。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "一种数据流指令映射方法",
+          "https://patents.google.com/patent/CN108287729A/zh",
+          "发明人；映射步骤及图14–15的Mesh实例"
+        ],
+        [
+          "基于数据流架构的稀疏卷积神经网络加速方法及系统",
+          "https://patents.google.com/patent/CN112015473B/zh",
+          "发明人；图1–5及跨通道、跨PE指令共享机制"
+        ],
+        [
+          "计算所：范东睿及团队",
+          "https://www.ict.ac.cn/dqyd/gzdt/202106/t20210602_6077084.html",
+          "机构身份"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN108287729",
+          "title": "一种数据流指令映射方法",
+          "authors": "李易、欧焱、张浩、范东睿、叶笑春",
+          "date": "2018-07-17",
+          "url": "https://patents.google.com/patent/CN108287729A/zh",
+          "locator": "发明人；映射步骤及图14–15的Mesh实例",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "CN112015473",
+          "title": "基于数据流架构的稀疏卷积神经网络加速方法及系统",
+          "authors": "吴欣欣、范志华、轩伟、李文明、叶笑春、范东睿",
+          "date": "2023-06-27",
+          "url": "https://patents.google.com/patent/CN112015473B/zh",
+          "locator": "发明人；图1–5及跨通道、跨PE指令共享机制",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同发明拓扑感知数据流映射：让共享结果的接收节点沿适宜路径布局，减少多目的包过早拆分。",
+          "workId": "CN108287729"
+        },
+        {
+          "text": "共同发明稀疏卷积指令共享：识别重复指令并复用地址，降低反复加载成本。",
+          "workId": "CN112015473"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "就近放置是否反而破坏多目的包复用，增加网络拥堵？",
+        "variables": "扇出、Mesh拓扑、包拆分、PE负载、指令加载量",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "wayne-luk",
+      "name": "陆永青",
+      "aliases": [
+        "Wayne Luk"
+      ],
+      "field": "可重构计算与异构集群",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "将定制数据通路和集群通信共同纳入映射优化。",
+      "contributions": [
+        "共同提出Axel异构集群，将CPU、GPU、FPGA组织到节点中并提供协作计算框架。",
+        "共同提出FPGA集群计算与通信的凸优化模型，用于选择任务划分与并行配置。"
+      ],
+      "background": "帝国理工作者存档提供两项具名技术作品；鲲云公司资料确认联合创始背景。个人学术贡献与CAISA产品细节分开表述。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "专用通路加速何时被跨加速器搬运和任务分割抵消？"
+      ],
+      "boundary": "早期FPGA集群研究不等于CAISA流片实现；不能据论文声称星空所有产品无缓存或采用固定长度引擎。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "首页署名；§3–4"
+        ],
+        [
+          "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "首页署名；§III计算、通信模型"
+        ],
+        [
+          "帝国理工：Wayne Luk",
+          "https://www.doc.ic.ac.uk/~wl/",
+          "机构作者主页"
+        ],
+        [
+          "鲲云联合创始背景",
+          "https://www.corerain.com/media-reports/285.html",
+          "公司历史资料"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "axel-fpga2010",
+          "title": "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "authors": "Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "locator": "首页署名；§3–4",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "convex-fpt2010",
+          "title": "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "authors": "Qiang Liu、Tim Todman、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "locator": "首页署名；§III计算、通信模型",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出Axel异构集群，将CPU、GPU、FPGA组织到节点中并提供协作计算框架。",
+          "workId": "axel-fpga2010"
+        },
+        {
+          "text": "共同提出FPGA集群计算与通信的凸优化模型，用于选择任务划分与并行配置。",
+          "workId": "convex-fpt2010"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "专用通路加速何时被跨加速器搬运和任务分割抵消？",
+        "variables": "节点数、流水线启动间隔、局部性、通信带宽",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "kuen-hung-tsoi",
+      "name": "蔡权雄",
+      "aliases": [
+        "Kuen Hung Tsoi",
+        "Brittle Tsoi"
+      ],
+      "field": "异构加速系统与编译映射",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "让FPGA专用计算通过系统级映射转化为端到端收益。",
+      "contributions": [
+        "共同提出Axel的CPU/GPU/FPGA协作组织及Map-Reduce框架。",
+        "共同研究同时计入节点内外通信的FPGA集群优化模型。"
+      ],
+      "background": "鲲云官方资料将蔡权雄对应Brittle Tsoi；CityU CALAS将Kuen Hung (Brittle) Tsoi与Corerain创始人身份连接；论文采用Kuen Hung Tsoi署名。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "增加FPGA并行度后，通信和归约是否成为新的主导成本？"
+      ],
+      "boundary": "所列研究证明技术贡献，不证明CAISA每个模块由其独立设计；商业芯片的软件覆盖和瓶颈需另测。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "首页署名；§3–4"
+        ],
+        [
+          "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "首页署名；§III计算、通信模型"
+        ],
+        [
+          "CALAS：Kuen Hung (Brittle) Tsoi",
+          "https://cityuhk-calas.github.io/news/25-10-03-brittle-visited-calas/",
+          "姓名与Corerain身份连接"
+        ],
+        [
+          "鲲云：Brittle Tsoi 蔡权雄",
+          "https://www.corerain.com/media-reports/223.html",
+          "公司历史身份资料"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "axel-fpga2010",
+          "title": "Axel: A Heterogeneous Cluster with FPGAs and GPUs",
+          "authors": "Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpga10bt.pdf",
+          "locator": "首页署名；§3–4",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "convex-fpt2010",
+          "title": "Convex Models for Accelerating Applications on FPGA-Based Clusters",
+          "authors": "Qiang Liu、Tim Todman、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2010",
+          "url": "https://www.doc.ic.ac.uk/~wl/papers/10/fpt10ql.pdf",
+          "locator": "首页署名；§III计算、通信模型",
+          "type": "作者论文全文（大学存档）",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同提出Axel的CPU/GPU/FPGA协作组织及Map-Reduce框架。",
+          "workId": "axel-fpga2010"
+        },
+        {
+          "text": "共同研究同时计入节点内外通信的FPGA集群优化模型。",
+          "workId": "convex-fpt2010"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "增加FPGA并行度后，通信和归约是否成为新的主导成本？",
+        "variables": "数据分片、节点内外带宽、归约时间、任务规模",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
+      "id": "jian-ouyang",
+      "name": "欧阳剑",
+      "aliases": [
+        "Jian Ouyang",
+        "Ouyang Jian"
+      ],
+      "field": "百度 XPU 与昆仑芯架构",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "结合可编程小核与专用计算逻辑覆盖多样化工作负载。",
+      "contributions": [
+        "共同署名并报告XPU：以小核和定制逻辑组合兼顾规则处理与密集计算。",
+        "本人报告说明昆仑将XPU集群、专用计算单元、片上存储与软件栈协同组织。"
+      ],
+      "background": "昆仑芯官方2021年公告确认其由百度芯片首席架构师出任CEO。所列技术来源分别为2017年XPU和2020年昆仑报告。",
+      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
+      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
+      "habits": [
+        "先明确映射、供数和控制的分工，再评价峰值算力。"
+      ],
+      "questions": [
+        "可编程小核与专用阵列的面积比例，是否符合真实算子时间分布？"
+      ],
+      "boundary": "历史XPU机制不可不加验证地套用于2026年M100；MLU不是本条架构名称。没有独立证据就不认定长尾算子已经成为实测瓶颈。",
+      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "XPU – A Programmable FPGA Accelerator for Diverse Workloads",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.40-Processors-Pub/HC29.21.410-XPU-FPGA-Ouyang-Baidu.pdf",
+          "封面；幻灯片8–11"
+        ],
+        [
+          "The Challenges and Industry Perspectives of Building an AI Chip",
+          "https://exascale.info/assets/pdf/champery20-ouyang.pdf",
+          "封面；幻灯片26–28、35–37、45–47"
+        ],
+        [
+          "昆仑芯成立公告",
+          "https://www.kunlunxin.com/news/24.html",
+          "2021年由百度芯片首席架构师出任CEO"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "xpu-hotchips2017",
+          "title": "XPU – A Programmable FPGA Accelerator for Diverse Workloads",
+          "authors": "Jian Ouyang、Ephrem Wu、Jing Wang、Yupeng Li、Hanlin Xie",
+          "date": "2017",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.40-Processors-Pub/HC29.21.410-XPU-FPGA-Ouyang-Baidu.pdf",
+          "locator": "封面；幻灯片8–11",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "ouyang-champery2020",
+          "title": "The Challenges and Industry Perspectives of Building an AI Chip",
+          "authors": "Jian Ouyang",
+          "date": "2020",
+          "url": "https://exascale.info/assets/pdf/champery20-ouyang.pdf",
+          "locator": "封面；幻灯片26–28、35–37、45–47",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
+          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
+          "role": "机制与贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "text": "共同署名并报告XPU：以小核和定制逻辑组合兼顾规则处理与密集计算。",
+          "workId": "xpu-hotchips2017"
+        },
+        {
+          "text": "本人报告说明昆仑将XPU集群、专用计算单元、片上存储与软件栈协同组织。",
+          "workId": "ouyang-champery2020"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-dataflow",
+        "standard": "contribution-led-v1",
+        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "数据流与可编程性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "可编程小核与专用阵列的面积比例，是否符合真实算子时间分布？",
+        "variables": "张量占比、规则处理、SRAM、带宽、kernel开销",
+        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
+        "crossover": "重复执行、映射稳定且供数充足时更有利。",
+        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
+        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
+        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
+      }
+    },
+    {
       "id": "jun-liang-cambricon",
       "name": "梁军",
       "aliases": [
@@ -47048,7 +47987,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 379,
+    "totalProfiles": 387,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -47066,12 +48005,13 @@
       "research/batches/2026-10-13-krishnan-geeyarpuram.json",
       "research/batches/2026-10-13-china-gpu-priority8.json",
       "research/batches/2026-10-13-gpu-cpu-network-eight.json",
+      "research/batches/2026-10-13-dataflow.json",
       "research/batches/2026-10-13-next4-followthrough.json"
     ],
-    "completedTotal": 378,
+    "completedTotal": 386,
     "remainingCatalog": 1,
-    "remainingPlanned": 5,
-    "additionalPlannedScope": 83,
-    "additionalCompleted": 78
+    "remainingPlanned": 6,
+    "additionalPlannedScope": 92,
+    "additionalCompleted": 86
   }
 }
