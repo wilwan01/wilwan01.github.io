@@ -189,7 +189,6 @@
         "jonathan-ross",
         "michael-james",
         "simon-knowles",
-        "yan-xie",
         "min-luo",
         "shouyi-yin",
         "peng-ouyang",
@@ -197,7 +196,8 @@
         "wayne-luk",
         "kuen-hung-tsoi",
         "jian-ouyang",
-        "jun-liang-cambricon"
+        "jun-liang-cambricon",
+        "yang-jiao-hanguang"
       ]
     },
     {
@@ -315,7 +315,8 @@
         "haibin-lin",
         "tristan-hume",
         "alexander-heinecke",
-        "weiyu-xie"
+        "weiyu-xie",
+        "xinyu-niu"
       ]
     },
     {
@@ -348,7 +349,8 @@
         "sachin-katti",
         "xia-jing",
         "mahesh-wagh",
-        "nafea-bshara"
+        "nafea-bshara",
+        "heng-liao"
       ]
     },
     {
@@ -46915,115 +46917,6 @@
       }
     },
     {
-      "id": "yan-xie",
-      "name": "谢炎",
-      "aliases": [
-        "Yan Xie"
-      ],
-      "field": "理想 M100 数据流与系统协同",
-      "domain": "gpu-ai",
-      "relatedDomains": [
-        "compiler-runtime"
-      ],
-      "core": "以张量粒度和显式数据移动协调芯片、编译器与整车系统。",
-      "contributions": [
-        "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
-        "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。"
-      ],
-      "background": "论文作者注明确标记 Project lead；技术模块为团队成果。访谈用于本人设计论述，不作为独立性能测试。",
-      "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
-      "evidence": "两项不同的一手技术作品；至少一项机制正文。",
-      "habits": [
-        "先明确映射、供数和控制的分工，再评价峰值算力。"
-      ],
-      "questions": [
-        "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？"
-      ],
-      "boundary": "中央分发器仍存在；数据驱动执行不等于无指令或整颗SoC无缓存。性能结论限于指定模型、精度与比较条件。",
-      "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
-      "notes": [],
-      "sources": [
-        [
-          "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
-          "https://arxiv.org/html/2604.17862v1",
-          "作者注；§III-A、IV-A、IV-B"
-        ],
-        [
-          "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
-          "https://www.bianews.com/news/details?id=237730",
-          "本人关于互联、低精度联合设计及 XCU 整合的回答"
-        ]
-      ],
-      "sourceAudit": [
-        {
-          "workId": "m100-isca2026",
-          "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
-          "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
-          "date": "2026-04-20",
-          "url": "https://arxiv.org/html/2604.17862v1",
-          "locator": "作者注；§III-A、IV-A、IV-B",
-          "type": "论文全文",
-          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
-          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
-          "role": "机制与贡献归属",
-          "primary": true,
-          "substantive": true,
-          "mechanismBody": true,
-          "retrievedAt": "2026-10-13"
-        },
-        {
-          "workId": "xie-interview-2026",
-          "title": "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
-          "authors": "谢炎（受访者）；晚点访谈转载",
-          "date": "2026-05",
-          "url": "https://www.bianews.com/news/details?id=237730",
-          "locator": "本人关于互联、低精度联合设计及 XCU 整合的回答",
-          "type": "本人技术访谈全文",
-          "contentStatus": "已核对署名及所列机制正文；仅据所读部分归纳。",
-          "evidenceStrength": "一手技术作品；共同署名支持共同贡献，不支持独占模块归属。",
-          "role": "机制与贡献归属",
-          "primary": true,
-          "substantive": true,
-          "mechanismBody": true,
-          "retrievedAt": "2026-10-13"
-        }
-      ],
-      "sourceFacts": [
-        {
-          "text": "作为论文明确的项目负责人，共同提出 M100 编排式数据流架构；以张量指令、软件管理存储与同步计数器组织执行。",
-          "workId": "m100-isca2026"
-        },
-        {
-          "text": "本人访谈说明：通过操作系统隔离复用CPU资源，并将低精度和稀疏化作为模型、软件、硬件联合设计问题。",
-          "workId": "xie-interview-2026"
-        }
-      ],
-      "awardsVerified": [],
-      "contributionBasis": "基于署名作品与本人技术论述的编辑提炼；团队成果不作独占归属。",
-      "researchStatus": {
-        "status": "complete",
-        "batch": "2026-10-13-dataflow",
-        "standard": "contribution-led-v1",
-        "meaning": "仅完成所列贡献核验，不代表穷尽成果或确认具体产品采用。",
-        "verifiedAt": "2026-10-13"
-      },
-      "challenge": {
-        "lens": "数据流与可编程性",
-        "skills": [
-          "A1",
-          "A2",
-          "A7"
-        ],
-        "question": "多大的张量粒度才能摊薄分发成本，又不损害小算子延迟？",
-        "variables": "张量大小、分发周期、SRAM占用、同步等待、尾延迟",
-        "model": "编辑条件模型：端到端收益取决于可加速占比与搬运、同步、编译开销。",
-        "crossover": "重复执行、映射稳定且供数充足时更有利。",
-        "counterexample": "小任务、动态形状或强数据依赖可能放大控制和通信成本。",
-        "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
-        "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
-      }
-    },
-    {
       "id": "min-luo",
       "name": "罗旻",
       "aliases": [
@@ -47143,7 +47036,7 @@
       "aliases": [
         "Shouyi Yin"
       ],
-      "field": "可重构神经网络与精度映射",
+      "field": "可重构 AI 处理器研究与架构",
       "domain": "gpu-ai",
       "relatedDomains": [
         "compiler-runtime"
@@ -47162,7 +47055,7 @@
       "questions": [
         "稀疏率、精度节省与调度额外成本在何处达到盈亏平衡？"
       ],
-      "boundary": "这里核验的是具体机制，未将专利自动等同于TX8实现；可重构不意味着任意模型无需编译或迁移。",
+      "boundary": "共同作品不按职务猜测与欧阳鹏的模块分工；Thinker 大学记录仅作为作者与摘要核验，ELearn 不作为本次正文证据；不把专利自动等同于 TX8 产品实现。",
       "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
       "notes": [],
       "sources": [
@@ -47262,7 +47155,7 @@
       "aliases": [
         "Peng Ouyang"
       ],
-      "field": "可重构计算阵列与数据供给",
+      "field": "Thinker／可重构神经网络处理器",
       "domain": "gpu-ai",
       "relatedDomains": [
         "compiler-runtime"
@@ -47281,7 +47174,7 @@
       "questions": [
         "减少的计算量是否真正转化为吞吐，而非新的供数或流水线瓶颈？"
       ],
-      "boundary": "两项专利同为团队成果；不据Thinker历史职务独占归因TX8全部架构。",
+      "boundary": "以署名作品支持共同贡献，不外推为清微后续全部型号的唯一主架构师；与尹首一共享作品时分别记录共同参与。",
       "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
       "notes": [],
       "sources": [
@@ -47611,7 +47504,7 @@
         "Kuen Hung Tsoi",
         "Brittle Tsoi"
       ],
-      "field": "异构加速系统与编译映射",
+      "field": "可重构加速器／数据流与编程体系",
       "domain": "gpu-ai",
       "relatedDomains": [
         "compiler-runtime"
@@ -47619,7 +47512,9 @@
       "core": "让FPGA专用计算通过系统级映射转化为端到端收益。",
       "contributions": [
         "共同提出Axel的CPU/GPU/FPGA协作组织及Map-Reduce框架。",
-        "共同研究同时计入节点内外通信的FPGA集群优化模型。"
+        "共同研究同时计入节点内外通信的FPGA集群优化模型。",
+        "作为共同作者，参与用粗粒度多线程隐藏 RNN 数据依赖停顿、并通过子加速器划分支持多个模型并行执行的 Remarn 研究。",
+        "作为共同作者，参与以会话类型描述并行通信并在编译期检查通信安全及无死锁性质的可重构编程研究。"
       ],
       "background": "鲲云官方资料将蔡权雄对应Brittle Tsoi；CityU CALAS将Kuen Hung (Brittle) Tsoi与Corerain创始人身份连接；论文采用Kuen Hung Tsoi署名。",
       "argument": "编辑分析：只有被节省的执行与搬运成本超过新增编译、存储和同步成本，专用化才能改善端到端效率。",
@@ -47630,7 +47525,7 @@
       "questions": [
         "增加FPGA并行度后，通信和归约是否成为新的主导成本？"
       ],
-      "boundary": "所列研究证明技术贡献，不证明CAISA每个模块由其独立设计；商业芯片的软件覆盖和瓶颈需另测。",
+      "boundary": "研究与 CAISA 商业产品分开记录；不把 Remarn 或 Session Types 的全部硬件贡献独占归给蔡权雄，也不按管理头衔推断设计分工。",
       "diagnostic": "固定模型、精度与输入分布，分解计算、搬运和控制时间；同时记录吞吐、尾延迟与能耗。",
       "notes": [],
       "sources": [
@@ -47653,6 +47548,16 @@
           "鲲云：Brittle Tsoi 蔡权雄",
           "https://www.corerain.com/media-reports/223.html",
           "公司历史身份资料"
+        ],
+        [
+          "Remarn: A Reconfigurable Multi-threaded Multi-core Accelerator for Recurrent Neural Networks",
+          "https://doi.org/10.1145/3534969",
+          "作者表；§3 的粗粒度多线程、子层调度及多核划分"
+        ],
+        [
+          "Session Types: Towards Safe and Fast Reconfigurable Programming",
+          "https://mrg.cs.ox.ac.uk/publications/session-types-towards-safe-and-fast-reconfigurable-programming/",
+          "大学作者页与摘要；论文 DOI 10.1145/2460216.2460221"
         ]
       ],
       "sourceAudit": [
@@ -47687,6 +47592,38 @@
           "substantive": true,
           "mechanismBody": true,
           "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "remarn-trets2022",
+          "title": "Remarn: A Reconfigurable Multi-threaded Multi-core Accelerator for Recurrent Neural Networks",
+          "authors": "Zhiqiang Que、Hiroki Nakahara、Hongxiang Fan、He Li、Jiuxi Meng、Kuen Hung Tsoi、Xinyu Niu、Eriko Nurvitadhi、Wayne Luk",
+          "date": "2022-12-22",
+          "url": "https://doi.org/10.1145/3534969",
+          "locator": "作者表；§3 的粗粒度多线程、子层调度及多核划分",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "session-types-can2012",
+          "title": "Session Types: Towards Safe and Fast Reconfigurable Programming",
+          "authors": "Nicholas Ng、Nobuko Yoshida、Xinyu Niu、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2012",
+          "url": "https://mrg.cs.ox.ac.uk/publications/session-types-towards-safe-and-fast-reconfigurable-programming/",
+          "locator": "大学作者页与摘要；论文 DOI 10.1145/2460216.2460221",
+          "type": "大学论文记录",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
         }
       ],
       "sourceFacts": [
@@ -47697,6 +47634,14 @@
         {
           "text": "共同研究同时计入节点内外通信的FPGA集群优化模型。",
           "workId": "convex-fpt2010"
+        },
+        {
+          "workId": "remarn-trets2022",
+          "text": "作为共同作者，参与用粗粒度多线程隐藏 RNN 数据依赖停顿、并通过子加速器划分支持多个模型并行执行的 Remarn 研究。"
+        },
+        {
+          "workId": "session-types-can2012",
+          "text": "作为共同作者，参与以会话类型描述并行通信并在编译期检查通信安全及无死锁性质的可重构编程研究。"
         }
       ],
       "awardsVerified": [],
@@ -47977,6 +47922,357 @@
         "validation": "建立相同语义、相同输入与相同工艺约束的对照；分别报告状态维护、累加轮次、PPA及误差分布，不只报告峰值吞吐。",
         "transfer": "适用于张量ISA、GPU描述符、混合精度归约及其他用可复用状态替代重复工作的方法评审。"
       }
+    },
+    {
+      "id": "heng-liao",
+      "name": "廖恒",
+      "aliases": [
+        "Heng Liao"
+      ],
+      "field": "DaVinci 软硬件架构、AI 系统互连与低精度计算",
+      "domain": "network",
+      "relatedDomains": [
+        "gpu-ai",
+        "physical-energy"
+      ],
+      "core": "把通信局部性和数值表示的成本放回 AI 系统协同设计。",
+      "contributions": [
+        "参与以层次化 nD-FullMesh 和拓扑感知路由匹配训练通信局部性的 UB-Mesh 架构研究。",
+        "参与 HiFloat4 三级共享缩放表示与面向硬件点积的低精度计算研究。"
+      ],
+      "background": "ETH 2025 活动简介记载其领导 DaVinci 软硬件架构；UB-Mesh 列其为第一及共同通讯作者，HiFloat4 列其为共同作者。职责资料不代替具体技术作品。",
+      "argument": "编辑分析：通信与数值格式应分别测量；只有未被转换、拥塞和精度补偿抵消的成本节省才形成系统收益。",
+      "evidence": "至少两项不同的一手技术作品，且至少一项具体机制正文；署名支持共同贡献。",
+      "habits": [
+        "将个人贡献归属、团队机制和产品采用证据分开。",
+        "用端到端成本检验局部架构收益。"
+      ],
+      "questions": [
+        "减少远距离通信与算术成本后，收益是否被拓扑映射、格式转换或精度损失抵消？"
+      ],
+      "boundary": "DaVinci 架构职责、UB-Mesh 与 HiFloat4 分别归属；共同署名不代表独立发明，不把后两项研究的全部机制反推为早期 DaVinci 的个人设计。",
+      "diagnostic": "固定模型与精度目标，分别记录通信等待、格式转换、算术执行和系统能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "UB-Mesh: a Hierarchically Localized nD-FullMesh Datacenter Network Architecture",
+          "https://arxiv.org/html/2503.20377v3",
+          "作者表；§3 层次化 nD-FullMesh；§4.1 All-Path Routing"
+        ],
+        [
+          "HiFloat4 Format for Language Model Inference",
+          "https://arxiv.org/html/2602.11287v1",
+          "作者表；§II-A 三级缩放元数据；§III-B 点积流程"
+        ],
+        [
+          "ETH Sustainable AI 2025: Heng Liao speaker biography",
+          "https://efcl.ethz.ch/events/conferences---workshops/sustainable-ai-2025/speakers.html",
+          "Heng Liao 简介中的 DaVinci 软硬件架构职责"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "ub-mesh-2025",
+          "title": "UB-Mesh: a Hierarchically Localized nD-FullMesh Datacenter Network Architecture",
+          "authors": "Heng Liao 等；Huawei",
+          "date": "2025",
+          "url": "https://arxiv.org/html/2503.20377v3",
+          "locator": "作者表；§3 层次化 nD-FullMesh；§4.1 All-Path Routing",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "hifloat4-2026",
+          "title": "HiFloat4 Format for Language Model Inference",
+          "authors": "Yuanyong Luo 等；共同作者 Heng Liao",
+          "date": "2026-02-11",
+          "url": "https://arxiv.org/html/2602.11287v1",
+          "locator": "作者表；§II-A 三级缩放元数据；§III-B 点积流程",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "liao-eth-role-2025",
+          "title": "ETH Sustainable AI 2025: Heng Liao speaker biography",
+          "authors": "ETH Future Computing Laboratory",
+          "date": "2025",
+          "url": "https://efcl.ethz.ch/events/conferences---workshops/sustainable-ai-2025/speakers.html",
+          "locator": "Heng Liao 简介中的 DaVinci 软硬件架构职责",
+          "type": "官方会议简介",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "历史职责归属",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "ub-mesh-2025",
+          "text": "参与以层次化 nD-FullMesh 和拓扑感知路由匹配训练通信局部性的 UB-Mesh 架构研究。"
+        },
+        {
+          "workId": "hifloat4-2026",
+          "text": "参与 HiFloat4 三级共享缩放表示与面向硬件点积的低精度计算研究。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名技术作品的编辑提炼；不声称官方获奖理由或独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-approved-six",
+        "standard": "contribution-led-v1",
+        "meaning": "完成所列贡献核验，不代表穷尽成果或确认商业产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "DaVinci 软硬件架构、AI 系统互连与低精度计算",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "减少远距离通信与算术成本后，收益是否被拓扑映射、格式转换或精度损失抵消？",
+        "variables": "通信局部性、拥塞、有效带宽、转换成本、精度预算、能耗",
+        "model": "编辑条件模型：通信与数值格式应分别测量；只有未被转换、拥塞和精度补偿抵消的成本节省才形成系统收益。",
+        "crossover": "新增机制减少的等待或数据移动成本须高于实现、转换和调度成本。",
+        "counterexample": "缺少通信局部性、工作负载频繁换型或转换占主导时，特化方案未必胜出。",
+        "validation": "固定模型与精度目标，分别记录通信等待、格式转换、算术执行和系统能耗。",
+        "transfer": "用于比较加速器、互连与软硬件协同方案的可复用评审问题。"
+      }
+    },
+    {
+      "id": "xinyu-niu",
+      "name": "牛昕宇",
+      "aliases": [
+        "Xinyu Niu"
+      ],
+      "field": "可重构计算与编译／编程协同设计",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "correctness"
+      ],
+      "core": "把依赖停顿、资源划分与编译期通信约束联合纳入可重构计算设计。",
+      "contributions": [
+        "作为共同作者，参与用粗粒度多线程隐藏 RNN 数据依赖停顿、并通过子加速器划分支持多个模型并行执行的 Remarn 研究。",
+        "作为共同作者，参与以会话类型描述并行通信并在编译期检查通信安全及无死锁性质的可重构编程研究。"
+      ],
+      "background": "以 Xinyu Niu 署名的 Remarn 和 Session Types 共同作者身份为依据；Session Types 的 Imperial College London 研究归属为历史背景，不推断现任职务。",
+      "argument": "编辑分析：将时间维度的停顿隐藏与空间维度的资源划分分开测量，再验证通信安全约束是否保持。",
+      "evidence": "至少两项不同的一手技术作品，且至少一项具体机制正文；署名支持共同贡献。",
+      "habits": [
+        "将个人贡献归属、团队机制和产品采用证据分开。",
+        "用端到端成本检验局部架构收益。"
+      ],
+      "questions": [
+        "线程切换和分区后的利用率收益，能否覆盖上下文、缓冲和跨核通信成本？"
+      ],
+      "boundary": "Remarn 与 Session Types 是研究成果，不等于 CAISA 商业产品已实现相同机制；不把共同作品中的全部编译器贡献独占归给牛昕宇。",
+      "diagnostic": "固定精度与模型集合，测量利用率、吞吐、尾延迟、缓冲及总线压力，并检查通信协议约束。",
+      "notes": [],
+      "sources": [
+        [
+          "Remarn: A Reconfigurable Multi-threaded Multi-core Accelerator for Recurrent Neural Networks",
+          "https://doi.org/10.1145/3534969",
+          "作者表；§3 的粗粒度多线程、子层调度及多核划分"
+        ],
+        [
+          "Session Types: Towards Safe and Fast Reconfigurable Programming",
+          "https://mrg.cs.ox.ac.uk/publications/session-types-towards-safe-and-fast-reconfigurable-programming/",
+          "大学作者页与摘要；论文 DOI 10.1145/2460216.2460221"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "remarn-trets2022",
+          "title": "Remarn: A Reconfigurable Multi-threaded Multi-core Accelerator for Recurrent Neural Networks",
+          "authors": "Zhiqiang Que、Hiroki Nakahara、Hongxiang Fan、He Li、Jiuxi Meng、Kuen Hung Tsoi、Xinyu Niu、Eriko Nurvitadhi、Wayne Luk",
+          "date": "2022-12-22",
+          "url": "https://doi.org/10.1145/3534969",
+          "locator": "作者表；§3 的粗粒度多线程、子层调度及多核划分",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "session-types-can2012",
+          "title": "Session Types: Towards Safe and Fast Reconfigurable Programming",
+          "authors": "Nicholas Ng、Nobuko Yoshida、Xinyu Niu、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2012",
+          "url": "https://mrg.cs.ox.ac.uk/publications/session-types-towards-safe-and-fast-reconfigurable-programming/",
+          "locator": "大学作者页与摘要；论文 DOI 10.1145/2460216.2460221",
+          "type": "大学论文记录",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "remarn-trets2022",
+          "text": "作为共同作者，参与用粗粒度多线程隐藏 RNN 数据依赖停顿、并通过子加速器划分支持多个模型并行执行的 Remarn 研究。"
+        },
+        {
+          "workId": "session-types-can2012",
+          "text": "作为共同作者，参与以会话类型描述并行通信并在编译期检查通信安全及无死锁性质的可重构编程研究。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名技术作品的编辑提炼；不声称官方获奖理由或独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-approved-six",
+        "standard": "contribution-led-v1",
+        "meaning": "完成所列贡献核验，不代表穷尽成果或确认商业产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "可重构计算与编译／编程协同设计",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "线程切换和分区后的利用率收益，能否覆盖上下文、缓冲和跨核通信成本？",
+        "variables": "模型大小、依赖停顿、线程数、核划分、缓冲容量、带宽",
+        "model": "编辑条件模型：将时间维度的停顿隐藏与空间维度的资源划分分开测量，再验证通信安全约束是否保持。",
+        "crossover": "新增机制减少的等待或数据移动成本须高于实现、转换和调度成本。",
+        "counterexample": "独立任务不足或供数已饱和时，多线程与多核划分可能增加成本而不增吞吐。",
+        "validation": "固定精度与模型集合，测量利用率、吞吐、尾延迟、缓冲及总线压力，并检查通信协议约束。",
+        "transfer": "用于比较加速器、互连与软硬件协同方案的可复用评审问题。"
+      }
+    },
+    {
+      "id": "yang-jiao-hanguang",
+      "name": "Yang Jiao",
+      "aliases": [],
+      "field": "含光 800 历史项目与 NPU 并行互连",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network"
+      ],
+      "core": "在历史 NPU 项目与并行互连方案中区分报告归属、传输机制和产品采用。",
+      "contributions": [
+        "作为技术报告人，在 Hot Chips 2020 介绍含光 800 NPU；本项核验题名与报告归属，不推断整芯片独占设计权。",
+        "作为共同发明人，参与以片间网络支持 NPU 间 DMA、直接 load/store 与 push/pull 传输的公开申请方案。"
+      ],
+      "background": "Hot Chips 2020 官方议程将其列为 Alibaba 含光 800 报告人；Alibaba 公开专利申请列 Yang Jiao 为共同发明人。只记录该历史项目关联，不推定其现任雇主。",
+      "argument": "编辑分析：分别比较大块 DMA 与细粒度远程访问；不得仅由申请文本推导量产芯片性能。",
+      "evidence": "至少两项不同的一手技术作品，且至少一项具体机制正文；署名支持共同贡献。",
+      "habits": [
+        "将个人贡献归属、团队机制和产品采用证据分开。",
+        "用端到端成本检验局部架构收益。"
+      ],
+      "questions": [
+        "互连旁路节省的数据路径开销，是否超过寻址、同步和软件接口带来的成本？"
+      ],
+      "boundary": "仅保留 Alibaba 历史项目归属；不猜中文名或现任雇主。US20230185749A1 是公开专利申请，不写成授权专利，不宣称其中方案已用于含光 800。",
+      "diagnostic": "在同一任务和一致性要求下比较吞吐、完成延迟与同步次数；产品采用另需独立证据。",
+      "notes": [],
+      "sources": [
+        [
+          "Hanguang 800 NPU – The Ultimate AI Inference Solution for Data Centers",
+          "https://hc32.hotchips.org/",
+          "Conference Day 2 / ML Inference：题名、报告人与机构"
+        ],
+        [
+          "Systems and methods for parallel processing",
+          "https://patents.google.com/patent/US20230185749A1/en",
+          "发明人表；Description 中 inter-chip network、DMA、load/store、push/pull 段落"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "hc32-hanguang800",
+          "title": "Hanguang 800 NPU – The Ultimate AI Inference Solution for Data Centers",
+          "authors": "Yang Jiao；Alibaba（2020 年报告归属）",
+          "date": "2020-08-18",
+          "url": "https://hc32.hotchips.org/",
+          "locator": "Conference Day 2 / ML Inference：题名、报告人与机构",
+          "type": "官方技术报告议程记录",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US20230185749A1",
+          "title": "Systems and methods for parallel processing",
+          "authors": "Liang Han、Chengyuan Wu、Guoyu Zhu、Rong Zhong、Yang Jiao 等共同发明人",
+          "date": "2023-06-15",
+          "url": "https://patents.google.com/patent/US20230185749A1/en",
+          "locator": "发明人表；Description 中 inter-chip network、DMA、load/store、push/pull 段落",
+          "type": "公开专利申请说明书",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "hc32-hanguang800",
+          "text": "作为技术报告人，在 Hot Chips 2020 介绍含光 800 NPU；本项核验题名与报告归属，不推断整芯片独占设计权。"
+        },
+        {
+          "workId": "US20230185749A1",
+          "text": "作为共同发明人，参与以片间网络支持 NPU 间 DMA、直接 load/store 与 push/pull 传输的公开申请方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "基于署名技术作品的编辑提炼；不声称官方获奖理由或独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-approved-six",
+        "standard": "contribution-led-v1",
+        "meaning": "完成所列贡献核验，不代表穷尽成果或确认商业产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "含光 800 历史项目与 NPU 并行互连",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "互连旁路节省的数据路径开销，是否超过寻址、同步和软件接口带来的成本？",
+        "variables": "传输粒度、片间带宽、DMA 设置、load/store 延迟、同步等待",
+        "model": "编辑条件模型：分别比较大块 DMA 与细粒度远程访问；不得仅由申请文本推导量产芯片性能。",
+        "crossover": "新增机制减少的等待或数据移动成本须高于实现、转换和调度成本。",
+        "counterexample": "软件接口、同步开销或远程访问粒度不匹配时，更直接的硬件数据路径不保证应用更快。",
+        "validation": "在同一任务和一致性要求下比较吞吐、完成延迟与同步次数；产品采用另需独立证据。",
+        "transfer": "用于比较加速器、互连与软硬件协同方案的可复用评审问题。"
+      }
     }
   ],
   "research": {
@@ -47987,7 +48283,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 387,
+    "totalProfiles": 389,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -48006,9 +48302,10 @@
       "research/batches/2026-10-13-china-gpu-priority8.json",
       "research/batches/2026-10-13-gpu-cpu-network-eight.json",
       "research/batches/2026-10-13-dataflow.json",
-      "research/batches/2026-10-13-next4-followthrough.json"
+      "research/batches/2026-10-13-next4-followthrough.json",
+      "research/batches/2026-10-13-approved-six.json"
     ],
-    "completedTotal": 386,
+    "completedTotal": 388,
     "remainingCatalog": 1,
     "remainingPlanned": 6,
     "additionalPlannedScope": 92,
