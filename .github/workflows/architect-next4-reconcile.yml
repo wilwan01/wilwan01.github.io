@@ -1,0 +1,89 @@
+name: Architect next-four reconciliation
+on:
+  push:
+    branches: [research/china-ai-next4-2026-10-13]
+    paths:
+      - .github/workflows/architect-next4-reconcile.yml
+      - ai/architects/research/candidates/reconcile_next4.py
+permissions:
+  contents: write
+concurrency:
+  group: architect-next4-pr50
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: github.repository == 'wilwan01/wilwan01.github.io' && github.ref == 'refs/heads/research/china-ai-next4-2026-10-13'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      UPSTREAM: e2a3b985455dcf15a1abc36251efdda9eac74844
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - run: python3 -m pip install lxml==6.1.1
+      - name: Merge only the inspected upstream and rebuild conflicting generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse origin/master)" = "$UPSTREAM"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rc=0
+          git merge --no-commit --no-ff "$UPSTREAM" || rc=$?
+          test "$rc" -le 1
+          python3 - <<'PY'
+          import subprocess
+          conflicts=set(subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).splitlines())
+          assert conflicts <= {'ai/architects/catalog.json','ai/architects/index.html'}, conflicts
+          print('Generated-file conflicts:',conflicts)
+          PY
+          git checkout "$UPSTREAM" -- ai/architects/catalog.json ai/architects/index.html
+          python3 ai/architects/research/candidates/reconcile_next4.py
+          python3 ai/architects/research/candidates/validate_next4.py
+          python3 ai/architects/tools/validate_contribution_batch.py
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,os
+          root=pathlib.Path('ai/architects')
+          def hashes():
+              return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          before=hashes()
+          subprocess.run(['python3',str(root/'research/candidates/reconcile_next4.py')],check=True)
+          assert hashes()==before, 'Non-idempotent reconciliation'
+          c=json.loads((root/'catalog.json').read_text())
+          batches=[json.loads((root/p).read_text()) for p in c['research']['batchLogs']]
+          records=[r for b in batches for r in b['records']]
+          def digest(name):
+              raw=(root/name).read_bytes()
+              return {'gitBlob':hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest(),'sha256':hashlib.sha256(raw).hexdigest()}
+          receipt={'date':'2026-10-13','upstreamCommit':os.environ['UPSTREAM'],'workflowRun':'https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],'profiles':len(c['profiles']),'preservedUpstreamProfiles':386,'admittedIds':['jun-liang-cambricon'],'fixedBatches':len(batches),'fixedBatchRecords':len(records),'auditedProfiles':len({r['id'] for r in records if r['status']=='complete'}),'fullHistoryRegression':'passed','byteIdempotence':'passed','upstreamPreservation':'all 386 profile objects retained, including eight concurrent dataflow additions and Iluvatar naming changes','artifactHashes':{p:digest(p) for p in ['catalog.json','index.html']},'browserChecks':'Earlier 379-profile artifact passed offline desktop/mobile interaction tests. No claim of a browser test on this reconciled artifact.','deployment':'Requires independent Pages verification for the final merge commit.'}
+          (root/'research/candidates/2026-10-13-next4-reconciled-validation.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+          print('PASS: reconciled validation receipt',json.dumps(receipt,ensure_ascii=False))
+          PY
+          git diff --check
+          python3 - <<'PY'
+          import subprocess
+          allowed={
+          'ai/architects/catalog.json','ai/architects/index.html',
+          'ai/architects/research/batches/2026-10-13-dataflow.json','ai/architects/research/batches/2026-10-13-dataflow.html',
+          'ai/architects/research/batches/2026-10-13-next4-followthrough.json','ai/architects/research/batches/2026-10-13-next4-followthrough.html',
+          'ai/architects/research/candidates/2026-10-13-next4-followthrough.json','ai/architects/research/candidates/2026-10-13-next4-followthrough.md',
+          'ai/architects/research/candidates/2026-10-13-next4-validation.json','ai/architects/research/candidates/2026-10-13-next4-reconciled-validation.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only','HEAD'],text=True).splitlines())|set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
+          assert changed <= allowed, changed-allowed
+          assert not subprocess.check_output(['git','diff','--name-only','--diff-filter=D','HEAD'],text=True).strip()
+          subprocess.run(['git','add','--',*sorted(changed)],check=True)
+          PY
+          git diff --cached --check
+          git commit -m 'Merge concurrent dataflow additions; retain all upstream profiles and add Liang'
+          git push origin HEAD:refs/heads/research/china-ai-next4-2026-10-13
+      - uses: actions/upload-artifact@v4
+        with:
+          name: architect-next4-reconciled
+          retention-days: 3
+          path: |
+            ai/architects/catalog.json
+            ai/architects/index.html
+            ai/architects/research/candidates/2026-10-13-next4-reconciled-validation.json
