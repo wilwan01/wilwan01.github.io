@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-13",
+  "batchId": "2026-10-13-next4-followthrough",
+  "initialSnapshot": "2026-10-13-china-ai-next4.json",
+  "catalogIntegrated": true,
+  "deploymentVerified": false,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "counts": {
+    "candidates": 4,
+    "gatePassed": 1,
+    "newCatalogProfiles": 1,
+    "remainingCandidates": 3,
+    "catalogProfiles": 387
+  },
+  "admittedIds": [
+    "jun-liang-cambricon"
+  ],
+  "notAdmittedIds": [
+    "tianyi-shan-iluvatar",
+    "yalin-zhang-enflame",
+    "lidong-zhao-enflame"
+  ],
+  "dedupAudit": {
+    "baseCommit": "e2a3b985455dcf15a1abc36251efdda9eac74844",
+    "catalogBlob": "32108915a36dd8f79e5a5a404d38d5226ae3314c",
+    "parsedProfiles": 386,
+    "normalization": "NFKD-casefold-Unicode-alnum; ids/names/aliases",
+    "queryAliases": {
+      "jun-liang-cambricon": [
+        "梁军",
+        "Jun Liang",
+        "Liang Jun"
+      ],
+      "tianyi-shan-iluvatar": [
+        "单天逸",
+        "Tianyi Shan",
+        "Shan Tianyi"
+      ],
+      "yalin-zhang-enflame": [
+        "张亚林",
+        "Yalin Zhang",
+        "Zhang Yalin"
+      ],
+      "lidong-zhao-enflame": [
+        "赵立东",
+        "Lidong Zhao",
+        "Zhao Lidong"
+      ]
+    },
+    "matchesInBaseline": {
+      "jun-liang-cambricon": [],
+      "tianyi-shan-iluvatar": [],
+      "yalin-zhang-enflame": [],
+      "lidong-zhao-enflame": []
+    },
+    "result": "passed"
+  },
+  "eligibleWorks": [
+    {
+      "workId": "liang-descriptor-wo2020200244",
+      "title": "数据处理方法及装置以及相关产品 — WO2020200244A1",
+      "authors": "刘少礼、王秉睿、周晓勇、庄毅敏、兰慧盈、梁军、李震、吴健华、郝勇峥",
+      "date": "2020-10-08",
+      "url": "https://patents.google.com/patent/WO2020200244A1/zh",
+      "locator": "Inventor / Original Assignee；具体实施方式 S11a/S12a、张量接口单元、描述符管理及前序依赖处理",
+      "type": "专利说明书正文（所列部分）",
+      "contentStatus": "已直接审阅署名、优先权与所列实施方式文字；未宣称审阅全部附图。",
+      "evidenceStrength": "原始专利说明书；共同署名支持共同贡献，不证明独创整个ISA或量产采用。",
+      "role": "张量寻址、管理状态与依赖控制；中文身份归属",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-10-13",
+      "independenceKey": "descriptor-priorities-2019-04",
+      "priorityAnchors": [
+        "CN201910272625.6",
+        "CN201910272411.9",
+        "CN201910272660.8",
+        "CN201910320091.X",
+        "CN201910319165.8",
+        "CN201910340177.9",
+        "CN201910341003.4"
+      ]
+    },
+    {
+      "workId": "liang-accumulation-wo2022111014",
+      "title": "Accumulation device and method, and readable storage medium — US20230229393A1",
+      "authors": "Enhe LIU、Qi LI、Boyu QIAN、Shaoli LIU、Jun LIANG",
+      "date": "2023-07-20",
+      "url": "https://patents.justia.com/patent/20230229393",
+      "locator": "Cross-Reference to Related Applications；Detailed Description 的指数分组、对阶、补码累加、剩余输入再处理；Claims 3–4、6、15；Inventors",
+      "type": "专利说明书正文（所列部分）",
+      "contentStatus": "已直接审阅美国同族的原始说明书镜像文字；PCT/CN2021/119947 与 CN202011364680.7 交叉一致。同族只计一项。未审阅全部附图。",
+      "evidenceStrength": "共同发明人及独立技术机制已核；Claim 6 的 all 1 与 Claim 15 的 not all 0 存在 sticky-bit 表述差异，未消除此差异。",
+      "role": "阶码差分组累加机制及英文署名身份链；不支持IEEE逐位等价、测得PPA收益或产品采用",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-10-13",
+      "independenceKey": "accumulation-cn2020113646807",
+      "priorityAnchors": [
+        "CN202011364680.7"
+      ],
+      "sameWorkAliases": [
+        "WO2022111014A1",
+        "CN114546331A",
+        "CN114546331B",
+        "US20230229393A1"
+      ],
+      "originalWorkUrl": "https://patents.google.com/patent/WO2022111014A1/en"
+    }
+  ],
+  "followups": [
+    {
+      "id": "tianyi-shan-iluvatar",
+      "primaryInterview": "https://www.infoq.cn/news/hR5WX4alMiNZumPR5ukC",
+      "newLead": "https://www.ccf.org.cn/Chapters/Local_Activities/Chapter_News/2026-04-23/882173.shtml",
+      "eventDate": "2026-04-19",
+      "publicationDate": "2026-04-23",
+      "accessStatus": "official-indexed-report; direct-open-failed",
+      "countsTowardGate": false,
+      "finding": "官方报道指明本人讨论AI驱动开发向硬件设计延伸，但未取得该报告的具体设计正文；不是第二项已通过作品。"
+    },
+    {
+      "id": "yalin-zhang-enflame",
+      "proposedDomain": "datacenter",
+      "sources": [
+        "https://zhidx.com/p/247317.html",
+        "https://www.tmtpost.com/7151767.html"
+      ],
+      "finding": "系统产品化方向保留；2024运营访谈不计作第二项设计机制作品。"
+    },
+    {
+      "id": "lidong-zhao-enflame",
+      "finding": "暂缓，不新增履历或同名专利作为技术证据。"
+    }
+  ],
+  "validation": {
+    "integrationAssertions": "passed",
+    "fullSiteValidation": "run-original-validator-separately",
+    "deployment": "not-verified-by-this-script"
+  },
+  "concurrentReconciliation": {
+    "upstream": "e2a3b985455dcf15a1abc36251efdda9eac74844",
+    "retainedUpstreamProfiles": 386,
+    "finalProfiles": 387,
+    "addedByThisPR": [
+      "jun-liang-cambricon"
+    ],
+    "preserved": "All upstream profile fields, eight dataflow admissions and Iluvatar naming changes."
+  }
+}
