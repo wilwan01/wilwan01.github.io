@@ -50,6 +50,15 @@ PRIMARY_BODY_TYPES={'论文全文','作者技术文章','作者技术文章全�
 PRIMARY_BODY_TYPES.update({'本人技术口述史全文','团队技术白皮书全文','团队作者幻灯片','作者技术报告全文','本人技术幻灯片','作者技术幻灯片','作者技术演讲全文','本人技术访谈全文','作者会议幻灯片','专利申请说明书全文','作者论文全文（大学存档）'})
 PRIMARY_BODY_TYPES.update({'本人访谈文字摘录','本人署名技术综述（Intel原稿转载）','专利说明书正文（所列部分）','作者技术报告','专利公开说明书','本人署名技术文章','官方技术演讲逐字稿','官方技术采访正文','专利说明书','本人访谈','官方本人技术论述','作者会议报告'})
 PRIMARY_BODY_TYPES.add('论文正文（所列页）')
+# Existing Alben/Ross records use these equivalent selected-body labels. This
+# does not upgrade indexed access to a direct read or an abstract to a body.
+# Keep retrieval limitations visible and retain both independent-work gates.
+SELECTED_PAPER_BODY_TYPES={'论文正文（所列章节）','原论文局部正文'}
+PRIMARY_BODY_TYPES.update(SELECTED_PAPER_BODY_TYPES)
+for profile in c['profiles']:
+ for source in profile.get('sourceAudit',[]):
+  if source['type'] in SELECTED_PAPER_BODY_TYPES:
+   assert all(source.get(k) for k in ('primary','substantive','mechanismBody','workId','locator')),profile['id']
 # Authored software documentation can be substantive primary technical evidence.
 # The two-distinct-works and actual-mechanism-body requirements remain unchanged.
 PRIMARY_BODY_TYPES.add('作者软件技术文档')
