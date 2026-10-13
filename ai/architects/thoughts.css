@@ -5,3 +5,7 @@
 
 .research-detail{margin-top:18px}.research-detail>summary{cursor:pointer;font-weight:600;line-height:1.8;padding:10px 0;color:var(--accent)}.award-citation,.contribution-origin{font-size:15px;color:var(--muted);line-height:1.8}.source-audit p{font-size:14px;color:var(--muted);overflow-wrap:anywhere}
 @media print{.research-detail{display:block}}
+
+/* Current reading location in the independently scrolling directory. */
+.toc a[aria-current="location"]{color:var(--accent);background:#e1eff0;border-left:3px solid var(--accent);font-weight:700}
+.toc{overscroll-behavior-y:contain;scroll-behavior:auto}
