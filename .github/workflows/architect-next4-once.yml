@@ -1,0 +1,85 @@
+name: Architect next-four integration
+on:
+  push:
+    branches: [research/china-ai-next4-2026-10-13]
+    paths:
+      - .github/workflows/architect-next4-once.yml
+      - ai/architects/research/candidates/integrate_next4.py
+permissions:
+  contents: write
+concurrency:
+  group: architect-next4-pr50
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.repository == 'wilwan01/wilwan01.github.io' && github.ref == 'refs/heads/research/china-ai-next4-2026-10-13'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - name: Install renderer dependency
+        run: python3 -m pip install lxml==6.1.1
+      - name: Validate, integrate and prove idempotence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 ai/architects/research/candidates/validate_next4.py
+          python3 ai/architects/tools/validate_contribution_batch.py
+          python3 ai/architects/research/candidates/integrate_next4.py
+          python3 ai/architects/research/candidates/validate_next4.py
+          python3 ai/architects/tools/validate_contribution_batch.py
+          python3 - <<'PY'
+          import hashlib, pathlib, subprocess
+          root = pathlib.Path('ai/architects')
+          def hashes():
+              return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          before = hashes()
+          subprocess.run(['python3', str(root/'research/candidates/integrate_next4.py')], check=True)
+          assert hashes() == before, 'Integration must be byte-idempotent'
+          print('PASS: byte-idempotent integration and rendering')
+          PY
+          git diff --check
+      - name: Commit only approved generated files to the same PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import subprocess
+          allowed = {
+              'ai/architects/catalog.json',
+              'ai/architects/index.html',
+              'ai/architects/research/batches/2026-10-13-next4-followthrough.json',
+              'ai/architects/research/batches/2026-10-13-next4-followthrough.html',
+              'ai/architects/research/candidates/2026-10-13-china-ai-next4.json',
+              'ai/architects/research/candidates/2026-10-13-china-ai-next4.md',
+              'ai/architects/research/candidates/2026-10-13-next4-followthrough.json',
+              'ai/architects/research/candidates/2026-10-13-next4-followthrough.md',
+          }
+          changed = set(subprocess.check_output(['git','ls-files','--modified','--others','--exclude-standard'], text=True).splitlines())
+          assert changed <= allowed, f'Unexpected changes: {changed - allowed}'
+          assert not subprocess.check_output(['git','ls-files','--deleted'], text=True).strip(), 'No deletions allowed'
+          if changed:
+              subprocess.run(['git','add','--',*sorted(changed)], check=True)
+          print('Approved changed paths:', *sorted(changed), sep='\n')
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Admit Liang with two reviewed works; preserve three pending candidates'
+            git push origin HEAD:refs/heads/research/china-ai-next4-2026-10-13
+          fi
+      - name: Retain validation result for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: architect-next4-validated
+          retention-days: 3
+          path: |
+            ai/architects/catalog.json
+            ai/architects/index.html
+            ai/architects/research/candidates/2026-10-13-next4-followthrough.*
+            ai/architects/research/batches/2026-10-13-next4-followthrough.*
