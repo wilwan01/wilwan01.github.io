@@ -122,7 +122,8 @@
         "pradeep-kanapathipillai",
         "ronak-singhal",
         "sailesh-kottapalli",
-        "krishnan-geeyarpuram"
+        "krishnan-geeyarpuram",
+        "wei-han-lien"
       ]
     },
     {
@@ -181,7 +182,13 @@
         "yan-liu-enflame",
         "shaoli-liu",
         "jianping-lu-iluvatar",
-        "ping-wang-denglin"
+        "ping-wang-denglin",
+        "jonah-alben",
+        "alan-smith",
+        "eric-demers",
+        "jonathan-ross",
+        "michael-james",
+        "simon-knowles"
       ]
     },
     {
@@ -331,7 +338,8 @@
         "mark-handley",
         "sachin-katti",
         "xia-jing",
-        "mahesh-wagh"
+        "mahesh-wagh",
+        "nafea-bshara"
       ]
     },
     {
@@ -46022,6 +46030,874 @@
         "validation": "推理同时报告质量与延迟；图查询核对结果并扫描图密度和路径长度。",
         "transfer": "用于GPU、AI加速器及异构系统的方案评审。"
       }
+    },
+    {
+      "id": "jonah-alben",
+      "name": "Jonah Alben",
+      "aliases": [
+        "Jonah M. Alben"
+      ],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "field": "混合精度与矩阵数据通路",
+      "core": "在数值精度约束下减少训练存储与矩阵运算的数据搬运。",
+      "background": "Mixed Precision Training共同作者、矩阵乘加专利共同发明人；不将团队成果归为个人独创。",
+      "contributions": [
+        "以FP32主权重、损失缩放及较高精度累加配合FP16训练数据，减轻舍入和下溢问题。",
+        "操作数收集器复用矩阵向量，点积部分积与累加值在数据通路内组合，并可共享规格化和舍入逻辑。"
+      ],
+      "argument": "编辑条件模型：在同等质量约束下，搬运与算术节省须覆盖转换、缩放和额外累加成本。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "在数值精度约束下减少训练存储与矩阵运算的数据搬运。"
+      ],
+      "questions": [
+        "什么条件下在数值精度约束下减少训练存储与矩阵运算的数据搬运，又在什么条件下失效？"
+      ],
+      "boundary": "混合精度不能保证所有模型收敛；专利披露不证明某代Tensor Core采用全部实施例。",
+      "diagnostic": "同时测训练质量、溢出比例、内存流量与端到端时间。",
+      "notes": [],
+      "sources": [
+        [
+          "Mixed Precision Training",
+          "https://arxiv.org/pdf/1710.03740",
+          "首页署名；§3.1–3.3"
+        ],
+        [
+          "Generalized acceleration of matrix multiply accumulate operations",
+          "https://patents.google.com/patent/US10338919B2/en",
+          "发明人栏；图7–13及说明"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mixed-precision-training-2017",
+          "title": "Mixed Precision Training",
+          "authors": "Paulius Micikevicius、Sharan Narang、Jonah Alben等",
+          "date": "2017 / ICLR 2018",
+          "url": "https://arxiv.org/pdf/1710.03740",
+          "locator": "首页署名；§3.1–3.3",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US10338919B2",
+          "title": "Generalized acceleration of matrix multiply accumulate operations",
+          "authors": "Brent Ralph Boswell、Ming Y. Siu、Jack Choquette、Jonah M. Alben、Stuart Oberman",
+          "date": "2019-07-02",
+          "url": "https://patents.google.com/patent/US10338919B2/en",
+          "locator": "发明人栏；图7–13及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "mixed-precision-training-2017",
+          "text": "以FP32主权重、损失缩放及较高精度累加配合FP16训练数据，减轻舍入和下溢问题。"
+        },
+        {
+          "workId": "US10338919B2",
+          "text": "操作数收集器复用矩阵向量，点积部分积与累加值在数据通路内组合，并可共享规格化和舍入逻辑。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "混合精度与矩阵数据通路",
+        "skills": [
+          "A2",
+          "A4",
+          "A7"
+        ],
+        "question": "什么条件下在数值精度约束下减少训练存储与矩阵运算的数据搬运，又在什么条件下失效？",
+        "variables": "精度、缩放因子、收敛质量、操作数复用、累加带宽",
+        "model": "编辑条件模型：在同等质量约束下，搬运与算术节省须覆盖转换、缩放和额外累加成本。",
+        "crossover": "矩阵复用充分且数值范围可控制。",
+        "counterexample": "异常梯度或低复用小矩阵使收益消失。",
+        "validation": "同时测训练质量、溢出比例、内存流量与端到端时间。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "alan-smith",
+      "name": "Alan Smith",
+      "aliases": [],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "field": "Instinct GPU与多芯粒系统",
+      "core": "让矩阵计算能力与片内供数、HBM及多芯粒资源划分相匹配。",
+      "background": "2024年MI300X报告署名为Instinct Lead SoC Architect；2025年本人访谈解释MI350设计取舍。与Alan Jay Smith区分。",
+      "contributions": [
+        "XCD私有L2与共享Infinity Cache/HBM形成分层供数路径；XCD可组合为单GPU或空间分区。",
+        "Smith解释将LDS容量由64KB增至160KB并提高LDS到寄存器带宽，以供应更强矩阵单元；FP6吞吐选择也付出硬件成本。"
+      ],
+      "argument": "编辑条件模型：增加算力只有在数据供给和并发度充分时才转化为时间收益。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "让矩阵计算能力与片内供数、HBM及多芯粒资源划分相匹配。"
+      ],
+      "questions": [
+        "什么条件下让矩阵计算能力与片内供数、HBM及多芯粒资源划分相匹配，又在什么条件下失效？"
+      ],
+      "boundary": "报告是团队架构说明，访谈是本人解释；峰值算力与容量不等于模型实际吞吐。",
+      "diagnostic": "扫描tile、并发流和分区方式，测供数停顿与实际模型吞吐。",
+      "notes": [],
+      "sources": [
+        [
+          "AMD Instinct MI300X Generative AI Accelerator and Platform Architecture",
+          "https://hc2024.hotchips.org/assets/program/conference/day1/23_HC2024.AMD.MI300X.ASmith(MI300X).v1.Final.20240817.pdf",
+          "封面；幻灯片4、8–9"
+        ],
+        [
+          "AMD’s Freshly Baked MI350: An Interview",
+          "https://chipsandcheese.com/p/amds-freshly-baked-mi350-an-interview",
+          "本人关于CDNA4、LDS和低精度的回答"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mi300x-hotchips2024",
+          "title": "AMD Instinct MI300X Generative AI Accelerator and Platform Architecture",
+          "authors": "Alan Smith、Vamsi Alla",
+          "date": "2024",
+          "url": "https://hc2024.hotchips.org/assets/program/conference/day1/23_HC2024.AMD.MI300X.ASmith(MI300X).v1.Final.20240817.pdf",
+          "locator": "封面；幻灯片4、8–9",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "mi350-smith-interview2025",
+          "title": "AMD’s Freshly Baked MI350: An Interview",
+          "authors": "Alan Smith（受访者）",
+          "date": "2025-06-20",
+          "url": "https://chipsandcheese.com/p/amds-freshly-baked-mi350-an-interview",
+          "locator": "本人关于CDNA4、LDS和低精度的回答",
+          "type": "本人技术访谈全文",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "mi300x-hotchips2024",
+          "text": "XCD私有L2与共享Infinity Cache/HBM形成分层供数路径；XCD可组合为单GPU或空间分区。"
+        },
+        {
+          "workId": "mi350-smith-interview2025",
+          "text": "Smith解释将LDS容量由64KB增至160KB并提高LDS到寄存器带宽，以供应更强矩阵单元；FP6吞吐选择也付出硬件成本。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "Instinct GPU与多芯粒系统",
+        "skills": [
+          "A2",
+          "A3",
+          "A4"
+        ],
+        "question": "什么条件下让矩阵计算能力与片内供数、HBM及多芯粒资源划分相匹配，又在什么条件下失效？",
+        "variables": "LDS容量与带宽、XCD划分、局部性、矩阵利用率",
+        "model": "编辑条件模型：增加算力只有在数据供给和并发度充分时才转化为时间收益。",
+        "crossover": "较大tile可驻留并持续供给矩阵单元。",
+        "counterexample": "容量增加但访问冲突、跨分区搬运或占用率限制仍主导。",
+        "validation": "扫描tile、并发流和分区方式，测供数停顿与实际模型吞吐。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "eric-demers",
+      "name": "Eric Demers",
+      "aliases": [],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "field": "并行图形与流式矩阵执行",
+      "core": "通过空间工作分配和局部中间结果复用降低图形、矩阵执行开销。",
+      "background": "两项技术作品分别来自ATI与Qualcomm的共同发明；此处不据专利推断现任职务。",
+      "contributions": [
+        "重复屏幕tile归属与图元包围盒共同决定流水线分配，各流水线队列和层次Z处理减少无效工作。",
+        "局部缓冲保存矩阵操作数，点积中间值反馈到运算单元，减少反复经通用寄存器文件读写。"
+      ],
+      "argument": "编辑条件模型：减少全局搬运的收益须超过分发和局部资源占用成本。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "通过空间工作分配和局部中间结果复用降低图形、矩阵执行开销。"
+      ],
+      "questions": [
+        "什么条件下通过空间工作分配和局部中间结果复用降低图形、矩阵执行开销，又在什么条件下失效？"
+      ],
+      "boundary": "专利仅支持共同披露的机制，不证明特定商业GPU采用；局部复用仍受资源容量限制。",
+      "diagnostic": "改变图元分布与矩阵尺寸，测负载方差、寄存器访问和执行时间。",
+      "notes": [],
+      "sources": [
+        [
+          "Parallel pipeline graphics system",
+          "https://patents.google.com/patent/US7633506B1/en",
+          "发明人栏；图5–6及说明"
+        ],
+        [
+          "Performing matrix multiplication in a streaming processor",
+          "https://patents.google.com/patent/US12229215B2/en",
+          "发明人栏；图3–6及说明"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US7633506B1",
+          "title": "Parallel pipeline graphics system",
+          "authors": "Mark M. Leather、Eric Demers",
+          "date": "2009-12-15",
+          "url": "https://patents.google.com/patent/US7633506B1/en",
+          "locator": "发明人栏；图5–6及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US12229215B2",
+          "title": "Performing matrix multiplication in a streaming processor",
+          "authors": "Yun Du、Gang Zhong、Fei Wei、Yibin Zhang、Jing Han、Hongjiang Shang、Elina Kamenetskaya、Minjie Huang、Alexei Vladimirovich Bourd、Chun Yu、Andrew Evan Gruber、Eric Demers",
+          "date": "2025-02-18",
+          "url": "https://patents.google.com/patent/US12229215B2/en",
+          "locator": "发明人栏；图3–6及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "US7633506B1",
+          "text": "重复屏幕tile归属与图元包围盒共同决定流水线分配，各流水线队列和层次Z处理减少无效工作。"
+        },
+        {
+          "workId": "US12229215B2",
+          "text": "局部缓冲保存矩阵操作数，点积中间值反馈到运算单元，减少反复经通用寄存器文件读写。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "并行图形与流式矩阵执行",
+        "skills": [
+          "A2",
+          "A4",
+          "A5"
+        ],
+        "question": "什么条件下通过空间工作分配和局部中间结果复用降低图形、矩阵执行开销，又在什么条件下失效？",
+        "variables": "tile负载偏斜、缓冲容量、寄存器流量、反馈延迟",
+        "model": "编辑条件模型：减少全局搬运的收益须超过分发和局部资源占用成本。",
+        "crossover": "空间负载均衡且矩阵分块能够驻留。",
+        "counterexample": "热点tile或缓冲溢出产生串行瓶颈。",
+        "validation": "改变图元分布与矩阵尺寸，测负载方差、寄存器访问和执行时间。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "jonathan-ross",
+      "name": "Jonathan Ross",
+      "aliases": [],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "field": "确定性张量执行",
+      "core": "以显式供数和可预测的执行组织服务神经网络推理。",
+      "background": "TPUv1与Groq TSP论文共同作者；条目依据署名研究，不将整个产品归为个人设计。",
+      "contributions": [
+        "TPUv1以权重FIFO、软件管理Unified Buffer和脉动矩阵单元协作，通过显式指令重叠供数与运算。",
+        "TSP采用功能切片与生产者—消费者数据流；表I将存储读写、矩阵权重装载、流重排和同步暴露为显式操作。"
+      ],
+      "argument": "编辑条件模型：把运行时不确定性转移给编译器，收益取决于执行图和数据供给可预测程度。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "以显式供数和可预测的执行组织服务神经网络推理。"
+      ],
+      "questions": [
+        "什么条件下以显式供数和可预测的执行组织服务神经网络推理，又在什么条件下失效？"
+      ],
+      "boundary": "原论文中的比较限定于其年代与工作负载；静态可预测性不保证动态形状、外部I/O和整服务延迟同样确定。",
+      "diagnostic": "分开测核内时序和服务P99，加入动态形状与供数抖动。",
+      "notes": [],
+      "sources": [
+        [
+          "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "https://arxiv.org/pdf/1704.04760",
+          "首页署名；§2，图1–4"
+        ],
+        [
+          "Think Fast: A Tensor Streaming Processor (TSP) for Accelerating Deep Learning Workloads",
+          "https://groq.humain.ai/wp-content/uploads/2024/02/2020-Isca.pdf",
+          "作者列表、摘要及表I指令说明（检索提取）"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "tpu-v1-isca2017",
+          "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "authors": "Norman P. Jouppi、Jonathan Ross等",
+          "date": "2017",
+          "url": "https://arxiv.org/pdf/1704.04760",
+          "locator": "首页署名；§2，图1–4",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "tsp-isca2020",
+          "title": "Think Fast: A Tensor Streaming Processor (TSP) for Accelerating Deep Learning Workloads",
+          "authors": "Dennis Abts、Jonathan Ross等",
+          "date": "2020",
+          "url": "https://groq.humain.ai/wp-content/uploads/2024/02/2020-Isca.pdf",
+          "locator": "作者列表、摘要及表I指令说明（检索提取）",
+          "type": "原论文局部正文",
+          "contentStatus": "已核验作者、摘要和检索返回的表I正文；PDF直连未成功，未声称通读全文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "tpu-v1-isca2017",
+          "text": "TPUv1以权重FIFO、软件管理Unified Buffer和脉动矩阵单元协作，通过显式指令重叠供数与运算。"
+        },
+        {
+          "workId": "tsp-isca2020",
+          "text": "TSP采用功能切片与生产者—消费者数据流；表I将存储读写、矩阵权重装载、流重排和同步暴露为显式操作。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "确定性张量执行",
+        "skills": [
+          "A2",
+          "A4",
+          "A6"
+        ],
+        "question": "什么条件下以显式供数和可预测的执行组织服务神经网络推理，又在什么条件下失效？",
+        "variables": "编译调度、数据到达、片上容量、外部I/O、P99延迟",
+        "model": "编辑条件模型：把运行时不确定性转移给编译器，收益取决于执行图和数据供给可预测程度。",
+        "crossover": "规则张量图可充分静态调度。",
+        "counterexample": "动态分支或不稳定外部供数打破预排时序。",
+        "validation": "分开测核内时序和服务P99，加入动态形状与供数抖动。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "michael-james",
+      "name": "Michael James",
+      "aliases": [
+        "Michael Edwin James"
+      ],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "network"
+      ],
+      "field": "晶圆级ISA与稀疏执行",
+      "core": "用数据描述符和分布式非零权重映射连接运算、存储与片上通信。",
+      "background": "Cerebras两项专利均列Michael Edwin James为共同发明人；范围限于所列ISA与稀疏执行机制。",
+      "contributions": [
+        "数据结构描述符以基址、长度、步长等状态表达向量与循环FIFO，使指令通过描述符引用内存或fabric操作数。",
+        "非零权重映射分布在处理单元本地存储，索引和下一处理单元信息组织wavelet及部分和流动，省略零权重条目。"
+      ],
+      "argument": "编辑条件模型：省去零值运算与寻址指令的收益须大于元数据和不均衡代价。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "用数据描述符和分布式非零权重映射连接运算、存储与片上通信。"
+      ],
+      "questions": [
+        "什么条件下用数据描述符和分布式非零权重映射连接运算、存储与片上通信，又在什么条件下失效？"
+      ],
+      "boundary": "专利申请和授权文献均不等于产品采用证明；稀疏收益依赖负载平衡与索引通信成本。",
+      "diagnostic": "扫描稀疏分布而非只扫描稀疏率，测PE尾部、流量与结果正确性。",
+      "notes": [],
+      "sources": [
+        [
+          "ISA enhancements for accelerated deep learning",
+          "https://patents.google.com/patent/US11321087B2/en",
+          "发明人栏；图21–24，Data Structure Descriptor说明"
+        ],
+        [
+          "Weight sparsity techniques for accelerated deep learning",
+          "https://patents.google.com/patent/WO2022034542A1/en",
+          "发明人栏；[0930]–[0939]，图39–41"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US11321087B2",
+          "title": "ISA enhancements for accelerated deep learning",
+          "authors": "Michael Morrison、Michael Edwin James、Sean Lie、Srikanth Arekapudi、Gary R. Lauterbach",
+          "date": "2022-05-03",
+          "url": "https://patents.google.com/patent/US11321087B2/en",
+          "locator": "发明人栏；图21–24，Data Structure Descriptor说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "WO2022034542A1",
+          "title": "Weight sparsity techniques for accelerated deep learning",
+          "authors": "Michael Edwin James、Michael Morrison、Sean Lie、Ilya Sharapov、Stewart Griffin Hall",
+          "date": "2022-02-17",
+          "url": "https://patents.google.com/patent/WO2022034542A1/en",
+          "locator": "发明人栏；[0930]–[0939]，图39–41",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "US11321087B2",
+          "text": "数据结构描述符以基址、长度、步长等状态表达向量与循环FIFO，使指令通过描述符引用内存或fabric操作数。"
+        },
+        {
+          "workId": "WO2022034542A1",
+          "text": "非零权重映射分布在处理单元本地存储，索引和下一处理单元信息组织wavelet及部分和流动，省略零权重条目。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "晶圆级ISA与稀疏执行",
+        "skills": [
+          "A2",
+          "A4",
+          "A6"
+        ],
+        "question": "什么条件下用数据描述符和分布式非零权重映射连接运算、存储与片上通信，又在什么条件下失效？",
+        "variables": "非零率、索引开销、PE负载、描述符状态、通信量",
+        "model": "编辑条件模型：省去零值运算与寻址指令的收益须大于元数据和不均衡代价。",
+        "crossover": "可描述的数据流与较均衡的稀疏分布。",
+        "counterexample": "少数PE聚集非零项，或元数据大于有效数据。",
+        "validation": "扫描稀疏分布而非只扫描稀疏率，测PE尾部、流量与结果正确性。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "simon-knowles",
+      "name": "Simon Knowles",
+      "aliases": [],
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "field": "IPU局部存储与数值可观测性",
+      "core": "以局部存储和显式交换组织并行计算，并为低精度数值范围提供观测机制。",
+      "background": "Colossus Mk2由Knowles本人在Hot Chips 2021讲解；数值直方图指令来自Graphcore共同发明的专利。",
+      "contributions": [
+        "IPU以带本地SRAM的多线程tile与无状态交换网络组织BSP执行，将局部计算和全局通信阶段分开。",
+        "hist指令按指数范围把向量数值计入不同bin，更新直方图寄存器，提供数值动态范围观测。"
+      ],
+      "argument": "编辑条件模型：局部性减少搬运，但阶段时间仍取决于最慢tile与全局交换。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "以局部存储和显式交换组织并行计算，并为低精度数值范围提供观测机制。"
+      ],
+      "questions": [
+        "什么条件下以局部存储和显式交换组织并行计算，并为低精度数值范围提供观测机制，又在什么条件下失效？"
+      ],
+      "boundary": "BSP需要编译映射和负载平衡；直方图指令的专利披露不证明已在特定IPU代际实装。",
+      "diagnostic": "记录各tile阶段尾部与交换量，并联合检查数值分布、误差和模型质量。",
+      "notes": [],
+      "sources": [
+        [
+          "Colossus Mk2",
+          "https://hc33.hotchips.org/assets/program/conference/day2/HC2021.Graphcore.SimonKnowles.v04.pdf",
+          "封面；幻灯片2–10"
+        ],
+        [
+          "Machine Code Instruction",
+          "https://patents.google.com/patent/US20230281013A1/en",
+          "发明人栏；图5–7及hist指令说明"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "colossus-mk2-hc2021",
+          "title": "Colossus Mk2",
+          "authors": "Simon Knowles",
+          "date": "2021",
+          "url": "https://hc33.hotchips.org/assets/program/conference/day2/HC2021.Graphcore.SimonKnowles.v04.pdf",
+          "locator": "封面；幻灯片2–10",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US20230281013A1",
+          "title": "Machine Code Instruction",
+          "authors": "Alan Alexander、Simon Knowles、Godfrey Da Costa、Badreddine Noune",
+          "date": "2023-09-07",
+          "url": "https://patents.google.com/patent/US20230281013A1/en",
+          "locator": "发明人栏；图5–7及hist指令说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "colossus-mk2-hc2021",
+          "text": "IPU以带本地SRAM的多线程tile与无状态交换网络组织BSP执行，将局部计算和全局通信阶段分开。"
+        },
+        {
+          "workId": "US20230281013A1",
+          "text": "hist指令按指数范围把向量数值计入不同bin，更新直方图寄存器，提供数值动态范围观测。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "IPU局部存储与数值可观测性",
+        "skills": [
+          "A2",
+          "A4",
+          "A7"
+        ],
+        "question": "什么条件下以局部存储和显式交换组织并行计算，并为低精度数值范围提供观测机制，又在什么条件下失效？",
+        "variables": "tile容量、阶段不均衡、交换量、数值范围、观测成本",
+        "model": "编辑条件模型：局部性减少搬运，但阶段时间仍取决于最慢tile与全局交换。",
+        "crossover": "任务能均衡分配且数据驻留本地。",
+        "counterexample": "全局屏障放大长尾，动态范围统计不能单独保证模型质量。",
+        "validation": "记录各tile阶段尾部与交换量，并联合检查数值分布、误差和模型质量。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "wei-han-lien",
+      "name": "Wei-Han Lien",
+      "aliases": [
+        "Wei Han Lien"
+      ],
+      "domain": "cpu",
+      "relatedDomains": [
+        "foundations"
+      ],
+      "field": "寄存器重命名与分支预测",
+      "core": "在兼容ISA语义的同时解除假依赖，并平衡分支预测速度与准确率。",
+      "background": "寄存器重命名专利列Wei-Han Lien为发明人，多级分支预测专利列为共同发明人；两者申请人为Apple。贡献范围为CPU微架构。",
+      "contributions": [
+        "按奇偶bank组织重命名映射，不同宽度的重叠架构寄存器访问一个或多个映射项，处理别名与部分写入依赖。",
+        "不同历史容量的预测子电路在不同周期给出结果，早期预测启动取指，后续结果可覆盖或取消待执行的重定向。"
+      ],
+      "argument": "编辑条件模型：减少的依赖或误判停顿须超过映射与后续纠正开销。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "在兼容ISA语义的同时解除假依赖，并平衡分支预测速度与准确率。"
+      ],
+      "questions": [
+        "什么条件下在兼容ISA语义的同时解除假依赖，并平衡分支预测速度与准确率，又在什么条件下失效？"
+      ],
+      "boundary": "不由专利推断Apple或Ascalon具体产品采用；多级预测增加存储、能耗与重定向代价。",
+      "diagnostic": "测试混合宽度依赖链，并联合报告各级预测准确率、覆盖次数与IPC。",
+      "notes": [],
+      "sources": [
+        [
+          "Register renamer that handles multiple register sizes aliased to the same storage locations",
+          "https://patents.google.com/patent/US20160055000A1/en",
+          "发明人栏；图2–4及说明"
+        ],
+        [
+          "Multi-degree branch predictor",
+          "https://trea.com/information/multi-degree-branch-predictor/patentgrant/b67ee04b-7b7d-4383-9eed-0d13f063ae16",
+          "专利原文镜像：署名；图1–2及对应说明"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "US20160055000A1",
+          "title": "Register renamer that handles multiple register sizes aliased to the same storage locations",
+          "authors": "Wei-Han Lien",
+          "date": "2016-02-25",
+          "url": "https://patents.google.com/patent/US20160055000A1/en",
+          "locator": "发明人栏；图2–4及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US12236244B2",
+          "title": "Multi-degree branch predictor",
+          "authors": "Wei-Han Lien、Muawya M. Al-Otoom、Ian D. Kountanis、Niket K. Choudhary、Pruthivi Vuyyuru",
+          "date": "2025-02-25",
+          "url": "https://trea.com/information/multi-degree-branch-predictor/patentgrant/b67ee04b-7b7d-4383-9eed-0d13f063ae16",
+          "locator": "专利原文镜像：署名；图1–2及对应说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "US20160055000A1",
+          "text": "按奇偶bank组织重命名映射，不同宽度的重叠架构寄存器访问一个或多个映射项，处理别名与部分写入依赖。"
+        },
+        {
+          "workId": "US12236244B2",
+          "text": "不同历史容量的预测子电路在不同周期给出结果，早期预测启动取指，后续结果可覆盖或取消待执行的重定向。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "寄存器重命名与分支预测",
+        "skills": [
+          "A1",
+          "A2",
+          "A5"
+        ],
+        "question": "什么条件下在兼容ISA语义的同时解除假依赖，并平衡分支预测速度与准确率，又在什么条件下失效？",
+        "variables": "别名宽度、映射端口、历史长度、预测延迟、误判率、重定向成本",
+        "model": "编辑条件模型：减少的依赖或误判停顿须超过映射与后续纠正开销。",
+        "crossover": "部分寄存器操作频繁，或较长历史能明显改善预测。",
+        "counterexample": "长历史收益小而重定向频繁，前端能耗上升。",
+        "validation": "测试混合宽度依赖链，并联合报告各级预测准确率、覆盖次数与IPC。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
+    },
+    {
+      "id": "nafea-bshara",
+      "name": "Nafea Bshara",
+      "aliases": [],
+      "domain": "network",
+      "relatedDomains": [
+        "datacenter",
+        "hpc"
+      ],
+      "field": "云传输与低延迟I/O",
+      "core": "以多路径可靠传输和自适应中断时机兼顾云系统吞吐与响应。",
+      "background": "SRD原论文共同作者、低延迟中断专利共同发明人；纳入依据是具体技术作品。",
+      "contributions": [
+        "SRD在Nitro提供可靠乱序交付，以多路径分包、路径时延反馈及速率/在途量控制应对拥塞；上层承担所需的排序语义。",
+        "空闲后的首个事件及时触发中断，后续突发事件按定时机制合并，兼顾首次响应与CPU中断负担。"
+      ],
+      "argument": "编辑条件模型：多路径和合并收益需扣除重排、反馈与事件等待的代价。",
+      "evidence": "两项不同的一手署名技术作品，至少一项已核读机制正文。",
+      "habits": [
+        "以多路径可靠传输和自适应中断时机兼顾云系统吞吐与响应。"
+      ],
+      "questions": [
+        "什么条件下以多路径可靠传输和自适应中断时机兼顾云系统吞吐与响应，又在什么条件下失效？"
+      ],
+      "boundary": "SRD论文的比较属于其测试条件；中断专利不证明所有AWS设备实现。该证据不支持把Graviton、Trainium全部设计归于个人。",
+      "diagnostic": "扫描incast、路径故障和稀疏/突发事件，测P99、有效吞吐与CPU占用。",
+      "notes": [],
+      "sources": [
+        [
+          "A Cloud-Optimized Transport Protocol for Elastic and Scalable HPC",
+          "https://saeed.github.io/CS8803_DNS_Spring2025/assets/srd.pdf",
+          "原论文镜像：首页署名；第2–4页"
+        ],
+        [
+          "Low latency interrupt with existence of interrupt moderation",
+          "https://patents.google.com/patent/US10614006B2/en",
+          "发明人栏；图4–8及说明"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "srd-hoti2020",
+          "title": "A Cloud-Optimized Transport Protocol for Elastic and Scalable HPC",
+          "authors": "Leah Shalev、Hani Ayoub、Nafea Bshara、Erez Sabbag",
+          "date": "2020",
+          "url": "https://saeed.github.io/CS8803_DNS_Spring2025/assets/srd.pdf",
+          "locator": "原论文镜像：首页署名；第2–4页",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US10614006B2",
+          "title": "Low latency interrupt with existence of interrupt moderation",
+          "authors": "Said Bshara、Erez Izenberg、Yaniv Shapira、Nafea Bshara",
+          "date": "2020-04-07",
+          "url": "https://patents.google.com/patent/US10614006B2/en",
+          "locator": "发明人栏；图4–8及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "srd-hoti2020",
+          "text": "SRD在Nitro提供可靠乱序交付，以多路径分包、路径时延反馈及速率/在途量控制应对拥塞；上层承担所需的排序语义。"
+        },
+        {
+          "workId": "US10614006B2",
+          "text": "空闲后的首个事件及时触发中断，后续突发事件按定时机制合并，兼顾首次响应与CPU中断负担。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "依据署名作品提炼，合作成果按团队贡献处理。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-13-gpu-cpu-network-eight",
+        "standard": "contribution-led-v1",
+        "meaning": "所列贡献完成核验；不代表穷尽成果或确认产品采用。",
+        "verifiedAt": "2026-10-13"
+      },
+      "challenge": {
+        "lens": "云传输与低延迟I/O",
+        "skills": [
+          "A3",
+          "A5",
+          "A6"
+        ],
+        "question": "什么条件下以多路径可靠传输和自适应中断时机兼顾云系统吞吐与响应，又在什么条件下失效？",
+        "variables": "路径RTT、乱序深度、在途量、突发间隔、中断CPU占用、尾延迟",
+        "model": "编辑条件模型：多路径和合并收益需扣除重排、反馈与事件等待的代价。",
+        "crossover": "可利用多路径且流量有突发性。",
+        "counterexample": "反馈滞后导致拥塞，过度合并增加低负载延迟。",
+        "validation": "扫描incast、路径故障和稀疏/突发事件，测P99、有效吞吐与CPU占用。",
+        "transfer": "用于CPU、AI加速器及云系统方案评审。"
+      }
     }
   ],
   "research": {
@@ -46032,7 +46908,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 370,
+    "totalProfiles": 378,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -46048,12 +46924,13 @@
       "research/batches/2026-10-13-pradeep-kanapathipillai.json",
       "research/batches/2026-10-13-five-architects.json",
       "research/batches/2026-10-13-krishnan-geeyarpuram.json",
-      "research/batches/2026-10-13-china-gpu-priority8.json"
+      "research/batches/2026-10-13-china-gpu-priority8.json",
+      "research/batches/2026-10-13-gpu-cpu-network-eight.json"
     ],
-    "completedTotal": 369,
+    "completedTotal": 377,
     "remainingCatalog": 1,
     "remainingPlanned": 2,
-    "additionalPlannedScope": 71,
-    "additionalCompleted": 69
+    "additionalPlannedScope": 79,
+    "additionalCompleted": 77
   }
 }

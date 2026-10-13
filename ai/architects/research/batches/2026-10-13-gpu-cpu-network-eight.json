@@ -1,0 +1,362 @@
+{
+  "date": "2026-10-13",
+  "focus": "GPU、CPU与云网络：八位技术贡献",
+  "scope": "additional",
+  "baseCommit": "cb581b3ef75ed5ba578bacb40da566d327260dab",
+  "plannedScope": 8,
+  "plannedExisting": 0,
+  "plannedCandidates": 8,
+  "counts": {
+    "complete": 8
+  },
+  "completedExisting": 0,
+  "completedNew": 8,
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "jonah-alben",
+      "name": "Jonah Alben",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "在数值精度约束下减少训练存储与矩阵运算的数据搬运。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "mixed-precision-training-2017",
+          "title": "Mixed Precision Training",
+          "authors": "Paulius Micikevicius、Sharan Narang、Jonah Alben等",
+          "date": "2017 / ICLR 2018",
+          "url": "https://arxiv.org/pdf/1710.03740",
+          "locator": "首页署名；§3.1–3.3",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US10338919B2",
+          "title": "Generalized acceleration of matrix multiply accumulate operations",
+          "authors": "Brent Ralph Boswell、Ming Y. Siu、Jack Choquette、Jonah M. Alben、Stuart Oberman",
+          "date": "2019-07-02",
+          "url": "https://patents.google.com/patent/US10338919B2/en",
+          "locator": "发明人栏；图7–13及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "alan-smith",
+      "name": "Alan Smith",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "让矩阵计算能力与片内供数、HBM及多芯粒资源划分相匹配。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "mi300x-hotchips2024",
+          "title": "AMD Instinct MI300X Generative AI Accelerator and Platform Architecture",
+          "authors": "Alan Smith、Vamsi Alla",
+          "date": "2024",
+          "url": "https://hc2024.hotchips.org/assets/program/conference/day1/23_HC2024.AMD.MI300X.ASmith(MI300X).v1.Final.20240817.pdf",
+          "locator": "封面；幻灯片4、8–9",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "mi350-smith-interview2025",
+          "title": "AMD’s Freshly Baked MI350: An Interview",
+          "authors": "Alan Smith（受访者）",
+          "date": "2025-06-20",
+          "url": "https://chipsandcheese.com/p/amds-freshly-baked-mi350-an-interview",
+          "locator": "本人关于CDNA4、LDS和低精度的回答",
+          "type": "本人技术访谈全文",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "eric-demers",
+      "name": "Eric Demers",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "通过空间工作分配和局部中间结果复用降低图形、矩阵执行开销。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "US7633506B1",
+          "title": "Parallel pipeline graphics system",
+          "authors": "Mark M. Leather、Eric Demers",
+          "date": "2009-12-15",
+          "url": "https://patents.google.com/patent/US7633506B1/en",
+          "locator": "发明人栏；图5–6及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US12229215B2",
+          "title": "Performing matrix multiplication in a streaming processor",
+          "authors": "Yun Du、Gang Zhong、Fei Wei、Yibin Zhang、Jing Han、Hongjiang Shang、Elina Kamenetskaya、Minjie Huang、Alexei Vladimirovich Bourd、Chun Yu、Andrew Evan Gruber、Eric Demers",
+          "date": "2025-02-18",
+          "url": "https://patents.google.com/patent/US12229215B2/en",
+          "locator": "发明人栏；图3–6及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "jonathan-ross",
+      "name": "Jonathan Ross",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以显式供数和可预测的执行组织服务神经网络推理。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "tpu-v1-isca2017",
+          "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit",
+          "authors": "Norman P. Jouppi、Jonathan Ross等",
+          "date": "2017",
+          "url": "https://arxiv.org/pdf/1704.04760",
+          "locator": "首页署名；§2，图1–4",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "tsp-isca2020",
+          "title": "Think Fast: A Tensor Streaming Processor (TSP) for Accelerating Deep Learning Workloads",
+          "authors": "Dennis Abts、Jonathan Ross等",
+          "date": "2020",
+          "url": "https://groq.humain.ai/wp-content/uploads/2024/02/2020-Isca.pdf",
+          "locator": "作者列表、摘要及表I指令说明（检索提取）",
+          "type": "原论文局部正文",
+          "contentStatus": "已核验作者、摘要和检索返回的表I正文；PDF直连未成功，未声称通读全文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "michael-james",
+      "name": "Michael James",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "用数据描述符和分布式非零权重映射连接运算、存储与片上通信。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "US11321087B2",
+          "title": "ISA enhancements for accelerated deep learning",
+          "authors": "Michael Morrison、Michael Edwin James、Sean Lie、Srikanth Arekapudi、Gary R. Lauterbach",
+          "date": "2022-05-03",
+          "url": "https://patents.google.com/patent/US11321087B2/en",
+          "locator": "发明人栏；图21–24，Data Structure Descriptor说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "WO2022034542A1",
+          "title": "Weight sparsity techniques for accelerated deep learning",
+          "authors": "Michael Edwin James、Michael Morrison、Sean Lie、Ilya Sharapov、Stewart Griffin Hall",
+          "date": "2022-02-17",
+          "url": "https://patents.google.com/patent/WO2022034542A1/en",
+          "locator": "发明人栏；[0930]–[0939]，图39–41",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "simon-knowles",
+      "name": "Simon Knowles",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以局部存储和显式交换组织并行计算，并为低精度数值范围提供观测机制。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "colossus-mk2-hc2021",
+          "title": "Colossus Mk2",
+          "authors": "Simon Knowles",
+          "date": "2021",
+          "url": "https://hc33.hotchips.org/assets/program/conference/day2/HC2021.Graphcore.SimonKnowles.v04.pdf",
+          "locator": "封面；幻灯片2–10",
+          "type": "作者幻灯片",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US20230281013A1",
+          "title": "Machine Code Instruction",
+          "authors": "Alan Alexander、Simon Knowles、Godfrey Da Costa、Badreddine Noune",
+          "date": "2023-09-07",
+          "url": "https://patents.google.com/patent/US20230281013A1/en",
+          "locator": "发明人栏；图5–7及hist指令说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "wei-han-lien",
+      "name": "Wei-Han Lien",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "在兼容ISA语义的同时解除假依赖，并平衡分支预测速度与准确率。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "US20160055000A1",
+          "title": "Register renamer that handles multiple register sizes aliased to the same storage locations",
+          "authors": "Wei-Han Lien",
+          "date": "2016-02-25",
+          "url": "https://patents.google.com/patent/US20160055000A1/en",
+          "locator": "发明人栏；图2–4及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US12236244B2",
+          "title": "Multi-degree branch predictor",
+          "authors": "Wei-Han Lien、Muawya M. Al-Otoom、Ian D. Kountanis、Niket K. Choudhary、Pruthivi Vuyyuru",
+          "date": "2025-02-25",
+          "url": "https://trea.com/information/multi-degree-branch-predictor/patentgrant/b67ee04b-7b7d-4383-9eed-0d13f063ae16",
+          "locator": "专利原文镜像：署名；图1–2及对应说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "nafea-bshara",
+      "name": "Nafea Bshara",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以多路径可靠传输和自适应中断时机兼顾云系统吞吐与响应。",
+      "nextAction": null,
+      "sources": [
+        {
+          "workId": "srd-hoti2020",
+          "title": "A Cloud-Optimized Transport Protocol for Elastic and Scalable HPC",
+          "authors": "Leah Shalev、Hani Ayoub、Nafea Bshara、Erez Sabbag",
+          "date": "2020",
+          "url": "https://saeed.github.io/CS8803_DNS_Spring2025/assets/srd.pdf",
+          "locator": "原论文镜像：首页署名；第2–4页",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US10614006B2",
+          "title": "Low latency interrupt with existence of interrupt moderation",
+          "authors": "Said Bshara、Erez Izenberg、Yaniv Shapira、Nafea Bshara",
+          "date": "2020-04-07",
+          "url": "https://patents.google.com/patent/US10614006B2/en",
+          "locator": "发明人栏；图4–8及说明",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对署名与所列机制正文。",
+          "evidenceStrength": "一手技术作品；个人归属限于署名与明确陈述。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "15人包中7位已有、刘少礼由PR49覆盖，新增7位；另增Nafea Bshara。",
+    "已有7位保留原固定批次；Santosh Janardhan证据不足暂缓。",
+    "TSP文献已核作者、摘要和检索提取的表I；未声称通读该PDF，另有TPUv1机制正文满足门槛。"
+  ],
+  "publication": {
+    "status": "prepared",
+    "target": "https://wilwan01.github.io/ai/architects/"
+  }
+}

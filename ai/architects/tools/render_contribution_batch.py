@@ -11,7 +11,8 @@ catalog=json.loads((ROOT/'catalog.json').read_text());profiles=catalog['profiles
 batchpaths=catalog['research'].get('batchLogs',[catalog['research']['batchLog']])
 batches=[json.loads((ROOT/path).read_text()) for path in batchpaths]
 page=html.fromstring((ROOT/'index.html').read_text())
-page.xpath('//meta[@name="description"]')[0].set('content',f'{len(profiles)} 位代表性计算机架构人物的核心思想、思维方式、提问与适用边界。依据公开论文、演讲和访谈，区分来源与归纳。')
+for meta in page.xpath('//meta[@name="description" or @property="og:description" or @name="twitter:description"]'):
+ meta.set('content',f'{len(profiles)} 位代表性计算机架构人物的核心思想、思维方式、提问与适用边界。依据公开论文、演讲和访谈，区分来源与归纳。')
 def E(tag,text=None,**attrs):
  e=etree.Element(tag,attrib={k.rstrip('_').replace('_','-'):str(v) for k,v in attrs.items()});e.text=text;return e
 def append(parent,tag,text=None,**attrs):e=E(tag,text,**attrs);parent.append(e);return e
@@ -115,3 +116,4 @@ for batchpath,batch in zip(batchpaths,batches):
  out.append('</ul><p>已核验内容通过 Pages 部署与公开文件一致性检查。<a href="'+esc(batch['publication'].get('verificationRecord','2026-10-06-deployment.json'))+'">查看上线核验记录</a>。</p></main></html>' if batch['publication']['status']=='published' else '</ul><p>页面提交后须另核对 GitHub Pages 部署与公开 catalog；此日志不预先宣称上线。</p></main></html>')
  (ROOT/Path(batchpath).with_suffix('.html')).write_text('\n'.join(out)+'\n')
 print(f'Rendered {len(profiles)} profiles; audited cards: {sum(p.get("researchStatus",{}).get("standard")=="contribution-led-v1" for p in profiles)}')
+
