@@ -1,0 +1,142 @@
+{
+  "id": "yan-xie",
+  "reviewedAt": "2026-10-14",
+  "baseCommit": "c2e8662922fc014292f02a424bd5a4e194662885",
+  "decision": "readmit-proposed",
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "qualifyingWorkIds": [
+    "m100-isca2026",
+    "xie-fan-multiwindow-2015-family"
+  ],
+  "sources": [
+    {
+      "workId": "m100-isca2026",
+      "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+      "authors": "Yan Xie、Min Luo、Yuli Zhang 等",
+      "date": "2026-04-20",
+      "url": "https://arxiv.org/html/2604.17862v1",
+      "locator": "作者脚注；§III-A、III-B1、IV-A–C",
+      "type": "论文全文",
+      "contentStatus": "已直接读取 arXiv v1 的署名、作者脚注及所列机制正文。",
+      "evidenceStrength": "项目负责人及共同通讯作者身份明确；模块设计属于团队共同作品。",
+      "role": "机制与贡献归属",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-10-14"
+    },
+    {
+      "workId": "xie-fan-multiwindow-2015-family",
+      "title": "移动终端上多应用窗口的显示方法及其系统 — WO2016141807A1",
+      "authors": "范皓宇、谢炎；申请人 Alibaba Group Holding Limited",
+      "date": "2016-09-15",
+      "url": "https://patents.google.com/patent/WO2016141807A1/en",
+      "locator": "Inventor / Original Assignee；第四实施方式及图7–10对应说明；权利要求9–11",
+      "type": "专利说明书正文（所列部分）",
+      "contentStatus": "已直接读取公开申请的中文说明书段落、发明人及相关权利要求；未独立核实权利有效状态。",
+      "evidenceStrength": "共同发明人实名署名；阿里申请人、2015年优先权及正文YunOS车载场景与本人履历一致。支持共同系统软件贡献，不分配两人的具体子模块。",
+      "role": "第二项独立技术作品：历史系统软件机制",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-10-14",
+      "familyKey": "PCT/CN2016/074421",
+      "priorityDate": "2015-03-06",
+      "countsForAdmission": true,
+      "independence": "与2026年M100论文的时期、申请主体、技术问题及作品载体不同；同族版本只计一项。",
+      "limits": "公开申请不是授权有效性结论；不证明量产采用、内核/虚拟化设计、单独发明或完整AliOS架构所有权。"
+    },
+    {
+      "workId": "xie-interview-2026",
+      "title": "对谈理想 CTO 谢炎：AI 时代需要新的计算架构，我想在汽车上试出来",
+      "authors": "谢炎（受访者）；晚点访谈转载",
+      "date": "2026-05-12",
+      "url": "https://www.bianews.com/news/details?id=237730",
+      "locator": "问“取消上一代平台的XCU”及答；低精度/稀疏问答；本人职责分工问答；高光荣/CAPSL回忆",
+      "type": "本人技术访谈全文",
+      "contentStatus": "已直接读取Bianews所载晚点Auto问答。本人陈述可归属；转载不是额外作品。",
+      "evidenceStrength": "本人技术论述的一手内容，经媒体编辑并转载；未给出XCU隔离设计文档、实现归属或验证条件。",
+      "role": "本人设计论述与身份交叉核验；本次不计入两作品门槛",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "retrievedAt": "2026-10-14",
+      "countsForAdmission": false,
+      "technicalContent": true,
+      "admissionLimitation": "substantive=false仅表示未满足本次独立贡献作品门槛，不表示没有技术内容。XCU说明是系统集成线索；低精度是研究方向；M100机制与论文重叠。"
+    },
+    {
+      "workId": "xie-li-auto-biography",
+      "title": "谢炎 — 理想汽车管理层官方履历",
+      "authors": "理想汽车",
+      "date": "未标注；2026-10-14核验",
+      "url": "https://ir.lixiang.com/zh-hans/management/xieyan",
+      "locator": "管理层履历：AliOS、华为、Intel及特拉华教育背景",
+      "type": "官方人物简介",
+      "contentStatus": "官方中文页面可读取；英文管理页本次直接访问403，未将失败页面标为正文已读。",
+      "evidenceStrength": "公司一手履历，用于姓名和历史任职锚定，不计技术作品。",
+      "role": "身份与历史职责",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "retrievedAt": "2026-10-14"
+    }
+  ],
+  "identityResolution": {
+    "conclusion": "中文姓名、阿里申请人、2015年时间及YunOS车载技术场景，与官方履历形成一致身份链；作为共同发明人归属接受。",
+    "method": "Exact Chinese name plus employer, period and technical domain; do not rely on Yan Xie alone.",
+    "limits": "未取得发明人单独履历附件；公开作品未划分范皓宇与谢炎的具体子模块。不得从署名推断唯一发明或产品整体所有权。"
+  },
+  "interviewReconciliation": {
+    "oldDecision": "e2a3b98的dataflow记录将采访标成primary/substantive/mechanismBody=true，并计为第二作品；本人问答及XCU资源复用描述是这种认可的可见依据。",
+    "newDecision": "PR #51及其迁移脚本只写本次不计为第二项，没有逐条拒绝理由；不能追溯性声称审核者已认定某一具体缺陷。",
+    "currentAssessment": "采访有实质技术论述，旧认可并非凭空引用。但两份文献不自动代表两项独立设计贡献；XCU段只有资源隔离概述，缺少本人实现归属、隔离/调度机制及验证条件；低精度主要是研究方向，M100讨论与论文重叠。",
+    "ruleInterpretation": "现行验证器允许本人技术访谈全文。没有发现全库禁止访谈的规则，也没有把独立作品误解释为独立第三方验证。",
+    "resolution": "保留采访原文链接和旧档案；本次将其作为补充技术论述而非入库计数项，使用不同年代、不同机制的共同专利申请补足第二作品。",
+    "gapForInterviewToQualify": "带本人职责锚点的XCU/OS设计说明、署名报告或代码，可定位资源分区、隔离边界和调度方法；转载或重复M100介绍不能填补。"
+  },
+  "additionalLeads": [
+    {
+      "title": "Code Size Oriented Memory Allocation for Temporary Variables",
+      "authors": "Ziang Hu, Yan Xie, Guang R. Gao, R. Govindarajan",
+      "date": "2003-12",
+      "url": "https://www.csa.iisc.ac.in/~govind/pub-conf.html",
+      "locator": "MSP-03条目54",
+      "bodyURL": "https://www.serc.iisc.ernet.in/~govind/papers/MSP03-HuEtAl.pdf",
+      "reviewState": "合作者大学书目和CAPSL导师CV已核对；CiteSeer摘要索引可见，但正文直接访问403/502，未取得完整技术正文。",
+      "countsForAdmission": false,
+      "identitySources": [
+        "https://www.capsl.udel.edu/~ggao/cv_2009-old.pdf",
+        "https://www.capsl.udel.edu/~ggao/gao-cv-June-2019.pdf",
+        "https://ir.lixiang.com/zh-hans/management/xieyan",
+        "https://www.bianews.com/news/details?id=237730"
+      ],
+      "identityNote": "导师CV的2001–2003年硕士经历与官方2003年学位、本人高光荣/CAPSL回忆一致；CAPSL书目索引另标Winter 2004，保留日期差异，不把论文与同题学位论文重复计数。",
+      "nextAction": "若继续扩展编译器贡献，取得论文正文并核对算法与评估；不影响本次两作品结论。"
+    },
+    {
+      "title": "星环OS本人访谈",
+      "url": "https://www.36kr.com/p/3252608841457920",
+      "date": "2025-04-16",
+      "reviewState": "已读取本人问答中MCAL/HAL解耦及资源共享段落；作为系统设计论述线索。",
+      "countsForAdmission": false,
+      "limits": "无法据公司层面的我们表述定位个人的内核/调度实现；同一媒体群访的不同刊载不重复计数。"
+    }
+  ],
+  "boundaries": [
+    "不将项目领导、共同署名、共同发明人混为独占设计。",
+    "专利族仅计一项；公开申请不等于已授权、权利有效或商业采用。",
+    "未找到可直接归属个人的完整AliOS/鸿蒙内核实现，不作该主张。",
+    "M100不描述为整SoC无缓存或无指令；采访的成本、性能和排名未作独立验证。"
+  ],
+  "validationBaseline": {
+    "fullValidator": "failed before edits",
+    "reason": "PR #51 added duplicate fixed-batch records for yan-xie, shouyi-yin, peng-ouyang and kuen-hung-tsoi; current profile/source metadata and batch planning fields were inconsistent.",
+    "additionalFailures": [
+      "Kuen Hung Tsoi had four contribution bullets after #51, exceeding the existing maximum of three.",
+      "The existing public patent-application-body label used by Yang Jiao was not in PRIMARY_BODY_TYPES."
+    ]
+  },
+  "changeScope": "Restore yan-xie; preserve 388 baseline profile objects exactly. Kuen Hung Tsoi retains every original contribution sentence and source; only the first two related FPGA-cluster bullets are joined to satisfy the existing three-bullet limit. Reconcile batch bookkeeping and archive #48 without re-admitting existing people.",
+  "publication": "PR proposal only; no merge or live deployment claimed"
+}

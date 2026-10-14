@@ -1,12 +1,10 @@
 {
   "date": "2026-10-13",
   "focus": "可重构处理器、互连与编程体系贡献核验",
-  "completedExisting": 3,
+  "completedExisting": 0,
   "completedNew": 3,
   "counts": {
-    "complete": 6,
-    "partial": 0,
-    "pending": 1
+    "complete": 3
   },
   "records": [
     {
@@ -15,8 +13,154 @@
       "kind": "candidate",
       "status": "complete",
       "reason": "DaVinci 架构职责、UB-Mesh 与 HiFloat4 分别归属；共同署名不代表独立发明，不把后两项研究的全部机制反推为早期 DaVinci 的个人设计。",
-      "nextAction": ""
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "ub-mesh-2025",
+          "title": "UB-Mesh: a Hierarchically Localized nD-FullMesh Datacenter Network Architecture",
+          "authors": "Heng Liao 等；Huawei",
+          "date": "2025",
+          "url": "https://arxiv.org/html/2503.20377v3",
+          "locator": "作者表；§3 层次化 nD-FullMesh；§4.1 All-Path Routing",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "hifloat4-2026",
+          "title": "HiFloat4 Format for Language Model Inference",
+          "authors": "Yuanyong Luo 等；共同作者 Heng Liao",
+          "date": "2026-02-11",
+          "url": "https://arxiv.org/html/2602.11287v1",
+          "locator": "作者表；§II-A 三级缩放元数据；§III-B 点积流程",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "liao-eth-role-2025",
+          "title": "ETH Sustainable AI 2025: Heng Liao speaker biography",
+          "authors": "ETH Future Computing Laboratory",
+          "date": "2025",
+          "url": "https://efcl.ethz.ch/events/conferences---workshops/sustainable-ai-2025/speakers.html",
+          "locator": "Heng Liao 简介中的 DaVinci 软硬件架构职责",
+          "type": "官方会议简介",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "历史职责归属",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
     },
+    {
+      "id": "xinyu-niu",
+      "name": "牛昕宇",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "Remarn 与 Session Types 是研究成果，不等于 CAISA 商业产品已实现相同机制；不把共同作品中的全部编译器贡献独占归给牛昕宇。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "remarn-trets2022",
+          "title": "Remarn: A Reconfigurable Multi-threaded Multi-core Accelerator for Recurrent Neural Networks",
+          "authors": "Zhiqiang Que、Hiroki Nakahara、Hongxiang Fan、He Li、Jiuxi Meng、Kuen Hung Tsoi、Xinyu Niu、Eriko Nurvitadhi、Wayne Luk",
+          "date": "2022-12-22",
+          "url": "https://doi.org/10.1145/3534969",
+          "locator": "作者表；§3 的粗粒度多线程、子层调度及多核划分",
+          "type": "论文全文",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "session-types-can2012",
+          "title": "Session Types: Towards Safe and Fast Reconfigurable Programming",
+          "authors": "Nicholas Ng、Nobuko Yoshida、Xinyu Niu、Kuen Hung Tsoi、Wayne Luk",
+          "date": "2012",
+          "url": "https://mrg.cs.ox.ac.uk/publications/session-types-towards-safe-and-fast-reconfigurable-programming/",
+          "locator": "大学作者页与摘要；论文 DOI 10.1145/2460216.2460221",
+          "type": "大学论文记录",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    },
+    {
+      "id": "yang-jiao-hanguang",
+      "name": "Yang Jiao",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "仅保留 Alibaba 历史项目归属；不猜中文名或现任雇主。US20230185749A1 是公开专利申请，不写成授权专利，不宣称其中方案已用于含光 800。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "hc32-hanguang800",
+          "title": "Hanguang 800 NPU – The Ultimate AI Inference Solution for Data Centers",
+          "authors": "Yang Jiao；Alibaba（2020 年报告归属）",
+          "date": "2020-08-18",
+          "url": "https://hc32.hotchips.org/",
+          "locator": "Conference Day 2 / ML Inference：题名、报告人与机构",
+          "type": "官方技术报告议程记录",
+          "contentStatus": "仅核对官方题名、署名或职责；不宣称正文已复核。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-13"
+        },
+        {
+          "workId": "US20230185749A1",
+          "title": "Systems and methods for parallel processing",
+          "authors": "Liang Han、Chengyuan Wu、Guoyu Zhu、Rong Zhong、Yang Jiao 等共同发明人",
+          "date": "2023-06-15",
+          "url": "https://patents.google.com/patent/US20230185749A1/en",
+          "locator": "发明人表；Description 中 inter-chip network、DMA、load/store、push/pull 段落",
+          "type": "公开专利申请说明书",
+          "contentStatus": "已核对署名与所列机制正文；不代表通读或复现全部实验。",
+          "evidenceStrength": "一手作品支持共同贡献；不支持独占模块归属。",
+          "role": "机制与共同贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-13"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "共同署名仅证明共同贡献，不证明独立设计整款芯片。",
+    "研究机制、公开专利申请与商业产品采用分别标注。",
+    "Yang Jiao 保留历史项目归属；谢炎原条目与采访材料完整保留在待补证记录。",
+    "2026-10-14账本整合：这里只计3位首次进入固定批次的人物。三位已有者的审核留在reviewedExisting，最新来源同步到原dataflow批次；谢炎的2026-10-13待补判断为历史记录，本次已补齐。"
+  ],
+  "publication": {
+    "status": "pending"
+  },
+  "historicalReviewSnapshot": "research/history/2026-10-13-approved-six-pr51.snapshot.json",
+  "reviewedExisting": [
     {
       "id": "kuen-hung-tsoi",
       "name": "蔡权雄",
@@ -42,22 +186,6 @@
       "nextAction": ""
     },
     {
-      "id": "xinyu-niu",
-      "name": "牛昕宇",
-      "kind": "candidate",
-      "status": "complete",
-      "reason": "Remarn 与 Session Types 是研究成果，不等于 CAISA 商业产品已实现相同机制；不把共同作品中的全部编译器贡献独占归给牛昕宇。",
-      "nextAction": ""
-    },
-    {
-      "id": "yang-jiao-hanguang",
-      "name": "Yang Jiao",
-      "kind": "candidate",
-      "status": "complete",
-      "reason": "仅保留 Alibaba 历史项目归属；不猜中文名或现任雇主。US20230185749A1 是公开专利申请，不写成授权专利，不宣称其中方案已用于含光 800。",
-      "nextAction": ""
-    },
-    {
       "id": "yan-xie",
       "name": "谢炎",
       "kind": "existing",
@@ -66,12 +194,9 @@
       "nextAction": "补第二项可归属到同一人的实质技术作品并定位个人贡献范围；不将项目负责等同于模块独占设计。"
     }
   ],
-  "notes": [
-    "共同署名仅证明共同贡献，不证明独立设计整款芯片。",
-    "研究机制、公开专利申请与商业产品采用分别标注。",
-    "Yang Jiao 保留历史项目归属；谢炎原条目与采访材料完整保留在待补证记录。"
-  ],
-  "publication": {
-    "status": "pending"
-  }
+  "scope": "additional",
+  "baseCommit": "30d84ab98d3b80707f029c93cf88439be1d51e82",
+  "plannedScope": 3,
+  "plannedExisting": 0,
+  "plannedCandidates": 3
 }

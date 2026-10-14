@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "architect-candidate-intake-v1",
+  "date": "2026-10-13",
+  "baseCommit": "55dd046ec457ed403c9ea16321f696389b2be7dd",
+  "title": "国内GPU与AI系统架构候选：原八位与梁军、谢炎",
+  "scope": "research-only",
+  "stage": "priority-candidate-intake",
+  "candidateCount": 10,
+  "publishedProfilesAdded": 0,
+  "catalogModified": false,
+  "deduplication": {
+    "status": "pending-full-catalog-check",
+    "knownExistingExcluded": [{"id": "yunji-chen", "name": "陈云霁"}],
+    "note": "下列候选ID仅用于本研究记录，不是确认的新目录ID。完整目录读取受限，不能把十位候选计为十个新人物。"
+  },
+  "publicationGate": {
+    "id": "two-distinct-primary-works-one-body-v1",
+    "passedInThisIntake": false,
+    "requirements": [
+      "逐人确认身份、既有条目及中英文别名，区分历史与现任职务。",
+      "至少两项不同的实质一手技术作品，至少一项核验机制正文及本人贡献归属。",
+      "同一论文的arXiv版本、会议程序和会议版本按同一作品去重。",
+      "公司或投资方履历仅用于身份及职责锚定，不自动算作个人技术作品。",
+      "保留共同作者与团队贡献，不能把公司全部创新归给CTO或创始人。",
+      "研究候选进入本文件不代表人物卡完成、目录新增或网站发布。"
+    ]
+  },
+  "sources": {
+    "metax-team": {
+      "url": "https://www.metax-tech.com/about.html",
+      "title": "沐曦公司与团队介绍",
+      "type": "company-biography",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false
+    },
+    "peng-sjtu": {
+      "url": "https://news.sjtu.edu.cn/jdyw/20220312/168085.html",
+      "title": "上海交通大学关于彭莉的校友报道",
+      "type": "university-biography",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false
+    },
+    "yang-shanghaitech": {
+      "url": "https://sist.shanghaitech.edu.cn/sist_en/2024/0401/c11304a1093468/page.htm",
+      "title": "上海科技大学杨建讲座介绍",
+      "type": "university-talk-landing-page",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false,
+      "note": "讲者介绍不代替技术报告正文。"
+    },
+    "hong-biren": {
+      "url": "https://www.birentech.com/news/q7u5sir86pm8mpcaph9utg05/",
+      "title": "壁仞洪洲官方资料",
+      "type": "company-profile",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false
+    },
+    "liu-yan-hotchips-announcement": {
+      "url": "https://www.prnasia.com/story/330283-1.shtml",
+      "title": "燧原2021年Hot Chips技术报告公告",
+      "type": "company-issued-conference-announcement",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false,
+      "note": "历史首席架构师与报告线索；需获取原始演讲稿，不以新闻稿代替机制正文。"
+    },
+    "cambricon-isa": {
+      "url": "https://ieeexplore.ieee.org/document/7551409",
+      "title": "Cambricon: An Instruction Set Architecture for Neural Networks",
+      "type": "research-paper",
+      "workId": "cambricon-isa-isca2016",
+      "reviewState": "carried-forward-paper-lead-full-audit-pending",
+      "countsAsTechnicalWork": null
+    },
+    "lu-h100-essay": {
+      "url": "https://www.iluvatar.com/newsDetails?code=wkywdH100GPU&topicId=495",
+      "title": "吕坚平：我看英伟达H100 GPU",
+      "type": "authored-technical-commentary",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": null,
+      "note": "评论H100的架构不证明参与设计H100。"
+    },
+    "wang-gpuplus-lead": {
+      "url": "https://www.qbitai.com/2022/06/35553.html",
+      "title": "登临王平GPU+讲座线索",
+      "type": "conference-report-secondary-lead",
+      "reviewState": "carried-forward-source-lead",
+      "countsAsTechnicalWork": false
+    },
+    "weiyu-bio": {
+      "url": "https://www.xieweiyu.me/about",
+      "title": "Weiyu Xie个人简介",
+      "type": "personal-biography",
+      "reviewState": "carried-forward-from-prior-screening",
+      "countsAsTechnicalWork": false
+    },
+    "ktransformers-paper": {
+      "url": "https://madsys.cs.tsinghua.edu.cn/publication/ktransformers-unleashing-the-full-potential-of-cpu/gpu-hybrid-inference-for-moe-models/",
+      "title": "KTransformers: Unleashing the Full Potential of CPU/GPU Hybrid Inference for MoE Models",
+      "type": "university-paper-page",
+      "workId": "ktransformers-cpu-gpu-hybrid-inference",
+      "reviewState": "carried-forward-paper-lead-full-audit-pending",
+      "countsAsTechnicalWork": null
+    },
+    "fangqing-nio-20250730": {
+      "url": "https://www.niocapital.com/news/435.html",
+      "title": "昉擎科技官宣天使轮融资，蔚来资本参与天使轮并领投天使+轮",
+      "date": "2025-07-30",
+      "publisher": "蔚来资本",
+      "type": "investor-first-party-company-disclosure",
+      "reviewState": "body-read-2026-10-13",
+      "locator": "正文：梁军于2024年8月正式加入、出任CEO，以及历史职位段落。",
+      "supports": ["梁军于2024年8月加入昉擎科技并出任CEO", "曾任寒武纪CTO及海思麒麟SoC总架构师"],
+      "countsAsTechnicalWork": false
+    },
+    "fangqing-nio-20260309": {
+      "url": "https://www.niocapital.com/news/472.html",
+      "title": "AI芯片及系统架构研发商昉擎科技完成Pre-A轮融资，蔚来资本持续加磅",
+      "date": "2026-03-09",
+      "publisher": "蔚来资本",
+      "type": "investor-first-party-company-disclosure",
+      "reviewState": "body-read-2026-10-13",
+      "locator": "正文：CEO技术履历、上下文相关/无关架构、梁军关于可扩展系统设计的发言。",
+      "supports": ["梁军的CEO职务在2026年公告中再次确认", "公司提出Attention与FFN模块的异构分布式部署方向", "梁军公开主张优先可扩展系统设计"],
+      "countsAsTechnicalWork": false,
+      "limitations": ["投资方与企业存在利益关系，不能作为独立性能验证", "未给出可复现实测、量产采用证明或个人独占发明归属", "不能据此宣称改变Transformer数学依赖或消除层间串行依赖"]
+    },
+    "li-auto-xie-management": {
+      "url": "https://liauto.gcs-web.com/management/yan-xie",
+      "title": "Yan Xie — Management — Li Auto",
+      "publisher": "Li Auto",
+      "type": "company-biography",
+      "reviewState": "official-search-excerpt-verified-2026-10-13-direct-open-403",
+      "supports": ["谢炎任理想汽车CTO", "曾任AliOS首席架构师及华为终端操作系统相关技术负责人"],
+      "countsAsTechnicalWork": false
+    },
+    "li-auto-xie-appointment": {
+      "url": "https://liauto.gcs-web.com/news-releases/news-release-details/li-auto-inc-announces-management-and-board-changes/",
+      "title": "Li Auto Inc. Announces Management and Board Changes",
+      "date": "2022-12-09",
+      "type": "company-appointment-announcement",
+      "reviewState": "official-search-excerpt-verified-2026-10-13",
+      "supports": ["谢炎CTO任命生效日期2022-12-12"],
+      "countsAsTechnicalWork": false
+    },
+    "m100-paper": {
+      "url": "https://arxiv.org/html/2604.17862v1",
+      "title": "M100: An Orchestrated Dataflow Architecture Powering General AI Computing",
+      "date": "2026-04-20",
+      "authors": "Yan Xie and the Li Auto M100 team",
+      "workId": "m100-orchestrated-dataflow-isca2026",
+      "type": "research-paper-full-text-html",
+      "reviewState": "authorship-and-mechanism-sections-read-2026-10-13",
+      "locator": "作者页脚；Sections III-A1–A5、III-B、IV-A–B。",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "countsAsTechnicalWork": true,
+      "individualAttribution": "原文明确标注Yan Xie为Project lead；同时是两位通讯作者之一。其他作者按名字字母排序。",
+      "supports": ["M100项目领导及共同技术贡献的直接个人锚点", "编译器/运行时管理数据流与显式DMA搬运", "NPU以张量粒度执行、生产者消费者同步计数器和软件编排"],
+      "limitations": ["项目领导和共同论文不等于独占每个硬件模块的发明", "NPU避免多级cache不等于整个SoC无cache；CPU集群仍有一致性互联和共享LLC", "未独立复现论文性能，不能将等效TOPS当成通用跨产品实测", "本文与其会议页面、其他版本只能计为一个作品"]
+    },
+    "m100-isca-program": {
+      "url": "https://www.iscaconf.org/isca2026/program/",
+      "title": "ISCA 2026 Conference Program",
+      "type": "conference-program",
+      "reviewState": "official-program-opened-and-entry-verified-2026-10-13",
+      "workId": "m100-orchestrated-dataflow-isca2026",
+      "countsAsTechnicalWork": false,
+      "note": "确认M100论文与Li Auto作者名单；这是同一作品的会议元数据，不是第二项技术作品。"
+    }
+  },
+  "candidates": [
+    {
+      "candidateId": "peng-li-metax",
+      "name": "彭莉",
+      "organizationContext": "沐曦",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["GPU硬件架构", "SoC集成"],
+      "sourceIds": ["metax-team", "peng-sjtu"],
+      "nextAction": "核验两项可归属的技术作品，定位AMD/沐曦时期具体GPU或SoC机制；避免用历任头衔替代贡献。"
+    },
+    {
+      "candidateId": "yang-jian-metax",
+      "name": "杨建",
+      "organizationContext": "沐曦",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["GPU软件架构", "编译器与运行时", "软硬件协同"],
+      "sourceIds": ["metax-team", "yang-shanghaitech"],
+      "nextAction": "获取署名技术报告/论文/专利正文，将软件栈职责落实到具体编译、调度或异构计算机制。"
+    },
+    {
+      "candidateId": "hong-zhou-biren",
+      "name": "洪洲",
+      "organizationContext": "壁仞科技",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["GPU架构", "GPGPU"],
+      "sourceIds": ["hong-biren"],
+      "nextAction": "补足至少两项本人具名技术作品；按NVIDIA/Futurewei/S3/壁仞历史阶段分别归属，不将全公司产品创新个人化。"
+    },
+    {
+      "candidateId": "liu-yan-enflame",
+      "name": "刘彦",
+      "organizationContext": "燧原科技，历史首席架构师记录",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "currentRoleVerified": false,
+      "proposedDomains": ["AI加速器", "计算数据互联架构"],
+      "sourceIds": ["liu-yan-hotchips-announcement"],
+      "nextAction": "取得Hot Chips原始资料核验署名和机制，并补第二项不同作品；确认当前任职，保留与冯闯等团队成员的共同归属。"
+    },
+    {
+      "candidateId": "liu-shaoli-cambricon",
+      "name": "刘少礼",
+      "organizationContext": "寒武纪",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["神经网络ISA", "AI处理器架构"],
+      "sourceIds": ["cambricon-isa"],
+      "nextAction": "取得Cambricon ISA原文与另一项本人共同署名的实质作品，分别说明论文机制和商业产品归属边界。"
+    },
+    {
+      "candidateId": "lu-jianping-iluvatar",
+      "name": "吕坚平",
+      "organizationContext": "天数智芯",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["GPU架构", "体系结构分析"],
+      "sourceIds": ["lu-h100-essay"],
+      "nextAction": "核实Jianping Lu英文身份，定位本人设计成果与独立技术作品；H100评论仅是技术分析，不是H100设计参与证明。"
+    },
+    {
+      "candidateId": "wang-ping-denglin",
+      "name": "王平",
+      "organizationContext": "登临科技，历史会议资料",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "currentRoleVerified": false,
+      "proposedDomains": ["GPU+", "片内异构计算"],
+      "sourceIds": ["wang-gpuplus-lead"],
+      "nextAction": "补原始GPU+技术报告及具名技术作品；消除Ping Wang同名歧义，并复核当前任职。"
+    },
+    {
+      "candidateId": "xie-weiyu-inference",
+      "name": "谢威宇",
+      "organizationContext": "趋境科技／KTransformers；不是摩尔线程",
+      "priority": "user-approved-original-eight",
+      "status": "priority-audit-pending",
+      "proposedDomains": ["AI推理系统", "CPU/GPU协同", "系统软件"],
+      "sourceIds": ["weiyu-bio", "ktransformers-paper"],
+      "nextAction": "核验KTransformers与VertexSurge两项作品的作者、正文与机制；保留共同作者贡献，不能归为GPU芯片主架构师。"
+    },
+    {
+      "candidateId": "liang-jun-fangqing",
+      "name": "梁军",
+      "organizationContext": "上海昉擎科技有限公司",
+      "priority": "user-requested-addition",
+      "status": "priority-audit-pending",
+      "role": "CEO；历史任职：寒武纪CTO、海思麒麟SoC总架构师",
+      "roleEvidenceDate": "2026-03-09",
+      "joinedAsCEO": "2024-08",
+      "proposedDomains": ["SoC与AI加速器", "系统级芯片定义", "解耦分布式推理"],
+      "sourceIds": ["fangqing-nio-20250730", "fangqing-nio-20260309"],
+      "reason": "新公司与技术方向已由直接投资方公告确认；有延续的SoC、AI芯片及系统架构工作，不再仅按离职CTO履历处理。",
+      "attributionBoundary": "2024年8月是加入并出任CEO的日期，不能改写为公司成立日期；本轮不认定其为唯一创始人。新架构是公司披露，不能直接认定为梁军独占发明或已获实测验证。",
+      "nextAction": "补本人具名专利/论文/技术报告至少两项，核验Attention/FFN硬件映射、通信代价、容量和调度边界及实现证据。"
+    },
+    {
+      "candidateId": "xie-yan-li-auto",
+      "name": "谢炎",
+      "aliases": ["Yan Xie", "Xie Yan"],
+      "organizationContext": "理想汽车",
+      "priority": "user-requested-evaluation-promoted-on-direct-evidence",
+      "status": "priority-audit-pending",
+      "role": "CTO；M100论文明确标注的Project lead及通讯作者之一",
+      "proposedDomains": ["工作负载驱动的芯片定义", "车端AI加速器", "编译器与硬件协同", "垂直整合系统架构"],
+      "sourceIds": ["li-auto-xie-management", "li-auto-xie-appointment", "m100-paper", "m100-isca-program"],
+      "verifiedDistinctTechnicalWorksInThisIntake": 1,
+      "reason": "原始M100论文直接标注项目领导和通讯作者身份，并已读到数据流、显式存储管理、张量粒度执行与同步机制。个人技术关联强于仅有CTO头衔或发布会出席。",
+      "productCorrection": "用户所指为理想M100／马赫M100，不是AMD MI100。",
+      "attributionBoundary": "按照项目领导与团队共同技术贡献表述，不推定其独立设计所有模块；论文和会议程序不是两项作品。",
+      "nextAction": "补另一项不同的本人实质一手技术作品；核验相关操作系统/软硬件协同历史成果，并完成去重、贡献卡与边界挑战审核。"
+    }
+  ],
+  "publication": {
+    "status": "not-published",
+    "reason": "此提交只建立候选与证据记录，不修改catalog.json或index.html，不提升正式人物计数。"
+  }
+}
