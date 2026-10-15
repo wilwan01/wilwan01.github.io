@@ -128,7 +128,8 @@
         "wenxiang-wang",
         "ruiyang-wu",
         "yungang-bao",
-        "zhangxi-tan"
+        "zhangxi-tan",
+        "zhijian-chen"
       ]
     },
     {
@@ -412,7 +413,8 @@
         "ruoyu-qin",
         "feng-ren",
         "zheming-li",
-        "wei-lin"
+        "wei-lin",
+        "xianguo-zhang"
       ]
     },
     {
@@ -49937,6 +49939,227 @@
         "validation": "固定模型与精度，对通信服务及内核融合分别消融并测端到端延迟。",
         "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
       }
+    },
+    {
+      "id": "zhijian-chen",
+      "name": "陈志坚",
+      "aliases": [
+        "Zhijian Chen"
+      ],
+      "field": "CPU 乱序控制与浮点数据通路",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "把依赖调度、顺序提交与算术关键路径分别验证。",
+      "background": "所列浙江大学及中天微专利以中文列陈志坚为共同发明人；中天微／阿里平头哥是历史经历，不标为现任阿里架构师。",
+      "contributions": [
+        "共同提出以保留站等待操作数、通过结果标签唤醒并由重排序缓冲顺序提交的乱序控制方案。",
+        "共同提出将补码转换与舍入合并到加法路径的浮点加法装置。"
+      ],
+      "argument": "编辑分析：分别衡量调度等待和算术路径；性能收益须包含控制及布线成本。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "乱序控制的依赖追踪与浮点舍入优化能否同时满足正确性和时序约束？"
+      ],
+      "boundary": "两项独立专利支持共同贡献，不代表独创乱序执行或浮点加法，也不证明玄铁产品采用这些方案；玄铁910论文与同芯片演讲不重复计数。",
+      "diagnostic": "以依赖链、异常恢复和浮点边界输入验证结果，再测关键路径与面积。",
+      "notes": [],
+      "sources": [
+        [
+          "嵌入式处理器的乱序执行控制装置",
+          "https://patents.google.com/patent/CN101477454A/zh",
+          "发明人表；具体实施方式：分布式保留站、结果标签广播、ROB顺序提交"
+        ],
+        [
+          "基于补码舍入的浮点加法装置",
+          "https://patents.google.com/patent/CN101650642B/zh",
+          "发明人表；具体实施方式：尾数对齐、补码舍入逻辑、舍入加法器及规格化"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN101477454A",
+          "title": "嵌入式处理器的乱序执行控制装置",
+          "authors": "严晓浪、陈志坚、葛海通、孟建熠",
+          "date": "2009-07-08",
+          "url": "https://patents.google.com/patent/CN101477454A/zh",
+          "locator": "发明人表；具体实施方式：分布式保留站、结果标签广播、ROB顺序提交",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN101650642B",
+          "title": "基于补码舍入的浮点加法装置",
+          "authors": "严晓浪、陈志坚、孟建熠、葛海通",
+          "date": "2011-01-05",
+          "url": "https://patents.google.com/patent/CN101650642B/zh",
+          "locator": "发明人表；具体实施方式：尾数对齐、补码舍入逻辑、舍入加法器及规格化",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN101477454A",
+          "text": "共同提出以保留站等待操作数、通过结果标签唤醒并由重排序缓冲顺序提交的乱序控制方案。"
+        },
+        {
+          "workId": "CN101650642B",
+          "text": "共同提出将补码转换与舍入合并到加法路径的浮点加法装置。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-alibaba-followthrough",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "CPU 乱序控制与浮点数据通路",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "乱序控制的依赖追踪与浮点舍入优化能否同时满足正确性和时序约束？",
+        "variables": "保留站容量、标签位宽、广播扇出、关键路径、舍入模式",
+        "model": "编辑条件模型：分别衡量调度等待和算术路径；性能收益须包含控制及布线成本。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "广播拥塞或极端舍入输入可能暴露吞吐瓶颈及正确性问题。",
+        "validation": "以依赖链、异常恢复和浮点边界输入验证结果，再测关键路径与面积。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "xianguo-zhang",
+      "name": "张先国",
+      "aliases": [
+        "Xianguo Zhang"
+      ],
+      "field": "云 CPU 平台与虚拟网络架构",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "network",
+        "cpu"
+      ],
+      "core": "联合评估计算隔离、IO卸载与网络状态管理的系统成本。",
+      "background": "2022云栖演讲明确其阿里云弹性计算高级架构师身份；阿里报文处理专利列张先国为发明人。按历史云平台与网络作品归类。",
+      "contributions": [
+        "在本人技术演讲中阐述CIPU连接多单路计算节点、卸载虚拟化与IO数据面以及ECS Booster软件优化的系统方案。",
+        "所列专利提出通过五元组、报文标签与秘钥匹配判定回程报文转发的方案，以减少交换机侧会话表查询。"
+      ],
+      "argument": "编辑分析：云实例硬件拓扑与网络状态路径分别建模，端到端收益需要共同测量。",
+      "evidence": "一项本人技术演讲整理与一项独立专利；分别核对讲者归属、发明人及机制正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "减少NUMA耦合与会话表查询后，新增卸载和标签管理成本是否可控？"
+      ],
+      "boundary": "云平台／系统架构方向；演讲支持本人技术阐述，不证明倚天710或CIPU芯片微结构由其设计。专利列其一人为发明人，但不外推为整个网络产品独占设计。演讲转载不另计作品，厂商性能数字未复现。",
+      "diagnostic": "固定实例规格与负载，测CPU占用、IO尾延迟和故障影响，并验证标签异常及会话转换。",
+      "notes": [],
+      "sources": [
+        [
+          "云原生算力新时代：倚天ECS技术揭秘",
+          "https://developer.aliyun.com/article/1081746",
+          "2022-11-17演讲整理；开篇讲者归属；§02 CIPU多单路架构、IO卸载及ECS Booster"
+        ],
+        [
+          "报文处理方法及电子设备",
+          "https://patents.google.com/patent/WO2023169270A1/zh",
+          "发明人及申请人表；说明书发明内容：五元组、报文标签、秘钥匹配及转发；优先权2022-03-08"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "yitian-ecs-yunqi2022",
+          "title": "云原生算力新时代：倚天ECS技术揭秘",
+          "authors": "张先国（演讲）；弹性计算-百晓生（整理发布）",
+          "date": "2022-11-05",
+          "url": "https://developer.aliyun.com/article/1081746",
+          "locator": "2022-11-17演讲整理；开篇讲者归属；§02 CIPU多单路架构、IO卸载及ECS Booster",
+          "type": "作者会议报告",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "本人会议报告经弹性计算账号整理；支持系统方案阐述，不推断团队模块分工。",
+          "role": "本人技术报告",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "WO2023169270A1",
+          "title": "报文处理方法及电子设备",
+          "authors": "张先国",
+          "date": "2023-09-14",
+          "url": "https://patents.google.com/patent/WO2023169270A1/zh",
+          "locator": "发明人及申请人表；说明书发明内容：五元组、报文标签、秘钥匹配及转发；优先权2022-03-08",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "专利发明人表列张先国；只支持所述专利方案，不推断整个产品归属。",
+          "role": "专利所列发明人",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "yitian-ecs-yunqi2022",
+          "text": "在本人技术演讲中阐述CIPU连接多单路计算节点、卸载虚拟化与IO数据面以及ECS Booster软件优化的系统方案。"
+        },
+        {
+          "workId": "WO2023169270A1",
+          "text": "所列专利提出通过五元组、报文标签与秘钥匹配判定回程报文转发的方案，以减少交换机侧会话表查询。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-alibaba-followthrough",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "云 CPU 平台与虚拟网络架构",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "减少NUMA耦合与会话表查询后，新增卸载和标签管理成本是否可控？",
+        "variables": "计算隔离、IO吞吐、故障域、会话规模、标签开销",
+        "model": "编辑条件模型：云实例硬件拓扑与网络状态路径分别建模，端到端收益需要共同测量。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "卸载设备饱和、标签管理失配或小规模会话可能抵消预期收益。",
+        "validation": "固定实例规格与负载，测CPU占用、IO尾延迟和故障影响，并验证标签异常及会话转换。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
     }
   ],
   "research": {
@@ -49947,7 +50170,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 403,
+    "totalProfiles": 405,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -49968,12 +50191,13 @@
       "research/batches/2026-10-13-dataflow.json",
       "research/batches/2026-10-13-next4-followthrough.json",
       "research/batches/2026-10-13-approved-six.json",
-      "research/batches/2026-10-15-domestic-core.json"
+      "research/batches/2026-10-15-domestic-core.json",
+      "research/batches/2026-10-15-alibaba-followthrough.json"
     ],
-    "completedTotal": 402,
+    "completedTotal": 404,
     "remainingCatalog": 1,
     "remainingPlanned": 6,
-    "additionalPlannedScope": 108,
-    "additionalCompleted": 102
+    "additionalPlannedScope": 110,
+    "additionalCompleted": 104
   }
 }
