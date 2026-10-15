@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-15",
+  "testedContentCommit": "63d0afd6f7f2784bc1e48048c0a4652ea3065aac",
+  "decision": "No merge blocker found",
+  "evidence": {
+    "works": [
+      "M100 arXiv:2604.17862v1",
+      "WO2016141807A1"
+    ],
+    "attribution": "Project lead and co-corresponding author; joint inventor with Fan Haoyu. No sole module ownership, patent grant, adoption or whole-OS claim inferred.",
+    "identity": "Chinese name, Alibaba employer, period and YunOS domain consistent with official biography."
+  },
+  "catalog": {
+    "uniqueProfiles": 390,
+    "unchangedPriorProfileObjects": 388,
+    "otherPriorChange": "Kuen Hung Tsoi: formatting only; all sentences/sources retained",
+    "fullValidator": "pass",
+    "targetedPreservationValidator": "pass",
+    "rendererByteIdempotence": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "pr48": {
+    "head": "dc7404dff7fd6d28c3434cf7d78245d6c889520d",
+    "archive": "history/pr48-china-gpu-ai-ten.original.json",
+    "byteIdentical": true,
+    "sha256": "03b99450e27d9ed512124672a3e027a0d87b58c96c42e46cce1c2fadc0e6e5bc",
+    "sourceRecords": 16,
+    "uniqueCandidateMappings": 10
+  },
+  "browser": {
+    "engine": "Chromium 153.0.8010.0 via Playwright",
+    "viewports": [
+      "1440x1000",
+      "390x844"
+    ],
+    "passed": [
+      "390 profile articles",
+      "390 matrix rows and displayed total",
+      "Chinese display-name search",
+      "no-result empty state",
+      "skill filter and reset",
+      "profile anchor navigation",
+      "research details expansion",
+      "active sidebar synchronization",
+      "desktop sidebar current link in view",
+      "no page exceptions",
+      "no horizontal viewport overflow"
+    ],
+    "visualInspection": "Chinese font installed in test environment; mobile screenshot inspected",
+    "limitation": "Existing display-name-only search does not match Yan Xie; use 谢炎. Not introduced by this PR.",
+    "script": "../tools/check_yan_xie_page.cjs",
+    "run": "Serve repository root; node ai/architects/tools/check_yan_xie_page.cjs http://127.0.0.1:8765/ai/architects/ (requires playwright; optional PLAYWRIGHT_MODULE, CHROMIUM_EXECUTABLE, SCREENSHOT_DIR)."
+  },
+  "githubChecks": {
+    "reviews": 0,
+    "checkRuns": 0,
+    "statusContexts": 0,
+    "note": "No CI pass claimed; executable local validation performed."
+  },
+  "deployment": "Not yet merged at receipt creation. Deployment is a separate post-merge check."
+}
