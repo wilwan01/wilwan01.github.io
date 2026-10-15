@@ -1,5 +1,5 @@
 /* Usage: PLAYWRIGHT_MODULE=... CHROMIUM_EXECUTABLE=... node this-file [URL]
- * Optional BROWSER_PROXY, IGNORE_HTTPS_ERRORS=1, SCREENSHOT_DIR.
+ * Optional BATCH_FILE (relative to architects), BROWSER_PROXY, IGNORE_HTTPS_ERRORS=1, SCREENSHOT_DIR.
  * Checks the fixed 2026-10-15 admission batch against the local catalog.
  */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
@@ -7,7 +7,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'catalog.json'),'utf8'));
-const batch=JSON.parse(fs.readFileSync(path.join(root,'research/batches/2026-10-15-domestic-core.json'),'utf8'));
+const batch=JSON.parse(fs.readFileSync(path.join(root,process.env.BATCH_FILE||'research/batches/2026-10-15-domestic-core.json'),'utf8'));
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE,headless:true,
   ...(process.env.BROWSER_PROXY?{proxy:{server:process.env.BROWSER_PROXY}}:{}),

@@ -32,35 +32,64 @@
   "admitted": [
     "yibo-zhu",
     "jianlin-gao",
-    "xueliang-du"
+    "xueliang-du",
+    "zhijian-chen",
+    "xianguo-zhang"
   ],
-  "pending": [
-    {
-      "name": "陈志坚",
-      "companyContext": "中天微／阿里平头哥历史；不标为现任阿里架构师",
-      "status": "pending",
-      "reason": "ISCA2020玄铁910作者表含Zhijian Chen；Hot Chips2020同芯片报告不独立计数。仍需核验第二项独立作品及中文/英文身份链接。",
-      "sources": [
-        "https://www.iscaconf.org/isca2020/program/index.html",
-        "https://www.qimingvc.com/cn/news/嘉宾阵容揭晓-2026waic启明创投·创业与投资论坛——从算力原点到应用落地的进化征程"
-      ],
-      "nextAction": "从中天微时期论文或本人专利查证第二项，不按创业职务补足。"
-    },
-    {
-      "name": "张先国",
-      "companyContext": "阿里云 CPU 平台／CIPU 系统方向",
-      "status": "pending",
-      "reason": "阿里云开发者报道是系统架构线索，尚未形成两项独立署名技术作品；不等同于倚天芯片设计。",
-      "sources": [
-        "https://developer.aliyun.com/article/1081746"
-      ],
-      "nextAction": "核对本人技术报告及第二项独立系统机制作品。"
-    }
-  ],
+  "pending": [],
   "boundaries": [
     "不以开发者社区域名判断文章作者就是该公司员工。",
     "不推断腾讯紫霄或百度昆仑芯全部模块的独占设计归属。",
     "字节新增为AI系统架构，不冒充芯片微结构设计。",
     "搜索未找到充分证据不代表公司不存在其他核心架构师。"
+  ],
+  "resolved": [
+    {
+      "originalScreening": {
+        "name": "陈志坚",
+        "companyContext": "中天微／阿里平头哥历史；不标为现任阿里架构师",
+        "status": "pending",
+        "reason": "ISCA2020玄铁910作者表含Zhijian Chen；Hot Chips2020同芯片报告不独立计数。仍需核验第二项独立作品及中文/英文身份链接。",
+        "sources": [
+          "https://www.iscaconf.org/isca2020/program/index.html",
+          "https://www.qimingvc.com/cn/news/嘉宾阵容揭晓-2026waic启明创投·创业与投资论坛——从算力原点到应用落地的进化征程"
+        ],
+        "nextAction": "从中天微时期论文或本人专利查证第二项，不按创业职务补足。"
+      },
+      "resolution": {
+        "date": "2026-10-15",
+        "status": "complete",
+        "id": "zhijian-chen",
+        "batch": "2026-10-15-alibaba-followthrough",
+        "reason": "两项独立专利支持共同贡献，不代表独创乱序执行或浮点加法，也不证明玄铁产品采用这些方案；玄铁910论文与同芯片演讲不重复计数。",
+        "works": [
+          "CN101477454A",
+          "CN101650642B"
+        ]
+      }
+    },
+    {
+      "originalScreening": {
+        "name": "张先国",
+        "companyContext": "阿里云 CPU 平台／CIPU 系统方向",
+        "status": "pending",
+        "reason": "阿里云开发者报道是系统架构线索，尚未形成两项独立署名技术作品；不等同于倚天芯片设计。",
+        "sources": [
+          "https://developer.aliyun.com/article/1081746"
+        ],
+        "nextAction": "核对本人技术报告及第二项独立系统机制作品。"
+      },
+      "resolution": {
+        "date": "2026-10-15",
+        "status": "complete",
+        "id": "xianguo-zhang",
+        "batch": "2026-10-15-alibaba-followthrough",
+        "reason": "云平台／系统架构方向；演讲支持本人技术阐述，不证明倚天710或CIPU芯片微结构由其设计。专利列其一人为发明人，但不外推为整个网络产品独占设计。演讲转载不另计作品，厂商性能数字未复现。",
+        "works": [
+          "yitian-ecs-yunqi2022",
+          "WO2023169270A1"
+        ]
+      }
+    }
   ]
 }

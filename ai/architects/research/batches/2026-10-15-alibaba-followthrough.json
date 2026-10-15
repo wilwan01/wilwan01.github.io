@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-15",
+  "focus": "阿里历史候选陈志坚、张先国补证",
+  "scope": "additional",
+  "baseCommit": "2383c37938503375211bff42669727b145d480da",
+  "plannedScope": 2,
+  "plannedExisting": 0,
+  "plannedCandidates": 2,
+  "completedExisting": 0,
+  "completedNew": 2,
+  "counts": {
+    "complete": 2
+  },
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "zhijian-chen",
+      "name": "陈志坚",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "两项独立专利支持共同贡献，不代表独创乱序执行或浮点加法，也不证明玄铁产品采用这些方案；玄铁910论文与同芯片演讲不重复计数。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "CN101477454A",
+          "title": "嵌入式处理器的乱序执行控制装置",
+          "authors": "严晓浪、陈志坚、葛海通、孟建熠",
+          "date": "2009-07-08",
+          "url": "https://patents.google.com/patent/CN101477454A/zh",
+          "locator": "发明人表；具体实施方式：分布式保留站、结果标签广播、ROB顺序提交",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN101650642B",
+          "title": "基于补码舍入的浮点加法装置",
+          "authors": "严晓浪、陈志坚、孟建熠、葛海通",
+          "date": "2011-01-05",
+          "url": "https://patents.google.com/patent/CN101650642B/zh",
+          "locator": "发明人表；具体实施方式：尾数对齐、补码舍入逻辑、舍入加法器及规格化",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "id": "xianguo-zhang",
+      "name": "张先国",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "云平台／系统架构方向；演讲支持本人技术阐述，不证明倚天710或CIPU芯片微结构由其设计。专利列其一人为发明人，但不外推为整个网络产品独占设计。演讲转载不另计作品，厂商性能数字未复现。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "yitian-ecs-yunqi2022",
+          "title": "云原生算力新时代：倚天ECS技术揭秘",
+          "authors": "张先国（演讲）；弹性计算-百晓生（整理发布）",
+          "date": "2022-11-05",
+          "url": "https://developer.aliyun.com/article/1081746",
+          "locator": "2022-11-17演讲整理；开篇讲者归属；§02 CIPU多单路架构、IO卸载及ECS Booster",
+          "type": "作者会议报告",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "本人会议报告经弹性计算账号整理；支持系统方案阐述，不推断团队模块分工。",
+          "role": "本人技术报告",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "WO2023169270A1",
+          "title": "报文处理方法及电子设备",
+          "authors": "张先国",
+          "date": "2023-09-14",
+          "url": "https://patents.google.com/patent/WO2023169270A1/zh",
+          "locator": "发明人及申请人表；说明书发明内容：五元组、报文标签、秘钥匹配及转发；优先权2022-03-08",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "专利发明人表列张先国；只支持所述专利方案，不推断整个产品归属。",
+          "role": "专利所列发明人",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "原403位逐项不变；原十三位批次及PR48历史研究保留。",
+    "陈志坚采用两项不同专利族，避免玄铁910论文和同芯片报告重复计数。",
+    "张先国按云平台与网络系统归类；技术报告是演讲整理，不声称逐字稿或芯片独占设计。"
+  ],
+  "publication": {
+    "status": "pending"
+  }
+}
