@@ -62,6 +62,9 @@ for profile in c['profiles']:
 # Authored software documentation can be substantive primary technical evidence.
 # The two-distinct-works and actual-mechanism-body requirements remain unchanged.
 PRIMARY_BODY_TYPES.add('作者软件技术文档')
+# Equivalent public-application-body label already used by the approved #51
+# Yang Jiao record. This is not a grant claim or a metadata-only paper record.
+PRIMARY_BODY_TYPES.add('公开专利申请说明书')
 # Explicit aliases are identity checks, not new people.
 aliases={'peter-hofstee':['Peter Hofstee','H. Peter Hofstee'],'tim-mattson':['Tim Mattson','Timothy G. Mattson']}
 seen={}

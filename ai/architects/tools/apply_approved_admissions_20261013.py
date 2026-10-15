@@ -155,6 +155,11 @@ def validate_profile(p, domains):
 
 
 def apply(catalog, root, write=False):
+    disposition_path = root/'research'/'yan-xie-admission-pending-20261013.json'
+    if disposition_path.exists():
+        disposition = json.loads(disposition_path.read_text())
+        require(disposition.get('status') != 'resolved_for_admission',
+                'Historical 2026-10-13 migration is superseded by the 2026-10-14 evidence audit; refusing to remove the restored Yan Xie profile.')
     original = copy.deepcopy(catalog)
     require(catalog.get('research', {}).get('standard') == 'contribution-led-v1', 'Unexpected catalog schema')
     ids = [p['id'] for p in catalog['profiles']]
