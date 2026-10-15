@@ -123,7 +123,12 @@
         "ronak-singhal",
         "sailesh-kottapalli",
         "krishnan-geeyarpuram",
-        "wei-han-lien"
+        "wei-han-lien",
+        "weiwu-hu",
+        "wenxiang-wang",
+        "ruiyang-wu",
+        "yungang-bao",
+        "zhangxi-tan"
       ]
     },
     {
@@ -198,7 +203,15 @@
         "jian-ouyang",
         "jun-liang-cambricon",
         "yang-jiao-hanguang",
-        "yan-xie"
+        "yan-xie",
+        "guofang-jiao",
+        "honghe-tan",
+        "qiang-wu",
+        "jun-qian",
+        "yalin-zhang",
+        "jianlin-gao",
+        "xueliang-du",
+        "yibo-zhu"
       ]
     },
     {
@@ -48433,6 +48446,1497 @@
         "validation": "固定同一工作负载，分别测量编译时间、执行时间、内存流量和能耗。",
         "transfer": "用于数据流、CGRA、GPU与异构加速器的选型评审。"
       }
+    },
+    {
+      "id": "guofang-jiao",
+      "name": "焦国方",
+      "aliases": [
+        "Guofang Jiao"
+      ],
+      "field": "GPU 缓存与混合精度执行",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "把图形处理的数据供给与执行精度分别做成可配置资源。",
+      "background": "以 Qualcomm 历史专利中的中文署名为归属依据；国内相关经历另有上海大学 2021 年讲座简介，不推断现任壁仞职务。",
+      "contributions": [
+        "共同提出在图形处理单元之间配置缓存资源的方案。",
+        "共同提出按指令精度选择执行单元并配合数据转换的流处理方案。"
+      ],
+      "argument": "编辑分析：需分别测量缓存争用与精度转换；节省算术成本不等于改善供数。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "缓存重分配与低精度执行是否真正降低应用等待？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。这两项作品来自 Qualcomm 历史时期，不外推为壁仞产品实现。",
+      "diagnostic": "固定图形负载和误差容限，记录缓存失效、转换次数与帧延迟。",
+      "notes": [],
+      "sources": [
+        [
+          "Graphics system with configurable cache",
+          "https://patents.google.com/patent/CN101427282B/en",
+          "发明人表；Description 的可配置缓存分配与图3互连"
+        ],
+        [
+          "Programmable streaming processor with mixed precision instruction execution",
+          "https://patents.google.com/patent/CN102016926A/en",
+          "发明人表；图2B、thread scheduler 224、全精度与半精度 ALU"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN101427282B",
+          "title": "Graphics system with configurable cache",
+          "authors": "于春、焦国方、杜云",
+          "date": "2013-02-13",
+          "url": "https://patents.google.com/patent/CN101427282B/en",
+          "locator": "发明人表；Description 的可配置缓存分配与图3互连",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN102016926A",
+          "title": "Programmable streaming processor with mixed precision instruction execution",
+          "authors": "杜云、于春、焦国方、Stephen Molloy",
+          "date": "2011-04-13",
+          "url": "https://patents.google.com/patent/CN102016926A/en",
+          "locator": "发明人表；图2B、thread scheduler 224、全精度与半精度 ALU",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN101427282B",
+          "text": "共同提出在图形处理单元之间配置缓存资源的方案。"
+        },
+        {
+          "workId": "CN102016926A",
+          "text": "共同提出按指令精度选择执行单元并配合数据转换的流处理方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "GPU 缓存与混合精度执行",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "缓存重分配与低精度执行是否真正降低应用等待？",
+        "variables": "缓存容量、命中率、精度、转换成本、执行单元利用率",
+        "model": "编辑条件模型：需分别测量缓存争用与精度转换；节省算术成本不等于改善供数。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "精度切换频繁或工作集溢出时，配置成本可能抵消收益。",
+        "validation": "固定图形负载和误差容限，记录缓存失效、转换次数与帧延迟。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "honghe-tan",
+      "name": "谭洪贺",
+      "aliases": [
+        "Honghe Tan"
+      ],
+      "field": "张量处理器与运行状态检测",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "在张量操作的表达能力之外，把处理器检测路径纳入设计。",
+      "background": "两项地平线专利列为共同发明人；地平线 2023 年官方报道明确其 BPU 架构研发职责。",
+      "contributions": [
+        "共同提出用操作、形状和寻址字段表达张量计算与访存的指令方案。",
+        "共同提出向运算阵列注入测试信号并检测输出的运行状态检测方案。"
+      ],
+      "argument": "编辑分析：表达能力与可检测性分别量化，不能将测试路径收益归入算术吞吐。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "张量指令灵活性和检测能力各自消耗多少控制、面积与运行时间？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。不把特定专利直接等同于 Nash 或其他 BPU 产品全部设计。",
+      "diagnostic": "以多形状算子和故障注入分别检查开销、检测覆盖与恢复行为。",
+      "notes": [],
+      "sources": [
+        [
+          "张量运算方法和装置",
+          "https://patents.google.com/patent/CN110941789B/zh",
+          "发明人表；说明书张量指令的操作、形状、寻址字段"
+        ],
+        [
+          "检测处理器运行状态的装置和方法",
+          "https://patents.google.com/patent/CN112416665B/zh",
+          "发明人表；说明书随机信号、复用器、运算阵列和检测器"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN110941789B",
+          "title": "张量运算方法和装置",
+          "authors": "谭洪贺、陈亮、凌坤",
+          "date": "2023-12-15",
+          "url": "https://patents.google.com/patent/CN110941789B/zh",
+          "locator": "发明人表；说明书张量指令的操作、形状、寻址字段",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN112416665B",
+          "title": "检测处理器运行状态的装置和方法",
+          "authors": "谭洪贺、孙晨",
+          "date": "2024-05-03",
+          "url": "https://patents.google.com/patent/CN112416665B/zh",
+          "locator": "发明人表；说明书随机信号、复用器、运算阵列和检测器",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN110941789B",
+          "text": "共同提出用操作、形状和寻址字段表达张量计算与访存的指令方案。"
+        },
+        {
+          "workId": "CN112416665B",
+          "text": "共同提出向运算阵列注入测试信号并检测输出的运行状态检测方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "张量处理器与运行状态检测",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "张量指令灵活性和检测能力各自消耗多少控制、面积与运行时间？",
+        "variables": "指令字段、张量形状、检测覆盖率、检测周期、面积",
+        "model": "编辑条件模型：表达能力与可检测性分别量化，不能将测试路径收益归入算术吞吐。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "不规则算子或未覆盖故障模式可能削弱方案适用性。",
+        "validation": "以多形状算子和故障注入分别检查开销、检测覆盖与恢复行为。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "weiwu-hu",
+      "name": "胡伟武",
+      "aliases": [
+        "Weiwu Hu"
+      ],
+      "field": "CPU 架构与软硬件接口",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "把处理器内部性能改进与稳定的软硬件界面联合评审。",
+      "background": "GS464E 原论文和《计算机体系结构基础》第3版均列为作者；吴瑞阳是 GS464E 第一及通讯作者，其他作者的具体模块分工不作推断。",
+      "contributions": [
+        "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。",
+        "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+      ],
+      "argument": "编辑分析：将软硬件接口稳定性与芯片执行效率分别验证。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "ISA 稳定性与微结构改进如何一起检验？"
+      ],
+      "boundary": "第一项是处理器研究，第二项是独立技术专著，不声称是两颗芯片或两项独占发明。LoongArch 2023 论文保存为补充书目，直连正文受限，未用于凑足正文证据。",
+      "diagnostic": "在保持软件语义一致的前提下测应用性能，并检查 ABI 与异常行为。",
+      "notes": [],
+      "sources": [
+        [
+          "龙芯 GS464E 处理器核架构设计",
+          "https://doi.org/10.1360/N112014-00292",
+          "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验"
+        ],
+        [
+          "计算机体系结构基础（第3版）",
+          "https://foxsen.github.io/archbase/sec-ISA.html",
+          "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节"
+        ],
+        [
+          "龙芯指令系统架构技术",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "gs464e-2015",
+          "title": "龙芯 GS464E 处理器核架构设计",
+          "authors": "吴瑞阳、汪文祥、王焕东、胡伟武",
+          "date": "2015",
+          "url": "https://doi.org/10.1360/N112014-00292",
+          "locator": "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "title": "计算机体系结构基础（第3版）",
+          "authors": "胡伟武、汪文祥、苏孟豪、张福新、王焕东、章隆兵、肖俊华、刘苏、陈新科、吴瑞阳、李晓钰、高燕萍",
+          "date": "2024-09-20",
+          "url": "https://foxsen.github.io/archbase/sec-ISA.html",
+          "locator": "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节",
+          "type": "技术专著全文",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "loongarch-crad-2023",
+          "title": "龙芯指令系统架构技术",
+          "authors": "胡伟武、汪文祥、吴瑞阳、王焕东、曾露、徐成华、高翔、张福新",
+          "date": "2023",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "locator": "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196",
+          "type": "机构作者书目",
+          "contentStatus": "核对机构作者记录与摘要；正文直连受限，未作为机制正文依据。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "身份或历史研究线索",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "gs464e-2015",
+          "text": "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "text": "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "CPU 架构与软硬件接口",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "ISA 稳定性与微结构改进如何一起检验？",
+        "variables": "ISA 兼容、单线程延迟、缓存、软件迁移成本",
+        "model": "编辑条件模型：将软硬件接口稳定性与芯片执行效率分别验证。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "单项微基准加速不代表应用或生态迁移获益。",
+        "validation": "在保持软件语义一致的前提下测应用性能，并检查 ABI 与异常行为。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "wenxiang-wang",
+      "name": "汪文祥",
+      "aliases": [
+        "Wenxiang Wang"
+      ],
+      "field": "CPU 核设计与 ISA 实现约束",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "把处理器内部性能改进与稳定的软硬件界面联合评审。",
+      "background": "GS464E 原论文和《计算机体系结构基础》第3版均列为作者；吴瑞阳是 GS464E 第一及通讯作者，其他作者的具体模块分工不作推断。",
+      "contributions": [
+        "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。",
+        "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+      ],
+      "argument": "编辑分析：乱序窗口、访存能力与前端供给需要平衡，不能只扩大单个部件。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "增加队列与缓存是否值得其面积及访问延迟成本？"
+      ],
+      "boundary": "第一项是处理器研究，第二项是独立技术专著，不声称是两颗芯片或两项独占发明。LoongArch 2023 论文保存为补充书目，直连正文受限，未用于凑足正文证据。",
+      "diagnostic": "分解前端、执行和访存停顿，结合面积与频率比较。",
+      "notes": [],
+      "sources": [
+        [
+          "龙芯 GS464E 处理器核架构设计",
+          "https://doi.org/10.1360/N112014-00292",
+          "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验"
+        ],
+        [
+          "计算机体系结构基础（第3版）",
+          "https://foxsen.github.io/archbase/sec-ISA.html",
+          "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节"
+        ],
+        [
+          "龙芯指令系统架构技术",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "gs464e-2015",
+          "title": "龙芯 GS464E 处理器核架构设计",
+          "authors": "吴瑞阳、汪文祥、王焕东、胡伟武",
+          "date": "2015",
+          "url": "https://doi.org/10.1360/N112014-00292",
+          "locator": "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "title": "计算机体系结构基础（第3版）",
+          "authors": "胡伟武、汪文祥、苏孟豪、张福新、王焕东、章隆兵、肖俊华、刘苏、陈新科、吴瑞阳、李晓钰、高燕萍",
+          "date": "2024-09-20",
+          "url": "https://foxsen.github.io/archbase/sec-ISA.html",
+          "locator": "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节",
+          "type": "技术专著全文",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "loongarch-crad-2023",
+          "title": "龙芯指令系统架构技术",
+          "authors": "胡伟武、汪文祥、吴瑞阳、王焕东、曾露、徐成华、高翔、张福新",
+          "date": "2023",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "locator": "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196",
+          "type": "机构作者书目",
+          "contentStatus": "核对机构作者记录与摘要；正文直连受限，未作为机制正文依据。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "身份或历史研究线索",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "gs464e-2015",
+          "text": "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "text": "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "CPU 核设计与 ISA 实现约束",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "增加队列与缓存是否值得其面积及访问延迟成本？",
+        "variables": "队列深度、缓存容量、关键路径、面积、IPC",
+        "model": "编辑条件模型：乱序窗口、访存能力与前端供给需要平衡，不能只扩大单个部件。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "带宽已饱和时更深队列可能只增加功耗。",
+        "validation": "分解前端、执行和访存停顿，结合面积与频率比较。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "ruiyang-wu",
+      "name": "吴瑞阳",
+      "aliases": [
+        "Ruiyang Wu"
+      ],
+      "field": "CPU 微结构与访存性能",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "把处理器内部性能改进与稳定的软硬件界面联合评审。",
+      "background": "GS464E 原论文和《计算机体系结构基础》第3版均列为作者；吴瑞阳是 GS464E 第一及通讯作者，其他作者的具体模块分工不作推断。",
+      "contributions": [
+        "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。",
+        "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+      ],
+      "argument": "编辑分析：以停顿分解解释微结构收益，同时保持 ISA 可观察行为正确。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "分支预测与双访存设计改善的是哪类停顿？"
+      ],
+      "boundary": "第一项是处理器研究，第二项是独立技术专著，不声称是两颗芯片或两项独占发明。LoongArch 2023 论文保存为补充书目，直连正文受限，未用于凑足正文证据。",
+      "diagnostic": "运行分支密集和访存密集负载，分开比较预测、队列与缓存影响。",
+      "notes": [],
+      "sources": [
+        [
+          "龙芯 GS464E 处理器核架构设计",
+          "https://doi.org/10.1360/N112014-00292",
+          "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验"
+        ],
+        [
+          "计算机体系结构基础（第3版）",
+          "https://foxsen.github.io/archbase/sec-ISA.html",
+          "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节"
+        ],
+        [
+          "龙芯指令系统架构技术",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "gs464e-2015",
+          "title": "龙芯 GS464E 处理器核架构设计",
+          "authors": "吴瑞阳、汪文祥、王焕东、胡伟武",
+          "date": "2015",
+          "url": "https://doi.org/10.1360/N112014-00292",
+          "locator": "原刊480–482页，§1与§2；读取原论文镜像 https://github.com/hyf6661669/Loongson/blob/main/龙芯GS464E处理器核架构设计_吴瑞阳.pdf；机构书目交叉核验",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "title": "计算机体系结构基础（第3版）",
+          "authors": "胡伟武、汪文祥、苏孟豪、张福新、王焕东、章隆兵、肖俊华、刘苏、陈新科、吴瑞阳、李晓钰、高燕萍",
+          "date": "2024-09-20",
+          "url": "https://foxsen.github.io/archbase/sec-ISA.html",
+          "locator": "作者在线版首页作者表；第2章§2.1–2.2；技术专著仅核对所列章节",
+          "type": "技术专著全文",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "loongarch-crad-2023",
+          "title": "龙芯指令系统架构技术",
+          "authors": "胡伟武、汪文祥、吴瑞阳、王焕东、曾露、徐成华、高翔、张福新",
+          "date": "2023",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/200909/t20090917_2496637.html",
+          "locator": "代表论著：计算机研究与发展60(1):2–16；DOI 10.7544/issn1000-1239.202220196",
+          "type": "机构作者书目",
+          "contentStatus": "核对机构作者记录与摘要；正文直连受限，未作为机制正文依据。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "身份或历史研究线索",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "gs464e-2015",
+          "text": "参与 GS464E 的分支预测、乱序窗口及访存子系统改进研究。"
+        },
+        {
+          "workId": "archbase-third-edition-2024",
+          "text": "共同编写体系结构技术专著，阐述 ISA 作为软硬件界面及兼容性、实现效率等设计约束。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "CPU 微结构与访存性能",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "分支预测与双访存设计改善的是哪类停顿？",
+        "variables": "预测错误、重定序窗口、访存并行度、工作集",
+        "model": "编辑条件模型：以停顿分解解释微结构收益，同时保持 ISA 可观察行为正确。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "依赖链串行或缓存失效主导时，宽度扩展收益有限。",
+        "validation": "运行分支密集和访存密集负载，分开比较预测、队列与缓存影响。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "yungang-bao",
+      "name": "包云岗",
+      "aliases": [
+        "Yungang Bao"
+      ],
+      "field": "开源 CPU 敏捷设计与资源可控性",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "将可验证的迭代流程与软件可识别的硬件资源管理结合。",
+      "background": "计算所官方简介记载其带领香山项目；以下论文共同署名支持具体技术参与，不把团队全部微结构归于一人。",
+      "contributions": [
+        "参与香山及 MinJie 敏捷开发研究，以差分规则和探针组织处理器验证。",
+        "参与 LvNA/PARD 研究，通过请求标签与可编程控制表管理共享资源。"
+      ],
+      "argument": "编辑分析：验证放宽须有边界；资源标签须跨缓存和写回保持归属。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "更快迭代和更细资源控制是否保留完整的正确性约束？"
+      ],
+      "boundary": "项目领导与共同作者身份均不代表独占香山设计；不引用未经复现的性能领先断言。",
+      "diagnostic": "故障注入检查差分规则，并跟踪多租户访问及写回标签。",
+      "notes": [],
+      "sources": [
+        [
+          "Towards Developing High Performance RISC-V Processors Using Agile Methodology",
+          "https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.pdf",
+          "作者表；§III-B DiffTest 的 probes、checkers 与差分规则"
+        ],
+        [
+          "Labeled RISC-V: A New Perspective on Software-Defined Architecture",
+          "https://carrv.github.io/2017/papers/yu-labeled_riscv-carrv2017.pdf",
+          "§3–4：DS-id传播、缓存写回标签、参数/统计/触发表"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "xiangshan-micro2022",
+          "title": "Towards Developing High Performance RISC-V Processors Using Agile Methodology",
+          "authors": "Yinan Xu 等、Yungang Bao",
+          "date": "2022",
+          "url": "https://talks-pubs.xiangshan.cc/publications/micro2022-xiangshan.pdf",
+          "locator": "作者表；§III-B DiffTest 的 probes、checkers 与差分规则",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "labeled-riscv-2017",
+          "title": "Labeled RISC-V: A New Perspective on Software-Defined Architecture",
+          "authors": "Zihao Yu、Bowen Huang、Jiuyue Ma、Ninghui Sun、Yungang Bao",
+          "date": "2017",
+          "url": "https://carrv.github.io/2017/papers/yu-labeled_riscv-carrv2017.pdf",
+          "locator": "§3–4：DS-id传播、缓存写回标签、参数/统计/触发表",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "xiangshan-micro2022",
+          "text": "参与香山及 MinJie 敏捷开发研究，以差分规则和探针组织处理器验证。"
+        },
+        {
+          "workId": "labeled-riscv-2017",
+          "text": "参与 LvNA/PARD 研究，通过请求标签与可编程控制表管理共享资源。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "开源 CPU 敏捷设计与资源可控性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "更快迭代和更细资源控制是否保留完整的正确性约束？",
+        "variables": "验证规则、非确定性行为、标签开销、资源争用、迭代时间",
+        "model": "编辑条件模型：验证放宽须有边界；资源标签须跨缓存和写回保持归属。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "过度宽松的差分规则或错误写回标签可能掩盖真实问题。",
+        "validation": "故障注入检查差分规则，并跟踪多租户访问及写回标签。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "zhangxi-tan",
+      "name": "谭章熹",
+      "aliases": [
+        "Zhangxi Tan"
+      ],
+      "field": "体系结构仿真与存储可靠性",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness"
+      ],
+      "core": "用可控的仿真成本和分层故障恢复扩大系统设计空间。",
+      "background": "以 Berkeley FAME 论文和 Pure Storage 历史专利署名为技术依据；不据此推断 RiVAI 产品使用相同机制。",
+      "contributions": [
+        "参与 FAME/RAMP Gold 研究，通过分离功能与时序模型及 FPGA 多线程加速架构探索。",
+        "共同提出存储集群中按错误范围选择闪存重读、冗余副本及纠删码恢复的方案。"
+      ],
+      "argument": "编辑分析：将模型速度与可信范围分开；恢复路径必须对应实际故障域。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "仿真抽象与恢复分层是否遗漏系统级相互作用？"
+      ],
+      "boundary": "FAME 与 RAMP Gold 不重复计为两项作品；第二项是独立存储专利。仅支持历史共同贡献。",
+      "diagnostic": "与小规模详细模型交叉校验，并分别注入位错误、节点失败与重试。",
+      "notes": [],
+      "sources": [
+        [
+          "A Case for FAME: FPGA Architecture Model Execution",
+          "https://people.eecs.berkeley.edu/~krste/papers/fame-isca2010.pdf",
+          "§4.1：RAMP Gold 功能/时序解耦与宿主多线程"
+        ],
+        [
+          "Error recovery in a storage cluster",
+          "https://patents.google.com/patent/US9495255B2/en",
+          "发明人表；Description 存储集群恢复；权利要求13–17"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "fame-isca2010",
+          "title": "A Case for FAME: FPGA Architecture Model Execution",
+          "authors": "Zhangxi Tan、Andrew Waterman、Henry Cook、Sarah Bird、Krste Asanović、David Patterson",
+          "date": "2010",
+          "url": "https://people.eecs.berkeley.edu/~krste/papers/fame-isca2010.pdf",
+          "locator": "§4.1：RAMP Gold 功能/时序解耦与宿主多线程",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "US9495255B2",
+          "title": "Error recovery in a storage cluster",
+          "authors": "John D. Davis、John Hayes、Zhangxi Tan、Hari Kannan、Nenad Miladinovic",
+          "date": "2016-11-15",
+          "url": "https://patents.google.com/patent/US9495255B2/en",
+          "locator": "发明人表；Description 存储集群恢复；权利要求13–17",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "fame-isca2010",
+          "text": "参与 FAME/RAMP Gold 研究，通过分离功能与时序模型及 FPGA 多线程加速架构探索。"
+        },
+        {
+          "workId": "US9495255B2",
+          "text": "共同提出存储集群中按错误范围选择闪存重读、冗余副本及纠删码恢复的方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "体系结构仿真与存储可靠性",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "仿真抽象与恢复分层是否遗漏系统级相互作用？",
+        "variables": "仿真速度、时序保真度、故障域、冗余开销、恢复时间",
+        "model": "编辑条件模型：将模型速度与可信范围分开；恢复路径必须对应实际故障域。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "未建模一致性流量或跨故障域相关失效会破坏局部推论。",
+        "validation": "与小规模详细模型交叉校验，并分别注入位错误、节点失败与重试。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "qiang-wu",
+      "name": "吴强",
+      "aliases": [
+        "Qiang Wu"
+      ],
+      "field": "数字存内计算与接口复用",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "把存储阵列附近的计算收益放回位宽、布线与接口成本中检验。",
+      "background": "以下南京/上海后摩专利列吴强为共同发明人；不由创始人职位推断全部电路设计权。",
+      "contributions": [
+        "共同提出由单比特乘法器、存储单元、加法树和转换逻辑组成的数字存内计算电路。",
+        "共同提出通过混合输入端口和切换逻辑复用存储与计算输入路径的方案。"
+      ],
+      "argument": "编辑分析：须计入多比特重构和权重更新，不能只统计阵列内乘法。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "局部数据移动减少后，位串行周期和端口切换是否成为瓶颈？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。",
+      "diagnostic": "在固定精度下分别测权重装载、计算、转换及总能耗。",
+      "notes": [],
+      "sources": [
+        [
+          "Circuit based on digital domain memory computing",
+          "https://patents.google.com/patent/CN112711394A/en",
+          "发明人表；图1–2：存储单元、单比特乘法器、加法树及多比特转换"
+        ],
+        [
+          "基于混合数据输入的存算一体电路、芯片及计算装置",
+          "https://patents.google.com/patent/CN113885831A/zh",
+          "发明人表；说明书混合输入端口、数据切换与存储/计算路径"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN112711394A",
+          "title": "Circuit based on digital domain memory computing",
+          "authors": "司鑫、常亮、陈亮、沈朝晖、吴强",
+          "date": "2021-04-27",
+          "url": "https://patents.google.com/patent/CN112711394A/en",
+          "locator": "发明人表；图1–2：存储单元、单比特乘法器、加法树及多比特转换",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN113885831A",
+          "title": "基于混合数据输入的存算一体电路、芯片及计算装置",
+          "authors": "索超、吴强",
+          "date": "2022-01-04",
+          "url": "https://patents.google.com/patent/CN113885831A/zh",
+          "locator": "发明人表；说明书混合输入端口、数据切换与存储/计算路径",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN112711394A",
+          "text": "共同提出由单比特乘法器、存储单元、加法树和转换逻辑组成的数字存内计算电路。"
+        },
+        {
+          "workId": "CN113885831A",
+          "text": "共同提出通过混合输入端口和切换逻辑复用存储与计算输入路径的方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "数字存内计算与接口复用",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "局部数据移动减少后，位串行周期和端口切换是否成为瓶颈？",
+        "variables": "位宽、计算周期、阵列利用率、写入频率、布线",
+        "model": "编辑条件模型：须计入多比特重构和权重更新，不能只统计阵列内乘法。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "权重频繁更新或精度要求升高时，阵列优势可能缩小。",
+        "validation": "在固定精度下分别测权重装载、计算、转换及总能耗。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "jun-qian",
+      "name": "钱军",
+      "aliases": [
+        "Jun Qian"
+      ],
+      "field": "AI 加速器负载均衡与内存调度",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "把稀疏计算分配与中间张量存储分别做成可验证的优化。",
+      "background": "以瀚博专利中的钱军署名为依据；管理职位不作为技术作品。",
+      "contributions": [
+        "共同提出重排输出滤波器以改善稀疏卷积多实例计算负载的方案。",
+        "共同提出联合选择分支执行顺序和连续结果存储布局的内存分配方案。"
+      ],
+      "argument": "编辑分析：负载均衡与峰值内存分别验证，不能从平均稀疏率直接推出吞吐。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "稀疏性带来的计算减少能否覆盖重排和张量调度开销？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。",
+      "diagnostic": "固定精度及拓扑，测各实例完成时间、内存峰值与实际数据搬移。",
+      "notes": [],
+      "sources": [
+        [
+          "卷积模型硬件加速器的方法和系统",
+          "https://patents.google.com/patent/CN113892092A/zh",
+          "发明人表；说明书输出滤波器重排与多实例稀疏负载均衡"
+        ],
+        [
+          "一种有效加速深度学习计算的内存分配方法及系统",
+          "https://patents.google.com/patent/CN112346877A/zh",
+          "发明人表；具体实施方式S1–S3：分支顺序、有向图、连续输出分配"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN113892092A",
+          "title": "卷积模型硬件加速器的方法和系统",
+          "authors": "张磊、钱军",
+          "date": "2022-01-04",
+          "url": "https://patents.google.com/patent/CN113892092A/zh",
+          "locator": "发明人表；说明书输出滤波器重排与多实例稀疏负载均衡",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN112346877A",
+          "title": "一种有效加速深度学习计算的内存分配方法及系统",
+          "authors": "李国亮、张磊、杨勤富、钱军",
+          "date": "2021-02-09",
+          "url": "https://patents.google.com/patent/CN112346877A/zh",
+          "locator": "发明人表；具体实施方式S1–S3：分支顺序、有向图、连续输出分配",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN113892092A",
+          "text": "共同提出重排输出滤波器以改善稀疏卷积多实例计算负载的方案。"
+        },
+        {
+          "workId": "CN112346877A",
+          "text": "共同提出联合选择分支执行顺序和连续结果存储布局的内存分配方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "AI 加速器负载均衡与内存调度",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "稀疏性带来的计算减少能否覆盖重排和张量调度开销？",
+        "variables": "稀疏分布、实例负载、重排成本、中间内存峰值",
+        "model": "编辑条件模型：负载均衡与峰值内存分别验证，不能从平均稀疏率直接推出吞吐。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "稀疏分布快速变化或分支依赖很强时，重排选择有限。",
+        "validation": "固定精度及拓扑，测各实例完成时间、内存峰值与实际数据搬移。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "yalin-zhang",
+      "name": "张亚林",
+      "aliases": [
+        "Yalin Zhang"
+      ],
+      "field": "异构 AI 调度与分布式归约",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "让任务放置、内存约束与归约正确性共同决定系统方案。",
+      "background": "两项燧原专利分别列张亚林为共同发明人；记录机制范围而非整颗 GCU 独占归属。",
+      "contributions": [
+        "共同提出按计算子图生成异构调度候选并结合时延、峰值内存评价的方案。",
+        "共同提出由靠近外部存储器的原子操作模块处理 DMA 归约请求的方案。"
+      ],
+      "argument": "编辑分析：优化计算放置时同时约束通信和内存；归约正确性需单独检验。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "调度模型与归约原子模块是否覆盖真实通信和竞争成本？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。",
+      "diagnostic": "对比模型预测与实测，注入并发归约检查结果、队列与尾延迟。",
+      "notes": [],
+      "sources": [
+        [
+          "异构场景下神经网络任务调度策略确定方法和装置",
+          "https://patents.google.com/patent/CN116166405B/en",
+          "发明人表；具体实施例步骤110–130：子图、候选策略、时延与峰值内存评估"
+        ],
+        [
+          "分布式训练中数据归约方法、装置、介质及训练系统",
+          "https://patents.google.com/patent/CN116243978B/en",
+          "发明人表；实施例1：DMA指令缓冲、近外部存储器原子模块"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN116166405B",
+          "title": "异构场景下神经网络任务调度策略确定方法和装置",
+          "authors": "石恒、张亚林、尉迟博文、鲍国庆、姚建国",
+          "date": "2023-08-01",
+          "url": "https://patents.google.com/patent/CN116166405B/en",
+          "locator": "发明人表；具体实施例步骤110–130：子图、候选策略、时延与峰值内存评估",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN116243978B",
+          "title": "分布式训练中数据归约方法、装置、介质及训练系统",
+          "authors": "刘伟、张亚林",
+          "date": "2025-08-29",
+          "url": "https://patents.google.com/patent/CN116243978B/en",
+          "locator": "发明人表；实施例1：DMA指令缓冲、近外部存储器原子模块",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN116166405B",
+          "text": "共同提出按计算子图生成异构调度候选并结合时延、峰值内存评价的方案。"
+        },
+        {
+          "workId": "CN116243978B",
+          "text": "共同提出由靠近外部存储器的原子操作模块处理 DMA 归约请求的方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "异构 AI 调度与分布式归约",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "调度模型与归约原子模块是否覆盖真实通信和竞争成本？",
+        "variables": "子图粒度、传输成本、峰值内存、原子吞吐、热点地址",
+        "model": "编辑条件模型：优化计算放置时同时约束通信和内存；归约正确性需单独检验。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "通信模型失准或归约地址高度集中可能形成新瓶颈。",
+        "validation": "对比模型预测与实测，注入并发归约检查结果、队列与尾延迟。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "jianlin-gao",
+      "name": "高剑林",
+      "aliases": [
+        "Jianlin Gao"
+      ],
+      "field": "腾讯矩阵计算与张量寻址",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "以分层计算和参数化寻址减少供数与布线开销。",
+      "background": "两项腾讯专利均列高剑林为共同发明人。此条采用具体技术作品归属，不依据管理职位认定紫霄全部架构由其独立设计。",
+      "contributions": [
+        "共同提出 PE 群组、PE 与 MAC 的分层调度和矩阵数据复用方案。",
+        "共同提出按张量维度配置参数并以级联计数器生成访存地址的方案。"
+      ],
+      "argument": "编辑分析：计算阵列规模需要匹配寻址、缓存端口和数据分发带宽。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "分层供数和寻址能否适配不同张量形状而不损失利用率？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。不将不同国家同族申请重复计数。",
+      "diagnostic": "扫描矩阵形状与步长，记录有效带宽、MAC利用率与边界掩码开销。",
+      "notes": [],
+      "sources": [
+        [
+          "用于矩阵处理的芯片、矩阵处理方法、装置及存储介质",
+          "https://patents.google.com/patent/CN110147347A/zh",
+          "发明人表；具体实施方式图1–3：PE群组–PE–MAC与数据复用"
+        ],
+        [
+          "一种地址生成的方法、相关装置以及存储介质",
+          "https://patents.google.com/patent/CN111506520B/zh",
+          "发明人表；图3–4：AGU读写、掩码、级联多级计数器"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN110147347A",
+          "title": "用于矩阵处理的芯片、矩阵处理方法、装置及存储介质",
+          "authors": "于潇宇、王玉伟、章恒、高剑林",
+          "date": "2019-08-20",
+          "url": "https://patents.google.com/patent/CN110147347A/zh",
+          "locator": "发明人表；具体实施方式图1–3：PE群组–PE–MAC与数据复用",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN111506520B",
+          "title": "一种地址生成的方法、相关装置以及存储介质",
+          "authors": "于潇宇、陈德炜、章恒、熊焰、高剑林",
+          "date": "2020-09-22",
+          "url": "https://patents.google.com/patent/CN111506520B/zh",
+          "locator": "发明人表；图3–4：AGU读写、掩码、级联多级计数器",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN110147347A",
+          "text": "共同提出 PE 群组、PE 与 MAC 的分层调度和矩阵数据复用方案。"
+        },
+        {
+          "workId": "CN111506520B",
+          "text": "共同提出按张量维度配置参数并以级联计数器生成访存地址的方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "腾讯矩阵计算与张量寻址",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "分层供数和寻址能否适配不同张量形状而不损失利用率？",
+        "variables": "矩阵尺寸、复用率、向量宽度、AGU数、缓冲端口",
+        "model": "编辑条件模型：计算阵列规模需要匹配寻址、缓存端口和数据分发带宽。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "小矩阵或不规则访问可能降低复用并放大控制开销。",
+        "validation": "扫描矩阵形状与步长，记录有效带宽、MAC利用率与边界掩码开销。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "xueliang-du",
+      "name": "杜学亮",
+      "aliases": [
+        "Xueliang Du"
+      ],
+      "field": "百度／昆仑芯 AI 运算与验证",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "用明确的卸载队列和软硬件对照验证约束 AI 芯片设计。",
+      "background": "ICAC 2021 资料记载百度智能芯片工程师身份；所列百度/昆仑芯专利提供个人署名。历史归属不代表当前任职。",
+      "contributions": [
+        "共同提出将复杂运算通过队列交给加速部件执行的 AI 芯片计算方案。",
+        "共同提出用统一指令/数据配置驱动软硬件模拟环境并对照结果的验证方案。"
+      ],
+      "argument": "编辑分析：卸载收益与功能一致性必须分别验证；随机测试不构成完备性证明。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "复杂运算卸载是否保持正确性并覆盖队列与数据依赖成本？"
+      ],
+      "boundary": "仅支持共同发明；专利实施例不是实测性能，也不能证明已被特定商业芯片采用。不把专利中完备性表述改写为已证实的验证保证。",
+      "diagnostic": "测调用/排队/返回开销，独立构造边界和异常测试并执行差分比较。",
+      "notes": [],
+      "sources": [
+        [
+          "应用于人工智能芯片的计算方法和人工智能芯片",
+          "https://patents.google.com/patent/CN110825436B/zh",
+          "发明人表；步骤201–205：复杂运算标识、指令队列和加速部件"
+        ],
+        [
+          "验证芯片的方法、装置和计算机存储介质",
+          "https://patents.google.com/patent/CN112100954B/zh",
+          "发明人表；具体实施方式：同一配置驱动软硬件环境并比较执行信息"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "CN110825436B",
+          "title": "应用于人工智能芯片的计算方法和人工智能芯片",
+          "authors": "欧阳剑、杜学亮、徐英男、李慧敏",
+          "date": "2022-04-29",
+          "url": "https://patents.google.com/patent/CN110825436B/zh",
+          "locator": "发明人表；步骤201–205：复杂运算标识、指令队列和加速部件",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "CN112100954B",
+          "title": "验证芯片的方法、装置和计算机存储介质",
+          "authors": "赵保付、杜学亮、柳嘉强、黄子腾",
+          "date": "2024-07-09",
+          "url": "https://patents.google.com/patent/CN112100954B/zh",
+          "locator": "发明人表；具体实施方式：同一配置驱动软硬件环境并比较执行信息",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "CN110825436B",
+          "text": "共同提出将复杂运算通过队列交给加速部件执行的 AI 芯片计算方案。"
+        },
+        {
+          "workId": "CN112100954B",
+          "text": "共同提出用统一指令/数据配置驱动软硬件模拟环境并对照结果的验证方案。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "百度／昆仑芯 AI 运算与验证",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "复杂运算卸载是否保持正确性并覆盖队列与数据依赖成本？",
+        "variables": "运算粒度、队列深度、结果返回、测试覆盖、差分粒度",
+        "model": "编辑条件模型：卸载收益与功能一致性必须分别验证；随机测试不构成完备性证明。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "小粒度调用或双方共享同一错误模型时，卸载及差分测试可能失效。",
+        "validation": "测调用/排队/返回开销，独立构造边界和异常测试并执行差分比较。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
+    },
+    {
+      "id": "yibo-zhu",
+      "name": "Yibo Zhu",
+      "aliases": [],
+      "field": "字节历史 AI 系统与 GPU 推理优化",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "在集群通信和单 GPU 内核两层分别消除资源浪费。",
+      "background": "BytePS 与 ByteTransformer 论文列其为 ByteDance 共同作者；仅确认论文时期归属，不推断当前雇主或芯片设计职责。",
+      "contributions": [
+        "共同提出 BytePS，以独立通信服务和 CPU 求和服务利用异构集群资源。",
+        "参与 ByteTransformer，通过去填充及融合注意力减少变长推理的无效计算与中间访问。"
+      ],
+      "argument": "编辑分析：分别量化集群归约路径与 GPU 内核路径，不能把两项论文加速比直接相乘。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "额外 CPU 通信资源和融合内核在目标负载下分别节省多少端到端时间？"
+      ],
+      "boundary": "AI 系统架构贡献，不是 CPU/GPU 芯片设计；共同署名不等于个人独占实现。中文名未用同名搜索结果强行映射。",
+      "diagnostic": "固定模型与精度，对通信服务及内核融合分别消融并测端到端延迟。",
+      "notes": [],
+      "sources": [
+        [
+          "A Unified Architecture for Accelerating Distributed DNN Training in Heterogeneous GPU/CPU Clusters",
+          "https://www.usenix.org/system/files/osdi20-jiang.pdf",
+          "作者表；§3.2：Communication Service 与 Summation Service；作者镜像 https://ymjiang.github.io/files/osdi2020_byteps.pdf"
+        ],
+        [
+          "ByteTransformer: A High-Performance Transformer Boosted for Variable-Length Inputs",
+          "https://arxiv.org/pdf/2210.03052",
+          "作者表；§III：变长输入偏移、去填充与融合 MHA"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "byteps-osdi2020",
+          "title": "A Unified Architecture for Accelerating Distributed DNN Training in Heterogeneous GPU/CPU Clusters",
+          "authors": "Yimin Jiang、Yibo Zhu、Chang Lan、Bairen Yi、Yong Cui、Chuanxiong Guo",
+          "date": "2020",
+          "url": "https://www.usenix.org/system/files/osdi20-jiang.pdf",
+          "locator": "作者表；§3.2：Communication Service 与 Summation Service；作者镜像 https://ymjiang.github.io/files/osdi2020_byteps.pdf",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        },
+        {
+          "workId": "bytetransformer-ipdps2023",
+          "title": "ByteTransformer: A High-Performance Transformer Boosted for Variable-Length Inputs",
+          "authors": "Yujia Zhai、Chengquan Jiang、Leyuan Wang、Xiaoying Jia、Shang Zhang、Zizhong Chen、Xin Liu、Yibo Zhu",
+          "date": "2023",
+          "url": "https://arxiv.org/pdf/2210.03052",
+          "locator": "作者表；§III：变长输入偏移、去填充与融合 MHA",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已核对作者及所列正文；仅此范围，不代表复现实验或产品采用。",
+          "evidenceStrength": "署名支持共同贡献，不支持独占发明或未披露的模块分工。",
+          "role": "技术作品与个人共同贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-15"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "byteps-osdi2020",
+          "text": "共同提出 BytePS，以独立通信服务和 CPU 求和服务利用异构集群资源。"
+        },
+        {
+          "workId": "bytetransformer-ipdps2023",
+          "text": "参与 ByteTransformer，通过去填充及融合注意力减少变长推理的无效计算与中间访问。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-15-domestic-core",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-15"
+      },
+      "challenge": {
+        "lens": "字节历史 AI 系统与 GPU 推理优化",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "额外 CPU 通信资源和融合内核在目标负载下分别节省多少端到端时间？",
+        "variables": "网络带宽、CPU余量、序列分布、内核启动、显存访问",
+        "model": "编辑条件模型：分别量化集群归约路径与 GPU 内核路径，不能把两项论文加速比直接相乘。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "CPU或网络已拥塞、序列几乎等长时，额外机制收益可能有限。",
+        "validation": "固定模型与精度，对通信服务及内核融合分别消融并测端到端延迟。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
     }
   ],
   "research": {
@@ -48443,7 +49947,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 390,
+    "totalProfiles": 403,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -48463,12 +49967,13 @@
       "research/batches/2026-10-13-gpu-cpu-network-eight.json",
       "research/batches/2026-10-13-dataflow.json",
       "research/batches/2026-10-13-next4-followthrough.json",
-      "research/batches/2026-10-13-approved-six.json"
+      "research/batches/2026-10-13-approved-six.json",
+      "research/batches/2026-10-15-domestic-core.json"
     ],
-    "completedTotal": 389,
+    "completedTotal": 402,
     "remainingCatalog": 1,
     "remainingPlanned": 6,
-    "additionalPlannedScope": 95,
-    "additionalCompleted": 89
+    "additionalPlannedScope": 108,
+    "additionalCompleted": 102
   }
 }

@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-15",
+  "baseCommit": "a135abe27acb5d8650d38d3621d2135074958f8e",
+  "decision": "pass-for-merge",
+  "profilesBefore": 390,
+  "profilesAfter": 403,
+  "admitted": 13,
+  "checks": {
+    "existing390Unchanged": true,
+    "pr48ArchiveUnchanged": true,
+    "fullCatalogValidator": "pass: 403 profiles / 20 batches / 408 records / 402 audited",
+    "sourceAudit": "two distinct technical works each; same-family patents not double-counted; coauthorship boundaries explicit",
+    "rendererIdempotence": true,
+    "gitDiffCheck": true
+  },
+  "browser": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "profiles": 403,
+      "admissionsChecked": 13,
+      "search": true,
+      "details": true,
+      "sourceFacts": true,
+      "emptyState": true,
+      "skillFilter": true,
+      "sidebar": true,
+      "noPageErrors": true,
+      "noOverflow": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "profiles": 403,
+      "admissionsChecked": 13,
+      "search": true,
+      "details": true,
+      "sourceFacts": true,
+      "emptyState": true,
+      "skillFilter": true,
+      "sidebar": true,
+      "noPageErrors": true,
+      "noOverflow": true
+    }
+  ],
+  "limitations": [
+    "No independent GitHub reviewer is implied by this agent audit.",
+    "Original fixed-390 Yan Xie test remains a historical test; current batch uses check_domestic_core_page.cjs.",
+    "LoongArch paper body access failed; it is supplementary bibliography only. The three Loongson admissions use GS464E plus the separately authored architecture textbook.",
+    "Live deployment verification follows merge; not claimed complete in this receipt."
+  ],
+  "artifactHashes": {
+    "catalog.json": "2cc87fcb0914052772e42812fe3589f1c6379921bb1339b4f49752bbec9ed32d",
+    "index.html": "e4e2b949ec620e3188dbae3b283668d79b416f7d81bc7919fcf53eb35df1efd7"
+  }
+}
