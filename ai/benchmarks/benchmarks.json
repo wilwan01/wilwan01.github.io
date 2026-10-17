@@ -2,8 +2,8 @@
  "version": 1,
  "as_of": "2026-10-17",
  "scope": {
-  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
-  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
+  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
+  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
  },
  "evidence_levels": {
   "primary-read": {
@@ -376,6 +376,79 @@
     "bridge": [
      "B8",
      "B10"
+    ]
+   }
+  },
+  {
+   "id": "M18",
+   "group": "system",
+   "date": "2026-08-15",
+   "title": {
+    "zh": "AgentSysBench（智能体负载的系统基准）",
+    "en": "AgentSysBench (a systems benchmark for agentic workloads)"
+   },
+   "summary": {
+    "zh": "HKUST 团队（含阿里巴巴、字节跳动合作者）的 arXiv 论文提出的基准套件与测量工具：10个代表性智能体应用（RAG、HuggingGPT、DeepResearch、Mini-SWE、Codex、WebAgent、GUIAgent、Claude Code、Openclaw、Pi-AutoR），模块化服务栈（LLM引擎、向量库、沙箱、浏览器/GUI环境等，Docker部署），统一的逐操作追踪，记录时延、I/O、token与成本。",
+    "en": "A benchmark suite and measurement toolkit from an arXiv paper by an HKUST team (with Alibaba and ByteDance co-authors): ten representative agentic applications (RAG, HuggingGPT, DeepResearch, Mini-SWE, Codex, WebAgent, GUIAgent, Claude Code, Openclaw, Pi-AutoR), a modular serving stack (LLM engines, vector DBs, sandboxes, browser/GUI environments, in Docker), and unified per-operation tracing of latency, I/O, tokens and cost."
+   },
+   "facts": [
+    {
+     "zh": "规模：受控运行4,641个请求、64,924次LLM调用、118,274次工具调用；另有一天内3个应用的178,799个生产会话。",
+     "en": "Scale: 4,641 requests, 64,924 LLM calls and 118,274 tool calls in controlled runs, plus 178,799 production sessions of three applications over one day."
+    },
+    {
+     "zh": "发现1：执行时间长且不由LLM主导——约半数应用中非LLM组件占关键路径；GUIAgent 桌面沙箱占70%以上，Pi-AutoR 实验运行占约90%。",
+     "en": "Finding 1: execution is long and not LLM-dominated — non-LLM components dominate the critical path in about half the applications; the desktop sandbox exceeds 70% of GUIAgent time and experiment runtimes about 90% of Pi-AutoR."
+    },
+    {
+     "zh": "发现2：状态很重——一个 Claude Code 会话 KV 缓存最高约11 GB GPU 内存；沙箱单会话 DRAM 峰值可达28 GB（中位约0.8 GB）；前缀缓存命中率在 Claude Code 可达99%，DeepResearch 仅1%或更低。",
+     "en": "Finding 2: state is heavy — one Claude Code session can hold up to about 11 GB of KV cache in GPU memory; per-session sandbox DRAM peaks reach 28 GB (median about 0.8 GB); prefix-cache hit rate reaches 99% for Claude Code but 1% or lower for DeepResearch."
+    },
+    {
+     "zh": "发现3：异质与干扰——同一组件上不同任务时延相差最多32倍；重度后台文档嵌入使查询嵌入时延从5.6 ms升到200 ms（35.7倍）；8个并发沙箱共享CPU慢1.22倍。",
+     "en": "Finding 3: heterogeneity and interference — tasks on one component differ up to 32× in latency; heavy background document embedding lifts query-embedding latency from 5.6 ms to 200 ms (35.7×); eight concurrent sandboxes sharing CPUs slow by 1.22×."
+    },
+    {
+     "zh": "发现4：成本不只是token——Pi-AutoR 按量计费时沙箱费用占单请求成本99%以上；生产会话中位数仅20%的生命周期在执行，59.4%的会话至少一次超过5分钟KV缓存TTL，缓存驱逐占聚合成本的31.5%（按 Claude Opus 4.6 价格估算）。",
+     "en": "Finding 4: cost is not only tokens — sandbox charges exceed 99% of per-request cost for Pi-AutoR under pay-as-you-go; the median production session executes for only 20% of its lifetime, 59.4% of sessions let the 5-minute KV-cache TTL expire at least once, and cache evictions account for 31.5% of aggregate cost (estimated at Claude Opus 4.6 prices)."
+    },
+    {
+     "zh": "作者的初步设计探索：任务感知调度降时延29–40%；通信感知放置最高4.5倍；状态卸载内存降4.6倍；工具结果缓存去掉35.2%的冗余搜索调用。",
+     "en": "The authors’ preliminary design explorations: task-aware serving cuts latency 29–40%; communication-aware placement up to 4.5×; state offloading cuts memory 4.6×; tool-result caching removes 35.2% of redundant search calls."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "arXiv 2608.15127: From LLM Inference to Agentic Workloads (AgentSysBench)",
+     "url": "https://arxiv.org/html/2608.15127",
+     "type": "primary"
+    },
+    {
+     "label": "AgBench (arXiv 2609.38652), which cites AgentSysBench",
+     "url": "https://arxiv.org/html/2609.38652",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "预印本，未经同行评审；读了论文前约十万字符（共约13.8万）。受控实验用单台GPU服务器、部分模型走API；生产追踪仅三个应用、一天；成本按公开标价估算；作者称“将开源”，文中未见仓库链接，所以目前不能自行复现，也没有排行榜或跨厂商硬件得分。",
+    "en": "A preprint, not peer reviewed; about the first 100,000 of 138,000 characters were read. Controlled runs use a single GPU server with some models via API; production traces cover three applications over one day; costs are estimates from public list prices; the authors say they “will release” it as open source and no repository link appears, so it cannot yet be reproduced and has no leaderboard or cross-vendor hardware scores."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "kv-cache",
+     "prefill-decode",
+     "tco"
+    ],
+    "bridge": [
+     "B8",
+     "B11"
+    ],
+    "benchmarks": [
+     "M14",
+     "M03",
+     "M06"
     ]
    }
   },
@@ -783,8 +856,8 @@
     "en": "How agentic benchmarks connect to infrastructure"
    },
    "summary": {
-    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。",
-    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed."
+    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。 AgentSysBench（M18）是首批从系统侧量化这些问题的工作：非LLM组件占关键路径、KV缓存状态与TTL过期、沙箱计费。",
+    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed. AgentSysBench (M18) is among the first works to quantify these from the systems side: non-LLM components on the critical path, KV-cache state and TTL expiry, and sandbox billing."
    },
    "facts": [
     {
@@ -821,7 +894,8 @@
     ],
     "benchmarks": [
      "M03",
-     "M06"
+     "M06",
+     "M18"
     ]
    }
   },
