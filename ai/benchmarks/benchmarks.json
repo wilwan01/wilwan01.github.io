@@ -2,8 +2,8 @@
  "version": 1,
  "as_of": "2026-10-17",
  "scope": {
-  "zh": "MLPerf 近三个轮次的公开发布要点，加上读基准时应问的问题。厂商自报结果单独标注；不含排名。",
-  "en": "Key public release points from the last three MLPerf rounds, plus the questions to ask when reading benchmarks. Vendor self-reports are labelled; no rankings are given."
+  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。",
+  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled."
  },
  "evidence_levels": {
   "primary-read": {
@@ -31,6 +31,14 @@
   "round": {
    "zh": "MLPerf 轮次",
    "en": "MLPerf rounds"
+  },
+  "system": {
+   "zh": "系统与CPU基准",
+   "en": "System and CPU benchmarks"
+  },
+  "agentic": {
+   "zh": "智能体基准",
+   "en": "Agentic benchmarks"
   },
   "guide": {
    "zh": "如何读基准",
@@ -203,12 +211,430 @@
    }
   },
   {
+   "id": "M06",
+   "group": "system",
+   "date": "2026-09-01",
+   "title": {
+    "zh": "MLPerf Storage v3.0",
+    "en": "MLPerf Storage v3.0"
+   },
+   "summary": {
+    "zh": "新增 KV 缓存与向量数据库两项推理侧存储测试，并支持 S3 对象存储访问层；模拟加速器由 H100 改为 B200，因此不能与 v2.0 直接比较。",
+    "en": "Adds KV-cache and vector-database storage tests for inference, plus S3 object-storage access; simulated accelerators moved from H100 to B200, so results are not comparable with v2.0."
+   },
+   "facts": [
+    {
+     "zh": "19个机构、143项结果，其中11家首次提交（含 Azure、NVIDIA、Nebius）。",
+     "en": "19 organisations and 143 results, including 11 first-time submitters (Azure, NVIDIA and Nebius among them)."
+    },
+    {
+     "zh": "媒体转述的峰值：KV 缓存读 1,623.4 GiB/s（51主机 FlashBlade//EXA），向量库 57,620 QPS；这是厂商提交的系统，不是通用基线。",
+     "en": "Press-reported peaks: KV-cache read 1,623.4 GiB/s (51-host FlashBlade//EXA) and 57,620 QPS for vector DB; these are vendor-submitted systems, not a general baseline."
+    }
+   ],
+   "evidence": "secondary-authoritative",
+   "sources": [
+    {
+     "label": "MLCommons release via financialcontent/GlobeNewswire",
+     "url": "https://www.financialcontent.com/article/gnwcq-2026-9-1-mlcommons-releases-new-mlperf-storage-v30-benchmark-results",
+     "type": "primary"
+    },
+    {
+     "label": "StorageReview analysis",
+     "url": "https://storagereview.com/news/mlperf-storage-v3-0-877-gib-s-checkpoints-a-cloud-first-and-a-leaderboard-turned-over",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要；各数字来自二手报道，未对照 MLCommons 结果页。",
+    "en": "Only search summaries were read; figures come from secondary reports and were not checked against the MLCommons results page."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "kv-cache"
+    ],
+    "bridge": [
+     "B8"
+    ]
+   }
+  },
+  {
+   "id": "M07",
+   "group": "system",
+   "date": "2026-05-05",
+   "title": {
+    "zh": "SPEC CPU 2026",
+    "en": "SPEC CPU 2026"
+   },
+   "summary": {
+    "zh": "九年来第一次更新：评估70多个候选应用，选定38个，构成52个基准（CPU2017为43个）；源码量超过两倍，新增 LLVM 编译器、Python 解释器、国际象棋引擎等。",
+    "en": "The first new SPEC CPU in nine years: more than 70 candidate applications evaluated, 38 selected, 52 benchmarks (CPU2017 had 43); more than twice the source lines, with new LLVM-compiler, Python-interpreter and chess-engine workloads."
+   },
+   "facts": [
+    {
+     "zh": "SPECspeed Integer 加入面向高核数CPU的显式并行，内存上限由16GB升至64GB；语言标准更新为 C++17、C18、Fortran 2018；新增开源编译器类别；裸金属云平台正式纳入运行与报告。",
+     "en": "SPECspeed Integer gains explicit parallelism for high-core-count CPUs and a memory allowance raised from 16GB to 64GB; language standards move to C++17, C18 and Fortran 2018; a new open-source-compiler category is added; bare-metal cloud platforms are formally supported."
+    },
+    {
+     "zh": "许可价格：新客户$3,000，现有用户在2026-11-03前$2,000。",
+     "en": "Licence: $3,000 for new customers; $2,000 for current licensees until 3 November 2026."
+    },
+    {
+     "zh": "规则要点（CPU2017规则，CPU2026版另有页面）：base 编译不得使用反馈优化与断言标志；SPECspeed 允许编译器并行，SPECrate 不允许；公开披露须遵守规则，否则须标为估计值。",
+     "en": "Rule points (CPU2017 rules; CPU2026 has its own page): base builds may not use feedback-directed optimisation or assertion flags; compiler parallelisation is allowed for SPECspeed but not SPECrate; public disclosure must follow the rules or be labelled an estimate."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "SPEC press release, 5 May 2026",
+     "url": "https://spec.cs.miami.edu/pressreleases/2026/20260505-spec-releases-cpu-2026-benchmark-suite/",
+     "type": "primary"
+    },
+    {
+     "label": "SPEC CPU 2026 run and reporting rules",
+     "url": "https://open.spec.org/cpu2026/docs/runrules.html",
+     "type": "primary"
+    },
+    {
+     "label": "SPEC CPU 2017 run and reporting rules",
+     "url": "https://www.spec.org/cpu2017/docs/runrules.html",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "新闻稿正文已读；规则页只看到目录摘要。本页没有采集任何 CPU 2026 具体得分，也不与 CPU2017 分数换算——两套套件不可直接比较。供应商（如 Supermicro）已发布结果，属营销来源。",
+    "en": "The press release was read; the rules pages were seen only as table-of-contents excerpts. No SPEC CPU 2026 scores are captured here and CPU2017 scores cannot be converted — the suites are not directly comparable. Vendors such as Supermicro have published results; those are marketing sources."
+   },
+   "links": {
+    "terms": [
+     "spec-cpu",
+     "smt",
+     "numa"
+    ],
+    "bridge": [
+     "B11",
+     "B10"
+    ]
+   }
+  },
+  {
+   "id": "M08",
+   "group": "system",
+   "date": "2026-02-16",
+   "title": {
+    "zh": "InferenceX（原 InferenceMAX，SemiAnalysis）",
+    "en": "InferenceX (formerly InferenceMAX, SemiAnalysis)"
+   },
+   "summary": {
+    "zh": "开源、持续运行的推理基准（Apache 2.0）；v2 报告覆盖 GB300 NVL72、MI355X、B200、H100，含解耦服务、宽专家并行与大型MoE模型，框架包括 SGLang、vLLM、TensorRT-LLM。",
+    "en": "An open-source, continuously run inference benchmark (Apache 2.0); the v2 report covers GB300 NVL72, MI355X, B200 and H100, including disaggregated serving, wide expert parallelism and large MoE models across SGLang, vLLM and TensorRT-LLM."
+   },
+   "facts": [
+    {
+     "zh": "方法主张：应在不同交互性/延迟水平上读吞吐，而不是只看峰值。",
+     "en": "Methodological stance: read throughput across interactivity levels, not just the peak."
+    },
+    {
+     "zh": "英伟达、AMD 各自引用该基准宣称的代际提升（最高约4倍／5倍）是厂商表述。",
+     "en": "NVIDIA and AMD each cite generational gains from it (up to about 4× and 5×); those are vendor framings."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "SemiAnalysis: InferenceX v2 (paywalled)",
+     "url": "https://newsletter.semianalysis.com/p/inferencex-v2-nvidia-blackwell-vs",
+     "type": "secondary"
+    },
+    {
+     "label": "InferenceX dashboard",
+     "url": "https://inferencex.semianalysis.com/about",
+     "type": "primary"
+    },
+    {
+     "label": "GitHub repository",
+     "url": "https://github.com/SemiAnalysisAI/InferenceX",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "报告全文付费，未读到具体数值；与 MLPerf 不同，它不是同行评审的提交制，而是SemiAnalysis自己运行。",
+    "en": "The full report is paywalled and numeric results were not read; unlike MLPerf it is run by SemiAnalysis itself, not a peer-reviewed submission process."
+   },
+   "links": {
+    "terms": [
+     "prefill-decode",
+     "tail-latency",
+     "slo"
+    ],
+    "bridge": [
+     "B8",
+     "B10"
+    ]
+   }
+  },
+  {
+   "id": "M09",
+   "group": "agentic",
+   "date": null,
+   "title": {
+    "zh": "SWE-bench Verified 与 Pro",
+    "en": "SWE-bench Verified and Pro"
+   },
+   "summary": {
+    "zh": "Verified 是500个仅Python的真实代码库问题，被普遍认为已被污染；Pro（Scale AI）有1,865个任务、41个代码库，覆盖多语言，设计上更难污染。",
+    "en": "Verified is 500 Python-only real-repository issues, widely considered contaminated; Pro (Scale AI) has 1,865 tasks across 41 repositories in several languages and is designed to resist contamination."
+   },
+   "facts": [
+    {
+     "zh": "同一模型的分数随口径剧烈变化：Scale AI 标准化 SEAL 榜在2026年3月的最高约46%，而厂商发布稿自报可达约80%；Verified 的聚合站快照已在90%以上。",
+     "en": "Scores swing with basis: Scale AI’s standardised SEAL board topped out around 46% in March 2026, while vendor launch posts self-report around 80%; aggregator snapshots of Verified are above 90%."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Morph: SWE-bench Pro leaderboard explainer",
+     "url": "https://www.morphllm.com/swe-bench-pro",
+     "type": "secondary"
+    },
+    {
+     "label": "Codersera: agent benchmark roundup, May 2026",
+     "url": "https://codersera.com/blog/ai-agent-benchmarks-state-of-leaderboard-may-2026/amp/",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "没有找到单一权威榜；聚合站互相矛盾，所以此处不给领先者。以 swebench.com 与 Scale AI SEAL 页面为准。",
+    "en": "No single authoritative board was found and aggregators contradict each other, so no leader is named. Check swebench.com and Scale AI’s SEAL page."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "swe-bench"
+    ],
+    "bridge": [
+     "B11"
+    ]
+   }
+  },
+  {
+   "id": "M10",
+   "group": "agentic",
+   "date": null,
+   "title": {
+    "zh": "Terminal-Bench 2.0",
+    "en": "Terminal-Bench 2.0"
+   },
+   "summary": {
+    "zh": "89个终端环境任务，涵盖软件工程、生物、安全与游戏，测量智能体在真实命令行中完成任务的能力。",
+    "en": "89 terminal-environment tasks across software engineering, biology, security and gaming, measuring whether an agent can finish real command-line work."
+   },
+   "facts": [
+    {
+     "zh": "2026年3月至9月的不同快照给出不同领先者与分数（约78%到88%），且大小取决于智能体外壳（harness）而不仅是模型。",
+     "en": "Snapshots from March to September 2026 give different leaders and scores (roughly 78% to 88%), and the result depends on the agent harness as well as the model."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Morph: Terminal-Bench 2.0 leaderboard",
+     "url": "https://www.morphllm.com/terminal-bench-2",
+     "type": "secondary"
+    },
+    {
+     "label": "Codesota snapshot of the official board",
+     "url": "https://www.codesota.com/browse/agentic/autonomous-coding/terminal-bench-2",
+     "type": "secondary"
+    },
+    {
+     "label": "Official board (tbench.ai)",
+     "url": "https://tbench.ai/leaderboard/terminal-bench/2.0",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "官方榜未打开；快照之间矛盾，故不给排名。",
+    "en": "The official board was not opened; snapshots contradict each other, so no ranking is given."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ],
+    "bridge": [
+     "B11"
+    ]
+   }
+  },
+  {
+   "id": "M11",
+   "group": "agentic",
+   "date": null,
+   "title": {
+    "zh": "OSWorld（电脑使用）",
+    "en": "OSWorld (computer use)"
+   },
+   "summary": {
+    "zh": "在真实桌面环境中评估多模态智能体；人类基线约72%。据报道 Simular 的 Agent S 在2025年12月达到约72.6%，成为首个越过人类基线的案例。",
+    "en": "Evaluates multimodal agents in real desktop environments; the human baseline is about 72%. Simular’s Agent S is reported to have reached about 72.6% in December 2025, the first widely noted result above the human baseline."
+   },
+   "facts": [
+    {
+     "zh": "2026年的快照显示最高约80–86%，口径各异（部分自报、未审计）；分数不能跨 OSWorld 版本迁移，更难的 OSWorld 2.0 最高约20.6%。",
+     "en": "2026 snapshots show a top of roughly 80–86% on varying bases (some self-reported and unaudited); scores do not transfer across OSWorld versions, and on the harder OSWorld 2.0 the best listed is about 20.6%."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Buildmvpfast: OSWorld passed the human baseline",
+     "url": "https://www.buildmvpfast.com/blog/osworld-benchmark-ai-agents-passed-human-baseline-2026",
+     "type": "secondary"
+    },
+    {
+     "label": "Steel leaderboard (partly self-reported)",
+     "url": "https://leaderboard.steel.dev/leaderboards/osworld/",
+     "type": "secondary"
+    },
+    {
+     "label": "a16z: can agents use a computer yet",
+     "url": "https://a16z.com/can-agents-use-a-computer-yet-weve-got-the-data/",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "官方 xlang.ai 榜未读到；版本与自报口径不同的数字不可并列比较。",
+    "en": "The official xlang.ai board was not read; numbers from different versions and self-report bases cannot be compared side by side."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ]
+   }
+  },
+  {
+   "id": "M12",
+   "group": "agentic",
+   "date": null,
+   "title": {
+    "zh": "GAIA（HAL 标准化榜）",
+    "en": "GAIA (HAL standardised board)"
+   },
+   "summary": {
+    "zh": "通用AI助手基准，分三个难度层级；HAL（普林斯顿）榜注重标准化与成本。截至2026-05-27，榜首约74.6%（一级约82%、二级约73%、三级约65%），人类约92%。",
+    "en": "A general AI-assistant benchmark in three difficulty levels; the HAL (Princeton) board stresses standardisation and cost. As of 2026-05-27 the top entry was about 74.6% (about 82% on Level 1, 73% on Level 2, 65% on Level 3) against about 92% for humans."
+   },
+   "facts": [],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "HAL GAIA board",
+     "url": "https://hal.cs.princeton.edu/gaia",
+     "type": "primary"
+    },
+    {
+     "label": "Beancount research log on GAIA",
+     "url": "https://beancount.io/ja/bean-labs/research-logs/2026/06/16/gaia-benchmark-general-ai-assistants",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "HAL 页面只从搜索摘要读到；数字截至5月，之后可能已变。",
+    "en": "The HAL page was read only through search summaries; figures are as of May and may have changed."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ]
+   }
+  },
+  {
+   "id": "M13",
+   "group": "agentic",
+   "date": null,
+   "title": {
+    "zh": "METR 时间跨度（任务时长）",
+    "en": "METR time horizon (task length)"
+   },
+   "summary": {
+    "zh": "METR 用“模型以50%成功率能完成的人类任务时长”衡量智能体能力：2025年3月论文估计前沿模型约50分钟，自2019年起约每7个月翻倍。",
+    "en": "METR measures agent capability as the human task length a model completes with 50% success: its March 2025 paper put frontier models at about 50 minutes, doubling roughly every seven months since 2019."
+   },
+   "facts": [
+    {
+     "zh": "2026年1月的 Time Horizon 1.1 更新称2023年以来翻倍时间约130.8天（4.3个月）；有二手来源称某模型约719分钟（约12小时）。",
+     "en": "The January 2026 Time Horizon 1.1 update puts the post-2023 doubling time at about 130.8 days (4.3 months); one secondary source cites about 719 minutes (about 12 hours) for a model."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "METR: Measuring AI Ability to Complete Long Tasks (arXiv)",
+     "url": "https://arxiv.org/html/2503.14499v1",
+     "type": "primary"
+    },
+    {
+     "label": "METR time horizon tracker (secondary)",
+     "url": "https://capitalandcompute.net/ai-benchmarks/metr-time-horizon/",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "2026年的数字来自二手来源，未读 METR 官网；“50%时间跨度”意味着该长度任务约一半会失败，不能读作“能独立工作多少小时”；对样本量与人类基线的批评亦存在。",
+    "en": "The 2026 figures are secondary and METR’s own site was not read; a “50% horizon” means about half of tasks of that length fail, so it must not be read as “works unattended for N hours”; critiques about sample size and human baselines exist."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "time-horizon"
+    ]
+   }
+  },
+  {
+   "id": "M14",
+   "group": "guide",
+   "date": null,
+   "title": {
+    "zh": "智能体基准如何连到基础设施",
+    "en": "How agentic benchmarks connect to infrastructure"
+   },
+   "summary": {
+    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。",
+    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks."
+   },
+   "facts": [],
+   "evidence": "editorial",
+   "sources": [],
+   "caveat": {
+    "zh": "编辑性阅读指南。",
+    "en": "An editorial reading guide."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "kv-cache",
+     "prefill-decode"
+    ],
+    "bridge": [
+     "B8",
+     "B11"
+    ],
+    "benchmarks": [
+     "M03",
+     "M06"
+    ]
+   }
+  },
+  {
    "id": "M04",
    "group": "guide",
    "date": null,
    "title": {
-    "zh": "读基准的六个问题",
-    "en": "Six questions before reading a benchmark chart"
+    "zh": "尚未覆盖的基准与成本口径",
+    "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
     "zh": "1) 封闭还是开放组？开放组可改模型与算法，不能与封闭组直接比。2) 每加速器还是整系统？系统规模不同，比较单位要对齐。3) 是同一硅的软件提升还是新硬件？v6.1 的 Intel 例子来自同一硅。4) 精度（FP8/FP4）与准确度门槛是否相同？5) 有没有功耗与成本列？功耗测量是可选提交，价格不在结果表里。6) 基准负载是否像你的生产负载（上下文长度、批量、延迟约束）？",
@@ -243,8 +669,8 @@
     "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
-    "zh": "本页只覆盖 MLCommons 三个轮次。其他社区或厂商的推理吞吐、每美元/每瓦特成绩，以及云实例的真实价格尚未纳入；加入前须核实方法与来源。",
-    "en": "This page covers only three MLCommons rounds. Other community or vendor inference throughput, per-dollar and per-watt results and real cloud-instance prices are not included; method and source must be checked before adding."
+    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026 与五个智能体基准。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、BrowseComp、τ²-bench、云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
+    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026 and five agentic benchmarks. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, BrowseComp, τ²-bench, real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
    },
    "facts": [],
    "evidence": "editorial",
