@@ -2,8 +2,8 @@
  "version": 1,
  "as_of": "2026-10-17",
  "scope": {
-  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。",
-  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled."
+  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
+  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
  },
  "evidence_levels": {
   "primary-read": {
@@ -39,6 +39,10 @@
   "agentic": {
    "zh": "智能体基准",
    "en": "Agentic benchmarks"
+  },
+  "index": {
+   "zh": "综合指数与第一方基准",
+   "en": "Composite indexes and first-party suites"
   },
   "guide": {
    "zh": "如何读基准",
@@ -594,6 +598,183 @@
    }
   },
   {
+   "id": "M15",
+   "group": "index",
+   "date": "2026-09-07",
+   "title": {
+    "zh": "Artificial Analysis 智能指数（v4.3.x）",
+    "en": "Artificial Analysis Intelligence Index (v4.3.x)"
+   },
+   "summary": {
+    "zh": "把10项评测加权平均成一个数：智能体30%（AA-Briefcase 15、GDPval-AA 10、AutomationBench-AA 5）、编码20%（Terminal-Bench 4.0 10、SciCode 10）、科学推理20%（HLE 10、CritPt 10）、通用30%（AA-Omniscience 15、GDP.pdf 10、AA-LCR 5）。权重明显偏向智能体任务。",
+    "en": "Averages ten evaluations into one number, weighted: agents 30% (AA-Briefcase 15, GDPval-AA 10, AutomationBench-AA 5), coding 20% (Terminal-Bench 4.0 10, SciCode 10), scientific reasoning 20% (HLE 10, CritPt 10), general 30% (AA-Omniscience 15, GDP.pdf 10, AA-LCR 5). The weighting clearly favours agentic tasks."
+   },
+   "facts": [
+    {
+     "zh": "方法页当前版本为 v4.3.2；v4.1 时只有9项评测、智能体34%；评测集每个版本都在换，v4.1 之后 τ³-Banking 已被 AutomationBench-AA 取代。",
+     "en": "The methodology page shows v4.3.2; v4.1 had nine evaluations with agents at 34%; the evaluation set changes with each version, and τ³-Banking was replaced by AutomationBench-AA after v4.1."
+    },
+    {
+     "zh": "运行方式：多数评测只跑一次，Terminal-Bench 4.0、SciCode、AA-LCR 跑3次，GDP.pdf、CritPt 跑5次，按 pass@1 汇总；基于 Elo 的评测给出95%置信区间；AA-Briefcase、AutomationBench-AA（657题私有保留集）、AA-Omniscience、CritPt 为私有评测，据称私有/保留评测权重占45%。",
+     "en": "How runs work: most evaluations run once, Terminal-Bench 4.0, SciCode and AA-LCR three times, GDP.pdf and CritPt five times, aggregated as pass@1; Elo-based evaluations get 95% confidence intervals; AA-Briefcase, AutomationBench-AA (a private 657-task held-out split), AA-Omniscience and CritPt are private, and private or held-out evaluations are reported at 45% of the weight."
+    },
+    {
+     "zh": "由 Artificial Analysis 自己运行（页面未称“独立”）；部分评测来自外部方（Zapier、Harvey、Surge AI）；评分用前沿LLM作评审，部分用三评审团。成本按各API提供商报告的token数计算。",
+     "en": "Run by Artificial Analysis itself (the page does not say “independent”); some evaluations come from outside parties (Zapier, Harvey, Surge AI); frontier LLMs act as judges, with a three-judge panel for some. Cost uses token counts reported by each API provider."
+    },
+    {
+     "zh": "页面自陈的局限：主要是英文文本；HLE 题目曾用旧模型对抗筛选，不宜与未参与筛选的模型直接比较；不同版本分数不可比；参考归一化参数可能更新。",
+     "en": "Limits the page states itself: mostly English text; HLE questions were adversarially selected with older models, so comparisons with models outside that process are discouraged; scores are not comparable across versions; reference normalisation parameters may be updated."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Artificial Analysis: Intelligence Index methodology",
+     "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+     "type": "primary"
+    },
+    {
+     "label": "Artificial Analysis: Index v4.3 announcement",
+     "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "读了方法页前约一半（共约18万字符，后半未读）；v4.3 公告日期来自搜索摘要。综合指数把不同评测压成一个数，权重选择本身是判断。",
+    "en": "About the first half of the methodology page was read (about 180,000 characters; the rest was not), and the v4.3 announcement date comes from a search summary. A composite compresses different evaluations into one number, and the weight choices are themselves judgements."
+   },
+   "links": {
+    "terms": [
+     "intelligence-index",
+     "agentic",
+     "swe-bench"
+    ],
+    "bridge": [
+     "B10"
+    ],
+    "benchmarks": [
+     "M10",
+     "M14"
+    ]
+   }
+  },
+  {
+   "id": "M16",
+   "group": "index",
+   "date": null,
+   "title": {
+    "zh": "Artificial Analysis 速度、价格与硬件基准",
+    "en": "Artificial Analysis speed, price and hardware benchmarks"
+   },
+   "summary": {
+    "zh": "除智能指数外，Artificial Analysis 还对各推理提供商持续测量输出速度（token/秒）、首token延迟和每百万token价格；其招聘页称也在为新加速器与推理配置做吞吐与性价比基准。这些数字衡量的是托管服务，而不是某块芯片。",
+    "en": "Besides the Intelligence Index, Artificial Analysis continuously measures output speed (tokens per second), time to first token and price per million tokens across inference providers; its job listing says it also benchmarks throughput and price-performance for new accelerators and inference configurations. These numbers describe hosted services, not a particular chip."
+   },
+   "facts": [
+    {
+     "zh": "读“每秒token”时先分清：单用户速度，还是整个部署的总吞吐；每GPU，还是每系统/每机架。有报道的250万 token/秒来自4个机架的288块 Blackwell Ultra，除以芯片数并不是 MLCommons 的官方指标。",
+     "en": "Before reading “tokens per second”, separate per-user speed from total deployment throughput, and per-GPU from per-system or per-rack. One reported 2.5 million tokens per second came from 288 Blackwell Ultra GPUs across four racks, and dividing by chip count is not an official MLCommons metric."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Artificial Analysis careers: AI hardware product manager (describes the hardware benchmarking)",
+     "url": "https://artificialanalysis.ai/careers/product-manager-ai-hardware",
+     "type": "primary"
+    },
+    {
+     "label": "PDPSpectra: reading inference benchmarks honestly",
+     "url": "https://pdpspectra.com/blog/inference-benchmarks-comparison-2026",
+     "type": "secondary"
+    },
+    {
+     "label": "AIIndigo: review of Artificial Analysis",
+     "url": "https://aiindigo.com/blog/navigating-the-model-maze-an-honest-review-of-artificial-analysis-in-2026-1",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "没有读到 Artificial Analysis 自己的硬件页面，不引用具体硬件数字；提供商速度随负载、批量与时间变化。",
+    "en": "Artificial Analysis’s own hardware page was not read, so no hardware figures are cited; provider speeds vary with load, batching and time."
+   },
+   "links": {
+    "terms": [
+     "prefill-decode",
+     "tail-latency",
+     "slo",
+     "tco"
+    ],
+    "bridge": [
+     "B8",
+     "B10"
+    ],
+    "benchmarks": [
+     "M03",
+     "M08"
+    ]
+   }
+  },
+  {
+   "id": "M17",
+   "group": "index",
+   "date": "2026-03-11",
+   "title": {
+    "zh": "CursorBench（Cursor 第一方编码智能体评测）",
+    "en": "CursorBench (Cursor’s first-party coding-agent evaluation)"
+   },
+   "summary": {
+    "zh": "任务来自真实 Cursor 会话：Cursor Blame 把已提交代码追溯到产生它的智能体请求，从而得到“开发者请求 + 真实解答”；任务描述刻意简短含糊；由智能体评分器打分，可接受多种正确答案；每几个月刷新。",
+    "en": "Tasks come from real Cursor sessions: Cursor Blame traces committed code back to the agent request that produced it, pairing a developer request with a ground-truth solution; task descriptions are deliberately short and underspecified; agentic graders score them and accept multiple correct answers; the set is refreshed every few months."
+   },
+   "facts": [
+    {
+     "zh": "衡量正确性、代码质量、效率与交互行为（文章重点是正确性）；Epoch 转载的榜单同时给出每任务平均成本、token 数和智能体步数，且同一模型常按多个推理强度分别列出。",
+     "en": "Measures correctness, code quality, efficiency and interaction behaviour (the post focuses on correctness); the leaderboard Epoch relays also reports average cost, tokens and agent steps per task, with the same model often listed at several reasoning-effort levels."
+    },
+    {
+     "zh": "版本：Cursor 文章称生产版本为3.1（可能与文中数字不同，须在同一版本内比较）；Epoch 称榜单自2026-09-10起为 v4.0，且与 3.x 不可比。",
+     "en": "Versions: Cursor’s post says production is 3.1 (scores can shift from the post and must be compared within one version); Epoch says the board has been v4.0 since 10 September 2026 and is not comparable with 3.x."
+    },
+    {
+     "zh": "文章承认：代码行数是难度的不完美度量；未报告样本量、置信区间或显著性；离线评分可能给开发者觉得更差的输出打高分，所以并用在线评测。",
+     "en": "The post concedes lines of code is an imperfect measure of difficulty; it reports no sample sizes, confidence intervals or significance tests; offline graders can score well on outputs developers find worse, which is why online evaluations are used alongside."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Cursor: How we evaluate models with CursorBench",
+     "url": "https://cursor.com/blog/cursorbench",
+     "type": "primary"
+    },
+    {
+     "label": "Epoch AI: CursorBench",
+     "url": "https://epoch.ai/benchmarks/cursorbench",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "这是评测所有者自己的套件，任务集与评分器不公开，外部无法复现；别家聚合站只作参考展示、不计入总榜。文章正文没有具体分数，本页不引用任何排名。",
+    "en": "This is the evaluation owner’s own suite; the task set and graders are not public, so outsiders cannot reproduce it; some aggregators show it for reference only and exclude it from overall rankings. The post text gives no numeric scores and this page cites no ranking."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "first-party-benchmark",
+     "swe-bench"
+    ],
+    "bridge": [
+     "B11"
+    ],
+    "benchmarks": [
+     "M09",
+     "M14"
+    ]
+   }
+  },
+  {
    "id": "M14",
    "group": "guide",
    "date": null,
@@ -602,15 +783,31 @@
     "en": "How agentic benchmarks connect to infrastructure"
    },
    "summary": {
-    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。",
-    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks."
+    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。",
+    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed."
    },
-   "facts": [],
+   "facts": [
+    {
+     "zh": "二手来源称，外壳（scaffold）可使 SWE-bench Pro 上同一模型相差约22分；另一来源称三种外壳可使同一模型上下摆动30分。",
+     "en": "Secondary sources say the scaffold accounts for about a 22-point swing on SWE-bench Pro for the same model, and another says three scaffolds can swing one model by 30 points."
+    }
+   ],
    "evidence": "editorial",
-   "sources": [],
+   "sources": [
+    {
+     "label": "Morph: AI coding benchmarks 2026",
+     "url": "https://www.morphllm.com/ai-coding-benchmarks-2026",
+     "type": "secondary"
+    },
+    {
+     "label": "Codersera: agent benchmark roundup, May 2026",
+     "url": "https://codersera.com/blog/ai-agent-benchmarks-state-of-leaderboard-may-2026/amp/",
+     "type": "secondary"
+    }
+   ],
    "caveat": {
-    "zh": "编辑性阅读指南。",
-    "en": "An editorial reading guide."
+    "zh": "编辑性阅读指南；外壳摆动幅度来自二手博客，未核对原榜单。",
+    "en": "An editorial reading guide; the harness-swing figures come from secondary blogs and were not checked against the original boards."
    },
    "links": {
     "terms": [
@@ -669,8 +866,8 @@
     "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
-    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026 与五个智能体基准。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、BrowseComp、τ²-bench、云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
-    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026 and five agentic benchmarks. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, BrowseComp, τ²-bench, real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
+    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、五个智能体基准、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、BrowseComp、τ²-bench、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
+    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, five agentic benchmarks, the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, BrowseComp, τ²-bench, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
    },
    "facts": [],
    "evidence": "editorial",
