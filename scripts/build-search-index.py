@@ -31,7 +31,7 @@ def load(p):
 
 # --- pages and report section headings
 SECTION_OF = {"architects": "architects", "analysts": "analysts", "bridge": "bridge", "earnings": "earnings",
-              "hot-chips": "hotchips", "notes": "notes", "policy": "policy", "standards": "standards", "method": "method"}
+              "hot-chips": "hotchips", "notes": "notes", "policy": "policy", "standards": "standards", "method": "method", "customers": "customers", "benchmarks": "benchmarks", "energy": "energy", "calendar": "calendar"}
 for f in sorted(AI.rglob("*.html")):
     rel = f.relative_to(AI).as_posix()
     if re.match(r"notes/[a-z]\d+\.html$", rel):
@@ -87,6 +87,11 @@ for e in load("policy/policy.json")["events"]:
     add(f"{e['id']} · {e['title']['en']} / {e['title']['zh']}", f"/ai/policy/#{e['id']}", "policy", f"{e['date']} {e['summary']['en']} {e['summary']['zh']}", "bi")
 for i in load("standards/standards.json")["items"]:
     add(f"{i['id']} · {i['name']} ({i['org']})", f"/ai/standards/#{i['id']}", "standards", f"{i['date']} {i['summary']['en']} {i['summary']['zh']}", "bi")
+for sec, path in (("customers", "customers/customers.json"), ("benchmarks", "benchmarks/benchmarks.json"), ("energy", "energy/energy.json")):
+    for i in load(path)["items"]:
+        add(f"{i['id']} · {i['title']['en']} / {i['title']['zh']}", f"/ai/{sec}/#{i['id']}", sec, f"{i.get('date') or ''} {i['summary']['en']} {i['summary']['zh']}", "bi")
+for e in load("calendar/events.json")["events"]:
+    add(f"{e['id']} · {e['title']['en']} / {e['title']['zh']}", "/ai/calendar/", "calendar", f"{e['date']} {e['note']['en']} {e['note']['zh']}", "bi")
 for t in load("method/glossary.json")["terms"]:
     add(f"{t['en']} / {t['zh']}", f"/ai/method/glossary.html#{t['id']}", "glossary", f"{t['def_en']} {t['def_zh']}", "bi")
 

@@ -69,7 +69,7 @@ async function glossary(){
   draw();if(location.hash)document.getElementById(location.hash.slice(1))?.scrollIntoView();
 }
 async function method(){
-  const [cat,t,c,b,p,s,g,sg,sk]=await Promise.all([getJSON('/ai/architects/catalog.json'),getJSON('/ai/analysts/thought-atlas.json'),getJSON('/ai/analysts/corpus.json'),getJSON('/ai/bridge/bridge.json'),getJSON('/ai/policy/policy.json'),getJSON('/ai/standards/standards.json'),getJSON('/ai/method/glossary.json'),getJSON('/ai/analysts/skill-graph.json'),Promise.resolve(0)]);
+  const [cu,bm,en,cat,t,c,b,p,s,g,sg,sk]=await Promise.all([getJSON('/ai/customers/customers.json'),getJSON('/ai/benchmarks/benchmarks.json'),getJSON('/ai/energy/energy.json'),getJSON('/ai/architects/catalog.json'),getJSON('/ai/analysts/thought-atlas.json'),getJSON('/ai/analysts/corpus.json'),getJSON('/ai/bridge/bridge.json'),getJSON('/ai/policy/policy.json'),getJSON('/ai/standards/standards.json'),getJSON('/ai/method/glossary.json'),getJSON('/ai/analysts/skill-graph.json'),Promise.resolve(0)]);
   const rows=[
    ['架构师思想库 / Architect Mode','/ai/architects/',`${cat.profiles.length}`,cat.updated,'zh','profiles','/ai/architects/catalog.json'],
    ['分析师思想地图 / Analyst thought atlas','/ai/analysts/thoughts.html',`${t.profiles.length} / ${t.cards.length}`,t.as_of,'zh','profiles / cards','/ai/analysts/thought-atlas.json'],
@@ -77,12 +77,64 @@ async function method(){
    ['技术 × 投资 / Technology × Investment','/ai/bridge/',`${b.cards.length}`,b.as_of,'zh','cards','/ai/bridge/bridge.json'],
    ['政策与地缘 / Policy','/ai/policy/',`${p.events.length}`,p.as_of,'zh+en','events','/ai/policy/policy.json'],
    ['标准与联盟 / Standards','/ai/standards/',`${s.items.length}`,s.as_of,'zh+en','items','/ai/standards/standards.json'],
+   ['需求与买家 / Customers','/ai/customers/',`${cu.items.length}`,cu.as_of,'zh+en','items','/ai/customers/customers.json'],
+   ['基准 / Benchmarks','/ai/benchmarks/',`${bm.items.length}`,bm.as_of,'zh+en','items','/ai/benchmarks/benchmarks.json'],
+   ['能源与站点 / Energy & sites','/ai/energy/',`${en.items.length}`,en.as_of,'zh+en','items','/ai/energy/energy.json'],
+   ['日历 / Calendar','/ai/calendar/','live','ledger','zh+en','events','/ai/calendar/events.json'],
    ['术语表 / Glossary','/ai/method/glossary.html',`${g.terms.length}`,g.as_of,'zh+en','terms','/ai/method/glossary.json']];
   $('#datatable').innerHTML=`<table><thead><tr><th>Section / 板块</th><th>Count / 数量</th><th>As of / 截至</th><th>Language / 语言</th><th>Data / 数据</th></tr></thead><tbody>${rows.map(r=>`<tr><td><a href="${r[1]}">${esc(r[0])}</a></td><td>${esc(r[2])} <span class="muted">${r[5]}</span></td><td>${esc(r[3])}</td><td>${r[4]}</td><td><a href="${r[6]}" download>JSON ↓</a></td></tr>`).join('')}</tbody></table>`;
   const unresolved=c.counts.ir_unresolved_companies;
   $('#dyn-gaps').innerHTML=bi({zh:`当前数字：${c.counts.questions}条精选财报问答（${c.counts.companies}家公司）；${c.counts.ir_named_companies}家公司具名IR名单已读取，${unresolved}家公司的完整IR名单尚未找到；分析师技能${sg.length}项；桥接卡${b.cards.length}张；政策事件${p.events.length}条；标准条目${s.items.length}条。`,en:`Current numbers: ${c.counts.questions} selected earnings Q&As (${c.counts.companies} companies); named IR lists read for ${c.counts.ir_named_companies} companies, full IR lists still not located for ${unresolved}; ${sg.length} analyst skills; ${b.cards.length} bridge cards; ${p.events.length} policy events; ${s.items.length} standards entries.`});
 }
+async function cards(){
+  const pg=document.body.dataset.page,f={customers:'customers.json',benchmarks:'benchmarks.json',energy:'energy.json'}[pg];
+  const [d,b,c,g,p,s]=await Promise.all([getJSON(f),getJSON('/ai/bridge/bridge.json'),getJSON('/ai/analysts/corpus.json'),getJSON('/ai/method/glossary.json'),getJSON('/ai/policy/policy.json'),getJSON('/ai/standards/standards.json')]);
+  const bc=Object.fromEntries(b.cards.map(x=>[x.id,x])),qa=Object.fromEntries(c.ledger.map(q=>[q.id,q])),terms=Object.fromEntries(g.terms.map(t=>[t.id,t])),pol=Object.fromEntries(p.events.map(e=>[e.id,e])),std=Object.fromEntries(s.items.map(e=>[e.id,e]));
+  const X={customers:['C','/ai/customers/'],energy:['E','/ai/energy/'],benchmarks:['M','/ai/benchmarks/']};
+  $('#scope').innerHTML=bi(d.scope);
+  $('#legend').innerHTML=Object.entries(d.evidence_levels).map(([k,v])=>`<div>${k==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(k,d.evidence_levels)}<div>${bi(v)}</div></div>`).join('');
+  const rel=L=>{
+    const o=[];
+    (L.earnings||[]).forEach(id=>o.push(`<li>↳ ${fmtQA(qa[id],id)}${qa[id]?`<br><small class="muted">${esc(qa[id].management_answer)}</small>`:''}</li>`));
+    (L.reports||[]).forEach(r=>o.push(`<li>↳ <a href="/ai/${esc(r)}">${esc(r.replace('.html',''))}</a></li>`));
+    (L.bridge||[]).forEach(id=>bc[id]&&o.push(`<li>↳ <a href="/ai/bridge/#${id}">${id} · ${esc(bc[id].topic)}</a></li>`));
+    (L.policy||[]).forEach(id=>pol[id]&&o.push(`<li>↳ <a href="/ai/policy/#${id}">${id} · ${esc(pol[id].title.en)}</a></li>`));
+    (L.standards||[]).forEach(id=>std[id]&&o.push(`<li>↳ <a href="/ai/standards/#${id}">${id} · ${esc(std[id].name)}</a></li>`));
+    (L.customers||[]).forEach(id=>o.push(`<li>↳ <a href="/ai/customers/#${id}">${bi({zh:'买家',en:'Customers'})} ${id}</a></li>`));
+    (L.energy||[]).forEach(id=>o.push(`<li>↳ <a href="/ai/energy/#${id}">${bi({zh:'能源与站点',en:'Energy & sites'})} ${id}</a></li>`));
+    (L.benchmarks||[]).forEach(id=>o.push(`<li>↳ <a href="/ai/benchmarks/#${id}">${bi({zh:'基准',en:'Benchmarks'})} ${id}</a></li>`));
+    (L.terms||[]).forEach(id=>terms[id]&&o.push(`<li>↳ <a href="/ai/method/glossary.html#${id}">${esc(terms[id].en)} / ${esc(terms[id].zh)}</a></li>`));
+    return o.length?`<ul class="rel">${o.join('')}</ul>`:'';
+  };
+  $('#list').innerHTML=Object.keys(d.groups).map(k=>{const its=d.items.filter(i=>i.group===k);return its.length?`<h2>${bi(d.groups[k])}</h2>`+its.map(i=>`<article class="card" id="${i.id}"><header><span class="id">${i.id}</span>${i.date?`<span class="date">${i.date}</span>`:''}${i.evidence==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(i.evidence,d.evidence_levels)}</header><h3>${bi(i.title)}</h3><p>${bi(i.summary)}</p>${(i.facts||[]).map(x=>`<p class="muted"><small>${bi(x)}</small></p>`).join('')}${i.sources.length?`<ul class="srcs">${i.sources.map(x=>`<li><a target="_blank" rel="noopener" href="${esc(x.url)}">${esc(x.label)}</a> <span class="muted">· ${esc(x.type)}</span></li>`).join('')}</ul>`:''}<p class="caveat">${bi(i.caveat)}</p>${rel(i.links||{})}</article>`).join(''):''}).join('');
+  if(location.hash)document.getElementById(location.hash.slice(1))?.scrollIntoView();
+}
+async function calendar(){
+  const [e,led]=await Promise.all([getJSON('events.json'),getJSON('/ai/earnings/refresh-ledger.json')]);
+  const cur=led.current,ev=[];
+  (cur.next_confirmed_events||[]).forEach((x,i)=>ev.push({id:'L'+String(i+1).padStart(2,'0'),date:x.date,cat:'earnings',title:{zh:`${x.company} ${x.period} 财报`,en:`${x.company} ${x.period} results`},evidence:'primary-located',url:x.url,note:{zh:x.date_resolution||x.locator||'公司公告的日期。',en:x.date_resolution||x.locator||'Date from the company announcement.'},links:{},ledger:1}));
+  e.events.forEach(x=>ev.push(x));
+  ev.sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id));
+  const today=new Date().toISOString().slice(0,10);let cat='',past=false;
+  $('#scope').innerHTML=bi(e.scope)+` <span class="muted">· ${esc(cur.as_of)} (${esc(cur.timezone)})</span>`;
+  $('#legend').innerHTML=Object.entries(e.evidence_levels).map(([k,v])=>`<div>${k==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(k,e.evidence_levels)}<div>${bi(v)}</div></div>`).join('');
+  $('#filters').innerHTML=`<div class="controls"><button class="chip-btn" data-c="" aria-pressed="true">全部 / All</button>${Object.entries(e.cats).map(([k,v])=>`<button class="chip-btn" data-c="${k}" aria-pressed="false">${bi(v)}</button>`).join('')}<button class="chip-btn" id="pastbtn" aria-pressed="false">${bi({zh:'含已过去',en:'Include past'})}</button><button class="chip-btn" id="ics">${bi({zh:'下载 .ics',en:'Download .ics'})}</button></div><p id="count" role="status" class="muted"></p>`;
+  const vis=()=>ev.filter(x=>(!cat||x.cat===cat)&&(past||(x.end||x.date)>=today));
+  const when=x=>x.precision==='month'?x.date.slice(0,7):x.end?`${x.date} → ${x.end}`:x.date;
+  function draw(){
+    const v=vis();$('#count').textContent=`${v.length} / ${ev.length}`;
+    $('#list').innerHTML=v.length?`<div class="table-wrap"><table><thead><tr><th>Date / 日期</th><th>Event / 事件</th><th>Type / 类型</th><th>Evidence / 证据</th></tr></thead><tbody>${v.map(x=>`<tr${(x.end||x.date)<today?' style="opacity:.6"':''}><td style="white-space:nowrap">${esc(when(x))}</td><td><a target="_blank" rel="noopener" href="${esc(x.url)}">${bi(x.title)}</a><br><small class="muted">${bi(x.note)}</small>${x.links&&(x.links.customers||x.links.energy||x.links.benchmarks||x.links.standards)?`<br><small>${(x.links.customers||[]).map(i=>`<a href="/ai/customers/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.energy||[]).map(i=>`<a href="/ai/energy/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.benchmarks||[]).map(i=>`<a href="/ai/benchmarks/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.standards||[]).map(i=>`<a href="/ai/standards/#${i}">↳ ${i}</a>`).join(' ')}</small>`:''}</td><td>${bi(e.cats[x.cat])}</td><td>${x.evidence==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(x.evidence,e.evidence_levels)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="empty">没有即将到来的事件 / No upcoming events.</p>';
+  }
+  $('#filters').onclick=ev2=>{const b=ev2.target.closest('button');if(!b)return;if(b.id==='pastbtn'){past=!past;b.setAttribute('aria-pressed',String(past))}else if(b.id==='ics'){ics()}else if('c' in b.dataset){cat=b.dataset.c;$$('[data-c]',$('#filters')).forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}draw()};
+  function ics(){
+    const d8=s=>s.replace(/-/g,''),nx=s=>{const t=new Date(s+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+1);return t.toISOString().slice(0,10).replace(/-/g,'')};
+    const rows=vis().filter(x=>x.precision!=='month').map(x=>`BEGIN:VEVENT\r\nUID:${x.id}@wilwan01.github.io\r\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').slice(0,15)}Z\r\nDTSTART;VALUE=DATE:${d8(x.date)}\r\nDTEND;VALUE=DATE:${nx(x.end||x.date)}\r\nSUMMARY:${x.title.en.replace(/[,;]/g,' ')}\r\nURL:${x.url}\r\nEND:VEVENT`);
+    const blob=new Blob([`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//wilwan01.github.io//AI research//EN\r\n${rows.join('\r\n')}\r\nEND:VCALENDAR\r\n`],{type:'text/calendar'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ai-research-calendar.ics';a.click();
+  }
+  draw();
+}
 const page=document.body.dataset.page;
 lang();
-({policy,standards,glossary,method})[page]?.().catch(e=>{const m=$('#list')||$('#datatable');if(m)m.innerHTML='<p class="empty">数据读取失败 / Failed to load data: '+esc(e.message)+'</p>'});
+({policy,standards,glossary,method,customers:cards,benchmarks:cards,energy:cards,calendar})[page]?.().catch(e=>{const m=$('#list')||$('#datatable');if(m)m.innerHTML='<p class="empty">数据读取失败 / Failed to load data: '+esc(e.message)+'</p>'});
 })();

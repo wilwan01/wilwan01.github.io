@@ -2,7 +2,7 @@
 (()=>{
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const SEC={reports:['公司报告','Company reports'],earnings:['财报问答','Earnings Q&A'],analysts:['分析师','Analysts'],architects:['架构师','Architects'],hotchips:['Hot Chips','Hot Chips'],notes:['笔记','Notes'],bridge:['技术×投资','Tech × Invest'],policy:['政策','Policy'],standards:['标准','Standards'],glossary:['术语','Glossary'],method:['方法','Method']};
+const SEC={reports:['公司报告','Company reports'],earnings:['财报问答','Earnings Q&A'],analysts:['分析师','Analysts'],architects:['架构师','Architects'],hotchips:['Hot Chips','Hot Chips'],notes:['笔记','Notes'],bridge:['技术×投资','Tech × Invest'],policy:['政策','Policy'],standards:['标准','Standards'],glossary:['术语','Glossary'],method:['方法','Method'],customers:['需求','Customers'],benchmarks:['基准','Benchmarks'],energy:['能源','Energy'],calendar:['日历','Calendar']};
 let entries=[],sec='',q='',limit=40;
 const hl=(text,terms)=>{let s=esc(text);for(const t of terms){if(!t)continue;const r=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');s=s.replace(r,'<mark>$1</mark>')}return s};
 function score(e,terms){const t=e.t.toLowerCase(),x=e.x.toLowerCase();let sc=0;for(const w of terms){const it=t.indexOf(w),ix=x.indexOf(w);if(it<0&&ix<0)return 0;sc+=it>=0?(it===0?6:3):0;sc+=ix>=0?1:0}return sc}
