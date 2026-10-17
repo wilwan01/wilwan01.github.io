@@ -55,6 +55,20 @@
    ]
   },
   {
+   "id": "agentic",
+   "en": "Agentic workload",
+   "zh": "智能体负载",
+   "cat": "workload",
+   "def_zh": "模型规划、调用工具并多步迭代来完成任务的负载。它消耗大量模型调用、长上下文和CPU侧工具执行，所以“每任务成本”比“每token成本”更重要。",
+   "def_en": "A workload where a model plans, calls tools and iterates over many steps to finish a task. It consumes many model calls, long context and CPU-side tool execution, so cost per task matters more than cost per token.",
+   "see": [
+    {
+     "label": "基准 M14",
+     "url": "/ai/benchmarks/#M14"
+    }
+   ]
+  },
+  {
    "id": "asic",
    "en": "ASIC",
    "zh": "专用集成电路",
@@ -737,6 +751,20 @@
    ]
   },
   {
+   "id": "spec-cpu",
+   "en": "SPEC CPU (SPECrate / SPECspeed)",
+   "zh": "SPEC CPU（SPECrate / SPECspeed）",
+   "cat": "workload",
+   "def_zh": "SPEC的CPU基准套件。SPECrate用多份副本测吞吐；SPECspeed测单个任务完成速度（允许并行）。base结果的编译规则比peak严格。SPEC CPU 2026取代CPU2017，两者分数不可直接比较。",
+   "def_en": "SPEC’s CPU benchmark suites. SPECrate measures throughput by running many copies; SPECspeed measures how fast one task finishes (with parallelism allowed). Base results use stricter compiler rules than peak. SPEC CPU 2026 replaced CPU2017 and its scores are not directly comparable.",
+   "see": [
+    {
+     "label": "基准 M07",
+     "url": "/ai/benchmarks/#M07"
+    }
+   ]
+  },
+  {
    "id": "sram",
    "en": "SRAM",
    "zh": "静态随机存取存储器",
@@ -744,6 +772,20 @@
    "def_zh": "速度快、面积大、无需刷新的片上存储，常用作缓存和片上缓冲。",
    "def_en": "Fast, area-hungry on-chip memory that needs no refresh; used for caches and on-chip buffers.",
    "see": []
+  },
+  {
+   "id": "swe-bench",
+   "en": "SWE-bench",
+   "zh": "SWE-bench",
+   "cat": "workload",
+   "def_zh": "让智能体解决真实代码库GitHub问题的基准；Verified为500题Python子集，Pro为更大的多语言、抗污染版本。",
+   "def_en": "A benchmark where an agent resolves real GitHub issues in code repositories; Verified is a 500-task Python subset, Pro a larger multi-language set designed to resist contamination.",
+   "see": [
+    {
+     "label": "基准 M09",
+     "url": "/ai/benchmarks/#M09"
+    }
+   ]
   },
   {
    "id": "take-or-pay",
@@ -771,6 +813,20 @@
    "def_zh": "散热系统需要持续带走的设计热功率，不等于瞬时峰值电功率。",
    "def_en": "The design heat power a cooling system must carry continuously; it is not instantaneous peak electrical power.",
    "see": []
+  },
+  {
+   "id": "time-horizon",
+   "en": "Time horizon (METR)",
+   "zh": "时间跨度（METR）",
+   "cat": "workload",
+   "def_zh": "模型在给定成功率（通常50%）下能完成的人类任务时长。衡量的是能处理多长的任务，而不是能无人值守运行多久。",
+   "def_en": "The human task duration a model completes with a given success rate (usually 50%). It tracks how long a task an agent can handle, not how long it can run unattended.",
+   "see": [
+    {
+     "label": "基准 M13",
+     "url": "/ai/benchmarks/#M13"
+    }
+   ]
   },
   {
    "id": "tpp",
