@@ -15,13 +15,17 @@ LINKS = (
     ("/ai/bridge/", "技术 × 投资"),
     ("/ai/policy/", "政策与地缘"),
     ("/ai/standards/", "标准与联盟"),
+    ("/ai/customers/", "需求与买家"),
+    ("/ai/benchmarks/", "基准"),
+    ("/ai/energy/", "能源与站点"),
+    ("/ai/calendar/", "日历"),
     ("/ai/method/", "方法与术语"),
     ("/ai/search.html", "搜索"),
 )
 ENGLISH = (
     "Product Analysis", "Earnings Analysis",
     "Analyst Mode", "Hot Chips", "Architect Mode", "Architecture Notes", "Tech x Invest",
-    "Policy", "Standards", "Method & Glossary", "Search",
+    "Policy", "Standards", "Customers", "Benchmarks", "Energy & Sites", "Calendar", "Method & Glossary", "Search",
 )
 # Section language, so readers know before clicking. "both" sections carry no mark.
 SECTION_LANG = {

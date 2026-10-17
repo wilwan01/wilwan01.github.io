@@ -1,0 +1,188 @@
+{
+ "version": 1,
+ "as_of": "2026-10-17",
+ "scope": {
+  "zh": "财报日期来自站内财报刷新台账（每周一伦敦时间09:00更新），其余为会议、电网与基准节点，每条带来源与证据级别。",
+  "en": "Earnings dates come from the site’s earnings-refresh ledger (updated Mondays 09:00 London); the rest are conference, grid and benchmark milestones, each with a source and evidence level."
+ },
+ "evidence_levels": {
+  "primary-read": {
+   "zh": "已打开并阅读官方原文。",
+   "en": "Official primary document opened and read."
+  },
+  "primary-located": {
+   "zh": "已定位官方来源，细节取自搜索摘要，未逐字核对。",
+   "en": "Official source located; details come from search summaries, not checked verbatim."
+  },
+  "secondary-authoritative": {
+   "zh": "权威机构或行业组织的二手转述。",
+   "en": "Relayed by an authoritative body or trade press."
+  },
+  "secondary": {
+   "zh": "媒体或聚合站摘要，数字可能因口径或时点不同而冲突。",
+   "en": "Press or aggregator summary; figures may conflict by scope or timing."
+  },
+  "editorial": {
+   "zh": "本站对财报问答与来源的编辑归纳，不是已核实结论。",
+   "en": "This site’s editorial synthesis of Q&A and sources; not a verified conclusion."
+  }
+ },
+ "cats": {
+  "earnings": {
+   "zh": "财报",
+   "en": "Earnings"
+  },
+  "conference": {
+   "zh": "会议",
+   "en": "Conference"
+  },
+  "benchmark": {
+   "zh": "基准",
+   "en": "Benchmark"
+  },
+  "grid": {
+   "zh": "电网",
+   "en": "Grid"
+  },
+  "estimate": {
+   "zh": "估计",
+   "en": "Estimate"
+  }
+ },
+ "events": [
+  {
+   "id": "K01",
+   "date": "2026-10-12",
+   "end": "2026-10-15",
+   "cat": "conference",
+   "title": {
+    "zh": "OCP Global Summit 2026（圣何塞）",
+    "en": "OCP Global Summit 2026 (San Jose)"
+   },
+   "evidence": "primary-located",
+   "url": "https://www.opencompute.org/events/ocp-summit/2026-ocp-global-summit/",
+   "note": {
+    "zh": "报道称已售罄；2027年起移至旧金山 Moscone。",
+    "en": "Reported sold out; moves to San Francisco Moscone from 2027."
+   },
+   "links": {
+    "standards": [
+     "S07"
+    ]
+   }
+  },
+  {
+   "id": "K02",
+   "date": "2026-10-20",
+   "end": "2026-10-22",
+   "cat": "conference",
+   "title": {
+    "zh": "NVIDIA GTC Berlin",
+    "en": "NVIDIA GTC Berlin"
+   },
+   "evidence": "secondary",
+   "url": "https://www.nvidia.com/ja-jp/gtc/session-catalog/sessions/gtc26-s82344/",
+   "note": {
+    "zh": "日期来自 NVIDIA 会话目录页标题（“GTC Berlin 10月20–22日”），年份按 gtc26 目录推断为2026；请到官网确认。",
+    "en": "Dates come from the title of an NVIDIA session-catalog page (“GTC Berlin Oct 20–22”); the year is inferred as 2026 from the gtc26 catalog. Confirm on NVIDIA’s site."
+   },
+   "links": {}
+  },
+  {
+   "id": "K03",
+   "date": "2026-11-15",
+   "end": "2026-11-20",
+   "cat": "conference",
+   "title": {
+    "zh": "SC26 超算大会（芝加哥）",
+    "en": "SC26 supercomputing conference (Chicago)"
+   },
+   "evidence": "primary-located",
+   "url": "https://sc26.supercomputing.org/",
+   "note": {
+    "zh": "展览11月17–19日。",
+    "en": "Exhibits open 17–19 November."
+   },
+   "links": {}
+  },
+  {
+   "id": "K04",
+   "date": "2026-12-01",
+   "precision": "month",
+   "cat": "grid",
+   "title": {
+    "zh": "PJM 2030/31 容量拍卖（12月）",
+    "en": "PJM 2030/31 capacity auction (December)"
+   },
+   "evidence": "secondary",
+   "url": "https://marylandmatters.org/2026/07/15/pjm-interconnection-electricity-price-hits-cap-again-in-latest-auction/",
+   "note": {
+    "zh": "报道称12月举行，具体日期未核实。",
+    "en": "Reported for December; the exact date was not verified."
+   },
+   "links": {
+    "energy": [
+     "E03"
+    ]
+   }
+  },
+  {
+   "id": "K05",
+   "date": "2026-12-01",
+   "precision": "month",
+   "cat": "benchmark",
+   "title": {
+    "zh": "MLPerf Training 下一轮（推断，未确认）",
+    "en": "Next MLPerf Training round (inferred, unconfirmed)"
+   },
+   "evidence": "editorial",
+   "url": "https://www.hpcwire.com/off-the-wire/mlcommons-releases-mlperf-training-v6-0-results/",
+   "note": {
+    "zh": "依据 v6.0 与 v5.1 相隔约六个月推断；MLCommons 未在此核对发布日期。",
+    "en": "Inferred from the roughly six-month gap between v5.1 and v6.0; MLCommons’ release date was not checked here."
+   },
+   "links": {
+    "benchmarks": [
+     "M02"
+    ]
+   }
+  },
+  {
+   "id": "K06",
+   "date": "2026-10-28",
+   "cat": "estimate",
+   "title": {
+    "zh": "Meta Q3 业绩（第三方估计，公司未确认）",
+    "en": "Meta Q3 results (third-party estimate, not confirmed by the company)"
+   },
+   "evidence": "secondary",
+   "url": "https://days.to/meta-earnings",
+   "note": {
+    "zh": "Alphabet、Amazon 的Q3日期未找到可靠来源；请以公司IR页为准。",
+    "en": "No reliable source found for Alphabet or Amazon Q3 dates; check each IR page."
+   },
+   "links": {
+    "customers": [
+     "C01"
+    ]
+   }
+  },
+  {
+   "id": "K07",
+   "date": "2027-03-14",
+   "end": "2027-03-18",
+   "cat": "conference",
+   "title": {
+    "zh": "NVIDIA GTC 2027（圣何塞）",
+    "en": "NVIDIA GTC 2027 (San Jose)"
+   },
+   "evidence": "secondary",
+   "url": "https://navan.com/blog/nvidia-gtc-guide",
+   "note": {
+    "zh": "来源对起止日不一（3月14–18日 / 15–18日）；另有列表给出3月1–5日，视为离群。",
+    "en": "Sources differ on the span (14–18 vs 15–18 March); one listing gives 1–5 March and is treated as an outlier."
+   },
+   "links": {}
+  }
+ ]
+}

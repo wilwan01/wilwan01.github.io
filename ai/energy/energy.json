@@ -1,0 +1,279 @@
+{
+ "version": 1,
+ "as_of": "2026-10-17",
+ "scope": {
+  "zh": "把数据中心用电预测、电网价格信号、一个具体站点和供应链公司的说法放在一起。本页不含逐站点完整名单、PUE 或水资源数据。",
+  "en": "Data-centre electricity forecasts, grid price signals, one concrete site and what supply-chain companies said, side by side. It does not include a complete site list, PUE or water data."
+ },
+ "evidence_levels": {
+  "primary-read": {
+   "zh": "已打开并阅读官方原文。",
+   "en": "Official primary document opened and read."
+  },
+  "primary-located": {
+   "zh": "已定位官方来源，细节取自搜索摘要，未逐字核对。",
+   "en": "Official source located; details come from search summaries, not checked verbatim."
+  },
+  "secondary-authoritative": {
+   "zh": "权威机构或行业组织的二手转述。",
+   "en": "Relayed by an authoritative body or trade press."
+  },
+  "secondary": {
+   "zh": "媒体或聚合站摘要，数字可能因口径或时点不同而冲突。",
+   "en": "Press or aggregator summary; figures may conflict by scope or timing."
+  },
+  "editorial": {
+   "zh": "本站对财报问答与来源的编辑归纳，不是已核实结论。",
+   "en": "This site’s editorial synthesis of Q&A and sources; not a verified conclusion."
+  }
+ },
+ "groups": {
+  "demand": {
+   "zh": "需求预测",
+   "en": "Demand forecasts"
+  },
+  "grid": {
+   "zh": "电网与价格",
+   "en": "Grid and price signals"
+  },
+  "site": {
+   "zh": "站点",
+   "en": "Sites"
+  },
+  "voices": {
+   "zh": "供应链口径",
+   "en": "Supply-chain voices"
+  }
+ },
+ "items": [
+  {
+   "id": "E01",
+   "group": "demand",
+   "date": "2025-04-10",
+   "title": {
+    "zh": "IEA《能源与AI》：2030年数据中心用电约945 TWh",
+    "en": "IEA Energy and AI: data-centre electricity about 945 TWh by 2030"
+   },
+   "summary": {
+    "zh": "IEA 估计2024年数据中心用电约415 TWh（占全球约1.5%），基准情景2030年约945 TWh，2035年约1,200 TWh；AI优化数据中心用电到2030年增长逾四倍。",
+    "en": "The IEA estimates data-centre use at about 415 TWh in 2024 (about 1.5% of global electricity), about 945 TWh by 2030 and about 1,200 TWh by 2035 in its Base Case; AI-optimised data-centre demand more than quadruples by 2030."
+   },
+   "facts": [
+    {
+     "zh": "美国将贡献2030年前数据中心用电增量的近一半，中国次之。",
+     "en": "The US accounts for almost half of the growth to 2030, with China second."
+    }
+   ],
+   "evidence": "primary-located",
+   "sources": [
+    {
+     "label": "IEA news release",
+     "url": "https://www.iea.org/news/ai-is-set-to-drive-surging-electricity-demand-from-data-centres-while-offering-the-potential-to-transform-how-the-energy-sector-works",
+     "type": "primary"
+    },
+    {
+     "label": "IEA executive summary",
+     "url": "https://www.iea.org/reports/energy-and-ai/executive-summary",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要；这是2025年4月的预测，之后是否更新未核实。",
+    "en": "Only search summaries were read; this is an April 2025 forecast and later updates were not checked."
+   },
+   "links": {
+    "terms": [
+     "twh-gw"
+    ],
+    "bridge": [
+     "B6"
+    ]
+   }
+  },
+  {
+   "id": "E02",
+   "group": "demand",
+   "date": "2024-12-19",
+   "title": {
+    "zh": "LBNL/DOE：美国数据中心2028年占电力6.7–12%",
+    "en": "LBNL/DOE: US data centres 6.7–12% of electricity by 2028"
+   },
+   "summary": {
+    "zh": "美国数据中心用电从2014年58 TWh增至2023年176 TWh（占4.4%）；2028年情景区间为325–580 TWh（占6.7–12%）。",
+    "en": "US data-centre use rose from 58 TWh in 2014 to 176 TWh in 2023 (4.4% of US electricity); the 2028 scenario range is 325–580 TWh (6.7–12%)."
+   },
+   "facts": [],
+   "evidence": "primary-located",
+   "sources": [
+    {
+     "label": "LBNL 2024 US Data Center Energy Usage Report",
+     "url": "https://eta-publications.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report",
+     "type": "primary"
+    },
+    {
+     "label": "DOE release",
+     "url": "https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要；区间宽度本身说明预测不确定。",
+    "en": "Only search summaries were read; the width of the range itself shows the forecast uncertainty."
+   },
+   "links": {
+    "terms": [
+     "twh-gw"
+    ]
+   }
+  },
+  {
+   "id": "E03",
+   "group": "grid",
+   "date": "2026-07-14",
+   "title": {
+    "zh": "PJM 2028/29 容量拍卖：第三次触顶 $325/MW-日",
+    "en": "PJM 2028/29 capacity auction: third straight clearing at the $325/MW-day cap"
+   },
+   "summary": {
+    "zh": "拍卖结果于2026年7月14日公布，出清价为法定上限$325/MW-日（上一次$333）；采购138,318 MW，仍比可靠性目标少6,831 MW。",
+    "en": "Results published 14 July 2026 cleared at the $325/MW-day cap (previous $333); 138,318 MW procured, still 6,831 MW short of the reliability target."
+   },
+   "facts": [
+    {
+     "zh": "PJM 模拟无上限出清价为$555/MW-日；买方实付$16.4B，无上限为$29.7B。",
+     "en": "PJM’s uncapped simulation cleared at $555/MW-day; buyers pay $16.4B versus $29.7B uncapped."
+    },
+    {
+     "zh": "报道称上限延至12月举行的2030/31拍卖；峰值预测到2036年上调约66,000 MW，主要来自退役、电气化与拟建数据中心。",
+     "en": "Reports say the cap extends to the December 2030/31 auction; peak forecasts rose by about 66,000 MW by 2036, driven by retirements, electrification and proposed data centres."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Maryland Matters on the auction",
+     "url": "https://marylandmatters.org/2026/07/15/pjm-interconnection-electricity-price-hits-cap-again-in-latest-auction/",
+     "type": "secondary"
+    },
+    {
+     "label": "NRDC statement",
+     "url": "https://www.nrdc.org/press-releases/continued-high-pjm-prices-show-need-better-manage-data-center-load-growth-and-add",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "未读 PJM 原始公告；把短缺归因于数据中心的是倡导机构与媒体判断，不是 PJM 的成本分摊结论。",
+    "en": "PJM’s own notice was not read; attributing the shortfall to data centres is a view of advocacy groups and press, not a PJM cost-allocation finding."
+   },
+   "links": {
+    "terms": [
+     "capacity-auction",
+     "twh-gw"
+    ]
+   }
+  },
+  {
+   "id": "E04",
+   "group": "site",
+   "date": "2026-04-23",
+   "title": {
+    "zh": "Stargate Abilene：0.3–0.6 GW在运行，目标1.2 GW",
+    "en": "Stargate Abilene: 0.3–0.6 GW operating, 1.2 GW target"
+   },
+   "summary": {
+    "zh": "Epoch AI 估计2026年春季 Abilene 站点已运行0.3至0.6 GW，目标约1.2 GW、预计2026年Q3前后完成；站点由 Crusoe 开发，8栋建筑，Oracle 称最终将容纳超过45万块 GB200。",
+    "en": "Epoch AI estimates Abilene was operating 0.3–0.6 GW in spring 2026 against a 1.2 GW target due around Q3 2026; developed by Crusoe, eight buildings, and Oracle says it will eventually hold more than 450,000 GB200 GPUs."
+   },
+   "facts": [
+    {
+     "zh": "2026年3月报道称计划中的600 MW扩建被取消，Oracle 对此表述提出异议；供电为电网加天然气涡轮。",
+     "en": "Reports in March 2026 said a planned 600 MW expansion was dropped, which Oracle disputes; power comes from grid plus natural-gas turbines."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Epoch AI: OpenAI Stargate, where the US sites stand",
+     "url": "https://epoch.ai/blog/openai-stargate-where-the-us-sites-stand",
+     "type": "secondary"
+    },
+    {
+     "label": "Tom’s Hardware: Abilene expansion dropped",
+     "url": "https://www.tomshardware.com/tech-industry/oracle-and-openai-scrap-planned-600mw-abilene-expansion",
+     "type": "secondary"
+    },
+    {
+     "label": "Tom’s Hardware: Oracle rebuts reporting",
+     "url": "https://tomshardware.com/tech-industry/oracle-rebuts-incorrect-reporting-on-stargate-expansion",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "各来源对“当前已运行容量”不一致；0.6 GW是估计。其他 Stargate 站点未覆盖。",
+    "en": "Sources disagree on current operating capacity and 0.6 GW is an estimate. Other Stargate sites are not covered."
+   },
+   "links": {
+    "earnings": [
+     "QA093",
+     "QA096"
+    ],
+    "terms": [
+     "twh-gw"
+    ],
+    "customers": [
+     "C05"
+    ]
+   }
+  },
+  {
+   "id": "E05",
+   "group": "voices",
+   "date": "2026-07-29",
+   "title": {
+    "zh": "电力与场地约束：设备、托管与新云怎么说",
+    "en": "Power and site constraints: what equipment, colocation and neocloud firms said"
+   },
+   "summary": {
+    "zh": "Equinix 称电力是最大约束，并披露了合同或后期阶段电力安排；CoreWeave 的延误来自带电厂房而非电力；Digital Realty 与 Equinix 都没有给出逐年已通电功率或已签公用事业协议的占比；Schneider 称设备交付周期总体已正常化；Vertiv 则称交付时点因项目复杂性与上下游依赖而漂移。",
+    "en": "Equinix called power the largest constraint and described contracted or advanced-stage power; CoreWeave’s delays were powered-shell delivery, not power; Digital Realty and Equinix did not give year-by-year energised power or the share with executed utility agreements; Schneider said equipment lead times had generally normalised while Vertiv cited timing shifts from project complexity and supply interdependencies."
+   },
+   "facts": [
+    {
+     "zh": "Eaton、Schneider 都在讨论高压直流（HVDC）架构的渐进铺开。",
+     "en": "Eaton and Schneider both discuss a gradual rollout of higher-voltage DC architectures."
+    }
+   ],
+   "evidence": "editorial",
+   "sources": [],
+   "caveat": {
+    "zh": "编辑归纳，来自站内财报问答；公司之间口径不同，不构成行业统计。",
+    "en": "Editorial synthesis from the site’s earnings Q&A; companies use different bases, so this is not an industry statistic."
+   },
+   "links": {
+    "earnings": [
+     "QA089",
+     "QA121",
+     "QA124",
+     "QA125",
+     "QA128",
+     "QA130",
+     "QA131",
+     "QA133",
+     "QA134",
+     "QA163",
+     "QA164"
+    ],
+    "bridge": [
+     "B6"
+    ],
+    "terms": [
+     "powered-shell",
+     "twh-gw"
+    ],
+    "customers": [
+     "C06"
+    ]
+   }
+  }
+ ]
+}

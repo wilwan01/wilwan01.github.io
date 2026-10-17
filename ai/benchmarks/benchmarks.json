@@ -1,0 +1,263 @@
+{
+ "version": 1,
+ "as_of": "2026-10-17",
+ "scope": {
+  "zh": "MLPerf 近三个轮次的公开发布要点，加上读基准时应问的问题。厂商自报结果单独标注；不含排名。",
+  "en": "Key public release points from the last three MLPerf rounds, plus the questions to ask when reading benchmarks. Vendor self-reports are labelled; no rankings are given."
+ },
+ "evidence_levels": {
+  "primary-read": {
+   "zh": "已打开并阅读官方原文。",
+   "en": "Official primary document opened and read."
+  },
+  "primary-located": {
+   "zh": "已定位官方来源，细节取自搜索摘要，未逐字核对。",
+   "en": "Official source located; details come from search summaries, not checked verbatim."
+  },
+  "secondary-authoritative": {
+   "zh": "权威机构或行业组织的二手转述。",
+   "en": "Relayed by an authoritative body or trade press."
+  },
+  "secondary": {
+   "zh": "媒体或聚合站摘要，数字可能因口径或时点不同而冲突。",
+   "en": "Press or aggregator summary; figures may conflict by scope or timing."
+  },
+  "editorial": {
+   "zh": "本站对财报问答与来源的编辑归纳，不是已核实结论。",
+   "en": "This site’s editorial synthesis of Q&A and sources; not a verified conclusion."
+  }
+ },
+ "groups": {
+  "round": {
+   "zh": "MLPerf 轮次",
+   "en": "MLPerf rounds"
+  },
+  "guide": {
+   "zh": "如何读基准",
+   "en": "How to read benchmarks"
+  }
+ },
+ "items": [
+  {
+   "id": "M01",
+   "group": "round",
+   "date": "2026-04-01",
+   "title": {
+    "zh": "MLPerf Inference v6.0",
+    "en": "MLPerf Inference v6.0"
+   },
+   "summary": {
+    "zh": "MLCommons称这是推理套件迄今最大的一次修订：11项数据中心测试中5项为新增或更新，并新增边缘目标检测测试。",
+    "en": "MLCommons describes it as the largest revision of the inference suite so far: five of eleven datacenter tests are new or updated, plus a new edge object-detection test."
+   },
+   "facts": [
+    {
+     "zh": "新增基于 GPT-OSS 120B 的开源权重LLM测试，以及允许推测解码的 DeepSeek-R1 交互场景。",
+     "en": "New open-weight LLM test built on GPT-OSS 120B, and a DeepSeek-R1 interactive scenario that permits speculative decoding."
+    },
+    {
+     "zh": "第三方分析（NAND Research）称 NVIDIA Blackwell Ultra 领先新测试，AMD Instinct MI355X 与 Intel Arc Pro B 系列亦有提交；软件优化带来旧硬件上的提升。",
+     "en": "Third-party analysis (NAND Research) says NVIDIA Blackwell Ultra led the new tests, AMD Instinct MI355X and Intel Arc Pro B-series also submitted, and software optimisations lifted existing hardware."
+    }
+   ],
+   "evidence": "secondary-authoritative",
+   "sources": [
+    {
+     "label": "MLCommons release via GlobeNewswire",
+     "url": "https://www.globenewswire.com/news-release/2026/04/01/3266801/0/en/mlcommons-releases-new-mlperf-inference-v6-0-benchmark-results.html",
+     "type": "primary"
+    },
+    {
+     "label": "NAND Research analysis",
+     "url": "https://nand-research.com/mlperf-inference-6-0-software-gains-broadening-competition-shake-things-up/",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要；“五项新增”的口径在新闻稿与分析文章之间不同，以 MLCommons 为准。逐系统成绩未核对。",
+    "en": "Only search summaries were read; the “five new” count differs between the release and the analysis, so MLCommons’ wording governs. Per-system scores were not checked."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "inference-training",
+     "tail-latency"
+    ],
+    "bridge": [
+     "B10"
+    ]
+   }
+  },
+  {
+   "id": "M02",
+   "group": "round",
+   "date": "2026-06-16",
+   "title": {
+    "zh": "MLPerf Training v6.0",
+    "en": "MLPerf Training v6.0"
+   },
+   "summary": {
+    "zh": "新增两项混合专家（MoE）测试：DeepSeek V3（大）与 GPT-OSS 20B（小）。",
+    "en": "Two new mixture-of-experts tests: DeepSeek V3 (large) and GPT-OSS 20B (small)."
+   },
+   "facts": [
+    {
+     "zh": "24个机构、95套系统、13种加速器；云系统数量约为六个月前 v5.1 的两倍；部分提交使用 FP4。",
+     "en": "24 organisations, 95 unique systems, 13 accelerators; cloud systems roughly doubled versus v5.1 six months earlier; several submissions used FP4."
+    }
+   ],
+   "evidence": "secondary-authoritative",
+   "sources": [
+    {
+     "label": "MLCommons release via HPCwire",
+     "url": "https://www.hpcwire.com/off-the-wire/mlcommons-releases-mlperf-training-v6-0-results/",
+     "type": "primary"
+    },
+    {
+     "label": "Gigazine summary with links to results",
+     "url": "https://www.gigazine.net/news/20260617-mlperf-training-v6/",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "领先厂商与具体时间未核对；见 MLCommons 结果页和厂商博客。",
+    "en": "Which vendor led and the exact times were not checked; see the MLCommons results page and vendor posts."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "low-precision",
+     "mfu"
+    ],
+    "bridge": [
+     "B10"
+    ]
+   }
+  },
+  {
+   "id": "M03",
+   "group": "round",
+   "date": "2026-09-16",
+   "title": {
+    "zh": "MLPerf Inference v6.1",
+    "en": "MLPerf Inference v6.1"
+   },
+   "summary": {
+    "zh": "参与度创纪录：30个机构、120套系统、486项数据中心与边缘结果；新增端到端 RAG 流水线与边缘智能体推理测试。",
+    "en": "Record participation: 30 organisations, 120 systems, 486 datacenter and edge results; adds an end-to-end RAG pipeline test and an edge agentic-inference test."
+   },
+   "facts": [
+    {
+     "zh": "MLCommons称相对一年前最高提升5.7倍。",
+     "en": "MLCommons reports up to 5.7× gain versus one year ago."
+    },
+    {
+     "zh": "首次同行评审结果：NVIDIA Vera Rubin NVL72、AMD Instinct MI350P、Intel Arc Pro B70；Crusoe 的512块 MI355X 提交是 MLPerf Inference 迄今最大系统。",
+     "en": "First peer-reviewed results for NVIDIA Vera Rubin NVL72, AMD Instinct MI350P and Intel Arc Pro B70; Crusoe’s 512-GPU MI355X run is the largest system ever submitted to MLPerf Inference."
+    },
+    {
+     "zh": "过半提交者使用新的以API为中心的测试框架，MLCommons计划以此支撑替代数据中心推理基准的“MLPerf Endpoints”。",
+     "en": "More than half of submitters used a new API-centric harness that MLCommons says will underpin “MLPerf Endpoints”, a planned replacement for the datacenter inference benchmark."
+    },
+    {
+     "zh": "Intel 自报 Xeon 6980P 在 Llama 3.1 8B Server 上较 v6.0 提升2.4倍（同硅、同路数）；这是厂商自报。",
+     "en": "Intel self-reports a 2.4× Llama 3.1 8B Server gain on Xeon 6980P versus v6.0 on the same silicon and socket count; this is a vendor claim."
+    }
+   ],
+   "evidence": "secondary-authoritative",
+   "sources": [
+    {
+     "label": "MLCommons release via financialcontent/GlobeNewswire",
+     "url": "https://www.financialcontent.com/article/gnwcq-2026-9-16-mlcommons-sets-participation-record-with-new-mlperf-inference-v61-benchmark-results",
+     "type": "primary"
+    },
+    {
+     "label": "StorageReview: 5.7× gains, 512-GPU run, Vera Rubin numbers",
+     "url": "https://www.storagereview.com/fr/news/mlperf-inference-v6-1-5-7x-per-accelerator-gains-a-512-gpu-run-and-vera-rubins-first-peer-reviewed-numbers",
+     "type": "secondary"
+    },
+    {
+     "label": "Intel newsroom (vendor claim)",
+     "url": "https://www.intel.com/content/www/us/en/newsroom/news/data-center/intel-software-optimizations-boost-ai-inference-in-mlperf-v6-1.html",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要，未核对每系统成绩；“最高5.7倍”是峰值，不是平均提升。",
+    "en": "Only search summaries were read and per-system scores were not checked; “up to 5.7×” is a peak, not an average gain."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "inference-training",
+     "prefill-decode"
+    ],
+    "bridge": [
+     "B8",
+     "B10"
+    ],
+    "standards": [
+     "S08"
+    ],
+    "policy": []
+   }
+  },
+  {
+   "id": "M04",
+   "group": "guide",
+   "date": null,
+   "title": {
+    "zh": "读基准的六个问题",
+    "en": "Six questions before reading a benchmark chart"
+   },
+   "summary": {
+    "zh": "1) 封闭还是开放组？开放组可改模型与算法，不能与封闭组直接比。2) 每加速器还是整系统？系统规模不同，比较单位要对齐。3) 是同一硅的软件提升还是新硬件？v6.1 的 Intel 例子来自同一硅。4) 精度（FP8/FP4）与准确度门槛是否相同？5) 有没有功耗与成本列？功耗测量是可选提交，价格不在结果表里。6) 基准负载是否像你的生产负载（上下文长度、批量、延迟约束）？",
+    "en": "1) Closed or open division? The open division may change the model or algorithm and cannot be compared directly with closed. 2) Per accelerator or whole system? Align the unit. 3) Software gain on the same silicon or new hardware? Intel’s v6.1 example is same-silicon. 4) Same precision (FP8/FP4) and accuracy bar? 5) Is there a power and cost column? Power measurement is an optional submission and price is not in the result tables. 6) Does the benchmark resemble your production workload (context length, batch, latency constraint)?"
+   },
+   "facts": [],
+   "evidence": "editorial",
+   "sources": [],
+   "caveat": {
+    "zh": "编辑性阅读指南，不是 MLCommons 规则全文；规则以其文档为准。",
+    "en": "An editorial reading guide, not the full MLCommons rules; the rules are in its documents."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "mfu",
+     "slo",
+     "tail-latency",
+     "tco"
+    ],
+    "bridge": [
+     "B10"
+    ]
+   }
+  },
+  {
+   "id": "M05",
+   "group": "guide",
+   "date": null,
+   "title": {
+    "zh": "尚未覆盖的基准与成本口径",
+    "en": "Benchmarks and cost bases not yet covered"
+   },
+   "summary": {
+    "zh": "本页只覆盖 MLCommons 三个轮次。其他社区或厂商的推理吞吐、每美元/每瓦特成绩，以及云实例的真实价格尚未纳入；加入前须核实方法与来源。",
+    "en": "This page covers only three MLCommons rounds. Other community or vendor inference throughput, per-dollar and per-watt results and real cloud-instance prices are not included; method and source must be checked before adding."
+   },
+   "facts": [],
+   "evidence": "editorial",
+   "sources": [],
+   "caveat": {
+    "zh": "这是已知缺口，不是“没有这类基准”的结论。",
+    "en": "This is a known gap, not a claim that no such benchmarks exist."
+   },
+   "links": {
+    "bridge": [
+     "B10"
+    ]
+   }
+  }
+ ]
+}
