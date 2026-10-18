@@ -131,4 +131,14 @@ assert c['research']['completedThisBatch']==b['counts']['complete']
 assert c['research'].get('completedTotal',len(done))==len(done)
 assert c['research'].get('remainingCatalog',len(by)-len(done))==len(by)-len(done)
 assert c['research']['totalProfiles']==len(by)
+# Cross-batch resolutions retain history without counting the same person twice.
+resolved=[r for batch in batches for r in batch['records'] if r.get('resolution',{}).get('status')=='admitted-in-other-batch']
+for r in resolved:
+ resolution=r['resolution'];target=by[resolution['profileId']]
+ assert r['status']!='complete' and r['id']!=target['id']
+ assert target['name']==r['name'] and target['researchStatus']['batch']==resolution['batch']
+ assert target['id'] in done
+assert c['research'].get('resolvedCandidateDuplicates',0)==len(resolved)
+active_pending=[r for batch in batches for r in batch['records'] if r['status']!='complete' and r not in resolved]
+assert c['research']['remainingPlanned']==len(active_pending)
 print(f'PASS: {len(by)} unique profiles; {len(batches)} fixed batches ({len(record_ids)} records); {len(done)} audited; all old profiles/sources retained; directories, skills, counts and internal links consistent.')

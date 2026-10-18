@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-18",
+  "focus": "国内AI架构贡献周度补充：杜子东",
+  "scope": "additional",
+  "baseCommit": "312c4013056f4d02ef74fe978485eab1943e3272",
+  "plannedScope": 1,
+  "plannedExisting": 0,
+  "plannedCandidates": 1,
+  "completedExisting": 0,
+  "completedNew": 1,
+  "counts": {
+    "complete": 1
+  },
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "zidong-du",
+      "name": "杜子东",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "两篇不同年份、不同机制的独立论文；署名支持共同贡献，不推断独占设计。2016原型采用综合与仿真评估；不把论文加速比当成现售芯片实测，也不把期刊扩展版重复计数。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "cambricon-isa-isca2016",
+          "title": "Cambricon: An Instruction Set Architecture for Neural Networks",
+          "authors": "Shaoli Liu、Zidong Du、Jinhua Tao、Dong Han、Tao Luo、Yuan Xie、Yunji Chen、Tianshi Chen",
+          "date": "2016",
+          "url": "https://reconfigdeeplearning.wordpress.com/wp-content/uploads/2017/02/2016-isca_cambricon-an-instruction-set-architecture-for-neural-networks_cyj.pdf",
+          "locator": "首页作者及机构表；§II-B，表I、图2与scratchpad；§V-A评估方法（综合与仿真，不称产品实测）",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-18"
+        },
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者及机构表；§3.1、图6；FISA本地/分形指令、LFU/FFU与分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-18"
+        },
+        {
+          "workId": "zidong-du-ict-profile",
+          "title": "杜子东：计算所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-10-18（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/201810/t20181029_5151252.html",
+          "locator": "姓名、研究方向及个人主页链接",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构姓名、方向和个人主页；仅作身份依据，不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份或历史研究线索",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-18"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "原405位人物内容不变，复用已保存原论文并核对杜子东署名与机制。",
+    "张亚林历史候选已于2026-10-15入库，本次增加明确的跨批次解决记录，保留原判断。",
+    "补证线索及未达标原因见 ../weekly-screening-20261018.json。"
+  ],
+  "publication": {
+    "status": "pending"
+  }
+}

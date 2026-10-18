@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-18",
+  "baseCommit": "312c4013056f4d02ef74fe978485eab1943e3272",
+  "catalogBefore": 405,
+  "catalogAfter": 406,
+  "admitted": [
+    "zidong-du"
+  ],
+  "resolvedDuplicate": "yalin-zhang-enflame -> yalin-zhang",
+  "activePendingCandidates": 5,
+  "scope": "有界初筛：复核当前目录、历史候选和开放PR；重点补查国内AI芯片作品作者及已有缺口，不声称完成四家大厂全部人员普查。",
+  "checks": [
+    {
+      "name": "杜子东",
+      "decision": "admitted",
+      "works": [
+        "cambricon-isa-isca2016",
+        "cambricon-f-isca2019"
+      ],
+      "identitySource": "https://www.ict.ac.cn/sourcedb/cn/jssrck/201810/t20181029_5151252.html",
+      "reason": "两篇不同年份、不同机制的独立论文；署名支持共同贡献，不推断独占设计。2016原型采用综合与仿真评估；不把论文加速比当成现售芯片实测，也不把期刊扩展版重复计数。"
+    },
+    {
+      "name": "单天逸",
+      "decision": "remain-partial",
+      "source": "https://www.iluvatar.com/newsDetails?code=tszxzpgbxpsdjglxttybdxlxncygjzls&topicId=495",
+      "reason": "官方2026年1月架构发布报道仍是与已有访谈相关的项目说明，不据此当第二项独立机制作品；本轮未取得CCF报告完整署名正文。"
+    },
+    {
+      "name": "张羽立",
+      "decision": "remain-partial",
+      "reason": "本轮中文精确姓名及专利检索未找到可验证的第二项作品；不把同名学科行政人员或社交档案拼接为M100作者身份。"
+    },
+    {
+      "name": "姚刚（George Yao）",
+      "decision": "remain-pending",
+      "source": "https://patents.google.com/patent/CN113168322A/zh",
+      "reason": "找到华为图形处理专利姚刚署名线索，但仅凭同中文姓名和雇主不能充分连接用户指定人物；尚未形成两项独立且个人归属明确的作品。"
+    }
+  ],
+  "unchangedPending": [
+    "刘意：仍缺可靠身份锚点，未重做无锚点同名搜索。",
+    "赵立东：沿用原待补判断，本轮无决定性新证据。"
+  ],
+  "deployment": "待合并后核验，结果记录到PR。"
+}
