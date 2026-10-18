@@ -1,9 +1,9 @@
 {
  "version": 1,
- "as_of": "2026-10-17",
+ "as_of": "2026-10-18",
  "scope": {
-  "zh": "谁在买、为何买、怎么付钱：九个买家的最新资本开支指引（带证据级别）与财报问答要点，加四个跨公司主题。这里没有收入集中度或客户名单数据。",
-  "en": "Who buys, why, and how they pay: latest capex outlook (with evidence levels) and Q&A takeaways for nine buyers, plus cross-company themes. Customer-concentration and customer-list data are not included."
+  "zh": "谁在买、为何买、怎么付钱：九个买家的资本开支与财报问答，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。",
+  "en": "Who buys, why, and how they pay: capex and Q&A for nine buyers plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided."
  },
  "evidence_levels": {
   "primary-read": {
@@ -103,35 +103,52 @@
    "group": "us",
    "date": "2026-07-22",
    "title": {
-    "zh": "Alphabet：2026年资本开支指引上调至 $195–205B",
-    "en": "Alphabet: 2026 capex outlook raised to $195–205B"
+    "zh": "Alphabet：2026自然年资本开支 $195–205B，已核对官方原文",
+    "en": "Alphabet: CY2026 capex $195–205B, primary text verified"
    },
    "summary": {
-    "zh": "多家报道称 Alphabet 在Q2将全年资本开支指引由$180–190B上调至$195–205B，并称2027年将“显著”增加。",
-    "en": "Several outlets report Alphabet raised 2026 capex guidance from $180–190B to $195–205B in Q2 and said 2027 capex would increase “significantly”."
+    "zh": "7月22日官方电话会中，CFO将2026自然年全公司资本开支指引由$180–190B上调至$195–205B，主要因产能交付加快。该金额不是Google Cloud或AI专属预算。",
+    "en": "On July 22, the CFO raised company-wide CY2026 capex guidance from $180–190B to $195–205B, primarily because capacity delivery accelerated. This is not a Google Cloud or AI-only budget."
    },
    "facts": [
     {
-     "zh": "报道的Q2资本开支$44.9B，经营现金流$39.1B，自由现金流为负约$5.9B。",
-     "en": "Reported Q2 capex $44.9B, operating cash flow $39.1B, free cash flow about –$5.9B."
-    }
-   ],
-   "evidence": "secondary",
-   "sources": [
-    {
-     "label": "W.Media: Alphabet 2026 capex guidance to $205B",
-     "url": "https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/",
-     "type": "secondary"
+     "zh": "Q2（截至6月30日三个月）现金购置PP&E为$44.924B；经营现金流$39.069B，减去PP&E购置后自由现金流为−$5.855B。来源：业绩公告第7、9页。",
+     "en": "Q2 (three months ended June 30): cash PP&E purchases $44.924B; operating cash flow $39.069B; subtracting PP&E gives FCF −$5.855B. Release pp. 7, 9."
     },
     {
-     "label": "Quartr: Alphabet Q2 2026 summary",
-     "url": "https://quartr.com/events/alphabet-inc-goog-q2-2026_3ebmqZlg",
-     "type": "secondary"
+     "zh": "融资租赁另列：Q2本金现金支付$0.318B、新取得融资租赁资产$0.691B，另有尚未开始租赁的预付款$0.201B；资产新增额与还款不是同一指标。来源：10-Q注4及脚注。",
+     "en": "Finance leases are separate: Q2 principal cash payments $0.318B, new finance-lease assets $0.691B, plus $0.201B of prepayments for uncommenced leases. Additions and repayments are different measures. 10-Q Note 4 and footnote."
+    },
+    {
+     "zh": "6月30日尚未开始的租赁未来付款$85.2B；采购承诺及其他合同义务$811.0B涉及多年基础设施、库存、内容及能源，并非2026年现金资本开支。来源：10-Q注4及MD&A。",
+     "en": "At June 30, uncommenced leases carried $85.2B of future payments; $811.0B of purchase/other contractual obligations spans infrastructure, inventory, content and energy over multiple years, not CY2026 cash capex. 10-Q Note 4 and MD&A."
+    },
+    {
+     "zh": "2027年资本开支预计显著增加，但本次官方电话会未给出金额。",
+     "en": "Management expects a significant capex increase in 2027 but gave no amount on this call."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Alphabet Q2 2026 official transcript — CFO, pp. 11–13",
+     "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+     "type": "primary"
+    },
+    {
+     "label": "Alphabet Q2 2026 release — cash flow p. 7; FCF p. 9",
+     "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
+     "type": "primary"
+    },
+    {
+     "label": "Alphabet June 2026 10-Q — Note 4; MD&A capital expenditures and commitments",
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+     "type": "primary"
     }
    ],
    "caveat": {
-    "zh": "未打开 Alphabet 官方业绩材料；部分聚合页仍显示旧的$180–190B，数字请以公司原文为准。",
-    "en": "Alphabet’s own results materials were not opened; some aggregator pages still show the older $180–190B, so check the company text."
+    "zh": "本次核对覆盖上述支出与会计事实；所链接的站内问答不因此自动升级。季度资本开支对应现金PP&E口径；官方材料未提供全年含各类租赁及承诺的统一预测。本页不将多年承诺与年度指引相加，也不据金额推算GPU数量或实际算力。",
+    "en": "Verification covers the spending/accounting facts above, not an automatic upgrade of linked site Q&A. Quarterly capex maps to cash PP&E; no full-year all-in lease/commitment forecast is reconciled here. Do not add multi-year obligations to annual guidance or infer GPU counts or delivered compute from dollars."
    },
    "links": {
     "earnings": [
@@ -157,35 +174,52 @@
    "group": "us",
    "date": "2026-07-29",
    "title": {
-    "zh": "Microsoft：资本开支口径变化，数字不可直接比较",
-    "en": "Microsoft: capex definition changed, figures not directly comparable"
+    "zh": "Microsoft：2026自然年约$175B，会计重分类不等于削减投入",
+    "en": "Microsoft: CY2026 ~$175B; lease reclassification does not mean an investment cut"
    },
    "summary": {
-    "zh": "报道称 Microsoft 此前给出2026自然年约$190B，7月后可比口径显示约$175B，原因是新租赁按经营租赁处理且数据中心折旧年限由15年延至25年；公司称剔除会计变化后总投入不变。未给出FY27具体金额，仅称FY27将同比增加。",
-    "en": "Press reports say Microsoft had guided about $190B for calendar 2026 and the comparable figure after the July report was about $175B, because new leases are being treated as operating leases and data-center useful life was extended from 15 to 25 years; the company says total outlay is unchanged after adjusting. No FY27 amount was given, only that it will rise year over year."
+    "zh": "4月官方指引为2026自然年约$190B；7月29日调整至约$175B，反映更多未来数据中心租赁由融资租赁转为经营租赁。管理层明确表示基础投资计划不变；这两个数不是相同口径下的支出削减。",
+    "en": "April guidance was ~$190B for CY2026; July 29 guidance became ~$175B as more future datacenter leases shift from finance to operating classification. Management said underlying investment expectations were unchanged; these figures do not measure a like-for-like spending cut."
    },
    "facts": [
     {
-     "zh": "报道的FY26 Q4资本开支（含融资租赁）约$41B，同比+69%；Azure增速43%。",
-     "en": "Reported FY26 Q4 capex including finance leases about $41B, up 69%; Azure growth 43%."
-    }
-   ],
-   "evidence": "secondary",
-   "sources": [
-    {
-     "label": "Hargreaves Lansdown: Microsoft Q4 revenues beat forecasts",
-     "url": "https://www.hl.co.uk/shares/stock-market-news/company--news/microsoft-q4-revenues-beat-forecasts-as-azure-growth-accelerates",
-     "type": "secondary"
+     "zh": "从FY27开始（2026年7月1日），数据中心及办公楼预计使用年限由15年延至25年；不是CPU/GPU折旧年限。经营租赁不计入公司资本开支，融资租赁计入；不能称所有新租赁都转为经营租赁。",
+     "en": "From FY27 (July 1, 2026), datacenter/office-building useful lives extend from 15 to 25 years, not CPU/GPU lives. Reported capex includes finance leases and excludes operating leases; management did not say all new leases would change classification."
     },
     {
-     "label": "Barchart: numbers that matter in Microsoft’s Q2 earnings",
-     "url": "https://barchart.com/story/news/3573476/here-are-the-numbers-that-matter-in-microsofts-q2-earnings-and-how-to-play-msft-stock-now",
-     "type": "secondary"
+     "zh": "FY26 Q4（2026年4–6月）：报告资本开支约$41B，电话会另披露融资租赁$5.6B；公告现金PP&E购置$35.802B。这不是可直接相加的现金支出表，现金支付时点与资产新增口径不同。",
+     "en": "FY26 Q4 (April–June 2026): reported capex ~$41B; the call separately disclosed $5.6B of finance leases, while release cash PP&E purchases were $35.802B. These are not an additive cash-spending table; payment timing differs from asset additions."
+    },
+    {
+     "zh": "FY26全年（截至2026年6月30日）现金PP&E购置$115.948B，不是自然年$175B指引。4月的$190B指引包含约$25B组件涨价影响，不能全部视作产能增长。",
+     "en": "FY26 cash PP&E purchases were $115.948B for the year ended June 30, 2026, distinct from the CY2026 ~$175B outlook. April’s ~$190B outlook included ~$25B of component-price effects, not solely capacity growth."
+    },
+    {
+     "zh": "FY27（2026年7月–2027年6月）只给出资本开支同比增长方向；FY27 Q1为超过$50B（含重分类影响），不是FY27全年$175B。",
+     "en": "FY27 (July 2026–June 2027) guidance is for capex growth without a full-year amount; FY27 Q1 is over $50B including reclassification. ~$175B is not FY27 guidance."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Microsoft FY26 Q4 official transcript — Amy Hood capex and useful-life/outlook remarks",
+     "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+     "type": "primary"
+    },
+    {
+     "label": "Microsoft FY26 Q3 official transcript — CY2026 guidance and finance-lease timing",
+     "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+     "type": "primary"
+    },
+    {
+     "label": "Microsoft FY26 Q4 release — cash-flow statement, quarter/year ended June 30",
+     "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+     "type": "primary"
     }
    ],
    "caveat": {
-    "zh": "会计口径变化由二手报道转述，未核对 Microsoft 原文；跨季度比较前先确认口径。",
-    "en": "The accounting change is relayed by secondary sources and was not checked against Microsoft’s own text; confirm the definition before comparing across quarters."
+    "zh": "融资租赁在开始时确认全额，不等于当期支付的本金；折旧变化本身也不是现金节约。已核对电话会及现金流公告，但未取得可读的FY26 10-K来建立完整租赁/承诺桥接；保留约$41B、$5.6B与$35.802B的原始披露，不强行配平。站内关联问答仍沿用原证据。",
+    "en": "Finance leases are recognized at commencement, not as current principal payments; depreciation changes are not cash savings. Calls and the release were read, but a readable FY26 10-K was not obtained for a full lease/commitment bridge. Retain ~$41B, $5.6B and $35.802B as disclosed without forcing reconciliation. Linked Q&A keeps its original provenance."
    },
    "links": {
     "earnings": [
@@ -212,19 +246,57 @@
    "group": "us",
    "date": "2026-07-30",
    "title": {
-    "zh": "Amazon：积压订单进入产能规划，资本开支数字未采集",
-    "en": "Amazon: backlog now enters capacity planning; capex figure not captured"
+    "zh": "Amazon：现金资本开支已核对，2026年约$220B仍待原始来源确认",
+    "en": "Amazon: cash-capex basis verified; CY2026 ~$220B still needs primary confirmation"
    },
    "summary": {
-    "zh": "财报问答显示 Amazon 把已知积压纳入规划，并区分合同型与按需需求；Trainium 的采用仍需交付量、软件生态与客户验证，同时继续购买 NVIDIA。本页未采集到可靠的2026年资本开支指引来源。",
-    "en": "The Q&A shows Amazon folds known backlog into planning and distinguishes contract from on-demand demand; Trainium adoption still depends on volume delivery, software ecosystem and customer proof points while NVIDIA purchases continue. No reliable source for 2026 capex guidance was captured here."
+    "zh": "官方10-Q确认Q2现金资本开支$53.1B、上半年$96.3B。第三方电话会转录称2026自然年现金资本开支预期由约$200B升至$220B；本次未核对官方录音中的该句，全年数保留secondary，不作为已获一手验证的预算。",
+    "en": "The official 10-Q confirms Q2 cash capex of $53.1B and H1 $96.3B. A third-party call transcript reports CY2026 cash-capex expectations rising from ~$200B to ~$220B. The official audio statement was not verified in this review; the annual outlook remains secondary."
    },
-   "facts": [],
-   "evidence": "editorial",
-   "sources": [],
+   "facts": [
+    {
+     "zh": "已读一手：Q2现金PP&E购置$54.208B，减出售款及激励$1.132B，净现金资本开支=$53.076B（四舍五入$53.1B）；上半年对应$98.411B−$2.101B=$96.310B。来源：Q2公告现金流表及10-Q MD&A。",
+     "en": "Primary-read: Q2 gross cash PP&E $54.208B less sales/incentives $1.132B = net cash capex $53.076B (~$53.1B); H1 $98.411B − $2.101B = $96.310B. Q2 release cash flows and 10-Q MD&A."
+    },
+    {
+     "zh": "已读一手：Q2融资租赁本金支付$0.395B、新取得融资租赁PP&E $0.563B单独披露；经营租赁现金支付及尚未支付的资产也不等于现金PP&E。公司范围包括AWS和履约网络，并非纯AI/GPU投资。",
+     "en": "Primary-read: Q2 finance-lease principal $0.395B and new finance-lease PP&E $0.563B are separate. Operating-lease cash payments and unpaid asset additions are not cash PP&E either. Company-wide scope includes AWS and fulfillment, not exclusively AI/GPUs."
+    },
+    {
+     "zh": "已读一手历史指引：2月5日公告预计2026年全公司资本开支约$200B；这不是7月更新后已核实的最新金额。全年约$220B及内存涨价归因仅见所列第三方转录。",
+     "en": "Primary-read historical guidance: the February 5 release projected ~$200B of company-wide 2026 capex. This is not a verified latest post-July figure. The ~$220B update and memory-price attribution rely on the listed third-party transcript."
+    },
+    {
+     "zh": "多年承诺：6月30日尚未开始的租赁$137.214B、无条件采购义务$130.065B单独列报，包含非基础设施项目；不是2026年已花出的现金，不能与全年资本开支相加。来源：10-Q注4。",
+     "en": "Multi-year commitments: $137.214B of uncommenced leases and $130.065B of unconditional purchase obligations at June 30 include non-infrastructure items. They are not cash spent in 2026 and must not be added to annual capex. 10-Q Note 4."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Amazon Q2 2026 release — cash-flow statement (primary-read actuals)",
+     "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx?mode=light",
+     "type": "primary"
+    },
+    {
+     "label": "Amazon June 2026 10-Q — Notes 1, 4; MD&A liquidity (primary-read)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "type": "primary"
+    },
+    {
+     "label": "Amazon Q4 2025 release, February 5, 2026 — historical ~$200B outlook",
+     "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
+     "type": "primary"
+    },
+    {
+     "label": "Motley Fool Q2 2026 call transcript — Andy Jassy cash-capex update (not company-published)",
+     "url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/amazon-amzn-q2-2026-earnings-call-transcript/",
+     "type": "secondary"
+    }
+   ],
    "caveat": {
-    "zh": "此项只依据站内财报问答；金额缺口见方法页“已知缺口”。",
-    "en": "Based only on the site’s earnings Q&A; the missing amount is listed under known gaps on the method page."
+    "zh": "本条secondary针对最新全年指引；标为“已读一手”的历史金额及定义已核对官方公告/10-Q。Q2公告与10-Q未提供$220B预测，官方录音未听取；不据第三方转录升级。积压、Trainium及NVIDIA的关联问答仍为原有编辑归纳；本次未审核其客户采用结论或分配给自研芯片的预算。",
+    "en": "The secondary badge applies to the latest annual outlook; explicitly marked actuals/definitions were checked in company releases and the 10-Q. Neither Q2 document supplies the $220B forecast; official audio was not listened to. Linked backlog/Trainium/NVIDIA Q&A remains editorial; adoption conclusions and custom-silicon budget allocations were not audited here."
    },
    "links": {
     "earnings": [
@@ -446,19 +518,35 @@
    "group": "theme",
    "date": null,
    "title": {
-    "zh": "主题：融资与表外建设",
-    "en": "Theme: financing and off-balance-sheet construction"
+    "zh": "主题：融资、租赁与多年承诺",
+    "en": "Theme: financing, leases and multi-year commitments"
    },
    "summary": {
-    "zh": "Meta 区分合资数据中心建设与报告资本开支；Oracle 区分自有与合作方资本；百度考虑租赁或借款——“资本开支”口径在买家之间并不一致。",
-    "en": "Meta separates joint-venture construction from reported capex, Oracle separates its own capital from partner capital, Baidu considers leasing or borrowing — “capex” is not defined the same way across buyers."
+    "zh": "Meta的资本开支含融资租赁本金；Microsoft口径含融资租赁新增资产但排除经营租赁；Alphabet现金PP&E及Amazon净现金PP&E也不能直接混用。承诺是未来义务存量，不是年度支出；经营租赁也不应一概称为表外融资。",
+    "en": "Meta includes finance-lease principal; Microsoft includes finance-lease additions but excludes operating leases from capex. Alphabet cash PP&E and Amazon net cash PP&E also differ. Commitments are future-obligation balances, not annual spending; operating leases should not be labelled universally off-balance-sheet."
    },
    "facts": [],
    "evidence": "editorial",
-   "sources": [],
+   "sources": [
+    {
+     "label": "Alphabet June 2026 10-Q — leases and commitments",
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+     "type": "primary"
+    },
+    {
+     "label": "Microsoft FY26 Q4 official transcript — lease classification",
+     "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+     "type": "primary"
+    },
+    {
+     "label": "Amazon June 2026 10-Q — leases, commitments and cash capex",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+     "type": "primary"
+    }
+   ],
    "caveat": {
-    "zh": "与Microsoft 口径变化（C03）一起读。",
-    "en": "Read together with Microsoft’s definition change (C03)."
+    "zh": "编辑比较，依据C01–C04；不是统一会计口径的排名或总额。多年采购/租赁承诺可能与未来年度资本开支重叠，未经期间及重复项核对不得相加。",
+    "en": "Editorial comparison based on C01–C04, not a normalized ranking or total. Multi-year purchase/lease commitments may overlap future annual capex; reconcile periods and overlap before adding anything."
    },
    "links": {
     "earnings": [
@@ -469,6 +557,12 @@
     ],
     "terms": [
      "capex"
+    ],
+    "customers": [
+     "C01",
+     "C02",
+     "C03",
+     "C04"
     ]
    }
   },
@@ -517,15 +611,31 @@
     "en": "Theme: component inflation flowing into capex"
    },
    "summary": {
-    "zh": "Meta 的上调归因于组件价格（二手报道）；Microsoft 报道称含$25B组件涨价；Amazon、CoreWeave、阿里、Oracle 的问答都提到成本传导，但没有人把涨价与容量增量完全拆开。",
-    "en": "Meta’s raise is attributed to component pricing (press coverage); Microsoft is reported to include $25B of component pricing; Amazon, CoreWeave, Alibaba and Oracle Q&As mention cost pass-through, but none fully separates inflation from capacity added."
+    "zh": "Microsoft 4月官方2026自然年指引包含约$25B组件涨价；7月数字的下降另有租赁重分类因素。Alphabet称上调主要因产能交付加快；Amazon约$220B指引及内存涨价解释尚属二手。金额增长不能直接换算为算力增长。",
+    "en": "Microsoft’s April CY2026 outlook included ~$25B of component-price effects; its July reduction also reflects lease reclassification. Alphabet attributed its raise mainly to faster capacity delivery. Amazon’s ~$220B outlook and memory-cost explanation remain secondary. Spending growth cannot be read directly as compute growth."
    },
    "facts": [],
    "evidence": "editorial",
-   "sources": [],
+   "sources": [
+    {
+     "label": "Microsoft FY26 Q3 official transcript — ~$25B price effect",
+     "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+     "type": "primary"
+    },
+    {
+     "label": "Alphabet Q2 2026 official transcript — capacity delivery, p. 13",
+     "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
+     "type": "primary"
+    },
+    {
+     "label": "Amazon Q2 2026 third-party transcript — memory-cost attribution",
+     "url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/amazon-amzn-q2-2026-earnings-call-transcript/",
+     "type": "secondary"
+    }
+   ],
    "caveat": {
-    "zh": "部分数字来自二手报道（见C01、C03）。",
-    "en": "Some numbers come from press coverage (see C01, C03)."
+    "zh": "跨公司含义为编辑归纳；Microsoft与Alphabet所述原因已读一手，Amazon仍待官方原文确认。没有统一的价格/数量/设备组合分解。",
+    "en": "Cross-company implications remain editorial; the Microsoft and Alphabet explanations were read in primary text, while Amazon awaits primary confirmation. There is no common price/volume/equipment-mix decomposition."
    },
    "links": {
     "earnings": [
@@ -537,6 +647,11 @@
     "bridge": [
      "B1",
      "B4"
+    ],
+    "customers": [
+     "C02",
+     "C03",
+     "C04"
     ]
    }
   }
