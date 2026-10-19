@@ -1,9 +1,9 @@
 {
  "version": 1,
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "scope": {
-  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
-  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
+  "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
+  "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
  },
  "evidence_levels": {
   "primary-read": {
@@ -671,6 +671,250 @@
    }
   },
   {
+   "id": "M19",
+   "group": "agentic",
+   "date": "2025-10-05",
+   "title": {
+    "zh": "GDPval（OpenAI，真实专业工作成果）",
+    "en": "GDPval (OpenAI, real professional work products)"
+   },
+   "summary": {
+    "zh": "覆盖美国GDP占比超过5%的9个行业中的44个职业，完整集1,320个任务（开源“金”子集220个）；任务由平均14年经验的行业专家依据自身工作编写，交付物含文档、幻灯片、表格等；以盲评的专家两两比较（赢/平/输）打分。",
+    "en": "Covers 44 occupations in the nine US sectors each above 5% of GDP: 1,320 tasks in the full set (220 in the open-sourced gold subset); tasks were written by industry experts averaging 14 years of experience from their own work, with deliverables such as documents, slides and spreadsheets; scored by blinded pairwise expert comparison (win, tie, loss)."
+   },
+   "facts": [
+    {
+     "zh": "论文（2025年10月）中金子集上最高为 Claude Opus 4.1，47.6%的交付物评为赢或平；GPT-5 赢率39.0%。在“先试一次、不行自己改”的流程下 GPT-5 比无辅助专家约快1.12倍、便宜1.18倍；多次重试取优可达约1.39倍和1.63倍。前沿表现大致随时间线性提升。",
+     "en": "In the paper (October 2025) the top model on the gold subset was Claude Opus 4.1 with 47.6% of deliverables rated win or tie; GPT-5 won 39.0% of the time. Under a “try once, then fix it yourself” workflow GPT-5 was about 1.12× faster and 1.18× cheaper than unaided experts; with best-of-n retries about 1.39× and 1.63×. Frontier performance improved roughly linearly over time."
+    },
+    {
+     "zh": "实验性自动评分器与人类专家一致率66%（人类互评71%）。Artificial Analysis 指数里的 GDPval-AA 是另一套用 Elo 的变体，不是同一个数。",
+     "en": "The experimental automated grader agreed with experts 66% of the time (71% human inter-rater). GDPval-AA in the Artificial Analysis index is a separate Elo-based variant, not the same number."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "arXiv 2510.04374: GDPval",
+     "url": "https://arxiv.org/html/2510.04374v1",
+     "type": "primary"
+    },
+    {
+     "label": "OpenAI: GDPval",
+     "url": "https://openai.com/index/gdpval",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "读了论文约93%（最后约6,600字符未读）。作者自陈：每个职业仅约30个任务；限于自包含、计算机上、精确说明的一次性任务，非交互；自动评分弱于人类；评估昂贵。分数为2025年10月的论文版本，后续模型与新版本未采集。",
+    "en": "About 93% of the paper was read (the last ~6,600 characters were not). The authors state: only about 30 tasks per occupation; limited to self-contained, computer-based, precisely specified one-shot tasks, not interactive; automated grading is weaker than human; evaluation is expensive. Scores are the October 2025 paper’s; later models and versions are not captured."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "intelligence-index",
+     "first-party-benchmark"
+    ],
+    "benchmarks": [
+     "M15",
+     "M14"
+    ]
+   }
+  },
+  {
+   "id": "M20",
+   "group": "agentic",
+   "date": "2024-06-17",
+   "title": {
+    "zh": "τ-bench / τ²-bench / τ³-bench（Sierra，可靠性）",
+    "en": "τ-bench / τ²-bench / τ³-bench (Sierra, reliability)"
+   },
+   "summary": {
+    "zh": "在零售、航空等领域模拟“用户—智能体—工具”的多轮对话：智能体要向用户收集信息、遵守书面政策并调用API。提出 pass^k：同一任务重复k次都成功的概率，用来暴露一致性缺口。",
+    "en": "Simulates multi-turn user–agent–tool conversations in domains such as retail and airline: the agent gathers information from a user, follows written policy and calls APIs. Proposes pass^k, the probability of succeeding on all k repeats of the same task, which exposes consistency gaps."
+   },
+   "facts": [
+    {
+     "zh": "原论文（2024年6月，Yao、Shinn、Razavi、Narasimhan）：gpt-4o 级函数调用智能体成功率不到50%，零售领域 pass^8 低于25%。Sierra 称目前最好的模型在零售的 pass^1 已超过80%。",
+     "en": "The original paper (June 2024, Yao, Shinn, Razavi, Narasimhan): function-calling agents such as gpt-4o succeed on fewer than 50% of tasks and pass^8 is below 25% in retail. Sierra says the best models now exceed 80% pass^1 in retail."
+    },
+    {
+     "zh": "后续版本：τ³-bench 在 τ²-bench 基础上新增银行知识检索领域、75+项任务质量修正与语音原生评测模式（来自 evalscope 文档，二手）；τ²与τ³不能装在同一环境。Artificial Analysis 的指数已用 AutomationBench-AA 取代 τ³-Banking。",
+     "en": "Later versions: τ³-bench builds on τ²-bench with a banking knowledge-retrieval domain, 75+ task-quality fixes and an audio-native mode (from evalscope docs, secondary); τ² and τ³ cannot be installed in the same environment. The Artificial Analysis index has replaced τ³-Banking with AutomationBench-AA."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "arXiv 2406.12045: τ-bench",
+     "url": "https://arxiv.org/abs/2406.12045",
+     "type": "primary"
+    },
+    {
+     "label": "Sierra: τ-bench shaping agent evaluation",
+     "url": "https://sierra.ai/de/blog/tau-bench-shaping-development-evaluation-agents",
+     "type": "primary"
+    },
+    {
+     "label": "evalscope: τ³-bench docs",
+     "url": "https://evalscope.readthedocs.io/en/v1.8.0/third_party/tau3_bench.html",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "读了论文摘要与 Sierra 博客，没读全文；领域覆盖窄（零售、航空为主）；用户由模型模拟。τ²/τ³ 的变化只来自二手文档。",
+    "en": "The paper abstract and Sierra’s blog were read, not the full paper; domain coverage is narrow (mainly retail and airline) and the user is simulated by a model. Changes in τ² and τ³ come only from secondary documentation."
+   },
+   "links": {
+    "terms": [
+     "agentic",
+     "pass-k"
+    ],
+    "benchmarks": [
+     "M15",
+     "M14"
+    ]
+   }
+  },
+  {
+   "id": "M21",
+   "group": "agentic",
+   "date": "2026-01-31",
+   "title": {
+    "zh": "MCP-Atlas（Scale AI，真实 MCP 服务器的工具使用）",
+    "en": "MCP-Atlas (Scale AI, tool use against real MCP servers)"
+   },
+   "summary": {
+    "zh": "1,000个任务，36个真实 MCP 服务器、220个工具；每个任务暴露10–25个工具（3–7个目标、5–10个干扰），引出3–6次调用，目标工具至少来自两个服务器，约三分之一含条件分支。",
+    "en": "1,000 tasks against 36 real MCP servers and 220 tools; each task exposes 10–25 tools (3–7 targets, 5–10 distractors), elicits 3–6 calls, with target tools from at least two servers and about one-third of tasks involving conditional branching."
+   },
+   "facts": [
+    {
+     "zh": "评分：每条“主张”记1/0.5/0；覆盖分为平均值，覆盖分≥0.75算通过；评审模型与人类多数票一致率78%。500题公开、500题保留以保护榜单。",
+     "en": "Scoring: each claim scores 1, 0.5 or 0; the coverage score is the mean and coverage ≥0.75 passes; the judge model agrees with the human majority 78% of the time. 500 tasks are public and 500 held out to protect the leaderboard."
+    },
+    {
+     "zh": "论文中最高为 Claude Opus 4.5，通过率62.3%（平均覆盖78.5%），其后 Gemini 3 Pro 54.1%、GPT-5 44.5%；失败多为工具使用（平均56.7%）与任务理解（30.3%）；最常见的具体失败是“没有调用任何工具”（平均36.0%）。",
+     "en": "In the paper the top was Claude Opus 4.5 at 62.3% pass (78.5% mean coverage), then Gemini 3 Pro 54.1% and GPT-5 44.5%; failures were mostly tool usage (56.7% on average) and task understanding (30.3%); the most common specific failure was calling no tools (36.0% on average)."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "arXiv 2602.00933: MCP-Atlas",
+     "url": "https://arxiv.org/html/2602.00933v1",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "作者自陈：仅单轮交互（不评恢复与重规划）、只读操作（排除改变状态的流程）、效率只记录不计分、实时API可能漂移；诊断指标不公开。这是2026年1月的论文数字，之后的模型未采集。",
+    "en": "Authors state: single-turn only (recovery and replanning are not scored), read-only operations (state-changing workflows excluded), efficiency logged but not scored, live APIs may drift; diagnostics are not released. These are the January 2026 paper’s numbers; later models are not captured."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ],
+    "benchmarks": [
+     "M14",
+     "M18"
+    ]
+   }
+  },
+  {
+   "id": "M22",
+   "group": "agentic",
+   "date": "2025-10-28",
+   "title": {
+    "zh": "Toolathlon（Tool Decathlon，长程多应用任务）",
+    "en": "Toolathlon (Tool Decathlon, long-horizon multi-application tasks)"
+   },
+   "summary": {
+    "zh": "HKUST、All Hands AI、CMU、Duke 的 ICLR 2026 论文：32个软件应用、604个工具，从 Google Calendar、Notion 到 WooCommerce、Kubernetes、BigQuery；大多数工具基于 MCP 服务器；108个人工收集或编写的任务，每个都由专门脚本严格验证。",
+    "en": "An ICLR 2026 paper from HKUST, All Hands AI, CMU and Duke: 32 software applications and 604 tools, from Google Calendar and Notion to WooCommerce, Kubernetes and BigQuery; most tools are based on MCP servers; 108 manually sourced or crafted tasks, each strictly verified by dedicated scripts."
+   },
+   "facts": [
+    {
+     "zh": "论文摘要：v1 最佳模型 Claude-4-Sonnet 成功率仅29.9%（平均28轮调用）；后续版本为 Claude-4.5-Sonnet 38.6%（平均20.2轮）——数字随论文版本变化。",
+     "en": "Abstract: in v1 the best model, Claude-4-Sonnet, reached only 29.9% success with 28 tool-calling turns on average; a later version reports Claude-4.5-Sonnet at 38.6% with 20.2 turns — the numbers change between paper versions."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "arXiv 2510.25726: The Tool Decathlon",
+     "url": "https://arxiv.org/abs/2510.25726v1",
+     "type": "primary"
+    },
+    {
+     "label": "ICLR 2026 poster page",
+     "url": "https://iclr.cc/virtual/2026/poster/10006492",
+     "type": "secondary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要，没打开论文；只有108个任务，规模小于 MCP-Atlas，但每题可脚本验证、含状态改变；2026年的最新结果未采集。",
+    "en": "Only search summaries were read; the paper was not opened. With 108 tasks it is smaller than MCP-Atlas, but each task is script-verifiable and includes state changes; 2026 results are not captured."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ],
+    "benchmarks": [
+     "M21",
+     "M14"
+    ]
+   }
+  },
+  {
+   "id": "M23",
+   "group": "agentic",
+   "date": "2025-04-16",
+   "title": {
+    "zh": "BrowseComp（OpenAI，网页检索智能体）",
+    "en": "BrowseComp (OpenAI, web-browsing agents)"
+   },
+   "summary": {
+    "zh": "1,266个“难找但易验证”的短答案问题（原1,287个，审查后删除21个）：出题者先选种子事实，再用“倒推”方式构造搜索空间很大的问题，并确认 GPT-4o、o1 与早期 Deep Research 无法解答、五次简单 Google 搜索也找不到。",
+    "en": "1,266 “hard to find, easy to verify” short-answer questions (1,287 originally, 21 removed after review): trainers start from a seed fact and build an “inverted” question with a large search space, confirming that GPT-4o, o1 and an early Deep Research model could not solve it and that five simple Google searches did not reveal the answer."
+   },
+   "facts": [
+    {
+     "zh": "人类：1,255题中解出367题（29.2%），888题（70.8%）两小时后放弃。模型（论文）：Deep Research 51.5%（校准误差91%，并说明它被专门针对此类任务训练），o1 9.9%，GPT-4o 加浏览 1.9%。",
+     "en": "Humans: 367 of 1,255 attempted questions solved (29.2%), 888 (70.8%) given up after two hours. Models (paper): Deep Research 51.5% (calibration error 91%, trained on data targeting such tasks), o1 9.9%, GPT-4o with browsing 1.9%."
+    },
+    {
+     "zh": "准确率随测试时算力平滑上升；64次采样下多数投票、加权投票和 best-of-N 比单次提高约15–25%。",
+     "en": "Accuracy scales smoothly with test-time compute; with 64 samples, majority vote, weighted vote and best-of-N each improve about 15–25% over one attempt."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "arXiv 2504.12516: BrowseComp",
+     "url": "https://arxiv.org/html/2504.12516v1",
+     "type": "primary"
+    },
+    {
+     "label": "OpenAI: BrowseComp",
+     "url": "https://openai.com/index/browsecomp/",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "作者自陈：不代表真实用户查询分布，不测长答案或歧义处理；答案唯一性无法完全验证；由AI判断语义等价；出题者并非竞赛级检索者；带浏览的模型校准差。数字是2025年4月论文的，之后的模型未采集；它对基础设施的意义是：准确率随浏览与采样算力上升，也就是随 token 与工具调用上升。",
+    "en": "Authors state: it does not reflect real user query distributions and does not test long answers or ambiguity; answer uniqueness cannot be fully verified; an AI judges semantic equivalence; trainers were not competition-level searchers; browsing models are poorly calibrated. Figures are the April 2025 paper’s; later models are not captured. Infrastructure relevance: accuracy rises with browsing and sampling compute, that is with tokens and tool calls."
+   },
+   "links": {
+    "terms": [
+     "agentic"
+    ],
+    "benchmarks": [
+     "M14",
+     "M18"
+    ]
+   }
+  },
+  {
    "id": "M15",
    "group": "index",
    "date": "2026-09-07",
@@ -856,8 +1100,8 @@
     "en": "How agentic benchmarks connect to infrastructure"
    },
    "summary": {
-    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。 AgentSysBench（M18）是首批从系统侧量化这些问题的工作：非LLM组件占关键路径、KV缓存状态与TTL过期、沙箱计费。",
-    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed. AgentSysBench (M18) is among the first works to quantify these from the systems side: non-LLM components on the critical path, KV-cache state and TTL expiry, and sandbox billing."
+    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。 AgentSysBench（M18）是首批从系统侧量化这些问题的工作：非LLM组件占关键路径、KV缓存状态与TTL过期、沙箱计费。 可靠性用 pass^k（M20）读，不要只看 pass@1；浏览与检索类准确率会随采样与工具调用算力上升（M23）。",
+    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed. AgentSysBench (M18) is among the first works to quantify these from the systems side: non-LLM components on the critical path, KV-cache state and TTL expiry, and sandbox billing. Read reliability with pass^k (M20), not only pass@1; browsing and retrieval accuracy rises with sampling and tool-call compute (M23)."
    },
    "facts": [
     {
@@ -895,7 +1139,12 @@
     "benchmarks": [
      "M03",
      "M06",
-     "M18"
+     "M18",
+     "M19",
+     "M20",
+     "M21",
+     "M22",
+     "M23"
     ]
    }
   },
@@ -940,8 +1189,8 @@
     "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
-    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、五个智能体基准、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、BrowseComp、τ²-bench、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
-    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, five agentic benchmarks, the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, BrowseComp, τ²-bench, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
+    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、AgentSysBench、十个智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、MLE-bench、Vending-Bench、WebArena、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
+    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, AgentSysBench, ten agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp), the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, MLE-bench, Vending-Bench, WebArena, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
    },
    "facts": [],
    "evidence": "editorial",
