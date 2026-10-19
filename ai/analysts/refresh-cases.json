@@ -1,5 +1,5 @@
 {
-  "cutoff_at": "2026-10-12T09:12:42+01:00",
+  "cutoff_at": "2026-10-19T21:27:36+01:00",
   "cases": [
     {
       "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
@@ -82,7 +82,260 @@
           "locator": "September revenue table, lines 79–88; monthly report, lines 103–110"
         }
       ]
+    },
+    {
+      "id": "CASE-20261019-ASML-PRICING-LAG",
+      "company": "ASML",
+      "source_disclosure_id": "ASML_2026Q3_results_20261014",
+      "question_ids": [
+        "QA179",
+        "QA180"
+      ],
+      "source_keys": [
+        "asml",
+        "asml_call"
+      ],
+      "skills": [
+        "F2",
+        "F3",
+        "F4",
+        "F9",
+        "F11",
+        "F14"
+      ],
+      "management_testimony": "Pricing recognition lags negotiation; factory ramp costs and upgrades affect margins.",
+      "researcher_inference": "收入增长、当季毛利率与远期提价不能使用同一个即时传导系数。",
+      "hidden_uncertainty": "新增毛利来自价格、升级组合还是固定成本吸收？扩产成本先发生，价格何时生效？",
+      "kpi": "按合同批次的EUR/tool、交付台数、升级收入占比、ramp成本EUR、GM百分点。",
+      "model_revision": "按季度与合同批次建模：GP_t=Σ(交付量_vt×ASP_vt×GM_vt)+升级毛利_t−增量ramp成本_t；不把高毛利升级业务一次性外推，也不从净利润直接推导经营毛利。",
+      "counterexample": "提价与需求都真实，但供应链扩产成本先支出、老合同未重订，短期毛利仍可下降。",
+      "falsification": "研究者检验：在下一两期正式披露中，若剔除产品组合后新增单位毛利≤0，撤回“提价已转化成盈利”的判断；若仅合同确认延期，改变兑现时点而非自动判定需求失败。未披露合同批次时保留不可验证状态。",
+      "next_evidence_date": "Next ASML Q4 2026 results release in 2027; exact date not verified",
+      "transfer_question": "合成迁移：陌生工业激光商签署涨价合同，但旧订单尚未交付。怎样区分真实提价、当期利润与估值中的提前计价？",
+      "training": {
+        "stages": [
+          "合成情景：设备商每季交付100台，旧价每台€2m、单位成本€1m，新签合同涨价10%。先问哪两个日期，才能修订下一季毛利？",
+          "请把你的原答案交给AI导师评审；网页不自动评分。新增约束：下一季仅20台按新价交付，扩产费用€8m计入销售成本。写出收入与毛利桥，保留单位。",
+          "再加约束：另外确认€6m投资重估收益，但不在营业利润内。修正你对EPS质量的判断；没有税率/股数能否给EPS？",
+          "迁移到陌生制药CDMO：已签涨价但验证批次延期。列出同样价格下现金提前或延后的两种合同条款，并给证伪证据。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "ASML Q3 2026 results",
+          "url": "https://www.investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026",
+          "source_ref": "turn60view1",
+          "publication_date": "2026-10-14",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "official_release",
+          "locator": "Results table and outlook, lines 38–75"
+        },
+        {
+          "title": "ASML Q3 2026 call — Motley Fool mirror",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/10/14/asml-asml-q3-2026-earnings-call-transcript/",
+          "source_ref": "turn62view0",
+          "publication_date": "2026-10-14",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "Q&A Joe Quatrochi and Krish Sankar; lines 235–279"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked question IDs; paraphrases, not verbatim",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-19"
+    },
+    {
+      "id": "CASE-20261019-TSMC-DEPLOYMENT",
+      "company": "TSMC",
+      "source_disclosure_id": "TSM_2026Q3_results_20261015",
+      "question_ids": [
+        "QA181",
+        "QA182"
+      ],
+      "source_keys": [
+        "tsmc",
+        "tsmc_call"
+      ],
+      "skills": [
+        "F6",
+        "F7",
+        "F9",
+        "F10",
+        "F14",
+        "F15",
+        "F17"
+      ],
+      "management_testimony": "Capacity assessment includes downstream constraints; High-NA timing is linked to maturity and economics.",
+      "researcher_inference": "晶圆需求应通过客户融资和上电进度交叉验证；技术领先不能只看设备首装时间。",
+      "hidden_uncertainty": "客户是否能把芯片转换成有现金回报的上线算力？新工艺的成本/良率条件何时成立？",
+      "kpi": "已融资MW、可上电MW、有效利用率、良品die/wafer、每良品成本、设备与光罩认证里程碑。",
+      "model_revision": "可变现计算量=min(合格芯片容量,网络容量,已上电容量)×付费利用率；晶圆订单另建交付/库存桥。比较High-NA方案时计算全流程成本/良品die，不将tool先进性等同经济优势。",
+      "counterexample": "客户芯片订单增长，但电力接入延期；设备已装机，但光罩/良率未达到经济门槛。",
+      "falsification": "编辑阈值：若下一两季已融资和上电MW增长≤0、而客户库存持续上升，撤回即时需求兑现假设，重做订单时滞。若新工艺成本/良品die仍高于既有路线，则不认定其已取得经济领先；2030/2031是管理层计划，不是保证。",
+      "next_evidence_date": "2026-10-21 Meta; 2026-10-28 Microsoft/Alphabet; cross-check not TSMC reporting dates",
+      "transfer_question": "合成迁移：陌生港口购入更先进自动吊机，却受电网和铁路疏运限制。怎样比较设备升级与实际吞吐回报？",
+      "training": {
+        "stages": [
+          "合成情景：陌生港口吊机可处理100箱/小时，电力只支持80箱/小时，铁路可运70箱/小时。客户宣称订单翻倍，你先修订哪个变量？",
+          "先交由AI导师评审你的实际回答。新增约束：铁路季度内升至90，电力仍为80，付费利用率75%。重算可收费吞吐。",
+          "新增约束：吊机升级至120要增加折旧，但电力未变。什么独立证据会支持或推翻现在投资？明确观察期限。",
+          "迁移至晶圆代工：列出订单、晶圆出货、客户库存、已上电算力之间的时滞；说明为何不能直接把港口吞吐公式套作当季晶圆收入。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "TSMC Q3 2026 results and guidance",
+          "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+          "source_ref": "turn58view0",
+          "publication_date": "2026-10-15",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "official_results_page",
+          "locator": "Guidance comparison table, lines 336–347"
+        },
+        {
+          "title": "TSMC Q3 2026 — issuer-hosted LSEG edited transcript",
+          "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf",
+          "source_ref": "turn59view0",
+          "publication_date": "2026-10-15",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "issuer_hosted_edited_transcript_not_audio_verified",
+          "locator": "Roster p2; Laura Chen pp6–7; Krish Sankar p10"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked question IDs; paraphrases, not verbatim",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-19"
+    },
+    {
+      "id": "CASE-20261019-SCHNEIDER-CONVERSION",
+      "company": "Schneider Electric",
+      "source_disclosure_id": "SU_2026Q3_revenue_20261016",
+      "question_ids": [
+        "QA183",
+        "QA184"
+      ],
+      "source_keys": [
+        "schneider",
+        "schneider_call"
+      ],
+      "skills": [
+        "F3",
+        "F4",
+        "F7",
+        "F9",
+        "F10",
+        "F14",
+        "F18"
+      ],
+      "management_testimony": "Backlog delivery phasing and prefab margin contribution remain unquantified.",
+      "researcher_inference": "订单增长、工地安装更快与供应商毛利改善，是三个需要分别证明的命题。",
+      "hidden_uncertainty": "prefab是否加快验收与现金，还是把人工、库存和集成责任转移给供应商？",
+      "kpi": "订单批次EUR、交付/验收比例、取消权、现场工时、工厂工时、应收天数、分产品毛利与营运资本。",
+      "model_revision": "R_t=Σ(订单批次_v×交付比例_vt×验收比例_vt)；现金=CFO前利润−Δ营运资本。计入prefab工厂集成成本，不把现场节省全归供应商。",
+      "counterexample": "模块交货快但并网许可延期；供应商库存和应收上升，客户现场节省并未提高供应商FCF。",
+      "falsification": "编辑阈值：若连续两期交付与验收转换率下降且库存/应收天数升高，停止用订单增速直接提高短期收入和FCF。若总项目周期未缩短，仅可认定现场工时改善，不能认定整体time-to-power改善。",
+      "next_evidence_date": "2027-02-18 official Schneider FY2026 results; 2026-10-28 Vertiv peer cross-check",
+      "transfer_question": "合成迁移：陌生轨道设备商采用预制变电站，现场施工快但线路许可延误。重建收入与现金确认条件。",
+      "training": {
+        "stages": [
+          "合成情景：陌生轨道设备商新订单€200m，下一季交付40%，收入在验收时确认。还缺哪个比例，才能估算收入？",
+          "先请AI导师评审回答。新增约束：交付部分仅75%通过验收；客户预付款€20m。计算收入，说明预付款与收入关系。",
+          "再加约束：客户许可延期，库存增加€15m、应收增加€10m。为什么安装快仍可能使现金变差？需要哪些应付和税费信息？",
+          "迁移到服务器整柜：验收标准变更后，如何区分出货、收入、保证金与经营现金流？提出两期内可检验的反例。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Schneider Electric Q3 2026 revenues",
+          "url": "https://www.se.com/ww/en/assets/pdf/release-Q3-revenues-2026",
+          "source_ref": "turn61view1",
+          "publication_date": "2026-10-16",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "official_release",
+          "locator": "Revenue pp1–2; target p11; reported/organic bridge p13"
+        },
+        {
+          "title": "Schneider Q3 2026 sales call — Investing.com mirror",
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-schneider-electric-posts-record-q3-2026-revenue-93CH-4953279",
+          "source_ref": "turn61view0",
+          "publication_date": "2026-10-16",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "Andre Kukhnin lines 140–148; Alasdair Leslie lines 211–220"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked question IDs; paraphrases, not verbatim",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-19"
+    },
+    {
+      "id": "CASE-20261019-AMAT-TARGET-BOUNDARY",
+      "company": "Applied Materials",
+      "source_disclosure_id": "AMAT_2030_targets_20261013",
+      "question_ids": [],
+      "source_keys": [
+        "amat"
+      ],
+      "skills": [
+        "F4",
+        "F6",
+        "F10",
+        "F12",
+        "F14",
+        "F20"
+      ],
+      "management_testimony": "2030 targets include non-GAAP gross margin around 54% and operating margin around 40%; these are management targets.",
+      "researcher_inference": "长期目标需要市场规模、份额与费用桥；不能直接作为下一季度预测或实际盈利。",
+      "hidden_uncertainty": "利润率目标依赖多少规模杠杆与份额扩张？若WFE市场低于假设，费用是否可调整？",
+      "kpi": "可比WFE市场USD、份额百分点、服务收入USD、GM%、OpEx/收入%、R&D与CapEx、GAAP调整项目。",
+      "model_revision": "设备收入=WFE×份额；集团收入还需独立服务与其他业务。OP=R×GM−OpEx。54%与40%的目标在同口径下隐含OpEx/R≈14%，只是算术约束，不是已验证费用计划。",
+      "counterexample": "份额上升但行业支出下降，收入不一定增长；利润率目标也可能依赖未说明的非GAAP排除项。",
+      "falsification": "研究者检验：每次正式结果重估收入/费用桥；若达到40%OM所需OpEx比例低于有依据的R&D及其他费用底线，就撤回该基准情景，而不是把目标当结果。2030是目标终点，不意味着期间可忽略里程碑。",
+      "next_evidence_date": "2026-11-12 projected on issuer calendar, not confirmed; revisit official notice",
+      "transfer_question": "合成迁移：陌生测试设备商目标40%OM，但市场规模和服务附着率未公开。反推达标所需收入，识别不可观测变量。",
+      "training": {
+        "stages": [
+          "合成情景：陌生测试设备商2030目标GM54%、OM40%。同口径下它隐含什么费用率？这是否证明目标可达？",
+          "先请AI导师评审实际回答。新增约束：收入100、年度OpEx最低18。计算达到40%OM需要的GM；再算GM54%下所需最低收入。",
+          "新增约束：设备市场规模下降10%、份额由20%升至22%。重算设备收入，不把份额增加2个百分点当作总收入增加2%。",
+          "迁移至软件公司：净收入留存率上升但新客下降，长期利润目标如何反推可观察的客户数、客单价和费用底线？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Applied Materials SEMICON West financial targets",
+          "url": "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-set-outperform-ai-drives-sustained-demand/",
+          "source_ref": "turn120view0",
+          "publication_date": "2026-10-13",
+          "retrieved_on": "2026-10-19",
+          "evidence_kind": "official_release",
+          "locator": "Targets and non-GAAP limitations, lines 123–138"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": null,
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-19"
     }
   ],
-  "counting_rule": "Two researcher-compiled disclosure cases; zero additional real analyst questions."
+  "counting_rule": "6 disclosure reasoning cases: 2 historical plus 4 added October 19. 4 staged synthetic exercises are not real Q&A. This increment separately adds 6 real selected exchanges."
 }
