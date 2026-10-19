@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "note": {
   "zh": "定义为通用技术说明，面向本站阅读；具体产品参数以厂商和标准文本为准。",
   "en": "Definitions are general technical explanations written for reading this site; specific product figures follow vendor and standards documents."
@@ -571,6 +571,20 @@
    "def_zh": "每个符号携带2比特的信号方式，用来提高链路速率，代价是对噪声更敏感。",
    "def_en": "A signalling scheme carrying 2 bits per symbol to raise link rates, at the cost of greater noise sensitivity.",
    "see": []
+  },
+  {
+   "id": "pass-k",
+   "en": "pass@1 vs pass^k",
+   "zh": "pass@1 与 pass^k",
+   "cat": "workload",
+   "def_en": "pass@1 is the chance a single attempt succeeds. pass^k (τ-bench) is the chance that all k independent attempts of the same task succeed, so it falls as k rises and measures reliability. It is stricter than pass@k, which asks whether at least one of k attempts succeeds.",
+   "def_zh": "pass@1是单次尝试成功的概率。pass^k（τ-bench）是同一任务k次独立尝试全部成功的概率，随k增大而下降，衡量可靠性。比“k次里至少一次成功”的pass@k严格得多。",
+   "see": [
+    {
+     "label": "基准 M20",
+     "url": "/ai/benchmarks/#M20"
+    }
+   ]
   },
   {
    "id": "pcie",
