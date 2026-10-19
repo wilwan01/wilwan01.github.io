@@ -108,7 +108,12 @@ for batchpath,batch in zip(batchpaths,batches):
  out=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(batch['focus'])+'研究批次 · '+esc(batch['date'])+'</title><link rel="stylesheet" href="/ai/style.css"><link rel="stylesheet" href="../../thoughts.css"><style>table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:10px;border:1px solid #ccd6dc;text-align:left;vertical-align:top}td:first-child{width:20%}.research-detail summary{cursor:pointer}</style><main><h1>'+esc(batch['focus'])+' · '+esc(batch['date'])+'</h1><p>固定批次 '+str(len(batch['records']))+' 位；'+esc(progress)+'完成仅指选定关键贡献与证据通过核验。</p><p><a href="../../">返回人物目录</a> · <a href="'+esc(Path(batchpath).name)+'">完整来源审计 JSON</a></p><p>以官方获奖理由式的最重要贡献作为主线；无奖项者明确标为编辑提炼。完整机制与边界放入展开内容，历史资料保留。</p><table><thead><tr><th>人物</th><th>类别</th><th>状态</th><th>结论与待办</th></tr></thead><tbody>']
  for x in batch['records']:
   name=esc(x['name']);name=f'<a href="../../#{x["id"]}">{name}</a>' if x['status']=='complete' else name
-  out.append(f'<tr><td>{name}</td><td>{"既有" if x["kind"]=="existing" else "候选"}</td><td>{dict(complete="完成",partial="部分完成",pending="待补")[x["status"]]}</td><td>{esc(x["reason"])} {esc(x["nextAction"] or "")}</td></tr>')
+  state=dict(complete="完成",partial="部分完成",pending="待补")[x["status"]]
+  conclusion=esc(x['reason'])+' '+esc(x['nextAction'] or '')
+  if x.get('resolution',{}).get('status')=='admitted-in-other-batch':
+   resolution=x['resolution'];state='已入库（其他批次）；原'+state
+   conclusion=esc(resolution['date']+'：'+resolution['reason']+' 入库批次：'+resolution['batch'])+'<br>历史结论：'+conclusion
+  out.append(f'<tr><td>{name}</td><td>{"既有" if x["kind"]=="existing" else "候选"}</td><td>{state}</td><td>{conclusion}</td></tr>')
  out.append('</tbody></table><h2>证据与归属说明</h2><ul>')
  for n in batch['notes']:out.append('<li>'+esc(n)+'</li>')
  if batch.get('followupWatchlist'):

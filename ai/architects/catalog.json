@@ -212,7 +212,8 @@
         "yalin-zhang",
         "jianlin-gao",
         "xueliang-du",
-        "yibo-zhu"
+        "yibo-zhu",
+        "zidong-du"
       ]
     },
     {
@@ -50160,6 +50161,138 @@
         "validation": "固定实例规格与负载，测CPU占用、IO尾延迟和故障影响，并验证标签异常及会话转换。",
         "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
       }
+    },
+    {
+      "id": "zidong-du",
+      "name": "杜子东",
+      "aliases": [
+        "Zidong Du"
+      ],
+      "field": "神经网络 ISA 与分层 AI 计算架构",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "core": "用明确的软硬件接口组织数据供给，并让计算分解适配多层硬件。",
+      "background": "计算所官方主页确认杜子东／Zidong Du身份；2016及2019论文列其为计算所与寒武纪共同作者。按作品时期归属记录，不推断现任寒武纪职衔或具体产品总设计责任。",
+      "contributions": [
+        "共同提出Cambricon神经网络指令集，以显式scratchpad和可变尺寸向量／矩阵指令组织计算及数据搬移。",
+        "共同提出Cambricon-F，以共同ISA递归组织计算节点，由本地单元执行本地指令、分形单元处理拆分后的子任务。"
+      ],
+      "argument": "编辑分析：指令表达能力和层次扩展分别验证；统一ISA不自动消除存储与互连瓶颈。",
+      "evidence": "两项独立的一手技术作品；核对共同署名及具体正文。",
+      "habits": [
+        "先确定数据与控制路径，再评估整体成本。",
+        "区分署名贡献、团队成果与商业产品采用。"
+      ],
+      "questions": [
+        "统一编程接口能否覆盖分块、归约和分层数据搬移的实际成本？"
+      ],
+      "boundary": "两篇不同年份、不同机制的独立论文；署名支持共同贡献，不推断独占设计。2016原型采用综合与仿真评估；不把论文加速比当成现售芯片实测，也不把期刊扩展版重复计数。",
+      "diagnostic": "固定精度与算子形状，对比不同分块和层数下的访存量、执行时间及归约等待。",
+      "notes": [],
+      "sources": [
+        [
+          "Cambricon: An Instruction Set Architecture for Neural Networks",
+          "https://reconfigdeeplearning.wordpress.com/wp-content/uploads/2017/02/2016-isca_cambricon-an-instruction-set-architecture-for-neural-networks_cyj.pdf",
+          "首页作者及机构表；§II-B，表I、图2与scratchpad；§V-A评估方法（综合与仿真，不称产品实测）"
+        ],
+        [
+          "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "https://dl.yongwei.site/F.pdf",
+          "首页作者及机构表；§3.1、图6；FISA本地/分形指令、LFU/FFU与分层存储"
+        ],
+        [
+          "杜子东：计算所研究人员主页",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/201810/t20181029_5151252.html",
+          "姓名、研究方向及个人主页链接"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cambricon-isa-isca2016",
+          "title": "Cambricon: An Instruction Set Architecture for Neural Networks",
+          "authors": "Shaoli Liu、Zidong Du、Jinhua Tao、Dong Han、Tao Luo、Yuan Xie、Yunji Chen、Tianshi Chen",
+          "date": "2016",
+          "url": "https://reconfigdeeplearning.wordpress.com/wp-content/uploads/2017/02/2016-isca_cambricon-an-instruction-set-architecture-for-neural-networks_cyj.pdf",
+          "locator": "首页作者及机构表；§II-B，表I、图2与scratchpad；§V-A评估方法（综合与仿真，不称产品实测）",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-18"
+        },
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者及机构表；§3.1、图6；FISA本地/分形指令、LFU/FFU与分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作或专利披露。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-18"
+        },
+        {
+          "workId": "zidong-du-ict-profile",
+          "title": "杜子东：计算所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-10-18（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/201810/t20181029_5151252.html",
+          "locator": "姓名、研究方向及个人主页链接",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构姓名、方向和个人主页；仅作身份依据，不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份或历史研究线索",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-18"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "cambricon-isa-isca2016",
+          "text": "共同提出Cambricon神经网络指令集，以显式scratchpad和可变尺寸向量／矩阵指令组织计算及数据搬移。"
+        },
+        {
+          "workId": "cambricon-f-isca2019",
+          "text": "共同提出Cambricon-F，以共同ISA递归组织计算节点，由本地单元执行本地指令、分形单元处理拆分后的子任务。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名作品进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-18-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前任职。",
+        "verifiedAt": "2026-10-18"
+      },
+      "challenge": {
+        "lens": "神经网络 ISA 与分层 AI 计算架构",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "统一编程接口能否覆盖分块、归约和分层数据搬移的实际成本？",
+        "variables": "scratchpad容量、分块大小、节点层数、归约开销、搬移量",
+        "model": "编辑条件模型：指令表达能力和层次扩展分别验证；统一ISA不自动消除存储与互连瓶颈。",
+        "crossover": "所减少的等待、访问或验证成本须超过新增实现及维护成本。",
+        "counterexample": "不规则算子、频繁跨层归约或小任务可能让分解和搬移成本超过收益。",
+        "validation": "固定精度与算子形状，对比不同分块和层数下的访存量、执行时间及归约等待。",
+        "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
+      }
     }
   ],
   "research": {
@@ -50170,7 +50303,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 405,
+    "totalProfiles": 406,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50192,12 +50325,14 @@
       "research/batches/2026-10-13-next4-followthrough.json",
       "research/batches/2026-10-13-approved-six.json",
       "research/batches/2026-10-15-domestic-core.json",
-      "research/batches/2026-10-15-alibaba-followthrough.json"
+      "research/batches/2026-10-15-alibaba-followthrough.json",
+      "research/batches/2026-10-18-weekly.json"
     ],
-    "completedTotal": 404,
+    "completedTotal": 405,
     "remainingCatalog": 1,
-    "remainingPlanned": 6,
-    "additionalPlannedScope": 110,
-    "additionalCompleted": 104
+    "remainingPlanned": 5,
+    "additionalPlannedScope": 111,
+    "additionalCompleted": 105,
+    "resolvedCandidateDuplicates": 1
   }
 }
