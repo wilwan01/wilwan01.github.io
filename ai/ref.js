@@ -3,7 +3,7 @@
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const bi=o=>o?`<span class="bi" lang="zh">${esc(o.zh)}</span><span class="bi" lang="en">${esc(o.en)}</span>`:'';
-const getJSON=async u=>{const r=await fetch(u+'?v=20261011-2');if(!r.ok)throw Error(u);return r.json()};
+const getJSON=async u=>{const r=await fetch(u+'?v=20261021-bank-agenda');if(!r.ok)throw Error(u);return r.json()};
 function lang(){
   let v='both';try{v=localStorage.getItem('ai-lang')||'both'}catch{}
   const set=x=>{document.body.dataset.lang=x;try{localStorage.setItem('ai-lang',x)}catch{}$$('#langbar button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===x)))};
