@@ -3,7 +3,7 @@
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const bi=o=>o?`<span class="bi" lang="zh">${esc(o.zh)}</span><span class="bi" lang="en">${esc(o.en)}</span>`:'';
-const getJSON=async u=>{const r=await fetch(u+'?v=20261022-conference-locations');if(!r.ok)throw Error(u);return r.json()};
+const getJSON=async u=>{const r=await fetch(u+'?v=20261022-compute-finance');if(!r.ok)throw Error(u);return r.json()};
 function lang(){
   let v='both';try{v=localStorage.getItem('ai-lang')||'both'}catch{}
   const set=x=>{document.body.dataset.lang=x;try{localStorage.setItem('ai-lang',x)}catch{}$$('#langbar button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===x)))};
@@ -115,14 +115,17 @@ async function calendar(){
   (cur.next_confirmed_events||[]).forEach((x,i)=>ev.push({id:'L'+String(i+1).padStart(2,'0'),date:x.date,cat:'earnings',title:{zh:`${x.company} ${x.period} 财报`,en:`${x.company} ${x.period} results`},evidence:'primary-located',url:x.url,note:{zh:x.date_resolution||x.locator||'公司公告的日期。',en:x.date_resolution||x.locator||'Date from the company announcement.'},links:{},ledger:1}));
   e.events.forEach(x=>ev.push(x));
   ev.sort((a,b)=>a.date.localeCompare(b.date)||a.id.localeCompare(b.id));
-  const today=new Date().toISOString().slice(0,10);let cat=location.hash==='#bank-conferences'?'bank':'',past=false;
+  const today=new Date().toISOString().slice(0,10);let cat=location.hash==='#bank-conferences'?'bank':location.hash==='#compute-finance'?'compute-finance':'',past=false;
   $('#scope').innerHTML=bi(e.scope)+` <span class="muted">· ${esc(cur.as_of)} (${esc(cur.timezone)})</span>`;
   $('#legend').innerHTML=Object.entries(e.evidence_levels).map(([k,v])=>`<div>${k==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(k,e.evidence_levels)}<div>${bi(v)}</div></div>`).join('');
   $('#filters').innerHTML=`<div class="controls"><button class="chip-btn" data-c="" aria-pressed="true">全部 / All</button>${Object.entries(e.cats).map(([k,v])=>`<button class="chip-btn" data-c="${k}" aria-pressed="false">${bi(v)}</button>`).join('')}<button class="chip-btn" id="pastbtn" aria-pressed="false">${bi({zh:'含已过去',en:'Include past'})}</button><button class="chip-btn" id="ics">${bi({zh:'下载 .ics',en:'Download .ics'})}</button></div><p id="count" role="status" class="muted"></p>`;
+  const financeList=$('#finance-subcategories');
+  if(financeList)financeList.innerHTML=(e.finance_subcategories||[]).map(s=>`<article class="card"><h3>${bi(s)}</h3><p>${bi({zh:s.detail_zh,en:s.detail_en})}</p></article>`).join('');
   const vis=()=>ev.filter(x=>(!cat||x.cat===cat)&&(past||(x.end||x.date)>=today));
   const when=x=>x.precision==='month'?x.date.slice(0,7):x.end?`${x.date} → ${x.end}`:x.date;
   function draw(){
     const agenda=$('#bank-conferences');if(agenda)agenda.hidden=cat!=='bank';
+    const finance=$('#compute-finance');if(finance)finance.hidden=cat!=='compute-finance';
     $('[data-c]',$('#filters')).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.c===cat)));
     const v=vis();$('#count').textContent=`${v.length} / ${ev.length}`;
     $('#list').innerHTML=v.length?`<div class="table-wrap"><table><thead><tr><th>Date / 日期</th><th>Event / 事件</th><th>Type / 类型</th><th>Evidence / 证据</th></tr></thead><tbody>${v.map(x=>`<tr${(x.end||x.date)<today?' style="opacity:.6"':''}><td style="white-space:nowrap">${esc(when(x))}</td><td><a target="_blank" rel="noopener" href="${esc(x.url)}">${bi(x.title)}</a><br><small class="muted">${bi(x.note)}</small>${x.links&&(x.links.customers||x.links.energy||x.links.benchmarks||x.links.standards)?`<br><small>${(x.links.customers||[]).map(i=>`<a href="/ai/customers/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.energy||[]).map(i=>`<a href="/ai/energy/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.benchmarks||[]).map(i=>`<a href="/ai/benchmarks/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.standards||[]).map(i=>`<a href="/ai/standards/#${i}">↳ ${i}</a>`).join(' ')}</small>`:''}</td><td>${bi(e.cats[x.cat])}</td><td>${x.evidence==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(x.evidence,e.evidence_levels)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="empty">没有即将到来的事件 / No upcoming events.</p>';
