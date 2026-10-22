@@ -3,7 +3,7 @@
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const bi=o=>o?`<span class="bi" lang="zh">${esc(o.zh)}</span><span class="bi" lang="en">${esc(o.en)}</span>`:'';
-const getJSON=async u=>{const r=await fetch(u+'?v=20261022-compute-finance');if(!r.ok)throw Error(u);return r.json()};
+const getJSON=async u=>{const r=await fetch(u+'?v=20261022-finance-agenda');if(!r.ok)throw Error(u);return r.json()};
 function lang(){
   let v='both';try{v=localStorage.getItem('ai-lang')||'both'}catch{}
   const set=x=>{document.body.dataset.lang=x;try{localStorage.setItem('ai-lang',x)}catch{}$$('#langbar button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===x)))};
@@ -120,7 +120,7 @@ async function calendar(){
   $('#legend').innerHTML=Object.entries(e.evidence_levels).map(([k,v])=>`<div>${k==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(k,e.evidence_levels)}<div>${bi(v)}</div></div>`).join('');
   $('#filters').innerHTML=`<div class="controls"><button class="chip-btn" data-c="" aria-pressed="true">全部 / All</button>${Object.entries(e.cats).map(([k,v])=>`<button class="chip-btn" data-c="${k}" aria-pressed="false">${bi(v)}</button>`).join('')}<button class="chip-btn" id="pastbtn" aria-pressed="false">${bi({zh:'含已过去',en:'Include past'})}</button><button class="chip-btn" id="ics">${bi({zh:'下载 .ics',en:'Download .ics'})}</button></div><p id="count" role="status" class="muted"></p>`;
   const financeList=$('#finance-subcategories');
-  if(financeList)financeList.innerHTML=(e.finance_subcategories||[]).map(s=>`<article class="card"><h3>${bi(s)}</h3><p>${bi({zh:s.detail_zh,en:s.detail_en})}</p></article>`).join('');
+  if(financeList)financeList.innerHTML=(e.finance_subcategories||[]).map(s=>`<article class="card"><h3>${bi(s)}</h3><p>${bi({zh:s.detail_zh,en:s.detail_en})}</p>${[...e.events.filter(x=>x.cat==='compute-finance'),...(e.finance_watchlist||[])].filter(x=>x.topics?.includes(s.id)).map(x=>`<div class="card"><h4><a target="_blank" rel="noopener" href="${esc(x.url)}">${bi(x.title)}</a></h4><p class="muted">${x.date?esc(x.date+(x.end?' → '+x.end:''))+' · '+esc(x.location):bi({zh:'产品观察 · 上市状态待核',en:'Product watch · listing status unverified'})}</p><p>${bi(x.note)}</p></div>`).join('')}</article>`).join('');
   const vis=()=>ev.filter(x=>(!cat||x.cat===cat)&&(past||(x.end||x.date)>=today));
   const when=x=>x.precision==='month'?x.date.slice(0,7):x.end?`${x.date} → ${x.end}`:x.date;
   function draw(){
