@@ -126,7 +126,7 @@ async function calendar(){
   function draw(){
     const agenda=$('#bank-conferences');if(agenda)agenda.hidden=cat!=='bank';
     const finance=$('#compute-finance');if(finance)finance.hidden=cat!=='compute-finance';
-    $('[data-c]',$('#filters')).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.c===cat)));
+    $$('[data-c]',$('#filters')).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.c===cat)));
     const v=vis();$('#count').textContent=`${v.length} / ${ev.length}`;
     $('#list').innerHTML=v.length?`<div class="table-wrap"><table><thead><tr><th>Date / 日期</th><th>Event / 事件</th><th>Type / 类型</th><th>Evidence / 证据</th></tr></thead><tbody>${v.map(x=>`<tr${(x.end||x.date)<today?' style="opacity:.6"':''}><td style="white-space:nowrap">${esc(when(x))}</td><td><a target="_blank" rel="noopener" href="${esc(x.url)}">${bi(x.title)}</a><br><small class="muted">${bi(x.note)}</small>${x.links&&(x.links.customers||x.links.energy||x.links.benchmarks||x.links.standards)?`<br><small>${(x.links.customers||[]).map(i=>`<a href="/ai/customers/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.energy||[]).map(i=>`<a href="/ai/energy/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.benchmarks||[]).map(i=>`<a href="/ai/benchmarks/#${i}">↳ ${i}</a>`).join(' ')}${(x.links.standards||[]).map(i=>`<a href="/ai/standards/#${i}">↳ ${i}</a>`).join(' ')}</small>`:''}</td><td>${bi(e.cats[x.cat])}</td><td>${x.evidence==='editorial'?`<span class="badge">${bi({zh:'编辑归纳',en:'Editorial'})}</span>`:evBadge(x.evidence,e.evidence_levels)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="empty">没有即将到来的事件 / No upcoming events.</p>';
   }
