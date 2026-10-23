@@ -1124,8 +1124,8 @@
         "profiles": 220,
         "buy_side": 110,
         "sell_side": 110,
-        "sources": 353,
-        "cards": 339
+        "sources": 358,
+        "cards": 345
       },
       "new_ids": {
         "profiles": [
@@ -1134,11 +1134,11 @@
           "elad-gil",
           "nathan-benaich",
           "sonya-huang",
-          "tom-omalley",
           "ambrish-srivastava",
           "tom-diffely",
-          "chris-caso",
-          "matt-ramsay"
+          "matt-ramsay",
+          "raji-gill",
+          "kevin-cassidy-rosenblatt"
         ],
         "sources": [
           "W102-JB26A",
@@ -1161,7 +1161,12 @@
           "W102-CC24B",
           "W102-MR20",
           "W102-MR22",
-          "W102-MRROLE"
+          "W102-MRROLE",
+          "W102-RG21",
+          "W102-RG23",
+          "W102-RGROLE",
+          "W102-KC25",
+          "W102-KC26"
         ],
         "cards": [
           "W102-JB-C1",
@@ -1193,7 +1198,13 @@
           "W102-CC-C3",
           "W102-MR-C1",
           "W102-MR-C2",
-          "W102-MR-C3"
+          "W102-MR-C3",
+          "W102-RG-C1",
+          "W102-RG-C2",
+          "W102-RG-C3",
+          "W102-KC-C1",
+          "W102-KC-C2",
+          "W102-KC-C3"
         ]
       },
       "classification": {
@@ -1207,41 +1218,34 @@
           "sonya-huang"
         ],
         "sell_side_source_time": [
-          "tom-omalley",
           "ambrish-srivastava",
           "tom-diffely",
-          "chris-caso",
-          "matt-ramsay"
+          "matt-ramsay",
+          "raji-gill",
+          "kevin-cassidy-rosenblatt"
         ],
         "career_change": [
-          "matt-ramsay: TD Cowen analyst → AMD Corporate VP, Financial Strategy & Investor Relations"
+          "matt-ramsay: TD Cowen analyst → AMD Corporate VP, Financial Strategy & Investor Relations",
+          "raji-gill: Needham sell-side analyst → Skyworks Vice President, Investor Relations"
         ]
       },
       "evidence_policy": "At least two differently dated substantive artifacts per person; issuer-hosted transcripts preferred. Team coauthors, management testimony, editor inference and synthetic cases remain separate.",
-      "recurring_pattern_policy": "Repeated public-question labels added only for O’Malley, Srivastava and Caso after manual review of at least three attributable questions across two calls. Other sell-side profiles remain method samples.",
+      "recurring_pattern_policy": "Repeated public-question labels were manually reviewed for Srivastava, Gill and Cassidy, and the existing stable O’Malley and Caso profiles were upgraded with new evidence. Each label has at least three attributable questions across two calls; all other profiles remain method samples.",
       "real_qa_added": 0,
-      "synthetic_cards_added": 30,
-      "status": "published_verified",
+      "synthetic_cards_added": 36,
+      "status": "prepared_for_publication_after_identity_correction",
       "limitations": [
         "No licensed sell-side reports were accessed.",
         "Public commentary does not reveal private positions, weights or transaction terms.",
         "One Matt Ramsay transcript is a third-party mirror and may contain errors.",
         "Team-authored VC/report material is not attributed solely to one person."
       ],
-      "publication": {
-        "content_commit": "b95e52789cbc16f1e00b4f54bd9f3eb966398756",
-        "pages_run": 39923292372,
-        "pages_conclusion": "success",
-        "verified_at": "2026-10-23T09:16:00+01:00 Europe/London",
-        "public_url": "https://wilwan01.github.io/ai/analysts/thoughts.html",
-        "public_checks": [
-          "220 profiles displayed: 110 buy-side/VC and 110 sell-side",
-          "353 source records and 339 challenge cards displayed",
-          "Jamin Ball profile search and card switching passed",
-          "Three-stage exercise gate passed; answer key remained hidden before explicit reveal",
-          "New source-to-profile and card-to-answer-key joins passed"
-        ]
-      }
+      "publication": null,
+      "updated_profiles": [
+        "omalley-barclays",
+        "r2s1-chris-caso"
+      ],
+      "validation_note": "Final identity audit caught O’Malley and Caso ID variants; their evidence/cards were merged into the older stable IDs and two genuinely new analysts replaced them."
     }
   ],
   "deduplication": {
@@ -1445,7 +1449,29 @@
       "o9g6-cody-acree",
       "o9g6-seth-klarman",
       "o9g6-david-tepper",
-      "o9g6-chris-hohn"
+      "o9g6-chris-hohn",
+      "leopold-aschenbrenner",
+      "rob-jesudason",
+      "tom-gayner",
+      "francois-rochon",
+      "john-huber",
+      "bill-gurley",
+      "sarah-tavel",
+      "ross-seymore",
+      "quinn-bolton",
+      "tore-svanberg",
+      "hans-mosesmann",
+      "toni-sacconaghi",
+      "jamin-ball",
+      "martin-casado",
+      "elad-gil",
+      "nathan-benaich",
+      "sonya-huang",
+      "ambrish-srivastava",
+      "tom-diffely",
+      "matt-ramsay",
+      "raji-gill",
+      "kevin-cassidy-rosenblatt"
     ]
   },
   "source_id_aliases": {

@@ -1,7 +1,7 @@
 {
   "version": 4,
   "as_of": "2026-10-23",
-  "method": "Evidence-backed cross-document thought atlas; profiles are editorial reconstructions, not complete personas. 23 October increment adds five buy-side/VC and five sell-side source-time profiles, 21 source records and 30 synthetic cards.",
+  "method": "Evidence-backed cross-document thought atlas; profiles are editorial reconstructions, not complete personas. 23 October corrected increment adds five genuinely new buy-side/VC and five genuinely new sell-side source-time profiles, while merging two duplicate identities into their stable IDs; 26 source records and 36 synthetic cards were added.",
   "sources": [
     {
       "id": "D01",
@@ -4016,6 +4016,66 @@
       "summary": "Lists Matt Ramsay as Corporate Vice President, Financial Strategy & Investor Relations.",
       "locator": "presenters table; Matt Ramsay row",
       "audit": "Rechecked 2026-10-23. Current corporate role is not used to reclassify historical Cowen questions."
+    },
+    {
+      "id": "W102-RG21",
+      "title": "Cirrus Logic Q2 FY2022 Earnings Call",
+      "date": "2021-11-01",
+      "url": "https://s21.q4cdn.com/307563939/files/doc_financials/2022/q2/CORRECTED-TRANSCRIPT_-Cirrus-Logic%2C-Inc.%28CRUS-US%29%2C-Q2-2022-Earnings-Call%2C-1-November-2021-5_00-PM-ET.pdf",
+      "authors": "Cirrus Logic call participants; Rajvindra Gill questions",
+      "access": "Issuer-hosted transcript PDF; substantive Q&A read. Call-time role: Needham & Company semiconductor analyst.",
+      "retrieval_level": "issuer-hosted earnings transcript read",
+      "summary": "Gill separates pricing and gross-margin pressure from industry inflation, then asks when foundry prepayments become qualified capacity and serviceable growth.",
+      "locator": "PDF pp.12–13; Rajvindra Gill exchange",
+      "audit": "Read 2026-10-23. Management answers remain testimony; no licensed Needham research was accessed."
+    },
+    {
+      "id": "W102-RG23",
+      "title": "SkyWater Technology Q4 2022 Earnings Call",
+      "date": "2023-02-13",
+      "url": "https://s27.q4cdn.com/656702482/files/doc_financials/2023/q1/708778565_1822981590_2736500_Transcript_EditedCopy_20230213231516.pdf",
+      "authors": "SkyWater Technology call participants; Rajvindra Gill questions",
+      "access": "Issuer-hosted transcript PDF; substantive Q&A read. Call-time role: Needham & Company analyst.",
+      "retrieval_level": "issuer-hosted earnings transcript read",
+      "summary": "Gill normalizes reported gross margin for a program effect, then tests guidance through tool pass-through revenue, price, volume and commercial-program ramps.",
+      "locator": "PDF pp.11–13; Rajvindra Gill exchange",
+      "audit": "Read 2026-10-23. At least five attributable questions across two calls were manually reviewed."
+    },
+    {
+      "id": "W102-RGROLE",
+      "title": "Skyworks Q3 FY2026 Earnings Call Prepared Remarks",
+      "date": "2026-07-28",
+      "url": "https://www.skyworksinc.com/-/media/SkyWorks/Documents/Press-Releases/FY26Q3-Earnings-Call-Prepared-Remarks.pdf",
+      "authors": "Skyworks Solutions",
+      "access": "Issuer official prepared remarks; used only to verify current role as Vice President, Investor Relations.",
+      "retrieval_level": "issuer-hosted role verification",
+      "summary": "Current-role evidence; not used to infer Gill’s sell-side method.",
+      "locator": "PDF p.1, opening speaker identification",
+      "audit": "Read 2026-10-23; sell-side classification remains source-time."
+    },
+    {
+      "id": "W102-KC25",
+      "title": "Navitas Semiconductor Q2 2025 Earnings Call",
+      "date": "2025-08-04",
+      "url": "https://ir.navitassemi.com/static-files/7dbb8357-3878-44d8-9695-065058d562de",
+      "authors": "Navitas Semiconductor call participants; Kevin Cassidy questions",
+      "access": "Issuer-hosted transcript PDF; substantive Q&A read. Call-time role: Rosenblatt Securities analyst.",
+      "retrieval_level": "issuer-hosted earnings transcript read",
+      "summary": "Cassidy asks whether a 48V architecture endorsement changes GaN adoption and whether a foundry transition requires last-time-buy inventory and qualification buffers.",
+      "locator": "PDF p.2 participant roster; p.10 Kevin Cassidy exchange",
+      "audit": "Read 2026-10-23. Management adoption and supply-transition statements remain testimony."
+    },
+    {
+      "id": "W102-KC26",
+      "title": "Navitas Semiconductor Q4 2025 Earnings Call",
+      "date": "2026-02-24",
+      "url": "https://ir.navitassemi.com/static-files/183ada0a-f7d2-4eea-a383-2f12f7d4a023",
+      "authors": "Navitas Semiconductor call participants; Kevin Cassidy questions",
+      "access": "Issuer-hosted transcript PDF; substantive Q&A read. Call-time role: Rosenblatt Securities analyst.",
+      "retrieval_level": "issuer-hosted earnings transcript read",
+      "summary": "Cassidy maps demand through hyperscaler, PSU, OEM, ODM and merchant-power layers, then presses for the installation inflection rather than treating evaluation activity as revenue.",
+      "locator": "PDF p.2 participant roster; p.10 Kevin Cassidy exchange",
+      "audit": "Read 2026-10-23. Four attributable questions across two calls were manually reviewed."
     }
   ],
   "profiles": [
@@ -6415,14 +6475,18 @@
       "id": "omalley-barclays",
       "name": "Tom O’Malley / Barclays",
       "side": "sell",
-      "role": "卖方分析师；机构按所读电话会当时名录记录，2026-10现职未在本批重新认证。",
-      "scope": "CPU与GPU增长 → 时点和供给约束 → 组合毛利",
+      "role": "Barclays semiconductor analyst at both call dates; 2026 transcript lists Barclays Services Corp",
+      "scope": "Separate cycle timing, structural sourcing change, price and local competition in analog/auto semiconductors",
       "focus": [
         "CPU/GPU收入拆分",
         "季度兑现节奏",
-        "毛利组合"
+        "毛利组合",
+        "inventory behavior",
+        "China competition",
+        "price versus volume",
+        "auto content"
       ],
-      "boundary": "两场具名公开问答的方法样本；不是许可研报或私人思想，也未认证同机制三次跨两场的反复模式。",
+      "boundary": "Issuer-hosted questions reveal diligence priorities, not Barclays estimates, rating or price target.",
       "timeline": [
         {
           "date": "2026-05-05",
@@ -6437,14 +6501,30 @@
           "source_ids": [
             "O8SAD2"
           ]
+        },
+        {
+          "date": "2024-04-23",
+          "text": "Tested China competition and post-shortage customer sourcing/inventory behavior.",
+          "source_ids": [
+            "W102-TO24"
+          ]
+        },
+        {
+          "date": "2026-01-27",
+          "text": "Separated auto-cycle timing and secular content from pricing-driven growth.",
+          "source_ids": [
+            "W102-TO26"
+          ]
         }
       ],
       "gaps": [
         "未审阅许可研究报告或完整预测模型",
         "当前任职和收益/预测命中率未在本批审计",
-        "管理层答案需要独立客户与经营数据验证"
+        "管理层答案需要独立客户与经营数据验证",
+        "No licensed Barclays report or frozen estimate set was accessed.",
+        "Issuer answers were not independently validated against channel data."
       ],
-      "comparison": "仅比较选定问题的方法与证据边界，不按声望排名。"
+      "comparison": "O’Malley repeatedly decomposes observed growth into price, cycle, content and sourcing behavior before accepting a structural story."
     },
     {
       "id": "buchalter-td-cowen",
@@ -8439,15 +8519,19 @@
     },
     {
       "id": "r2s1-chris-caso",
-      "name": "Chris Caso",
+      "name": "Chris Caso / Wolfe Research",
       "side": "sell",
-      "role": "Wolfe Research；2026 MPS电话会时身份",
-      "scope": "CPU电源内容与组合集中度",
+      "role": "Managing Director, Wolfe Research at source dates",
+      "scope": "Capacity investment, free-cash-flow troughs and capital-allocation triggers through a semiconductor cycle",
       "focus": [
         "Semiconductors",
-        "AI infrastructure"
+        "AI infrastructure",
+        "FCF and buybacks",
+        "depreciation",
+        "capacity loading",
+        "R&D allocation"
       ],
-      "boundary": "仅限下列日期的公开具名材料，不据此认定稳定个人风格或当前职务。横跨x86/Arm不能证明两边内容或份额相同。",
+      "boundary": "Public questions are method samples, not a complete Wolfe recommendation or target-price model.",
       "timeline": [
         {
           "date": "2026-04-30",
@@ -8462,12 +8546,28 @@
           "source_ids": [
             "R2S1-MPWR226"
           ]
+        },
+        {
+          "date": "2024-01-23",
+          "text": "Connected depressed demand, depreciation and underutilization to long-lived capacity economics.",
+          "source_ids": [
+            "W102-CC24A"
+          ]
+        },
+        {
+          "date": "2024-04-23",
+          "text": "Asked for explicit buyback triggers and whether R&D shifts end-market mix.",
+          "source_ids": [
+            "W102-CC24B"
+          ]
         }
       ],
       "gaps": [
-        "公开具名两份材料仅支持方法样本；尚无私人完整模型、预测复盘及长期业绩审计。"
+        "公开具名两份材料仅支持方法样本；尚无私人完整模型、预测复盘及长期业绩审计。",
+        "No licensed Wolfe model or forecast revisions were accessed.",
+        "Management’s capital-return objectives are not commitments."
       ],
-      "comparison": "收入=CPU数×单CPU内容×份额；再与其他业务合并。"
+      "comparison": "Caso forces long-cycle capex, current cash generation and shareholder returns into one timing-consistent model."
     },
     {
       "id": "r2s1-william-stein",
@@ -11904,51 +12004,6 @@
       "comparison": "Huang uses explicit thesis revision and workflow-level evidence to move from technology capability to production value."
     },
     {
-      "id": "tom-omalley",
-      "name": "Tom O’Malley / Barclays",
-      "side": "sell",
-      "role": "Barclays semiconductor analyst at both call dates; 2026 transcript lists Barclays Services Corp",
-      "scope": "Separate cycle timing, structural sourcing change, price and local competition in analog/auto semiconductors",
-      "focus": [
-        "inventory behavior",
-        "China competition",
-        "price versus volume",
-        "auto content"
-      ],
-      "boundary": "Issuer-hosted questions reveal diligence priorities, not Barclays estimates, rating or price target.",
-      "timeline": [
-        {
-          "date": "2024-04-23",
-          "text": "Tested China competition and post-shortage customer sourcing/inventory behavior.",
-          "source_ids": [
-            "W102-TO24"
-          ]
-        },
-        {
-          "date": "2026-01-27",
-          "text": "Separated auto-cycle timing and secular content from pricing-driven growth.",
-          "source_ids": [
-            "W102-TO26"
-          ]
-        }
-      ],
-      "gaps": [
-        "No licensed Barclays report or frozen estimate set was accessed.",
-        "Issuer answers were not independently validated against channel data."
-      ],
-      "comparison": "O’Malley repeatedly decomposes observed growth into price, cycle, content and sourcing behavior before accepting a structural story.",
-      "recurring_review": {
-        "status": "manually_reviewed_public_question_pattern",
-        "question_count": 4,
-        "call_count": 2,
-        "source_ids": [
-          "W102-TO24",
-          "W102-TO26"
-        ],
-        "note": "Only the mechanism stated above is labeled repeated; no permanent personality or recommendation is inferred."
-      }
-    },
-    {
       "id": "ambrish-srivastava",
       "name": "Ambrish Srivastava / BMO Capital Markets",
       "side": "sell",
@@ -12029,51 +12084,6 @@
       "comparison": "Diffely bridges technology transitions to economically usable capacity before treating capex as growth."
     },
     {
-      "id": "chris-caso",
-      "name": "Chris Caso / Wolfe Research",
-      "side": "sell",
-      "role": "Managing Director, Wolfe Research at source dates",
-      "scope": "Capacity investment, free-cash-flow troughs and capital-allocation triggers through a semiconductor cycle",
-      "focus": [
-        "FCF and buybacks",
-        "depreciation",
-        "capacity loading",
-        "R&D allocation"
-      ],
-      "boundary": "Public questions are method samples, not a complete Wolfe recommendation or target-price model.",
-      "timeline": [
-        {
-          "date": "2024-01-23",
-          "text": "Connected depressed demand, depreciation and underutilization to long-lived capacity economics.",
-          "source_ids": [
-            "W102-CC24A"
-          ]
-        },
-        {
-          "date": "2024-04-23",
-          "text": "Asked for explicit buyback triggers and whether R&D shifts end-market mix.",
-          "source_ids": [
-            "W102-CC24B"
-          ]
-        }
-      ],
-      "gaps": [
-        "No licensed Wolfe model or forecast revisions were accessed.",
-        "Management’s capital-return objectives are not commitments."
-      ],
-      "comparison": "Caso forces long-cycle capex, current cash generation and shareholder returns into one timing-consistent model.",
-      "recurring_review": {
-        "status": "manually_reviewed_public_question_pattern",
-        "question_count": 3,
-        "call_count": 2,
-        "source_ids": [
-          "W102-CC24A",
-          "W102-CC24B"
-        ],
-        "note": "Pattern is limited to reviewed public exchanges."
-      }
-    },
-    {
       "id": "matt-ramsay",
       "name": "Matt Ramsay（历史 TD Cowen；现 AMD IR）",
       "side": "sell",
@@ -12119,6 +12129,88 @@
         "No licensed Cowen report or current AMD internal information was accessed."
       ],
       "comparison": "Ramsay normalizes the company perimeter and concentration before extrapolating headline growth or margins."
+    },
+    {
+      "id": "raji-gill",
+      "name": "Raji (Rajvindra) Gill（历史 Needham；现 Skyworks IR）",
+      "side": "sell",
+      "role": "Needham & Company semiconductor analyst at source dates; later Skyworks VP, Investor Relations",
+      "current_role": {
+        "title": "Vice President, Investor Relations, Skyworks Solutions",
+        "as_of": "2026-07-28",
+        "access": "W102-RGROLE"
+      },
+      "scope": "Normalize reported margin, then bridge pricing, pass-through mix and qualified capacity to serviceable growth",
+      "focus": [
+        "normalized gross margin",
+        "price-volume-mix",
+        "capacity qualification",
+        "working-capital conversion"
+      ],
+      "boundary": "Two issuer-hosted calls support a repeated public-question mechanism, not a complete licensed research model, rating or current recommendation.",
+      "timeline": [
+        {
+          "date": "2021-11-01",
+          "text": "Separated gross-margin pricing pressure from industry inflation and asked when foundry prepayments become usable capacity.",
+          "source_ids": [
+            "W102-RG21"
+          ]
+        },
+        {
+          "date": "2023-02-13",
+          "text": "Normalized reported gross margin for a program effect, then tested guidance through pass-through/tool revenue, price, volume and ramps.",
+          "source_ids": [
+            "W102-RG23"
+          ]
+        },
+        {
+          "date": "2026-07-28",
+          "text": "Skyworks official prepared remarks identify Gill as VP, Investor Relations; this role check is not method evidence.",
+          "source_ids": [
+            "W102-RGROLE"
+          ]
+        }
+      ],
+      "gaps": [
+        "No licensed Needham reports, frozen estimates or targets were accessed.",
+        "Foundry prepayment does not reveal qualified yield, customer approval or demand by itself."
+      ],
+      "comparison": "Gill first removes temporary/program effects from the reported margin, then asks whether price, mix and qualified capacity can carry that normalized economics into cash."
+    },
+    {
+      "id": "kevin-cassidy-rosenblatt",
+      "name": "Kevin Cassidy / Rosenblatt Securities",
+      "side": "sell",
+      "role": "Rosenblatt Securities analyst at both call dates",
+      "scope": "Convert architecture endorsements into a non-duplicative customer-channel, installation, content and supply-transition revenue bridge",
+      "focus": [
+        "48V/800V adoption",
+        "hyperscaler-to-OEM pull-through",
+        "GaN/SiC content timing",
+        "foundry-transition inventory"
+      ],
+      "boundary": "Two issuer-hosted calls support a repeated public-question mechanism, not a complete licensed report model, rating or investment position.",
+      "timeline": [
+        {
+          "date": "2025-08-04",
+          "text": "Tested whether an NVIDIA announcement breaks a 48V/GaN adoption bottleneck and whether foundry migration requires supply buffers.",
+          "source_ids": [
+            "W102-KC25"
+          ]
+        },
+        {
+          "date": "2026-02-24",
+          "text": "Separated hyperscaler pull from PSU/OEM/ODM/merchant-power channels and asked for the installation inflection.",
+          "source_ids": [
+            "W102-KC26"
+          ]
+        }
+      ],
+      "gaps": [
+        "No licensed Rosenblatt report, frozen estimates or targets were accessed.",
+        "Public calls do not reveal customer-level BOM, purchase orders or conversion probabilities."
+      ],
+      "comparison": "Cassidy asks who drives procurement and when installation occurs, then audits foundry-transition inventory so partnership announcements are not booked as revenue."
     }
   ],
   "cards": [
@@ -20780,7 +20872,7 @@
     },
     {
       "id": "W102-TO-C1",
-      "profile": "tom-omalley",
+      "profile": "omalley-barclays",
       "title": "Separate price, volume and mix in analog growth",
       "source_ids": [
         "W102-TO26"
@@ -20809,7 +20901,7 @@
     },
     {
       "id": "W102-TO-C2",
-      "profile": "tom-omalley",
+      "profile": "omalley-barclays",
       "title": "Distinguish inventory normalization from sourcing redesign",
       "source_ids": [
         "W102-TO24"
@@ -20838,7 +20930,7 @@
     },
     {
       "id": "W102-TO-C3",
-      "profile": "tom-omalley",
+      "profile": "omalley-barclays",
       "title": "Measure local competition without confusing capacity and share",
       "source_ids": [
         "W102-TO24"
@@ -21041,7 +21133,7 @@
     },
     {
       "id": "W102-CC-C1",
-      "profile": "chris-caso",
+      "profile": "r2s1-chris-caso",
       "title": "Set an explicit buyback trigger",
       "source_ids": [
         "W102-CC24B"
@@ -21070,7 +21162,7 @@
     },
     {
       "id": "W102-CC-C2",
-      "profile": "chris-caso",
+      "profile": "r2s1-chris-caso",
       "title": "Bridge capacity investment through a revenue trough",
       "source_ids": [
         "W102-CC24A"
@@ -21099,7 +21191,7 @@
     },
     {
       "id": "W102-CC-C3",
-      "profile": "chris-caso",
+      "profile": "r2s1-chris-caso",
       "title": "Trace R&D allocation into end-market mix",
       "source_ids": [
         "W102-CC24B"
@@ -21213,10 +21305,188 @@
         "F15",
         "T3"
       ]
+    },
+    {
+      "id": "W102-RG-C1",
+      "profile": "raji-gill",
+      "title": "Normalize gross margin before calling structural improvement",
+      "source_ids": [
+        "W102-RG23"
+      ],
+      "locator": "PDF pp.11–13; editor model follows.",
+      "source_paraphrase": "Gill removes a roughly 600 bp program effect from a 26% reported margin before testing the 15%–20% guide.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No prediction-performance claim; transfer requires an unseen answer.",
+      "model": "Normalized GM = reported GM − temporary/high-margin program effect ± pass-through and tool-revenue mix.",
+      "variables_units": "reported GM %; temporary effect bp; pass-through revenue $m; normalized GM %",
+      "boundary": "The adjustment must have a dated reversal and cannot remove recurring economics merely because they are inconvenient.",
+      "decision_boundary": "Call improvement structural only if normalized GM exceeds the prior normalized level for two quarters.",
+      "counterexample": "Scale utilization or a durable customer mix shift can make the adjusted margin materially different from the simple subtraction.",
+      "test": "Reconcile each adjustment to segment mix and repeat the bridge for the next two quarters.",
+      "deadline": "next two quarters",
+      "question": "Synthetic: reported GM is 27%; a temporary program adds 500 bp and pass-through mix subtracts 100 bp. Estimate normalized GM.",
+      "constraint": "Next quarter the temporary program ends, utilization adds 250 bp and price loses 75 bp. Revise the model.",
+      "transfer": "Transfer to an AI server ODM with GPU pass-through revenue.",
+      "tags": [
+        "F2",
+        "F11",
+        "F18",
+        "T4"
+      ]
+    },
+    {
+      "id": "W102-RG-C2",
+      "profile": "raji-gill",
+      "title": "Convert a foundry prepayment into usable capacity",
+      "source_ids": [
+        "W102-RG21"
+      ],
+      "locator": "PDF pp.12–13; editor model follows.",
+      "source_paraphrase": "Gill asks when prepayments and supplier investment translate into additional serviceable growth.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "model": "Prepay → tool installation → process qualification → customer qualification → yielded wafers → shipments → cash.",
+      "variables_units": "prepay $m; tools #; qualification months; yield %; wafers/month; revenue $m",
+      "boundary": "Prepayment is financing evidence, not qualified capacity or demand.",
+      "decision_boundary": "Enter incremental capacity in base-case revenue only after process and customer qualification dates are evidenced.",
+      "counterexample": "Tools arrive on time but yield or customer approval fails, leaving inventory or idle capacity.",
+      "test": "Track installed tools, qualified yield, customer approvals, shipments and inventory.",
+      "deadline": "the stated qualification window plus two quarters",
+      "question": "Synthetic: 20 tools × 1,000 wafers/month × 85% yield × $300 revenue/wafer. What monthly revenue capacity is usable after qualification?",
+      "constraint": "Only 60% of customers qualify on time and yield is 70%. Recompute and identify the bottleneck.",
+      "transfer": "Transfer to HBM capacity deposits.",
+      "tags": [
+        "F7",
+        "F9",
+        "F14",
+        "T5"
+      ]
+    },
+    {
+      "id": "W102-RG-C3",
+      "profile": "raji-gill",
+      "title": "Separate price, volume and pass-through mix",
+      "source_ids": [
+        "W102-RG23"
+      ],
+      "locator": "PDF pp.11–13; editor model follows.",
+      "source_paraphrase": "Gill tests guidance by separating price, volume, tool/pass-through revenue and commercial-program ramps.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "model": "Revenue growth = price + volume + mix + pass-through interactions; gross profit must be calculated on each stream, not headline revenue.",
+      "variables_units": "price %; units #; mix %; pass-through revenue $m; gross margin %; cash $m",
+      "boundary": "Interactions and utilization must be modeled explicitly when material.",
+      "decision_boundary": "Accept growth quality only if gross profit and cash rise after excluding pass-through revenue.",
+      "counterexample": "Headline revenue accelerates while pass-through tool revenue depresses margin and consumes working capital.",
+      "test": "Reconcile price, units, mix, gross profit and operating cash for two quarters.",
+      "deadline": "next two quarters",
+      "question": "Synthetic: core revenue 100 grows 8% volume and 4% price; add 30 of zero-margin pass-through. Estimate total revenue and gross profit if core GM is 25%.",
+      "constraint": "Working capital absorbs 20% of pass-through revenue. Revise the cash conclusion.",
+      "transfer": "Transfer to cloud revenue that includes hardware resale.",
+      "tags": [
+        "F3",
+        "F4",
+        "F18",
+        "T4"
+      ]
+    },
+    {
+      "id": "W102-KC-C1",
+      "profile": "kevin-cassidy-rosenblatt",
+      "title": "Turn architecture endorsement into an adoption ladder",
+      "source_ids": [
+        "W102-KC25",
+        "W102-KC26"
+      ],
+      "locator": "2025 PDF p.10 and 2026 PDF p.10; editor model follows.",
+      "source_paraphrase": "Cassidy asks whether architecture backing changes adoption and when actual installations inflect.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "model": "Endorsement → evaluation → qualification/design win → installation → shipment/revenue.",
+      "variables_units": "evaluations #; design wins #; install date; content $/rack; attach %; revenue $m",
+      "boundary": "Only qualified programs with a bounded installation date enter the base case.",
+      "decision_boundary": "Move a program from option value to base case only after qualification and dated installation evidence.",
+      "counterexample": "The technology is selected but the rack architecture slips or a competing material wins production.",
+      "test": "Track named qualifications, purchase orders, shipments and installed racks.",
+      "deadline": "next two calls or the 2027 deployment window",
+      "question": "Synthetic: 40 evaluations, 25% qualify, 60% install on time, 500 racks each and $800 content/rack. Estimate recognized revenue opportunity.",
+      "constraint": "Installation slips one year for half the qualified programs. Split base and delayed cases.",
+      "transfer": "Transfer to liquid-cooling CDU qualifications.",
+      "tags": [
+        "F3",
+        "F4",
+        "F15",
+        "F18",
+        "T3"
+      ]
+    },
+    {
+      "id": "W102-KC-C2",
+      "profile": "kevin-cassidy-rosenblatt",
+      "title": "Map hyperscaler pull without double-counting channels",
+      "source_ids": [
+        "W102-KC26"
+      ],
+      "locator": "PDF p.10 Kevin Cassidy exchange; editor model follows.",
+      "source_paraphrase": "Cassidy asks whether demand is pulled directly by hyperscalers or transmitted through PSU, OEM, ODM and merchant-power suppliers.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "model": "Final rack demand flows through overlapping channel layers; count each final project once, then assign attach and content.",
+      "variables_units": "final racks #; attach %; BOM $/rack; channel overlap %; revenue $m",
+      "boundary": "Multiple engagements do not create multiple end racks.",
+      "decision_boundary": "Recognize only de-duplicated projects with a specified end deployment.",
+      "counterexample": "Reference-board engagements across three channel partners all map to one hyperscaler project and none reaches production.",
+      "test": "Require named qualification, purchase order or shipment plus installation timing.",
+      "deadline": "2027 deployment window",
+      "question": "Synthetic: three partners each cite 2,000 racks, but 70% overlap on the same program. At 50% attach and $1,000/rack, estimate de-duplicated revenue.",
+      "constraint": "Only 60% of the de-duplicated racks install in the window. Revise.",
+      "transfer": "Transfer to optical transceiver channel checks.",
+      "tags": [
+        "F6",
+        "F9",
+        "F14",
+        "F18",
+        "T4"
+      ]
+    },
+    {
+      "id": "W102-KC-C3",
+      "profile": "kevin-cassidy-rosenblatt",
+      "title": "Treat foundry-transition inventory as a buffer, not demand",
+      "source_ids": [
+        "W102-KC25"
+      ],
+      "locator": "PDF p.10 Kevin Cassidy exchange; editor model follows.",
+      "source_paraphrase": "Cassidy tests whether the TSMC-to-Powerchip transition requires a last-time buy and customer qualification buffer.",
+      "attribution": "Source-backed public question is paraphrased; model, numbers, thresholds and training scenario are editor synthesis.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "model": "Last-time buy + new-foundry qualification/yield ramp → inventory and working-capital bridge; neither side is end demand.",
+      "variables_units": "buffer months; wafer starts #; yield %; cost/die $; qualification date; inventory $",
+      "boundary": "New-foundry cost or capacity benefits require qualified yield and customer approval.",
+      "decision_boundary": "Treat buffer inventory as protective only if consumption and qualification milestones are dated.",
+      "counterexample": "Inventory rises because qualification slips, creating obsolescence rather than continuity.",
+      "test": "Track new-foundry yield, customer approvals, buffer months and inventory conversion.",
+      "deadline": "before 2027H2 or the disclosed transition date",
+      "question": "Synthetic: monthly demand is 2m dies and planned transition buffer is 6 months at $1.50/die. Estimate inventory cash committed.",
+      "constraint": "Qualification slips three months and 10% becomes obsolete. Recompute cash at risk.",
+      "transfer": "Transfer to a memory supplier changing packaging subcontractors.",
+      "tags": [
+        "F2",
+        "F11",
+        "F14",
+        "F15",
+        "T6"
+      ]
     }
   ],
   "comparison": "买方连接研究、估值与组合表达；卖方连接问题、经营变量与预测修订。角色不同不意味着谁更正确；比较仅限所读样本。",
-  "coverage": "220 selected method profiles (110 buy-side/VC and 110 sell-side source-time), 353 source records and 339 synthetic challenge cards. Not complete coverage, not current recommendations, not real QA additions.",
+  "coverage": "220 selected method profiles (110 buy-side/VC and 110 sell-side source-time), 358 source records and 345 synthetic challenge cards. Not complete coverage, not current recommendations, not real QA additions.",
   "role_counts": {
     "buy_side": 110,
     "sell_side": 110
