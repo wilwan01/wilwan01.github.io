@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-25",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -213,7 +213,9 @@
         "jianlin-gao",
         "xueliang-du",
         "yibo-zhu",
-        "zidong-du"
+        "zidong-du",
+        "qi-guo",
+        "yongwei-zhao"
       ]
     },
     {
@@ -50293,6 +50295,270 @@
         "validation": "固定精度与算子形状，对比不同分块和层数下的访存量、执行时间及归约等待。",
         "transfer": "用于相关处理器与系统方案评审；不由历史作品推导当前产品性能。"
       }
+    },
+    {
+      "id": "qi-guo",
+      "name": "郭崎",
+      "aliases": [
+        "Qi Guo"
+      ],
+      "field": "AI处理器系统与控制/向量协同",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "memory"
+      ],
+      "core": "把标量控制、向量数据流与分层机器组织放进可执行的软硬件接口，减少交互和迁移成本。",
+      "background": "计算所实验室官方主页确认郭崎／Qi Guo现任研究员，方向为计算机体系结构与人工智能；2019年Cambricon-F与2021年CPULESS论文均列其为共同作者。按作品时期的论文机构表记录团队归属，不据此推断其当前在寒武纪任职或拥有商业产品的独占设计责任。",
+      "contributions": [
+        "共同提出Cambricon-F：用相同ISA递归组织父子节点，以LFU执行本地指令、FFU拆分分形指令，并用分层存储支撑跨规模执行。",
+        "共同提出DLPU中心系统：EOP将标量控制组织为异常处理，CPULESS用SPU/PPU融合流水及向量队列并行控制流与向量数据流。"
+      ],
+      "argument": "编辑条件模型：统一ISA和DLPU中心控制能降低软件迁移及主机交互，但收益取决于分解、异常处理和数据搬移没有成为新的主导开销。",
+      "evidence": "两项不同年份、不同系统机制的一手署名论文及机构身份页；不把团队成果写成个人独占发明。",
+      "habits": [
+        "从接口与数据/控制路径共同定位系统瓶颈。",
+        "把架构抽象的收益与新增队列、分解和异常处理成本同时量化。"
+      ],
+      "questions": [
+        "把控制下沉到加速器并统一跨层ISA后，减少的交互是否超过新增的分解、同步和资源成本？"
+      ],
+      "boundary": "两项独立团队论文支持共同贡献；作者顺序和署名不证明独占设计。Cambricon-F与CPULESS包含原型、综合或仿真评估，不将论文对比结果表述为现售芯片实测，也不由历史论文机构推断当前企业任职。",
+      "diagnostic": "固定模型和精度，分别扫描节点层数、控制分支频率、队列深度及搬移量，测交互等待、流水利用率和端到端执行时间。",
+      "notes": [],
+      "sources": [
+        [
+          "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "https://dl.yongwei.site/F.pdf",
+          "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储"
+        ],
+        [
+          "Breaking the Interaction Wall: A DLPU-centric Deep Learning Computing System",
+          "https://dl.yongwei.site/CPULESS.pdf",
+          "首页作者与机构表；§3、图2；EOP把标量控制组织为异常处理，CPULESS以SPU/PPU融合流水和向量队列并行标量控制与向量数据流"
+        ],
+        [
+          "郭崎：处理器芯片全国重点实验室研究人员主页",
+          "https://sklp.ict.ac.cn/gysys/yjdw/yjy/202302/t20230214_128697.html",
+          "姓名、邮箱、研究方向及2019年至今的计算所研究员经历"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "interaction-wall-cpuless-tc2021",
+          "title": "Breaking the Interaction Wall: A DLPU-centric Deep Learning Computing System",
+          "authors": "Zidong Du、Qi Guo、Yongwei Zhao、Xi Zeng、Ling Li、Limin Cheng、Zhiwei Xu、Ninghui Sun、Yunji Chen",
+          "date": "2021",
+          "url": "https://dl.yongwei.site/CPULESS.pdf",
+          "locator": "首页作者与机构表；§3、图2；EOP把标量控制组织为异常处理，CPULESS以SPU/PPU融合流水和向量队列并行标量控制与向量数据流",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "qi-guo-ict-profile",
+          "title": "郭崎：处理器芯片全国重点实验室研究人员主页",
+          "authors": "处理器芯片全国重点实验室",
+          "date": "2026-10-25（访问）",
+          "url": "https://sklp.ict.ac.cn/gysys/yjdw/yjy/202302/t20230214_128697.html",
+          "locator": "姓名、邮箱、研究方向及2019年至今的计算所研究员经历",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、研究方向和任职时间；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-25"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "text": "共同提出Cambricon-F：用相同ISA递归组织父子节点，以LFU执行本地指令、FFU拆分分形指令，并用分层存储支撑跨规模执行。"
+        },
+        {
+          "workId": "interaction-wall-cpuless-tc2021",
+          "text": "共同提出DLPU中心系统：EOP将标量控制组织为异常处理，CPULESS用SPU/PPU融合流水及向量队列并行控制流与向量数据流。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据署名论文进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-25-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认当前企业任职。",
+        "verifiedAt": "2026-10-25"
+      },
+      "challenge": {
+        "lens": "控制与向量数据流协同",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "把控制下沉到加速器并统一跨层ISA后，减少的交互是否超过新增的分解、同步和资源成本？",
+        "variables": "控制分支频率、节点层数、队列深度、数据搬移量、SPU/PPU利用率",
+        "model": "编辑条件模型：统一ISA和DLPU中心控制能降低软件迁移及主机交互，但收益取决于分解、异常处理和数据搬移没有成为新的主导开销。",
+        "crossover": "避免的主机往返和流水停顿超过新增SPU、向量队列、分形分解及同步成本时成立。",
+        "counterexample": "小批量、不规则控制或频繁跨层归约会让下沉控制和递归分解成本压过收益。",
+        "validation": "固定模型和精度，分别扫描节点层数、控制分支频率、队列深度及搬移量，测交互等待、流水利用率和端到端执行时间。",
+        "transfer": "用于AI加速器、异构运行时与多层计算系统评审；不由论文原型推导当前产品性能。"
+      }
+    },
+    {
+      "id": "yongwei-zhao",
+      "name": "赵永威",
+      "aliases": [
+        "Yongwei Zhao"
+      ],
+      "field": "分形AI计算机与量化训练架构",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "以跨规模共同ISA和近数据权重更新分别处理软件复用与训练数据移动。",
+      "background": "计算所官方主页确认赵永威／Yongwei Zhao现任副研究员，研究方向为智能处理器体系结构；Cambricon-F与Cambricon-Q均列其为第一作者。两篇论文的机构表反映作品时期与计算所、寒武纪的共同署名，不据此推断当前寒武纪职衔或商业产品总设计责任。",
+      "contributions": [
+        "第一作者提出Cambricon-F：以相同ISA递归组织不同规模的父子计算节点，并以本地/分形指令及分层存储协调执行。",
+        "第一作者提出Cambricon-Q：SQU/QBC在切片上完成单遍统计量化和片上格式管理，NDP引擎在DRAM侧原位更新高精度权重。"
+      ],
+      "argument": "编辑条件模型：共同ISA可复用软件栈，近数据更新可减少高精度权重搬移；两者都要把层次通信、切片量化和存储侧硬件成本计入端到端收益。",
+      "evidence": "两项独立的一手论文，均核验第一作者署名及机制正文；机构页核对现任职责。",
+      "habits": [
+        "把跨规模编程接口与硬件层次共同设计。",
+        "围绕训练中的统计量化和高精度更新定位数据移动。"
+      ],
+      "questions": [
+        "软件栈复用和近数据更新节省的成本，能否覆盖分层通信、量化控制及存储侧逻辑开销？"
+      ],
+      "boundary": "Cambricon-F和Cambricon-Q是不同机制的独立论文，且均为团队成果；第一作者不等于独占发明。评估包含建模、综合、仿真或特定基准，不把论文加速比写成量产芯片的普遍实测结论。",
+      "diagnostic": "固定训练模型与精度，改变切片大小、统计频率、权重更新流量和机器层数，分别测片外访问、通信等待、精度变化与端到端能效。",
+      "notes": [],
+      "sources": [
+        [
+          "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "https://dl.yongwei.site/F.pdf",
+          "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储"
+        ],
+        [
+          "Cambricon-Q: A Hybrid Architecture for Efficient Training",
+          "https://dl.yongwei.site/Q.pdf",
+          "首页作者与机构表；§I及§IV；SQU/QBC以切片单遍统计和量化管理片上混合精度，NDP引擎在DRAM侧执行高精度权重更新"
+        ],
+        [
+          "赵永威：中国科学院计算技术研究所研究人员主页",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/202210/t20221021_6537615.html",
+          "姓名、邮箱、智能处理器体系结构方向及2022年9月至今副研究员经历"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "cambricon-q-isca2021",
+          "title": "Cambricon-Q: A Hybrid Architecture for Efficient Training",
+          "authors": "Yongwei Zhao、Chang Liu、Zidong Du、Qi Guo、Xing Hu、Yimin Zhuang、Zhenxing Zhang、Xinkai Song、Wei Li、Xishan Zhang、Ling Li、Zhiwei Xu、Tianshi Chen",
+          "date": "2021",
+          "url": "https://dl.yongwei.site/Q.pdf",
+          "locator": "首页作者与机构表；§I及§IV；SQU/QBC以切片单遍统计和量化管理片上混合精度，NDP引擎在DRAM侧执行高精度权重更新",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "yongwei-zhao-ict-profile",
+          "title": "赵永威：中国科学院计算技术研究所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-10-25（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202210/t20221021_6537615.html",
+          "locator": "姓名、邮箱、智能处理器体系结构方向及2022年9月至今副研究员经历",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、研究方向和任职时间；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-25"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "text": "第一作者提出Cambricon-F：以相同ISA递归组织不同规模的父子计算节点，并以本地/分形指令及分层存储协调执行。"
+        },
+        {
+          "workId": "cambricon-q-isca2021",
+          "text": "第一作者提出Cambricon-Q：SQU/QBC在切片上完成单遍统计量化和片上格式管理，NDP引擎在DRAM侧原位更新高精度权重。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据第一作者署名论文进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-10-25-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认商业采用。",
+        "verifiedAt": "2026-10-25"
+      },
+      "challenge": {
+        "lens": "跨规模ISA与近数据训练",
+        "skills": [
+          "A1",
+          "A2",
+          "A7"
+        ],
+        "question": "软件栈复用和近数据更新节省的成本，能否覆盖分层通信、量化控制及存储侧逻辑开销？",
+        "variables": "机器层数、切片大小、统计频率、权重更新流量、片外访问、精度",
+        "model": "编辑条件模型：共同ISA可复用软件栈，近数据更新可减少高精度权重搬移；两者都要把层次通信、切片量化和存储侧硬件成本计入端到端收益。",
+        "crossover": "软件维护与片外搬移的节省大于递归通信、量化单元和DRAM侧优化器的面积及控制成本时成立。",
+        "counterexample": "小模型、低更新流量或跨层同步频繁时，新增硬件和层次调度可能没有足够收益。",
+        "validation": "固定训练模型与精度，改变切片大小、统计频率、权重更新流量和机器层数，分别测片外访问、通信等待、精度变化与端到端能效。",
+        "transfer": "用于AI训练加速器、存内/近数据处理和分层计算机方案评审；不由原型结果外推量产性能。"
+      }
     }
   ],
   "research": {
@@ -50303,7 +50569,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 406,
+    "totalProfiles": 408,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50326,13 +50592,14 @@
       "research/batches/2026-10-13-approved-six.json",
       "research/batches/2026-10-15-domestic-core.json",
       "research/batches/2026-10-15-alibaba-followthrough.json",
-      "research/batches/2026-10-18-weekly.json"
+      "research/batches/2026-10-18-weekly.json",
+      "research/batches/2026-10-25-weekly.json"
     ],
-    "completedTotal": 405,
+    "completedTotal": 407,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 111,
-    "additionalCompleted": 105,
+    "additionalPlannedScope": 113,
+    "additionalCompleted": 107,
     "resolvedCandidateDuplicates": 1
   }
 }
