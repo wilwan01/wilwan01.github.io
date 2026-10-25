@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-25",
+  "baseCommit": "338654f4bdf00f30e2284855dd2a6a1250a3eb14",
+  "catalogBefore": 406,
+  "catalogAfter": 408,
+  "admitted": [
+    "qi-guo",
+    "yongwei-zhao"
+  ],
+  "activePendingCandidates": 5,
+  "scope": "有界初筛：复核当前目录、研究批次、开放PR与过去一周可核查的一手材料；重点检查国内CPU、GPU、AI加速器和云平台贡献，不声称完成所有厂商人员普查。",
+  "checks": [
+    {
+      "name": "郭崎",
+      "decision": "admitted",
+      "works": [
+        "cambricon-f-isca2019",
+        "interaction-wall-cpuless-tc2021"
+      ],
+      "identitySource": "https://sklp.ict.ac.cn/gysys/yjdw/yjy/202302/t20230214_128697.html",
+      "reason": "Cambricon-F与CPULESS是不同年份、不同系统机制的一手论文；两篇均有郭崎署名，机构主页提供身份锚点。按团队共同贡献入库，不推断独占设计或当前企业职务。"
+    },
+    {
+      "name": "赵永威",
+      "decision": "admitted",
+      "works": [
+        "cambricon-f-isca2019",
+        "cambricon-q-isca2021"
+      ],
+      "identitySource": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202210/t20221021_6537615.html",
+      "reason": "Cambricon-F与Cambricon-Q是不同机制的一手论文，赵永威均为第一作者；机构主页核对当前计算所职责。论文评估边界保留，不外推量产芯片性能。"
+    }
+  ],
+  "pendingRecheck": [
+    "张羽立：仍只有M100共同署名这一项可归属作品，未出现第二项独立一手技术作品或更强身份映射。",
+    "单天逸：本轮未取得可计作第二项独立作品的完整署名机制正文。",
+    "赵立东：仍是机构履历线索，缺两项个人署名的一手技术作品。",
+    "刘意：同名身份锚点仍不足，未将不确定论文或专利拼接到候选人。",
+    "姚刚（George Yao）：姓名与公司关系可确认，但本轮仍未形成两项个人归属明确的独立机制作品。"
+  ],
+  "deduplication": "两位新候选均不在406人目录及固定批次记录中；与现有合著者共享的论文只在各自人物审计中作为署名证据，不增加全局作品计数。",
+  "deployment": "待合并后核验，结果记录到PR。"
+}

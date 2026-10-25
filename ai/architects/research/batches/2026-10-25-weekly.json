@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-25",
+  "focus": "国内AI架构贡献周度补充：郭崎、赵永威",
+  "scope": "additional",
+  "baseCommit": "338654f4bdf00f30e2284855dd2a6a1250a3eb14",
+  "plannedScope": 2,
+  "plannedExisting": 0,
+  "plannedCandidates": 2,
+  "completedExisting": 0,
+  "completedNew": 2,
+  "counts": {
+    "complete": 2
+  },
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "qi-guo",
+      "name": "郭崎",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "Cambricon-F与CPULESS是不同年份、不同系统机制的一手论文；两篇均有郭崎署名，机构主页提供身份锚点。按团队共同贡献入库，不推断独占设计或当前企业职务。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "interaction-wall-cpuless-tc2021",
+          "title": "Breaking the Interaction Wall: A DLPU-centric Deep Learning Computing System",
+          "authors": "Zidong Du、Qi Guo、Yongwei Zhao、Xi Zeng、Ling Li、Limin Cheng、Zhiwei Xu、Ninghui Sun、Yunji Chen",
+          "date": "2021",
+          "url": "https://dl.yongwei.site/CPULESS.pdf",
+          "locator": "首页作者与机构表；§3、图2；EOP把标量控制组织为异常处理，CPULESS以SPU/PPU融合流水和向量队列并行标量控制与向量数据流",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "qi-guo-ict-profile",
+          "title": "郭崎：处理器芯片全国重点实验室研究人员主页",
+          "authors": "处理器芯片全国重点实验室",
+          "date": "2026-10-25（访问）",
+          "url": "https://sklp.ict.ac.cn/gysys/yjdw/yjy/202302/t20230214_128697.html",
+          "locator": "姓名、邮箱、研究方向及2019年至今的计算所研究员经历",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、研究方向和任职时间；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-25"
+        }
+      ]
+    },
+    {
+      "id": "yongwei-zhao",
+      "name": "赵永威",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "Cambricon-F与Cambricon-Q是不同机制的一手论文，赵永威均为第一作者；机构主页核对当前计算所职责。论文评估边界保留，不外推量产芯片性能。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "cambricon-f-isca2019",
+          "title": "Cambricon-F: Machine Learning Computers with Fractal von Neumann Architecture",
+          "authors": "Yongwei Zhao、Zidong Du、Qi Guo、Shaoli Liu、Ling Li、Zhiwei Xu、Tianshi Chen、Yunji Chen",
+          "date": "2019",
+          "url": "https://dl.yongwei.site/F.pdf",
+          "locator": "首页作者与机构表；§3.1、图6；共同ISA递归组织父子节点，LFU执行本地指令、FFU分解分形指令并配合分层存储",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "cambricon-q-isca2021",
+          "title": "Cambricon-Q: A Hybrid Architecture for Efficient Training",
+          "authors": "Yongwei Zhao、Chang Liu、Zidong Du、Qi Guo、Xing Hu、Yimin Zhuang、Zhenxing Zhang、Xinkai Song、Wei Li、Xishan Zhang、Ling Li、Zhiwei Xu、Tianshi Chen",
+          "date": "2021",
+          "url": "https://dl.yongwei.site/Q.pdf",
+          "locator": "首页作者与机构表；§I及§IV；SQU/QBC以切片单遍统计和量化管理片上混合精度，NDP引擎在DRAM侧执行高精度权重更新",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验署名及所列机制正文。",
+          "evidenceStrength": "一手署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-25"
+        },
+        {
+          "workId": "yongwei-zhao-ict-profile",
+          "title": "赵永威：中国科学院计算技术研究所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-10-25（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202210/t20221021_6537615.html",
+          "locator": "姓名、邮箱、智能处理器体系结构方向及2022年9月至今副研究员经历",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、研究方向和任职时间；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-10-25"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "原406位人物及既有研究记录保持不变；本批仅追加两位新候选。",
+    "两人的作品署名与机构归属分别核对；同一论文的网页摘要、会议页面和扩展材料没有重复计数。",
+    "补证候选复核及未达标原因见 ../weekly-screening-20261025.json。"
+  ],
+  "publication": {
+    "status": "pending"
+  }
+}
