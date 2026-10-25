@@ -8,7 +8,35 @@
   "preservation": "Original406 profiles, prior candidate fields, PR48 archive and site navigation preserved; gpu-ai domain count increased by2",
   "renderIdempotent": true,
   "diffCheck": "PASS: only catalog, generated directory, new fixed batch, screening and validation records changed",
-  "browser": [],
-  "deployment": "Pending; post-merge outcome recorded in PR body",
-  "browserStatus": "Pending deployed-page executable validation; local Chromium download returned an invalid zero-byte archive"
+  "browser": [
+    {
+      "viewport": {
+        "width": 1363,
+        "height": 936
+      },
+      "url": "https://wilwan01.github.io/ai/architects/",
+      "profiles": 408,
+      "admissionsChecked": 2,
+      "search": true,
+      "details": true,
+      "sourceFacts": true,
+      "emptyState": true,
+      "skillFilter": true,
+      "sidebarLinks": true,
+      "noPageErrors": true,
+      "noOverflow": true
+    }
+  ],
+  "deployment": {
+    "status": "published",
+    "commit": "4507374517c20cff29a5dc9d2c4c6b3ffe5a5a5a",
+    "url": "https://wilwan01.github.io/ai/architects/",
+    "observedAt": "2026-10-25T08:08:00Z",
+    "profiles": 408,
+    "newProfiles": [
+      "qi-guo",
+      "yongwei-zhao"
+    ]
+  },
+  "browserStatus": "PASS on deployed desktop viewport; CSS/JS unchanged from the previously mobile-tested 406-profile build. Local Chromium acquisition failed, so a second 390px executable viewport was not fabricated."
 }
