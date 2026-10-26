@@ -1,5 +1,5 @@
 {
-  "cutoff_at": "2026-10-19T21:27:36+01:00",
+  "cutoff_at": "2026-10-26T09:10:59+00:00",
   "cases": [
     {
       "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
@@ -335,7 +335,291 @@
       "synthetic_transfer": true,
       "question_attribution": "Editor-authored training, not a named analyst speaking",
       "created_at": "2026-10-19"
+    },
+    {
+      "id": "CASE-20261026-LRCX-SUPPLY-TIMING",
+      "company": "Lam Research",
+      "source_disclosure_id": "LRCX_2027Q1_results_20261021",
+      "question_ids": [
+        "QA185",
+        "QA186"
+      ],
+      "skills": [
+        "F3",
+        "F4",
+        "F7",
+        "F9",
+        "F14"
+      ],
+      "management_testimony": "Shipment timing and supplier readiness were discussed; no delay amount was confirmed.",
+      "researcher_inference": "供应短缺同时影响收入时点和现金；不能把提问者的金额变成管理层承诺。",
+      "hidden_uncertainty": "延迟、取消、验收还是产品组合导致收入变化？供应商资本够不够与何时合格交付不同。",
+      "kpi": "订单USD、合格部件/周、工具交付/验收台数、取消率、库存、应付与CFO。",
+      "model_revision": "R_t=Σ合格交付量×ASP×验收比例；跨期追回量≤可交付延期订单。供应商融资只是产能到货的必要条件之一；收入递延额未知时不给单一点估计。",
+      "counterexample": "资金到位但认证迟延；原订单被取消或别的订单占用同一部件，下一季未必全部追回。",
+      "falsification": "编辑阈值：到2027年3月季度结束后，若对应延期订单未验收或被取消，撤回全部追回假设。未披露订单批次时记不可验证，不用公司总收入替代。",
+      "next_evidence_date": "December 2026 and March 2027 quarter results; exact release dates unverified",
+      "transfer_question": "迁移到陌生港口设备商：交货后等待客户验收；设计能区分需求消失、交付延迟和收入确认延迟的两季度检验。",
+      "training": {
+        "stages": [
+          "合成：陌生设备商原计划验收100台，每台$2m；20台缺部件。先列出把本季收入缺口搬到下季所需的条件。",
+          "请先交AI评审你的回答。新增约束：延期20台中5台取消，其余15台下季只有80%通过验收。计算追回收入，不把它加到已含追回的原指引上。",
+          "新增约束：供应商有资金但量产认证推迟6周。你需要怎样的周度证据区分融资瓶颈与物理瓶颈？",
+          "迁移到陌生港口设备商：交货后等待客户验收；设计能区分需求消失、交付延迟和收入确认延迟的两季度检验。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Lam September 2026 quarter results — issuer-distributed release",
+          "url": "https://www.prnewswire.com/news-releases/lam-research-corporation-reports-financial-results-for-the-quarter-ended-september-27-2026-302915810.html",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "issuer_release_syndicated_by_prnewswire",
+          "locator": "GAAP/non-GAAP summary; Outlook; balance-sheet and cash-flow tables, lines 478–617",
+          "source_ref": "turn189view3"
+        },
+        {
+          "title": "Lam Q1 FY2027 — issuer-hosted LSEG edited transcript",
+          "url": "https://investor.lamresearch.com/image/LRCX-USQ_Transcript_2026-10-21.pdf",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "issuer_hosted_edited_transcript_not_audio_verified",
+          "locator": "Roster p2; Timothy Arcuri pp7–8; Melissa Weathers pp8–9",
+          "source_ref": "turn192view1"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked selected sub-question IDs; paraphrases, not quotations",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-26"
+    },
+    {
+      "id": "CASE-20261026-META-CAPACITY-CASH",
+      "company": "Meta",
+      "source_disclosure_id": "META_2026Q3_results_20261021",
+      "question_ids": [
+        "QA187",
+        "QA188",
+        "QA190"
+      ],
+      "skills": [
+        "F2",
+        "F4",
+        "F9",
+        "F10",
+        "F11",
+        "F14"
+      ],
+      "management_testimony": "2027 spending and ownership mix were not quantified.",
+      "researcher_inference": "会计费用调整不能代替现金桥；自建资本开支与租用云支出需一起观察，不能只看一条CapEx。",
+      "hidden_uncertainty": "核心广告现金回报是否能支持更长周期的新AI项目？支出降低是否只是从自建转向租用？",
+      "kpi": "CFO、设备现金支出、融资租赁本金、云费用、承诺金额、可用MW、付费任务及单位贡献。",
+      "model_revision": "公司定义FCF=CFO−资本开支（含融资租赁本金）。分开自建/租用容量和支付时点；既有广告、AI新收入和法律费用分开建桥。禁止从扣除法律费用后的EPS直接推导现金回报。",
+      "counterexample": "自建CapEx下降而云费用/不可取消承诺上升；调整后盈利改善但FCF仍为负。",
+      "falsification": "编辑阈值：未来两期若每单位成功任务贡献≤0且已上电利用率未改善，撤回短期AI自融资假设；若只有会计利润改善、现金不改善，不能认定资本回报已兑现。",
+      "next_evidence_date": "Meta Q4 2026 results / 2027 budget; exact date unverified",
+      "transfer_question": "迁移至陌生航空公司：自购机转租赁后，用相同运力口径比较现金、承诺和利用率，不从资本开支下降直接推出回报上升。",
+      "training": {
+        "stages": [
+          "合成：陌生物流云平台CFO 30、设备现金支出28、融资租赁本金4；其中云租用费6已包含在CFO。按给定定义计算FCF。",
+          "先请AI评审。新增约束：明年设备现金支出减少8，云费用增加10；其他现金项目不变。只看CapEx会怎样误判？重算FCF。",
+          "新增约束：利润含一次性非现金费用9，且CFO已作调回。能否在FCF上再加9？指出还需核验的现金支付义务。",
+          "迁移至陌生航空公司：自购机转租赁后，用相同运力口径比较现金、承诺和利用率，不从资本开支下降直接推出回报上升。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Meta Q3 2026 results",
+          "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_release",
+          "locator": "Financial highlights; legal-charge note; CFO outlook; cash-flow reconciliation",
+          "source_ref": "turn169view0"
+        },
+        {
+          "title": "Meta Q3 2026 main earnings call — official transcript",
+          "url": "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Earnings-Call-Transcript.pdf",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_transcript_not_audio_verified",
+          "locator": "Doug Anmuth pp14–15; Justin Post pp15–16",
+          "source_ref": "turn195view0"
+        },
+        {
+          "title": "Meta Q3 2026 follow-up analyst call — official transcript",
+          "url": "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Follow-Up-Call-Transcript.pdf",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_transcript_not_audio_verified",
+          "locator": "Opening p1 establishes separate event; Ron Josey pp2–3; Ken Gawrelski pp3–4; Benjamin Black pp6–7",
+          "source_ref": "turn196view0"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked selected sub-question IDs; paraphrases, not quotations",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-26"
+    },
+    {
+      "id": "CASE-20261026-META-FINANCING-OPTION",
+      "company": "Meta",
+      "source_disclosure_id": "META_2026Q3_results_20261021",
+      "question_ids": [
+        "QA189"
+      ],
+      "skills": [
+        "F9",
+        "F11",
+        "F20",
+        "F22"
+      ],
+      "management_testimony": "Financing capacity is not an announced issuance plan.",
+      "researcher_inference": "资本结构选择权与资金到位不同；保留控制权不等于没有经济稀释。",
+      "hidden_uncertainty": "未发行证券能否满足投资预算？何时产生现金和稀释？",
+      "kpi": "已发行股数、发行价、净筹资额、费用、现有股东比例、资金缺口USD。",
+      "model_revision": "融资现金=实际新发行股数×净发行价；授权上限只列融资选项，不进现金。等比例拆股本身不筹资；后续对外发行才改变经济所有权。",
+      "counterexample": "融资工具充分但市场价格下跌、发行窗口关闭；拥有投票控制的股东也可能被经济稀释。",
+      "falsification": "编辑阈值：只有正式发行及交割证据才把融资计入可用现金；若计划投资所需现金超过现金+可验证经营流入+已承诺融资，基准情景不闭合。",
+      "next_evidence_date": "Next financing filing or Meta Q4 results; exact date unknown",
+      "transfer_question": "迁移至陌生电网运营商：获批债券额度但未发行。区分额度、承销承诺、交割现金和到期再融资风险。",
+      "training": {
+        "stages": [
+          "合成：陌生生物平台有100股，每股价值$10；批准最多新增50股，但尚未发行。现金增加多少？",
+          "请先评审实际回答。新增约束：按$10真正发行20股，无费用。计算筹资和旧股东发行后比例；不要把授权50股当已发。",
+          "新增约束：融资前先进行一拆二。发行总筹资额仍200。哪些每股量需同步调整，哪些企业价值量不变？",
+          "迁移至陌生电网运营商：获批债券额度但未发行。区分额度、承销承诺、交割现金和到期再融资风险。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Meta Q3 2026 follow-up analyst call — official transcript",
+          "url": "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Follow-Up-Call-Transcript.pdf",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_transcript_not_audio_verified",
+          "locator": "Opening p1 establishes separate event; Ron Josey pp2–3; Ken Gawrelski pp3–4; Benjamin Black pp6–7",
+          "source_ref": "turn196view0"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked selected sub-question IDs; paraphrases, not quotations",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-26"
+    },
+    {
+      "id": "CASE-20261026-META-EFFICIENCY-ELASTICITY",
+      "company": "Meta",
+      "source_disclosure_id": "META_2026Q3_results_20261021",
+      "question_ids": [
+        "QA191"
+      ],
+      "skills": [
+        "F4",
+        "F9",
+        "F10",
+        "F14",
+        "F18"
+      ],
+      "management_testimony": "Unit-cost progress and monetization timing both matter.",
+      "researcher_inference": "更低推理单位成本不保证总支出下降，也不保证成功任务利润为正。",
+      "hidden_uncertainty": "效率提升是否保持质量？更多使用是否付费、是否增加每任务推理深度？",
+      "kpi": "每成功任务USD、任务数、成功率、付费比例、每任务收入、固定成本、容量交付。",
+      "model_revision": "可变总成本=成功任务数×每成功任务成本；贡献=成功任务数×(单位收入−单位可变成本)。必须先匹配质量/成功率，另建固定投入及收入采用曲线。",
+      "counterexample": "token便宜但任务更长、失败重试更多；免费使用增长超过成本下降，绝对现金支出仍扩大。",
+      "falsification": "编辑阈值：连续两期同质量每成功任务贡献≤0时不认定商业自持；10倍效率目标未达到不可当事实。每季记录成本、付费转化及质量的未披露项。",
+      "next_evidence_date": "Meta Q4 2026 and subsequent quarterly disclosures; no exact event date verified",
+      "transfer_question": "迁移至陌生卫星影像商：影像生成成本降低，但只有部分影像通过质量验收且出售。用相同质量和付费口径检验利润。",
+      "training": {
+        "stages": [
+          "合成：陌生工业诊断AI服务每月100万成功任务，每任务成本$1、收入$0.8。算单位及总贡献，不含固定成本。",
+          "先请AI评审。新增约束：同质量成本降至$0.1，成功任务增至1500万，收入仍每任务$0.08。总成本与贡献怎样变化？",
+          "新增约束：低价是每次尝试成本，成功率50%，失败可独立重试。现在能否仍用$0.1作为成功任务成本？说明模型假设。",
+          "迁移至陌生卫星影像商：影像生成成本降低，但只有部分影像通过质量验收且出售。用相同质量和付费口径检验利润。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Meta Q3 2026 follow-up analyst call — official transcript",
+          "url": "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Follow-Up-Call-Transcript.pdf",
+          "publication_date": "2026-10-21",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_transcript_not_audio_verified",
+          "locator": "Opening p1 establishes separate event; Ron Josey pp2–3; Ken Gawrelski pp3–4; Benjamin Black pp6–7",
+          "source_ref": "turn196view0"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": "See linked selected sub-question IDs; paraphrases, not quotations",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-26"
+    },
+    {
+      "id": "CASE-20261026-SMCI-PRELIMINARY-MIX",
+      "company": "Supermicro",
+      "source_disclosure_id": "SMCI_2027Q1_preliminary_20261020",
+      "question_ids": [],
+      "skills": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F11",
+        "F14"
+      ],
+      "management_testimony": "Preliminary revenue and margin ranges exceed prior management guidance; final results remain pending.",
+      "researcher_inference": "上修初步估计可以约束收入/毛利，不能自动证明可持续利润、现金转化或一致预期差。",
+      "hidden_uncertainty": "新客户/产品组合是否持久？高收入是否占用更多库存和应收？",
+      "kpi": "收入USD、GM%、毛利USD、客户/产品组合、DSO、库存周转、CFO、验收。",
+      "model_revision": "仅在同币种/同期间用收入×GM建情景；区间端点乘积不是联合概率区间。共识缺失时只比较旧管理层指引；不据此填EPS/FCF。",
+      "counterexample": "高毛利交付集中在季度末、客户付款长；收入和GM同升而现金下降。",
+      "falsification": "2026-11-03正式结果若收入或GM落在初步区间外，先对账估计修订/口径；若现金转换变差，撤回利润上修等于现金上修的判断。",
+      "next_evidence_date": "2026-11-03, official final-results call scheduled 17:00 ET",
+      "transfer_question": "迁移到陌生医疗器械商初步季度销售：区分交付、验收、回款与审计调整，写出正式披露时的证伪清单。",
+      "training": {
+        "stages": [
+          "合成：陌生整机商初步营收18–20（$bn），GM12–13%。若仅作独立端点算术情景，毛利上下界是多少？这是不是置信区间？",
+          "先请AI评审。新增约束：旧管理层营收指引14–16，没有冻结共识。计算中点变化，并写出可以和不可以称作何种超预期。",
+          "新增约束：应收增加3、库存增加1，其他营运资本未知。能否从毛利直接预测CFO？给出所缺桥接项。",
+          "迁移到陌生医疗器械商初步季度销售：区分交付、验收、回款与审计调整，写出正式披露时的证伪清单。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only. AI evaluates actual supplied answers; unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "sources": [
+        {
+          "title": "Supermicro preliminary FY2027 Q1 business update — SEC Exhibit 99.1",
+          "url": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000025/smcifirstquarterfy2027busi.htm",
+          "publication_date": "2026-10-20",
+          "retrieved_on": "2026-10-26",
+          "evidence_kind": "official_sec_exhibit",
+          "locator": "Revenue/margin bullets and preliminary limitations, lines 5–24",
+          "source_ref": "turn188view0"
+        }
+      ],
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "real_analyst_question": null,
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training, not a named analyst speaking",
+      "created_at": "2026-10-26"
     }
   ],
-  "counting_rule": "6 disclosure reasoning cases: 2 historical plus 4 added October 19. 4 staged synthetic exercises are not real Q&A. This increment separately adds 6 real selected exchanges."
+  "counting_rule": "11 source-linked reasoning cases total; 9 have staged synthetic exercises. This run adds 5 cases, 5 synthetic exercises and separately 7 selected real exchanges."
 }
