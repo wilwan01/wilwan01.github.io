@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": "2026-10-30-weekly",
   "batches": [
     {
       "id": "initial-20261005",
@@ -1260,6 +1260,137 @@
         "r2s1-chris-caso"
       ],
       "validation_note": "Final identity audit caught O’Malley and Caso ID variants; their evidence/cards were merged into the older stable IDs and two genuinely new analysts replaced them."
+    },
+    {
+      "id": "weekly-thoughts-20261030",
+      "scheduled_for": "2026-10-30T09:00:00+00:00",
+      "research_cutoff": "2026-10-30T08:58:33+00:00 Europe/London",
+      "before": {
+        "profiles": 220,
+        "buy_side": 110,
+        "sell_side": 110,
+        "sources": 358,
+        "cards": 345
+      },
+      "after": {
+        "profiles": 230,
+        "buy_side": 115,
+        "sell_side": 115,
+        "sources": 381,
+        "cards": 375
+      },
+      "new_ids": {
+        "profiles": [
+          "ray-dalio",
+          "chris-bloomstran",
+          "nick-train",
+          "matthew-ball",
+          "josh-wolfe-lux",
+          "christopher-danely",
+          "karl-ackerman",
+          "michael-ng-goldman",
+          "james-schneider-goldman",
+          "stephen-byrd-ms"
+        ],
+        "sources": [
+          "W103-RD18",
+          "W103-RD23",
+          "W103-CB24",
+          "W103-CB25",
+          "W103-CBROLE",
+          "W103-NT19",
+          "W103-NT23",
+          "W103-MB23",
+          "W103-MB24",
+          "W103-MBROLE",
+          "W103-JW24",
+          "W103-JW25",
+          "W103-CD21",
+          "W103-CD24",
+          "W103-KA19",
+          "W103-KA21",
+          "W103-KAROLE",
+          "W103-MN24",
+          "W103-MN25",
+          "W103-JS25ATT",
+          "W103-JS25IBM",
+          "W103-SB26F",
+          "W103-SB26J"
+        ],
+        "cards": [
+          "W103-01-C1",
+          "W103-01-C2",
+          "W103-01-C3",
+          "W103-02-C1",
+          "W103-02-C2",
+          "W103-02-C3",
+          "W103-03-C1",
+          "W103-03-C2",
+          "W103-03-C3",
+          "W103-04-C1",
+          "W103-04-C2",
+          "W103-04-C3",
+          "W103-05-C1",
+          "W103-05-C2",
+          "W103-05-C3",
+          "W103-06-C1",
+          "W103-06-C2",
+          "W103-06-C3",
+          "W103-07-C1",
+          "W103-07-C2",
+          "W103-07-C3",
+          "W103-08-C1",
+          "W103-08-C2",
+          "W103-08-C3",
+          "W103-09-C1",
+          "W103-09-C2",
+          "W103-09-C3",
+          "W103-10-C1",
+          "W103-10-C2",
+          "W103-10-C3"
+        ]
+      },
+      "classification": {
+        "buy_side": [
+          "ray-dalio",
+          "chris-bloomstran",
+          "nick-train"
+        ],
+        "vc_growth": [
+          "matthew-ball",
+          "josh-wolfe-lux"
+        ],
+        "sell_side_source_time": [
+          "christopher-danely",
+          "karl-ackerman",
+          "michael-ng-goldman",
+          "james-schneider-goldman",
+          "stephen-byrd-ms"
+        ],
+        "career_change": [
+          "Matthew Ball: source-time Epyllion investor/advisor → current Xbox Chief Strategy Officer while retaining stated advisory/venture roles",
+          "Karl Ackerman: Cowen analyst at source dates → public 2026 calls list BNP Paribas"
+        ]
+      },
+      "evidence_policy": "Each person has at least two differently dated substantive readable artifacts. Official author/fund, company IR and issuer-hosted transcripts are primary; mirrors are labeled. Identity-only records do not satisfy the two-artifact test.",
+      "recurring_pattern_policy": "Danely, Ackerman, Michael Ng and Schneider have explicit manual-review records with at least three attributable prompts across two corporate calls/sessions. Stephen Byrd is a two-work thematic sample, not an earnings-call repeated-question pattern. Buy-side stability claims are bounded to two public works.",
+      "real_qa_added": 0,
+      "synthetic_cards_added": 30,
+      "status": "validated_ready_for_publication",
+      "limitations": [
+        "No licensed sell-side reports, frozen estimates, price targets or private position books were accessed.",
+        "Bloomstran 2024 official letter was only partially readable in this run; the profile states the exact scope.",
+        "Karl Ackerman current BNP affiliation is based on public transcript mirrors because no readable official biography was found.",
+        "Public essays, conference questions and management answers do not prove actual portfolio execution or investment performance."
+      ],
+      "publication": {
+        "content_commit": null,
+        "pages_run": null,
+        "pages_conclusion": null,
+        "verified_at": null,
+        "public_url": "https://wilwan01.github.io/ai/analysts/thoughts.html",
+        "public_checks": []
+      }
     }
   ],
   "deduplication": {
@@ -1485,7 +1616,17 @@
       "tom-diffely",
       "matt-ramsay",
       "raji-gill",
-      "kevin-cassidy-rosenblatt"
+      "kevin-cassidy-rosenblatt",
+      "ray-dalio",
+      "chris-bloomstran",
+      "nick-train",
+      "matthew-ball",
+      "josh-wolfe-lux",
+      "christopher-danely",
+      "karl-ackerman",
+      "michael-ng-goldman",
+      "james-schneider-goldman",
+      "stephen-byrd-ms"
     ]
   },
   "source_id_aliases": {
@@ -1541,6 +1682,24 @@
       "candidate": "recurring personal patterns",
       "reason": "Several analysts have two dated calls, but this batch did not complete the explicit ≥3-question/≥2-call manual-review record required for persona status.",
       "action": "Retain as method samples; promote only after question-ID audit."
+    },
+    {
+      "batch": "weekly-thoughts-20261030",
+      "candidate": "Christopher Bloomstran 2024 full-letter text",
+      "reason": "Official archive and linked original were verified, but full text was not reliably searchable in this run.",
+      "action": "On a future run, re-read the original PDF end to end and replace section-scope notes only if exact locators are verified."
+    },
+    {
+      "batch": "weekly-thoughts-20261030",
+      "candidate": "Karl Ackerman current-role primary source",
+      "reason": "Later public call mirrors list BNP Paribas; no readable BNP biography was found.",
+      "action": "Replace the identity-only mirror with a BNP author page or issuer-hosted current-call roster when available."
+    },
+    {
+      "batch": "weekly-thoughts-20261030",
+      "candidate": "licensed sell-side models",
+      "reason": "Issuer-hosted public questions reveal mechanisms but not complete estimates, ratings or valuation models.",
+      "action": "Add forecast chronology only if a lawful readable note with formation date and comparable expectations becomes available."
     }
   ]
 }
