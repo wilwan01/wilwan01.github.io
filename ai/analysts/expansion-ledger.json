@@ -1376,7 +1376,7 @@
       "recurring_pattern_policy": "Danely, Ackerman, Michael Ng and Schneider have explicit manual-review records with at least three attributable prompts across two corporate calls/sessions. Stephen Byrd is a two-work thematic sample, not an earnings-call repeated-question pattern. Buy-side stability claims are bounded to two public works.",
       "real_qa_added": 0,
       "synthetic_cards_added": 30,
-      "status": "validated_ready_for_publication",
+      "status": "published_verified",
       "limitations": [
         "No licensed sell-side reports, frozen estimates, price targets or private position books were accessed.",
         "Bloomstran 2024 official letter was only partially readable in this run; the profile states the exact scope.",
@@ -1384,13 +1384,22 @@
         "Public essays, conference questions and management answers do not prove actual portfolio execution or investment performance."
       ],
       "publication": {
-        "content_commit": null,
-        "pages_run": null,
-        "pages_conclusion": null,
-        "verified_at": null,
+        "content_commit": "099887082421803f9e043fe321d13104d1a9e351",
+        "pages_run": 41032068320,
+        "pages_conclusion": "success",
+        "verified_at": "2026-10-30T09:17:00+00:00 Europe/London",
         "public_url": "https://wilwan01.github.io/ai/analysts/thoughts.html",
-        "public_checks": []
-      }
+        "public_checks": [
+          "230 profiles displayed: 115 buy-side/VC and 115 sell-side",
+          "381 source records and 375 challenge cards displayed",
+          "Ray Dalio profile search/switch rendered three linked cards; Stephen Byrd search returned one canonical profile",
+          "Empty-answer stage gate held; answered exercise advanced from stage 1 to stage 2",
+          "Answer key remained hidden initially and loaded only after explicit reveal",
+          "New profile/source/card/answer-key joins, F/T tags, dates and counts passed",
+          "AI Infrastructure Analyst quick validation and remote git equality passed"
+        ]
+      },
+      "validation_note": "Public Chrome check found no page-origin console errors; observed extension metadata errors were browser-extension noise and excluded."
     }
   ],
   "deduplication": {
