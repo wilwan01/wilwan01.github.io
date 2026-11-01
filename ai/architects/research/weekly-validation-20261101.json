@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-01",
+  "baseCommit": "0db8789de628600562bd168a0843f0b25c6ae186",
+  "profiles": 409,
+  "audited": 408,
+  "activePendingCandidates": 5,
+  "validation": "PASS: 24 fixed batches, 414 historical records, two-distinct-work gate",
+  "preservation": "Original 408 profiles, prior candidate fields, PR48 archive and site navigation preserved; gpu-ai domain count increased by 1",
+  "renderIdempotent": true,
+  "diffCheck": "PASS: only catalog, generated directory, new fixed batch, screening and validation records changed",
+  "preMergePage": {
+    "status": "PASS",
+    "checks": [
+      "generated HTML parses with 409 profile articles and 409 skill-matrix rows",
+      "xing-hu profile anchor and source facts are present; the generated batch page parses independently",
+      "skill-matrix.js passes node syntax validation",
+      "CSS and JavaScript assets are unchanged from the deployed 408-profile build"
+    ]
+  },
+  "browser": [],
+  "deployment": {
+    "status": "pending",
+    "commit": "",
+    "url": "https://wilwan01.github.io/ai/architects/",
+    "observedAt": "",
+    "profiles": 409,
+    "newProfiles": [
+      "xing-hu"
+    ]
+  },
+  "browserStatus": "Pending deployed desktop and mobile executable checks."
+}

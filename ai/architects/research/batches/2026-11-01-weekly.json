@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-01",
+  "focus": "国内GPU/AI系统与存储架构周度补充：胡杏",
+  "scope": "additional",
+  "baseCommit": "0db8789de628600562bd168a0843f0b25c6ae186",
+  "plannedScope": 1,
+  "plannedExisting": 0,
+  "plannedCandidates": 1,
+  "completedExisting": 0,
+  "completedNew": 1,
+  "counts": {
+    "complete": 1
+  },
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "xing-hu",
+      "name": "胡杏",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "DeepSniffer与Persistence Parallelism Optimization是不同会议、不同机制的一手论文，胡杏均为第一作者；计算所官方主页核对现任研究员身份、研究部门与历史经历。两项均按团队共同成果入库，保留真实GPU实验和仿真/综合评估的区别。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "deepsniffer-asplos2020",
+          "title": "DeepSniffer: A DNN Model Extraction Framework Based on Learning Architectural Hints",
+          "authors": "Xing Hu、Ling Liang、Shuangchen Li、Lei Deng、Pengfei Zuo、Yu Ji、Xinfeng Xie、Yufei Ding、Chang Liu、Timothy Sherwood、Yuan Xie",
+          "date": "2020",
+          "url": "https://sites.cs.ucsb.edu/~sherwood/pubs/ASPLOS-20-deepsniff.pdf",
+          "locator": "首页作者表；§1、§3–4；架构提示、运行时层序列识别、拓扑重建与维度估计",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第一作者署名、威胁模型及所列机制正文。",
+          "evidenceStrength": "一手第一署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-01"
+        },
+        {
+          "workId": "persistence-parallelism-micro2018",
+          "title": "Persistence Parallelism Optimization: A Holistic Approach from Memory Bus to RDMA Network",
+          "authors": "Xing Hu、Matheus Ogleari、Jishen Zhao、Shuangchen Li、Abanti Basak、Yuan Xie",
+          "date": "2018",
+          "url": "https://cseweb.ucsd.edu/~jzhao/files/pm-rdma-micro2018.pdf",
+          "locator": "首页作者表；§I、§IV、§VI；BLP感知屏障纪元管理、BROI控制器及RDMA缓冲严格持久化",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第一作者署名、硬件机制及仿真/综合评估边界。",
+          "evidenceStrength": "一手第一署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-01"
+        },
+        {
+          "workId": "xing-hu-ict-profile",
+          "title": "胡杏：中国科学院计算技术研究所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-11-01（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202010/t20201022_5720975.html",
+          "locator": "姓名、研究部门、研究员职务、履历及主要论著",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、现任职责、历史经历和代表作；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-01"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "原408位人物及既有研究记录保持不变；本批仅追加一位新候选。",
+    "胡杏此前仅作为赵永威论文的共同作者出现在来源表中，不是已有目录人物或固定候选记录。",
+    "两篇论文为不同年份、不同机制的独立作品；网页摘要、个人论文列表及转载均未重复计数。",
+    "补证候选复核及未达标原因见 ../weekly-screening-20261101.json。"
+  ],
+  "publication": {
+    "status": "pending",
+    "commit": "",
+    "url": "https://wilwan01.github.io/ai/architects/",
+    "observedAt": "",
+    "profiles": 409,
+    "verificationRecord": "../weekly-validation-20261101.json"
+  }
+}

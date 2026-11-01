@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-11-01",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -215,7 +215,8 @@
         "yibo-zhu",
         "zidong-du",
         "qi-guo",
-        "yongwei-zhao"
+        "yongwei-zhao",
+        "xing-hu"
       ]
     },
     {
@@ -50559,6 +50560,139 @@
         "validation": "固定训练模型与精度，改变切片大小、统计频率、权重更新流量和机器层数，分别测片外访问、通信等待、精度变化与端到端能效。",
         "transfer": "用于AI训练加速器、存内/近数据处理和分层计算机方案评审；不由原型结果外推量产性能。"
       }
+    },
+    {
+      "id": "xing-hu",
+      "name": "胡杏",
+      "aliases": [
+        "Xing Hu"
+      ],
+      "field": "GPU架构侧信道与持久化数据路径",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "correctness"
+      ],
+      "core": "从运行时可见的硬件迹象和持久化顺序约束出发，重构隐藏结构，并在不破坏正确性的前提下释放数据路径并行度。",
+      "background": "计算所官方主页确认胡杏／Xing Hu现任研究员，所属智能处理器研究中心与处理器芯片重点实验室，2017至2020年在加州大学圣芭芭拉分校从事博士后研究。DeepSniffer与持久化并行论文均为其该时期的第一作者作品；按论文机构表记录团队归属，不推断当前商业产品采用或独占设计责任。",
+      "contributions": [
+        "第一作者提出DeepSniffer：把GPU运行时层序列识别转化为序列到序列预测，再以架构提示重建层拓扑并估计维度。",
+        "第一作者提出持久化并行架构：用BLP感知的屏障纪元管理调度本地请求，并以缓冲严格持久化支持RDMA远程请求重叠。"
+      ],
+      "argument": "编辑条件模型：可观察的执行时间和访存提示足以泄露模型结构；持久化顺序若被显式跟踪，也可与并行调度解耦，但两者都受噪声、依赖跟踪和实现开销约束。",
+      "evidence": "两项不同年份、不同机制的一手第一作者论文；核验完整机制正文、团队署名及机构身份。",
+      "habits": [
+        "把软件语义映射到可观察的硬件事件和数据路径。",
+        "先明确必须维持的顺序或安全边界，再寻找可并行和可推断的部分。"
+      ],
+      "questions": [
+        "可见的运行时迹象会泄露多少结构，而为隐藏或调度这些迹象付出的成本是否可接受？"
+      ],
+      "boundary": "两篇论文是不同团队作品；第一作者支持主要署名归属，但不等于个人独占发明。DeepSniffer在商用NVIDIA GPU与完整软件栈上实验，结论受所列物理访问和总线观测威胁模型限制；持久化论文以Verilog综合、McSimA+周期级仿真及延迟模拟评估，不写成量产系统实测。",
+      "diagnostic": "固定模型、软件栈和持久化负载，分别改变可观察提示噪声、屏障密度、银行冲突及RDMA往返延迟，测提取准确率、吞吐、排序违例和实现开销。",
+      "notes": [],
+      "sources": [
+        [
+          "DeepSniffer: A DNN Model Extraction Framework Based on Learning Architectural Hints",
+          "https://sites.cs.ucsb.edu/~sherwood/pubs/ASPLOS-20-deepsniff.pdf",
+          "首页作者表；§1、§3–4；架构提示、运行时层序列识别、拓扑重建与维度估计"
+        ],
+        [
+          "Persistence Parallelism Optimization: A Holistic Approach from Memory Bus to RDMA Network",
+          "https://cseweb.ucsd.edu/~jzhao/files/pm-rdma-micro2018.pdf",
+          "首页作者表；§I、§IV、§VI；BLP感知屏障纪元管理、BROI控制器及RDMA缓冲严格持久化"
+        ],
+        [
+          "胡杏：中国科学院计算技术研究所研究人员主页",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/202010/t20201022_5720975.html",
+          "姓名、研究部门、研究员职务、履历及主要论著"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "deepsniffer-asplos2020",
+          "title": "DeepSniffer: A DNN Model Extraction Framework Based on Learning Architectural Hints",
+          "authors": "Xing Hu、Ling Liang、Shuangchen Li、Lei Deng、Pengfei Zuo、Yu Ji、Xinfeng Xie、Yufei Ding、Chang Liu、Timothy Sherwood、Yuan Xie",
+          "date": "2020",
+          "url": "https://sites.cs.ucsb.edu/~sherwood/pubs/ASPLOS-20-deepsniff.pdf",
+          "locator": "首页作者表；§1、§3–4；架构提示、运行时层序列识别、拓扑重建与维度估计",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第一作者署名、威胁模型及所列机制正文。",
+          "evidenceStrength": "一手第一署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-01"
+        },
+        {
+          "workId": "persistence-parallelism-micro2018",
+          "title": "Persistence Parallelism Optimization: A Holistic Approach from Memory Bus to RDMA Network",
+          "authors": "Xing Hu、Matheus Ogleari、Jishen Zhao、Shuangchen Li、Abanti Basak、Yuan Xie",
+          "date": "2018",
+          "url": "https://cseweb.ucsd.edu/~jzhao/files/pm-rdma-micro2018.pdf",
+          "locator": "首页作者表；§I、§IV、§VI；BLP感知屏障纪元管理、BROI控制器及RDMA缓冲严格持久化",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第一作者署名、硬件机制及仿真/综合评估边界。",
+          "evidenceStrength": "一手第一署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-01"
+        },
+        {
+          "workId": "xing-hu-ict-profile",
+          "title": "胡杏：中国科学院计算技术研究所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-11-01（访问）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202010/t20201022_5720975.html",
+          "locator": "姓名、研究部门、研究员职务、履历及主要论著",
+          "type": "机构人物简介",
+          "contentStatus": "核对机构身份、现任职责、历史经历和代表作；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-01"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "deepsniffer-asplos2020",
+          "text": "第一作者提出DeepSniffer：把GPU运行时层序列识别转化为序列到序列预测，再以架构提示重建层拓扑并估计维度。"
+        },
+        {
+          "workId": "persistence-parallelism-micro2018",
+          "text": "第一作者提出持久化并行架构：用BLP感知的屏障纪元管理调度本地请求，并以缓冲严格持久化支持RDMA远程请求重叠。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据第一作者署名论文进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-01-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认商业采用。",
+        "verifiedAt": "2026-11-01"
+      },
+      "challenge": {
+        "lens": "架构提示泄露与有序数据路径并行化",
+        "skills": [
+          "A1",
+          "A4",
+          "A8",
+          "A9"
+        ],
+        "question": "可见的运行时迹象会泄露多少结构，而为隐藏或调度这些迹象付出的成本是否可接受？",
+        "variables": "访存量与地址迹象、执行时间噪声、屏障密度、银行冲突、RDMA往返、跟踪存储",
+        "model": "编辑条件模型：可观察的执行时间和访存提示足以泄露模型结构；持久化顺序若被显式跟踪，也可与并行调度解耦，但两者都受噪声、依赖跟踪和实现开销约束。",
+        "crossover": "隐藏提示或重排请求带来的安全/吞吐收益超过额外噪声、依赖跟踪、缓冲和控制成本时成立。",
+        "counterexample": "提示被加密、强噪声掩盖或物理访问不成立时提取会失效；强依赖和银行冲突会使并行调度收益消失。",
+        "validation": "固定模型、软件栈和持久化负载，分别改变可观察提示噪声、屏障密度、银行冲突及RDMA往返延迟，测提取准确率、吞吐、排序违例和实现开销。",
+        "transfer": "用于AI系统安全、持久内存与远程数据路径评审；不由论文结果外推当前产品性能。"
+      }
     }
   ],
   "research": {
@@ -50569,7 +50703,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 408,
+    "totalProfiles": 409,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50593,13 +50727,14 @@
       "research/batches/2026-10-15-domestic-core.json",
       "research/batches/2026-10-15-alibaba-followthrough.json",
       "research/batches/2026-10-18-weekly.json",
-      "research/batches/2026-10-25-weekly.json"
+      "research/batches/2026-10-25-weekly.json",
+      "research/batches/2026-11-01-weekly.json"
     ],
-    "completedTotal": 407,
+    "completedTotal": 408,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 113,
-    "additionalCompleted": 107,
+    "additionalPlannedScope": 114,
+    "additionalCompleted": 108,
     "resolvedCandidateDuplicates": 1
   }
 }
