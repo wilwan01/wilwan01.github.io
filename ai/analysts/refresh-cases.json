@@ -1,5 +1,5 @@
 {
-  "cutoff_at": "2026-10-26T09:10:59+00:00",
+  "cutoff_at": "2026-11-02T09:19:30+00:00",
   "cases": [
     {
       "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
@@ -619,6 +619,371 @@
       "synthetic_transfer": true,
       "question_attribution": "Editor-authored training, not a named analyst speaking",
       "created_at": "2026-10-26"
+    },
+    {
+      "id": "CASE-20261102-MSFT-EFFICIENCY",
+      "company": "Microsoft",
+      "source_disclosure_id": "MSFT_2027Q1_results_20261028",
+      "question_ids": [
+        "QA192",
+        "QA193"
+      ],
+      "skills": [
+        "F3",
+        "F4",
+        "F7",
+        "F9",
+        "F10",
+        "F14",
+        "F18"
+      ],
+      "real_analyst_question": "See linked selected paraphrases; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Efficiency and pricing supported Azure; planned external capacity shifted later. See linked official exchange; allocation effects were not quantified.",
+      "researcher_inference": "新增产能交付延迟与存量效率提升可以同时发生；较低当期CapEx不能直接证明需求下降或现金回报改善。",
+      "hidden_uncertainty": "增长来自新增供给、存量利用率、单位吞吐还是价格/模型组合？改进能否重复？",
+      "kpi": "有效容量（合格任务/季）、利用率%、同质量价格USD/任务、单位成本USD/任务、交付与上线日期。",
+      "model_revision": "研究者模型：R=min(可用容量×利用率,付费需求)×同质量价格；GP=任务量×(价格−变动成本)−固定成本。按交付批次设置容量，避免把跨产品收入重复归属到同一工作负载。",
+      "validity_conditions": "仅在服务质量、任务定义和时间窗一致时比较效率；CPU/GPU吞吐不可直接相加。",
+      "counterexample": "吞吐提高但价格下跌、免费用量增加或高价值客户流失，收入/现金回报仍可下降。",
+      "falsification": "未来两次正式季度披露：若同质量单位贡献≤0或兑现任务量没有增加，否定效率已提升经济回报；交付延期只先修订时间。若单位数据不披露，结论保持未验证。",
+      "next_evidence_date": "FY2027 Q2正式结果；确切发布日期未核实。",
+      "transfer_question": "迁移到陌生疫苗代工厂：良率提升但放行认证推迟。列出质量、合格产出、交付和现金四道门槛；设计一项能推翻增长判断的观察。",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Microsoft FY2027 Q1 official transcript",
+          "url": "https://www.microsoft.com/en-us/Investor/events/fy-2027/earnings-fy-2027-q1",
+          "publication_date": "2026-10-28",
+          "retrieved_on": "2026-11-02",
+          "locator": "Prepared outlook lines 264–298; Adam Wood 306–315; Karl Keirstead 324–337",
+          "source_ref": "turn283view1",
+          "evidence_kind": "official_transcript_not_audio_verified"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：某云商每季容量100个同质量任务，利用率80%，付费需求100个；价格$2/任务、变动成本$0.5/任务、固定成本$100/季。计算收入和贡献后利润，并说明还缺什么证据才能推断ROIC。",
+          "先交由AI评审实际答案。新增20单位容量延期，但存量吞吐提升15%，利用率和成本不变。重建本季产量/收入/利润；不能把未交付容量算进去。",
+          "再约束：价格降至$1.60，其他条件不变。利润是否改善？求不亏损的价格阈值，并区分工程效率与经济回报。",
+          "迁移到陌生疫苗代工厂：良率提升但放行认证推迟。列出质量、合格产出、交付和现金四道门槛；设计一项能推翻增长判断的观察。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-GOOGL-INVENTORY",
+      "company": "Alphabet",
+      "source_disclosure_id": "GOOGL_2026Q3_results_20261028",
+      "question_ids": [
+        "QA194"
+      ],
+      "skills": [
+        "F4",
+        "F9",
+        "F10",
+        "F11",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected paraphrases; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "TPU sales create contracted backlog and inventory before delivery and billing; product margins were withheld. The analyst's USD35bn/GW premise was not adopted by management.",
+      "researcher_inference": "对外售出的设备从资本开支转到库存，并不消除融资负担；合同、收入与收款是不同节点。",
+      "hidden_uncertainty": "资本强度下降是经济成本下降，还是资产分类和现金时点改变？",
+      "kpi": "合同金额USD、库存/应收/预收USD、交付验收率%、收款率%、分产品毛利与坏账。",
+      "model_revision": "研究者模型：交付收入=合同价×合格交付比例；期末存货=采购成本−已交付成本；经营现金净流=客户收款−库存采购现金−其他经营支出。不得用集团云利润率替代TPU系统利润率。",
+      "validity_conditions": "收入确认须满足实际合同控制权/验收条件；销售合同存在不等于取消风险为零。",
+      "counterexample": "有签约订单但客户融资/验收延迟，存货和应收同时上升；利润为正而现金流为负。",
+      "falsification": "在2027首两个季度披露检验库存/应收和交付收款：若相关净营运资金持续上升且现金转化不改善，撤回‘对外销售已释放现金’。无法拆分产品则标未验证。",
+      "next_evidence_date": "2026年报及2027 Q1/Q2；确切发布日期未核实。",
+      "transfer_question": "迁移到陌生医疗影像设备商：原租赁模式转为卖设备。如何验证‘轻资产’是否只是由PP&E转向库存和应收？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Alphabet Q3 2026 — Investing.com public transcript mirror",
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-q3-2026-profit-miss-sparks-10-afterhours-drop-93CH-4981037",
+          "publication_date": "2026-10-28",
+          "retrieved_on": "2026-11-02",
+          "locator": "Ross Sandler/Barclays introduction and exchange, lines 212–220; related qualification 234",
+          "source_ref": "turn283view0",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：系统商签约$100m，支付$70m采购；本季交付并满足确认条件60%，按比例结转成本；仅收回已开票金额的50%。无其他费用。分别求收入、毛利、存货、应收和经营现金净流。",
+          "先让AI评审答案。新增：客户对未交付部分预付$20m，不能提前确认收入。哪些余额和现金指标变化？",
+          "新增：余下部分验收延期两季，采购已付且不可退款。给出资金缺口与客户违约两个独立压力测试；不能把预付款再算一次收入。",
+          "迁移到陌生医疗影像设备商：原租赁模式转为卖设备。如何验证‘轻资产’是否只是由PP&E转向库存和应收？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-INTC-INVENTORY-CYCLE",
+      "company": "Intel",
+      "source_disclosure_id": "INTC_2026Q3_results_20261029",
+      "question_ids": [
+        "QA195",
+        "QA196"
+      ],
+      "skills": [
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected paraphrases; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Management separated PC inventory correction from consumption weakness; the DCAI annualization was a starting point, not a guaranteed forecast, and included ASICs.",
+      "researcher_inference": "客户去库存结束可使供应商sell-in回升，即使终端TAM仍下降；DCAI组合变化也不能全部映射成Xeon份额。",
+      "hidden_uncertainty": "复苏来自库存变化、终端消费、价格还是产品组合？供应约束何时真正释放？",
+      "kpi": "客户期初/期末库存（台）、sell-in/sell-through（台/季）、Xeon/ASIC收入USD、基板交期、单位ASP。",
+      "model_revision": "研究者模型：客户采购量=终端消耗量+期末库存−期初库存；R=Σ产品量×ASP。先分离库存周期和最终需求，再分产品供给批次，不能把单季年化称指引下限。",
+      "validity_conditions": "量纲和渠道范围相同，且无退货/报废时成立；否则增加对账项。",
+      "counterexample": "去库存结束带来出货回升，但终端市场继续萎缩、ASIC低毛利组合上升，EPS未必按收入同比增长。",
+      "falsification": "2027上半年逐季核对库存和消耗：若sell-in回升只由补库解释而sell-through不回升，否定终端复苏；如果承诺下半年释放的产能未合格投产，则推迟模型供给路径。",
+      "next_evidence_date": "2027 Q1/Q2正式结果；精确日期未核实。",
+      "transfer_question": "迁移到陌生家电压缩机商：经销商结束去库存而零售仍弱。给出月度可证伪指标，区分催化剂延迟和需求论点失败。",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Intel Q3 2026 — StockAnalysis public transcript mirror",
+          "url": "https://stockanalysis.com/stocks/intc/transcripts/714242-q3-2026/",
+          "publication_date": "2026-10-29",
+          "retrieved_on": "2026-11-02",
+          "locator": "Stacy Rasgon PC follow-up 385–418; Vivek Arya exchange 427–438",
+          "source_ref": "turn282view0",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：客户期初库存30台，终端季度消耗100台，目标期末库存20台。供应商应卖入多少台？只见供应商收入下降能否断定终端需求同幅下降？",
+          "请AI评审后再算：下一季终端消耗降至90台，客户期初/目标期末库存都为20台。供应商sell-in增长率与终端增长率分别是多少？",
+          "再约束：第三季终端仍90台，目标库存升至25台；ASIC收入增长而单价和CPU收入占比未知。能否据总收入断言CPU份额提升？列出所需分解。",
+          "迁移到陌生家电压缩机商：经销商结束去库存而零售仍弱。给出月度可证伪指标，区分催化剂延迟和需求论点失败。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-HYNIX-LTA",
+      "company": "SK hynix",
+      "source_disclosure_id": "000660.KS_2026Q3_results_20261028",
+      "question_ids": [],
+      "skills": [
+        "F3",
+        "F4",
+        "F7",
+        "F10",
+        "F14"
+      ],
+      "real_analyst_question": null,
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Official release says LTAs cover over half of 2027–2028 capacity and use market-linked pricing within agreed ranges; actual price bounds are not public.",
+      "researcher_inference": "长单锁定的是部分数量和定价机制，不是已披露的固定价格或锁定利润。",
+      "hidden_uncertainty": "数量承诺能否执行、定价上下限在哪里、成本和客户信用如何变化？",
+      "kpi": "合格产能/交付量、合同覆盖率%、价格上下限（同一内存单位）、成本、预付款/取消条款。",
+      "model_revision": "研究者合成模型：P=min(上限,max(下限,市场价))；GP=交付量×(P−单位成本)。真实合同只知有区间，不能填入合成数作预测。",
+      "validity_conditions": "此简化忽略价格重置频率、质量等级和合同弹性；必须先读合同才能用于估值。",
+      "counterexample": "市场价跌破成本、成本涨得快于合同上限，或客户不具备付款能力，长单仍可亏损。",
+      "falsification": "2026 Q4及2027上半年披露：跟踪合格出货和现金回收；若合同覆盖率不转化为交付或现金，不把覆盖率视为无风险销量。价格阈值未披露，禁止声称真实合同盈亏点。",
+      "next_evidence_date": "2026 Q4正式结果与2027上半年；日期未核实。",
+      "transfer_question": "迁移到陌生工业气体take-or-pay协议：什么条款才能把名义合同覆盖变成可融资的现金保障？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "SK hynix Q3 2026 results",
+          "url": "https://news.skhynix.com/en/q3-2026-business-results/",
+          "publication_date": "2026-10-28",
+          "retrieved_on": "2026-11-02",
+          "locator": "Results 42–61; capacity and LTA terms 67–75",
+          "source_ref": "turn278view0",
+          "evidence_kind": "official_release"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成，非SK hynix真实合同：约定100单位产品，价格跟随市场、下限80上限120（$/单位），单位成本70。市场价60与140时，全部交付的毛利分别是多少？",
+          "先评审答案。新增：市场价140，但成本涨到125。固定上限对盈利的影响是什么？给出盈亏阈值。",
+          "新增：客户只接收80单位，100单位已全部生产并付款；未交付20单位可售性未知。分别写损益与现金/库存压力，不自行假定取消赔偿。",
+          "迁移到陌生工业气体take-or-pay协议：什么条款才能把名义合同覆盖变成可融资的现金保障？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-ORCL-FUNDING-SCOPE",
+      "company": "Oracle",
+      "source_disclosure_id": "ORCL_2026_investorday_20261028",
+      "question_ids": [],
+      "skills": [
+        "F3",
+        "F9",
+        "F11",
+        "F14",
+        "F20",
+        "F22"
+      ],
+      "real_analyst_question": null,
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Investor-day targets distinguish additional capital-market funding from refinancing and already completed equity. Vendor financing, customer hardware and prepayments are expected to lower upfront cash requirements.",
+      "researcher_inference": "资本市场融资上限是范围限定的管理层目标；不等于总融资流量、总义务或真实自由现金流改善。",
+      "hidden_uncertainty": "融资口径之外的再融资、租赁、供应商融资和客户预付款由谁承担风险？",
+      "kpi": "新增股权/债务USD、到期债务再融资、租赁/供应商融资、客户预收、现金CapEx与已投运容量。",
+      "model_revision": "研究者模型：期末现金=期初现金+CFO−现金CapEx+新增股权+新增债务+再融资收入−偿还本金−分红。预付款若已在CFO不可再加；供应商融资降低本期现金不消除未来债务服务。",
+      "validity_conditions": "公司目标并非法律保证，且排除项要逐项一致；不要用GAAP净利润代替CFO。",
+      "counterexample": "融资目标如期完成但验收延迟或客户预付款逆转，运营现金仍不能覆盖CapEx。",
+      "falsification": "FY2028下半年检验管理层正FCF目标；在每次正式季度披露先核实净新增融资和被排除再融资。若在相同定义下FCF仍负则目标未兑现；若改口径须桥接不可悄然重置。",
+      "next_evidence_date": "FY2028下半年目标窗口；最近下一季度正式披露日期未核实。",
+      "transfer_question": "迁移到陌生航空租赁公司：客户押金和售后回租使现金转正。写出检验可持续融资而非一次性窗口修饰的证据。",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Oracle Investor Day 2026 financial targets",
+          "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Investor-Day-2026-Accelerating-Value-Creation/default.aspx",
+          "publication_date": "2026-10-28",
+          "retrieved_on": "2026-11-02",
+          "locator": "Target summary and funding scope, lines 18–29",
+          "source_ref": "turn270view0",
+          "evidence_kind": "official_release"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：期初现金10，CFO20（已含客户预付6），现金CapEx35，新增股权5、债务5，借新还旧各8，无分红，单位均$bn。求期末现金与本期FCF。",
+          "先评审。有人把所有融资收入18称‘新增融资18’，并把预付6再加到现金桥。指出两个错误，并列毛额/净额融资。",
+          "新增：供应商把本期CapEx支付的5延期到明年（形成义务），其余不变。现金与债务类义务怎样变化？能否称经济投资减少？",
+          "迁移到陌生航空租赁公司：客户押金和售后回租使现金转正。写出检验可持续融资而非一次性窗口修饰的证据。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-DLR-OWNERSHIP-LAG",
+      "company": "Digital Realty",
+      "source_disclosure_id": "DLR_2026Q3_results_20261029",
+      "question_ids": [],
+      "skills": [
+        "F3",
+        "F4",
+        "F9",
+        "F11",
+        "F14"
+      ],
+      "real_analyst_question": null,
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Release distinguishes 100%-share and DLR-share annualized base rent and reports a 17-month weighted-average commencement lag.",
+      "researcher_inference": "年化签约额、公司权益份额、起租时点和当季现金必须分开；平均滞后不能替代每个项目的起租排程。",
+      "hidden_uncertainty": "哪部分预租将在本期真正投运起租，公司实际享有多少收益？",
+      "kpi": "签约年化租金USD/年、所有权%、可用MW、逐项目起租月、减免期、租金回收率。",
+      "model_revision": "研究者模型：当季公司份额租金=Σ年化100%租金_i×权益_i×本季起租月数_i/12。GAAP直线租金、现金租金和FFO/AFFO另行桥接。",
+      "validity_conditions": "无免租或直线化调整时用于现金近似；实际合并会计与经济权益不可混同。",
+      "counterexample": "预租记录增长但电力接入延误、合作方占比提高或免租期延长，公司当期现金不增长。",
+      "falsification": "接下来四个季度按项目比较签约与起租；若已承诺起租批次持续延期且实际现金未增长，否定本期签约等同近端现金上修。数据不足则不拿平均17个月推每个项目。",
+      "next_evidence_date": "2026 Q4至2027 Q3正式材料；确切发布日期未核实。",
+      "transfer_question": "迁移到陌生合资收费公路：用通车日期、权益比例和收费宽限期重建现金桥，给出一个推翻‘订单即收入’的观察。",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Digital Realty Q3 2026 official results PDF",
+          "url": "https://investor.digitalrealty.com/static-files/f3320be1-416f-4b29-99cb-ae5101df1626",
+          "publication_date": "2026-10-29",
+          "retrieved_on": "2026-11-02",
+          "locator": "Printed p1, highlights, financial results and leasing activity; lines 5–38",
+          "source_ref": "turn278view1",
+          "evidence_kind": "official_results_pdf"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：项目年化租金$120m为100%权益口径，公司拥有60%；本季仅最后1个月起租，无免租、无坏账。计算本季公司经济份额租金。",
+          "先评审。新增另一项目年化$60m、公司份额40%，本季3个月均起租。合计年化与本季经济份额分别是多少？",
+          "新增：第一个项目通电延期一个月，第二个有1个月现金免租但GAAP直线租金未给。修订本季现金租金，能否给GAAP收入或FFO？",
+          "迁移到陌生合资收费公路：用通车日期、权益比例和收费宽限期重建现金桥，给出一个推翻‘订单即收入’的观察。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261102-AMZN-CAPACITY-CADENCE",
+      "company": "Amazon",
+      "source_disclosure_id": "AMZN_2026Q3_results_20261029",
+      "question_ids": [
+        "QA197"
+      ],
+      "skills": [
+        "F4",
+        "F5",
+        "F9",
+        "F10",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected paraphrases; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "Jassy described uneven quarterly capacity additions and demand across the AWS stack; the selected answer did not quantify a sequential revenue bridge.",
+      "researcher_inference": "季末容量和全年收入run rate不能直接代表本季度平均可收费容量；跨季度投产时点可掩盖真实需求走势。",
+      "hidden_uncertainty": "顺序增速减速是投产时点、利用率、价格还是需求变化？",
+      "kpi": "上线日期、可收费容量单位月、利用率%、同质量单价、实际季度收入而非年化run rate。",
+      "model_revision": "研究者模型：R_q=Σ每月可用容量×利用率×月单价；run rate=期末月收入×12，不替代已实现年收入。保留价格与供给的独立敏感性。",
+      "validity_conditions": "容量必须可服务同一工作负载且实际收费；未经上线验收的设备不计。",
+      "counterexample": "期末容量创新高但大半季度闲置，或价格下降抵消新增用量，季度现金与年化数字相背离。",
+      "falsification": "下两季比较可用容量月和付费使用量；若已投运容量增加但利用率/单位贡献持续下降，否定‘低增长全因交付时点’。无容量数据则保留多解释。",
+      "next_evidence_date": "2026 Q4、2027 Q1正式结果；具体日期未核实。",
+      "transfer_question": "迁移到陌生酒店集团：新店12月开业。如何用可售房晚、入住率与房价验证扩张的利润而非年化宣传？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-02",
+      "sources": [
+        {
+          "title": "Amazon Q3 2026 — Investing.com public transcript mirror",
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-amazon-q3-2026-misses-eps-as-shares-fall-after-hours-93CH-4985489",
+          "publication_date": "2026-10-29",
+          "retrieved_on": "2026-11-02",
+          "locator": "Justin Post/Bank of America introduction and cloud sub-question, lines 170–178",
+          "source_ref": "turn283view2",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified"
+        }
+      ],
+      "training": {
+        "stages": [
+          "合成：云商本季三个月可用容量分别100、100、160，利用率均75%，月单价$2/单位。计算季度收入和季末月收入年化run rate。",
+          "请AI评审。新增：60单位新容量延后至下季第一天，本季需求充足。重算季度收入；减少多少是纯时点因素？",
+          "再约束：下一季每月160容量，但利用率降至60%、价格降10%。算季度收入，说明高容量能否保证收入按容量增长。",
+          "迁移到陌生酒店集团：新店12月开业。如何用可售房晚、入住率与房价验证扩张的利润而非年化宣传？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
     }
   ],
   "counting_rule": "11 source-linked reasoning cases total; 9 have staged synthetic exercises. This run adds 5 cases, 5 synthetic exercises and separately 7 selected real exchanges."
