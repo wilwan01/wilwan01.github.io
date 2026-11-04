@@ -1,5 +1,5 @@
 {
-  "cutoff_at": "2026-11-02T09:19:30+00:00",
+  "cutoff_at": "2026-11-04T20:13:42+00:00",
   "cases": [
     {
       "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
@@ -984,6 +984,395 @@
         "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
         "answer_key_url": "refresh-answer-keys.json"
       }
+    },
+    {
+      "id": "CASE-20261104-AMD-WARRANT-CHANNELS",
+      "company": "AMD",
+      "source_disclosure_id": "AMD_2026Q3_results_20261103",
+      "skills": [
+        "F4",
+        "F11",
+        "F12",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected paraphrase; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked Arcuri/Hu exchange; no additional source claim.",
+      "researcher_inference": "编辑归纳：收入抵减、负债公允价值变动和每股摊薄是不同通道；一笔非现金费用不能被当成免费融资。",
+      "hidden_uncertainty": "净额指引是否已包含抵减、股份何时进入分母、现金流是否已调回非现金项目？",
+      "kpi": "净收入/毛账单、认股权负债、归属条件、加权摊薄股数、CFO调节表。",
+      "model_revision": "研究者模型：净收入=账单−已确认客户对价；EPS=税后利润/加权摊薄股数；FCF=CFO−现金CapEx。公允价值调整与稀释分别建模，不重复扣减或加回。",
+      "validity_conditions": "仅适用于题设给定会计处理；真实合约须逐条核对分类、归属和计量规则，不能推广为所有认股权通用会计。",
+      "counterexample": "调整后利润稳定，但满足归属条件后每股价值下降；非现金不等于无经济成本。",
+      "falsification": "下次10-Q及FY2027股数指引核对三个通道；若收入抵减/负债/股数无法勾稽，拒绝精确EPS桥接。",
+      "next_evidence_date": "2026 Q4 results / next 10-Q; official release date not verified",
+      "transfer_question": "迁移至陌生医疗设备供应商：客户取得里程碑式股权奖励，合同同时有采购折扣。你会怎样区分折扣、负债重估、潜在股数与现金回款？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-04",
+      "source_keys": [
+        "call",
+        "result"
+      ],
+      "training": {
+        "stages": [
+          "合成题，金额$百万且忽略税：毛账单1000，已确认认股权收入抵减50，产品成本600，OpEx100，税前非现金重估费用80，加权摊薄股数100百万。算净收入、营业利润、GAAP EPS；若调整口径只剔除80，算调整后EPS。",
+          "先提交回答并请AI评审。新增：已披露CFO=240，包含80的非现金加回；现金CapEx=30。计算FCF，并解释为何不能再加回80。",
+          "再约束：下一完整期间新增20百万股份满足题设摊薄条件，其他利润数字不变。重算两种EPS；说明非现金调整不改变哪个现金指标，也不消除什么经济风险。 本约束不新增现金收支；只是给定摊薄分母的变化，不代表实际行权现金条款。",
+          "迁移至陌生医疗设备供应商：客户取得里程碑式股权奖励，合同同时有采购折扣。你会怎样区分折扣、负债重估、潜在股数与现金回款？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA200"
+      ],
+      "sources": [
+        {
+          "title": "AMD Q3 2026 earnings call — Motley Fool public transcript mirror",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/11/04/amd-amd-q3-2026-earnings-call-transcript/",
+          "publication_date": "2026-11-04",
+          "publication_at": "2026-11-04T15:24:00+00:00",
+          "event_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "locator": "Selected Q&A: Vivek Arya 303–311, Joshua Buchalter 317–322, Timothy Arcuri 333/338–343, Stacy Rasgon 352/358–362; source publication time 161",
+          "source_ref": "turn310view0",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "access_extent": "Selected Q&A passages and surrounding management remarks read; no original-audio verification or full licensed report review",
+          "id": "AMD-call-20261104"
+        },
+        {
+          "title": "AMD Reports Third Quarter 2026 Financial Results — issuer-hosted 8-K Exhibit 99.1",
+          "url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000188/q32026991.htm",
+          "publication_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "locator": "GAAP/non-GAAP quarterly tables lines 58–79; segment summary 80–85; Current Outlook 125–135; balance sheet 280–324; quarterly cash-flow table 331–363",
+          "source_ref": "turn298view0",
+          "evidence_kind": "official_release_sec_exhibit",
+          "access_extent": "Selected financial tables, segment summary, outlook and quarterly cash-flow rows read; not a full 10-Q review",
+          "id": "AMD-result-20261104"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261104-AMD-COST-PASS-THROUGH",
+      "company": "AMD",
+      "source_disclosure_id": "AMD_2026Q3_results_20261103",
+      "skills": [
+        "F2",
+        "F4",
+        "F7",
+        "F10",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected paraphrases; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked Buchalter/Su and Rasgon/Hu exchanges; no additional source claim.",
+      "researcher_inference": "编辑归纳：成本分担比例、毛利美元和毛利率不是同一目标；收入增长可掩盖单位利润下降。",
+      "hidden_uncertainty": "HBM涨价由谁承担、何时重定价，以及CPU/AI产品组合如何改变整体毛利率？",
+      "kpi": "每系统成本/售价、成本回收比例%、重定价时滞、销量、组合权重、毛利美元与毛利率。",
+      "model_revision": "研究者模型：GP=Q×(P−C)，GM=(P−C)/P；成本增量ΔC的美元完全转嫁要求ΔP=ΔC，但维持原GM g要求ΔP=ΔC/(1−g)。",
+      "validity_conditions": "产品范围与质量不变且成本归属一致；价格变动引发的销量弹性、组合与返利另计，不能假设自动满额转嫁。",
+      "counterexample": "百分之百转嫁成本美元仍压低毛利率；或价格提得更高但客户缩量导致总毛利下降。",
+      "falsification": "Q4及2027 Q1按合同批次比较净售价和成本；若单位毛利持续下降且销量不补偿，否定收入高增即可保证利润杠杆。",
+      "next_evidence_date": "2026 Q4 and 2027 Q1 results; exact dates unverified",
+      "transfer_question": "迁移至陌生冷链运输商：柴油上涨，客户合同按月调燃油附加费，新增运量来自低价大客户。如何分离费用转嫁、滞后、组合与现金利润？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or a certified personal pattern",
+      "created_at": "2026-11-04",
+      "source_keys": [
+        "call"
+      ],
+      "training": {
+        "stages": [
+          "合成题：1000台系统，每台售价$100、成本$45。成本增加$10，公司只提价$6。计算新毛利美元与毛利率，并区分单位与总量。",
+          "先提交回答并请AI评审。新增：分别以维持原单位毛利美元、维持原55%毛利率为目标，需要把售价提高至多少？解释两个目标为何不同。",
+          "再约束：仍采用售价106、成本55，但销量增长40%，固定OpEx维持$20,000。相对最初售价100、成本45、销量1000台且相同固定OpEx的基准，计算营业利润变化；缺少何种资料时不能据此声称FCF同幅增长？",
+          "迁移至陌生冷链运输商：柴油上涨，客户合同按月调燃油附加费，新增运量来自低价大客户。如何分离费用转嫁、滞后、组合与现金利润？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA199",
+        "QA201"
+      ],
+      "sources": [
+        {
+          "title": "AMD Q3 2026 earnings call — Motley Fool public transcript mirror",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/11/04/amd-amd-q3-2026-earnings-call-transcript/",
+          "publication_date": "2026-11-04",
+          "publication_at": "2026-11-04T15:24:00+00:00",
+          "event_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "locator": "Selected Q&A: Vivek Arya 303–311, Joshua Buchalter 317–322, Timothy Arcuri 333/338–343, Stacy Rasgon 352/358–362; source publication time 161",
+          "source_ref": "turn310view0",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "access_extent": "Selected Q&A passages and surrounding management remarks read; no original-audio verification or full licensed report review",
+          "id": "AMD-call-20261104"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261104-ANET-SUPPLY-GATES",
+      "company": "Arista",
+      "source_disclosure_id": "ANET_2026Q3_results_20261103",
+      "skills": [
+        "F3",
+        "F7",
+        "F9",
+        "F11",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected exchange; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked Hosseini supply exchange; no additional factual claim.",
+      "researcher_inference": "供给信心、长期协议、已下订单、到货、客户验收是不同证据层级；不能把它们混成已锁定收入。",
+      "hidden_uncertainty": "多组件瓶颈与验收门槛中，哪一个决定可确认收入？",
+      "kpi": "每季系统单位数、各必需组件可支持系统数、验收率%、单价$/系统、库存成本$/系统。",
+      "model_revision": "编辑模型：可建系统=min(付费需求、硅供应、PCB供应、内存供应)；确认系统=可建系统×验收率；R=确认系统×单价。未验收部分留在库存/递延链，不自动等于现金。",
+      "validity_conditions": "一套系统各需一份组件；无组件替代；客户验收是该合成合同的确认前提；不把此假设当Arista通用会计政策。",
+      "counterexample": "供应完全可用而客户推迟验收，或供应替代消除原瓶颈；原来的供给解释均不足。",
+      "falsification": "观察未来两季采购到货、交付与验收差异。若供应满足而收入落后，应拒绝把缺口全归因供应；缺乏分项数据则保留未决。",
+      "next_evidence_date": "2026 Q4及2027 Q1结果；具体日期未核实。",
+      "transfer_question": "迁移至陌生医疗影像设备商：磁体、探测器和医院验收分别限制什么？设计一个能区分供给不足与医院预算延迟的证据测试。",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or certified personal pattern",
+      "created_at": "2026-11-04",
+      "source_keys": [
+        "anet_call"
+      ],
+      "training": {
+        "stages": [
+          "合成：100套已获资金支持的需求，每套各需一份硅、PCB、内存；本季三者分别支持90、80、95套。可建系统都发运，90%完成验收；只有验收后确认收入。单价$2m、每套制造成本$1.2m。求收入、确认COGS、未验收库存成本，并指出缺少什么信息才能算现金。",
+          "请先让AI评估你的实际回答。新增约束：PCB提高到100套，但内存降至60套，其他条件不变。重算；为什么单独提高PCB产能没有保证收入增加？ 各阶段替换同一季情境；不结转前阶段库存。",
+          "再修订：客户可付款需求降至50套；组件供给保持上一阶段，验收率仍90%。重算并找出当前约束，说明何种证据会让你改变供给瓶颈结论。",
+          "迁移至陌生医疗影像设备商：磁体、探测器和医院验收分别限制什么？设计一个能区分供给不足与医院预算延迟的证据测试。"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA204"
+      ],
+      "sources": [
+        {
+          "title": "Arista Q3 2026 main call — Motley Fool public transcript mirror",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/11/04/arista-anet-q3-2026-earnings-call-transcript/",
+          "publication_date": "2026-11-04",
+          "publication_at": "2026-11-04T15:45:00+00:00",
+          "event_date": "2026-11-03",
+          "event_at": "2026-11-03T21:30:00+00:00",
+          "retrieved_on": "2026-11-04",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "CFO outlook lines 296–299; Meta Marshall 310–316; George Notter 329–339; Mehdi Hosseini 478–485",
+          "source_ref": "turn299view1",
+          "read_scope": "Selected prepared remarks and Q&A passages; public mirror not compared with audio",
+          "timestamp_evidence": "Yahoo syndication lists Nov 4, 10:45 AM EST (turn308search3); official notice gives Nov 3 4:30 PM ET (turn308search1)",
+          "id": "ANET-ETN-anet_call-20261104"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261104-ETN-RAMP-ACCEPTANCE",
+      "company": "Eaton",
+      "source_disclosure_id": "ETN_2026Q3_results_20261103",
+      "skills": [
+        "F4",
+        "F7",
+        "F9",
+        "F11",
+        "F14"
+      ],
+      "real_analyst_question": "See linked selected exchange; not verbatim",
+      "evidence_type": "source_fact_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked Mehrotra factory-ramp exchange; no additional factual claim.",
+      "researcher_inference": "新产能必须经过开工、良率、客户验收和收款四道门，才能桥接到收入、利润与现金；旺季单季不可直接年化。",
+      "hidden_uncertainty": "名义产能扩张何时转成有利润且可收现的合格产出？",
+      "kpi": "名义单位/季、开工率%、良率%、验收单位、$/投入单位、$/验收单位、固定现金支出与回款率。",
+      "model_revision": "编辑模型：良品=产能×开工率×良率；合格单位成本=每投入单位成本/良率；确认毛利=验收单位×(单价−合格单位成本)。固定费用当期支出；库存和回款额单列。",
+      "validity_conditions": "合成简化把正常废品成本计入良品；固定现金费用全部当期确认，无税、折旧、CapEx或其他营运资本；不是Eaton披露的工厂数据或会计政策。",
+      "counterexample": "名义扩产成功但良率不足、未验收库存和付款周期同时拉长，利润和现金可背离。",
+      "falsification": "未来两季按工厂批次检查良率、已验收产出与库存/应收。若开工提高却单位成本不降或现金转换持续恶化，撤回‘产能已转化为健康收益’假设；不把单次季节低点自动判为论点失败。",
+      "next_evidence_date": "2026 Q4与2027 Q1结果；具体日期未核实。",
+      "transfer_question": "迁移到陌生卫星制造商：生产线获认证但客户延迟在轨验收。如何修改产能到现金的模型，且不把认证当收入？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not a named analyst speaking or certified personal pattern",
+      "created_at": "2026-11-04",
+      "source_keys": [
+        "etn_call"
+      ],
+      "training": {
+        "stages": [
+          "合成：工厂产能100件/季，开工50%，良率80%，全部良品验收出售，单价$10k；每投入生产一件耗费$6k，正常废品成本计入良品；固定现金费用$100k全部当期确认。忽略税、折旧、CapEx及其他营运资本。算良品数、收入和简化经营利润。",
+          "请先让AI评估你的实际回答。新季度产能150件、开工60%、良率90%，固定现金费用升至$160k，其他不变且全部验收。重算，并区分名义产能增长和收益改善。",
+          "新增验收与回款约束：上一阶段81件良品中仅60件验收，未验收良品留存成本库存；只收回确认收入的80%，投入生产成本及固定费用全部付现。求经营利润、库存增加和简化经营现金流。 这是上一阶段同一季度的替代情境；期初库存和应收均为零，不把两种情境累加。",
+          "迁移到陌生卫星制造商：生产线获认证但客户延迟在轨验收。如何修改产能到现金的模型，且不把认证当收入？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA206"
+      ],
+      "sources": [
+        {
+          "title": "Eaton Q3 2026 main call — Motley Fool public transcript mirror",
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/11/03/eaton-etn-q3-2026-earnings-call-transcript/",
+          "publication_date": "2026-11-03",
+          "event_date": "2026-11-03",
+          "event_at": "2026-11-03T16:00:00+00:00",
+          "retrieved_on": "2026-11-04",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "Nigel Coe 281–293; Amit Mehrotra 402–411; David Raso 429–439",
+          "source_ref": "turn299view3",
+          "read_scope": "Selected Q&A and adjoining prepared remarks; public mirror not compared with audio",
+          "id": "ANET-ETN-etn_call-20261104"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261104-SMCI-ADVANCE-FUNDING",
+      "company": "Supermicro",
+      "source_disclosure_id": "SMCI_2027Q1_results_20261103",
+      "skills": [
+        "F11",
+        "F14",
+        "F22"
+      ],
+      "source_keys": [
+        "smci_release_20261103",
+        "smci_call_20261103"
+      ],
+      "real_analyst_question": "Linked selected paraphrases; not verbatim",
+      "evidence_type": "official_financial_facts_and_management_testimony_separate_from_editorial_model",
+      "management_testimony": "See QA208 and QA210; continued advances were management's expectation.",
+      "researcher_inference": "预收款降低当期外部融资需求，但同时形成未来交付义务；现金余额充足不等于业务已持续自我融资。",
+      "hidden_uncertainty": "现金改善依赖新押金增长、真实库存周转，还是融资活动？",
+      "kpi": "CFO、合同负债净变动、PP&E现金支出、其他投资、可退押金、可用授信与最低现金，单位一致为百万美元。",
+      "model_revision": "编辑模型：标准口径FCF=CFO−现金PP&E；预收调整敏感性=CFO−明确已在CFO内的净预收贡献。不得把整个合同负债变动永久当作可扣除押金，须先拆服务递延与非现金变化。",
+      "validity_conditions": "合成题已明确净预收款在CFO内；真实分析必须按现金流分类、退款权和履约义务核验。",
+      "counterexample": "稳定、不可退且与低风险交付匹配的预收款可以是持久运营融资优势；机械剔除全部预收会低估优质模式。",
+      "falsification": "下两季若净预收贡献降至零、仍能支付PP&E且维持现金安全垫，则削弱‘增长必须依赖新增押金’；若预收延续但库存/应收吸收更快，不能以押金增长宣称自我融资。",
+      "next_evidence_date": "FY2027 Q2正式结果与现金流量表；发行人具体发布日期尚未核实。",
+      "transfer_question": "迁移到陌生邮轮运营商：提前收取船票而航程尚未提供，如何区分负营运资本优势与退款/履约风险？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-04",
+      "training": {
+        "stages": [
+          "合成，全部为百万美元：CFO为−40，其中净客户预收款贡献+300；现金PP&E40、股权投资5。分别计算CFO−PP&E和扣除两项投资的现金净额，说明口径差异。",
+          "提交实际答案给AI评审。新增约束：下季其他经营现金流不变，净预收款降至100。重算CFO与CFO−PP&E；不要重复扣款。 现金PP&E仍为40。",
+          "再约束：期初现金500、最低运营现金300、可用授信150，其他融资和股权投资均为零。按上一阶段计算维持最低现金需要的借款；区分授信额度和实际现金。",
+          "迁移到陌生邮轮运营商：提前收取船票而航程尚未提供，如何区分负营运资本优势与退款/履约风险？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA208",
+        "QA210"
+      ],
+      "sources": [
+        {
+          "key": "smci_release_20261103",
+          "title": "Supermicro Announces First Quarter of Fiscal Year 2027 Financial Results",
+          "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+          "publication_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "evidence_kind": "official_ir_results_release",
+          "locator": "Highlights lines 57–74; Business Outlook 76–80; caveats 92–98; balance sheet 106–141; operations 142–167; cash-flow table 176–229",
+          "read_scope": "Selected release body, full financial statement tables and non-GAAP reconciliation lines 50–98 and 106–314; remaining boilerplate not used",
+          "source_ref": "turn304view0",
+          "additional_ref": "turn311view4",
+          "id": "SMCI-smci_release_20261103-20261104"
+        },
+        {
+          "key": "smci_call_20261103",
+          "title": "Super Micro Computer Q1 2027 earnings call — Stock Analysis/Quartr public transcript mirror",
+          "url": "https://stockanalysis.com/stocks/smci/transcripts/730322-q1-2027/",
+          "publication_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "CFO remarks lines 156–187; Katherine Murphy 199–230; Joseph Cardoso 283–318; Ruplu Bhattacharya 338–367; operator/speaker rosters in those ranges",
+          "read_scope": "Selected prepared remarks and Q&A body through end of call; no original audio verification",
+          "source_ref": "turn304view1",
+          "additional_refs": [
+            "turn306view1",
+            "turn319view0",
+            "turn319view1"
+          ],
+          "id": "SMCI-smci_call_20261103-20261104"
+        }
+      ]
+    },
+    {
+      "id": "CASE-20261104-SMCI-COHORT-ACCEPTANCE",
+      "company": "Supermicro",
+      "source_disclosure_id": "SMCI_2027Q1_results_20261103",
+      "skills": [
+        "F2",
+        "F3",
+        "F4",
+        "F11",
+        "F14"
+      ],
+      "source_keys": [
+        "smci_call_20261103"
+      ],
+      "real_analyst_question": "Linked selected paraphrase; not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "See QA209 and the separately labeled CFO catch-up disclosure.",
+      "researcher_inference": "既往交付集中验收会同时抬高当季收入并改变毛利组合；应按收入队列建模，而非把当季run rate乘四。",
+      "hidden_uncertainty": "延期消化形成的收入跳升是需求趋势、确认时点还是毛利组合变化？",
+      "kpi": "当期与旧期交付收入、各队列毛利率、已收款比例、验收日期；收入为百万美元、毛利率为%。",
+      "model_revision": "编辑模型：总毛利=当前队列收入×当前队列GM+旧队列验收收入×旧队列GM；聚合GM按收入加权，不能简单平均。现金按合同收款时点独立列示。",
+      "validity_conditions": "必须能够区分队列、确认条件与成本归属；总递延收入不能自动等于待验收硬件。",
+      "counterexample": "若后续新订单和验收周期持续改善，同等旧期队列消化可以伴随真正需求加速；一次性识别不应机械预设下一季全部回吐。",
+      "falsification": "下两季若新队列收入增速足以抵消旧队列释放消退，否定纯时点解释；若新队列疲弱且总增长由旧队列贡献，则下调可持续收入基数。",
+      "next_evidence_date": "FY2027 Q2、Q3业绩及验收披露；具体发布日期尚未核实。",
+      "transfer_question": "迁移到陌生医疗设备商：延期安装验收集中完成，如何判断增长持续性，且不把已收押金再计为当期现金流入？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-04",
+      "training": {
+        "stages": [
+          "合成，百万美元：本季收入200，其中30为旧期设备集中验收、GM8%；当期交付收入170、GM15%。计算总毛利、聚合GM及当期队列收入。",
+          "提交实际答案给AI评审。新增：下季旧期验收归零，当期队列收入增长10%、GM不变。重算收入与毛利，解释总收入下降是否必然意味着新需求下降。",
+          "再约束：旧期设备款项已于上季全额预收，本季其交付成本已计入现金流。说明本季30收入对收款的增量，列出尚缺哪些现金流信息，不能直接从利润推出CFO。 本阶段返回最初本季200收入的情境，不把下季情境的收入重复计入。",
+          "迁移到陌生医疗设备商：延期安装验收集中完成，如何判断增长持续性，且不把已收押金再计为当期现金流入？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance and self-review only; actual AI evaluation requires the learner's answer. Unobserved work is not assessed.",
+        "answer_key_url": "refresh-answer-keys.json"
+      },
+      "question_ids": [
+        "QA209"
+      ],
+      "sources": [
+        {
+          "key": "smci_call_20261103",
+          "title": "Super Micro Computer Q1 2027 earnings call — Stock Analysis/Quartr public transcript mirror",
+          "url": "https://stockanalysis.com/stocks/smci/transcripts/730322-q1-2027/",
+          "publication_date": "2026-11-03",
+          "retrieved_on": "2026-11-04",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "locator": "CFO remarks lines 156–187; Katherine Murphy 199–230; Joseph Cardoso 283–318; Ruplu Bhattacharya 338–367; operator/speaker rosters in those ranges",
+          "read_scope": "Selected prepared remarks and Q&A body through end of call; no original audio verification",
+          "source_ref": "turn304view1",
+          "additional_refs": [
+            "turn306view1",
+            "turn319view0",
+            "turn319view1"
+          ],
+          "id": "SMCI-smci_call_20261103-20261104"
+        }
+      ]
     }
   ],
   "counting_rule": "11 source-linked reasoning cases total; 9 have staged synthetic exercises. This run adds 5 cases, 5 synthetic exercises and separately 7 selected real exchanges."
