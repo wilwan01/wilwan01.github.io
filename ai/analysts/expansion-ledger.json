@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-30-weekly",
+  "version": "2026-11-06",
   "batches": [
     {
       "id": "initial-20261005",
@@ -1400,6 +1400,161 @@
         ]
       },
       "validation_note": "Public Chrome check found no page-origin console errors; observed extension metadata errors were browser-extension noise and excluded."
+    },
+    {
+      "id": "weekly-thoughts-20261106",
+      "scheduled_for": "2026-11-06T09:00:00+00:00",
+      "research_cutoff": "2026-11-06T09:03:40+00:00 Europe/London",
+      "before": {
+        "profiles": 230,
+        "buy_side": 115,
+        "sell_side": 115,
+        "sources": 381,
+        "cards": 375
+      },
+      "after": {
+        "profiles": 240,
+        "buy_side": 120,
+        "sell_side": 120,
+        "sources": 414,
+        "cards": 405
+      },
+      "new_ids": {
+        "profiles": [
+          "cliff-asness-aqr",
+          "jeremy-grantham-gmo",
+          "chuck-akre",
+          "rob-arnott",
+          "dan-rasmussen-verdad",
+          "krish-sankar-td-cowen",
+          "mark-murphy-jpm",
+          "ellie-jiang-macquarie",
+          "ruplu-bhattacharya-bofa",
+          "andre-kukhnin-ubs"
+        ],
+        "sources": [
+          "W104-CA00",
+          "W104-CA17",
+          "W104-CAROLE",
+          "W104-JG21",
+          "W104-JG26",
+          "W104-JGROLE",
+          "W104-CK14",
+          "W104-CK21",
+          "W104-CKROLE",
+          "W104-RA20",
+          "W104-RA24",
+          "W104-RAROLE",
+          "W104-DR20",
+          "W104-DR25",
+          "W104-DRROLE",
+          "W104-KS25",
+          "W104-KS26A",
+          "W104-KS26K",
+          "W104-KSROLE",
+          "W104-MM25",
+          "W104-MM26M",
+          "W104-MM26O",
+          "W104-MMROLE",
+          "W104-EJ25",
+          "W104-EJ26A",
+          "W104-EJ26B",
+          "W104-EJROLE",
+          "W104-RB25",
+          "W104-RB26",
+          "W104-RBROLE",
+          "W104-AK25",
+          "W104-AK26",
+          "W104-AKROLE"
+        ],
+        "cards": [
+          "W104-01-C1",
+          "W104-01-C2",
+          "W104-01-C3",
+          "W104-02-C1",
+          "W104-02-C2",
+          "W104-02-C3",
+          "W104-03-C1",
+          "W104-03-C2",
+          "W104-03-C3",
+          "W104-04-C1",
+          "W104-04-C2",
+          "W104-04-C3",
+          "W104-05-C1",
+          "W104-05-C2",
+          "W104-05-C3",
+          "W104-06-C1",
+          "W104-06-C2",
+          "W104-06-C3",
+          "W104-07-C1",
+          "W104-07-C2",
+          "W104-07-C3",
+          "W104-08-C1",
+          "W104-08-C2",
+          "W104-08-C3",
+          "W104-09-C1",
+          "W104-09-C2",
+          "W104-09-C3",
+          "W104-10-C1",
+          "W104-10-C2",
+          "W104-10-C3"
+        ]
+      },
+      "classification": {
+        "buy_side": [
+          "cliff-asness-aqr",
+          "jeremy-grantham-gmo",
+          "chuck-akre",
+          "rob-arnott",
+          "dan-rasmussen-verdad"
+        ],
+        "vc_growth": [],
+        "sell_side_source_time": [
+          "krish-sankar-td-cowen",
+          "mark-murphy-jpm",
+          "ellie-jiang-macquarie",
+          "ruplu-bhattacharya-bofa",
+          "andre-kukhnin-ubs"
+        ]
+      },
+      "evidence": {
+        "substantive_sources_per_person_minimum": 2,
+        "identity_pages_do_not_satisfy_minimum": true,
+        "public_transcript_mirrors_labeled": true,
+        "repeated_pattern_manual_review": [
+          {
+            "profile": "mark-murphy-jpm",
+            "questions": [
+              "QA089",
+              "QA078",
+              "QA094"
+            ],
+            "calls": 3,
+            "mechanism": "architecture/site/latency to workload economics"
+          },
+          {
+            "profile": "ellie-jiang-macquarie",
+            "questions": [
+              "QA081",
+              "QA083",
+              "QA086"
+            ],
+            "calls": 3,
+            "mechanism": "AI resource allocation/funding to return"
+          }
+        ],
+        "no_pattern_claim": [
+          "krish-sankar-td-cowen",
+          "ruplu-bhattacharya-bofa",
+          "andre-kukhnin-ubs"
+        ]
+      },
+      "real_qa_added": 0,
+      "notes": [
+        "All 30 challenge cards are synthetic and do not increase the real earnings-Q&A count.",
+        "No licensed sell-side research, private holdings, transaction records or target-price models were accessed.",
+        "Historical materials are methods, not this week’s recommendations."
+      ]
     }
   ],
   "deduplication": {
@@ -1709,6 +1864,18 @@
       "candidate": "licensed sell-side models",
       "reason": "Issuer-hosted public questions reveal mechanisms but not complete estimates, ratings or valuation models.",
       "action": "Add forecast chronology only if a lawful readable note with formation date and comparable expectations becomes available."
+    },
+    {
+      "batch": "weekly-thoughts-20261106",
+      "candidate": "licensed sell-side estimates and valuation models",
+      "reason": "Public calls reveal question mechanisms but not complete research models, frozen expectations or target formation.",
+      "action": "Add only if a lawful readable note with a dated comparable model becomes available."
+    },
+    {
+      "batch": "weekly-thoughts-20261106",
+      "candidate": "third-party inputs in AI capital-cycle essays",
+      "reason": "Selected Verdad and Grantham materials cite external estimates that were not fully reconstructed.",
+      "action": "Retain as author-sourced inputs; independently normalize before using as current numerical forecasts."
     }
   ]
 }
