@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01",
+  "updated": "2026-11-08",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -216,7 +216,8 @@
         "zidong-du",
         "qi-guo",
         "yongwei-zhao",
-        "xing-hu"
+        "xing-hu",
+        "yuanbo-wen"
       ]
     },
     {
@@ -50693,6 +50694,139 @@
         "validation": "固定模型、软件栈和持久化负载，分别改变可观察提示噪声、屏障密度、银行冲突及RDMA往返延迟，测提取准确率、吞吐、排序违例和实现开销。",
         "transfer": "用于AI系统安全、持久内存与远程数据路径评审；不由论文结果外推当前产品性能。"
       }
+    },
+    {
+      "id": "yuanbo-wen",
+      "name": "文渊博",
+      "aliases": [
+        "Yuanbo Wen"
+      ],
+      "field": "GPU程序自动并行化与异构张量程序转译",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "correctness"
+      ],
+      "core": "把跨架构程序迁移分解为可学习、可验证和可调优的步骤：先生成候选，再用并行语义或形式约束筛选与修复，最后在目标硬件上搜索性能。",
+      "background": "计算所官方主页确认文渊博／Yuanbo Wen自2024年10月任副研究员，研究方向为智能处理器系统软件和计算机系统自动设计；此前自2022年7月任助理研究员。BabelTower为其第一作者作品，QiMeng-Xpiler列其为第二作者；两项均按论文作者与机构表记录团队归属，不把个人贡献外推为独占设计责任或量产产品采用。",
+      "contributions": [
+        "第一作者提出BabelTower：以无配对C／CUDA语料进行反向翻译，并用体现并行语义的ParaBLEU训练判别重排器，从候选中选择并行CUDA程序。",
+        "共同署名QiMeng-Xpiler：把异构张量程序转译拆为LLM辅助变换通道，以小规模SMT合成修复错误片段，并分层搜索变换参数和通道顺序。"
+      ],
+      "argument": "编辑条件模型：生成模型可扩大跨架构程序候选空间，但可靠迁移需要显式表示并行语义、用测试或形式约束压缩错误，再把性能搜索限制在可承受的参数与变换序列中；收益取决于语料覆盖、约束可解性和目标平台测量成本。",
+      "evidence": "两项不同年份、不同方法的一手论文正文；一项第一作者、一项共同署名，另以计算所官方主页核对身份与现任职责。",
+      "habits": [
+        "把端到端程序迁移拆成生成、语义判别或修复、性能搜索三个可单独验证的环节。",
+        "用目标硬件的并行模型、存储层次和指令接口约束生成结果，而不是把语法相似当作功能正确。"
+      ],
+      "questions": [
+        "哪些语义必须由可检查的约束守住，哪些搜索可以交给学习模型，才能让跨平台转译同时可扩展、正确并具备性能？"
+      ],
+      "boundary": "BabelTower与QiMeng-Xpiler均为多机构团队成果；第一或第二作者顺序不证明个人独占某个模块。BabelTower的编译率、加速与生产率结论受所建C／CUDA数据集、选定基线和V100／RTX 8000训练条件限制；QiMeng-Xpiler的95%平均转译准确率、0.78×手工库性能及生产率数据来自论文所列Intel VNNI、NVIDIA CUDA、AMD HIP与寒武纪BANG实验，不能外推到未测模型、平台或商业部署。",
+      "diagnostic": "固定一组带参考实现的张量算子，跨四类接口分别消融判别重排、SMT修复、通道参数搜索与通道顺序搜索，测功能通过率、错误类别、编译时间、目标性能和人工修改量。",
+      "notes": [],
+      "sources": [
+        [
+          "BabelTower: Learning to Auto-parallelized Program Translation",
+          "https://proceedings.mlr.press/v162/wen22b/wen22b.pdf",
+          "首页作者表；§1、§4–5；反向翻译、ParaBLEU判别重排与C到CUDA并行语义转换"
+        ],
+        [
+          "QiMeng-Xpiler: Transcompiling Tensor Programs for Deep Learning Systems with a Neural-Symbolic Approach",
+          "https://www.usenix.org/system/files/osdi25-dong.pdf",
+          "首页作者表；§1.1–1.2、§3–5、§7–8；LLM变换、SMT局部修复与分层自动调优"
+        ],
+        [
+          "文渊博：中国科学院计算技术研究所研究人员主页",
+          "https://ict.cas.cn/sourcedb/cn/jssrck/202502/t20250220_7530352.html",
+          "姓名、研究部门、副研究员职务、2022年以来履历、研究方向及代表论文"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "babeltower-icml2022",
+          "title": "BabelTower: Learning to Auto-parallelized Program Translation",
+          "authors": "Yuanbo Wen、Qi Guo、Qiang Fu、Xiaqing Li、Jianxing Xu、Yanlin Tang、Yongwei Zhao、Xing Hu、Zidong Du、Ling Li、Chao Wang、Xuehai Zhou、Yunji Chen",
+          "date": "2022",
+          "url": "https://proceedings.mlr.press/v162/wen22b/wen22b.pdf",
+          "locator": "首页作者表；§1、§4–5；反向翻译、ParaBLEU判别重排与C到CUDA并行语义转换",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第一作者署名、学习框架、训练方法和实验条件。",
+          "evidenceStrength": "一手第一署名技术作品；归属为团队合作。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-08"
+        },
+        {
+          "workId": "qimeng-xpiler-osdi2025",
+          "title": "QiMeng-Xpiler: Transcompiling Tensor Programs for Deep Learning Systems with a Neural-Symbolic Approach",
+          "authors": "Shouyang Dong、Yuanbo Wen、Jun Bi、Di Huang、Jiaming Guo、Jianxing Xu、Ruibai Xu、Xinkai Song、Yifan Hao、Ling Li、Xuehai Zhou、Tianshi Chen、Qi Guo、Yunji Chen",
+          "date": "2025",
+          "url": "https://www.usenix.org/system/files/osdi25-dong.pdf",
+          "locator": "首页作者表；§1.1–1.2、§3–5、§7–8；LLM变换、SMT局部修复与分层自动调优",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已核验第二作者署名、神经—符号机制、自动调优方法及四类平台实验边界。",
+          "evidenceStrength": "一手共同署名技术作品；归属为团队合作，不由作者排序推断模块分工。",
+          "role": "机制及贡献归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-08"
+        },
+        {
+          "workId": "yuanbo-wen-ict-profile",
+          "title": "文渊博：中国科学院计算技术研究所研究人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "2026-11-08（访问）",
+          "url": "https://ict.cas.cn/sourcedb/cn/jssrck/202502/t20250220_7530352.html",
+          "locator": "姓名、研究部门、副研究员职务、2022年以来履历、研究方向及代表论文",
+          "type": "机构人物简介",
+          "contentStatus": "核对中文与英文署名、现任职责、历史经历及两篇代表作；不计独立技术作品。",
+          "evidenceStrength": "机构身份来源，不作为技术作品或产品归属依据。",
+          "role": "身份与现任职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-08"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "babeltower-icml2022",
+          "text": "第一作者提出BabelTower：以反向翻译处理无配对语料，并用ParaBLEU判别重排器选择体现CUDA并行语义的候选。"
+        },
+        {
+          "workId": "qimeng-xpiler-osdi2025",
+          "text": "共同署名QiMeng-Xpiler：用LLM生成变换、以小规模SMT修复错误片段，并分层调优通道参数和顺序。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "根据第一作者及共同署名论文进行编辑提炼；不是官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-08-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品审核完成，不代表穷尽成果或确认商业采用。",
+        "verifiedAt": "2026-11-08"
+      },
+      "challenge": {
+        "lens": "跨架构程序转译的生成、约束与搜索边界",
+        "skills": [
+          "A3",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "哪些语义必须由可检查的约束守住，哪些搜索可以交给学习模型，才能让跨平台转译同时可扩展、正确并具备性能？",
+        "variables": "语料覆盖、并行语义表示、候选数、SMT片段规模、变换通道数、调优预算、目标接口与硬件测量成本",
+        "model": "编辑条件模型：学习模型扩大候选空间，判别器、测试与形式约束压缩错误，分层搜索负责性能；任一环节的覆盖或成本失衡都会破坏可用性。",
+        "crossover": "自动生成、验证和调优的总成本低于人工移植，且目标程序通过功能检查并达到可接受性能时成立。",
+        "counterexample": "训练语料缺少目标语义、错误跨越可局部修复边界、SMT规模爆炸或性能瓶颈需要未建模的硬件知识时，转译会失败或低于手工实现。",
+        "validation": "在同一算子集合和硬件上逐项消融生成、重排、SMT修复与两级调优，报告功能通过率、错误分布、编译开销、运行性能及人工修改量。",
+        "transfer": "用于GPU／AI加速器编译器、算子迁移和异构软件栈评审；不由论文结果外推未测平台或现网产品性能。"
+      }
     }
   ],
   "research": {
@@ -50703,7 +50837,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 409,
+    "totalProfiles": 410,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50728,13 +50862,14 @@
       "research/batches/2026-10-15-alibaba-followthrough.json",
       "research/batches/2026-10-18-weekly.json",
       "research/batches/2026-10-25-weekly.json",
-      "research/batches/2026-11-01-weekly.json"
+      "research/batches/2026-11-01-weekly.json",
+      "research/batches/2026-11-08-weekly.json"
     ],
-    "completedTotal": 408,
+    "completedTotal": 409,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 114,
-    "additionalCompleted": 108,
+    "additionalPlannedScope": 115,
+    "additionalCompleted": 109,
     "resolvedCandidateDuplicates": 1
   }
 }

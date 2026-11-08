@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-08",
+  "baseCommit": "86de8128093bc8144b39b8a7318b6e78f55e4d7b",
+  "profiles": 410,
+  "audited": 409,
+  "activePendingCandidates": 5,
+  "validation": "PASS: 25 fixed batches, 415 historical records, two-distinct-work gate",
+  "preservation": "Original 409 profiles, prior candidate fields, PR48 archive and site navigation preserved; gpu-ai domain count increased by 1",
+  "renderIdempotent": true,
+  "diffCheck": "PASS: only catalog, generated directory, new fixed batch, screening and validation records changed",
+  "preMergePage": {
+    "status": "PASS",
+    "checks": [
+      "generated HTML parses with 410 profile articles and 410 skill-matrix rows",
+      "yuanbo-wen profile anchor and two source facts are present; the generated batch page parses independently",
+      "skill-matrix.js passes node syntax validation",
+      "CSS and JavaScript assets are unchanged from the deployed 409-profile build"
+    ]
+  },
+  "browser": [],
+  "deployment": {
+    "status": "pending",
+    "url": "https://wilwan01.github.io/ai/architects/",
+    "profiles": 410,
+    "newProfiles": [
+      "yuanbo-wen"
+    ]
+  },
+  "browserStatus": "PENDING"
+}
