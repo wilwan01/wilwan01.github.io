@@ -1,0 +1,132 @@
+{
+  "research_cutoff": "2026-11-09T09:05:36+00:00",
+  "verified_at": "2026-11-09T09:38:12+00:00",
+  "published_content_commit": "d4c79f6613244ce3e99acf725d1d137e01ced675",
+  "base_commit": "a039624e4f8d7ee631aa796e21ba29bd0dac025c",
+  "pages_run": {
+    "id": 42594604031,
+    "url": "https://github.com/wilwan01/wilwan01.github.io/actions/runs/42594604031",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "remote_verification": {
+    "method": "Fetched master and compared git blob hashes against local validated files",
+    "matched_files": 15,
+    "files": [
+      {
+        "path": "ai/analysts/analysts.js",
+        "size": 27948,
+        "sha": "941a04badf92ec13c293de10768cc093ec0358d1"
+      },
+      {
+        "path": "ai/analysts/corpus.json",
+        "size": 2530366,
+        "sha": "5f6eecbed10e39802a3ddf7bf1361fb3ac764b65"
+      },
+      {
+        "path": "ai/analysts/index.html",
+        "size": 13697,
+        "sha": "85d53e7c61f3abff273a177c498f36254d562cbf"
+      },
+      {
+        "path": "ai/analysts/master-prompt.txt",
+        "size": 47792,
+        "sha": "196fec808f70feaa82c920dfc5a60a1045b29730"
+      },
+      {
+        "path": "ai/analysts/refresh-answer-keys.json",
+        "size": 19944,
+        "sha": "45f44074ac827b322b7f9ef1d34c602a7b8d6b53"
+      },
+      {
+        "path": "ai/analysts/refresh-cases.json",
+        "size": 109870,
+        "sha": "30624fdecb778661435313fd566943eaa747c91c"
+      },
+      {
+        "path": "ai/earnings/coverage-progression.json",
+        "size": 4991,
+        "sha": "17755618086e0ee3b8c7c0d002ab76545e22cc19"
+      },
+      {
+        "path": "ai/earnings/index.html",
+        "size": 769970,
+        "sha": "9c34bb552b94ac47aa9d9f532fc82a3365170da4"
+      },
+      {
+        "path": "ai/earnings/refresh-ledger.json",
+        "size": 729340,
+        "sha": "afea9f0eeee9800f1f7a4550f54ac5d6d34b255a"
+      },
+      {
+        "path": "ai/earnings/refresh-checks-20261109.json",
+        "size": 43321,
+        "sha": "2bcdde274c28ed83ec58cf21f3061a634d023f54"
+      },
+      {
+        "path": "ai/earnings/refresh-validation-20261109.json",
+        "size": 2408,
+        "sha": "da1b9784dd7716a66b878e7c97b4a115461ded61"
+      },
+      {
+        "path": "ai/earnings/tools/browser-refresh-20261109.cjs",
+        "size": 4342,
+        "sha": "22fd6b428548fad793cd4be6cfc76b088cb8b267"
+      },
+      {
+        "path": "ai/earnings/tools/finalize-refresh-20261109.mjs",
+        "size": 3868,
+        "sha": "50bb829b195020a9a2137231ce2e8ce94f4bbf8f"
+      },
+      {
+        "path": "ai/earnings/tools/refresh-20261109.mjs",
+        "size": 40722,
+        "sha": "9a2678bb86207d338f381c875b96632fae047bad"
+      },
+      {
+        "path": "ai/earnings/tools/validate-refresh-20261109.mjs",
+        "size": 3642,
+        "sha": "0f00750b5c631099d133d98740864ebc392a9fb8"
+      }
+    ]
+  },
+  "public_ui_verification": {
+    "urls": [
+      "https://wilwan01.github.io/ai/earnings/",
+      "https://wilwan01.github.io/ai/analysts/"
+    ],
+    "status": "verified in Chrome after successful Pages deployment",
+    "earnings": {
+      "coverage_rows": 35,
+      "quarterly_events": 162,
+      "separate_post_calls": 2,
+      "selected_questions": 216,
+      "new_ids": "QA211–QA216",
+      "new_company_progression": [
+        "ARM_2027Q2",
+        "QCOM_2026Q4"
+      ]
+    },
+    "analysts": {
+      "staged_exercises": 26,
+      "new_staged_exercises": 4,
+      "qualitative_hints_initially_collapsed": true,
+      "reference_answer_initially_hidden": true
+    },
+    "production_draft_writes": false
+  },
+  "personal_skill": {
+    "skill_id": "6ac37738d7408191aeea690824626858",
+    "save_commit": "02c003d",
+    "status": "Validated, pushed, reconciled and fetched back; no target-file differences",
+    "site_data_matches": "All four JSON references byte-identical"
+  },
+  "known_gaps": [
+    "6 inherited main-call bodies unreviewed",
+    "10 issuer official endpoints/archive checks incomplete",
+    "No frozen comparable consensus verified for new releases",
+    "Qualcomm selected call passages from public mirror; both calls not audio-verified",
+    "No distinct new post-earnings call verified; not proof of absence"
+  ],
+  "scope": "Only ai/earnings and ai/analysts files changed. Old downloads and existing draft keys preserved."
+}
