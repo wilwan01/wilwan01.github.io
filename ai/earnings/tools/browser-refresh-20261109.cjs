@@ -1,0 +1,26 @@
+const {chromium}=require('playwright');
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+(async()=>{
+ const root=process.cwd(),b=await chromium.launch({headless:true}),ctx=await b.newContext();
+ await ctx.route('https://earnings-test.invalid/**',async route=>{let p=decodeURIComponent(new URL(route.request().url()).pathname);if(p.endsWith('/'))p+='index.html';const file=path.resolve(root,'.'+p);if(!file.startsWith(root+'/'))return route.abort();try{const ext=path.extname(file);await route.fulfill({status:200,body:fs.readFileSync(file),contentType:({'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml'})[ext]||'application/octet-stream'});}catch{await route.fulfill({status:404,body:'not found'});}});
+ const page=await ctx.newPage(),errors=[],requests=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
+ await page.goto('https://earnings-test.invalid/ai/earnings/');
+ assert.equal(await page.locator('.entry').count(),216);assert.equal(await page.locator('#coverage tbody tr').count(),35);
+ assert.equal(await page.locator('#result-count').textContent(),'216 of 216 probes');
+ await page.locator('#company').selectOption('Arm');assert.equal(await page.locator('.entry:visible').count(),11);
+ await page.locator('#coverage a[href="#QA215"]').click();assert.equal(await page.locator('#company').inputValue(),'');assert.ok(await page.locator('#QA215').isVisible());
+ await page.locator('#search').fill('QA213');assert.equal(await page.locator('.entry:visible').count(),1);await page.locator('#clear').click();
+ await page.locator('#theme').selectOption('Inventory');assert.ok(await page.locator('#QA215').isVisible());
+ await page.goto('https://earnings-test.invalid/ai/analysts/');await page.locator('#stats').filter({hasText:'216'}).waitFor();
+ assert.equal(await page.locator('#refresh-select option').count(),26);assert.equal(requests.filter(x=>x.includes('refresh-answer-keys')).length,0);
+ assert.equal(await page.locator('#refresh-cases details[open]').count(),0);assert.ok(await page.locator('#refresh-model-output').isHidden());
+ await page.locator('#refresh-next').click();assert.match(await page.locator('#refresh-stage').textContent(),/阶段 1/);
+ await page.locator('#refresh-answer').fill('test draft: units and inventory bridge');await page.locator('#refresh-save').click();await page.locator('#refresh-next').click();assert.match(await page.locator('#refresh-stage').textContent(),/阶段 2/);
+ const first=await page.locator('#refresh-select').inputValue();await page.locator('#refresh-select').selectOption('CASE-20261109-ARM-ROYALTY-MIX');assert.match(await page.locator('#refresh-stage').textContent(),/阶段 1/);await page.locator('#refresh-select').selectOption(first);assert.match(await page.locator('#refresh-stage').textContent(),/阶段 2/);
+ await page.locator('details[data-refresh-hints="'+first+'"] summary').click();await page.waitForFunction(id=>JSON.parse(localStorage.getItem('ai-analyst-refresh-practice-v1'))[id].model_seen,first);
+ assert.equal(requests.filter(x=>x.includes('refresh-answer-keys')).length,0);await page.locator('#refresh-model').click();await page.locator('#refresh-model-output').waitFor({state:'visible'});assert.equal(requests.filter(x=>x.includes('refresh-answer-keys')).length,1);
+ await page.reload();await page.locator('#refresh-select option').first().waitFor();assert.match(await page.locator('#refresh-stage').textContent(),/阶段 2/);
+ await page.locator('#question-select').selectOption('QA216');assert.match(await page.locator('#compiled').textContent(),/Ben Reitzes/);
+ await page.locator('#search').fill('Gary Mobley');assert.match(await page.locator('body').textContent(),/StoneX/);
+ assert.deepEqual(errors,[]);await b.close();console.log(JSON.stringify({browser:'Chromium headless; isolated in-memory local routing, no external writes',status:'passed',entries:216,company_rows:35,search_filter:true,coverage_deep_link_reveals_filtered_record:true,stage_switch_persistence:true,empty_answer_block:true,answer_key_lazy_fetch:true,qualitative_hints_hidden_and_tracked:true,old_drafts_untouched:'isolated fresh context',question_compiler:true,page_errors:errors},null,2));
+})().catch(e=>{console.error(e);process.exit(1)});

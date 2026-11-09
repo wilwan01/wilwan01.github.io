@@ -1,0 +1,27 @@
+{
+  "research_cutoff": "2026-11-09T09:05:36+00:00",
+  "base_commit": "a039624e4f8d7ee631aa796e21ba29bd0dac025c",
+  "static_validation": {
+    "status": "passed",
+    "commands": ["node ai/earnings/tools/validate-refresh-20261109.mjs", "node ai/earnings/tools/sync-coverage.mjs --check", "git diff --check"],
+    "checks": ["JSON parsing and joins", "unique stable IDs", "historical 210 questions unchanged", "35 coverage rows", "162 quarterly slots and 2 separate post-calls", "216 selected real questions", "28 cases and 26 staged exercises", "JavaScript syntax", "HTML anchors", "preserved draft keys", "old report cutoff 2026-09-28"]
+  },
+  "browser_validation": {
+    "status": "passed selected interactive checks",
+    "environment": "isolated preview origin, Chrome UI; no production draft writes",
+    "checks": ["216 initial entries", "35 coverage rows", "Arm and Qualcomm new periods and editorial progression visible", "Arm filter gives 11 questions", "coverage deep link reveals QA215 and clears filters", "QA213 search gives one result", "Inventory theme reveals QA215", "26 staged choices", "qualitative hints collapsed initially", "reference answer hidden initially", "empty-answer stage progression blocked", "saved draft and stage retained across case switch and reload", "opening editorial hints records assisted state", "explicit reference-answer button renders separate key", "QA216 compiler shows Ben Reitzes and source-time Melius attribution", "Gary Mobley directory search succeeds"],
+    "answer_key_network_isolation": "lazy fetch verified by code inspection; browser network request interception not performed",
+    "console": "Observed error entries were browser-extension metadata failures, not page-origin errors; not a complete console census",
+    "headless_test": "Not run successfully: Chromium binary absent and official browser download archive invalid; retained reproducible test script, used interactive browser validation instead"
+  },
+  "personal_skill": {
+    "status": "validated, saved and fetched back with no file differences",
+    "skill_id": "6ac37738d7408191aeea690824626858",
+    "commit": "02c003d",
+    "validation": "quick_validate.py: Skill is valid!"
+  },
+  "publication": {
+    "status": "pending at preparation of this prepublication record",
+    "verification": "Consult subsequent deployment record; this file alone is not proof of publication"
+  }
+}

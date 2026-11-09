@@ -1,5 +1,5 @@
 {
-  "cutoff_at": "2026-11-04T20:13:42+00:00",
+  "cutoff_at": "2026-11-09T09:05:36+00:00",
   "cases": [
     {
       "id": "CASE-20261012-SAMSUNG-PRELIMINARY",
@@ -1373,6 +1373,234 @@
           "id": "SMCI-smci_call_20261103-20261104"
         }
       ]
+    },
+    {
+      "id": "CASE-20261109-ARM-ROYALTY-MIX",
+      "company": "Arm",
+      "source_disclosure_id": "ARM_2027Q2_results_20261104",
+      "skills": [
+        "F4",
+        "F10",
+        "F11",
+        "F14"
+      ],
+      "source_keys": [
+        "ARM-call-20261104"
+      ],
+      "question_ids": [
+        "QA212"
+      ],
+      "sources": [
+        {
+          "id": "ARM-call-20261104",
+          "key": "ARM-call-20261104",
+          "title": "Arm FY2027 Q2 corrected transcript (issuer-hosted FactSet)",
+          "url": "https://investors.arm.com/static-files/6f3ab670-7d16-479b-948a-7b1df5ff5b32",
+          "publication_date": "2026-11-04",
+          "locator": "pp6–8: Gary Mobley supply and royalty-mix exchanges; Sebastien Naji rack/chip comparison; selected passages, not audio-verified",
+          "evidence_kind": "issuer_hosted_transcript_not_audio_verified",
+          "source_ref": "turn389view1",
+          "retrieved_on": "2026-11-09"
+        }
+      ],
+      "real_analyst_question": "Linked selected paraphrase, not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked real Q&A; testimony is not independently established performance.",
+      "researcher_inference": "聚合单芯片收入上升，不等于同类合同提价。",
+      "hidden_uncertainty": "聚合单芯片收入上升，不等于同类合同提价。",
+      "kpi": "两类芯片销量（百万颗）、每颗royalty（美元）、类别权重；总收入百万美元。",
+      "model_revision": "R=ΣNi×ri；保持原类别价格构造反事实，再把组合变化和类内价格变化分开。",
+      "validity_conditions": "类别口径稳定，销量与收入时间对齐；缺少分项数据时只给界限。",
+      "counterexample": "技术升级也可能真正提高每类royalty；组合解释不能排除合同价格变化。",
+      "falsification": "编辑判据：下两季在固定权重后类内royalty增幅仍>0，拒绝纯组合解释；未披露类别销量/费率则保持不可验证。",
+      "next_evidence_date": "Next two formal quarterly disclosures; exact dates not yet verified. Benchmark thesis additionally requires a matched-generation independent test; timing unknown.",
+      "transfer_question": "陌生迁移：医院高价手术占比提高，平均每病人收入上涨。如何用固定病例组合区分提价、病例复杂度和实际盈利改善？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-09",
+      "training": {
+        "stages": [
+          "合成：A类90百万颗、每颗$0.02；B类10百万颗、每颗$0.20。计算royalty总额及每颗均值，列出需要哪些证据才能判断提价。",
+          "先提交实际答案给AI评审。新增约束：总量仍100百万颗，B占比升至20%，两类单价不变。修订总收入/均值并解释变动来源。",
+          "新约束替换上阶段：A销量80百万颗，B仍20百万颗，但B单价下降10%。计算总额，并判断均值上涨能否证明议价权增强。",
+          "陌生迁移：医院高价手术占比提高，平均每病人收入上涨。如何用固定病例组合区分提价、病例复杂度和实际盈利改善？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance/self-review only; actual AI assessment requires the learner answer. Reading a model is not mastery.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261109-ARM-BENCHMARK-BOUNDARY",
+      "company": "Arm",
+      "source_disclosure_id": "ARM_2027Q2_results_20261104",
+      "skills": [
+        "F6",
+        "F10",
+        "F15",
+        "F18"
+      ],
+      "source_keys": [
+        "ARM-call-20261104"
+      ],
+      "question_ids": [
+        "QA213"
+      ],
+      "sources": [
+        {
+          "id": "ARM-call-20261104",
+          "key": "ARM-call-20261104",
+          "title": "Arm FY2027 Q2 corrected transcript (issuer-hosted FactSet)",
+          "url": "https://investors.arm.com/static-files/6f3ab670-7d16-479b-948a-7b1df5ff5b32",
+          "publication_date": "2026-11-04",
+          "locator": "pp6–8: Gary Mobley supply and royalty-mix exchanges; Sebastien Naji rack/chip comparison; selected passages, not audio-verified",
+          "evidence_kind": "issuer_hosted_transcript_not_audio_verified",
+          "source_ref": "turn389view1",
+          "retrieved_on": "2026-11-09"
+        }
+      ],
+      "real_analyst_question": "Linked selected paraphrase, not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked real Q&A; testimony is not independently established performance.",
+      "researcher_inference": "跨代、跨系统边界的跑分优势，不能直接转换为客户节省。",
+      "hidden_uncertainty": "跨代、跨系统边界的跑分优势，不能直接转换为客户节省。",
+      "kpi": "合格任务/秒、整机柜kW、每有效任务成本；相同质量和时延门槛。",
+      "model_revision": "任务/kWh=合格任务/秒×3600÷整柜kW；新增竞争代际与质量筛选必须同时更新分子分母。",
+      "validity_conditions": "仅在同负载、软件、精度、时延和计量边界可比时成立；能效不等于完整TCO。",
+      "counterexample": "更差的裸片指标可能被内存、网络或利用率优势抵消；旧代优势也可能保留。",
+      "falsification": "下次独立同代实测若整柜有效任务/kWh之比≤1，撤回该场景能效领先；没有匹配测试不能宣布领先或失败。",
+      "next_evidence_date": "Next two formal quarterly disclosures; exact dates not yet verified. Benchmark thesis additionally requires a matched-generation independent test; timing unknown.",
+      "transfer_question": "陌生迁移：分拣仓库每小时箱数更高但错拣率不同；如何以合格订单、返工和全站电力比较两套系统？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-09",
+      "training": {
+        "stages": [
+          "合成：平台A每秒200任务、整柜功耗40kW；旧平台B每秒100任务、30kW。计算吞吐比与任务/kWh之比，说明还缺什么才能比较TCO。",
+          "提交实际答案给AI评审。新增：新一代B每秒180任务、32kW。重新比较，旧平台基准还能代表当前竞争吗？",
+          "新增质量约束：A仅80%任务满足时延，B为95%；功耗不变。重算有效任务/kWh，提出你的结论边界。",
+          "陌生迁移：分拣仓库每小时箱数更高但错拣率不同；如何以合格订单、返工和全站电力比较两套系统？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance/self-review only; actual AI assessment requires the learner answer. Reading a model is not mastery.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261109-QCOM-MARGIN-PERIMETER",
+      "company": "Qualcomm",
+      "source_disclosure_id": "QCOM_2026Q4_results_20261104",
+      "skills": [
+        "F3",
+        "F4",
+        "F10",
+        "F11",
+        "F14"
+      ],
+      "source_keys": [
+        "QCOM-call-20261104"
+      ],
+      "question_ids": [
+        "QA214",
+        "QA216"
+      ],
+      "sources": [
+        {
+          "id": "QCOM-call-20261104",
+          "key": "QCOM-call-20261104",
+          "title": "Qualcomm FY2026 Q4 call — Stock Analysis/Quartr public mirror",
+          "url": "https://stockanalysis.com/stocks/qcom/transcripts/718644-q4-2026/",
+          "publication_date": null,
+          "locator": "Joshua Buchalter lines175–186; Stacy Rasgon283–299; Ben Reitzes313–335. Selected exchanges; not audio-verified. Mirror displays event date; publication timestamp not independently established.",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "source_ref": "turn390view0",
+          "retrieved_on": "2026-11-09",
+          "event_date": "2026-11-04"
+        }
+      ],
+      "real_analyst_question": "Linked selected paraphrase, not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked real Q&A; testimony is not independently established performance.",
+      "researcher_inference": "毛利率、营业利润率和分部重分类是三条独立的桥。",
+      "hidden_uncertainty": "毛利率、营业利润率和分部重分类是三条独立的桥。",
+      "kpi": "收入/费用/利润均为百万美元；GM/OM为%，重分类影响用百分点。",
+      "model_revision": "各业务OP=R×GM−OpEx；合并时加总美元后再除以收入，不平均百分比；重分类必须回算比较期。",
+      "validity_conditions": "合成经营利润示例不等于真实QCT EBT定义；实际分析需调节非经营项目与分部口径。",
+      "counterexample": "新业务可能低GM但费用率更低而提高OM；研发前置也可能让短期分部OM下降。",
+      "falsification": "下一两季若同口径每单位毛利下降且增量OP≤0，拒绝已实现增厚；FY2027下半年定价未兑现则修订时滞假设，不能改用长期30%目标替代结果。",
+      "next_evidence_date": "Next two formal quarterly disclosures; exact dates not yet verified. Qualcomm pricing thesis additionally tested in FY2027 second half.",
+      "transfer_question": "陌生迁移：工业设备商增加低毛利、低销售费用的OEM业务，同时把总部研发重分类。怎样重构原分部历史再评估盈利改善？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-09",
+      "training": {
+        "stages": [
+          "合成，全部金额为百万美元：传统业务收入100、GM50%、OpEx25；新业务收入50、GM35%、OpEx4。计算两业务及合计GM、OM。低GM业务是否必然稀释OM？",
+          "提交实际答案给AI评审。新约束：先前在其他分部的研发费用6移入本分部，没有新增费用。重算本分部OM，并说明公司总利润如何变化。",
+          "下一情景替换阶段2：传统业务COGS总额增加5百万美元，销量不变；本季提价收入仅增加3，新业务和其他费用不变，且仍包含重分类6。重算GM和OM；不能假设远期提价已完全兑现。",
+          "陌生迁移：工业设备商增加低毛利、低销售费用的OEM业务，同时把总部研发重分类。怎样重构原分部历史再评估盈利改善？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance/self-review only; actual AI assessment requires the learner answer. Reading a model is not mastery.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
+    },
+    {
+      "id": "CASE-20261109-QCOM-PREBUY-COHORT",
+      "company": "Qualcomm",
+      "source_disclosure_id": "QCOM_2026Q4_results_20261104",
+      "skills": [
+        "F2",
+        "F7",
+        "F8",
+        "F14"
+      ],
+      "source_keys": [
+        "QCOM-call-20261104"
+      ],
+      "question_ids": [
+        "QA215"
+      ],
+      "sources": [
+        {
+          "id": "QCOM-call-20261104",
+          "key": "QCOM-call-20261104",
+          "title": "Qualcomm FY2026 Q4 call — Stock Analysis/Quartr public mirror",
+          "url": "https://stockanalysis.com/stocks/qcom/transcripts/718644-q4-2026/",
+          "publication_date": null,
+          "locator": "Joshua Buchalter lines175–186; Stacy Rasgon283–299; Ben Reitzes313–335. Selected exchanges; not audio-verified. Mirror displays event date; publication timestamp not independently established.",
+          "evidence_kind": "public_transcript_mirror_not_audio_verified",
+          "source_ref": "turn390view0",
+          "retrieved_on": "2026-11-09",
+          "event_date": "2026-11-04"
+        }
+      ],
+      "real_analyst_question": "Linked selected paraphrase, not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "See linked real Q&A; testimony is not independently established performance.",
+      "researcher_inference": "涨价前出货增长，可能透支未来而非终端需求改善。",
+      "hidden_uncertainty": "涨价前出货增长，可能透支未来而非终端需求改善。",
+      "kpi": "sell-in/sell-through/期末渠道库存均为百万件；旧新平台价格生效时间。",
+      "model_revision": "渠道期末库存=期初库存+sell-in−sell-through；按平台/客户分组，不从总营收倒推出全部单位需求。",
+      "validity_conditions": "需要同渠道与期间数据；收入还受价格/组合影响，客户新平台发布会打乱跨期比较。",
+      "counterexample": "若新平台价格尚未生效且渠道库存低，出货增长可能对应真实渗透而非抢购。",
+      "falsification": "未来两季若增长主要形成渠道库存且终端销量不增，撤回终端复苏结论；若库存稳定而终端增长，反驳纯抢购。平台明细缺失则不能排除任一解释。",
+      "next_evidence_date": "Next two formal quarterly disclosures; exact dates not yet verified. Qualcomm pricing thesis additionally tested in FY2027 second half.",
+      "transfer_question": "陌生迁移：化学品经销商在新配方提价前补货，如何将价格前置采购与真实用量增长分开，并检验库存是否转成现金？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training; not an analyst impersonation or certified personal method",
+      "created_at": "2026-11-09",
+      "training": {
+        "stages": [
+          "合成：期初库存20，sell-in110，sell-through100（百万件）。计算期末库存，并说明出货比终端高10是否证明抢购。",
+          "提交实际答案给AI评审。下一季sell-through仍100、sell-in90。完成库存桥，解释累计需求和出货趋势。",
+          "替换第一季情景：110出货含新平台40；新平台终端需求40，旧平台终端需求60。未给分平台期初库存。哪些抢购结论仍不能得出，应该补什么证据？",
+          "陌生迁移：化学品经销商在新配方提价前补货，如何将价格前置采购与真实用量增长分开，并检验库存是否转成现金？"
+        ],
+        "scenario_type": "synthetic",
+        "evaluation": "Web guidance/self-review only; actual AI assessment requires the learner answer. Reading a model is not mastery.",
+        "answer_key_url": "refresh-answer-keys.json"
+      }
     }
   ],
   "counting_rule": "11 source-linked reasoning cases total; 9 have staged synthetic exercises. This run adds 5 cases, 5 synthetic exercises and separately 7 selected real exchanges."
