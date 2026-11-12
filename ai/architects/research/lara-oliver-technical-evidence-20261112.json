@@ -1,0 +1,198 @@
+{
+  "status": "qualified-selected-primary-bodies-identity-confirmation-handled-separately",
+  "reviewedAt": "2026-11-12T20:57:16.693749+00:00",
+  "baseCommit": "b6eabc6be0963699b31f0d28a9b5a999758a0b15",
+  "profile": {
+    "id": "lara-oliver",
+    "name": "Lara Oliver",
+    "aliases": [
+      "Lara D. Oliver"
+    ],
+    "field": "低功耗数字电路、双阈值设计与漏电建模",
+    "domain": "physical-energy",
+    "relatedDomains": [
+      "cpu",
+      "correctness"
+    ],
+    "core": "编辑提炼：优化器必须计入完整损耗，并把单元级节能放回时序与连接合法性的系统约束中。",
+    "background": "用户已确认目标为Intel的Lara Oliver个人主页（lara-oliver-971297b）。2007年ASEE作者简介将Lara D. Oliver、Duke博士研究与Brown 2002年Computer Engineering学位连接；本次技术作品均为Duke时期，与Chakrabarty、Massoud共同署名。当前Intel正式职称、任期与产品分工未由官方任命资料核实。 历史作者匹配是姓名、Brown教育与技术主题一致的编辑综合判断，不是Intel官方完整履历证明。",
+    "contributions": [
+      "共同研究双阈值设计的完整漏电目标：将栅氧化层隧穿纳入与亚阈值泄漏并列的模型及延迟约束。",
+      "共同提出单轨双阈值传输管逻辑（SDPL）与受约束的CMOS替换方法，分离低阈值逻辑路径和高阈值电平恢复。"
+    ],
+    "argument": "编辑条件模型：单一功耗分量降低不保证总收益；单元替换还必须满足信号恢复、连接限制、逻辑等价与关键路径要求。",
+    "evidence": "两篇不同研究问题的一手署名论文；2006年读取原文表2–4方法上下文，2009年读取§2–4机制正文；全文与测试复现缺口如实保留。",
+    "habits": [
+      "编辑归纳：先检查目标函数遗漏的物理损耗，再检查局部方案在完整电路中的合法性。"
+    ],
+    "questions": [
+      "改变阈值或逻辑风格后，节省的亚阈值功耗是否被栅隧穿、恢复电路、驱动约束及关键路径代价抵消？"
+    ],
+    "boundary": "Duke时期共同研究，不归作Intel产品成果或个人独占设计；2009年65nm/HSPICE结论受器件模型、负载与输入活动影响，不能直接外推现代工艺或CPU产品。2006完整PDF未取得，未采用两篇论文的性能百分比，也未验证实硅、生产部署或商业采用。",
+    "diagnostic": "改变阈值或逻辑风格后，节省的亚阈值功耗是否被栅隧穿、恢复电路、驱动约束及关键路径代价抵消？",
+    "notes": [],
+    "sources": [
+      [
+        "An evaluation of the impact of gate oxide tunneling on dual-Vt-based leakage reduction techniques — 原论文表2–4上下文",
+        "https://www.researchgate.net/figure/Simulation-results-for-algorithms-configured-to-consider-total-leakage_tbl3_228917425",
+        "作者上传的原论文Table 2、Table 3与Table 4之Context in source publication段落；论文页105–110，摘录所在具体页未核实"
+      ],
+      [
+        "Dual-threshold pass-transistor logic design",
+        "https://www.researchgate.net/publication/220904582_Dual-threshold_pass-transistor_logic_design",
+        "作者上传原文首页及§2 SDPL Gates、§3 Transistor Size Optimization、§4 SDPL-Substitution Algorithm（原文页291–294）"
+      ],
+      [
+        "Lara Oliver — Intel Corporation",
+        "https://www.linkedin.com/in/lara-oliver-971297b",
+        "姓名、Intel Corporation、San Francisco Bay Area、Brown University"
+      ],
+      [
+        "Assessing English As A Second Language Middle School Students’ Ability To Learn Engineering Concepts — author biographies",
+        "https://peer.asee.org/assessing-english-as-a-second-language-middle-school-students-ability-to-learn-engineering-concepts.pdf",
+        "印刷页12.265.1；Lara Oliver, Duke University / Lara D. Oliver作者简介段"
+      ]
+    ],
+    "sourceAudit": [
+      {
+        "workId": "lara-oliver-glsvlsi2006-doi1127935",
+        "title": "An evaluation of the impact of gate oxide tunneling on dual-Vt-based leakage reduction techniques — 原论文表2–4上下文",
+        "authors": "Lara D. Oliver; Krishnendu Chakrabarty; Hisham Z. Massoud",
+        "date": "2006；GLSVLSI会期2006-04-30至05-02；精确公开日未核实",
+        "url": "https://www.researchgate.net/figure/Simulation-results-for-algorithms-configured-to-consider-total-leakage_tbl3_228917425",
+        "locator": "作者上传的原论文Table 2、Table 3与Table 4之Context in source publication段落；论文页105–110，摘录所在具体页未核实",
+        "additionalReadUrls": [
+          "https://www.researchgate.net/figure/Leakage-power-mW-all-Vt-L-configuration_tbl1_228917425",
+          "https://www.researchgate.net/figure/Percentage-reduction-in-leakage-power-by-dual-Vt-assignment-algorithms_tbl2_228917425"
+        ],
+        "type": "原论文局部正文",
+        "formatDetail": "作者Lara D. Oliver公开上传作品的ResearchGate镜像；读取原论文上下文，不把镜像当原机构网站",
+        "contentStatus": "已读表2–4配套原文方法段：全低阈值基线，分别计算亚阈值、栅隧穿与总静态功耗；重新配置算法以考虑总漏电，并用启用隧穿的HSPICE延迟计算slack。未读取完整PDF，未核验表格图像或采用性能数值。",
+        "evidenceStrength": "大学官方记录及会议日程核实三位作者；原论文方法摘录由作者上传，不证明个人独占设计或生产采用。",
+        "role": "独立技术作品的已读实质方法正文；全文访问缺口保留",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "originalDoi": "10.1145/1127908.1127935",
+        "originalMetadataUrl": "https://scholars.duke.edu/publication/764365"
+      },
+      {
+        "workId": "lara-oliver-glsvlsi2009-doi1531610",
+        "title": "Dual-threshold pass-transistor logic design",
+        "authors": "Lara D. Oliver; Krishnendu Chakrabarty; Hisham Z. Massoud",
+        "date": "2009；原文会期2009-05-10至05-12；精确公开日未核实",
+        "url": "https://www.researchgate.net/publication/220904582_Dual-threshold_pass-transistor_logic_design",
+        "locator": "作者上传原文首页及§2 SDPL Gates、§3 Transistor Size Optimization、§4 SDPL-Substitution Algorithm（原文页291–294）",
+        "type": "论文正文（所列章节）",
+        "formatDetail": "共同作者Hisham Massoud公开上传的原论文全文文本镜像；读取所列章节",
+        "contentStatus": "已读署名与§2–4：低阈值逻辑管、高阈值电平恢复、去除输出缓冲但禁止SDPL驱动下级source输入；SPEA2尺寸搜索及保持slack/逻辑等价/功耗约束的贪心替换。未独立复现实验，不引用表格性能数字。",
+        "evidenceStrength": "Duke三位共同作者；具体功能分工未披露。结果来自HSPICE与65nm模型，不是实硅或量产证据。",
+        "role": "第二项独立技术作品及机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "originalDoi": "10.1145/1531542.1531610",
+        "originalMetadataUrl": "https://scholars.duke.edu/publication/764326"
+      },
+      {
+        "workId": "lara-oliver-confirmed-self-profile",
+        "title": "Lara Oliver — Intel Corporation",
+        "authors": "Lara Oliver（个人简介）",
+        "date": "未知（未标发布日期）",
+        "url": "https://www.linkedin.com/in/lara-oliver-971297b",
+        "locator": "姓名、Intel Corporation、San Francisco Bay Area、Brown University",
+        "type": "本人职业简介",
+        "contentStatus": "公开检索返回的简介字段；直接页面先前429，未读取完整经历",
+        "evidenceStrength": "用户确认提名的规范姓名、Intel关联及Brown教育字段；发布日期及详细职责未知；本字段不单独证明Duke作者归属",
+        "role": "身份证据，不计技术作品",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "retrievedAt": "2026-11-12"
+      },
+      {
+        "workId": "lara-d-oliver-asee2007-author-bio",
+        "title": "Assessing English As A Second Language Middle School Students’ Ability To Learn Engineering Concepts — author biographies",
+        "authors": "Paul Klenk; Frank Dreher; Emilie Condon; Gary Ybarra; Lara Oliver; Glenda Kelly; Nancy Shaw",
+        "date": "2007",
+        "url": "https://peer.asee.org/assessing-english-as-a-second-language-middle-school-students-ability-to-learn-engineering-concepts.pdf",
+        "locator": "印刷页12.265.1；Lara Oliver, Duke University / Lara D. Oliver作者简介段",
+        "type": "机构人物简介",
+        "contentStatus": "检索渠道返回的原PDF完整Lara简介段，非论文机制正文；直接PDF获取403",
+        "evidenceStrength": "Lara D. Oliver在Duke ECE读博士，2002年Brown计算机工程学士，研究亚阈值与栅氧隧穿漏电抑制；此处只用于作者身份；教育研究文章不计本次架构技术作品；没有Intel任职字段",
+        "role": "身份证据，不计技术作品",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "retrievedAt": "2026-11-12"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "workId": "lara-oliver-glsvlsi2006-doi1127935",
+        "text": "表2–4的原文上下文区分Psub、Pg、Ptot及全低阈值基线，并说明以总漏电重新配置算法及启用隧穿的延迟/slack计算。"
+      },
+      {
+        "workId": "lara-oliver-glsvlsi2009-doi1531610",
+        "text": "§2–4给出SDPL恢复电路、source连接限制、SPEA2尺寸优化及保留时序/逻辑约束的替换过程。"
+      }
+    ],
+    "awardsVerified": [],
+    "contributionBasis": "2006漏电建模与阈值分配算法评估、2009新逻辑拓扑及电路替换为两个不同技术问题；同领域及相同合作者不等于同一作品重复版本。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-12-lara-oliver",
+      "standard": "contribution-led-v1",
+      "meaning": "所列历史作品、局部正文与机制审计；当前Intel具体职责及产品采用未核实。",
+      "verifiedAt": "2026-11-12"
+    },
+    "challenge": {
+      "lens": "完整损耗目标与局部优化合法性",
+      "skills": [
+        "A2",
+        "A7",
+        "A9"
+      ],
+      "question": "改变阈值或逻辑风格后，节省的亚阈值功耗是否被栅隧穿、恢复电路、驱动约束及关键路径代价抵消？",
+      "variables": "亚阈值功率、栅隧穿功率、动态功率（W）、负载、活动率、路径slack（s）、驱动连接约束",
+      "model": "编辑模型：P_total=P_sub+P_gate+P_dynamic；在逻辑等价、时序及电平/连接条件同时满足时比较完整电路收益。",
+      "crossover": "总功耗净降且最大路径延迟不恶化，不能只依据亚阈值分量或单门结果。",
+      "counterexample": "恢复与驱动代价抵消节能，或忽略栅隧穿改变设计优劣排序。",
+      "validation": "建议验证（本轮未执行）：固定工艺模型、输入活动和负载，比较完整功耗与最坏路径，并做逻辑等价和连接规则检查。",
+      "transfer": "迁移至CPU低功耗单元/时序优化评估，须重新表征目标工艺，不移用2006/2009模拟收益。"
+    }
+  },
+  "independenceAudit": {
+    "countedWorks": 2,
+    "2006Question": "在双阈值分配中，三种工艺实现及总漏电目标如何影响选择；方法摘录明确改变优化目标并重新计算延迟。",
+    "2009Question": "构造SDPL逻辑门并通过尺寸优化及替换算法集成到电路；具有新的恢复/连接约束。",
+    "reason": "不同DOI、不同年份、不同研究问题及方法；不是同篇论文的版本、转载或重复演讲。",
+    "sameWorkCopiesNotCounted": "Duke记录、会议目录、RG论文页、表2–4均按对应同一DOI合并；没有计专利。"
+  },
+  "readAudit": {
+    "2006": "原论文表2–4的三个上下文段，不是仅摘要；完整PDF获取失败，不声称阅读全文或读到图像数值。",
+    "2009": "公开作者上传全文文本中首页与§2–4，原文页291–294；未逐图审查或复现实验。",
+    "retrievalNature": "一手作者论文内容，使用公开作者上传镜像；原机构元数据独立核对署名及DOI。",
+    "dateConflict": "Duke2006元数据Jan1与RG/conference日期不同；Duke2009标Nov6与正文May10–12会期不同。只采用年份及原文/官方会期，精确公开日未知。",
+    "failedAccess": [
+      {
+        "url": "https://www.researchgate.net/profile/Lara-Oliver/publication/228917425_An_evaluation_of_the_impact_of_gate_oxide_tunneling_on_dual-V_t-based_leakage_reduction_techniques/links/02bfe511925ca300af000000/An-evaluation-of-the-impact-of-gate-oxide-tunneling-on-dual-V-t-based-leakage-reduction-techniques.pdf",
+        "result": "web工具DisabledError；正常HTTP403；未绕过访问限制。"
+      },
+      {
+        "url": "https://dl.acm.org/doi/pdf/10.1145/1127908.1127935",
+        "result": "检索工具无法读取。"
+      }
+    ]
+  },
+  "delivery": "研究与兼容profile已准备；无catalog或GitHub修改，父任务负责身份合并/验证/发布。",
+  "identityRecord": "lara-oliver-identity-confirmed-20261112.json",
+  "integration": {
+    "status": "prepared",
+    "batch": "2026-11-12-lara-oliver",
+    "canonicalId": "lara-oliver",
+    "nominationConfirmed": true
+  }
+}
