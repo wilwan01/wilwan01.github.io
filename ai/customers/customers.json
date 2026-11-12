@@ -2,8 +2,8 @@
  "version": 1,
  "as_of": "2026-11-12",
  "scope": {
-  "zh": "谁在买、为何买、怎么付钱：九个买家的资本开支与财报问答，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
-  "en": "Who buys, why, and how they pay: capex and Q&A for nine buyers plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
+  "zh": "谁在买、为何买、怎么付钱：十二个买家／云运营商的资本开支、财报问答或服务模式，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。 新增Nebius、Lambda、Fluidstack为服务模式核查，不是财报覆盖扩容；云运营商既供应租赁算力也汇聚上游采购，客户支出与运营商投入不可重复加总。",
+  "en": "Who buys, why, and how they pay: capex, Q&A or service models for twelve buyers/cloud operators plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending. Nebius, Lambda and Fluidstack additions cover service models, not expanded earnings coverage; cloud operators supply rental compute and aggregate upstream procurement, so tenant spend and provider investment must not be double-counted."
  },
  "evidence_levels": {
   "primary-read": {
@@ -667,6 +667,162 @@
      "C04"
     ]
    }
+  },
+  {
+   "id": "C14",
+   "group": "neo",
+   "date": null,
+   "title": {
+    "zh": "Nebius：按需实例与预留容量分开看",
+    "en": "Nebius: distinguish on-demand instances from reserved capacity"
+   },
+   "summary": {
+    "zh": "官方产品页提供按需及可抢占虚拟机，并支持多节点集群；自助服务说明无需长期预先承诺。预留容量及价格另向销售询问。",
+    "en": "Official product pages describe on-demand and preemptible VMs and multi-node clusters. Self-service avoids long-term upfront commitments; reserved capacity and pricing are separate sales discussions."
+   },
+   "facts": [
+    {
+     "zh": "官方说明托管Kubernetes及Slurm编排。服务菜单表示提供方式，不证明任一区域即时库存、GPU利用率或最终客户已消耗算力。",
+     "en": "Managed Kubernetes and Slurm are described. A service menu establishes the offering, not live inventory in every region, utilization or end-customer compute consumption."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Nebius Compute — cloud flexibility and getting started",
+     "url": "https://nebius.com/compute",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Cloud flexibility; Getting started",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "official page body"
+    },
+    {
+     "label": "Nebius Self-service — commitments and orchestration",
+     "url": "https://nebius.com/self-service",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Flexibility without commitments; Orchestration made easy",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "official page body"
+    }
+   ],
+   "caveat": {
+    "zh": "本条是2026-11-12读取的服务范围观察，页面未注明发布日期；未核查合同、实时配额或交付。编辑关注：按需用量与预留承诺分开，不能把运营商扩张预算与租户支出重复计为需求。",
+    "en": "Service-scope observation read on 12 November 2026; publication dates are unspecified. Contracts, live quotas and delivery were not verified. Editorial focus: separate usage from reservations and avoid counting provider expansion and tenant spending twice."
+   },
+   "links": {
+    "customers": [
+     "C10",
+     "C11"
+    ]
+   }
+  },
+  {
+   "id": "C15",
+   "group": "neo",
+   "date": null,
+   "title": {
+    "zh": "Lambda：按需VM、集群预留与专用云",
+    "en": "Lambda: on-demand VMs, cluster reservations and private cloud"
+   },
+   "summary": {
+    "zh": "On-Demand Cloud提供GPU虚拟机；1-Click Clusters需选择期限、区域并申请预留；Private Cloud为按约定期间预留的裸机单租户集群。不同服务不能视为同一种现货需求。",
+    "en": "On-Demand Cloud offers GPU VMs; 1-Click Clusters require duration, region and a reservation request. Private Cloud offers bare-metal single-tenant clusters for defined periods. These are distinct demand and commitment models."
+   },
+   "facts": [
+    {
+     "zh": "ODC文档明确并非每种实例在每个区域都可用；1CC流程区分申请、批准付款与开始日启动，申请不等于已交付。",
+     "en": "ODC documentation warns that not every instance type is available in every region. The 1CC workflow separates request, approval/payment and launch on the start date; a request is not delivery."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Lambda On-Demand overview — instance types and regions",
+     "url": "https://docs.lambda.ai/on-demand-cloud/overview/",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Overview; Instance types; Regions",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "Indexed official chapter body; direct retrieval returned 403/redirect error"
+    },
+    {
+     "label": "Lambda 1-Click Clusters — reservation workflow",
+     "url": "https://docs.lambda.ai/1-click-clusters/getting-started/",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Reserving; Completing reservation",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "Indexed official chapter body; direct retrieval returned 403/redirect error"
+    },
+    {
+     "label": "Lambda Private Cloud — introduction",
+     "url": "https://docs.lambda.com/private-cloud/",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Introduction, single-tenant reservations",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "official page body"
+    }
+   ],
+   "caveat": {
+    "zh": "按需与1CC章节通过索引中的官方正文读取，直连受阻；Private Cloud正文已打开。文档与营销页集群规模范围不一致，本条不采用统一上限、价格或库存数字。未核验客户合同、收入、利用率或实际容量。",
+    "en": "ODC and 1CC official chapter bodies were read via indexed retrieval after direct access failed; Private Cloud body was opened. Documentation and marketing cluster ranges differ, so no universal ceiling, price or inventory figure is used. Customer contracts, revenue, utilization and delivered capacity remain unverified."
+   },
+   "links": {
+    "customers": [
+     "C10",
+     "C11"
+    ]
+   }
+  },
+  {
+   "id": "C16",
+   "group": "neo",
+   "date": null,
+   "title": {
+    "zh": "Fluidstack：裸机托管编排与交付边界",
+    "en": "Fluidstack: managed bare-metal orchestration and delivery boundaries"
+   },
+   "summary": {
+    "zh": "官方文档描述面向训练和推理的裸机托管Kubernetes，以及面向训练的托管Slurm；此处收录的是服务机制，不是已核实的采购量或客户合同。",
+    "en": "Official documentation describes managed bare-metal Kubernetes for training and inference and managed Slurm for training. This entry records service mechanisms, not verified procurement volume or customer contracts."
+   },
+   "facts": [
+    {
+     "zh": "文档列出主动/被动健康检查及集群可观测性；Slurm还列出拓扑感知调度。这些是厂商功能描述，不是独立验证的可靠性或性能结果。",
+     "en": "Documentation lists active/passive health checks and cluster observability; Slurm also lists topology-aware scheduling. These are vendor feature descriptions, not independently verified reliability or performance results."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Fluidstack docs — managed Kubernetes and Slurm",
+     "url": "https://docs.fluidstack.io/",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:22:37.287078+00:00",
+     "locator": "Managed Kubernetes; Managed Slurm",
+     "reading_scope": "Selected substantive sections; publication date not supplied; current observation, not a dated new announcement",
+     "access_channel": "Indexed official body; direct endpoint returned 502/503"
+    }
+   ],
+   "caveat": {
+    "zh": "官方简介正文通过索引读取，直连返回502/503，发布日期未知。报价、合同期限、地区库存、规划项目和已验收交付未核验，不将其归为已证实的按小时即租服务，也不把规划容量计入运行容量。",
+    "en": "Official introductory body was read via indexed retrieval; the live endpoint returned 502/503 and publication date is unknown. Pricing, contract terms, regional inventory, planned projects and accepted delivery were not verified. Do not assume hourly instant rental or treat planned capacity as operational."
+   },
+   "links": {
+    "customers": [
+     "C10",
+     "C11"
+    ]
+   }
   }
  ],
  "refresh_coverage": {
@@ -676,6 +832,18 @@
    "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
    "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
   },
-  "record": "research/weekly-20261112.json"
+  "record": "research/weekly-20261112.json",
+  "supplemental_reviews": [
+   {
+    "record": "research/neocloud-20261112.json",
+    "observed_at": "2026-11-12T18:22:37.287078+00:00",
+    "scope": [
+     "C14",
+     "C15",
+     "C16"
+    ],
+    "status": "service_scope_review_not_contract_or_capacity_audit"
+   }
+  ]
  }
 }
