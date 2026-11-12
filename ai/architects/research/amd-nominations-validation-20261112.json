@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-12",
+  "baselineCommit": "993b6fab5d17dce954024f81814a11edebc3a52c",
+  "batch": "2026-11-12-amd-nominations",
+  "counts": {
+    "before": 411,
+    "added": 2,
+    "final": 413,
+    "audited": 412,
+    "fixedBatches": 27,
+    "searchEntries": 1695
+  },
+  "checks": {
+    "all411ExistingProfilesUnchanged": true,
+    "fullCatalogSourceBatchDirectoryMatrixInternalLinks": "passed",
+    "twoIndependentPrimaryWorksAndMechanismBodyEach": "passed",
+    "samePatentFamilyCountedOnce": "passed",
+    "fullRenderNavMetaSearchSitemapIdempotence": "passed",
+    "gitDiffCheck": "passed",
+    "searchRecords": {
+      "Gary Smerdon": [
+        "/ai/architects/#gary-smerdon"
+      ],
+      "Robert Hormuth": [
+        "/ai/architects/#robert-hormuth"
+      ]
+    },
+    "browserInteraction": "blocked: preview initially refused connection; subsequent browser observation rejected by browser security policy. No browser pass claimed."
+  },
+  "notCompleted": [
+    "Browser interaction validation blocked in current environment",
+    "PR merge and Pages deployment verification not performed; keep PR open pending page validation"
+  ],
+  "status": "static_validation_passed_browser_blocked_not_published",
+  "anilIntegration": {
+    "baselineCommit": "94d172d06b00a07c89705cb99328b6f65d73b916",
+    "counts": {
+      "previousPR": 413,
+      "final": 414,
+      "audited": 413,
+      "searchEntries": 1696
+    },
+    "all413PreviousProfilesUnchanged": true,
+    "fullValidator": "passed",
+    "renderNavMetaSearchSitemapIdempotence": "passed",
+    "browser": "pending exact head CI",
+    "publication": "not merged or deployed"
+  }
+}

@@ -1,0 +1,106 @@
+name: Architects browser smoke
+on:
+  pull_request:
+    paths:
+      - 'ai/architects/**'
+      - 'ai/search*'
+      - '.github/workflows/architects-browser-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install isolated browser dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/browser-deps" --no-audit --no-fund playwright@1.62.1
+          "$RUNNER_TEMP/browser-deps/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Test exact PR head at desktop and mobile sizes
+        env:
+          NODE_PATH: ${{ runner.temp }}/browser-deps/node_modules
+          TESTED_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          mkdir -p browser-results
+          python3 -m http.server 8765 --bind 127.0.0.1 > browser-results/server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/ai/architects/catalog.json -o /dev/null; then break; fi
+            sleep 1
+          done
+          node <<'JS'
+          const {chromium}=require('playwright');
+          const fs=require('node:fs');
+          const assert=require('node:assert/strict');
+          const report={sha:process.env.TESTED_SHA,observedAt:new Date().toISOString(),rows:[],status:'running'};
+          (async()=>{
+            const browser=await chromium.launch();
+            try {
+              const catalog=JSON.parse(fs.readFileSync('ai/architects/catalog.json','utf8'));
+              const index=JSON.parse(fs.readFileSync('ai/search-index.json','utf8'));
+              assert(catalog.profiles.length >= 413);
+              const expectedProfiles=catalog.profiles.length;
+              const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
+              assert(catalog.profiles.some(p=>p.id==='anil-kumar-amd-austin'));
+              targets.push(['Anil Kumar','anil-kumar-amd-austin']);
+              report.testedProfiles=targets;
+              assert.equal(index.count,index.entries.length);
+              assert(!index.entries.some(x=>x.u.includes('/research/')));
+              for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
+                const page=await browser.newPage({viewport});
+                const errors=[],failed=[];
+                page.on('pageerror',e=>errors.push(e.message));
+                page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:8765/')&&r.status()>=400)failed.push({url:r.url(),status:r.status()});});
+                assert.equal((await page.goto('http://127.0.0.1:8765/ai/architects/',{waitUntil:'networkidle'})).status(),200);
+                assert.equal(await page.locator('article.profile').count(),expectedProfiles);
+                for(const [name,id] of targets){
+                  await page.locator('#matrix-name').fill(name);
+                  const row=page.locator('#architect-skill-table tbody tr:not([hidden])');
+                  assert.equal(await row.count(),1);
+                  assert.equal(await row.locator(`a[href="#${id}"]`).count(),1);
+                  await row.locator(`a[href="#${id}"]`).click();
+                  await page.locator(`#${id}`).waitFor({state:'visible'});
+                  const summary=page.locator(`#${id} details.research-detail > summary`).first();
+                  assert.equal(await summary.count(),1);await summary.click();assert.equal(await summary.evaluate(e=>e.parentElement.open),true);
+                }
+                await page.locator('#matrix-name').fill('');
+                assert.equal(await page.locator('#architect-skill-table tbody tr:not([hidden])').count(),expectedProfiles);
+                assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
+                await page.screenshot({path:`browser-results/architects-${viewport.width}.png`});
+                for(const [name,id] of targets){
+                  await page.goto('http://127.0.0.1:8765/ai/search.html',{waitUntil:'networkidle'});
+                  await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('entries indexed'));
+                  await page.locator('#q').fill(name);
+                  await page.locator('#chips [data-s="architects"]').click();
+                  const link=page.locator(`#results a[href="/ai/architects/#${id}"]`);
+                  assert.equal(await link.count(),1);await link.click();
+                  await page.locator(`#${id}`).waitFor({state:'visible'});
+                }
+                await page.goto('http://127.0.0.1:8765/ai/search.html',{waitUntil:'networkidle'});
+                await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('entries indexed'));
+                await page.locator('#q').fill('zzznomatch-pr79');
+                assert((await page.locator('#count').innerText()).startsWith('0 '));
+                assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
+                await page.screenshot({path:`browser-results/search-${viewport.width}.png`});
+                report.rows.push({viewport,profiles:expectedProfiles,indexEntries:index.count,filters:true,searchAndAnchors:true,noResult:true,jsErrors:errors,failedResources:failed});
+                assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);await page.close();
+              }
+              report.status='passed';
+            }catch(e){report.status='failed';report.error=e.stack;throw e;}
+            finally{fs.writeFileSync('browser-results/report.json',JSON.stringify(report,null,2)+'\n');await browser.close();}
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: architects-browser-${{ github.event.pull_request.head.sha }}
+          path: browser-results/
+          retention-days: 14
