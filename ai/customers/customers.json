@@ -2,8 +2,8 @@
  "version": 1,
  "as_of": "2026-11-12",
  "scope": {
-  "zh": "谁在买、为何买、怎么付钱：十二个买家／云运营商的资本开支、财报问答或服务模式，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。 新增Nebius、Lambda、Fluidstack为服务模式核查，不是财报覆盖扩容；云运营商既供应租赁算力也汇聚上游采购，客户支出与运营商投入不可重复加总。",
-  "en": "Who buys, why, and how they pay: capex, Q&A or service models for twelve buyers/cloud operators plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending. Nebius, Lambda and Fluidstack additions cover service models, not expanded earnings coverage; cloud operators supply rental compute and aggregate upstream procurement, so tenant spend and provider investment must not be double-counted."
+  "zh": "谁在买、为何买、怎么付钱：十四个买家／云运营商的资本开支、财报问答或服务模式，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。 新增Nebius、Lambda、Fluidstack、GMI Cloud、IREN为服务模式核查，不是财报覆盖扩容；云运营商既供应租赁算力也汇聚上游采购，客户支出与运营商投入不可重复加总。",
+  "en": "Who buys, why, and how they pay: capex, Q&A or service models for fourteen buyers/cloud operators plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending. Nebius, Lambda, Fluidstack, GMI Cloud and IREN additions cover service models, not expanded earnings coverage; cloud operators supply rental compute and aggregate upstream procurement, so tenant spend and provider investment must not be double-counted."
  },
  "evidence_levels": {
   "primary-read": {
@@ -823,6 +823,110 @@
      "C11"
     ]
    }
+  },
+  {
+   "id": "C17",
+   "group": "neo",
+   "date": null,
+   "title": {
+    "zh": "GMI Cloud：推理API、裸机与预留服务分层",
+    "en": "GMI Cloud: distinguish inference APIs, bare metal and reservations"
+   },
+   "summary": {
+    "zh": "官方页面提供serverless推理、容器服务和专用裸机GPU；GPU页提及按需与预留容量。它们的调度边界和承诺方式不同，不能合为同一种租赁需求。",
+    "en": "Official pages describe serverless inference, containers and dedicated bare-metal GPUs, with on-demand and reserved plans. Scheduling boundaries and commitments differ; they are not one uniform rental-demand measure."
+   },
+   "facts": [
+    {
+     "zh": "产品可用性标签存在冲突：主页Blackwell为预订／即将推出，GPU页则分SKU给出可用、有限可用或预订；GB300同一处同时出现可用与预订字样。",
+     "en": "Availability labels conflict: the homepage marks Blackwell as preorder/coming soon, while the GPU page mixes available, limited and preorder labels by SKU; its GB300 entry contains both available and preorder wording."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "GMI Cloud — serverless and GPU pricing status",
+     "url": "https://www.gmicloud.ai/en",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:23:58.523359+00:00",
+     "locator": "Start serverless; dedicated infrastructure; GPU Pricing",
+     "reading_scope": "Selected official product-page body; publication date unspecified; no contract or live provisioning verification",
+     "access_channel": "official page body"
+    },
+    {
+     "label": "GMI GPUs — availability labels and cluster architecture",
+     "url": "https://www.gmicloud.ai/en/gpus",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:23:58.523359+00:00",
+     "locator": "Production-ready GPUs; Choose the right cluster architecture",
+     "reading_scope": "Selected official product-page body; publication date unspecified; no contract or live provisioning verification",
+     "access_channel": "official page body"
+    }
+   ],
+   "caveat": {
+    "zh": "据此不能确认任一地区即时库存或交付日期。未复述缺少完整配置的性能倍数、客户节省比例或价格；须按具体SKU、地域、期限与订单确认。",
+    "en": "These pages do not establish live regional inventory or delivery dates. Unconfigured performance multipliers, customer savings and prices are excluded; confirm SKU, region, term and order-specific delivery."
+   },
+   "links": {
+    "customers": [
+     "C10",
+     "C11"
+    ]
+   }
+  },
+  {
+   "id": "C18",
+   "group": "neo",
+   "date": null,
+   "title": {
+    "zh": "IREN：GPU租用、机房交付与建设合作分开看",
+    "en": "IREN: distinguish GPU rental, turnkey facilities and construction"
+   },
+   "summary": {
+    "zh": "官方Solutions将GPU访问、供客户自有硬件使用的交钥匙数据中心、以及设计建设合作分别列出；AI Cloud页描述自营设施中的GPU集群服务。不同层级不能同时计作新增算力需求。",
+    "en": "Official Solutions distinguishes GPU access, turnkey data centers for customer-owned hardware, and design/build partnerships. AI Cloud describes GPU cluster services in owned/operated facilities; these layers must not be double-counted as incremental compute demand."
+   },
+   "facts": [
+    {
+     "zh": "官网站点列表区分在建、开发中与规划；secured power属于电力资源口径，不等于已安装、已验收或已出租的GPU容量。",
+     "en": "Site listings distinguish construction, development and planning. Secured power is an electricity-resource measure, not installed, accepted or rented GPU capacity."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "IREN AI Cloud — GPU rental and support",
+     "url": "https://iren.com/solutions/gpu-cloud/ai-cloud",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:23:58.523359+00:00",
+     "locator": "AI Cloud; Launch sooner; Support",
+     "reading_scope": "Selected official product-page body; publication date unspecified; no contract or live provisioning verification",
+     "access_channel": "official page body"
+    },
+    {
+     "label": "IREN — solutions and site development status",
+     "url": "https://iren.com/",
+     "type": "primary",
+     "published_at": null,
+     "read_at": "2026-11-12T18:23:58.523359+00:00",
+     "locator": "Solutions; location status; Secured Power",
+     "reading_scope": "Selected official product-page body; publication date unspecified; no contract or live provisioning verification",
+     "access_channel": "official page body"
+    }
+   ],
+   "caveat": {
+    "zh": "未核实客户合同、利用率、实际部署GPU数量或项目投运。页面带宽数字的单位及聚合范围未澄清，不用于比较；报价、地域与交付条件须另查。",
+    "en": "Customer contracts, utilization, deployed GPU counts and project commissioning were not verified. The page bandwidth figure lacks a reconciled unit/aggregation boundary here and is excluded from comparison; quotes, region and delivery conditions need separate checks."
+   },
+   "links": {
+    "customers": [
+     "C10",
+     "C11"
+    ]
+   }
   }
  ],
  "refresh_coverage": {
@@ -836,11 +940,13 @@
   "supplemental_reviews": [
    {
     "record": "research/neocloud-20261112.json",
-    "observed_at": "2026-11-12T18:22:37.287078+00:00",
+    "observed_at": "2026-11-12T18:23:58.523359+00:00",
     "scope": [
      "C14",
      "C15",
-     "C16"
+     "C16",
+     "C17",
+     "C18"
     ],
     "status": "service_scope_review_not_contract_or_capacity_audit"
    }
