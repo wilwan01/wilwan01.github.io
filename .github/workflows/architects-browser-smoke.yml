@@ -48,6 +48,9 @@ jobs:
               const index=JSON.parse(fs.readFileSync('ai/search-index.json','utf8'));
               assert(catalog.profiles.length >= 413);
               const expectedProfiles=catalog.profiles.length;
+              const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
+              if(catalog.profiles.some(p=>p.id==='anil-kumar')) targets.push(['Anil Kumar','anil-kumar']);
+              report.testedProfiles=targets;
               assert.equal(index.count,index.entries.length);
               assert(!index.entries.some(x=>x.u.includes('/research/')));
               for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
@@ -57,7 +60,7 @@ jobs:
                 page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:8765/')&&r.status()>=400)failed.push({url:r.url(),status:r.status()});});
                 assert.equal((await page.goto('http://127.0.0.1:8765/ai/architects/',{waitUntil:'networkidle'})).status(),200);
                 assert.equal(await page.locator('article.profile').count(),expectedProfiles);
-                for(const [name,id] of [['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']]){
+                for(const [name,id] of targets){
                   await page.locator('#matrix-name').fill(name);
                   const row=page.locator('#architect-skill-table tbody tr:not([hidden])');
                   assert.equal(await row.count(),1);
@@ -71,7 +74,7 @@ jobs:
                 assert.equal(await page.locator('#architect-skill-table tbody tr:not([hidden])').count(),expectedProfiles);
                 assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
                 await page.screenshot({path:`browser-results/architects-${viewport.width}.png`});
-                for(const [name,id] of [['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']]){
+                for(const [name,id] of targets){
                   await page.goto('http://127.0.0.1:8765/ai/search.html',{waitUntil:'networkidle'});
                   await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('entries indexed'));
                   await page.locator('#q').fill(name);
