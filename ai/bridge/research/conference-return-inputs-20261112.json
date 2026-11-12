@@ -1,0 +1,377 @@
+{
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "checked_at": "2026-11-12T12:08:57.375522+00:00",
+  "classification": "historical supplementation and retrospective calculation",
+  "method_file": "conference-return-method-20261112.json",
+  "sources": [
+    {
+      "id": "amd-prices",
+      "url": "https://stockanalysis.com/stocks/amd/history/",
+      "published_date": null,
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "market-data-provider mirror: S&P Global Market Intelligence",
+      "locator": "Historical Data, selected dates; Data Source footer",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "AMD split-adjusted USD Close; 11 bounded observations, not full database",
+      "provider_last_updated": "2026-11-11",
+      "date_note": "Provider page last-updated date, not original publication timestamp for individual prices."
+    },
+    {
+      "id": "soxx-prices",
+      "url": "https://stockanalysis.com/etf/soxx/history/",
+      "published_date": null,
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "market-data-provider mirror: S&P Global Market Intelligence",
+      "locator": "Historical Data, matching selected dates; Data Source footer",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "SOXX split-adjusted USD Close; no dividend reinvestment",
+      "provider_last_updated": "2026-11-11",
+      "date_note": "Provider page last-updated date, not original publication timestamp for individual prices."
+    },
+    {
+      "id": "amd-calendar",
+      "url": "https://ir.amd.com/news-events/ir-calendar",
+      "published_date": null,
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "Past Events: September 11, 2026; November 3, 2026",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Scheduled GS date and clock label; not individual answer timestamp"
+    },
+    {
+      "id": "gs-event",
+      "url": "https://ir.amd.com/news-events/ir-calendar/detail/20260911-goldman-sachs-communacopia-technology-conference",
+      "published_date": "2026-09-11",
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "Event heading; official transcript link",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Conference identity and original transcript provenance"
+    },
+    {
+      "id": "gs-body",
+      "url": "https://stockanalysis.com/stocks/amd/transcripts/738878-goldman-sachs-communacopia-technology-conference-2026/",
+      "published_date": "2026-09-11",
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "public transcript mirror, attributed to Quartr",
+      "locator": "Jim Schneider server-CPU question; Dan McNamara answer on distributed systems and CPU/GW, lines233–260; footer",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Management describes workload/PUE dependence; no universal CPU/GW conversion"
+    },
+    {
+      "id": "q2-prior",
+      "url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000121/q22026991.htm",
+      "published_date": "2026-08-04",
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "Recent Highlights pp2–3",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Before GS: sixth-generation EPYC and agentic workloads already announced"
+    },
+    {
+      "id": "release-times",
+      "url": "https://ir.amd.com/news-events/press-releases",
+      "published_date": null,
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "November 3 and November 10 entries",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Q3 release16:15 EST; SP7 release12:00 EST; published release times, not proved earliest global disclosure"
+    },
+    {
+      "id": "q3",
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results",
+      "published_date": "2026-11-03",
+      "read_at": "2026-11-12T12:09:54.073330+00:00",
+      "kind": "primary",
+      "locator": "Recent Highlights; management commentary",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Prior-round source re-used for SP7 baseline; no claim of rechecking full Q3 Q&A"
+    },
+    {
+      "id": "sp7",
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1305/amd-showcases-6th-gen-amd-epyc-processors-to-lead-next-era-of-ai-and-enterprise-computing",
+      "published_date": "2026-11-10",
+      "read_at": "2026-11-12T12:09:54.073340+00:00",
+      "kind": "primary",
+      "locator": "News Highlights and Broad Ecosystem Support",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Original prior-round availability case; noon release timestamp now resolved"
+    },
+    {
+      "id": "fomc",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "published_date": "2026-09-16",
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "Release timestamp and decision",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "FOMC statement occurs inside GS five-day window; no assertion it explains measured return"
+    },
+    {
+      "id": "world-labs",
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute",
+      "published_date": "2026-09-28",
+      "read_at": "2026-11-12T12:08:57.375522+00:00",
+      "kind": "primary",
+      "locator": "Opening announcement; deal terms",
+      "read_scope": "Specified body/table sections only; no audio verification",
+      "supports": "Acquisition announcement inside GS20-day window"
+    },
+    {
+      "id": "epyc-nov9",
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1304/amd-epyc-expands-its-leadership-at-the-foundation-of-ai",
+      "published_date": "2026-11-09",
+      "published_at": "2026-11-09T08:00:00-05:00",
+      "read_at": "2026-11-12T12:13:11.590835+00:00",
+      "kind": "primary",
+      "locator": "News Highlights and opening announcement; timestamp from AMD release archive",
+      "read_scope": "Announcement body relevant sections",
+      "supports": "AMD announces EPYC host infrastructure for Google Cloud TPU 8tx; distinct intervening disclosure, not an isolated SP7 event."
+    }
+  ],
+  "price_rows": [
+    {
+      "date": "2026-09-10",
+      "AMD": 503.6,
+      "SOXX": 172.48
+    },
+    {
+      "date": "2026-09-11",
+      "AMD": 516.13,
+      "SOXX": 175.69
+    },
+    {
+      "date": "2026-09-14",
+      "AMD": 493.41,
+      "SOXX": 165.8
+    },
+    {
+      "date": "2026-09-18",
+      "AMD": 559.82,
+      "SOXX": 177.69
+    },
+    {
+      "date": "2026-10-09",
+      "AMD": 608.1,
+      "SOXX": 186.47
+    },
+    {
+      "date": "2026-11-03",
+      "AMD": 483.9,
+      "SOXX": 155.0
+    },
+    {
+      "date": "2026-11-04",
+      "AMD": 488.78,
+      "SOXX": 150.14
+    },
+    {
+      "date": "2026-11-05",
+      "AMD": 404.4,
+      "SOXX": 131.9
+    },
+    {
+      "date": "2026-11-09",
+      "AMD": 508.58,
+      "SOXX": 146.76
+    },
+    {
+      "date": "2026-11-10",
+      "AMD": 515.21,
+      "SOXX": 146.59
+    },
+    {
+      "date": "2026-11-11",
+      "AMD": 552.9,
+      "SOXX": 155.4
+    }
+  ],
+  "price_scope": "11 selected dates × 2 securities; Close only. Same provider for matched dates. Source says split-adjusted. No underlying licensed price history redistributed; no intraday price used. Retrieved after cutoff but observations end Nov11; provider vintage as originally known at cutoff cannot be independently reconstructed.",
+  "events": [
+    {
+      "id": "AMD-20260911-GS",
+      "event_date": "2026-09-11",
+      "event_type": "historical conference, newly supplemented",
+      "baseline": "2026-09-10",
+      "published_clock": "AMD calendar:08:50 PST; secondary transcript header:11:50 EDT. Seasonal timezone discrepancy unresolved; both within regular session.",
+      "exact_first_disclosure_time": null,
+      "novelty": "Not established. August4 filing already announced sixth-generation EPYC and agentic workloads. No first-ever claim or prerecorded surprise forecast.",
+      "mechanism": "Management distinguishes agent sandbox, accelerator host and general-purpose CPU workloads; CPU/GW depends on workload mix and PUE. Editorial implication: do not multiply a universal CPU/GW coefficient into revenue.",
+      "hypotheses": [
+        "H2",
+        "H3",
+        "H7"
+      ],
+      "source_ids": [
+        "amd-calendar",
+        "gs-event",
+        "gs-body",
+        "q2-prior"
+      ],
+      "endpoints": {
+        "event_day": "2026-09-11",
+        "1d": "2026-09-14",
+        "5d": "2026-09-18",
+        "20d": "2026-10-09"
+      },
+      "sessions_after_event": [
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17",
+        "2026-09-18",
+        "2026-09-21",
+        "2026-09-22",
+        "2026-09-23",
+        "2026-09-24",
+        "2026-09-25",
+        "2026-09-28",
+        "2026-09-29",
+        "2026-09-30",
+        "2026-10-01",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ],
+      "confounders": [
+        {
+          "source": "fomc",
+          "date": "2026-09-16",
+          "scope": "five-day and twenty-day windows"
+        },
+        {
+          "source": "world-labs",
+          "date": "2026-09-28",
+          "scope": "twenty-day window"
+        }
+      ],
+      "earnings_check": "AMD official release archive: Q2 Aug4 precedes and Q3 Nov3 follows this window. Other issuers earnings and all macro events not exhaustively controlled."
+    },
+    {
+      "id": "AMD-20261103-Q3",
+      "event_date": "2026-11-03",
+      "event_type": "earnings release; inherited case rechecked",
+      "baseline": "2026-11-03",
+      "published_clock": "2026-11-03T16:15:00-05:00",
+      "exact_first_disclosure_time": null,
+      "source_ids": [
+        "release-times",
+        "q3"
+      ],
+      "endpoints": {
+        "event_day": null,
+        "1d": "2026-11-04",
+        "5d": "2026-11-10",
+        "20d": null
+      },
+      "sessions_after_event": [
+        "2026-11-04",
+        "2026-11-05",
+        "2026-11-06",
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-11"
+      ],
+      "pending": {
+        "event_day": "Same-date regular close predates release; no after-hours series.",
+        "20d": "Not mature at fixed cutoff; no endpoint inferred."
+      },
+      "confounders": [
+        {
+          "source": "soxx-prices",
+          "date": "2026-11-05",
+          "scope": "Large sector price decline observed; cause not attributed."
+        },
+        {
+          "source": "sp7",
+          "date": "2026-11-10",
+          "scope": "Separate AMD product release inside five-day window."
+        },
+        {
+          "source": "epyc-nov9",
+          "date": "2026-11-09",
+          "scope": "08:00 EST EPYC/TPU 8tx announcement inside Q3 five-day window; effects not separated."
+        }
+      ],
+      "novelty": "This supplement validates prices and release timing, not full inherited technical claims or Q&A."
+    },
+    {
+      "id": "AMD-20261110-SP7",
+      "event_date": "2026-11-10",
+      "event_type": "original product availability case, updated",
+      "baseline": "2026-11-09",
+      "published_clock": "2026-11-10T12:00:00-05:00",
+      "exact_first_disclosure_time": null,
+      "source_ids": [
+        "release-times",
+        "sp7",
+        "q3"
+      ],
+      "endpoints": {
+        "event_day": "2026-11-10",
+        "1d": "2026-11-11",
+        "5d": null,
+        "20d": null
+      },
+      "sessions_after_event": [
+        "2026-11-11"
+      ],
+      "pending": {
+        "5d": "Not mature at cutoff.",
+        "20d": "Not mature at cutoff."
+      },
+      "confounders": [
+        {
+          "source": "q3",
+          "date": "2026-11-03",
+          "scope": "Prior earnings and its continuing repricing; recent sector shock. Other same-day news not exhaustively controlled."
+        },
+        {
+          "source": "epyc-nov9",
+          "date": "2026-11-09",
+          "scope": "SP7 baseline is Nov9 close, already after this 08:00 EST announcement. Any continuing reaction cannot be isolated from SP7."
+        }
+      ],
+      "novelty": "Prior ledger separates availability increment from previously disclosed ramp; noon timestamp is documented release, not proof of earliest worldwide statement."
+    }
+  ],
+  "hypothesis_assessment": {
+    "H1": "Availability case now has bounded daily association; novelty and causality remain unproved.",
+    "H2": "GS body provides a model boundary; no isolated Q&A price attribution.",
+    "H3": "CPU content model remains workload-dependent; no procurement quantity inferred.",
+    "H4": "Not tested.",
+    "H5": "Not tested by these return calculations.",
+    "H6": "Unsupported; no normalized audience data.",
+    "H7": "Identified macro and corporate events contaminate multi-day windows; price effects not separated."
+  },
+  "gaps": [
+    "Official GS PDF returns403 in web and standard HTTP retrieval; Quartr public body used as labelled mirror. No audio or exact answer clocks verified.",
+    "GS calendar PST label conflicts with seasonal EDT mirror header; only daily windows used.",
+    "Yahoo history/Chart requests returned429; issuer price-history HTML had no price rows; second-provider reconciliation incomplete.",
+    "Earliest global disclosure and novelty not established for the three cases.",
+    "Corporate-action conventions documented by provider; no independent exchange vintage reconciliation.",
+    "Remaining inherited report cases unverified; full hypothesis scorecard migration remains partial."
+  ],
+  "method_application": {
+    "skill": "analyze-conference-qa",
+    "profile": "Investor conference: model boundary and execution risk; one selected substantive exchange, not full-call/audience coverage",
+    "read_version": "2026-11-12 installed SKILL.md and references/report-profiles.md",
+    "skill_changed": false
+  },
+  "selected_qa": {
+    "id": "AMD-GS-20260911-CPU-GW",
+    "questioner": "Jim Schneider, Goldman Sachs semiconductor analyst",
+    "respondent": "Dan McNamara, AMD SVP and GM Compute and Enterprise AI",
+    "scope": "Selected CPU/GW exchange; no population or recurring-person-pattern count",
+    "locator": "gs-body, server CPU question and follow-up discussion, lines233–260",
+    "question_summary": "How does agentic work change CPU attachment and systems?",
+    "answer_summary": "Management describes separate CPU roles and workload/PUE dependence instead of one universal CPU/GW coefficient.",
+    "answer_status": "Mechanism discussed; universal numeric conversion deliberately not given. Not independently demonstrated.",
+    "timestamp": null,
+    "next_evidence": "Customer workload mix, measured CPU utilization/power and deployment volume."
+  }
+}

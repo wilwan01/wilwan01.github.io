@@ -1,0 +1,104 @@
+{
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "method_sha256": "ce4f303c97cd9a18debff236a9ecf74203c2ad4bf6365b719590edbf472ebe3e",
+  "input_sha256": "cd4af2b21603c3408252a2d8c601c4cb91beb67c310e3b55e306ceceaee8481f",
+  "unit": "percent; relative difference in percentage points",
+  "interpretation": "Retrospective cumulative split-adjusted close price association, excluding dividends; not causal or ex-ante.",
+  "events": [
+    {
+      "id": "AMD-20260911-GS",
+      "windows": {
+        "event_day": {
+          "status": "calculated",
+          "baseline": "2026-09-10",
+          "endpoint": "2026-09-11",
+          "AMD_return_pct": 2.488086,
+          "SOXX_return_pct": 1.861085,
+          "relative_pp": 0.627
+        },
+        "1d": {
+          "status": "calculated",
+          "baseline": "2026-09-10",
+          "endpoint": "2026-09-14",
+          "AMD_return_pct": -2.023431,
+          "SOXX_return_pct": -3.872913,
+          "relative_pp": 1.849482
+        },
+        "5d": {
+          "status": "calculated",
+          "baseline": "2026-09-10",
+          "endpoint": "2026-09-18",
+          "AMD_return_pct": 11.163622,
+          "SOXX_return_pct": 3.02064,
+          "relative_pp": 8.142982
+        },
+        "20d": {
+          "status": "calculated",
+          "baseline": "2026-09-10",
+          "endpoint": "2026-10-09",
+          "AMD_return_pct": 20.750596,
+          "SOXX_return_pct": 8.111085,
+          "relative_pp": 12.63951
+        }
+      }
+    },
+    {
+      "id": "AMD-20261103-Q3",
+      "windows": {
+        "event_day": {
+          "status": "unavailable",
+          "reason": "Same-date regular close predates release; no after-hours series."
+        },
+        "1d": {
+          "status": "calculated",
+          "baseline": "2026-11-03",
+          "endpoint": "2026-11-04",
+          "AMD_return_pct": 1.008473,
+          "SOXX_return_pct": -3.135484,
+          "relative_pp": 4.143957
+        },
+        "5d": {
+          "status": "calculated",
+          "baseline": "2026-11-03",
+          "endpoint": "2026-11-10",
+          "AMD_return_pct": 6.470345,
+          "SOXX_return_pct": -5.425806,
+          "relative_pp": 11.896152
+        },
+        "20d": {
+          "status": "unavailable",
+          "reason": "Not mature at fixed cutoff; no endpoint inferred."
+        }
+      }
+    },
+    {
+      "id": "AMD-20261110-SP7",
+      "windows": {
+        "event_day": {
+          "status": "calculated",
+          "baseline": "2026-11-09",
+          "endpoint": "2026-11-10",
+          "AMD_return_pct": 1.30363,
+          "SOXX_return_pct": -0.115835,
+          "relative_pp": 1.419465
+        },
+        "1d": {
+          "status": "calculated",
+          "baseline": "2026-11-09",
+          "endpoint": "2026-11-11",
+          "AMD_return_pct": 8.71446,
+          "SOXX_return_pct": 5.887163,
+          "relative_pp": 2.827297
+        },
+        "5d": {
+          "status": "unavailable",
+          "reason": "Not mature at cutoff."
+        },
+        "20d": {
+          "status": "unavailable",
+          "reason": "Not mature at cutoff."
+        }
+      }
+    }
+  ]
+}

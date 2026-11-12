@@ -1,0 +1,468 @@
+{
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "module": "sell-side thought-atlas research handoff",
+  "status": "evidence_reviewed_integrated_draft_pending_root_release",
+  "counts": {
+    "candidates": 4,
+    "distinct_source_documents": 4,
+    "proposed_cards": 12
+  },
+  "sources": [
+    {
+      "id": "W112F-TS2Q26",
+      "title": "TSMC Q2 2026 earnings call",
+      "date": "2026-07-16",
+      "date_basis": "Event date from issuer-hosted transcript masthead; not upload date.",
+      "url": "https://investor.tsmc.com/schinese/encrypt/files/encrypt_file/reports/2026-08/3e494f0c14dd0890f897aa044415e21d93486cc4/TSMC%202Q26%20Transcript.pdf",
+      "authors": "Named analyst questioners; issuer management answers; transcript publisher retains text authorship.",
+      "access": "Issuer-hosted PDF; roster and selected named Q&A read 2026-11-12. No audio verification or proprietary analyst reports.",
+      "retrieval_level": "primary issuer-hosted selected transcript passages",
+      "same_underlying_artifact_as": [
+        "W112-SL02"
+      ],
+      "summary": "Use only the candidate-specific selected-question summaries below; management statements remain separate."
+    },
+    {
+      "id": "W112F-TS3Q26",
+      "title": "TSMC Q3 2026 earnings call",
+      "date": "2026-10-15",
+      "date_basis": "Event date from issuer-hosted transcript masthead; not upload date.",
+      "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf",
+      "authors": "Named analyst questioners; issuer management answers; transcript publisher retains text authorship.",
+      "access": "Issuer-hosted PDF; roster and selected named Q&A read 2026-11-12. No audio verification or proprietary analyst reports.",
+      "retrieval_level": "primary issuer-hosted selected transcript passages",
+      "same_underlying_artifact_as": [
+        "W112-SL03"
+      ],
+      "summary": "Use only the candidate-specific selected-question summaries below; management statements remain separate."
+    },
+    {
+      "id": "W112F-ARM3Q25",
+      "title": "Arm Q3 FY2025 earnings call",
+      "date": "2025-02-05",
+      "date_basis": "Event date from issuer-hosted transcript masthead; not upload date.",
+      "url": "https://investors.arm.com/static-files/f1190d81-408d-4276-a30c-b27c1ce5a30a",
+      "authors": "Named analyst questioners; issuer management answers; transcript publisher retains text authorship.",
+      "access": "Issuer-hosted PDF; roster and selected named Q&A read 2026-11-12. No audio verification or proprietary analyst reports.",
+      "retrieval_level": "primary issuer-hosted selected transcript passages",
+      "same_underlying_artifact_as": [],
+      "summary": "Use only the candidate-specific selected-question summaries below; management statements remain separate."
+    },
+    {
+      "id": "W112F-TS1Q25",
+      "title": "TSMC Q1 2025 earnings call",
+      "date": "2025-04-17",
+      "date_basis": "Event date from issuer-hosted transcript masthead; not upload date.",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2025-04/7630274eecc1197a4e3ea6a415f44a47204fe10a/TSMC%201Q25%20Transcript.pdf",
+      "authors": "Named analyst questioners; issuer management answers; transcript publisher retains text authorship.",
+      "access": "Issuer-hosted PDF; roster and selected named Q&A read 2026-11-12. No audio verification or proprietary analyst reports.",
+      "retrieval_level": "primary issuer-hosted selected transcript passages",
+      "same_underlying_artifact_as": [],
+      "summary": "Use only the candidate-specific selected-question summaries below; management statements remain separate."
+    }
+  ],
+  "profiles": [
+    {
+      "id": "charles-shi-needham",
+      "name": "Charles Shi",
+      "side": "sell",
+      "role": "Needham & Company analyst at source time",
+      "current_role": {
+        "title": "Not independently reverified beyond latest cited call roster",
+        "as_of": "2025-04-17",
+        "access": "Source-time identity only; do not imply current employment after this date."
+      },
+      "scope": "Reconcile legal and strategic narratives with the actual financial baseline",
+      "boundary": "Two independently dated public call samples. These show questions asked, not a permanent philosophy, licensed model, forecast accuracy or investment performance. No recurring personal-pattern certification.",
+      "readings": [
+        {
+          "source_id": "W112F-ARM3Q25",
+          "locator": "printed pp.8–9; operator introduction and Charles Shi questions",
+          "summary": "Shi probes litigation assumptions in revenue forecasts and whether a stable royalty mix masks absolute growth.",
+          "attribution": "Questions by Shi; royalty outlook and explanation by Jason Child/Rene Haas."
+        },
+        {
+          "source_id": "W112F-TS1Q25",
+          "locator": "printed pp.12–13; Charles Shi questions and follow-up",
+          "summary": "Shi asks what subsidy fairness means and distinguishes factory-support R&D from developing new process nodes.",
+          "attribution": "Questions by Shi; subsidy/R&D assertions by TSMC management."
+        }
+      ],
+      "card_ideas": [
+        {
+          "title": "Legal news versus the embedded forecast",
+          "source_id": "W112F-ARM3Q25",
+          "locator": "pp.8–9, Charles Shi first exchange",
+          "model": "Rebuild the pre-event forecast before assigning an incremental earnings effect to litigation news.",
+          "variables_units": "royalty rate (%), eligible sales ($), renewal date, forecast assumption",
+          "decision_boundary": "Revise forecast only when modeled contract economics change.",
+          "counterexample": "A legal loss can still alter bargaining leverage or future renewals even if near-term forecast assumed loss.",
+          "test": "Compare dated pre-event assumptions with disclosed contract terms and subsequent royalty receipts.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "An industrial license dispute with unchanged near-term invoicing but uncertain renewal.",
+          "tags": [
+            "F4",
+            "F14",
+            "F20"
+          ],
+          "synthetic_question": "Synthetic: A license firm forecasts $100m royalties assuming it loses a lawsuit. It then loses. What immediate revenue revision follows from this fact alone?",
+          "synthetic_answer_key": "Zero from that fact alone: the loss was in the baseline. Check changes to rates, duration, enforcement and renewal before revising.",
+          "new_constraint": "New evidence: renewal prices may fall20% in two years. Separate present revenue from future risk.",
+          "synthetic": true
+        },
+        {
+          "title": "A flat mix share can conceal rapid absolute growth",
+          "source_id": "W112F-ARM3Q25",
+          "locator": "pp.8–9, Charles Shi royalty follow-up",
+          "model": "Separate component dollars from total-company denominator before diagnosing adoption stagnation.",
+          "variables_units": "component share (%), total royalties ($), period",
+          "decision_boundary": "Use component revenue = share × comparable total; diagnose only after separating mix from scale.",
+          "counterexample": "Flat share can still hide unit weakness when royalty rates rose.",
+          "test": "Decompose units, rates, mix and denominator growth across comparable periods.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "Cloud premium-tier share remains flat as total usage doubles.",
+          "tags": [
+            "F2",
+            "F5",
+            "F11"
+          ],
+          "synthetic_question": "Synthetic: Premium royalty share stays25% as total royalties rise from$100m to$140m. Has premium revenue stalled?",
+          "synthetic_answer_key": "No. It rises$25m→$35m,40%. Units and rates still need separating.",
+          "new_constraint": "New evidence: premium rates rose50%. What can you infer about eligible sales?",
+          "synthetic": true
+        },
+        {
+          "title": "R&D headcount is not autonomous technology capability",
+          "source_id": "W112F-TS1Q25",
+          "locator": "pp.12–13, Charles Shi R&D question and follow-up",
+          "model": "Map research scope, decision rights and deliverables before treating a local center as independent innovation capacity.",
+          "variables_units": "engineers, budget ($), project scope, qualification milestones",
+          "decision_boundary": "Claim capability only when local responsibility and validated deliverables support it.",
+          "counterexample": "A small center may lead a critical module despite limited headcount.",
+          "test": "Track ownership of process experiments, patents, qualification signoff and technology transfer.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "A packaging supplier announces a foreign design center.",
+          "tags": [
+            "F17",
+            "F18",
+            "F20"
+          ],
+          "synthetic_question": "Synthetic: A foreign R&D center has1,000 engineers but only factory yield-support responsibility. Is it evidence of independent next-node development?",
+          "synthetic_answer_key": "No. Headcount does not establish design authority or deliverables. Seek experimental ownership, qualification responsibility and new-node outputs.",
+          "new_constraint": "New evidence:50engineers own a critical reusable process module. Reassess capability without treating headcount as the score.",
+          "synthetic": true
+        }
+      ],
+      "gaps": [
+        "No complete licensed research or frozen estimates obtained.",
+        "Current employment after the latest named call is not independently confirmed."
+      ],
+      "editorial_status": "All models, thresholds, counterexamples and training prompts are editor-created; not analyst quotations."
+    },
+    {
+      "id": "arthur-lai-macquarie",
+      "name": "Arthur Lai",
+      "side": "sell",
+      "role": "Macquarie analyst at source time",
+      "current_role": {
+        "title": "Not independently reverified beyond latest cited call roster",
+        "as_of": "2026-10-15",
+        "access": "Source-time identity only; do not imply current employment after this date."
+      },
+      "scope": "Test where product boundaries change competitive and demand interpretations",
+      "boundary": "Two independently dated public call samples. These show questions asked, not a permanent philosophy, licensed model, forecast accuracy or investment performance. No recurring personal-pattern certification.",
+      "readings": [
+        {
+          "source_id": "W112F-TS2Q26",
+          "locator": "printed pp.9–10; Arthur Lai questions",
+          "summary": "Lai tests the competitive implications of an alternative packaging technology.",
+          "attribution": "Question premise is Lai’s; competitor benefits claimed in the answer belong to management."
+        },
+        {
+          "source_id": "W112F-TS3Q26",
+          "locator": "printed pp.16–17; Arthur Lai two questions",
+          "summary": "Lai probes electricity constraints, backside-power adoption, and whether CPUs belong inside reported AI growth.",
+          "attribution": "Do not adopt the proposed power-to-adoption link; management rejects that causal shortcut."
+        }
+      ],
+      "card_ideas": [
+        {
+          "title": "A rival can unlock upstream sales",
+          "source_id": "W112F-TS2Q26",
+          "locator": "pp.9–10, Arthur Lai first question",
+          "model": "Compare profit lost in a constrained complement with upstream profit enabled by bottleneck relief.",
+          "variables_units": "lost packaging units and margin, incremental wafers and margin",
+          "decision_boundary": "Net effect changes sign when enabled upstream contribution exceeds lost downstream contribution.",
+          "counterexample": "Alternative packaging also migrates wafer sourcing, reversing complementarity.",
+          "test": "Observe compatible wafer orders, package share and customer qualification rather than headline market share.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "A networking vendor benefits when a rival removes a system integration bottleneck.",
+          "tags": [
+            "F6",
+            "F7",
+            "F16"
+          ],
+          "synthetic_question": "Synthetic: Alternative packaging loses you$30m contribution but enables$50m upstream wafer contribution. What is the direct net effect before spillovers?",
+          "synthetic_answer_key": "+$20m. Keep the two layers and incremental baseline separate; then test whether wafer sourcing also migrates.",
+          "new_constraint": "New evidence: half the enabled wafer orders switch supplier.",
+          "synthetic": true
+        },
+        {
+          "title": "System scarcity does not identify the winning device technology",
+          "source_id": "W112F-TS3Q26",
+          "locator": "p.16, Arthur Lai power question",
+          "model": "Require a workload and design constraint bridge between grid scarcity and adoption of a chip-level feature.",
+          "variables_units": "facility MW, workload efficiency, redesign cost ($), schedule",
+          "decision_boundary": "Adoption follows net system benefit and qualification feasibility, not scarcity alone.",
+          "counterexample": "Cooling or software changes deliver the same benefit without silicon redesign.",
+          "test": "Compare performance per watt under equal workload and redesign/qualification costs.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "Memory compression proposed as a cure for a site-power shortage.",
+          "tags": [
+            "F15",
+            "F18",
+            "F14"
+          ],
+          "synthetic_question": "Synthetic: A datacenter lacks20MW. A new chip feature improves workload performance/W by10% but requires18months redesign. Does grid scarcity alone prove immediate adoption?",
+          "synthetic_answer_key": "No. Quantify workload-level savings, schedule, redesign cost and alternatives; the power constraint does not identify which intervention wins.",
+          "new_constraint": "New evidence: software optimization delivers8% within one month.",
+          "synthetic": true
+        },
+        {
+          "title": "Growth is meaningless without a stable category boundary",
+          "source_id": "W112F-TS3Q26",
+          "locator": "p.17, Arthur Lai CPU-definition question",
+          "model": "Maintain separate narrow and broad demand series with a reconciliation rather than silently enlarging a CAGR denominator.",
+          "variables_units": "category revenue ($), base year, inclusion rules",
+          "decision_boundary": "Compare growth only after restating both endpoints to the same definition.",
+          "counterexample": "Dual-use products cannot be reliably allocated between categories.",
+          "test": "Publish inclusion rules and sensitivity ranges for ambiguous allocation.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "Security software AI-labelled revenue expands by reclassifying legacy subscriptions.",
+          "tags": [
+            "F1",
+            "F11",
+            "F25"
+          ],
+          "synthetic_question": "Synthetic: A category grows$10bn→$20bn. You add$5bn of dual-use CPUs only to the endpoint. Can you report150% comparable growth?",
+          "synthetic_answer_key": "No. Restate the starting period under the same category definition, or present old and expanded categories separately.",
+          "new_constraint": "New evidence: only20–60% of CPU sales serve the named use case; use a range.",
+          "synthetic": true
+        }
+      ],
+      "gaps": [
+        "No complete licensed research or frozen estimates obtained.",
+        "Current employment after the latest named call is not independently confirmed."
+      ],
+      "editorial_status": "All models, thresholds, counterexamples and training prompts are editor-created; not analyst quotations."
+    },
+    {
+      "id": "laura-chen-citi",
+      "name": "Laura Chen",
+      "side": "sell",
+      "role": "Citigroup analyst at source time",
+      "current_role": {
+        "title": "Not independently reverified beyond latest cited call roster",
+        "as_of": "2026-10-15",
+        "access": "Source-time identity only; do not imply current employment after this date."
+      },
+      "scope": "Translate technology roadmaps and cross-component constraints into deployable output",
+      "boundary": "Two independently dated public call samples. These show questions asked, not a permanent philosophy, licensed model, forecast accuracy or investment performance. No recurring personal-pattern certification.",
+      "readings": [
+        {
+          "source_id": "W112F-TS2Q26",
+          "locator": "printed pp.15–16; Laura Chen questions",
+          "summary": "Chen asks about chip mix and the maturity of glass-related packaging options.",
+          "attribution": "Questions by Chen; production timing is management testimony."
+        },
+        {
+          "source_id": "W112F-TS3Q26",
+          "locator": "printed pp.6–7; Laura Chen questions",
+          "summary": "Chen connects chip demand to power, financing and component constraints, then questions capital productivity.",
+          "attribution": "No independent endorsement of management demand or profitability forecasts."
+        }
+      ],
+      "card_ideas": [
+        {
+          "title": "Orders versus fully deployable systems",
+          "source_id": "W112F-TS3Q26",
+          "locator": "pp.6–7, Laura Chen first question",
+          "model": "Represent the deployment chain as matched components and funded energized capacity; identify the binding complement.",
+          "variables_units": "chips, packages, memory capacity, powered MW, financing ($), dates",
+          "decision_boundary": "Do not equate booked chips with deployed output when a required complement is unavailable.",
+          "counterexample": "Customers build inventory ahead of an imminent bottleneck release without overbuilding.",
+          "test": "Reconcile delivery cohorts against commissioning dates and inventory accumulation.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "An electrification supplier has orders but utility interconnection is delayed.",
+          "tags": [
+            "F7",
+            "F9",
+            "F14"
+          ],
+          "synthetic_question": "Synthetic:100servers are delivered, power supports60, and networking supports80. What upper bound is deployable now under one-unit-per-server assumptions?",
+          "synthetic_answer_key": "60, assuming matching configurations and all other complements available. Orders alone do not establish deployed output.",
+          "new_constraint": "New evidence: the next power milestone is delayed six months; examine inventory and financing.",
+          "synthetic": true
+        },
+        {
+          "title": "A material roadmap needs qualification evidence",
+          "source_id": "W112F-TS2Q26",
+          "locator": "pp.15–16, Laura Chen packaging question",
+          "model": "Distinguish material demonstration, pilot process, qualified product and economic high-volume production.",
+          "variables_units": "yield (%), reliability passes, substrate cost ($), qualified packages",
+          "decision_boundary": "Revenue ramp requires customer-qualified manufacturability, not a demonstration alone.",
+          "counterexample": "A higher-cost material is viable for a limited high-value segment before mass adoption.",
+          "test": "Require reliability, yield and customer release milestones at the proposed production date.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "A new optical interconnect material claims a rapid commercial ramp.",
+          "tags": [
+            "F15",
+            "F17",
+            "F18"
+          ],
+          "synthetic_question": "Synthetic: A substrate passes a lab demonstration but has no customer reliability qualification. Should its full revenue ramp enter the base case?",
+          "synthetic_answer_key": "Not solely on the demonstration. Use milestone-conditioned scenarios and test qualification, yield and cost.",
+          "new_constraint": "New evidence: one premium customer qualifies low-volume use; distinguish niche adoption from mass production.",
+          "synthetic": true
+        },
+        {
+          "title": "More expensive equipment can improve capital productivity",
+          "source_id": "W112F-TS3Q26",
+          "locator": "p.7, Laura Chen second question",
+          "model": "Compare cost per qualified output and capital turns, separating equipment price from effective throughput.",
+          "variables_units": "tool price ($), throughput, uptime, yield, revenue ($)",
+          "decision_boundary": "Investment is productive only if risk-adjusted incremental cash return clears its capital cost.",
+          "counterexample": "Higher throughput remains unused or requires costly complementary tooling.",
+          "test": "Track utilization-adjusted throughput, qualified yield and cash conversion after installation.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "A battery factory upgrades to faster but more capital-intensive production tools.",
+          "tags": [
+            "F9",
+            "F10",
+            "F20"
+          ],
+          "synthetic_question": "Synthetic: A tool costs20% more and produces40% more qualified output at equal utilization. How changes capital per output?",
+          "synthetic_answer_key": "1.2/1.4=0.857, about14.3% lower. Still test uptime, demand, complementary investment and cash returns.",
+          "new_constraint": "New evidence: utilization drops from90% to60%; recalculate effective output.",
+          "synthetic": true
+        }
+      ],
+      "gaps": [
+        "No complete licensed research or frozen estimates obtained.",
+        "Current employment after the latest named call is not independently confirmed."
+      ],
+      "editorial_status": "All models, thresholds, counterexamples and training prompts are editor-created; not analyst quotations."
+    },
+    {
+      "id": "haas-liu-bofa",
+      "name": "Haas Liu",
+      "side": "sell",
+      "role": "BofA Securities analyst at source time",
+      "current_role": {
+        "title": "Not independently reverified beyond latest cited call roster",
+        "as_of": "2026-10-15",
+        "access": "Source-time identity only; do not imply current employment after this date."
+      },
+      "scope": "Separate spending drivers, competitive spillovers and process-learning economics",
+      "boundary": "Two independently dated public call samples. These show questions asked, not a permanent philosophy, licensed model, forecast accuracy or investment performance. No recurring personal-pattern certification.",
+      "readings": [
+        {
+          "source_id": "W112F-TS2Q26",
+          "locator": "printed pp.16–17; Haas Liu questions",
+          "summary": "Liu separates demand from tool-price effects and tests whether packaging competition spreads upstream.",
+          "attribution": "Questions by Liu; management’s competitive response is not the analyst’s own conclusion."
+        },
+        {
+          "source_id": "W112F-TS3Q26",
+          "locator": "printed pp.15–16; Haas Liu questions",
+          "summary": "Liu questions AI workload mix and the yield-learning cost of parallel process tracks.",
+          "attribution": "Questions are hypotheses; qualitative management reassurance is not independently verified yield data."
+        }
+      ],
+      "card_ideas": [
+        {
+          "title": "Deflate investment before inferring capacity",
+          "source_id": "W112F-TS2Q26",
+          "locator": "pp.16–17, Haas Liu first question",
+          "model": "Decompose nominal capex into input inflation, asset mix and real capacity; avoid treating every spending increase as demand growth.",
+          "variables_units": "capex ($), tool price index, asset mix, qualified throughput",
+          "decision_boundary": "A demand inference requires evidence of added useful capacity after price and mix adjustment.",
+          "counterexample": "A more expensive tool can increase output enough to lower unit capital cost.",
+          "test": "Reconcile procurement prices, tool counts, yield and commissioning dates.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "Data-center capex rises because land and power equipment prices increase.",
+          "tags": [
+            "F7",
+            "F9",
+            "F11"
+          ],
+          "synthetic_question": "Synthetic: Nominal equipment spending rises30%; comparable tool prices rise25% and mix is unchanged. What approximate physical acquisition growth?",
+          "synthetic_answer_key": "1.30/1.25-1=4%. This is acquired inputs, not yet qualified productive capacity.",
+          "new_constraint": "New evidence: tool mix shifts toward higher-throughput units; simple deflation no longer suffices.",
+          "synthetic": true
+        },
+        {
+          "title": "Adjacent competition needs a migration mechanism",
+          "source_id": "W112F-TS2Q26",
+          "locator": "p.17, Haas Liu second question",
+          "model": "Test whether entry in one layer transfers customer control, IP or qualification to the adjacent layer.",
+          "variables_units": "customer overlap, redesign costs ($), qualification time, margin by layer",
+          "decision_boundary": "Predict spillover only where switching and capability pathways are evidenced.",
+          "counterexample": "An open interface allows one layer to compete without changing the supplier of another.",
+          "test": "Track joint design wins, platform dependence and actual sourcing migrations.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "Storage software competitor enters appliances but does not own drive manufacturing.",
+          "tags": [
+            "F6",
+            "F16",
+            "F14"
+          ],
+          "synthetic_question": "Synthetic: A competitor gains30% packaging share. What evidence is missing before predicting30% wafer-share loss?",
+          "synthetic_answer_key": "A mechanism connecting packaging adoption to wafer substitution: design compatibility, process capability, customer decisions, switching costs and qualification. Equal shares cannot be assumed.",
+          "new_constraint": "New evidence: one package platform mandates a paired wafer process; bound the affected segment.",
+          "synthetic": true
+        },
+        {
+          "title": "Two process tracks may fragment learning",
+          "source_id": "W112F-TS3Q26",
+          "locator": "pp.15–16, Haas Liu second question",
+          "model": "Model transferable learning versus track-specific defects and complexity rather than extrapolating one aggregate yield curve.",
+          "variables_units": "volume per track, die area, defect density, yield (%), cost per good die ($)",
+          "decision_boundary": "A shared learning assumption needs evidence of process commonality and cross-track improvement.",
+          "counterexample": "Distinct tracks share most unit processes and retain learning economies.",
+          "test": "Compare cohort yields and common process steps while controlling die size and product mix.",
+          "deadline": "At the next relevant disclosure or qualification milestone; no analyst-specific deadline asserted.",
+          "transfer": "An aircraft producer ramps two variants with shared and variant-specific assembly steps.",
+          "tags": [
+            "F18",
+            "F10",
+            "F14"
+          ],
+          "synthetic_question": "Synthetic: Two process tracks each produce50units rather than one track100units. Can their learning curves be treated as identical?",
+          "synthetic_answer_key": "Only if the relevant learning transfers. Separate common process steps from track-specific defects, product mix and die size.",
+          "new_constraint": "New evidence:80% of process steps are shared but the remaining20% generate most defects.",
+          "synthetic": true
+        }
+      ],
+      "gaps": [
+        "No complete licensed research or frozen estimates obtained.",
+        "Current employment after the latest named call is not independently confirmed."
+      ],
+      "editorial_status": "All models, thresholds, counterexamples and training prompts are editor-created; not analyst quotations."
+    }
+  ],
+  "source_deduplication": "TSMC Q2/Q3 2026 are existing underlying calls W112-SL02/W112-SL03. Add analyst-specific readings or alias artifacts, not independent call counts. Primary alternative July URL used after original English URL403. Check other two URLs against full atlas before adding sources.",
+  "limitations": [
+    "No call audio verification.",
+    "Two calls do not prove persistent persona; source-specific questions support editorial methods only.",
+    "Do not infer three recurring exchanges from multiple parts of one question.",
+    "Historical sources support method compilation; not current-week opinions."
+  ],
+  "review_required": "Independent agent must re-read selected primary passages and verify identity/date/role and model attribution before admission.",
+  "integration_review": {
+    "reviewer": "thoughts integration agent independently of research handoff authors",
+    "date": "2026-11-12",
+    "result": "Selected primary passages read; bounded attribution approved. No browser/deployment claim.",
+    "atlas_batch": "2026-11-12-thought-followthrough.json"
+  }
+}

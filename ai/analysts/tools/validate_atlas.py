@@ -14,6 +14,10 @@ for group in ('profiles', 'sources', 'cards'):
     ids = [item['id'] for item in atlas[group]]
     assert len(ids) == len(set(ids)), f'duplicate {group} IDs'
     groups[group] = set(ids)
+for alias, canonical in atlas.get('profile_id_aliases', {}).items():
+    assert alias not in groups['profiles'], f'merged alias still counted as a person: {alias}'
+    assert canonical in groups['profiles'], f'alias has no canonical profile: {alias}'
+    assert canonical not in atlas.get('profile_id_aliases', {}), f'chained profile alias: {alias}'
 for source in atlas['sources']:
     assert source.get('access') and source.get('summary'), source['id']
     assert source['url'].startswith(('https://', 'http://')), source['id']
