@@ -1,0 +1,1182 @@
+{
+  "id": "conference-followup-20261112",
+  "baseCommit": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+  "reviewedAt": "2026-11-12",
+  "scope": 15,
+  "qualified": 15,
+  "catalogBefore": 418,
+  "catalogPrepared": 433,
+  "batch": "research/batches/2026-11-12-conference-followup.json",
+  "uniqueSubstantiveWorkUrls": 29,
+  "profiles": [
+    {
+      "id": "andrea-pellegrini",
+      "name": "Andrea Pellegrini",
+      "independence": "N1的一致性基础设施集成与N2新前端/Armv9实现是两项不同代技术实现；仅因年份不同不计数，依据正文新增MOP缓存和预测机制判断独立。N2中的N1对照不另计作品。",
+      "sourceAudit": [
+        {
+          "workId": "andrea-pellegrini-neoverse-n1-hc31",
+          "title": "Arm Neoverse N1 Cloud-to-Edge Infrastructure SoCs",
+          "authors": "Andrea Pellegrini; Chris Abernathy",
+          "date": "2019-08-19",
+          "url": "https://old.hotchips.org/hc31/HC31_1.2_20190816_Arm_Neoverse_N1_CPU.pdf",
+          "locator": "印刷页1、4–9；署名、CMN/SLC与CPU直接连接；页9模型及早期样片边界",
+          "organizationAtPublication": "Arm",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读署名及平台分工、可扩展CMN、共享SLC和I-cache一致性；页9说明数据混合模型与早期SDP样片，不引用性能提升百分比。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "andrea-pellegrini-neoverse-n2-hc33",
+          "title": "Arm Neoverse N2: Arm’s 2nd generation high performance infrastructure CPUs and system IPs",
+          "authors": "Andrea Pellegrini",
+          "date": "2021-08-23",
+          "url": "https://hc33.hotchips.org/assets/program/conference/day1/20210818_Hotchips_NeoverseN2.pdf",
+          "locator": "印刷页1、8–12；Armv9/SVE2、核心实现与前端重设计；印刷页6–7估计性能及尚待实硅声明",
+          "organizationAtPublication": "Arm",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读署名、Armv9特征和前端机制：MOP cache、预测器引导预取、条件分支提前重定向和上下文标记；未独立验证报告预测的IPC/功耗收益。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "akhilesh-kumar",
+      "name": "Akhilesh Kumar",
+      "independence": "Skylake-SP缓存/mesh重构与Cascade Lake新增VNNI执行语义及数据路径是独立实现；不把Cascade Lake复述Skylake部分另计作品，也不以单纯改名或频率升级作为独立性依据。",
+      "sourceAudit": [
+        {
+          "workId": "akhilesh-kumar-skylake-sp-hc29",
+          "title": "The New Intel Xeon Processor Scalable Family (Formerly Skylake-SP)",
+          "authors": "Akhilesh Kumar（报告者）；Don Soltis; Irma Esmer; Adi Yoaz; Sailesh Kottapalli（首页Authors）",
+          "date": "2017；HC29会议2017-08-22，精确公开日未确认",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.22-Tuesday-Pub/HC29.22.90-Server-Pub/HC29.22.930-Xeon-Skylake-sp-Kumar-Intel.pdf",
+          "locator": "印刷页1–2、8–9；作者、测试边界、mesh及重构L2/L3",
+          "organizationAtPublication": "Intel",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读报告者和Authors栏、免责声明、mesh节点及缓存从shared-distributed向private-local转移；L3改为non-inclusive。未采用性能数字。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "akhilesh-kumar-cascade-lake-hc30",
+          "title": "Next Generation Intel Xeon Scalable processor: Cascade Lake",
+          "authors": "Akhilesh Kumar; Sailesh Kottapalli; Ian M Steiner; Bob Valentine; Israel Hirsh; Geetha Vedaraman; Lily P Looi; Mohamed Arafa; Andy Rudoff; Sreenivas Mandava; Bahaa Fahim; Sujal A Vora",
+          "date": "2018；HC30会议2018-08-21，精确公开日未确认",
+          "url": "https://old.hotchips.org/hc30/2conf/2.15_Intel_Cascade_Lake_HC30.Intel.Akhilesh.CLXCPU.Final.pdf",
+          "locator": "PDF页1–2、9–13（印刷页9–13）；VNNI指令融合及估计吞吐标注",
+          "organizationAtPublication": "Intel",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读全部标题页作者、VNNI int8/int16融合指令路径；区分每周期元素数、厂商测试和未来Cascade Lake估计吞吐，未采用收益数字。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "pat-conway",
+      "name": "Pat Conway",
+      "independence": "2002年广播式glueless多路协议与2009年借用L3构建HT Assist目录的多芯片系统是不同实现和技术问题。后者的2010年IEEE Micro论文若重述同一项目不得增加第三项作品。",
+      "sourceAudit": [
+        {
+          "workId": "pat-conway-hammer-mp-hc14",
+          "title": "AMD Opteron Shared Memory MP Systems",
+          "authors": "Ardsher Ahmed; Pat Conway; Bill Hughes; Fred Weber",
+          "date": "2002；HC14议程为2002-08-20，存档PDF页脚为2002-09-22；版本日期差异保留",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc14/3_Tue/28_AMD_Hammer_MP_HC_v8.pdf",
+          "locator": "印刷页1、3–7、12；署名、集成内存控制器、广播一致性与本地/远程访问",
+          "organizationAtPublication": "AMD",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读共同署名、coherent/non-coherent HyperTransport区分、广播探测与DRAM重叠机制及0/1/2跳访问。官方议程和PDF页脚日期不一致，不倒填确定发表日。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "pat-conway-magny-cours-hc21",
+          "title": "Blade Computing with the AMD Opteron Processor (Magny-Cours)",
+          "authors": "Pat Conway（Presenter）; Nathan Kalyanasundharam; Gregg Donley; Kevin Lepak; Bill Hughes",
+          "date": "2009-08-24（官方会议议程）；PDF署2009-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc21/2_mon/HC21.24.100.ServerSystemsI-Epub/HC21.24.110.Conway-AMD-Magny-Cours.pdf",
+          "locator": "印刷页1、4、7、10–16；HT Assist、目录覆盖与延迟路径",
+          "organizationAtPublication": "AMD",
+          "type": "作者会议幻灯片",
+          "formatDetail": "Hot Chips官方历史档案中的作者原始幻灯片；读取所列页，未独立复现实验",
+          "contentStatus": "已读署名与presenter、MCM结构、HT Assist借用L3空间作稀疏目录、包含性不变量和热点覆盖反例；报告明确未来硅性能为AMD预测，未采用性能百分比。",
+          "evidenceStrength": "原始标题页署名及正文；技术为团队成果，未证明个人独占设计。",
+          "role": "独立实质技术作品与已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "jack-choquette",
+      "name": "Jack Choquette",
+      "independence": "Volta线程调度/存储组织与Hopper新增跨SM cluster/TMA为不同芯片架构作品，不是同一项目重复报告。",
+      "sourceAudit": [
+        {
+          "workId": "volta",
+          "title": "Volta: Programmability and Performance",
+          "authors": "Jack Choquette",
+          "date": "2017-08-21（HC29报告日）",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.10-GPU-Gaming-Pub/HC29.21.132-Volta-Choquette-NVIDIA-Final3.pdf",
+          "locator": "PDF第1、5–6、9–19页：署名，NVLink，SM microarchitecture，L1/shared memory，Independent Thread Scheduling及同步示例",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。读取子核心调度、统一L1/共享存储及独立线程调度/显式同步代码；不采用性能百分比。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "NVIDIA"
+        },
+        {
+          "workId": "hopper",
+          "title": "NVIDIA Hopper GPU: Scaling Performance",
+          "authors": "Jack Choquette（PDF署名）；官方议程另列共同报告人 Ronny Krashinsky",
+          "date": "2022-08-22（HC34报告日；封面2022-08）",
+          "url": "https://hc34.hotchips.org/assets/program/conference/day1/GPU%20HPC/HC2022.NVIDIA.Choquette.vfinal01.pdf",
+          "locator": "封面；Thread Block Clusters、Direct SM-to-SM Communications章节；PDF页26–28 Asynchronous Transaction Barrier与Async Mem Copy Using TMA",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。读取cluster共同调度、DSMEM直接访问、事务屏障跟踪线程和异步传输到达、TMA地址生成与异步搬运。末页致谢明确NVIDIA工程师团队；性能页标为预测，未引用其倍数。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "NVIDIA"
+        },
+        {
+          "workId": "identity-hc29.hotchips.org-",
+          "title": "Hot Chips 29 official program",
+          "authors": "Hot Chips",
+          "date": "2017-08-21（会期）",
+          "url": "https://hc29.hotchips.org/",
+          "locator": "Conference Day1 / 2017-08-21 / GPU and Gaming：Michael Mantor & Ben Sander (AMD)；Jack Choquette (NVIDIA)",
+          "type": "会议官方议程",
+          "contentStatus": "已读报告题目、报告人、所属机构及链接；连接对应Vega与Volta官方正文。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "identity-hc34.hotchips.org-",
+          "title": "Hot Chips 34 official program",
+          "authors": "Hot Chips",
+          "date": "2022-08-22（会期）",
+          "url": "https://hc34.hotchips.org/",
+          "locator": "Conference Day1 / 2022-08-22 / GPUs & HPC / NVIDIA Hopper",
+          "type": "会议官方议程",
+          "contentStatus": "已读Jack Choquette & Ronny Krashinsky，NVIDIA；与PDF单独署名的差异保留，不推定各人分工。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "michael-mantor",
+      "name": "Michael Mantor",
+      "independence": "Vega10与Navi/RDNA为不同代产品和不同执行组织；两次会议不是同一芯片重复演讲。",
+      "sourceAudit": [
+        {
+          "workId": "vega",
+          "title": "AMD’s Radeon Next Generation GPU Architecture (Vega10)",
+          "authors": "Michael Mantor; Ben Sander（共同报告人，以 HC29 官方议程为依据）",
+          "date": "2017-08-21（报告日；PDF封面年份2017）",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.10-GPU-Gaming-Pub/HC29.21.120-Radeon-Vega10-Mantor-AMD-f1.pdf",
+          "locator": "PDF第1–8、12–14页：封面、Vega10配置、HBCC、Page-Based Memory Management、Draw Stream Binning Rasterizer",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。HBCC追踪流量并迁移内存页；活跃页优先驻留高速缓存，非活跃页迁移到慢存储；DSBR借助片上bin cache与不可见像素剔除减少重复取数/着色。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "AMD"
+        },
+        {
+          "workId": "navi",
+          "title": "7nm “Navi” GPU",
+          "authors": "Michael Mantor（报告人，以 HC31 官方议程为依据；PDF未列个人署名）",
+          "date": "2019-08-20（报告日；PDF封面标2019-06-06）",
+          "url": "https://old.hotchips.org/hc31/HC31_2.13_AMD_final.pdf",
+          "locator": "PDF第1、4、10、13–16、18–19页：封面、RDNA结构、Wave32/SIMD32、调度对比、协作CU、L1层次",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。读取Wave32单周期发射、长延迟时插入低优先级wave及新增L1的结构解释；不采用厂商示例性能倍数。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "AMD"
+        },
+        {
+          "workId": "identity-hc29.hotchips.org-",
+          "title": "Hot Chips 29 official program",
+          "authors": "Hot Chips",
+          "date": "2017-08-21（会期）",
+          "url": "https://hc29.hotchips.org/",
+          "locator": "Conference Day1 / 2017-08-21 / GPU and Gaming：Michael Mantor & Ben Sander (AMD)；Jack Choquette (NVIDIA)",
+          "type": "会议官方议程",
+          "contentStatus": "已读报告题目、报告人、所属机构及链接；连接对应Vega与Volta官方正文。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "identity-hc31.hotchips.org-",
+          "title": "Hot Chips 31 official program",
+          "authors": "Hot Chips",
+          "date": "2019-08-20（会期）",
+          "url": "https://hc31.hotchips.org/",
+          "locator": "Conference Day2 / 2019-08-20 / Graphics & AR / 7nm Navi GPU",
+          "type": "会议官方议程",
+          "contentStatus": "已读Michael Mantor、AMD与对应Navi幻灯片链接。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "ben-sander",
+      "name": "Ben Sander",
+      "independence": "HSAIL编译IR/ISA契约与Vega10具体GPU架构不是同一项目的重复演讲；议程仅辅助归属，不另计作品。",
+      "sourceAudit": [
+        {
+          "workId": "hsail",
+          "title": "HSAIL: Portable Compiler IR for HSA",
+          "authors": "Ben Sander",
+          "date": "2013-08-25（HC25教程日；封面2013-08）",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc25/HC25.0T1-Hetero-epub/HC25.25.112-HSAIL-Sanders-HSA%20HSAIL%20HotChips2013_Final2.pdf",
+          "locator": "PDF第1–4、7、12–15页：作者、HSAIL编译链、work-item/work-group、指令集、内存段、flat addressing",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。署名AMD Senior Fellow；HSAIL由高级编译器生成，经厂商finalizer映射硬件ISA；正文说明global/group/private等段、同步和统一虚拟地址表达。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "AMD / HSA Foundation"
+        },
+        {
+          "workId": "vega",
+          "title": "AMD’s Radeon Next Generation GPU Architecture (Vega10)",
+          "authors": "Michael Mantor; Ben Sander（共同报告人，以 HC29 官方议程为依据）",
+          "date": "2017-08-21（报告日；PDF封面年份2017）",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.10-GPU-Gaming-Pub/HC29.21.120-Radeon-Vega10-Mantor-AMD-f1.pdf",
+          "locator": "PDF第1–8、12–14页：封面、Vega10配置、HBCC、Page-Based Memory Management、Draw Stream Binning Rasterizer",
+          "type": "作者会议幻灯片",
+          "formatDetail": "会议官方公开归档；团队技术报告；作者/报告人由封面或官方议程交叉核实",
+          "contentStatus": "已读取所列正文范围；未宣称逐页完整阅读。HBCC追踪流量并迁移内存页；活跃页优先驻留高速缓存，非活跃页迁移到慢存储；DSBR借助片上bin cache与不可见像素剔除减少重复取数/着色。",
+          "evidenceStrength": "一手机制正文及可归属报告；不证明个人独占设计、不证明独立性能复现或生产采用。",
+          "role": "独立技术作品及机制证据",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "AMD"
+        },
+        {
+          "workId": "identity-hc25.hotchips.org-",
+          "title": "Hot Chips 25 official program",
+          "authors": "Hot Chips",
+          "date": "2013-08-25（会期）",
+          "url": "https://hc25.hotchips.org/",
+          "locator": "Tutorial1 / 2013-08-25 / HSAIL Virtual Parallel ISA",
+          "type": "会议官方议程",
+          "contentStatus": "已读Ben Sander from AMD及HSAIL正文链接。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "identity-hc29.hotchips.org-",
+          "title": "Hot Chips 29 official program",
+          "authors": "Hot Chips",
+          "date": "2017-08-21（会期）",
+          "url": "https://hc29.hotchips.org/",
+          "locator": "Conference Day1 / 2017-08-21 / GPU and Gaming：Michael Mantor & Ben Sander (AMD)；Jack Choquette (NVIDIA)",
+          "type": "会议官方议程",
+          "contentStatus": "已读报告题目、报告人、所属机构及链接；连接对应Vega与Volta官方正文。",
+          "evidenceStrength": "官方身份与报告归属记录；不计作额外技术作品",
+          "role": "身份及归属辅助证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "john-wuu",
+      "name": "John Wuu",
+      "independence": "2005异步Itanium缓存与2024/2025 MI300X异构互连是不同产品、时期及技术问题；MI300X早期上线与期刊版只计一项。",
+      "sourceAudit": [
+        {
+          "workId": "john-wuu-isscc2005-asynchronous-l3",
+          "title": "The Asynchronous 24MB On-Chip Level-3 Cache for a Dual-Core Itanium-Family Processor",
+          "authors": "John Wuu; Don Weiss; Charles Morganti; Michael Dreesen",
+          "date": "2005；ISSCC 26.8",
+          "url": "https://picture.iczhiku.com/resource/ieee/sYKFrfYyRRrEZVbN.pdf",
+          "locator": "印刷p488（PDF p1），署名与异步缓存/供电设计段落",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读Intel署名、分块阵列、异步访问和独立可变电源设计；消除时钟分配及锁存开销，同时考虑大容量缓存慢单元。",
+          "evidenceStrength": "原论文公开镜像，非原出版社域名；正文载IEEE版权与Intel Fort Collins署名；不复述性能数值。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "john-wuu-mi300x-interconnect-2024",
+          "title": "Interconnect Design for Heterogeneous Integration of Chiplets in the AMD Instinct MI300X Accelerator",
+          "authors": "Alan Smith; Gabriel H. Loh; Samuel Naffziger; John Wuu; Nathan Kalyanasundharam; Eric Chapman; Raja Swaminathan; Tyrone Huang; Wonjun Jung; Alexander Kaganov; Hugh McIntyre; Ramon Mangaser",
+          "date": "2024-09-18首次发表；2025-02-21当前版；IEEE Micro 2025 Jan/Feb",
+          "url": "https://drive.google.com/file/d/1gq8XzO1Z0prjUWukFpZG_qG2D2XhdERT/view",
+          "locator": "印刷pp57–61；MI300X Overview、3-D Chiplet Interconnect、Enhancing Hybrid Bonding for MI300X",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读AMD共同署名与3D/2.5D分工、混合键合热路径及BPV直达铝RDL的供电设计；计算芯片和IOD需协同布置信号、电源。",
+          "evidenceStrength": "共同作者Gabriel Loh个人出版物页直接提供的论文副本；已下载PDF读取所列页，不宣称阅读全文或复现实测。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "originalDoi": "10.1109/MM.2024.3462351",
+          "originalMetadataUrl": "https://sites.google.com/site/lohgabe/pubs"
+        },
+        {
+          "workId": "john-wuu-vlsi2026-bio",
+          "title": "IEDMS 2026 Plenary Talks — John Wuu",
+          "authors": "IEEE/JSAP VLSI Symposium",
+          "date": "网页发布日期未知；会议日期2026-10-22",
+          "url": "https://www.iedms2026.org/plenary-talks",
+          "locator": "Plenary Talks-4 / John Wuu / Biography",
+          "type": "机构人物简介",
+          "contentStatus": "已读官方履历；AMD Senior Fellow、HP及Intel Itanium L3经历、2006加入AMD；仅身份桥接，不计技术作品。",
+          "evidenceStrength": "官方会议简介连接Intel历史作品与AMD身份；最后确认2026会期资料，不推定后续职务未变。",
+          "role": "身份与归属，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "gerald-pasdast",
+      "name": "Gerald Pasdast",
+      "independence": "UCIe协议适配技术报告与2019优先权的供电引起时钟相位补偿专利处理不同问题；专利所有国家/授权版本只计一族，不把多次UCIe演讲重复计数。",
+      "sourceAudit": [
+        {
+          "workId": "gerald-pasdast-ucie-progress2024",
+          "title": "UCIe: A Progress Report for 2024",
+          "authors": "Gerald Pasdast",
+          "date": "2024-02-06；会议文件日期",
+          "url": "https://chipletsummit.com/proceeding_files/a0q5f0000044zma/20240206_PreConD_Pasdast.PDF",
+          "locator": "幻灯片1、5–7；尤其p7 Streaming Protocols on Full Stack",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读本人署名、Intel职位和UCIe1.1流协议映射至FDI flit格式、复用CRC/重试及协议复用机制。",
+          "evidenceStrength": "会议官方作者幻灯片；讲者为Intel Sr Principal Engineer及UCIe Form Factor & Compliance WG co-chair。标准成果属联盟，不能归为个人独占。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "gerald-pasdast-clock-phase-us16285056",
+          "title": "Clock phase compensation apparatus and method — US10686582B1",
+          "authors": "Gerald Pasdast; Nasser A. Kurd; Peipei Wang; Yingyu Miao; Lakshmipriya Seshan; Ishaan S. Shah",
+          "date": "2020-06-16公开；2019-02-25优先权",
+          "url": "https://patents.google.com/patent/US10686582B1/en",
+          "locator": "Inventor/Original assignee/priority；Description，FIGS.1–6配套说明及unmatched receiver段落",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读Intel共同发明人及机制：电压跌落/上升检测值经查找表映射为PI或DLL相位修正，补偿时钟与数据路径失配。",
+          "evidenceStrength": "公开专利原说明书的Google Patents镜像；Intel受让、同名及I/O技术连续性支持作者匹配，个人具体分工未披露；不是产品采用证据。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "patentFamily": "US16/285056; WO2020176169A1; US10686582B1，仅计同一族一次"
+        }
+      ]
+    },
+    {
+      "id": "rekha-pitchumani",
+      "name": "Rekha Pitchumani",
+      "independence": "2015 SMR单盘键值带管理与2025异构设备聚合文件层解决不同问题；PolyStore后续扩展期刊版不另计。",
+      "sourceAudit": [
+        {
+          "workId": "rekha-pitchumani-smrdb-2015",
+          "title": "SMRDB: Key-Value Data Store for Shingled Magnetic Recording Disks",
+          "authors": "Rekha Pitchumani; James Hughes; Ethan L. Miller",
+          "date": "2015-05；SYSTOR 2015-05-26至28",
+          "url": "https://www.crss.us/media/pubs/d9440b2261ebeb02d41fe39c7c11b3cce5ca64bd.pdf",
+          "locator": "PDF pp1、4–6；§4.1–4.3，Figure4–6",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读UCSC署名及SMR带顺序写：memtable刷带、带内Bloom filter/索引、后台归并；允许范围重叠并按顺序性选择归并。",
+          "evidenceStrength": "作者研究中心存档原论文；当时无原始SMR设备，评估使用传统盘受限顺序写，不能称SMR实盘产品验证。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "rekha-pitchumani-polystore-fast2025",
+          "title": "PolyStore: Exploiting Combined Capabilities of Heterogeneous Storage",
+          "authors": "Yujie Ren; David Domingo; Jian Zhang; Paul John; Rekha Pitchumani; Sanidhya Kashyap; Sudarsun Kannan",
+          "date": "2025-02；FAST 2025-02-25至27",
+          "url": "https://www.usenix.org/system/files/fast25-ren.pdf",
+          "locator": "署名页及印刷pp542–543，§4.3 Poly-index、§4.4.1 Adaptive File Creation and Opening",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读Samsung署名；跨设备逻辑文件由范围树Poly-index映射，细粒度锁支持并发；文件增长并出现带宽需求时扩展物理文件。",
+          "evidenceStrength": "USENIX官方论文；多机构共同研究，未披露个人独占模块；不引用性能倍数或声称生产采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "rekha-pitchumani-ucsc-bio",
+          "title": "CRSS: Rekha Pitchumani",
+          "authors": "UC Santa Cruz SSRC档案",
+          "date": "2019-05-22页面最后修改",
+          "url": "https://www.crss.us/person/rpitchumani.html",
+          "locator": "Rekha Pitchumani biography及publications",
+          "type": "机构人物简介",
+          "contentStatus": "已读2015博士、SMR数据管理研究及毕业加入Samsung；与2025署名串联历史身份。",
+          "evidenceStrength": "一手署名正文；共同作者的具体个人分工未披露，不证明独占贡献。",
+          "role": "身份与归属，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "peipei-zhou",
+      "name": "Peipei Zhou",
+      "independence": "Caffeine解决CNN推理层的统一映射；EF-Train解决端侧训练不同阶段的数据连续性。两项不同项目；Caffeine会议版与后续期刊版只计一次。",
+      "sourceAudit": [
+        {
+          "workId": "peipei-zhou-caffeine-2016",
+          "title": "Caffeine: Towards Uniformed Representation and Acceleration for Deep Convolutional Neural Networks",
+          "authors": "Chen Zhang; Zhenman Fang; Peipei Zhou; Peichen Pan; Jason Cong",
+          "date": "2016-11（作者页面标注月份）",
+          "url": "https://peipeizhou-eecs.github.io/publication/2016_iccad/2016_iccad.pdf",
+          "locator": "首页署名；§3.2.2–3.2.4、§4.1（PDF第3–4页）",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "读取FCN到CONV的input-major/weight-major映射、复用和burst条件，以及软件参数与硬件tiling的区分；未复核全部性能图表，不采用摘要峰值。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "UCLA；与Peking University/Falcon Computing合作"
+        },
+        {
+          "workId": "peipei-zhou-eftrain-2022",
+          "title": "EF-Train: Enable Efficient On-device CNN Training on FPGA Through Data Reshaping for Online Adaptation or Personalization",
+          "authors": "Yue Tang; Xinyi Zhang; Peipei Zhou; Jingtong Hu",
+          "date": "2022（作者存档版本；arXiv版本2022-02）",
+          "url": "https://peipeizhou-eecs.github.io/publication/2022_todaes/2022_todaes.pdf",
+          "locator": "首页署名；§4开头及§4.1（PDF第12–13页）",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "读取训练FP/BP/WU访存差异、DRAM数据重排、循环顺序与mini-batch权重复用，以及不连续地址使DMA重新启动的机制；未独立复现实验。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "University of Pittsburgh"
+        },
+        {
+          "workId": "peipei-zhou-brown-identity",
+          "title": "Peipei Zhou — Researchers@Brown",
+          "authors": "Brown University",
+          "date": "未知（动态机构页面）",
+          "url": "https://vivo.brown.edu/display/pzhou21",
+          "locator": "Overview及On the Web",
+          "type": "机构人物简介",
+          "contentStatus": "Brown官方页面列Assistant Professor of Engineering、实验室负责人及UCLA学位，并链接作者主页；本次只采身份，不采新增奖项。",
+          "evidenceStrength": "仅用于身份和机构时间边界，不计技术作品。",
+          "role": "身份/历史机构证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Brown University"
+        }
+      ]
+    },
+    {
+      "id": "corey-gough",
+      "name": "Corey Gough",
+      "independence": "2007内核共享数据/局部性研究与2015服务器功率管理专著为不同技术作品；专著各章节合计一项。2009无个人署名白皮书和未读2015 E5 v3论文不计入。",
+      "sourceAudit": [
+        {
+          "workId": "corey-gough-kernel-scalability-2007",
+          "title": "Kernel Scalability—Expanding the Horizon Beyond Fine Grain Locks",
+          "authors": "Corey Gough; Suresh Siddha; Ken Chen",
+          "date": "2007（Linux Symposium proceedings）",
+          "url": "https://www.kernel.org/doc/ols/2007/ols2007v1-pages-153-166.pdf",
+          "locator": "首页署名；§1–2及§5结论；印刷页153–155、162–163",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "读取NUMA远程访存、cache-line bouncing/false sharing，以及只读字段分离、锁对齐和局部队列等诊断/优化建议；不搬用旧平台性能百分比。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Intel（Gough、Siddha）；Google（Chen）"
+        },
+        {
+          "workId": "corey-gough-energy-servers-2015",
+          "title": "Energy Efficient Servers — CPU Power Management",
+          "authors": "Corey Gough; Ian Steiner; Winston Saunders",
+          "date": "2015-04-07",
+          "url": "https://link.springer.com/chapter/10.1007/978-1-4302-6638-9_2",
+          "locator": "第2章Running Average Power Limit小节及署名、发布日期",
+          "type": "技术专著正文（所列章节）",
+          "contentStatus": "读取RAPL闭环平均功率控制、PL1与较短时间窗PL2/PL3以及软/硬约束区别；只审读该节，不声称读完专著或其所有实验。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Intel"
+        },
+        {
+          "workId": "corey-gough-vcew-2023",
+          "title": "VCEW 2023 Program",
+          "authors": "VCEW",
+          "date": "2023（会议6月11–14日；文件发布日期未知）",
+          "url": "https://vcew.org/download/vcew-2023-program.pdf",
+          "locator": "PDF第2页，Session 2 Software",
+          "type": "会议议程",
+          "contentStatus": "公开日程将Corey Gough与Intel及Server Telemetry主题相联；不证明实际演讲内容，不计作品。",
+          "evidenceStrength": "仅用于身份和机构时间边界，不计技术作品。",
+          "role": "身份/历史机构证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Intel"
+        }
+      ]
+    },
+    {
+      "id": "stephane-eranian",
+      "name": "Stéphane Eranian",
+      "independence": "perfmon2是监控接口设计；Taming是采样到编译器profile的误差修正研究，技术产物与问题不同。perfmon2历次演讲不重复计数；SC2016只有摘要/入口未读正文，未计入。",
+      "sourceAudit": [
+        {
+          "workId": "stephane-eranian-perfmon2-2005",
+          "title": "The perfmon2 interface specification, HPL-2004-200(R.1)",
+          "authors": "Stephane Eranian",
+          "date": "2005-02-07（文档标为internal accession date；公开日未知）",
+          "url": "https://shiftleft.com/mirrors/www.hpl.hp.com/techreports/2004/HPL-2004-200R1.pdf",
+          "locator": "封面；§2.2.1–2.2.6，印刷页11–13",
+          "type": "作者技术报告",
+          "contentStatus": "读取逻辑PMC/PMD映射、可插拔采样buffer格式及事件集的时间/溢出切换；HP原技术报告的公开镜像，非镜像作者作品。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "HP Laboratories"
+        },
+        {
+          "workId": "stephane-eranian-taming-fdo-2013",
+          "title": "Taming Hardware Event Samples for Precise and Versatile Feedback Directed Optimizations",
+          "authors": "Dehao Chen; Neil Vachharajani; Robert Hundt; Xinliang Li; Stephane Eranian; Wenguang Chen; Weimin Zheng",
+          "date": "2013-02（共同作者页面标注；存档稿具体修订日未知）",
+          "url": "https://pacman.cs.tsinghua.edu.cn/~cwg/publication/tc11/tc11.pdf",
+          "locator": "首页署名/机构，§2.3及§3.1–3.3；PDF第3–6页；作者简介第15页",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "读取采样同步、skid及多指令退休的偏差，基本块/边profile的minimum-cost-flow一致化及基于置信度的代价调整；不声称独立复现。",
+          "evidenceStrength": "个人署名与所列正文直接支持；不证明个人独占贡献、实验复现或商业采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Google（Eranian）；其他作者见论文首页"
+        },
+        {
+          "workId": "stephane-eranian-vcew-2025",
+          "title": "VCEW Preliminary Program 2025",
+          "authors": "VCEW",
+          "date": "2025（6月8–11日会议；文件发布日期未知）",
+          "url": "https://vcew.org/download/vcew-2025-program.pdf",
+          "locator": "PDF第2页，Tuesday June 10, 10:30",
+          "type": "会议议程",
+          "contentStatus": "初步公开日程列Stephane Eranian、Google及PMU主题；只作机构线索，不证明演讲实际发生或技术正文。",
+          "evidenceStrength": "仅用于身份和机构时间边界，不计技术作品。",
+          "role": "身份/历史机构证据",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12",
+          "organizationAtPublication": "Google"
+        }
+      ]
+    },
+    {
+      "id": "denis-foley",
+      "name": "Denis Foley",
+      "independence": "2016作品针对Pascal直连NVLink物理/包协议；2018作品针对独立NVSwitch交换芯片及DGX-2多GPU系统。技术对象和新增机制不同；2017 Pascal论文版本不另计。",
+      "sourceAudit": [
+        {
+          "workId": "denis-foley-pascal-nvlink-2016",
+          "title": "Pascal GPU with NVLink",
+          "authors": "John Danskin; Denis Foley",
+          "date": "2016-08",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc28/HC28.22-Monday-Epub/HC28.22.10-GPU-HPC-Epub/HC28.22.121-Pascal-GPU-DanskinFoley-NVIDIA-v06-6_7.pdf",
+          "locator": "封面及slides 13–20（PDF页13–20），NVLink物理层、协议、CRC/replay",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读所列页文本：可变长包、读写/原子操作、链路合并与错误重放；未采用性能图数值。",
+          "evidenceStrength": "官方会议公开原件，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "封面及slides 13–20（PDF页13–20），NVLink物理层、协议、CRC/replay"
+        },
+        {
+          "workId": "denis-foley-nvswitch-dgx2-2018",
+          "title": "NVSwitch and DGX-2",
+          "authors": "Alex Ishii; Denis Foley; with Eric Anderson, Bill Dally, Glenn Dearth, Larry Dennison, Mark Hummel, John Schafer",
+          "date": "2018-08",
+          "url": "https://old.hotchips.org/hc30/2conf/2.01_Nvidia_NVswitch_HotChips2018_DGX2NVS_Final.pdf",
+          "locator": "封面及slides 7–13（PDF页7–13）：NUMA边界、crossbar、物理地址、可靠性",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读所列页文本：非阻塞crossbar、包转换、SRAM缓冲、GPU侧地址转换及逐跳检错；未独立复现。",
+          "evidenceStrength": "官方会议公开原件，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "封面及slides 7–13（PDF页7–13）：NUMA边界、crossbar、物理地址、可靠性"
+        },
+        {
+          "workId": "foley-nvidia-bio",
+          "title": "Denis Foley — NVIDIA author biography",
+          "authors": "NVIDIA",
+          "date": "未知（页面未标简介更新日）",
+          "url": "https://developer.nvidia.com/blog/author/dfoley/",
+          "locator": "作者简介首段",
+          "type": "机构人物简介",
+          "contentStatus": "已读完整简介段；NVLink团队、GPU Architecture Senior Director及AMD/ATI/HP经历；现职时效未确认。",
+          "evidenceStrength": "只用于身份及历史职责，不计技术作品；未将历史职称自动延续至2026年。",
+          "role": "身份证据，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "david-blythe",
+      "name": "David Blythe",
+      "independence": "2006 Direct3D 10软件/编程系统与2020 Intel Xe硬件微架构为不同机构、不同时期的独立作品；D3D论文/课程同项目只计一项，2021 Ponte Vecchio不为凑数再计。",
+      "sourceAudit": [
+        {
+          "workId": "david-blythe-direct3d10-2006",
+          "title": "Direct3D 10 — SIGGRAPH Course 3 Chapter 2",
+          "authors": "David Blythe / Microsoft Corporation",
+          "date": "2006（SIGGRAPH课程；精确公开日未知）",
+          "url": "https://userpages.cs.umbc.edu/olano/s2006c03/ch02.pdf",
+          "locator": "PDF页1–4：封面、§1 The Pipeline、§1.1.1 System Generated Values",
+          "type": "作者讲义/幻灯片",
+          "contentStatus": "已读课程章节所列页，geometry shader与stream output及实例标识；未逐页审计完整60页。",
+          "evidenceStrength": "大学课程存档中的署名原始讲义，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "PDF页1–4：封面、§1 The Pipeline、§1.1.1 System Generated Values",
+          "formatDetail": "SIGGRAPH署名课程材料，由课程教师UMBC大学主页存档；非微软当前产品文档。"
+        },
+        {
+          "workId": "david-blythe-xe-2020",
+          "title": "The Xe GPU Architecture",
+          "authors": "David Blythe / Intel Corporation",
+          "date": "2020-08-17",
+          "url": "https://hc32.hotchips.org/assets/program/conference/day1/HotChips2020_GPU_Intel_Xe_David_Blythe.pdf",
+          "locator": "PDF页2–11：署名、架构目标、slice/subslice/EU及memory fabric",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读所列页文本：可配置EU管线、可选固定功能及缓存/互连配置；未引用性能数值。",
+          "evidenceStrength": "官方会议公开原件，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "PDF页2–11：署名、架构目标、slice/subslice/EU及memory fabric"
+        },
+        {
+          "workId": "blythe-cgo-2012",
+          "title": "CGO 2012 keynote biography",
+          "authors": "CGO 2012",
+          "date": "2012-04-03（报告日期）",
+          "url": "https://2012.cgo.org/conference/keynotes/index.html",
+          "locator": "David Blythe biography",
+          "type": "机构人物简介",
+          "contentStatus": "已读官方会议简介：Intel软件架构职责及Microsoft DirectX/SGI经历，连接2006与2020技术署名。",
+          "evidenceStrength": "只用于身份及历史职责，不计技术作品；未将历史职称自动延续至2026年。",
+          "role": "身份证据，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "blythe-amd-2023",
+          "title": "AMD Announces Appointment of New Corporate Fellows",
+          "authors": "AMD",
+          "date": "2023-03-13",
+          "url": "https://www.amd.com/en/newsroom/press-releases/2023-3-13-amd-announces-appointment-of-new-corporate-fellows.html",
+          "locator": "David Blythe条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读：2022年11月加入AMD，任命Corporate Fellow；曾任Intel lead GPU architect；不作2026具体项目职责证据。",
+          "evidenceStrength": "只用于身份及历史职责，不计技术作品；未将历史职称自动延续至2026年。",
+          "role": "身份证据，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    {
+      "id": "hong-jiang",
+      "name": "Hong Jiang",
+      "independence": "2011 Sandy Bridge媒体编解码架构与2022 Ponte Vecchio HPC/GPU计算架构属于不同产品和研究问题；两者机制正文独立，非同项目重复演讲。",
+      "sourceAudit": [
+        {
+          "workId": "hong-jiang-quicksync-2011",
+          "title": "The Intel Quick Sync Video Technology in the 2nd-Generation Intel Core Processor Family",
+          "authors": "Hong Jiang / Intel Corporation",
+          "date": "2011-08-19（幻灯片日期）",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc23/HC23.19.8-Video/HC23.19.820-QuickSync-Jiang-Intel_08012011b.pdf",
+          "locator": "PDF页1、5、8–12：作者、统一执行资源、设计取舍、解码/混合编码",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读所列页文本：可编程ENC与固定功能PAK分工、跨帧并行和解码电路复用；未采用吞吐/功耗数字。",
+          "evidenceStrength": "官方会议公开原件，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "PDF页1、5、8–12：作者、统一执行资源、设计取舍、解码/混合编码"
+        },
+        {
+          "workId": "hong-jiang-ponte-vecchio-2022",
+          "title": "Intel’s Ponte Vecchio GPU: Architecture, Systems & Software",
+          "authors": "Hong Jiang / Intel Corporation",
+          "date": "2022-08",
+          "url": "https://hc34.hotchips.org/assets/program/conference/day1/GPU%20HPC/Intel_s%20Ponte%20Vecchio%20GPU%20-%20Architecture%20Systems%20and%20Software%20FINAL.pdf",
+          "locator": "PDF页1、11–15、19：署名、存储层级、预取、Transpose Dataport、SIMD宽度",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读所列机制文本：预取与缓存策略、块数据转置、通过局部SIMD宽度降低spill；未采用比较性能图。",
+          "evidenceStrength": "官方会议公开原件，署名及机制正文可核查；团队成果，不证明个人独占设计或独立性能复现。",
+          "role": "独立一手技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "PDF页1、11–15、19：署名、存储层级、预取、Transpose Dataport、SIMD宽度"
+        },
+        {
+          "workId": "hong-jiang-itj-2012-bio",
+          "title": "Intel Technology Journal vol16 issue1 — Hong Jiang author biography",
+          "authors": "Intel",
+          "date": "2012",
+          "url": "https://www.intel.com/content/dam/www/public/us/en/documents/research/2012-vol16-iss-1-intel-technology-journal.pdf",
+          "locator": "Hong Jiang作者简介段（精确页码未核实）",
+          "type": "机构人物简介",
+          "contentStatus": "已读搜索返回的原PDF完整作者简介段：Intel Chief Media Architect、UIUC电机博士；并未读取整本期刊。",
+          "evidenceStrength": "只用于身份及历史职责，不计技术作品；未将历史职称自动延续至2026年。",
+          "role": "身份证据，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12",
+          "actualReadRange": "搜索工具返回原PDF的Hong Jiang完整简介段；非全文获取"
+        },
+        {
+          "workId": "hong-jiang-self-bio",
+          "title": "Hong Jiang — Intel Corporation",
+          "authors": "Hong Jiang",
+          "date": "未知（主页更新日期未知）",
+          "url": "https://www.linkedin.com/in/hong-jiang-7906468",
+          "locator": "About、Education、Projects字段",
+          "type": "本人职业简介",
+          "contentStatus": "公开检索可读简介连接GPU Compute Architecture、UIUC教育及早期多媒体标准经历；非完整履历审计。",
+          "evidenceStrength": "只用于身份及历史职责，不计技术作品；未将历史职称自动延续至2026年。",
+          "role": "身份证据，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    }
+  ],
+  "researcherNotes": {
+    "cpu": {
+      "auditedAt": "2026-11-12",
+      "baseSha": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+      "heldGaps": [],
+      "researchEvidence": {
+        "scope": [
+          "Andrea Pellegrini",
+          "Akhilesh Kumar",
+          "Pat Conway"
+        ],
+        "reuse": "conference-speaker-gaps-20261112.json及分年代历史扫描；本次只补入库机制与独立性审计",
+        "identityScope": "原始技术署名及发表当期机构，未确认现任职责",
+        "validation": "仅生成资料；未执行共享目录验证、浏览器、PR或部署，交由父任务集成验收",
+        "sourceRefs": [
+          "turn419view0",
+          "turn416view0",
+          "turn419view1",
+          "turn422view3",
+          "turn428view0",
+          "turn419view3"
+        ],
+        "dateConflict": "Pat Conway 2002作品会议议程8月20日、存档PDF页脚9月22日，均保留"
+      }
+    },
+    "gpu": {
+      "reviewedAt": "2026-11-12",
+      "baseCommit": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+      "scope": [
+        "Jack Choquette",
+        "Michael Mantor",
+        "Ben Sander"
+      ],
+      "held": [],
+      "references": [
+        {
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.10-GPU-Gaming-Pub/HC29.21.132-Volta-Choquette-NVIDIA-Final3.pdf",
+          "toolRef": "turn414view0"
+        },
+        {
+          "url": "https://hc34.hotchips.org/assets/program/conference/day1/GPU%20HPC/HC2022.NVIDIA.Choquette.vfinal01.pdf",
+          "toolRef": "turn427view0"
+        },
+        {
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc29/HC29.21-Monday-Pub/HC29.21.10-GPU-Gaming-Pub/HC29.21.120-Radeon-Vega10-Mantor-AMD-f1.pdf",
+          "toolRef": "turn412view1"
+        },
+        {
+          "url": "https://old.hotchips.org/hc31/HC31_2.13_AMD_final.pdf",
+          "toolRef": "turn417view0"
+        },
+        {
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc25/HC25.0T1-Hetero-epub/HC25.25.112-HSAIL-Sanders-HSA%20HSAIL%20HotChips2013_Final2.pdf",
+          "toolRef": "turn414view1"
+        }
+      ],
+      "counts": {
+        "qualified": 3,
+        "held": 0,
+        "uniqueTechnicalWorks": 5
+      },
+      "independenceNote": "Vega共同作品用于两位人物的个人归属，但全站作品只计一次；两个报告人不构成两项作品。",
+      "unresolved": [
+        "三位2026年现任职责未核验，不宣称最新头衔。",
+        "所有挑战为编辑条件模型；未执行性能实验或独立复现。"
+      ]
+    },
+    "memory": {
+      "reviewedAt": "2026-11-12",
+      "baseSha": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+      "scope": [
+        "John Wuu",
+        "Gerald Pasdast",
+        "Rekha Pitchumani"
+      ],
+      "holds": [],
+      "evidencePolicy": "VCEW公开议程仅作线索；未使用闭门内容。历史技术作品，不包装为本周新技术。",
+      "limitations": [
+        "John Wuu 3D V-Cache2022全文本轮未取得；入库依赖独立2005 Itanium和2024/2025 MI300X正文。",
+        "Gerald Pasdast现任职责仅确认至2024技术报告；专利身份以Intel受让、同名、技术领域匹配，非用户确认。",
+        "Rekha Pitchumani最新机构确认来自2025论文；未核实2026职称。"
+      ],
+      "evidenceRecords": [
+        {
+          "workId": "john-wuu-isscc2005-asynchronous-l3",
+          "title": "The Asynchronous 24MB On-Chip Level-3 Cache for a Dual-Core Itanium-Family Processor",
+          "authors": "John Wuu; Don Weiss; Charles Morganti; Michael Dreesen",
+          "date": "2005；ISSCC 26.8",
+          "url": "https://picture.iczhiku.com/resource/ieee/sYKFrfYyRRrEZVbN.pdf",
+          "locator": "印刷p488（PDF p1），署名与异步缓存/供电设计段落",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读Intel署名、分块阵列、异步访问和独立可变电源设计；消除时钟分配及锁存开销，同时考虑大容量缓存慢单元。",
+          "evidenceStrength": "原论文公开镜像，非原出版社域名；正文载IEEE版权与Intel Fort Collins署名；不复述性能数值。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "john-wuu-mi300x-interconnect-2024",
+          "title": "Interconnect Design for Heterogeneous Integration of Chiplets in the AMD Instinct MI300X Accelerator",
+          "authors": "Alan Smith; Gabriel H. Loh; Samuel Naffziger; John Wuu; Nathan Kalyanasundharam; Eric Chapman; Raja Swaminathan; Tyrone Huang; Wonjun Jung; Alexander Kaganov; Hugh McIntyre; Ramon Mangaser",
+          "date": "2024-09-18首次发表；2025-02-21当前版；IEEE Micro 2025 Jan/Feb",
+          "url": "https://drive.google.com/file/d/1gq8XzO1Z0prjUWukFpZG_qG2D2XhdERT/view",
+          "locator": "印刷pp57–61；MI300X Overview、3-D Chiplet Interconnect、Enhancing Hybrid Bonding for MI300X",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读AMD共同署名与3D/2.5D分工、混合键合热路径及BPV直达铝RDL的供电设计；计算芯片和IOD需协同布置信号、电源。",
+          "evidenceStrength": "共同作者Gabriel Loh个人出版物页直接提供的论文副本；已下载PDF读取所列页，不宣称阅读全文或复现实测。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "originalDoi": "10.1109/MM.2024.3462351",
+          "originalMetadataUrl": "https://sites.google.com/site/lohgabe/pubs"
+        },
+        {
+          "workId": "john-wuu-vlsi2026-bio",
+          "title": "2026 IEEE/JSAP Symposium — John Wuu",
+          "authors": "IEEE/JSAP VLSI Symposium",
+          "date": "2026活动资料；网页发布日期未知",
+          "url": "https://vlsi26.mapyourshow.com/8_0/sessions/speaker-details.cfm?speakerid=170",
+          "locator": "John Wuu speaker biography",
+          "type": "机构人物简介",
+          "contentStatus": "已读AMD Senior Fellow、2006年前HP/Intel Itanium L3经历及3D V-Cache物理定义/技术协同开发简介。",
+          "evidenceStrength": "官方会议简介连接Intel历史作品与AMD身份；最后确认2026会期资料，不推定后续职务未变。",
+          "role": "身份与归属，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "gerald-pasdast-ucie-progress2024",
+          "title": "UCIe: A Progress Report for 2024",
+          "authors": "Gerald Pasdast",
+          "date": "2024-02-06；会议文件日期",
+          "url": "https://chipletsummit.com/proceeding_files/a0q5f0000044zma/20240206_PreConD_Pasdast.PDF",
+          "locator": "幻灯片1、5–7；尤其p7 Streaming Protocols on Full Stack",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读本人署名、Intel职位和UCIe1.1流协议映射至FDI flit格式、复用CRC/重试及协议复用机制。",
+          "evidenceStrength": "会议官方作者幻灯片；讲者为Intel Sr Principal Engineer及UCIe Form Factor & Compliance WG co-chair。标准成果属联盟，不能归为个人独占。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "gerald-pasdast-clock-phase-us16285056",
+          "title": "Clock phase compensation apparatus and method — US10686582B1",
+          "authors": "Gerald Pasdast; Nasser A. Kurd; Peipei Wang; Yingyu Miao; Lakshmipriya Seshan; Ishaan S. Shah",
+          "date": "2020-06-16公开；2019-02-25优先权",
+          "url": "https://patents.google.com/patent/US10686582B1/en",
+          "locator": "Inventor/Original assignee/priority；Description，FIGS.1–6配套说明及unmatched receiver段落",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读Intel共同发明人及机制：电压跌落/上升检测值经查找表映射为PI或DLL相位修正，补偿时钟与数据路径失配。",
+          "evidenceStrength": "公开专利原说明书的Google Patents镜像；Intel受让、同名及I/O技术连续性支持作者匹配，个人具体分工未披露；不是产品采用证据。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "patentFamily": "US16/285056; WO2020176169A1; US10686582B1，仅计同一族一次"
+        },
+        {
+          "workId": "rekha-pitchumani-smrdb-2015",
+          "title": "SMRDB: Key-Value Data Store for Shingled Magnetic Recording Disks",
+          "authors": "Rekha Pitchumani; James Hughes; Ethan L. Miller",
+          "date": "2015-05；SYSTOR 2015-05-26至28",
+          "url": "https://www.crss.us/media/pubs/d9440b2261ebeb02d41fe39c7c11b3cce5ca64bd.pdf",
+          "locator": "PDF pp1、4–6；§4.1–4.3，Figure4–6",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读UCSC署名及SMR带顺序写：memtable刷带、带内Bloom filter/索引、后台归并；允许范围重叠并按顺序性选择归并。",
+          "evidenceStrength": "作者研究中心存档原论文；当时无原始SMR设备，评估使用传统盘受限顺序写，不能称SMR实盘产品验证。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "rekha-pitchumani-polystore-fast2025",
+          "title": "PolyStore: Exploiting Combined Capabilities of Heterogeneous Storage",
+          "authors": "Yujie Ren; David Domingo; Jian Zhang; Paul John; Rekha Pitchumani; Sanidhya Kashyap; Sudarsun Kannan",
+          "date": "2025-02；FAST 2025-02-25至27",
+          "url": "https://www.usenix.org/system/files/fast25-ren.pdf",
+          "locator": "署名页及印刷pp542–543，§4.3 Poly-index、§4.4.1 Adaptive File Creation and Opening",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读Samsung署名；跨设备逻辑文件由范围树Poly-index映射，细粒度锁支持并发；文件增长并出现带宽需求时扩展物理文件。",
+          "evidenceStrength": "USENIX官方论文；多机构共同研究，未披露个人独占模块；不引用性能倍数或声称生产采用。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "rekha-pitchumani-ucsc-bio",
+          "title": "CRSS: Rekha Pitchumani",
+          "authors": "UC Santa Cruz SSRC档案",
+          "date": "2019-05-22页面最后修改",
+          "url": "https://www.crss.us/person/rpitchumani.html",
+          "locator": "Rekha Pitchumani biography及publications",
+          "type": "机构人物简介",
+          "contentStatus": "已读2015博士、SMR数据管理研究及毕业加入Samsung；与2025署名串联历史身份。",
+          "evidenceStrength": "一手署名正文；共同作者的具体个人分工未披露，不证明独占贡献。",
+          "role": "身份与归属，不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    },
+    "performance": {
+      "date": "2026-11-12",
+      "baseSha": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+      "holds": [],
+      "evidenceNotes": [
+        "公开VCEW日程只用于发现/身份线索；未使用任何off-record演讲正文。",
+        "三人各两项独立作品均审读所列机制正文；全文标记表示来源载体为全文，contentStatus明确本次局部阅读。",
+        "历史研究补证，不声称本周新作品。"
+      ],
+      "excludedSources": [
+        {
+          "person": "Corey Gough",
+          "url": "https://cdrdv2-public.intel.com/840405/power_management_of_intel_architecture_servers.pdf",
+          "reason": "未建立个人署名，不计作品"
+        },
+        {
+          "person": "Corey Gough",
+          "title": "Power management in the Intel Xeon E5 v3 (2015)",
+          "reason": "只找到元数据/议程，未读机制正文，未计作品"
+        },
+        {
+          "person": "Stephane Eranian",
+          "url": "https://cscads.rice.edu/Stephane_Eranian-2008-07-21.pdf",
+          "reason": "perfmon2同项目更新不独立计数；发现保密页脚，不用于发布正文归纳"
+        },
+        {
+          "person": "Stephane Eranian",
+          "title": "Reliable and Efficient Performance Monitoring in Linux (SC2016)",
+          "reason": "正文访问未解决，本轮不计作品"
+        }
+      ]
+    },
+    "nextwave": {
+      "reviewedAt": "2026-11-12",
+      "baseCommit": "7ee3dcdebc1d9318337038e7c9f1ae36d3e20318",
+      "held": [],
+      "scope": "Denis Foley, David Blythe, Hong Jiang",
+      "deliveryStatus": "research prepared only; parent review/integration required",
+      "readAudit": {
+        "method": "Actual primary-source PDF text read at listed pages; not entire-deck or independent benchmark verification",
+        "refs": [
+          "turn430view1",
+          "turn435view0",
+          "turn430view2",
+          "turn435view2",
+          "turn435view1",
+          "turn441view0",
+          "turn438view0",
+          "turn444view0",
+          "turn444view1",
+          "turn441view1",
+          "turn447search3",
+          "turn447search0"
+        ]
+      }
+    }
+  },
+  "reviewCorrections": [
+    "N2估计与实硅边界定位改为印刷页6–7。",
+    "Hopper采用稳定章节及PDF页26–28定位，替换提取器行号。",
+    "Gough专著仅审读指定小节，来源类型改为技术专著正文（所列章节）。",
+    "Eranian仅审读指定章节，保留公开镜像与作者存档性质。",
+    "Blythe课程材料明确为大学存档原始署名讲义，保留AMD2023身份更新。"
+  ],
+  "delivery": {
+    "status": "prepared-not-published",
+    "validationRecord": "conference-followup-validation-20261112.json"
+  }
+}

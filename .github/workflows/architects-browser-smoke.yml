@@ -46,7 +46,8 @@ jobs:
             try {
               const catalog=JSON.parse(fs.readFileSync('ai/architects/catalog.json','utf8'));
               const index=JSON.parse(fs.readFileSync('ai/search-index.json','utf8'));
-              assert(catalog.profiles.length >= 418);
+              assert.equal(catalog.research.totalProfiles,catalog.profiles.length);
+              assert.equal(new Set(catalog.profiles.map(p=>p.id)).size,catalog.profiles.length);
               const expectedProfiles=catalog.profiles.length;
               const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
               assert(catalog.profiles.some(p=>p.id==='anil-kumar-amd-austin'));
@@ -81,9 +82,39 @@ jobs:
               assert(historicalCandidate,'Historical nomination record must be preserved');
               assert.equal(historicalCandidate.resolution.status,'admitted-in-other-batch');
               assert.equal(historicalCandidate.resolution.profileId,'lara-oliver');
+              const conferenceBatchId='2026-11-12-conference-followup';
+              const conferenceBatchPath=`ai/architects/research/batches/${conferenceBatchId}.json`;
+              assert(fs.existsSync(conferenceBatchPath),'Missing conference followup admission batch');
+              const conferenceBatch=JSON.parse(fs.readFileSync(conferenceBatchPath,'utf8'));
+              assert(Array.isArray(conferenceBatch.records),'Conference batch records must be an array');
+              const conferenceComplete=conferenceBatch.records.filter(r=>r.status==='complete');
+              const conferencePending=conferenceBatch.records.filter(r=>r.status!=='complete');
+              assert(conferenceBatch.completedNew>0,'Conference batch must admit at least one new profile');
+              assert.equal(conferenceComplete.filter(r=>r.kind==='candidate').length,conferenceBatch.completedNew);
+              assert.equal(conferenceComplete.filter(r=>r.kind==='existing').length,conferenceBatch.completedExisting);
+              assert.equal(conferenceComplete.length,conferenceBatch.completedNew+conferenceBatch.completedExisting);
+              assert.equal(conferenceBatch.records.length,conferenceBatch.plannedScope);
+              assert.equal(new Set(conferenceBatch.records.map(r=>r.id)).size,conferenceBatch.records.length);
+              const actualCounts={};
+              for(const record of conferenceBatch.records) actualCounts[record.status]=(actualCounts[record.status]||0)+1;
+              assert.deepEqual(conferenceBatch.counts,actualCounts);
+              for(const record of conferenceComplete){
+                const profile=catalog.profiles.find(p=>p.id===record.id);
+                assert(profile,`Missing conference admitted profile ${record.id}`);
+                assert.equal(profile.researchStatus.batch,conferenceBatchId);
+                assert.equal(index.entries.filter(x=>x.u===`/ai/architects/#${record.id}`).length,1);
+                if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
+              }
+              const excludedPending=[...pending,...conferencePending.filter(r=>r.kind==='candidate')];
+              for(const record of excludedPending){
+                assert(!catalog.profiles.some(p=>p.id===record.id),`Pending candidate in catalog: ${record.id}`);
+                assert(!index.entries.some(x=>x.u===`/ai/architects/#${record.id}`),`Pending candidate in search: ${record.id}`);
+              }
+              report.conferenceAdmissionBatch=conferenceBatchPath;
+              report.conferenceCompletedNew=conferenceBatch.completedNew;
               report.admissionBatch=batchPath;
               report.followupAdmissionBatch=laraBatchPath;
-              report.pendingExcluded=pending.map(r=>r.id);
+              report.pendingExcluded=excludedPending.map(r=>r.id);
               report.testedProfiles=targets;
               assert.equal(index.count,index.entries.length);
               assert(!index.entries.some(x=>x.u.includes('/research/')));
@@ -94,7 +125,7 @@ jobs:
                 page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:8765/')&&r.status()>=400)failed.push({url:r.url(),status:r.status()});});
                 assert.equal((await page.goto('http://127.0.0.1:8765/ai/architects/',{waitUntil:'networkidle'})).status(),200);
                 assert.equal(await page.locator('article.profile').count(),expectedProfiles);
-                for(const record of pending) assert.equal(await page.locator(`article.profile[id="${record.id}"]`).count(),0);
+                for(const record of excludedPending) assert.equal(await page.locator(`article.profile[id="${record.id}"]`).count(),0);
                 for(const [name,id] of targets){
                   await page.locator('#matrix-name').fill(name);
                   const row=page.locator('#architect-skill-table tbody tr:not([hidden])');
