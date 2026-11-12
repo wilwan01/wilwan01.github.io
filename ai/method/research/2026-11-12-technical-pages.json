@@ -1,0 +1,138 @@
+{
+  "run_id": "technical-pages-20261112",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "starting_sha": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "reviewed_skill": "audit-architecture-evidence; current SKILL.md read 2026-11-12",
+  "scope_note": "Bounded incremental review, not an exhaustive global product or benchmark census. Historical dates and downloads retained. No per-system benchmark replication.",
+  "sources": [
+    {
+      "id": "AMD-20261110-SP7",
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1305/amd-showcases-6th-gen-amd-epyc-processors-to-lead-next-era-of-ai-and-enterprise-computing",
+      "author": "AMD",
+      "published": "2026-11-10",
+      "read": "2026-11-12",
+      "type": "primary-vendor",
+      "locator": "News Highlights; opening paragraph; Broad Ecosystem Support and Availability",
+      "reading_scope": "Announcement body through ecosystem support; performance footnotes not audited",
+      "supports": "Vendor-reported SP7 GA/OEM shipping versus future cloud availability and Meta validation",
+      "limits": "No independent deployment census or performance verification"
+    },
+    {
+      "id": "MLC-INF61",
+      "url": "https://mlcommons.org/2026/09/mlperf-inference-v6-1-results/",
+      "author": "MLCommons",
+      "published": "2026-09-16",
+      "read": "2026-11-12",
+      "type": "primary",
+      "locator": "Evolution of the benchmark; Submissions and Results; The AI community continues to embrace and invest in MLPerf Inference",
+      "reading_scope": "Release substantive body",
+      "supports": "M03 availability categories and best-per-accelerator DeepSeek R1 Server comparison denominator",
+      "limits": "Raw submissions and Intel vendor performance claim not audited; old summary replaced by verified narrower text"
+    },
+    {
+      "id": "SPEC-CPU26-RULES",
+      "url": "https://open.spec.org/cpu2026/docs/runrules.html",
+      "author": "SPEC Open Systems Group",
+      "published": null,
+      "read": "2026-11-12",
+      "type": "primary",
+      "locator": "2.3.5.1; 2.3.6; 2.3.7; 4.4.1; 4.4.3; 4.4.5",
+      "reading_scope": "Selected rule bodies; not entire ruleset",
+      "supports": "M07 CPU2026 base flag constraints, threading exception and standards-conformance assertion exception",
+      "limits": "No scores collected; historical launch pricing not rechecked; document publication date unknown"
+    },
+    {
+      "id": "HC-PROGRAM",
+      "url": "https://hotchips.org/",
+      "author": "Hot Chips",
+      "published": null,
+      "read": "2026-11-12",
+      "type": "primary",
+      "locator": "2026 program and slide/video access notice",
+      "reading_scope": "Public program",
+      "supports": "Official event identities, dates and current access notice only",
+      "limits": "No new talk body, Q&A transcript or video obtained"
+    },
+    {
+      "id": "HC-ARCHIVE",
+      "url": "https://hotchips.org/archives/",
+      "author": "Hot Chips",
+      "published": null,
+      "read": "2026-11-12",
+      "type": "primary",
+      "locator": "Archives links",
+      "reading_scope": "Archive index",
+      "supports": "Archive discovery only",
+      "limits": "Links are not read talk evidence"
+    },
+    {
+      "id": "MLC-TRAINING-PAGE",
+      "url": "https://mlcommons.org/benchmarks/training/",
+      "author": "MLCommons",
+      "published": null,
+      "read": "2026-11-12",
+      "type": "primary",
+      "locator": "Results and Benchmarks table",
+      "reading_scope": "Current benchmark definitions and results links",
+      "supports": "Page shows v6.1 workload definitions but results links explicitly labelled v6.0",
+      "limits": "Not sufficient to claim v6.1 results released; no new record added"
+    }
+  ],
+  "coverage": [
+    {
+      "page": "/ai/index.html",
+      "check_status": "partial",
+      "evidence_result": "material_update",
+      "changes": "Dated AMD availability increment in Chinese and English indexes; 15 companies/30 reports unchanged",
+      "remaining": "Other 14 product-company latest releases not independently refreshed; historical AMD report not regenerated"
+    },
+    {
+      "page": "/ai/hot-chips/",
+      "check_status": "partial",
+      "evidence_result": "no_qualified_new_body_in_checked_sources",
+      "changes": "None; historical Q&A counts and date preserved",
+      "remaining": "2026 slide/video bodies and new public Q&A were not obtained; do not infer none exist"
+    },
+    {
+      "page": "/ai/notes/",
+      "check_status": "partial",
+      "evidence_result": "no_edit_justified_in_selected_review",
+      "local_read": [
+        "index.html",
+        "e01.html",
+        "e09.html",
+        "e12.html"
+      ],
+      "changes": "None; 17-note historical collection preserved",
+      "remaining": "Remaining 14 note bodies and new external literature not fully reviewed"
+    },
+    {
+      "page": "/ai/benchmarks/",
+      "check_status": "partial",
+      "evidence_result": "historical_evidence_upgrade_and_qualification",
+      "changes": "M03 official-body evidence and scoped metric; M07 current-suite rules and expired historical price caveat; no new IDs",
+      "remaining": "Other benchmark entries, raw scores, vendor claim footnotes and newest training results not comprehensively audited"
+    },
+    {
+      "page": "/ai/method/",
+      "check_status": "partial",
+      "evidence_result": "consistency_fix",
+      "changes": "Remove obsolete claim benchmarks cover only three MLCommons rounds",
+      "remaining": "Other method page facts and glossary not fully audited"
+    }
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "benchmark_ids": "23 before and after; unique",
+    "html_parse": "passed with Python HTMLParser for changed HTML",
+    "diff_check": "passed",
+    "browser": "pending root integration",
+    "deployment": "not attempted by subagent"
+  },
+  "delivery_state": "prepared_not_published",
+  "next_steps": [
+    "Root independent evidence review and affected-page browser checks",
+    "Verify product index increment and selected benchmark text on deployment",
+    "Continue unreviewed product companies, note bodies and benchmark sources without advancing their successful coverage cutoff"
+  ]
+}

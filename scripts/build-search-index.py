@@ -5,6 +5,8 @@ Entries: {t: title, u: url, s: section, x: searchable text, l: language}.
 Run from anywhere:  python3 scripts/build-search-index.py
 """
 import html
+import argparse
+from datetime import date
 import json
 import re
 from pathlib import Path
@@ -12,6 +14,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 AI = ROOT / "ai"
 out = []
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--as-of', type=date.fromisoformat, help='Verified content-build date (YYYY-MM-DD); retained on ordinary reruns.')
+args = parser.parse_args()
+index_path = AI / 'search-index.json'
+previous = json.loads(index_path.read_text(encoding='utf-8')) if index_path.exists() else {}
 
 
 def add(t, u, s, x="", l="bi"):
@@ -34,6 +41,8 @@ SECTION_OF = {"architects": "architects", "analysts": "analysts", "bridge": "bri
               "hot-chips": "hotchips", "notes": "notes", "policy": "policy", "standards": "standards", "method": "method", "customers": "customers", "benchmarks": "benchmarks", "energy": "energy", "calendar": "calendar"}
 for f in sorted(AI.rglob("*.html")):
     rel = f.relative_to(AI).as_posix()
+    if any(part in {'research', 'drafts', 'candidates'} for part in f.relative_to(AI).parts):
+        continue  # research records remain accessible, but are not formal search results
     if re.match(r"notes/[a-z]\d+\.html$", rel):
         continue  # covered by the notes catalog entries below
     if rel.startswith("files/") or rel.endswith("/index.html") and (AI / rel.replace("/index.html", ".html")).exists():
@@ -54,16 +63,11 @@ for f in sorted(AI.rglob("*.html")):
 
 # --- architects
 for p in load("architects/catalog.json")["profiles"]:
-    add(p["name"], f"/ai/architects/#{p['id']}", "architects", f"{p['field']} {p['core']}", "zh")
-# --- analyst thought atlas and candidate cohort
+    add(p["name"], f"/ai/architects/#{p['id']}", "architects", f"{p['id'].replace(chr(45), chr(32))} {' '.join(p.get('aliases', []))} {p['field']} {p['core']}", "zh")
+# --- formally admitted analyst thought profiles (candidate pipeline is not indexed)
 atlas = load("analysts/thought-atlas.json")
 for p in atlas["profiles"]:
     add(p["name"], f"/ai/analysts/thoughts.html?profile={p['id']}#map", "analysts", f"{p.get('role','')} {p.get('scope','')}", "zh")
-try:
-    for c in load("analysts/candidate-pipeline.json")["candidates"]:
-        add(c["name"], "/ai/analysts/thoughts.html#candidates", "analysts", f"{c.get('firm','')} {c.get('focus','')}", "zh")
-except Exception:
-    pass
 # --- earnings ledger
 for q in load("analysts/corpus.json")["ledger"]:
     add(f"{q['company']} {q['quarter']} · {q['ask']}", f"/ai/earnings/#{q['id']}", "earnings", f"{q['id']} {q.get('theme','')} {q.get('analyst','')}", "en")
@@ -95,5 +99,5 @@ for e in load("calendar/events.json")["events"]:
 for t in load("method/glossary.json")["terms"]:
     add(f"{t['en']} / {t['zh']}", f"/ai/method/glossary.html#{t['id']}", "glossary", f"{t['def_en']} {t['def_zh']}", "bi")
 
-(AI / "search-index.json").write_text(json.dumps({"built": "2026-10-11", "count": len(out), "entries": out}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+index_path.write_text(json.dumps({"built": args.as_of.isoformat() if args.as_of else previous.get('built'), "count": len(out), "entries": out}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 print(len(out), "entries,", (AI / "search-index.json").stat().st_size // 1024, "KB")

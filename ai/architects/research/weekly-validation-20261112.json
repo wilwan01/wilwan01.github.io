@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-12",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "baseCommit": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "profiles": 411,
+  "audited": 410,
+  "activePendingCandidates": 5,
+  "validation": "PASS: validate_contribution_batch.py; 26 batches, 416 records, historical preservation, two-distinct-works gate and internal links",
+  "renderIdempotent": true,
+  "diffCheck": "PASS for architect paths",
+  "peerReview": "pending-parent-integration",
+  "browser": {
+    "status": "blocked-at-launch",
+    "command": "BATCH_FILE=research/batches/2026-11-12-weekly.json CHROMIUM_EXECUTABLE=/usr/bin/chromium node ai/architects/tools/check_domestic_core_page.cjs http://127.0.0.1:8876/ai/architects/",
+    "error": "process_singleton_posix.cc: socket() failed: Operation not permitted (1)",
+    "scope": "No executable viewport tests completed. Playwright and Chromium are installed; failure is launch environment restriction, not missing binaries.",
+    "nextAction": "Use supported shared-browser environment for desktop/mobile page check before merge."
+  },
+  "deployment": {
+    "status": "not-published",
+    "commit": null,
+    "url": "https://wilwan01.github.io/ai/architects/",
+    "profilesObserved": null
+  }
+}

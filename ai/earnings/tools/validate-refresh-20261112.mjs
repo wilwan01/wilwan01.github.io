@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {execFileSync} from 'node:child_process';
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const c=read('ai/analysts/corpus.json'), l=read('ai/earnings/refresh-ledger.json');
+const cs=read('ai/analysts/refresh-cases.json'),ks=read('ai/analysts/refresh-answer-keys.json');
+assert.equal(cs.cases.length,29);assert.equal(c.counts.reasoning_cases,29);assert.equal(c.counts.staged_refresh_exercises,27);
+const added=cs.cases.find(x=>x.id==='CASE-20261112-CRWV-OFFERED-DENOMINATOR');assert.equal(added.training.stages.length,4);assert.ok(ks.keys[added.id]);assert.deepEqual(added.question_ids,['QA218']);
+const old=JSON.parse(execFileSync('git',['show','370b7dba588f4f936ca0fafa67eb1f42e688aa51:ai/analysts/corpus.json'],{maxBuffer:20e6}));
+assert.deepEqual(c.ledger.slice(0,216),old.ledger);
+assert.deepEqual(c.financial_disclosures.slice(0,27),old.financial_disclosures);
+for(const [rows,key] of [[c.ledger,'id'],[c.financial_disclosures,'id'],[l.current.company_checks,'company']])assert.equal(new Set(rows.map(x=>x[key])).size,rows.length);
+assert.equal(c.counts.questions,c.ledger.length);assert.equal(c.ledger.length,218);
+assert.equal(c.counts.quarterly_events,163);assert.equal(c.counts.events,165);assert.equal(c.counts.post_earnings_calls,2);
+assert.equal(c.counts.financial_disclosure_records,29);assert.equal(l.current.company_checks.length,35);
+assert.equal(l.current.new_monthly_revenue_disclosures,1);assert.equal(l.current.new_quarterly_events,1);
+for(const ck of l.current.company_checks){assert.equal(ck.release_check.confirmed_absence,false);assert.equal(ck.success_coverage_advanced,false);}
+const monthly=c.financial_disclosures.find(x=>x.id==='TSMC_202610_monthly_20261110');assert.equal(monthly.counts_as_completed_quarter,false);assert.equal(monthly.counts_as_call,false);
+const h=fs.readFileSync('ai/earnings/index.html','utf8');const ids=[...h.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);
+assert.deepEqual(JSON.parse(h.match(/<script id="ledger-data" type="application\/json">([\s\S]*?)<\/script>/)[1]),c.ledger);
+for(const q of c.ledger)assert.ok(ids.includes(q.id));
+for(const m of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);
+assert.ok(h.includes('218 of 218 probes'));assert.ok(h.includes('cutoff 28 September 2026'));
+assert.deepEqual(l.current,c.earnings_refresh);
+execFileSync('node',['ai/earnings/tools/sync-coverage.mjs','--check']);
+console.log(JSON.stringify({status:'passed',cutoff:l.current.as_of,companies:35,partial_company_checks:35,quarters:163,post_calls:2,questions:218,new_questions:2,new_monthly_disclosures:1,reasoning_cases:29,staged_exercises:27,new_staged_exercises:1,historical_questions_unchanged:216,historical_disclosures_unchanged:27,counts_and_relations:true,embedded_data:true,js_syntax:true,browser:'not_run_by_this_script'},null,2));

@@ -1,0 +1,88 @@
+{
+  "run_id": "weekly-20261112",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "timezone": "Europe/London",
+  "base_sha": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "scope": "policy",
+  "check_status": "partial",
+  "evidence_status": "qualified_changes",
+  "delivery_status": "prepared_not_deployed",
+  "changes": [
+    {
+      "id": "P13",
+      "kind": "new_event"
+    },
+    {
+      "id": "P08",
+      "kind": "translation_correction",
+      "reason": "Existing English $4.5B equals 45亿美元, not 4.5亿美元; underlying later filing not newly re-audited."
+    }
+  ],
+  "sources": [
+    {
+      "label": "BIS final rule, 91 FR 70789–70790, 9 Nov 2026",
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22793.pdf",
+      "type": "primary",
+      "published_at": "2026-11-09",
+      "read_at": "2026-11-12",
+      "locator": "p.70789 SUMMARY/DATES; p.70790 Background",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    }
+  ],
+  "gaps": [
+    "BIS index search exposed rule but rendered filtered index was empty; read govinfo final PDF instead.",
+    "Other US rules and CN/NL/JP measures not fully rescanned.",
+    "P08 later licence and final-charge primary filings remain inherited gaps."
+  ],
+  "preserved_previous_records": [
+    {
+      "id": "P08",
+      "date": "2025-04-09",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "H20 出口需许可（NVIDIA 8-K）",
+        "en": "H20 exports to China require a licence (NVIDIA 8-K)"
+      },
+      "summary": {
+        "zh": "美国政府要求向中国（含香港、澳门）及 D:5 国家出口 H20 需许可，且“在可预见的将来”持续；NVIDIA 预计一季度最多约55亿美元相关费用。2025年8月起部分获准向特定中国客户出货（据其后续 8-K）。",
+        "en": "The US government required a licence for H20 exports to China (incl. Hong Kong and Macau) and D:5 countries “for the indefinite future”; NVIDIA expected up to about $5.5B of charges in the quarter. Some licences for certain China customers followed from Aug 2025 (per later 8-Ks)."
+      },
+      "nodes": [
+        "accelerator"
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "NVIDIA Form 8-K, April 2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000082/nvda-20250409.htm",
+          "type": "primary"
+        },
+        {
+          "label": "CNBC: NVIDIA $5.5B charge",
+          "url": "https://www.cnbc.com/2025/04/15/nvidia-says-it-will-record-5point5-billion-quarterly-charge-tied-to-h20-processors-exported-to-china.html",
+          "type": "news"
+        }
+      ],
+      "caveat": {
+        "zh": "8月许可与最终费用4.5亿美元以后续公司文件为准，本页只读取了4月8-K。",
+        "en": "The August licences and the final charge ($4.5B) rest on later company filings; only the April 8-K was read here."
+      },
+      "links": {
+        "earnings": [
+          "QA012"
+        ],
+        "reports": [
+          "nvidia-en.html"
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "unique_ids": "passed",
+    "browser": "pending_parent_integration"
+  },
+  "next_recovery": "Review listed source gaps; do not treat this cutoff as complete historical coverage."
+}

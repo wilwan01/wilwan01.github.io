@@ -1,0 +1,93 @@
+{
+  "run_id": "weekly-20261112",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "timezone": "Europe/London",
+  "base_sha": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "scope": "customers",
+  "check_status": "partial",
+  "evidence_status": "qualified_changes",
+  "delivery_status": "prepared_not_deployed",
+  "changes": [
+    {
+      "id": "C01",
+      "kind": "existing_record_update"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Meta Q3 2026 release — capex and CFO outlook",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+      "type": "primary",
+      "published_at": "2026-10-21",
+      "read_at": "2026-11-12",
+      "locator": "Operational highlights; CFO Outlook Commentary",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    }
+  ],
+  "gaps": [
+    "Other buyer records remain dated; no full buyer-universe refresh claimed.",
+    "Alphabet Q3 release/filing located but capex guidance not yet read; no update published from search summary.",
+    "No current GPU procurement allocations or operating capacities verified."
+  ],
+  "preserved_previous_records": [
+    {
+      "id": "C01",
+      "group": "us",
+      "date": "2026-07-29",
+      "title": {
+        "zh": "Meta：2026年资本开支指引 $130–145B",
+        "en": "Meta: 2026 capex outlook $130–145B"
+      },
+      "summary": {
+        "zh": "Meta 在2026年Q2业绩中将全年资本开支（含融资租赁本金）收窄至$130–145B；财报问答显示其区分了报告资本开支与合资数据中心建设。",
+        "en": "In its Q2 2026 results Meta narrowed full-year capex (including finance-lease principal) to $130–145B; the Q&A shows it separates reported capex from joint-venture data-center construction."
+      },
+      "facts": [
+        {
+          "zh": "Q2资本开支（含融资租赁本金）$31.08B；经营现金流$31.86B；自由现金流$0.784B。",
+          "en": "Q2 capex including finance-lease principal $31.08B; operating cash flow $31.86B; free cash flow $0.784B."
+        },
+        {
+          "zh": "此前指引为$125–145B（出处：新闻稿原文）。",
+          "en": "Prior outlook was $125–145B (source: press-release text)."
+        }
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "Meta Q2 2026 results (press release PDF)",
+          "url": "https://s21.q4cdn.com/399680738/files/doc_news/Meta-Reports-Second-Quarter-2026-Results-2026.pdf",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "新闻稿PDF已用文本提取核对上述数字；组件涨价对指引的归因来自二手报道，未在此核对。",
+        "en": "The figures above were checked by text extraction from the release PDF; the attribution of the raise to component pricing comes from press coverage and is not checked here."
+      },
+      "links": {
+        "earnings": [
+          "QA073",
+          "QA074",
+          "QA075",
+          "QA076"
+        ],
+        "reports": [
+          "meta-en.html"
+        ],
+        "bridge": [
+          "B2"
+        ],
+        "terms": [
+          "capex"
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "unique_ids": "passed",
+    "browser": "pending_parent_integration"
+  },
+  "next_recovery": "Review listed source gaps; do not treat this cutoff as complete historical coverage."
+}

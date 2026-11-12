@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-11-12T11:34:54.912391+00:00",
+  "surface": "supported managed preview, cloud Chromium",
+  "viewport_width": 1363,
+  "entries_checked": [
+    "index.html",
+    "earnings/",
+    "analysts/",
+    "hot-chips/",
+    "architects/",
+    "notes/",
+    "bridge/",
+    "policy/",
+    "standards/",
+    "customers/",
+    "benchmarks/",
+    "energy/",
+    "calendar/",
+    "method/",
+    "search.html"
+  ],
+  "basic_checks": "15 entries load heading and15 navigation links; no horizontal overflow at observed width",
+  "dynamic_counts": {
+    "architects": 411,
+    "thought_profiles": 241,
+    "earnings_questions": 218,
+    "policy": 13,
+    "standards": 10,
+    "customers": 13,
+    "benchmarks": 23,
+    "energy": 7
+  },
+  "interactions": [
+    "architect name filter and new contribution expansion",
+    "calendar bank/research conference filter returns expected appearances",
+    "legacy Krish profile URL resolves canonical ID",
+    "Sunny profile search and selection",
+    "thought empty answer cannot advance; synthetic QA draft advances and survives reload",
+    "new thought card starts stage1 with hidden model key",
+    "new earnings capacity case starts stage1/4; empty answer blocked;synthetic test answer advances to2/4",
+    "QA217 search gives1 of218",
+    "search Xinkai Song and Sunny Lin gives formal record;unmatched query gives0"
+  ],
+  "console": "No site-origin script errors observed; browser-extension metadata errors excluded explicitly",
+  "limitations": [
+    "not a mobile viewport test",
+    "not every archived page or every possible exercise path tested",
+    "local Playwright launch failed; cloud UI checks replace desktop portion only"
+  ],
+  "test_drafts": "Isolated local preview synthetic QA drafts, not user answers or learning assessments"
+}

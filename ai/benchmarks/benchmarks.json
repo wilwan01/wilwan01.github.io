@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-10-19",
+ "as_of": "2026-11-12",
  "scope": {
   "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
   "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
@@ -155,29 +155,30 @@
     "en": "MLPerf Inference v6.1"
    },
    "summary": {
-    "zh": "参与度创纪录：30个机构、120套系统、486项数据中心与边缘结果；新增端到端 RAG 流水线与边缘智能体推理测试。",
-    "en": "Record participation: 30 organisations, 120 systems, 486 datacenter and edge results; adds an end-to-end RAG pipeline test and an edge agentic-inference test."
+    "zh": "MLCommons 9月16日公告确认30个提交组织，以及新增端到端RAG和边缘智能体推理测试。",
+    "en": "The 16 September MLCommons release confirms 30 submitting organizations and new end-to-end RAG and edge-agentic tests."
    },
    "facts": [
     {
-     "zh": "MLCommons称相对一年前最高提升5.7倍。",
-     "en": "MLCommons reports up to 5.7× gain versus one year ago."
+     "zh": "5.7倍指 DeepSeek R1 Server 场景最佳单加速器成绩相对 v5.1，不是全部工作负载平均。",
+     "en": "The 5.7× figure compares the best per-accelerator DeepSeek R1 Server result with v5.1; it is not an all-workload average."
     },
     {
-     "zh": "首次同行评审结果：NVIDIA Vera Rubin NVL72、AMD Instinct MI350P、Intel Arc Pro B70；Crusoe 的512块 MI355X 提交是 MLPerf Inference 迄今最大系统。",
-     "en": "First peer-reviewed results for NVIDIA Vera Rubin NVL72, AMD Instinct MI350P and Intel Arc Pro B70; Crusoe’s 512-GPU MI355X run is the largest system ever submitted to MLPerf Inference."
+     "zh": "按发布时状态，Rubin／Vera Rubin NVL72 为 Preview；MI350P 与 Arc Pro B70 为 Available。",
+     "en": "At publication, Rubin/Vera Rubin NVL72 were Preview; MI350P and Arc Pro B70 were Available."
     },
     {
-     "zh": "过半提交者使用新的以API为中心的测试框架，MLCommons计划以此支撑替代数据中心推理基准的“MLPerf Endpoints”。",
-     "en": "More than half of submitters used a new API-centric harness that MLCommons says will underpin “MLPerf Endpoints”, a planned replacement for the datacenter inference benchmark."
-    },
-    {
-     "zh": "Intel 自报 Xeon 6980P 在 Llama 3.1 8B Server 上较 v6.0 提升2.4倍（同硅、同路数）；这是厂商自报。",
-     "en": "Intel self-reports a 2.4× Llama 3.1 8B Server gain on Xeon 6980P versus v6.0 on the same silicon and socket count; this is a vendor claim."
+     "zh": "RAG测试分别测文档入库与已有向量库上的问答；MLCommons表示API框架将支撑后续Endpoints。",
+     "en": "RAG separately tests corpus ingestion and answering against an existing vector database; MLCommons describes its API harness as the basis for future Endpoints."
     }
    ],
-   "evidence": "secondary-authoritative",
+   "evidence": "primary-read",
    "sources": [
+    {
+     "label": "MLCommons original release, 16 September 2026; read 12 November",
+     "url": "https://mlcommons.org/2026/09/mlperf-inference-v6-1-results/",
+     "type": "primary"
+    },
     {
      "label": "MLCommons release via financialcontent/GlobeNewswire",
      "url": "https://www.financialcontent.com/article/gnwcq-2026-9-16-mlcommons-sets-participation-record-with-new-mlperf-inference-v61-benchmark-results",
@@ -195,8 +196,8 @@
     }
    ],
    "caveat": {
-    "zh": "只读了搜索摘要，未核对每系统成绩；“最高5.7倍”是峰值，不是平均提升。",
-    "en": "Only search summaries were read and per-system scores were not checked; “up to 5.7×” is a peak, not an average gain."
+    "zh": "本轮补读官方正文并修正口径；未逐项复核原始成绩或独立重跑。旧二手来源保留用于追溯，不作为当前条目的核验依据。",
+    "en": "Historical evidence upgraded by reading the official body. Raw scores were not individually audited or independently rerun. Earlier secondary links remain for provenance, not as verification of this revision."
    },
    "links": {
     "terms": [
@@ -212,7 +213,9 @@
      "S08"
     ],
     "policy": []
-   }
+   },
+   "reviewed_at": "2026-11-12",
+   "source_locator": "Evolution of the benchmark; Submissions and Results; AI community participation"
   },
   {
    "id": "M06",
@@ -281,12 +284,12 @@
      "en": "SPECspeed Integer gains explicit parallelism for high-core-count CPUs and a memory allowance raised from 16GB to 64GB; language standards move to C++17, C18 and Fortran 2018; a new open-source-compiler category is added; bare-metal cloud platforms are formally supported."
     },
     {
-     "zh": "许可价格：新客户$3,000，现有用户在2026-11-03前$2,000。",
-     "en": "Licence: $3,000 for new customers; $2,000 for current licensees until 3 November 2026."
+     "zh": "历史发布定价：新客户$3,000，旧用户$2,000优惠截止2026-11-03；现行价格本轮未核实。",
+     "en": "Historical launch pricing: $3,000 new; $2,000 upgrade offer ended 3 November 2026. Current pricing was not verified this round."
     },
     {
-     "zh": "规则要点（CPU2017规则，CPU2026版另有页面）：base 编译不得使用反馈优化与断言标志；SPECspeed 允许编译器并行，SPECrate 不允许；公开披露须遵守规则，否则须标为估计值。",
-     "en": "Rule points (CPU2017 rules; CPU2026 has its own page): base builds may not use feedback-directed optimisation or assertion flags; compiler parallelisation is allowed for SPECspeed but not SPECrate; public disclosure must follow the rules or be labelled an estimate."
+     "zh": "已读CPU2026规则：base禁用反馈优化；断言标志存在“符合语言标准”的明确例外（2.3.6–2.3.7）。线程相关base标志可按OpenMP／C++ threads／doconcurrent组区分，其他标志仍须遵守套件与语言内一致性（2.3.5.1）。",
+     "en": "CPU2026 rules: base forbids FDO; assertion flags have an explicit language-standard compliance exception (2.3.6–2.3.7). Threading flags may differ between OpenMP, C++ threads and doconcurrent sets; other base consistency rules remain (2.3.5.1)."
     }
    ],
    "evidence": "primary-read",
@@ -308,8 +311,8 @@
     }
    ],
    "caveat": {
-    "zh": "新闻稿正文已读；规则页只看到目录摘要。本页没有采集任何 CPU 2026 具体得分，也不与 CPU2017 分数换算——两套套件不可直接比较。供应商（如 Supermicro）已发布结果，属营销来源。",
-    "en": "The press release was read; the rules pages were seen only as table-of-contents excerpts. No SPEC CPU 2026 scores are captured here and CPU2017 scores cannot be converted — the suites are not directly comparable. Vendors such as Supermicro have published results; those are marketing sources."
+    "zh": "保留此前新闻稿信息；本轮读取CPU2026规则上述正文及4.4节，替代CPU2017规则的间接引用。没有采集CPU2026得分，也不将CPU2017分数换算成CPU2026。",
+    "en": "Prior release information retained. This review read the cited CPU2026 rule sections and section 4.4, replacing the indirect CPU2017 rule reference. No CPU2026 scores collected; no CPU2017-to-2026 score conversion."
    },
    "links": {
     "terms": [
@@ -321,7 +324,8 @@
      "B11",
      "B10"
     ]
-   }
+   },
+   "reviewed_at": "2026-11-12"
   },
   {
    "id": "M08",

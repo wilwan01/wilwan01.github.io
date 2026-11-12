@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "as_of": "2026-10-11",
+  "as_of": "2026-11-12",
   "scope": {
-    "zh": "追踪与AI基础设施直接相关的开放标准、联盟与厂商互连项目：它们决定芯粒、内存、纵向/横向网络如何互联。每条标注版本日期、证据级别与未核实之处。",
-    "en": "Tracks open standards, consortia and vendor interconnect programmes that bear on AI infrastructure: how chiplets, memory and scale-up / scale-out networks connect. Each entry carries a version date, an evidence level and what was not verified."
+    "zh": "追踪与AI基础设施直接相关的开放标准、联盟与厂商互连项目：它们决定芯粒、内存、纵向/横向网络如何互联。每条标注版本日期、证据级别与未核实之处。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
+    "en": "Tracks open standards, consortia and vendor interconnect programmes that bear on AI infrastructure: how chiplets, memory and scale-up / scale-out networks connect. Each entry carries a version date, an evidence level and what was not verified. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
   },
   "layers": {
     "scale-up": {
@@ -75,8 +75,8 @@
         }
       ],
       "caveat": {
-        "zh": "据单一来源，2026年4月出现2.0版；本页未核实。",
-        "en": "One secondary source mentions a 2.0 version in April 2026; not verified here."
+        "zh": "1.0历史条目保留；2.0已于本轮补读联盟2026年4月7日公告，见S09。",
+        "en": "Historical 1.0 entry retained; the 7 April 2026 consortium announcement was read this run, see S09."
       },
       "links": {
         "hotchips": [
@@ -268,8 +268,8 @@
         }
       ],
       "caveat": {
-        "zh": "仅一份百科类来源称CXL 4.0已于2025年11月18日发布（128 GT/s）；本页未核实。",
-        "en": "Only an encyclopaedic source says CXL 4.0 was released on 18 Nov 2025 (128 GT/s); not verified here."
+        "zh": "3.2历史条目保留；4.0已由2025年11月18日联盟公告核实，见S10。",
+        "en": "Historical 3.2 entry retained; 4.0 verified against the 18 November 2025 consortium release, see S10."
       },
       "links": {
         "hotchips": [
@@ -534,6 +534,81 @@
           "scale-up"
         ]
       }
+    },
+    {
+      "id": "S09",
+      "name": "UALink Common 2.0 / 200G DL/PL 2.0",
+      "org": "UALink Consortium",
+      "layer": "scale-up",
+      "date": "2026-04-07",
+      "status": {
+        "zh": "联盟宣布批准并公开；历史补证",
+        "en": "Ratified and public per consortium; historical evidence added"
+      },
+      "summary": {
+        "zh": "Common 2.0加入网络内计算；200G链路/物理层规范独立。同期发布Chiplet 1.0及Manageability 1.0。",
+        "en": "Common 2.0 adds in-network compute; the 200G data-link/physical specification is separated. Chiplet 1.0 and Manageability 1.0 accompanied it."
+      },
+      "facts": [],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "UALink four-specification release, 7 Apr 2026",
+          "url": "https://ualinkconsortium.org/wp-content/uploads/2026/04/UALink-2.0-Specification-PR_FINAL.pdf",
+          "type": "primary",
+          "published_at": "2026-04-07",
+          "read_at": "2026-11-12T11:19:08+00:00",
+          "locator": "pp.1–2 New UALink Specifications",
+          "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+        }
+      ],
+      "caveat": {
+        "zh": "已读发布公告，未读规范全文；不是本周发布，也不证明硅片互操作、生产部署或实测性能。",
+        "en": "Release read, not complete specifications. Not a new weekly release or proof of silicon interoperability, deployment or measured performance."
+      },
+      "links": {
+        "bridge": [
+          "B7"
+        ]
+      }
+    },
+    {
+      "id": "S10",
+      "name": "CXL 4.0",
+      "org": "CXL Consortium",
+      "layer": "memory",
+      "date": "2025-11-18",
+      "status": {
+        "zh": "规范发布；历史补证",
+        "en": "Specification released; historical evidence added"
+      },
+      "summary": {
+        "zh": "联盟公布128 GT/s、端口捆绑和内存RAS增强；捆绑连接面向主机与Type 1/2加速器端口。",
+        "en": "The consortium announces 128 GT/s, port bundling and memory RAS enhancements; bundled connections join host and Type 1/2 accelerator ports."
+      },
+      "facts": [],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "CXL 4.0 announcement, 18 Nov 2025",
+          "url": "https://computeexpresslink.org/wp-content/uploads/2025/11/CXL_4.0-Specification-Release_FINAL_Website-Copy.pdf",
+          "type": "primary",
+          "published_at": "2025-11-18",
+          "read_at": "2026-11-12T11:19:08+00:00",
+          "locator": "p.1 Key features",
+          "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+        }
+      ],
+      "caveat": {
+        "zh": "已读公告，未读规范全文。链路速率不等于应用带宽；不据此认定现有CPU支持或已生产部署。",
+        "en": "Announcement read, not the full specification. Link rate is not application bandwidth; current CPU support and production adoption are not established."
+      },
+      "links": {
+        "bridge": [
+          "B8",
+          "B11"
+        ]
+      }
     }
   ],
   "relations": [
@@ -582,5 +657,14 @@
         "en": "CXL runs over the PCIe physical layer (details need the specifications)."
       }
     }
-  ]
+  ],
+  "refresh_coverage": {
+    "cutoff": "2026-11-12T11:19:08+00:00",
+    "status": "partial",
+    "note": {
+      "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
+      "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
+    },
+    "record": "research/weekly-20261112.json"
+  }
 }

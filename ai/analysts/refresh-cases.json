@@ -1601,6 +1601,64 @@
         "evaluation": "Web guidance/self-review only; actual AI assessment requires the learner answer. Reading a model is not mastery.",
         "answer_key_url": "refresh-answer-keys.json"
       }
+    },
+    {
+      "id": "CASE-20261112-CRWV-OFFERED-DENOMINATOR",
+      "company": "CoreWeave",
+      "source_disclosure_id": "CRWV_2026Q3_results_20261110",
+      "skills": [
+        "F7",
+        "F9",
+        "F14",
+        "F18"
+      ],
+      "source_keys": [
+        "CRWV-call-20261110"
+      ],
+      "question_ids": [
+        "QA218"
+      ],
+      "sources": [
+        {
+          "id": "CRWV-call-20261110",
+          "key": "CRWV-call-20261110",
+          "title": "CoreWeave Q3 2026 issuer-hosted transcript",
+          "url": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+          "publication_date": null,
+          "locator": "Q&A Borges follow-up and Zelnick first exchange; extracted lines347–379. Selected passages only.",
+          "evidence_kind": "issuer_hosted_transcript_not_audio_verified",
+          "source_ref": "turn151view1",
+          "retrieved_on": "2026-11-12",
+          "event_date": "2026-11-10",
+          "publication_date_status": "Exact upload time unknown; dated call and November11 indexed transcript lead. Not audio-verified."
+        }
+      ],
+      "real_analyst_question": "QA218 selected paraphrase, not verbatim",
+      "evidence_type": "management_testimony_separate_from_editorial_model",
+      "management_testimony": "Management clarified that 2028 capacity had not yet been marketed; see selected exchange.",
+      "researcher_inference": "已推出容量全部售出，只约束已推出子集；不能证明整个未来产能管线售罄。",
+      "hidden_uncertainty": "未售容量究竟来自主动延后销售、未达到交付条件，还是需求不足？",
+      "kpi": "规划、可交付、已推出、已签约、无融资条件的合同、已上电容量，单位MW；各集合须明确交集。",
+      "model_revision": "合同/推出量衡量已推出子集的签约率；合同/总管线衡量管线覆盖率。已上电容量是另一集合；有条件合同须单列，不能直接当收入。",
+      "validity_conditions": "同一时间点和同一容量口径；推出容量是总管线子集。不同年份、IT负载与站点总电力口径不能混用。",
+      "counterexample": "已推出的只是最优站点/客户子集；即使该子集全售出，剩余项目可能面对融资、施工或需求障碍。",
+      "falsification": "编辑检验：后续两次季度披露比较新增推出量、合同转化、取消与上电进度；推出量增加而签约率显著下降会反驳需求普遍充裕的推断。无分母披露时保持不可验证，不设冒充作者的阈值。",
+      "next_evidence_date": "Next two quarterly disclosures; exact dates not verified.",
+      "transfer_question": "合成迁移：开发商规划100套、推出40套、售出40套；如何区分主动惜售、需求不足与融资完工风险？需要哪些独立证据？",
+      "synthetic_transfer": true,
+      "question_attribution": "Editor-authored training from one selected exchange; not a permanent personal pattern or analyst impersonation",
+      "created_at": "2026-11-12",
+      "training": {
+        "scenario_type": "synthetic",
+        "evaluation": "Website guidance/self-review only. Actual AI assessment requires a learner answer; no mastery inferred from model viewing.",
+        "answer_key_url": "refresh-answer-keys.json",
+        "stages": [
+          "合成：云平台宣布100MW管线，推出40MW并签约40MW。计算已推出签约率和总管线覆盖率。能否据此说未来全部产能售罄？先列分母与口径。",
+          "先提交实际答案供AI评审。新增约束：40MW合同中20MW附融资批准条件；25MW已上电，但未给与已签合同的交集。哪些比例可以计算，哪些收入推断不能成立？",
+          "新约束：融资批准延迟6个月，但硬件采购合同已锁价且有付款节点。修正现金和收入时序模型，列出必须取得的合同、交付及付款证据；没有金额时不要编造利润。",
+          "合成迁移：开发商规划100套、推出40套、售出40套。怎样判断是主动推迟推出还是需求不足？将融资审批、完工验收和回款映射到你的模型。"
+        ]
+      }
     }
   ],
   "counting_rule": "11 source-linked reasoning cases total; 9 have staged synthetic exercises. This run adds 5 cases, 5 synthetic exercises and separately 7 selected real exchanges."

@@ -1,9 +1,9 @@
 {
  "version": 1,
- "as_of": "2026-10-17",
+ "as_of": "2026-11-12",
  "scope": {
-  "zh": "把数据中心用电预测、电网价格信号、一个具体站点和供应链公司的说法放在一起。本页不含逐站点完整名单、PUE 或水资源数据。",
-  "en": "Data-centre electricity forecasts, grid price signals, one concrete site and what supply-chain companies said, side by side. It does not include a complete site list, PUE or water data."
+  "zh": "把数据中心用电预测、电网价格信号、具体站点与需求响应协议和供应链公司的说法放在一起。本页不含逐站点完整名单、PUE 或水资源数据。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
+  "en": "Data-centre electricity forecasts, grid price signals, specific sites and demand-response agreements and what supply-chain companies said, side by side. It does not include a complete site list, PUE or water data. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
  },
  "evidence_levels": {
   "primary-read": {
@@ -78,8 +78,8 @@
     }
    ],
    "caveat": {
-    "zh": "只读了搜索摘要；这是2025年4月的预测，之后是否更新未核实。",
-    "en": "Only search summaries were read; this is an April 2025 forecast and later updates were not checked."
+    "zh": "本条保留2025年预测；2026年4月16日更新见E06，不是本周才发布。旧预测原文未在本轮重读。",
+    "en": "The 2025 forecast is retained; see E06 for the 16 April 2026 update, not a newly published weekly report. The older report was not reread this run."
    },
    "links": {
     "terms": [
@@ -274,6 +274,109 @@
      "C06"
     ]
    }
+  },
+  {
+   "id": "E06",
+   "group": "demand",
+   "date": "2026-04-16",
+   "title": {
+    "zh": "IEA 2026更新：2030年数据中心用电约950 TWh",
+    "en": "IEA 2026 update: about 950 TWh of data-centre electricity in 2030"
+   },
+   "summary": {
+    "zh": "IEA更新的中央预测从2025年485 TWh增至2030年约950 TWh，届时约占全球用电3%。这是情景预测，不是已投运容量。",
+    "en": "The IEA central projection rises from 485 TWh in 2025 to about 950 TWh in 2030, around 3% of global electricity. This is an outlook, not commissioned capacity."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "IEA Key Questions on Energy and AI, executive summary",
+     "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary",
+     "type": "primary",
+     "published_at": "2026-04-16",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "Our updated data centre electricity demand outlook",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    },
+    {
+     "label": "IEA report landing page — publication date",
+     "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai",
+     "type": "primary",
+     "published_at": "2026-04-16",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "Published date",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    }
+   ],
+   "caveat": {
+    "zh": "历史补证：已读执行摘要相关段落，未读全部模型附录；不能直接换算为AI专用GPU采购量。",
+    "en": "Historical evidence addition: relevant executive-summary sections read, not all model appendices. It cannot directly establish AI-only GPU purchases."
+   },
+   "links": {
+    "terms": [
+     "twh-gw"
+    ],
+    "bridge": [
+     "B6"
+    ]
+   }
+  },
+  {
+   "id": "E07",
+   "group": "site",
+   "date": "2026-11-02",
+   "title": {
+    "zh": "Effingham：未来园区承诺最高1 GW需求响应",
+    "en": "Effingham: up to 1 GW demand response committed for a future campus"
+   },
+   "summary": {
+    "zh": "OpenAI新计划引用Effingham试点；Georgia Power此前称预计负载3,200 MW，25年协议允许高需求时减少最多1,000 MW供电。园区仍在开发中。",
+    "en": "OpenAI’s new programme cites the Effingham pilot. Georgia Power previously described an expected 3,200 MW load and a 25-year agreement allowing up to 1,000 MW curtailment. The campus remains in development."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "OpenAI Grid Protectors Program",
+     "url": "https://openai.com/index/grid-protectors-program/",
+     "type": "primary",
+     "published_at": "2026-11-02",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "A model in Georgia; Looking forward",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    },
+    {
+     "label": "Georgia Power Effingham project announcement",
+     "url": "https://www.georgiapower.com/news-hub/press-releases/georgia-power-to-serve-openai-project-in-effingham-county.html",
+     "type": "primary",
+     "published_at": "2026-07-22",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "Paragraph beginning In addition; 25-year agreement",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    }
+   ],
+   "caveat": {
+    "zh": "协议/公司承诺，不是已投运1 GW调节能力；未读合同全文，响应时长、性能及实际节约尚未验证。",
+    "en": "Agreement and company commitments, not 1 GW of operational response. Full contract, response duration, performance and realised savings were not verified."
+   },
+   "links": {
+    "terms": [
+     "twh-gw"
+    ],
+    "bridge": [
+     "B6"
+    ]
+   }
   }
- ]
+ ],
+ "refresh_coverage": {
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "status": "partial",
+  "note": {
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
+  },
+  "record": "research/weekly-20261112.json"
+ }
 }

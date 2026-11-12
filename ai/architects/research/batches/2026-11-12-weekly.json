@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-12",
+  "focus": "历史线索补证：宋新开的两项独立共同署名作品",
+  "scope": "additional",
+  "baseCommit": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "plannedScope": 1,
+  "plannedExisting": 0,
+  "plannedCandidates": 1,
+  "completedExisting": 0,
+  "completedNew": 1,
+  "counts": {
+    "complete": 1
+  },
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "records": [
+    {
+      "id": "xinkai-song",
+      "name": "宋新开",
+      "kind": "candidate",
+      "status": "complete",
+      "reason": "以独立的Cambricon-LLM与QiMeng-Xpiler正文补齐上轮线索；不是将Cambricon-G/R元数据升级为已读正文。",
+      "nextAction": "",
+      "sources": [
+        {
+          "workId": "cambricon-llm-arxiv2024",
+          "title": "Cambricon-LLM: A Chiplet-Based Hybrid Architecture for On-Device Inference of 70B LLM",
+          "authors": "Zhongkai Yu、Shengwen Liang、Tianyun Ma、Yunke Cai、Ziyuan Nan、Di Huang、Xinkai Song等15位作者（完整署名见正文）",
+          "date": "2024-09-24（arXiv v1）",
+          "url": "https://arxiv.org/html/2409.15654v1",
+          "locator": "作者/机构表；§IV架构、§V分块、§VI纠错、§VII实验设置及§VIII结果",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、机制正文和仿真评估说明；不作为量产或实硅测量证据。",
+          "evidenceStrength": "作者公开论文；宋新开为共同作者，未给出个人模块分工。",
+          "role": "机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "qimeng-xpiler-osdi2025",
+          "title": "QiMeng-Xpiler: Transcompiling Tensor Programs for Deep Learning Systems with a Neural-Symbolic Approach",
+          "authors": "Shouyang Dong、Yuanbo Wen、Jun Bi、Di Huang、Jiaming Guo、Jianxing Xu、Ruibai Xu、Xinkai Song、Yifan Hao、Ling Li、Xuehai Zhou、Tianshi Chen、Qi Guo、Yunji Chen",
+          "date": "2025-07（OSDI 2025）",
+          "url": "https://www.usenix.org/system/files/osdi25-dong.pdf",
+          "locator": "封面及首页署名；§1.1–1.2、§3–5、§7–8",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取共同署名、神经—符号变换与四平台实验范围。",
+          "evidenceStrength": "会议官方论文；团队合作，作者顺序不证明独占模块贡献。",
+          "role": "独立作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "xinkai-song-ict-profile",
+          "title": "宋新开：中国科学院计算技术研究所人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "未知（页面路径含2024-04-29，不将其当作最后更新时间）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202404/t20240429_7142027.html",
+          "locator": "姓名、部门、邮箱、简历和主要论著",
+          "type": "机构人物简介",
+          "contentStatus": "官方主页显示2023年9月起副研究员、此前助理研究员，邮箱与论文署名对应；发布日期和更新日期未确认。",
+          "evidenceStrength": "身份与网页所列职责锚点，不计技术作品。",
+          "role": "身份及历史职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "保留原410位人物及全部研究；本次是新核验的历史证据，不是本周新发表作品。",
+    "QiMeng-Xpiler此前用于文渊博档案，可支持另一位已确认共同作者，但全站独立作品统计不得重复累加。",
+    "其他待补证候选与海外线索见本轮screening记录。"
+  ],
+  "publication": {
+    "status": "prepared-not-published",
+    "verificationRecord": "../weekly-validation-20261112.json"
+  }
+}

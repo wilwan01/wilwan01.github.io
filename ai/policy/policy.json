@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "as_of": "2026-10-11",
+  "as_of": "2026-11-12",
   "scope": {
-    "zh": "聚焦影响AI芯片、存储、设备与材料的出口管制、关税、产业政策与反垄断事件；不含AI模型监管（如欧盟AI法案）。条目按日期排列，每条标注证据级别与未核实之处。",
-    "en": "Covers export controls, tariffs, industrial policy and antitrust events that bear on AI chips, memory, equipment and materials. AI-model regulation (e.g. the EU AI Act) is out of scope. Entries are dated and carry an evidence level and what was not verified."
+    "zh": "聚焦影响AI芯片、存储、设备与材料的出口管制、关税、产业政策与反垄断事件；不含AI模型监管（如欧盟AI法案）。条目按日期排列，每条标注证据级别与未核实之处。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
+    "en": "Covers export controls, tariffs, industrial policy and antitrust events that bear on AI chips, memory, equipment and materials. AI-model regulation (e.g. the EU AI Act) is out of scope. Entries are dated and carry an evidence level and what was not verified. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
   },
   "evidence_levels": {
     "primary-read": {
@@ -442,7 +442,7 @@
         }
       ],
       "caveat": {
-        "zh": "8月许可与最终费用4.5亿美元以后续公司文件为准，本页只读取了4月8-K。",
+        "zh": "8月许可与最终费用45亿美元以后续公司文件为准，本页只读取了4月8-K。",
         "en": "The August licences and the final charge ($4.5B) rest on later company filings; only the April 8-K was read here."
       },
       "links": {
@@ -621,6 +621,51 @@
           "amd-en.html"
         ]
       }
+    },
+    {
+      "id": "P13",
+      "date": "2026-11-09",
+      "region": "US",
+      "kind": "export-control",
+      "title": {
+        "zh": "BIS：关联实体规则暂停延至2027年1月10日",
+        "en": "BIS extends the Affiliates Rule suspension through 10 January 2027"
+      },
+      "summary": {
+        "zh": "11月9日生效的最终规则延长此前对关联实体最终用户管制扩展规则的暂停。适用范围是该规则列明的EAR修订，不等于取消其他出口许可要求。",
+        "en": "Effective 9 November, the final rule extends the stay of the specified EAR amendments expanding affiliate end-user controls. This is not a removal of other export-licensing requirements."
+      },
+      "nodes": [
+        "accelerator",
+        "equipment",
+        "fab"
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "BIS final rule, 91 FR 70789–70790, 9 Nov 2026",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22793.pdf",
+          "type": "primary",
+          "published_at": "2026-11-09",
+          "read_at": "2026-11-12T11:19:08+00:00",
+          "locator": "p.70789 SUMMARY/DATES; p.70790 Background",
+          "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+        }
+      ],
+      "caveat": {
+        "zh": "已读最终规则的摘要、生效条款和背景；本条不判断具体交易的许可资格。下一核查节点为2027年1月10日前的官方变更。",
+        "en": "Summary, effective-date provision and background read. No transaction-specific licence conclusion; recheck official changes before 10 January 2027."
+      },
+      "links": {}
     }
-  ]
+  ],
+  "refresh_coverage": {
+    "cutoff": "2026-11-12T11:19:08+00:00",
+    "status": "partial",
+    "note": {
+      "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
+      "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
+    },
+    "record": "research/weekly-20261112.json"
+  }
 }
