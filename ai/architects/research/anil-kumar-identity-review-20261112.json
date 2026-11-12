@@ -3,14 +3,20 @@
   "review_date": "2026-11-12",
   "research_cutoff": "2026-11-12T11:19:08+00:00",
   "candidate_name": "Anil Kumar",
-  "status": "needs-identity-confirmation",
+  "status": "identity-confirmed-by-user-technical-audit-pending",
   "catalog_action": "not-added",
   "identity": {
     "candidate_profile": "https://www.linkedin.com/in/anil-kumar-2066611",
     "candidate_location": "Austin, Texas, United States",
     "candidate_employer": "AMD",
     "assessment": "Patent inventor name, AMD affiliation and Austin location are consistent with this profile, but do not uniquely establish that this is the person intended by the user. Current exact role is not independently verified.",
-    "confirmation_needed": "User-provided LinkedIn or personal profile URL, or full distinguishing name and role."
+    "confirmation_needed": "User nomination identity resolved; independently verify author-to-profile linkage and patent-family independence.",
+    "user_confirmation": {
+      "confirmed_at": "2026-11-12",
+      "profile": "https://www.linkedin.com/in/anil-kumar-2066611",
+      "context": "User answered yes to confirmation of the Austin/AMD profile; previously specified system architecture, I/O and PCIe.",
+      "scope": "Resolves which person the user nominated; does not independently prove patent attribution or current title."
+    }
   },
   "sources": [
     {
@@ -83,11 +89,10 @@
     }
   ],
   "gaps": [
-    "Unique identity confirmation from user or authoritative biographical linkage.",
     "Verified exact current role and last-confirmed employment date.",
     "Complete patent-family and project-independence check before formal admission."
   ],
-  "next_action": "Ask user for the intended person’s LinkedIn/profile URL or distinguishing full name. Resume from these sources after confirmation; do not repeat broad same-name searches.",
+  "next_action": "Resume technical attribution and patent-family review for the confirmed Austin candidate. Do not ask user to reconfirm this profile. Validate pages before merge and deployment.",
   "claims_boundary": "Co-inventorship only; no assertion of sole authorship, product leadership, measured performance or commercial adoption. Historical and 2026 patent publications are separately dated, not represented as new weekly product events.",
   "followup_review_20261112": {
     "user_clarification": "AMD System Architecture (I/O, PCIe etc)",
