@@ -1,0 +1,2059 @@
+{
+  "id": "conference-speaker-gaps-20261112",
+  "cutoff": "2026-11-12T21:15:00+00:00",
+  "checkedAt": "2026-11-12T21:26:45.066728+00:00",
+  "baseCommit": "136305bbb1b22e86e009040101c5236015c39db2",
+  "catalogBaseline": 418,
+  "catalogChanges": 0,
+  "admitted": 0,
+  "priorityNameGroups": 56,
+  "purpose": "Historical public-program gap screening; not admissions or exhaustive confirmed attendance census",
+  "datasets": {
+    "early": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+    "middle": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+    "recent": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+    "vcew": "conference-speaker-gaps-vcew-20261112.json"
+  },
+  "counts": {
+    "hotChipsAnnualArchiveEntriesChecked": 38,
+    "vcewPublicProgramDocuments": 39,
+    "recentHotChips": {
+      "presenterAppearances": 396,
+      "normalizedGroups": 349,
+      "catalogMatchedGroups": 65,
+      "unmatchedGroups": 284,
+      "multiYearUnmatchedGroups": 17
+    },
+    "middleHotChips": {
+      "annualProgramsRead": 15,
+      "namedProgramAppearanceRecords": 340,
+      "distinctNormalizedNames": 309,
+      "unlistedNormalizedNames": 267,
+      "unresolvedAttributionGroups": 98,
+      "authorOnlyProgramRows": 86,
+      "admitted": 0
+    },
+    "earlyHotChipsSelectedNameRows": 398,
+    "vcew": {
+      "publicProgramDocuments": 39,
+      "mainVailYearPrograms": 31,
+      "satelliteProgramDocuments": 8,
+      "unmatchedProvisionalNameGroups": 578,
+      "admitted": 0,
+      "transcribedNameEventRows": 781,
+      "alreadyListedNameEventRows": 107,
+      "nameCollisionRows": 1,
+      "unmatchedNameEventRows": 673,
+      "prioritizedMissingNames": 12,
+      "meaning": "578 provisional unmatched name groups is NOT 578 verified distinct architects, nor 578 admission-ready people. Some are unrelated fields, panelists, incomplete identities, typographic variants or namesakes."
+    }
+  },
+  "identityCorrections": [
+    {
+      "programName": "Mike Hong",
+      "catalogId": "zhou-hong-biren",
+      "canonicalName": "洪洲",
+      "source": "https://imgtec.eetrend.com/page/2022/workshop419.html",
+      "eventDate": "2022-07-19",
+      "locator": "Bilingual speaker list, rendered lines154–157",
+      "readAt": "2026-11-12",
+      "supports": "Organizer event page explicitly pairs 洪洲 and Mike Hong, CTO Biren Technology. Identity alias only, not a technical work."
+    }
+  ],
+  "limitations": [
+    "Do not add normalized group counts across datasets as unique people. Names, event appearances, technical works and admitted people are different units.",
+    "HC1989–2003 selective named-contributor extraction; HC1997 missing sessions, HC1999 truncated author list, HC2000 title index without names.",
+    "HC2004–2018 author-only and ambiguous groups are retained separately; not all actual speakers determined.",
+    "VCEW1970–1995 not linked in public archive; 2006 chairs only; 2017 mostly organizations; 2025 preliminary; Mesa2002 cancelled and Mesa2003 lacks named talk speakers.",
+    "VCEW off-record contents not used; only public program metadata.",
+    "Institutions are event-era, not verified current employers. Preliminary listing does not establish actual delivery.",
+    "Ryan Liu may duplicate existing 刘彦; David Burnett, Chuck Moore and other same-name identities require separate review.",
+    "Chair-only, committee-only and unconfirmed poster coauthor listings are not automatically new speakers."
+  ],
+  "priorityCandidates": [
+    {
+      "id": "speaker-gap-michaelkagan",
+      "name": "Michael Kagan",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0049",
+          "year": 1991,
+          "source": "https://hc03.hotchips.org/",
+          "locator": "L40"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0196",
+          "year": 1996,
+          "source": "https://hc08.hotchips.org/",
+          "locator": "L53"
+        }
+      ],
+      "topicTags": [
+        "x86 pipeline / MMX"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1991,
+        1996
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-richardekessler",
+      "name": "Richard E Kessler",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0228",
+          "year": 1998,
+          "source": "https://hc10.hotchips.org/",
+          "locator": "L31"
+        }
+      ],
+      "topicTags": [
+        "Alpha out-of-order CPU"
+      ],
+      "eventOrganizations": [
+        "Compaq"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1998
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-jackchoquette",
+      "name": "Jack Choquette",
+      "queues": [
+        "historical",
+        "middle",
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0231",
+          "year": 1998,
+          "source": "https://hc10.hotchips.org/",
+          "locator": "L34"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0226",
+          "year": 2017,
+          "source": "https://hc29.hotchips.org/",
+          "locator": "program line 107"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-jackchoquette-71",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 71"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2022-jackchoquette-57",
+          "year": 2022,
+          "source": "https://hc34.hotchips.org/",
+          "locator": "program rendered line 57"
+        }
+      ],
+      "topicTags": [
+        "CPU microarchitecture; later GPU follow-up",
+        "GPU",
+        "GPU/图形"
+      ],
+      "eventOrganizations": [
+        "NVIDIA",
+        "SandCraft"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1998,
+        2017,
+        2020,
+        2022
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-13-gpu-cpu-network-eight.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-debbiemarr",
+      "name": "Debbie Marr",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0321",
+          "year": 2002,
+          "source": "https://hc14.hotchips.org/",
+          "locator": "L33"
+        }
+      ],
+      "topicTags": [
+        "Hyper-Threading"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2002
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-patconway",
+      "name": "Pat Conway",
+      "queues": [
+        "historical",
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0355",
+          "year": 2002,
+          "source": "https://hc14.hotchips.org/",
+          "locator": "L76"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0013",
+          "year": 2009,
+          "source": "https://hc21.hotchips.org/",
+          "locator": "program line 31"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "Hammer shared-memory multiprocessors"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2002,
+        2009
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-ronkalla",
+      "name": "Ron Kalla",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0396",
+          "year": 2003,
+          "source": "https://hc15.hotchips.org/",
+          "locator": "L62"
+        }
+      ],
+      "topicTags": [
+        "POWER5"
+      ],
+      "eventOrganizations": [
+        "IBM"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2003
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-dougcarmean",
+      "name": "Doug Carmean",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0158",
+          "year": 1994,
+          "source": "https://hc06.hotchips.org/",
+          "locator": "L63"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0309",
+          "year": 2001,
+          "source": "https://hc13.hotchips.org/",
+          "locator": "L73"
+        }
+      ],
+      "topicTags": [
+        "Pentium / Pentium 4"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1994,
+        2001
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-06.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-rubylee",
+      "name": "Ruby Lee",
+      "queues": [
+        "historical",
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0154",
+          "year": 1994,
+          "source": "https://hc06.hotchips.org/",
+          "locator": "L57;L60"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0333",
+          "year": 2002,
+          "source": "https://hc14.hotchips.org/",
+          "locator": "L45"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0126",
+          "year": 2014,
+          "source": "https://hc26.hotchips.org/",
+          "locator": "program line 15"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0130",
+          "year": 2014,
+          "source": "https://hc26.hotchips.org/",
+          "locator": "program line 40"
+        }
+      ],
+      "topicTags": [
+        "SIMD / bit permutation",
+        "功耗/可靠性/安全"
+      ],
+      "eventOrganizations": [
+        "HP; later Princeton",
+        "Princeton"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1994,
+        2002,
+        2014
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-michaeloconnor",
+      "name": "Michael O’Connor",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0195",
+          "year": 1996,
+          "source": "https://hc08.hotchips.org/",
+          "locator": "L42"
+        }
+      ],
+      "topicTags": [
+        "picoJava"
+      ],
+      "eventOrganizations": [
+        "Sun Microsystems"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1996
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-johnmontrym",
+      "name": "John Montrym",
+      "queues": [
+        "historical",
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0212",
+          "year": 1996,
+          "source": "https://hc08.hotchips.org/",
+          "locator": "L73"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0343",
+          "year": 2002,
+          "source": "https://hc14.hotchips.org/",
+          "locator": "L60"
+        },
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0481",
+          "year": 2002,
+          "source": "https://vcew.org/download/ieee-vail-2002-program.pdf",
+          "locator": "PDF p.1, extracted line 33"
+        }
+      ],
+      "topicTags": [
+        "GeForce4 GPU",
+        "graphics architecture"
+      ],
+      "eventOrganizations": [
+        "NVIDIA",
+        "SGI; later NVIDIA"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1996,
+        2002
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-henrymoreton",
+      "name": "Henry Moreton",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0342",
+          "year": 2002,
+          "source": "https://hc14.hotchips.org/",
+          "locator": "L60"
+        }
+      ],
+      "topicTags": [
+        "GeForce4"
+      ],
+      "eventOrganizations": [
+        "NVIDIA"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2002
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-johnkubiatowicz",
+      "name": "John Kubiatowicz",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0137",
+          "year": 1994,
+          "source": "https://hc06.hotchips.org/",
+          "locator": "L35"
+        }
+      ],
+      "topicTags": [
+        "Alewife coherence / communication"
+      ],
+      "eventOrganizations": [
+        "MIT"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1994
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-stephenrundy",
+      "name": "Stephen R. Undy",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0105",
+          "year": 1993,
+          "source": "https://hc05.hotchips.org/",
+          "locator": "L38"
+        }
+      ],
+      "topicTags": [
+        "PA-RISC Hummingbird"
+      ],
+      "eventOrganizations": [
+        "HP"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1993
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-stuartoberman",
+      "name": "Stuart Oberman",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0249",
+          "year": 1998,
+          "source": "https://hc10.hotchips.org/",
+          "locator": "L60"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0299",
+          "year": 2001,
+          "source": "https://hc13.hotchips.org/",
+          "locator": "L60"
+        }
+      ],
+      "topicTags": [
+        "SIMD / storage networking"
+      ],
+      "eventOrganizations": [
+        "AMD; later Nishan"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1998,
+        2001
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-06.json",
+        "ai/architects/research/batches/2026-10-13-gpu-cpu-network-eight.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-fabriziopetrini",
+      "name": "Fabrizio Petrini",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0360",
+          "year": 2003,
+          "source": "https://hc15.hotchips.org/",
+          "locator": "L34"
+        }
+      ],
+      "topicTags": [
+        "HPC interconnect"
+      ],
+      "eventOrganizations": [
+        "Los Alamos"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2003
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-subhasishmitra",
+      "name": "Subhasish Mitra",
+      "queues": [
+        "historical"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-1989-2003-20261112.json",
+          "recordId": "hc-early-row-0357",
+          "year": 2003,
+          "source": "https://hc15.hotchips.org/",
+          "locator": "L22"
+        }
+      ],
+      "topicTags": [
+        "test and reliability"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2003
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-akhileshkumar",
+      "name": "Akhilesh Kumar",
+      "queues": [
+        "middle",
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0254",
+          "year": 2017,
+          "source": "https://hc29.hotchips.org/",
+          "locator": "program line 144"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0289",
+          "year": 2018,
+          "source": "https://hc30.hotchips.org/",
+          "locator": "program line 149"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-akhileshkumar-100",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 100"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "互连/系统"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2017,
+        2018,
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-bensander",
+      "name": "Ben Sander",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0102",
+          "year": 2013,
+          "source": "https://hc25.hotchips.org/",
+          "locator": "program line 23"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0141",
+          "year": 2014,
+          "source": "https://hc26.hotchips.org/",
+          "locator": "program line 93"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0225",
+          "year": 2017,
+          "source": "https://hc29.hotchips.org/",
+          "locator": "program line 106"
+        }
+      ],
+      "topicTags": [
+        "GPU/图形",
+        "编译/执行",
+        "计算技术/方法（待细分）"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2013,
+        2014,
+        2017
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-denisfoley",
+      "name": "Denis Foley",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0194",
+          "year": 2016,
+          "source": "https://hc28.hotchips.org/",
+          "locator": "program line 99"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0275",
+          "year": 2018,
+          "source": "https://hc30.hotchips.org/",
+          "locator": "program line 129"
+        }
+      ],
+      "topicTags": [
+        "GPU/图形",
+        "互连/系统"
+      ],
+      "eventOrganizations": [
+        "NVIDIA"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2016,
+        2018
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-jackdoweck",
+      "name": "Jack Doweck",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0218",
+          "year": 2016,
+          "source": "https://hc28.hotchips.org/",
+          "locator": "program line 137"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "功耗/可靠性/安全"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2016
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-mikebutler",
+      "name": "Mike Butler",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0045",
+          "year": 2010,
+          "source": "https://hc22.hotchips.org/",
+          "locator": "program line 105"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2010
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-nigelstephens",
+      "name": "Nigel Stephens",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0195",
+          "year": 2016,
+          "source": "https://hc28.hotchips.org/",
+          "locator": "program line 100"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "编译/执行"
+      ],
+      "eventOrganizations": [
+        "ARM"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2016
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-13-five-architects.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-toshioyoshida",
+      "name": "Toshio Yoshida",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0124",
+          "year": 2013,
+          "source": "https://hc25.hotchips.org/",
+          "locator": "program line 114"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0136",
+          "year": 2014,
+          "source": "https://hc26.hotchips.org/",
+          "locator": "program line 83"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0285",
+          "year": 2018,
+          "source": "https://hc30.hotchips.org/",
+          "locator": "program line 147"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "Fujitsu",
+        "Fujitsu Limited"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2013,
+        2014,
+        2018
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-amberhuffman",
+      "name": "Amber Huffman",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0108",
+          "year": 2013,
+          "source": "https://hc25.hotchips.org/",
+          "locator": "program line 33"
+        }
+      ],
+      "topicTags": [
+        "内存/存储"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2013
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-johnsell",
+      "name": "John Sell",
+      "queues": [
+        "middle"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2004-2018-20261112.json",
+          "recordId": "hc-middle-row-0223",
+          "year": 2017,
+          "source": "https://hc29.hotchips.org/",
+          "locator": "program line 104"
+        }
+      ],
+      "topicTags": [
+        "GPU/图形"
+      ],
+      "eventOrganizations": [
+        "Microsoft"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2017
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-davidblythe",
+      "name": "David Blythe",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-davidblythe-72",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 72"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2021-davidblythe-159",
+          "year": 2021,
+          "source": "https://hc33.hotchips.org/",
+          "locator": "program rendered line 159"
+        }
+      ],
+      "topicTags": [
+        "GPU"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2020,
+        2021
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-andreapellegrini",
+      "name": "Andrea Pellegrini",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2019-andreapellegrini-110",
+          "year": 2019,
+          "source": "https://hc31.hotchips.org/",
+          "locator": "program rendered line 110"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2021-andreapellegrini-108",
+          "year": 2021,
+          "source": "https://hc33.hotchips.org/",
+          "locator": "program rendered line 108"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "ARM"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2019,
+        2021
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-13-server-cpu-five.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-hongjiang",
+      "name": "Hong Jiang",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2022-hongjiang-61",
+          "year": 2022,
+          "source": "https://hc34.hotchips.org/",
+          "locator": "program rendered line 61"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-hongjiang-124",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 124"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "GPU"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2022,
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-praveenmosur",
+      "name": "Praveen Mosur",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2022-praveenmosur-146",
+          "year": 2022,
+          "source": "https://hc34.hotchips.org/",
+          "locator": "program rendered line 146"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2024-praveenmosur-96",
+          "year": 2024,
+          "source": "https://hc2024.hotchips.org/",
+          "locator": "program rendered line 96"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "计算技术/方法"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2022,
+        2024
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-thomasnorrie",
+      "name": "Thomas Norrie",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-thomasnorrie-95",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 95"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2024-thomasnorrie-147",
+          "year": 2024,
+          "source": "https://hc2024.hotchips.org/",
+          "locator": "program rendered line 147"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "互连/网络"
+      ],
+      "eventOrganizations": [
+        "Enfabrica",
+        "Google"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2020,
+        2024
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-michaelmantor",
+      "name": "Michael Mantor",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2019-michaelmantor-156",
+          "year": 2019,
+          "source": "https://hc31.hotchips.org/",
+          "locator": "program rendered line 156"
+        }
+      ],
+      "topicTags": [
+        "GPU"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2019
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-danbouvier",
+      "name": "Dan Bouvier",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2019-danbouvier-109",
+          "year": 2019,
+          "source": "https://hc31.hotchips.org/",
+          "locator": "program rendered line 109"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2019
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-davidsuggs",
+      "name": "David Suggs",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2019-davidsuggs-109",
+          "year": 2019,
+          "source": "https://hc31.hotchips.org/",
+          "locator": "program rendered line 109"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2019
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-irmaesmerpapazian",
+      "name": "Irma Esmer Papazian",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-irmaesmerpapazian-51",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 51"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2020
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-jaideepdastidar",
+      "name": "Jaideep Dastidar",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2022-jaideepdastidar-116",
+          "year": 2022,
+          "source": "https://hc34.hotchips.org/",
+          "locator": "program rendered line 116"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-jaideepdastidar-139",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 139"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "互连/网络",
+        "安全"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2022,
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-jasminavasiljevic",
+      "name": "Jasmina Vasiljevic",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-jasminavasilijevic-81",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 81"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2024-jasminavasiljevic-92",
+          "year": 2024,
+          "source": "https://hc2024.hotchips.org/",
+          "locator": "program rendered line 92"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "计算技术/方法"
+      ],
+      "eventOrganizations": [
+        "Tenstorrent"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2020,
+        2024
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-andrewpomianowski",
+      "name": "Andrew Pomianowski",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2021-andrewpomianowski-161",
+          "year": 2021,
+          "source": "https://hc33.hotchips.org/",
+          "locator": "program rendered line 161"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2025-andypomianowski-107",
+          "year": 2025,
+          "source": "https://hc2025.hotchips.org/",
+          "locator": "program rendered line 107"
+        }
+      ],
+      "topicTags": [
+        "GPU"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2021,
+        2025
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-hongyangjia",
+      "name": "Hongyang Jia",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2019-hongyangjia-115",
+          "year": 2019,
+          "source": "https://hc31.hotchips.org/",
+          "locator": "program rendered line 115"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2025-hongyangjia-95",
+          "year": 2025,
+          "source": "https://hc2025.hotchips.org/",
+          "locator": "program rendered line 95"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "CPU/SoC",
+        "内存/存内计算",
+        "安全",
+        "编译/软件"
+      ],
+      "eventOrganizations": [
+        "Princeton",
+        "Tsinghua University"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2019,
+        2025
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-jinhyunkim",
+      "name": "Jin Hyun Kim",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2021-jinhyunkim-126",
+          "year": 2021,
+          "source": "https://hc33.hotchips.org/",
+          "locator": "program rendered line 126"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2023-jinhyunkim-77",
+          "year": 2023,
+          "source": "https://hc2023.hotchips.org/",
+          "locator": "program rendered line 77"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "内存/存内计算"
+      ],
+      "eventOrganizations": [
+        "Samsung",
+        "Samsung Electronics"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2021,
+        2023
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-anuragagrawal",
+      "name": "Anurag Agrawal",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2020-anuragagrawal-85",
+          "year": 2020,
+          "source": "https://hc32.hotchips.org/",
+          "locator": "program rendered line 85"
+        },
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-anuragagrawal-53",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 53"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统",
+        "互连/网络",
+        "内存/存内计算"
+      ],
+      "eventOrganizations": [
+        "Intel/Barefoot",
+        "Oxmiq Labs"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2020,
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-lancehacking",
+      "name": "Lance Hacking",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-lancehacking-88",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 88"
+        }
+      ],
+      "topicTags": [
+        "CPU/SoC",
+        "编译/软件"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-saurabhpradhan",
+      "name": "Saurabh Pradhan",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-saurabhpradhan-98",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 98"
+        }
+      ],
+      "topicTags": [
+        "互连/网络",
+        "内存/存内计算"
+      ],
+      "eventOrganizations": [
+        "Arm"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-deepakgoel",
+      "name": "Deepak Goel",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2026-deepakgoel-98",
+          "year": 2026,
+          "source": "https://hc2026.hotchips.org/",
+          "locator": "program rendered line 98"
+        }
+      ],
+      "topicTags": [
+        "互连/网络",
+        "内存/存内计算"
+      ],
+      "eventOrganizations": [
+        "Arm"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-chandruramakrishnan",
+      "name": "Chandru Ramakrishnan",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2024-chandruramakrishnan-169",
+          "year": 2024,
+          "source": "https://hc2024.hotchips.org/",
+          "locator": "program rendered line 169"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统"
+      ],
+      "eventOrganizations": [
+        "Microsoft"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2024
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-pankajkansal",
+      "name": "Pankaj Kansal",
+      "queues": [
+        "recent"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-hc-2019-2026-20261112.json",
+          "recordId": "hc-2024-pankajkansal-139",
+          "year": 2024,
+          "source": "https://hc2024.hotchips.org/",
+          "locator": "program rendered line 139"
+        }
+      ],
+      "topicTags": [
+        "AI计算/系统"
+      ],
+      "eventOrganizations": [
+        "Meta"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2024
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-coreygough",
+      "name": "Corey Gough",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0065",
+          "year": 2023,
+          "source": "https://vcew.org/download/vcew-2023-program.pdf",
+          "locator": "PDF p.2, extracted line 9"
+        }
+      ],
+      "topicTags": [
+        "服务器遥测与性能优化"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2023
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-stephaneeranian",
+      "name": "Stephane Eranian",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0034",
+          "year": 2025,
+          "source": "https://vcew.org/download/vcew-2025-program.pdf",
+          "locator": "PDF p.2, extracted line 15"
+        }
+      ],
+      "topicTags": [
+        "PMU与性能观测"
+      ],
+      "eventOrganizations": [
+        "Google"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2025
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-beemanstrong",
+      "name": "Beeman Strong",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0019",
+          "year": 2026,
+          "source": "https://vcew.org/download/vcew-2026-program.pdf",
+          "locator": "PDF p.2, extracted line 40"
+        }
+      ],
+      "topicTags": [
+        "RISC-V性能分析"
+      ],
+      "eventOrganizations": [
+        "Meta"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-johnwuu",
+      "name": "John Wuu",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0078",
+          "year": 2022,
+          "source": "https://vcew.org/download/vcew-2022-program.pdf",
+          "locator": "PDF p.1, extracted line 30"
+        }
+      ],
+      "topicTags": [
+        "3D V-Cache"
+      ],
+      "eventOrganizations": [
+        "AMD"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2022
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-rekhapitchumani",
+      "name": "Rekha Pitchumani",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0064",
+          "year": 2023,
+          "source": "https://vcew.org/download/vcew-2023-program.pdf",
+          "locator": "PDF p.2, extracted line 4"
+        }
+      ],
+      "topicTags": [
+        "CXL与DRAM/NAND内存扩展"
+      ],
+      "eventOrganizations": [
+        "Samsung"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2023
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-geraldpasdast",
+      "name": "Gerald Pasdast",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0094",
+          "year": 2022,
+          "source": "https://vcew.org/download/vcew-2022-program.pdf",
+          "locator": "PDF p.2, extracted line 33"
+        }
+      ],
+      "topicTags": [
+        "芯粒D2D互连"
+      ],
+      "eventOrganizations": [
+        "Intel"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2022
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-07-remaining128.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-peipeizhou",
+      "name": "Peipei Zhou",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0026",
+          "year": 2025,
+          "source": "https://vcew.org/download/vcew-2025-program.pdf",
+          "locator": "PDF p.1, extracted line 26"
+        }
+      ],
+      "topicTags": [
+        "异构加速器编程"
+      ],
+      "eventOrganizations": [
+        "Brown University"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2025
+      ],
+      "priorResearchMentions": [
+        "ai/architects/research/batches/2026-10-06-expansion80.json"
+      ],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-vinodgrover",
+      "name": "Vinod Grover",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0014",
+          "year": 2026,
+          "source": "https://vcew.org/download/vcew-2026-program.pdf",
+          "locator": "PDF p.2, extracted line 18"
+        }
+      ],
+      "topicTags": [
+        "GPU异步张量计算与编译器"
+      ],
+      "eventOrganizations": [
+        "NVIDIA"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2026
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-samantikasury",
+      "name": "Samantika Sury",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0039",
+          "year": 2025,
+          "source": "https://vcew.org/download/vcew-2025-program.pdf",
+          "locator": "PDF p.2, extracted line 31"
+        }
+      ],
+      "topicTags": [
+        "HPC/AI通信系统"
+      ],
+      "eventOrganizations": [
+        "HPE"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2025
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-alancharlesworth",
+      "name": "Alan Charlesworth",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0581",
+          "year": 1998,
+          "source": "https://vcew.org/download/ieee-vail-1998-program.pdf",
+          "locator": "PDF p.1, extracted line 46"
+        }
+      ],
+      "topicTags": [
+        "Starfire与SMP系统"
+      ],
+      "eventOrganizations": [
+        "Sun"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        1998
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    },
+    {
+      "id": "speaker-gap-taylorsimpson",
+      "name": "Taylor Simpson",
+      "queues": [
+        "vcew"
+      ],
+      "appearances": [
+        {
+          "dataset": "conference-speaker-gaps-vcew-20261112.json",
+          "recordId": "vcew-row-0303",
+          "year": 2011,
+          "source": "https://vcew.org/download/ieee-vail-2011-program.pdf",
+          "locator": "PDF p.1, extracted line 58"
+        }
+      ],
+      "topicTags": [
+        "Hexagon DSP"
+      ],
+      "eventOrganizations": [
+        "Qualcomm"
+      ],
+      "admissionStatus": "not-assessed",
+      "nextStep": "确认本人及个人署名；读取至少两项独立一手技术作品，至少一项机制正文；同项目重复报告不重复计数。",
+      "years": [
+        2011
+      ],
+      "priorResearchMentions": [],
+      "priorResearchMeaning": "A text/author-list mention is not a completed personal admission audit."
+    }
+  ],
+  "delivery": {
+    "status": "prepared-research-only",
+    "pr": null,
+    "merged": false,
+    "deployed": false,
+    "finalReceipt": "The eventual PR conversation records final merge/deployment observations and supersedes this pre-publication snapshot."
+  },
+  "resume": "Start with the priority queue and reused previous author/source mentions. Resolve identities before two-work admission audit. Do not repeat annual scans without program/source changes. Weekly automation unchanged.",
+  "identityReviewQueue": [
+    {
+      "variants": [
+        "Irma Esmer",
+        "Irma Esmer Papazian"
+      ],
+      "status": "possible-same-person; public identity bridge required before merge"
+    },
+    {
+      "variants": [
+        "Richard E Kessler",
+        "Richard Kessler"
+      ],
+      "status": "possible-same-person; public identity bridge required before merge"
+    },
+    {
+      "variants": [
+        "Stephen R. Undy",
+        "Stephen Undy"
+      ],
+      "status": "possible-same-person; public identity bridge required before merge"
+    },
+    {
+      "variants": [
+        "Mike Houston",
+        "Michael Houston"
+      ],
+      "status": "possible-same-person; public identity bridge required before merge"
+    }
+  ],
+  "independentQa": {
+    "status": "completed",
+    "scope": "Priority candidates, catalog near-matches, nonperson labels and attribution limits",
+    "corrections": [
+      "Mike Hong matched to 洪洲 with public bilingual source",
+      "Ryan Liu possible existing profile flagged",
+      "Similar names and incomplete labels not treated as verified unique people"
+    ]
+  },
+  "validation": {
+    "jsonAndReferences": "passed",
+    "priorityStableIds": "56 unique",
+    "catalogPagesSearch": "byte-identical to baseline",
+    "historicalTrackedFiles": "unchanged",
+    "independentQa": "passed with corrections",
+    "browser": "No application changes; existing workflow will run on PR head.",
+    "delivery": "pre-publication snapshot; final PR receipt supersedes"
+  }
+}
