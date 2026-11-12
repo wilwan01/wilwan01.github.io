@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LINKS = (
-    ("/ai/index.html", "产品分析"),
+    ("/ai/index.html", "研究首页"),
     ("/ai/earnings/", "财报分析"),
     ("/ai/analysts/", "分析师训练"),
     ("/ai/hot-chips/", "Hot Chips"),
@@ -23,7 +23,7 @@ LINKS = (
     ("/ai/search.html", "搜索"),
 )
 ENGLISH = (
-    "Product Analysis", "Earnings Analysis",
+    "Research home", "Earnings Analysis",
     "Analyst Mode", "Hot Chips", "Architect Mode", "Architecture Notes", "Tech x Invest",
     "Policy", "Standards", "Customers", "Benchmarks", "Energy & Sites", "Calendar", "Method & Glossary", "Search",
 )
@@ -53,7 +53,8 @@ def render(path, english=False):
             label += " (EN)"
             extra = ' hreflang="en"'
         attrs = ' aria-current="page"' if href == current else ""
-        links.append(f'<a href="{href}"{attrs}{extra}>{html.escape(label)}</a>')
+        destination = "/ai/index-en.html" if english and href == "/ai/index.html" else href
+        links.append(f'<a href="{destination}"{attrs}{extra}>{html.escape(label)}</a>')
     label = 'AI research navigation' if english else 'AI 研究导航'
     theme = 'AI Infrastructure Research' if english else 'AI 基础设施研究'
     brand = f'<span class="research-name">{theme}</span>'

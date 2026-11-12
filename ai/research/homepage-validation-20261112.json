@@ -1,0 +1,24 @@
+{
+  "scope": "First homepage improvement batch: identity, site search, material updates, report evidence dates, English navigation",
+  "base_sha": "75f763c1aa3a262e13afeba80de9bc88cf2985f2",
+  "content_date": "2026-11-12",
+  "languages": ["zh-CN", "en"],
+  "sources": [
+    "ai/amd-en.html: Research cutoff paragraph (2026-09-27)",
+    "ai/files/*_Canonical_Data.json: cutoff field for the other 14 companies (2026-09-28)",
+    "ai/customers/research/crusoe-20261112.json",
+    "ai/architects/research/batches/2026-11-12-conference-remaining.json",
+    "Previous homepage product-update section: AMD November 10 disclosure and November 12 reading"
+  ],
+  "static_validation": {
+    "all_existing_report_and_download_targets_preserved": true,
+    "company_cards_per_language": 15,
+    "dated_report_cards_per_language": 15,
+    "one_h1_per_page": true,
+    "homepage_and_search_generation_idempotent": true,
+    "diff_check": "passed"
+  },
+  "browser_validation": "Pending exact-head workflow; final status and deployment receipt belong to the PR",
+  "deployment": "Pending PR merge and public-content verification",
+  "remaining_proposals": ["Grouped global navigation", "Company topic filters", "Company-specific research questions and cross-module links", "Uniform per-report downloads", "Researcher profile and correction entry"]
+}
