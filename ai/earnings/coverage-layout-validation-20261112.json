@@ -1,0 +1,43 @@
+{
+  "task": "Condense Evidence refresh into Company coverage and four-quarter progression",
+  "layout_checked_at": "2026-11-12T22:15:48.117628+00:00",
+  "base_sha": "348ea79cce4f0192183f8f39d5bbc9eec3d7543d",
+  "research_cutoff_unchanged": "2026-11-12T11:19:08+00:00",
+  "scope": "Presentation only; no new financial research, records, or source-verification claims",
+  "counts": {
+    "companies": 35,
+    "quarterly_slots": 163,
+    "separate_post_calls": 2,
+    "selected_qa": 224,
+    "financial_disclosures": 29,
+    "historical_snapshots": 8,
+    "original_anchors_preserved": 440
+  },
+  "changes": [
+    "Financial disclosures expanded within each company coverage row, including actuals, management guidance, basis, sources, limitations and supersession fields",
+    "Eight original dated refresh snapshots retained verbatim inside collapsed audit archive",
+    "Legacy hash links automatically reveal collapsed ancestor details",
+    "sync-coverage continues folding dated sections into archive on future refreshes"
+  ],
+  "static_checks": {
+    "coverage_layout_validator": "passed",
+    "generator_idempotence": "passed",
+    "inline_js_syntax": "passed",
+    "generator_js_syntax": "passed",
+    "historical_snapshots_verbatim": "passed",
+    "all_original_anchor_ids_retained": "passed",
+    "git_diff_check": "passed"
+  },
+  "browser_validation": {
+    "status": "pending",
+    "command": "node scripts/check-customers-earnings.cjs",
+    "note": "Parent integration performs exact-head desktop/mobile browser checks; this static record does not claim browser verification."
+  },
+  "deployment": "pending parent integration",
+  "commands": [
+    "node ai/earnings/tools/validate-coverage-layout.mjs",
+    "node ai/earnings/tools/sync-coverage.mjs --check",
+    "node --check ai/earnings/tools/sync-coverage.mjs",
+    "git diff --check -- ai/earnings"
+  ]
+}
