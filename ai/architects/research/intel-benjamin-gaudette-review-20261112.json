@@ -1,0 +1,200 @@
+{
+  "status": "qualified-technical-evidence-pending-integration",
+  "reviewedAt": "2026-11-12T20:08:18.516029+00:00",
+  "baselineSha": "395696c00a511b5af3df3cef84ff8be7e1f6f5c2",
+  "identity": {
+    "conclusion": "导师原始主页与本人公开履历及相同论文/专利形成一致身份桥接；不是仅凭同名。",
+    "advisorSource": "https://sites.google.com/site/carolejeanwu",
+    "advisorLocator": "Mentorship / Undergraduate/MS/PhD Advisees at ASU / Benjamin Gaudette",
+    "selfReportedSource": "https://www.linkedin.com/in/benjamin-gaudette",
+    "selfReportedReadRange": "搜索返回的公开Experience、Publications与Patents字段；直接打开429，未声称读取完整主页。",
+    "currentRole": "Intel关联得到导师网页和本人履历支持；精确当前头衔、所属团队与该履历更新时间未知。",
+    "aliasEvidence": {
+      "alias": "Benjamin David Gaudette",
+      "url": "https://keep.lib.asu.edu/items/155908",
+      "title": "An Intelligent Framework for Energy-Aware Mobile Computing Subject to Stochastic System Dynamics",
+      "date": "2017",
+      "locator": "Contributors: Gaudette, Benjamin David (Author)",
+      "readRange": "公开检索返回的ASU官方元数据；直接页面机器人检查，未读取论文正文。",
+      "bridge": "论文标题与导师主页PhD2017及Wu/Vrudhula指导关系一致。",
+      "corroboratingUrl": "https://graduation.asu.edu/sites/g/files/litvpz3431/files/asu_2017_fall_all-page_final_web_9.25.18.pdf",
+      "corroboratingLocator": "官方毕业名册第15页的姓名、ComputerEngineering、论文及导师；公开索引读取",
+      "retrievedAt": "2026-11-12"
+    }
+  },
+  "profile": {
+    "id": "benjamin-gaudette",
+    "name": "Benjamin Gaudette",
+    "aliases": [
+      "Benjamin David Gaudette"
+    ],
+    "field": "多核能效控制、热模型与能源约束系统",
+    "domain": "physical-energy",
+    "relatedDomains": [
+      "cpu",
+      "network"
+    ],
+    "core": "编辑提炼：把效率目标放在温度、能源存量及服务下限的约束之内，并验证模型误差。",
+    "background": "ASU计算机工程研究者。导师Carole-Jean Wu主页把2017届博士Benjamin Gaudette与Benchmark Electronics、Intel经历关联；两项审核作品属于ASU时期，不能归作Intel研发成果。截至2026-11-12具体Intel现任职责和职称未获官方确认。",
+    "contributions": [
+      "与Hanumaiah、Vrudhula共同发明处理器闭环控制，分离状态估计和DVFS决策。",
+      "与ASU/Arizona团队共同研究太阳能传感网络，联合优化感知覆盖、路由及电池预算。"
+    ],
+    "argument": "编辑条件模型：局部低功耗只有在温度与服务下限同时满足时才有价值；预测偏差、控制滞后及通信耗能可能推翻节能判断。",
+    "evidence": "两项不同系统问题的一手作品正文已核验；共同署名不等于独占贡献。",
+    "habits": [
+      "编辑归纳：先列状态与约束，再检查优化收益及模型失配。"
+    ],
+    "questions": [
+      "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？"
+    ],
+    "boundary": "不称Intel主架构师或Intel产品模块负责人；不将ASU成果归Intel。专利披露不证明量产采用；传感网络论文采用简化电池/通信模型及仿真，不能直接外推数据中心。",
+    "diagnostic": "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？",
+    "notes": [],
+    "sources": [
+      [
+        "Processor control system — US10133323B2",
+        "https://patentimages.storage.googleapis.com/32/90/1b/9530546b9bbf8c/US10133323.pdf",
+        "原始PDF第1页；第5、7页图2/4；第9–10页说明书"
+      ],
+      [
+        "Maximizing Quality of Coverage under Connectivity Constraints in Solar-Powered Active Wireless Sensor Networks",
+        "https://wicon.arizona.edu/sites/default/files/2023-03/TOSN_June2014.pdf",
+        "PDF第1页署名；第7–12页§3.3–4.2及式8–15"
+      ],
+      [
+        "Carole-Jean Wu — Mentorship / ASU advisees",
+        "https://sites.google.com/site/carolejeanwu",
+        "Undergraduate/MS/PhD Advisees：Benjamin Gaudette条目；HPCA-2016条目"
+      ]
+    ],
+    "sourceAudit": [
+      {
+        "workId": "benjamin-gaudette-processor-control-us14207936",
+        "title": "Processor control system — US10133323B2",
+        "authors": "Vinay Hanumaiah; Sarma Vrudhula; Benjamin Gaudette",
+        "date": "2014-09-18首次公开；2018-11-20授权；2013-03-14优先权",
+        "url": "https://patentimages.storage.googleapis.com/32/90/1b/9530546b9bbf8c/US10133323.pdf",
+        "locator": "原始PDF第1页；第5、7页图2/4；第9–10页说明书",
+        "type": "专利说明书正文（所列部分）",
+        "contentStatus": "已读首页、图2/4及说明书所列部分；独立状态估计器修正功耗/温度预测，控制器据此选择DVFS。",
+        "evidenceStrength": "ASU三位共同发明人；不推断个人模块分工或Intel采用。",
+        "role": "独立技术作品及机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "原始专利PDF（公开镜像）"
+      },
+      {
+        "workId": "benjamin-gaudette-solar-coverage-tosn2014",
+        "title": "Maximizing Quality of Coverage under Connectivity Constraints in Solar-Powered Active Wireless Sensor Networks",
+        "authors": "Benjamin Gaudette; Vinay Hanumaiah; Marwan Krunz; Sarma Vrudhula",
+        "date": "2014-04（PDF出版页）",
+        "url": "https://wicon.arizona.edu/sites/default/files/2023-03/TOSN_June2014.pdf",
+        "locator": "PDF第1页署名；第7–12页§3.3–4.2及式8–15",
+        "type": "论文正文（所列章节）",
+        "contentStatus": "已读署名、模型边界、式8–15和§4.2；联合感知半径、路由与电池约束，二分搜索可保证的最低覆盖。",
+        "evidenceStrength": "ASU与University of Arizona四人共同作品；结果为模型/仿真，不是生产部署。",
+        "role": "独立技术作品及机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "作者所在大学实验室提供的论文正文"
+      },
+      {
+        "workId": "benjamin-gaudette-advisor-identity",
+        "title": "Carole-Jean Wu — Mentorship / ASU advisees",
+        "authors": "Carole-Jean Wu",
+        "date": "未知（网页未标发表日期）",
+        "url": "https://sites.google.com/site/carolejeanwu",
+        "locator": "Undergraduate/MS/PhD Advisees：Benjamin Gaudette条目；HPCA-2016条目",
+        "type": "导师/共同作者个人研究主页",
+        "contentStatus": "已读本人指导学生条目及HPCA2016作品署名；写明PhD2017、Benchmark Electronics后Intel。",
+        "evidenceStrength": "直接导师身份关联；无Intel正式现职头衔及该条目的更新日期。",
+        "role": "身份与历史/机构关联；不计技术作品",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "retrievedAt": "2026-11-12"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "workId": "benjamin-gaudette-processor-control-us14207936",
+        "text": "专利首页列ASU及三位发明人；申请14/207936。"
+      },
+      {
+        "workId": "benjamin-gaudette-solar-coverage-tosn2014",
+        "text": "论文首页列四位作者与ASU/Arizona归属，注明扩展2012年工作。"
+      },
+      {
+        "workId": "benjamin-gaudette-advisor-identity",
+        "text": "导师主页明确把其2017年博士身份与Intel关联。"
+      }
+    ],
+    "awardsVerified": [],
+    "contributionBasis": "一项处理器控制专利作品与一项能源约束网络论文；不是同一项目的重复发布。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-12-intel-nominations",
+      "standard": "contribution-led-v1",
+      "meaning": "仅所列作品与公开身份桥接；现任具体职称、Intel采用未核实。",
+      "verifiedAt": "2026-11-12"
+    },
+    "challenge": {
+      "lens": "能源约束与模型误差",
+      "skills": [
+        "A2",
+        "A7",
+        "A9"
+      ],
+      "question": "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？",
+      "variables": "功率W、时间s、能量J、温度°C、模型误差、控制周期、服务下限",
+      "model": "编辑训练模型：E_next=E_now+E_in−E_work−E_comm；温度与服务下限同时为约束。",
+      "crossover": "节能收益必须超过控制和重规划开销，并保持所有约束。",
+      "counterexample": "预测滞后导致温度越界，或通信消耗使可用能源不足。",
+      "validation": "建议验证（尚未执行）：扫模型误差及控制周期，记录约束违反率、完整任务能量与服务尾部。",
+      "transfer": "迁移至受功率上限约束的CPU平台；需重新测量模型，不能移用传感网络参数。"
+    }
+  },
+  "independenceAudit": {
+    "countedWorks": 2,
+    "patentApplication": "14/207936",
+    "patentPriority": "61/781499, 2013-03-14",
+    "sameFamilyNotCountedTwice": [
+      "US20140277815A1",
+      "US10133323B2"
+    ],
+    "sameProjectNotCountedAgain": [
+      "STEAM 2014与处理器控制专利按同一控制方向保守不另计",
+      "INFOCOM 2012是TOSN2014前身，不另计"
+    ],
+    "comparison": "处理器热反馈/DVFS与太阳能传感网络的覆盖/路由/电池分配，技术对象及机制独立。"
+  },
+  "additionalLeads": [
+    {
+      "title": "HPCA2016 probabilistic QoS smartphone paper",
+      "url": "https://ieeexplore.ieee.org/document/7446053",
+      "status": "官方会议和作者主页确认署名；IEEE正文触发机器人检查，未用作本次已读机制证据。"
+    },
+    {
+      "title": "2017 dissertation",
+      "url": "https://keep.lib.asu.edu/items/155908",
+      "status": "官方目录可检索；直接打开要求机器人检查；CORE公开镜像403。只留线索，不声称已读全文。"
+    }
+  ],
+  "limitations": [
+    "作品来自ASU时期。",
+    "本轮没有验证任何Intel产品采用、生产收益或正式主架构师职责。",
+    "未做穷尽专利族或法律状态意见。"
+  ],
+  "delivery": "仅研究记录与拟入库profile；未修改catalog，未发PR、合并或部署。",
+  "integration": {
+    "batch": "2026-11-12-intel-nominations",
+    "reviewDecision": "admit",
+    "deliveryStatus": "prepared-not-deployed",
+    "canonicalSourceTypes": "复用现有schema，formatDetail保留来源格式；contentStatus限定实际读取范围。"
+  }
+}

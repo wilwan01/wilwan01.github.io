@@ -129,7 +129,8 @@
         "ruiyang-wu",
         "yungang-bao",
         "zhangxi-tan",
-        "zhijian-chen"
+        "zhijian-chen",
+        "stephen-phillips"
       ]
     },
     {
@@ -484,7 +485,9 @@
         "ken-shepard",
         "massoud-pedram",
         "jeremy-holleman",
-        "krishnakanth-sistla"
+        "krishnakanth-sistla",
+        "benjamin-gaudette",
+        "nilanjan-palit"
       ]
     }
   ],
@@ -51397,6 +51400,391 @@
         "validation": "压力扫描热集/容量比和迁移频率，核对无事件丢失、数据一致性、p99延迟及缓存污染。",
         "transfer": "迁移至虚拟化设备通知聚合与多NUMA节点网络接收路径。"
       }
+    },
+    {
+      "id": "stephen-phillips",
+      "name": "Stephen Phillips",
+      "aliases": [
+        "Steve Phillips"
+      ],
+      "field": "多线程SPARC、多路一致性与应用专用加速",
+      "domain": "cpu",
+      "relatedDomains": [
+        "datacenter",
+        "correctness"
+      ],
+      "core": "编辑提炼：增加线程数必须同时扩展排序、缓存、互连和内存路径；应用加速还需匹配软件的数据布局与语义。",
+      "background": "2007年Hot Chips署名Sun Distinguished Engineer，2014年署名Oracle SPARC架构Senior Director。2017年MSST官方简介连接Sun/Oracle经历及Rutgers教育。与Intel Santa Clara个人主页所列M7论文、Rutgers背景相符；Intel关联仅获公开个人资料片段支持，当前正式职称与任期未由Intel官方资料核实。用户原拼写为Stephen Philips，技术署名为Stephen Phillips。",
+      "contributions": [
+        "署名报告VictoriaFalls：将多线程处理器扩展至多芯片，解释一致性平面、排序点及独立虚拟通道。",
+        "署名报告M7：说明分区L3、应用数据完整性及融合解压/过滤加速。"
+      ],
+      "argument": "编辑条件模型：吞吐收益受共享数据争用、远端访问及应用可卸载比例约束；线程数或峰值带宽不能直接替代尾延迟与系统效率。",
+      "evidence": "两份不同处理器项目的官方会议原始PDF均已读取署名及机制正文；M7后续论文和重复演讲不另计。",
+      "habits": [
+        "编辑归纳：逐层追问并发扩展的共享瓶颈，并将硬件机制与软件数据语义连接。"
+      ],
+      "questions": [
+        "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？"
+      ],
+      "diagnostic": "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？",
+      "boundary": "贡献限于具名技术报告及公开历史职责，不把Sun/Oracle团队设计归为个人独占，不据此宣称Intel具体产品贡献。会议中的性能属于厂商报告，未在本轮独立复测；2014年路线图和软件支持计划不倒填为当时已交付。",
+      "notes": [],
+      "sources": [
+        [
+          "VictoriaFalls: Scaling Highly-Threaded Processor Cores",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc19/3_Tues/HC19.09/HC19.09.01.pdf",
+          "PDF第1页署名；第5–7页（每PDF页两张幻灯片）核心/L2排序、coherence planes、虚拟通道与多芯片互连"
+        ],
+        [
+          "M7: Next Generation SPARC",
+          "https://old.hotchips.org/wp-content/uploads/hc_archives/hc26/HC26-12-day2-epub/HC26.12-8-Big-Iron-Servers-epub/HC26.12.820-Next_Gen_SPARC_Phillips-Oracle-FinalPub.pdf",
+          "PDF第1页署名；第8页L3/OCN；第13–14页ADI/迁移；第19页查询融合"
+        ],
+        [
+          "MSST 2017官方讲者简介",
+          "https://msstconference.org/MSST-history/2017/Speakers/Phillips.html",
+          "Invited Track Speaker简介段"
+        ],
+        [
+          "Stephen Phillips公开个人履历",
+          "https://www.linkedin.com/in/stephen-phillips-023a575",
+          "仅公开索引的Intel/Santa Clara/Rutgers/M7字段，未读取完整主页"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "stephen-phillips-victoriafalls-hc19",
+          "title": "VictoriaFalls: Scaling Highly-Threaded Processor Cores",
+          "authors": "Stephen Phillips",
+          "date": "2007-08-21",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc19/3_Tues/HC19.09/HC19.09.01.pdf",
+          "locator": "PDF第1页署名；第5–7页（每PDF页两张幻灯片）核心/L2排序、coherence planes、虚拟通道与多芯片互连",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读原会议PDF文本的署名及机制页：交叉开关与L2维护顺序、按物理地址划分一致性平面、hub串行化地址冲突、虚拟通道分离与乱序snoop响应。",
+          "evidenceStrength": "Sun Microsystems Distinguished Engineer；作为团队架构工作的署名报告者，不能据此独占每项设计。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "作者署名的会议技术幻灯片（官方会议归档）"
+        },
+        {
+          "workId": "stephen-phillips-m7-hc26",
+          "title": "M7: Next Generation SPARC",
+          "authors": "Stephen Phillips",
+          "date": "2014-08-12",
+          "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc26/HC26-12-day2-epub/HC26.12-8-Big-Iron-Servers-epub/HC26.12.820-Next_Gen_SPARC_Phillips-Oracle-FinalPub.pdf",
+          "locator": "PDF第1页署名；第8页L3/OCN；第13–14页ADI/迁移；第19页查询融合",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读原会议PDF文本的署名及机制页：分区L3及不同请求/响应/数据网络；版本元数据贯穿内存与缓存，核心检查引用版本；解压与过滤融合。",
+          "evidenceStrength": "Oracle Senior Director, SPARC Architecture；作为团队架构工作的署名报告者，不能据此独占每项设计。",
+          "role": "独立技术作品及已读机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "作者署名的会议技术幻灯片（官方会议归档）"
+        },
+        {
+          "workId": "stephen-phillips-msst2017-identity",
+          "title": "MSST 2017 Invited Track Speaker: Steve Phillips, Oracle",
+          "authors": "MSST会议组织方",
+          "date": "2017年会期资料；页面页脚更新2024-01-12",
+          "url": "https://msstconference.org/MSST-history/2017/Speakers/Phillips.html",
+          "locator": "Invited Track Speaker简介段",
+          "type": "机构人物简介",
+          "contentStatus": "已读简介全文，连接Steve/Stephen、Oracle/Sun、SPARC架构职责及Rutgers教育；不证明当前Intel职称。",
+          "evidenceStrength": "会议官方历史身份记录",
+          "role": "身份来源，不计独立技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "stephen-phillips-victoriafalls-hc19",
+          "text": "2007年Sun署名报告描述按物理地址划分一致性平面，由hub串行化冲突，虚拟通道分离请求、响应与数据。"
+        },
+        {
+          "workId": "stephen-phillips-m7-hc26",
+          "text": "2014年Oracle署名报告描述分区L3与不同请求/响应/数据互连，及贯穿缓存层次的版本元数据检查。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "VictoriaFalls与M7为不同代际、不同项目的署名技术作品，非同一项目重复演讲。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-intel-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "历史技术作品达标；当前Intel职称未获官方确认。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "多层并发瓶颈与应用语义",
+        "skills": [
+          "A3",
+          "A5",
+          "A7"
+        ],
+        "question": "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？",
+        "variables": "线程数、共享写入率、远端访问率、snoop队列深度、内存带宽、可卸载比例、p99延迟",
+        "model": "编辑模型：逐层建立吞吐上界，再评估瓶颈转移后的应用加速收益。",
+        "crossover": "增加并发或卸载带来的有用工作超过排序、通信、同步及数据转换开销。",
+        "counterexample": "热点锁和写共享使一致性串行化占主导，或应用数据布局不适配卸载引擎。",
+        "validation": "保持相同工作量与正确性检查，扫描共享写入率和NUMA放置；比较吞吐、尾延迟和每请求能耗。",
+        "transfer": "迁移至多插槽云CPU、chiplet一致性以及数据库/网络卸载。"
+      }
+    },
+    {
+      "id": "benjamin-gaudette",
+      "name": "Benjamin Gaudette",
+      "aliases": [
+        "Benjamin David Gaudette"
+      ],
+      "field": "多核能效控制、热模型与能源约束系统",
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "cpu",
+        "network"
+      ],
+      "core": "编辑提炼：把效率目标放在温度、能源存量及服务下限的约束之内，并验证模型误差。",
+      "background": "ASU计算机工程研究者。导师Carole-Jean Wu主页把2017届博士Benjamin Gaudette与Benchmark Electronics、Intel经历关联；两项审核作品属于ASU时期，不能归作Intel研发成果。截至2026-11-12具体Intel现任职责和职称未获官方确认。",
+      "contributions": [
+        "与Hanumaiah、Vrudhula共同发明处理器闭环控制，分离状态估计和DVFS决策。",
+        "与ASU/Arizona团队共同研究太阳能传感网络，联合优化感知覆盖、路由及电池预算。"
+      ],
+      "argument": "编辑条件模型：局部低功耗只有在温度与服务下限同时满足时才有价值；预测偏差、控制滞后及通信耗能可能推翻节能判断。",
+      "evidence": "两项不同系统问题的一手作品正文已核验；共同署名不等于独占贡献。",
+      "habits": [
+        "编辑归纳：先列状态与约束，再检查优化收益及模型失配。"
+      ],
+      "questions": [
+        "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？"
+      ],
+      "boundary": "不称Intel主架构师或Intel产品模块负责人；不将ASU成果归Intel。专利披露不证明量产采用；传感网络论文采用简化电池/通信模型及仿真，不能直接外推数据中心。",
+      "diagnostic": "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？",
+      "notes": [],
+      "sources": [
+        [
+          "Processor control system — US10133323B2",
+          "https://patentimages.storage.googleapis.com/32/90/1b/9530546b9bbf8c/US10133323.pdf",
+          "原始PDF第1页；第5、7页图2/4；第9–10页说明书"
+        ],
+        [
+          "Maximizing Quality of Coverage under Connectivity Constraints in Solar-Powered Active Wireless Sensor Networks",
+          "https://wicon.arizona.edu/sites/default/files/2023-03/TOSN_June2014.pdf",
+          "PDF第1页署名；第7–12页§3.3–4.2及式8–15"
+        ],
+        [
+          "Carole-Jean Wu — Mentorship / ASU advisees",
+          "https://sites.google.com/site/carolejeanwu",
+          "Undergraduate/MS/PhD Advisees：Benjamin Gaudette条目；HPCA-2016条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "benjamin-gaudette-processor-control-us14207936",
+          "title": "Processor control system — US10133323B2",
+          "authors": "Vinay Hanumaiah; Sarma Vrudhula; Benjamin Gaudette",
+          "date": "2014-09-18首次公开；2018-11-20授权；2013-03-14优先权",
+          "url": "https://patentimages.storage.googleapis.com/32/90/1b/9530546b9bbf8c/US10133323.pdf",
+          "locator": "原始PDF第1页；第5、7页图2/4；第9–10页说明书",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读首页、图2/4及说明书所列部分；独立状态估计器修正功耗/温度预测，控制器据此选择DVFS。",
+          "evidenceStrength": "ASU三位共同发明人；不推断个人模块分工或Intel采用。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "原始专利PDF（公开镜像）"
+        },
+        {
+          "workId": "benjamin-gaudette-solar-coverage-tosn2014",
+          "title": "Maximizing Quality of Coverage under Connectivity Constraints in Solar-Powered Active Wireless Sensor Networks",
+          "authors": "Benjamin Gaudette; Vinay Hanumaiah; Marwan Krunz; Sarma Vrudhula",
+          "date": "2014-04（PDF出版页）",
+          "url": "https://wicon.arizona.edu/sites/default/files/2023-03/TOSN_June2014.pdf",
+          "locator": "PDF第1页署名；第7–12页§3.3–4.2及式8–15",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、模型边界、式8–15和§4.2；联合感知半径、路由与电池约束，二分搜索可保证的最低覆盖。",
+          "evidenceStrength": "ASU与University of Arizona四人共同作品；结果为模型/仿真，不是生产部署。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "作者所在大学实验室提供的论文正文"
+        },
+        {
+          "workId": "benjamin-gaudette-advisor-identity",
+          "title": "Carole-Jean Wu — Mentorship / ASU advisees",
+          "authors": "Carole-Jean Wu",
+          "date": "未知（网页未标发表日期）",
+          "url": "https://sites.google.com/site/carolejeanwu",
+          "locator": "Undergraduate/MS/PhD Advisees：Benjamin Gaudette条目；HPCA-2016条目",
+          "type": "导师/共同作者个人研究主页",
+          "contentStatus": "已读本人指导学生条目及HPCA2016作品署名；写明PhD2017、Benchmark Electronics后Intel。",
+          "evidenceStrength": "直接导师身份关联；无Intel正式现职头衔及该条目的更新日期。",
+          "role": "身份与历史/机构关联；不计技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "benjamin-gaudette-processor-control-us14207936",
+          "text": "专利首页列ASU及三位发明人；申请14/207936。"
+        },
+        {
+          "workId": "benjamin-gaudette-solar-coverage-tosn2014",
+          "text": "论文首页列四位作者与ASU/Arizona归属，注明扩展2012年工作。"
+        },
+        {
+          "workId": "benjamin-gaudette-advisor-identity",
+          "text": "导师主页明确把其2017年博士身份与Intel关联。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "一项处理器控制专利作品与一项能源约束网络论文；不是同一项目的重复发布。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-intel-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "仅所列作品与公开身份桥接；现任具体职称、Intel采用未核实。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "能源约束与模型误差",
+        "skills": [
+          "A2",
+          "A7",
+          "A9"
+        ],
+        "question": "当功耗/温度预测滞后或可用能源骤降时，如何保证约束不被违反，而不是仅提高平均效率？",
+        "variables": "功率W、时间s、能量J、温度°C、模型误差、控制周期、服务下限",
+        "model": "编辑训练模型：E_next=E_now+E_in−E_work−E_comm；温度与服务下限同时为约束。",
+        "crossover": "节能收益必须超过控制和重规划开销，并保持所有约束。",
+        "counterexample": "预测滞后导致温度越界，或通信消耗使可用能源不足。",
+        "validation": "建议验证（尚未执行）：扫模型误差及控制周期，记录约束违反率、完整任务能量与服务尾部。",
+        "transfer": "迁移至受功率上限约束的CPU平台；需重新测量模型，不能移用传感网络参数。"
+      }
+    },
+    {
+      "id": "nilanjan-palit",
+      "name": "Nilanjan Palit",
+      "aliases": [],
+      "field": "CPU功耗控制与运行时固件更新",
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "datacenter",
+        "correctness"
+      ],
+      "core": "编辑提炼：把运行时控制的局部动作与服务可观察影响分开验收。",
+      "background": "Intel技术贡献者。2021年Intel技术指南共同署名；2025-09-12 OCP规范明确列在Intel作者组。正式现任职称及2025年后的任职变化未独立核实，不按头衔入库。",
+      "contributions": [
+        "共同撰写低时延功耗指南，解释DPDK工作负载感知的频率控制及请求等待与实际调频的区别。",
+        "参与跨公司OCP CPU固件运行时更新规范，描述版本、签名、状态验证及带内/带外更新流程。"
+      ],
+      "argument": "编辑条件模型：降低局部控制成本不自动保证服务SLO；工作负载突发和错误状态转移仍可能使系统失效。",
+      "evidence": "两份独立的官方署名技术作品：2021年Intel指南与2025年OCP规范；两者机制正文均已按所列范围读取。",
+      "habits": [
+        "编辑归纳：分别检查控制动作、系统状态和服务结果。"
+      ],
+      "questions": [
+        "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？"
+      ],
+      "boundary": "技术指南含厂商产品说明；本卡不采用未经复核的性能数字。OCP规范不等于各厂商已实现或部署；更新为运行时非持久范围，部分功能/场景另有限制。均为团队共同作品，不认定个人独占设计或全芯片主架构职责。",
+      "diagnostic": "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？",
+      "notes": [],
+      "sources": [
+        [
+          "Enhanced Power Management for Low-Latency Workloads",
+          "https://networkbuilders.intel.com/docs/networkbuilders/power-management-enhanced-power-management-for-low-latency-workloads-technology-guide-1617438252.pdf",
+          "PDF第1页作者；第2页修订日期；第3–7页§2–4、图2–3"
+        ],
+        [
+          "Hyperscale CPU Impactless Firmware Updates Requirements, v0.7",
+          "https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf",
+          "PDF第1页作者及生效日期、第4页修订表；§1.1、§1.4–1.5、§2.1–2.2、§3.1–3.2（正文第10、14–22页）"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "nilanjan-palit-low-latency-power-guide-2021",
+          "title": "Enhanced Power Management for Low-Latency Workloads",
+          "authors": "David Hunt; Reshma Pattan; Chris MacNamara; Karen Shemer; Nilanjan Palit; Pinkesh Shah",
+          "date": "2021-04（修订001；精确日未知）",
+          "url": "https://networkbuilders.intel.com/docs/networkbuilders/power-management-enhanced-power-management-for-low-latency-workloads-technology-guide-1617438252.pdf",
+          "locator": "PDF第1页作者；第2页修订日期；第3–7页§2–4、图2–3",
+          "type": "作者技术报告全文",
+          "contentStatus": "已读官方PDF文本的署名、修订日期及所列机制章节；未逐页核验测试图表，不引用性能数字。",
+          "evidenceStrength": "六位共同作者；署名可证明技术作品贡献，不证明功能由个人独立设计。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "Intel官方技术指南"
+        },
+        {
+          "workId": "nilanjan-palit-ocp-impactless-fw-v07-2025",
+          "title": "Hyperscale CPU Impactless Firmware Updates Requirements, v0.7",
+          "authors": "Giri Mudusuru; Alex Akesson; Rama Bhimanadhuni; Rajat Madhusudan; Jicksen Joy; Sean Malley; Josef Zeevi; Justin King; Mathias Brossard; Jose Marinho; Gareth Stockwell; Daniil Egranov; Anil Agrawal; Balaji Vembu; John Leung; Allison Goodman; Nilanjan Palit; Jonathan Bentley",
+          "date": "2025-09-12（封面生效及修订日期；URL文件名另含2025-09-29）",
+          "url": "https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf",
+          "locator": "PDF第1页作者及生效日期、第4页修订表；§1.1、§1.4–1.5、§2.1–2.2、§3.1–3.2（正文第10、14–22页）",
+          "type": "技术规范全文",
+          "contentStatus": "已读官方PDF所列正文；首页截图核对Nilanjan Palit列于Intel作者组。",
+          "evidenceStrength": "十八位跨机构共同作者，Intel组四人；文档未细分个人条款责任。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12",
+          "formatDetail": "OCP官方多机构技术规范"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "nilanjan-palit-low-latency-power-guide-2021",
+          "text": "指南列六位作者，包括Nilanjan Palit；讨论轮询负载和调频的两个时间组成。"
+        },
+        {
+          "workId": "nilanjan-palit-ocp-impactless-fw-v07-2025",
+          "text": "规范首页在Intel组列Nilanjan Palit；正文规定更新的验证、状态与范围约束。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "两项不同技术问题、不同时间、不同作者组合的官方技术作品；不是同一项目版本或转载。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-intel-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "所列作品署名和机制审核完成；当前正式职称及产品部署不在已核实范围。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "运行时动作与可观察影响",
+        "skills": [
+          "A5",
+          "A7",
+          "A8"
+        ],
+        "question": "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？",
+        "variables": "控制请求等待、实际执行耗时、业务突发率、队列深度、p99延迟、版本/签名验证状态",
+        "model": "编辑模型：分离控制路径延迟、执行停顿与业务恢复，逐项测量并联立正确性约束。",
+        "crossover": "节能或维护收益超过延迟/状态切换成本，同时保持目标SLO与安全约束。",
+        "counterexample": "动作很快但排队迟缓，或业务保持运行却接受了不兼容的状态。",
+        "validation": "在负载突发和无效更新输入下分别测试尾延迟、请求时序、版本检查及失败恢复。",
+        "transfer": "迁移至设备运行时重配置与在线维护窗口设计。"
+      }
     }
   ],
   "research": {
@@ -51407,7 +51795,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 414,
+    "totalProfiles": 417,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -51435,13 +51823,14 @@
       "research/batches/2026-11-01-weekly.json",
       "research/batches/2026-11-08-weekly.json",
       "research/batches/2026-11-12-weekly.json",
-      "research/batches/2026-11-12-amd-nominations.json"
+      "research/batches/2026-11-12-amd-nominations.json",
+      "research/batches/2026-11-12-intel-nominations.json"
     ],
-    "completedTotal": 413,
+    "completedTotal": 416,
     "remainingCatalog": 1,
-    "remainingPlanned": 5,
-    "additionalPlannedScope": 119,
-    "additionalCompleted": 113,
+    "remainingPlanned": 6,
+    "additionalPlannedScope": 123,
+    "additionalCompleted": 116,
     "resolvedCandidateDuplicates": 1
   }
 }

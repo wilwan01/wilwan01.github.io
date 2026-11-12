@@ -1,0 +1,197 @@
+{
+  "status": "qualified-historical-contributions-current-role-bounded",
+  "reviewedAt": "2026-11-12",
+  "baseCommit": "395696c00a511b5af3df3cef84ff8be7e1f6f5c2",
+  "requestedName": "Intel Stephen Philips",
+  "canonicalName": "Stephen Phillips",
+  "profile": {
+    "id": "stephen-phillips",
+    "name": "Stephen Phillips",
+    "aliases": [
+      "Steve Phillips"
+    ],
+    "field": "多线程SPARC、多路一致性与应用专用加速",
+    "domain": "cpu",
+    "relatedDomains": [
+      "datacenter",
+      "correctness"
+    ],
+    "core": "编辑提炼：增加线程数必须同时扩展排序、缓存、互连和内存路径；应用加速还需匹配软件的数据布局与语义。",
+    "background": "2007年Hot Chips署名Sun Distinguished Engineer，2014年署名Oracle SPARC架构Senior Director。2017年MSST官方简介连接Sun/Oracle经历及Rutgers教育。与Intel Santa Clara个人主页所列M7论文、Rutgers背景相符；Intel关联仅获公开个人资料片段支持，当前正式职称与任期未由Intel官方资料核实。用户原拼写为Stephen Philips，技术署名为Stephen Phillips。",
+    "contributions": [
+      "署名报告VictoriaFalls：将多线程处理器扩展至多芯片，解释一致性平面、排序点及独立虚拟通道。",
+      "署名报告M7：说明分区L3、应用数据完整性及融合解压/过滤加速。"
+    ],
+    "argument": "编辑条件模型：吞吐收益受共享数据争用、远端访问及应用可卸载比例约束；线程数或峰值带宽不能直接替代尾延迟与系统效率。",
+    "evidence": "两份不同处理器项目的官方会议原始PDF均已读取署名及机制正文；M7后续论文和重复演讲不另计。",
+    "habits": [
+      "编辑归纳：逐层追问并发扩展的共享瓶颈，并将硬件机制与软件数据语义连接。"
+    ],
+    "questions": [
+      "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？"
+    ],
+    "diagnostic": "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？",
+    "boundary": "贡献限于具名技术报告及公开历史职责，不把Sun/Oracle团队设计归为个人独占，不据此宣称Intel具体产品贡献。会议中的性能属于厂商报告，未在本轮独立复测；2014年路线图和软件支持计划不倒填为当时已交付。",
+    "notes": [],
+    "sources": [
+      [
+        "VictoriaFalls: Scaling Highly-Threaded Processor Cores",
+        "https://old.hotchips.org/wp-content/uploads/hc_archives/hc19/3_Tues/HC19.09/HC19.09.01.pdf",
+        "PDF第1页署名；第5–7页（每PDF页两张幻灯片）核心/L2排序、coherence planes、虚拟通道与多芯片互连"
+      ],
+      [
+        "M7: Next Generation SPARC",
+        "https://old.hotchips.org/wp-content/uploads/hc_archives/hc26/HC26-12-day2-epub/HC26.12-8-Big-Iron-Servers-epub/HC26.12.820-Next_Gen_SPARC_Phillips-Oracle-FinalPub.pdf",
+        "PDF第1页署名；第8页L3/OCN；第13–14页ADI/迁移；第19页查询融合"
+      ],
+      [
+        "MSST 2017官方讲者简介",
+        "https://msstconference.org/MSST-history/2017/Speakers/Phillips.html",
+        "Invited Track Speaker简介段"
+      ],
+      [
+        "Stephen Phillips公开个人履历",
+        "https://www.linkedin.com/in/stephen-phillips-023a575",
+        "仅公开索引的Intel/Santa Clara/Rutgers/M7字段，未读取完整主页"
+      ]
+    ],
+    "sourceAudit": [
+      {
+        "workId": "stephen-phillips-victoriafalls-hc19",
+        "title": "VictoriaFalls: Scaling Highly-Threaded Processor Cores",
+        "authors": "Stephen Phillips",
+        "date": "2007-08-21",
+        "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc19/3_Tues/HC19.09/HC19.09.01.pdf",
+        "locator": "PDF第1页署名；第5–7页（每PDF页两张幻灯片）核心/L2排序、coherence planes、虚拟通道与多芯片互连",
+        "type": "作者会议幻灯片",
+        "contentStatus": "已读原会议PDF文本的署名及机制页：交叉开关与L2维护顺序、按物理地址划分一致性平面、hub串行化地址冲突、虚拟通道分离与乱序snoop响应。",
+        "evidenceStrength": "Sun Microsystems Distinguished Engineer；作为团队架构工作的署名报告者，不能据此独占每项设计。",
+        "role": "独立技术作品及已读机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "作者署名的会议技术幻灯片（官方会议归档）"
+      },
+      {
+        "workId": "stephen-phillips-m7-hc26",
+        "title": "M7: Next Generation SPARC",
+        "authors": "Stephen Phillips",
+        "date": "2014-08-12",
+        "url": "https://old.hotchips.org/wp-content/uploads/hc_archives/hc26/HC26-12-day2-epub/HC26.12-8-Big-Iron-Servers-epub/HC26.12.820-Next_Gen_SPARC_Phillips-Oracle-FinalPub.pdf",
+        "locator": "PDF第1页署名；第8页L3/OCN；第13–14页ADI/迁移；第19页查询融合",
+        "type": "作者会议幻灯片",
+        "contentStatus": "已读原会议PDF文本的署名及机制页：分区L3及不同请求/响应/数据网络；版本元数据贯穿内存与缓存，核心检查引用版本；解压与过滤融合。",
+        "evidenceStrength": "Oracle Senior Director, SPARC Architecture；作为团队架构工作的署名报告者，不能据此独占每项设计。",
+        "role": "独立技术作品及已读机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "作者署名的会议技术幻灯片（官方会议归档）"
+      },
+      {
+        "workId": "stephen-phillips-msst2017-identity",
+        "title": "MSST 2017 Invited Track Speaker: Steve Phillips, Oracle",
+        "authors": "MSST会议组织方",
+        "date": "2017年会期资料；页面页脚更新2024-01-12",
+        "url": "https://msstconference.org/MSST-history/2017/Speakers/Phillips.html",
+        "locator": "Invited Track Speaker简介段",
+        "type": "机构人物简介",
+        "contentStatus": "已读简介全文，连接Steve/Stephen、Oracle/Sun、SPARC架构职责及Rutgers教育；不证明当前Intel职称。",
+        "evidenceStrength": "会议官方历史身份记录",
+        "role": "身份来源，不计独立技术作品",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "retrievedAt": "2026-11-12"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "workId": "stephen-phillips-victoriafalls-hc19",
+        "text": "2007年Sun署名报告描述按物理地址划分一致性平面，由hub串行化冲突，虚拟通道分离请求、响应与数据。"
+      },
+      {
+        "workId": "stephen-phillips-m7-hc26",
+        "text": "2014年Oracle署名报告描述分区L3与不同请求/响应/数据互连，及贯穿缓存层次的版本元数据检查。"
+      }
+    ],
+    "awardsVerified": [],
+    "contributionBasis": "VictoriaFalls与M7为不同代际、不同项目的署名技术作品，非同一项目重复演讲。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-12-intel-nominations",
+      "standard": "contribution-led-v1",
+      "meaning": "历史技术作品达标；当前Intel职称未获官方确认。",
+      "verifiedAt": "2026-11-12"
+    },
+    "challenge": {
+      "lens": "多层并发瓶颈与应用语义",
+      "skills": [
+        "A3",
+        "A5",
+        "A7"
+      ],
+      "question": "从双路扩展到多路时，一致性排序、snoop带宽和内存带宽哪个先饱和？局部缓存或应用卸载能否在保持正确性的同时改善端到端瓶颈？",
+      "variables": "线程数、共享写入率、远端访问率、snoop队列深度、内存带宽、可卸载比例、p99延迟",
+      "model": "编辑模型：逐层建立吞吐上界，再评估瓶颈转移后的应用加速收益。",
+      "crossover": "增加并发或卸载带来的有用工作超过排序、通信、同步及数据转换开销。",
+      "counterexample": "热点锁和写共享使一致性串行化占主导，或应用数据布局不适配卸载引擎。",
+      "validation": "保持相同工作量与正确性检查，扫描共享写入率和NUMA放置；比较吞吐、尾延迟和每请求能耗。",
+      "transfer": "迁移至多插槽云CPU、chiplet一致性以及数据库/网络卸载。"
+    }
+  },
+  "identityAudit": {
+    "decision": "历史Sun/Oracle架构师身份可靠；Intel提名匹配依据为同名个人主页同时列Santa Clara、Rutgers及M7论文，当前Intel职位不作为已核实事实。",
+    "primaryBiography": {
+      "url": "https://msstconference.org/MSST-history/2017/Speakers/Phillips.html",
+      "eventDate": "2017-05-16",
+      "pageFooterUpdated": "2024-01-12",
+      "readRange": "讲者简介全文",
+      "facts": [
+        "Steve Phillips为Oracle SPARC架构组Senior Director",
+        "Sun/Oracle共13年（该历史简介口径）",
+        "Rutgers MSEE/BSEE"
+      ]
+    },
+    "selfProfile": {
+      "url": "https://www.linkedin.com/in/stephen-phillips-023a575",
+      "publicationDate": null,
+      "retrievedAt": "2026-11-12",
+      "access": "搜索返回公开个人资料片段；直接open返回999；未声称读取完整主页",
+      "observed": [
+        "Intel Corporation，Santa Clara",
+        "Rutgers",
+        "M7 IEEE Micro 2015论文"
+      ]
+    },
+    "exclusions": [
+      "Stephen M Phillips，Washington DC/UMass，Intel sales公开资料",
+      "Stephen Phillips建筑设计师/Cal Poly",
+      "DBLP同名聚合的机器人/计算机视觉论文未采用"
+    ],
+    "remainingGap": "Intel官方现职、任期与当前产品分工未知；不影响已核实历史技术作品达标。"
+  },
+  "independenceAudit": {
+    "countedWorkIds": [
+      "stephen-phillips-victoriafalls-hc19",
+      "stephen-phillips-m7-hc26"
+    ],
+    "count": 2,
+    "reason": "2007 VictoriaFalls多芯片一致性与2014 M7分区缓存/应用语义加速属不同处理器项目；无专利计数，专利族审核不适用。",
+    "notAdditionallyCounted": [
+      "2015 M7 IEEE Micro论文",
+      "2017 SPARC Software in Silicon演讲",
+      "2008/2009 VictoriaFalls coherency hub论文"
+    ]
+  },
+  "readScope": "仅已列原始会议PDF的署名与机制部分，以及官方MSST简介；非全文穷尽审计。",
+  "delivery": "研究文件已准备；目录集成、验证、PR与部署由主任务处理。",
+  "integration": {
+    "batch": "2026-11-12-intel-nominations",
+    "reviewDecision": "admit",
+    "deliveryStatus": "prepared-not-deployed",
+    "canonicalSourceTypes": "复用现有schema，formatDetail保留来源格式；contentStatus限定实际读取范围。"
+  }
+}

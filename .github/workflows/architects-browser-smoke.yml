@@ -46,11 +46,28 @@ jobs:
             try {
               const catalog=JSON.parse(fs.readFileSync('ai/architects/catalog.json','utf8'));
               const index=JSON.parse(fs.readFileSync('ai/search-index.json','utf8'));
-              assert(catalog.profiles.length >= 413);
+              assert(catalog.profiles.length >= 414);
               const expectedProfiles=catalog.profiles.length;
               const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
               assert(catalog.profiles.some(p=>p.id==='anil-kumar-amd-austin'));
               targets.push(['Anil Kumar','anil-kumar-amd-austin']);
+              const batchPath='ai/architects/research/batches/2026-11-12-intel-nominations.json';
+              const batch=JSON.parse(fs.readFileSync(batchPath,'utf8'));
+              const admitted=batch.records.filter(r=>r.status==='complete');
+              const pending=batch.records.filter(r=>r.status!=='complete');
+              assert.equal(admitted.length,batch.completedNew);
+              for(const record of admitted){
+                const profile=catalog.profiles.find(p=>p.id===record.id);
+                assert(profile,`Missing admitted profile ${record.id}`);
+                assert.equal(profile.researchStatus.batch,'2026-11-12-intel-nominations');
+                if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
+              }
+              for(const record of pending){
+                assert(!catalog.profiles.some(p=>p.id===record.id),`Pending candidate in catalog: ${record.id}`);
+                assert(!index.entries.some(x=>x.u===`/ai/architects/#${record.id}`),`Pending candidate in search: ${record.id}`);
+              }
+              report.admissionBatch=batchPath;
+              report.pendingExcluded=pending.map(r=>r.id);
               report.testedProfiles=targets;
               assert.equal(index.count,index.entries.length);
               assert(!index.entries.some(x=>x.u.includes('/research/')));
@@ -61,6 +78,7 @@ jobs:
                 page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:8765/')&&r.status()>=400)failed.push({url:r.url(),status:r.status()});});
                 assert.equal((await page.goto('http://127.0.0.1:8765/ai/architects/',{waitUntil:'networkidle'})).status(),200);
                 assert.equal(await page.locator('article.profile').count(),expectedProfiles);
+                for(const record of pending) assert.equal(await page.locator(`article.profile[id="${record.id}"]`).count(),0);
                 for(const [name,id] of targets){
                   await page.locator('#matrix-name').fill(name);
                   const row=page.locator('#architect-skill-table tbody tr:not([hidden])');
@@ -86,7 +104,7 @@ jobs:
                 }
                 await page.goto('http://127.0.0.1:8765/ai/search.html',{waitUntil:'networkidle'});
                 await page.waitForFunction(()=>document.querySelector('#count').textContent.includes('entries indexed'));
-                await page.locator('#q').fill('zzznomatch-pr79');
+                await page.locator('#q').fill('zzznomatch-architects-smoke');
                 assert((await page.locator('#count').innerText()).startsWith('0 '));
                 assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
                 await page.screenshot({path:`browser-results/search-${viewport.width}.png`});

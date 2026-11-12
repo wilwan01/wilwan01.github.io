@@ -1,0 +1,146 @@
+{
+  "id": "intel-oliver-lara-review-20261112",
+  "updated": "2026-11-12",
+  "standard": "contribution-led-v1",
+  "baseCommit": "395696c00a511b5af3df3cef84ff8be7e1f6f5c2",
+  "nominatedName": "Oliver Lara",
+  "nominatedAffiliation": "Intel",
+  "decision": "hold-identity-and-evidence",
+  "admit": false,
+  "summary": "未将 Oliver Lara 与倒置姓名 Lara Oliver 自动合并。已找到 Intel/Brown 的 Lara Oliver 公开简介线索及 Lara D. Oliver 的两项 VLSI 论文目录线索；尚未可靠建立提名身份、Intel 简介与论文作者三者之间的公开证据桥接，也未读取相关机制全文。保留候选，不新增正式人物。",
+  "duplicateCheck": {
+    "scope": "默认分支 ai/architects/ 全部文件，检索 Oliver Lara / Lara Oliver；父代理检索四位提名",
+    "existingCatalogMatch": false
+  },
+  "identity": {
+    "status": "unresolved",
+    "possibleReversedName": "Lara Oliver",
+    "profileUrl": "https://www.linkedin.com/in/lara-oliver-971297b",
+    "confirmedFacts": [
+      "公开搜索返回该个人主页显示 Lara Oliver、Intel Corporation、San Francisco Bay Area、Brown University。"
+    ],
+    "unverified": [
+      "该主页是否即用户提名 Oliver Lara。",
+      "该 Intel 人员是否即 Duke 论文作者 Lara D. Oliver。",
+      "当前正式职称与职责；第三方目录所称 Principal Power and Performance Engineer 未作事实采用。"
+    ],
+    "excluded": [
+      "NBCUniversal 的 Oliver Lara 为媒体制作人员，与本次 Intel 架构师方向不符；没有把其作品混入。"
+    ],
+    "namePolicy": "不得仅凭名姓倒置自动添加 aliases，也不与任何 Oliver Rojas / Rojas-Lara 合并。"
+  },
+  "sources": [
+    {
+      "id": "lara-oliver-intel-linkedin-lead",
+      "title": "Lara Oliver — Intel Corporation",
+      "url": "https://www.linkedin.com/in/lara-oliver-971297b",
+      "authors": "Lara Oliver (self-profile)",
+      "date": null,
+      "retrievedAt": "2026-11-12",
+      "type": "个人简介线索",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "locator": "公开搜索返回的姓名、Experience、Education",
+      "actualReadRange": "搜索返回简介字段；直接打开返回 HTTP 429，未读取完整经历。",
+      "supports": "存在 Intel/Brown 同名倒置线索；不能独立确认用户目标或技术作品。"
+    },
+    {
+      "id": "lara-oliver-2006-glsvlsi-program",
+      "title": "GLSVLSI 06 Advance Program",
+      "url": "https://www.glsvlsi.org/archive/glsvlsi06/advprogram.pdf",
+      "authors": "GLSVLSI organizers; paper credited to Lara D Oliver, Krishnendu Chakrabarty, Hisham Z Massoud",
+      "date": "2006 (event April 30–May 2; PDF publication date unknown)",
+      "retrievedAt": "2026-11-12",
+      "type": "官方会议日程",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "locator": "PDF第2页 Poster Session 1，An Evaluation of the Impact of Gate Oxide Tunneling on Dual Vt Based Leakage Reduction Techniques",
+      "actualReadRange": "官方6页日程的第2页署名与论文标题；不是论文正文。",
+      "supports": "论文题目与三位作者署名线索；不作机制正文或用户目标归属证据。"
+    },
+    {
+      "id": "lara-oliver-2009-glsvlsi-institutional-record",
+      "title": "Dual-threshold pass-transistor logic design",
+      "url": "https://asu.elsevierpure.com/en/publications/dual-threshold-pass-transistor-logic-design/",
+      "authors": "Lara D. Oliver; Krishnendu Chakrabarty; Hisham Z. Massoud",
+      "date": "2009 (conference May 10–12)",
+      "retrievedAt": "2026-11-12",
+      "type": "大学研究成果目录及摘要",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "locator": "Title/authors; Abstract; pages 291–296; DOI 10.1145/1531542.1531610",
+      "actualReadRange": "署名、摘要、会议日期、DOI 与页码；未读取论文正文。",
+      "supports": "第二项论文线索。摘要描述低阈值逻辑管、高阈值恢复管及选择性替换 CMOS 门，但不以摘要替代机制全文；未采用性能百分比。"
+    },
+    {
+      "id": "lara-oliver-2009-body-access-attempt",
+      "title": "Dual-threshold pass-transistor logic design author PDF link",
+      "url": "https://people.ee.duke.edu/~krish/p291-oliver.pdf",
+      "authors": "Lara D. Oliver; Krishnendu Chakrabarty; Hisham Z. Massoud (linked metadata)",
+      "date": "2009",
+      "retrievedAt": "2026-11-12",
+      "type": "作者机构 PDF 链接尝试",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "locator": "通过 Sciweavers 论文页的 Duke 原始 PDF 链接",
+      "actualReadRange": "未读取：公开获取返回 HTTP 404。",
+      "supports": "仅保存恢复入口，不能计正文已读。"
+    }
+  ],
+  "workLeads": [
+    {
+      "title": "An evaluation of the impact of gate oxide tunneling on dual-Vt-based leakage reduction techniques",
+      "doi": "10.1145/1127908.1127935",
+      "year": 2006,
+      "authors": [
+        "Lara D. Oliver",
+        "Krishnendu Chakrabarty",
+        "Hisham Z. Massoud"
+      ],
+      "bodyRead": false,
+      "targetIdentityLinked": false
+    },
+    {
+      "title": "Dual-threshold pass-transistor logic design",
+      "doi": "10.1145/1531542.1531610",
+      "year": 2009,
+      "authors": [
+        "Lara D. Oliver",
+        "Krishnendu Chakrabarty",
+        "Hisham Z. Massoud"
+      ],
+      "bodyRead": false,
+      "targetIdentityLinked": false
+    }
+  ],
+  "admissionCounts": {
+    "verifiedIndependentWorksForNominatedPerson": 0,
+    "verifiedMechanismBodiesForNominatedPerson": 0,
+    "note": "这是本轮核验计数，不是断言此人没有技术贡献。两篇标题不同不能替代全文独立性审核。"
+  },
+  "gaps": [
+    "准确姓名顺序、本人主页或一项可归属 Intel 技术作品，以确认用户目标。",
+    "若目标确为 Lara Oliver，取得将 Intel 身份与 Lara D. Oliver 的 Duke 论文署名连接的公开履历/作者记录。",
+    "读取至少一篇机制正文并审核两项作品独立性；机构摘要和日程不能代替正文。"
+  ],
+  "nextStep": "优先确认提名是否指 https://www.linkedin.com/in/lara-oliver-971297b 的 Lara Oliver；然后复用已保存 DOI 与原始链接继续。",
+  "researchBoundary": {
+    "status": "bounded-search-incomplete-identity",
+    "searched": [
+      "exact Oliver Lara + Intel/architecture/processor/patent",
+      "reversed Lara Oliver + Intel/power/performance/inventor",
+      "Lara D. Oliver + Duke/leakage",
+      "official Intel/OpenCompute/HotChips indexed exact-name queries"
+    ],
+    "note": "两种搜索引擎的公开检索未建立可靠目标身份；不将无结果当作没有贡献，也不穷尽所有数据库。"
+  },
+  "delivery": {
+    "catalogChanged": false,
+    "profile": null,
+    "githubMutationByThisResearcher": false
+  }
+}
