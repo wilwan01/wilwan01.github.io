@@ -1,0 +1,106 @@
+{
+  "id": "kira-c-boyko-review-20261112",
+  "reviewDate": "2026-11-12",
+  "baseCommit": "b6eabc6be0963699b31f0d28a9b5a999758a0b15",
+  "nominatedName": "Kira C Boyko",
+  "decision": "hold-evidence-gap",
+  "admit": false,
+  "summary": "Intel 的 Kira Boyko / Kira Boyko Rowe 已有可归属的 Xeon 6+ 产品技术访谈，但本轮未建立两项独立个人技术作品。2014 年 Kira C Boyko 仅为期刊技术与战略审阅者署名，不能计为作者作品。保留候选，不凭产品总监头衔入库。",
+  "dedup": {
+    "scope": ["ai/architects/catalog.json", "ai/architects/research/"],
+    "query": "case-insensitive kira|boyko",
+    "result": "No matching nominee record found; unrelated Demirkiran substrings excluded.",
+    "catalogModified": false
+  },
+  "identity": {
+    "publicName": "Kira Boyko",
+    "supportedVariant": "Kira Boyko Rowe",
+    "institution": "Intel",
+    "lastVerifiedRole": "Product director for Intel Xeon 6+",
+    "roleEvidenceDate": "2026-06-12",
+    "currentRoleAtReview": "Not independently reconfirmed beyond the dated public testimony.",
+    "nameBridge": "Public self-post under Kira Boyko Rowe and the linked interviewer describe the same Intel Tech Tour/Clearwater Forest interview. The exact middle-initial form Kira C Boyko appears in Intel's 2014 reviewer list; a direct primary-source bridge from that credit to the contemporary product director remains incomplete.",
+    "excludedAttributions": ["No chief architect title inferred.", "No personal ownership of all Clearwater Forest architecture inferred.", "Unrelated HR and nontechnical namesakes excluded."]
+  },
+  "sourceAudit": [
+    {
+      "id": "kira-boyko-xeon6plus-interview-20260612",
+      "url": "https://chipsandcheese.com/p/an-interview-with-intels-kira-boyko",
+      "title": "An Interview with Intel's Kira Boyko: Xeon 6+'s Product Director",
+      "author": "George Cozma (interviewer); Kira Boyko (identified respondent)",
+      "publishedAt": "2026-06-12",
+      "readAt": "2026-11-12",
+      "sourceType": "Primary first-person testimony hosted by the original interviewer; edited transcript",
+      "locator": "Transcript lines 25-56 (role and product definition), 57-99 (AET and server/client discussion)",
+      "readScope": "Complete rendered interview transcript, excluding comments as evidence",
+      "workGroup": "clearwater-forest-xeon6plus",
+      "mechanismBodyRead": true,
+      "supports": ["Self-identifies as Xeon 6+ product director; describes requirements, KPI and SKU definition with architects and engineers.", "Explains hardware core-level energy telemetry, workload migration attribution and orchestration/chargeback uses."],
+      "limits": ["First-person product testimony establishes her explanations, not independent validation of feature or performance claims.", "Cluster-level telemetry is explicitly left for checking; client implementation is outside her scope.", "No sole design authorship or separate AET invention is established."],
+      "countingDecision": "At most one project-level firsthand technical work; sufficient mechanism discussion to retain, insufficient alone for admission.",
+      "retrievalRef": "turn362view0"
+    },
+    {
+      "id": "kira-c-boyko-itj-reviewer-2014",
+      "url": "https://www.intel.com/content/dam/www/public/us/en/documents/research/2014-vol18-iss-2-intel-technology-journal.pdf",
+      "title": "Intel Technology Journal, Volume 18, Issue 2, 2014",
+      "author": "Intel Corporation; masthead reviewer credit Kira C Boyko",
+      "publishedAt": "2014-04",
+      "readAt": "2026-11-12",
+      "sourceType": "Original Intel publication",
+      "locator": "PDF page 1 / printed page 1, Technical and Strategic Reviewers; first-print date on PDF page 2",
+      "readScope": "Masthead and publication metadata; Boyko text search. Full 204-page technical issue not read.",
+      "supports": ["The exact nominated name is listed among Technical and Strategic Reviewers."],
+      "limits": ["Reviewer acknowledgment is not chapter authorship, individual mechanism contribution or an independently countable work.", "No unsupported attribution of the journal's technical content to this reviewer."],
+      "countsAsIndependentWork": false,
+      "retrievalRef": "turn363view0 / turn365view1"
+    },
+    {
+      "id": "kira-boyko-rowe-selfpost-identity",
+      "url": "https://www.linkedin.com/posts/kiraboyko_still-on-a-high-from-previewing-intel-xeon-activity-7391962491297308672-618p",
+      "title": "Intel Xeon 6+ Intel Tech Tour preview post",
+      "author": "Kira Boyko Rowe; linked interviewer Tim Danton",
+      "publishedAt": null,
+      "publicationDateNote": "Only relative age rendered; exact publication date not inferred.",
+      "readAt": "2026-11-12",
+      "sourceType": "Public self-published identity/context post",
+      "locator": "Rendered lines 15-26",
+      "readScope": "Public post and embedded interviewer description",
+      "supports": ["Links the Rowe name variant to the Kira Boyko Intel Tech Tour/Clearwater Forest interview."],
+      "limits": ["Identity/context corroboration only; promotional post does not count as a second technical work."],
+      "countsAsIndependentWork": false,
+      "retrievalRef": "turn365view0"
+    }
+  ],
+  "duplicateProjectLeads": [
+    {"url": "https://www.techfinitive.com/interviews/exclusive-interview-with-kira-boyko-product-line-director-on-intel-clearwater-forest-youre-going-to-see-a-750-watt-reduction-and-then-3-5x-performance/", "publishedAt": "2025-10-09", "readScope": "Search result and excerpt only in this review", "workGroup": "clearwater-forest-xeon6plus", "countingDecision": "Same product project; not an independent second work. URL and headline power-unit mismatch must not become an accepted performance fact."},
+    {"url": "https://www.tomshardware.com/tech-industry/intel-xeon-6-plus-roundtable-transcript-computex-2026", "publishedAt": null, "readScope": "Search excerpts only; precise date not verified in this review", "workGroup": "clearwater-forest-xeon6plus", "countingDecision": "Same project. Mixed Kira Boyko/Tim Wilson answers require speaker-level attribution before reuse."},
+    {"url": "https://www.nextplatform.com/compute/2026/06/04/enhanced-performance-for-server-consolidation-with-intel-xeon-6/5251112", "publishedAt": "2026-06-04", "readScope": "Search result only", "workGroup": "clearwater-forest-xeon6plus", "countingDecision": "Same product project; sponsored interview not an independent second work."}
+  ],
+  "boundedSearch": {
+    "variants": ["Kira C Boyko", "Kira C. Boyko", "Kira Boyko", "Kira Boyko Rowe", "Kira Rowe"],
+    "topics": ["Intel", "architecture", "technical authorship", "papers", "patents", "virtualization", "Sierra Forest"],
+    "outcome": "No second independently attributable substantive technical work established from this search; this is not a claim that none exists.",
+    "patentFamiliesVerified": 0
+  },
+  "admissionAssessment": {
+    "twoIndependentWorks": false,
+    "mechanismTextRead": true,
+    "maximumIndependentProjectGroupsSupported": 1,
+    "individualDesignOwnership": "Not established; product-definition participation and direct testimony are supported.",
+    "profilePrepared": false
+  },
+  "gaps": [
+    {"gap": "Second independent substantive firsthand technical work", "nextEvidence": "Named authored paper, patent with inventor identity and family check, standards contribution, or a different project's original technical presentation with readable mechanism body."},
+    {"gap": "Exact middle-initial identity bridge", "nextEvidence": "Public author biography or official career record connecting Kira C Boyko to contemporary Intel Kira Boyko / Kira Boyko Rowe."},
+    {"gap": "Personal architectural contribution scope", "nextEvidence": "Original contribution statement or authored mechanism record; do not convert product director responsibilities into ownership of a team design."}
+  ],
+  "delivery": {
+    "candidateResearchOnly": true,
+    "catalogAdmission": "Not prepared",
+    "pr": "No independent PR created by this review",
+    "merged": false,
+    "deployed": false,
+    "nextResume": "Check a newly supplied independent original technical work or identity bridge; do not repeat the same Clearwater Forest interview search without new evidence."
+  }
+}
