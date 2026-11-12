@@ -422,7 +422,8 @@
         "zheming-li",
         "wei-lin",
         "xianguo-zhang",
-        "robert-hormuth"
+        "robert-hormuth",
+        "anil-kumar-amd-austin"
       ]
     },
     {
@@ -51288,6 +51289,114 @@
         "validation": "注入消息重复/丢失、节点崩溃及I/O突发；检查额度不变量、尾延迟、恢复过程与故障隔离，而非仅比较正常均值。",
         "transfer": "迁移到云配额池、交换式资源解耦和分布式限流。"
       }
+    },
+    {
+      "id": "anil-kumar-amd-austin",
+      "name": "Anil Kumar",
+      "aliases": [],
+      "field": "系统I/O、中断聚合与一致性缓存注入",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "network",
+        "correctness"
+      ],
+      "core": "编辑提炼：用有限热集管理中断聚合状态，并让设备写入的数据放置与软件消费位置相匹配。",
+      "background": "用户已确认目标为AMD Austin的Anil Kumar（LinkedIn anil-kumar-2066611），补充方向为system architecture / I/O / PCIe。两项原始专利均列Anil Kumar, Austin, TX。具体当前职称未经AMD官方简介独立确认，不按头衔计贡献。",
+      "contributions": [
+        "与Philip Ng共同提出中断缓存：缓存活跃向量的聚合状态，以阈值、计时及替换触发消息。",
+        "与AMD/Xilinx团队共同提出设备直接缓存注入：资源标识及局部性提示引导一致性写入放置，并结合拓扑和调度更新。"
+      ],
+      "argument": "编辑条件模型：收益取决于热集稳定性与消费位置预测；容量溢出、线程迁移和缓存污染可能抵消聚合或就近放置收益。",
+      "evidence": "两份原始PDF核实署名、申请与不同技术机制；中断缓存族仅计一项，直接缓存注入另计一项。",
+      "habits": [
+        "编辑归纳：同时检查有限硬件状态和软件调度变化。"
+      ],
+      "questions": [
+        "当中断热集超过缓存容量或软件线程迁移时，事件尾延迟与数据定向放置如何退化？如何证明没有丢中断、错误路由或严重缓存污染？"
+      ],
+      "boundary": "均为共同发明专利披露，不证明实硅、生产实测或商业采用；不称其为PCIe/CXL标准整体作者、AMD芯片主设计者或任何模块的独占贡献者。不混同A.V.Anil Kumar或Anil Kumar Kandala。",
+      "diagnostic": "当中断热集超过缓存容量或软件线程迁移时，事件尾延迟与数据定向放置如何退化？如何证明没有丢中断、错误路由或严重缓存污染？",
+      "notes": [],
+      "sources": [
+        [
+          "Interrupt cache configuration — US12182611B2",
+          "https://patentimages.storage.googleapis.com/16/2d/cf/cb4696fa7c1768/US12182611.pdf",
+          "PDF第1页；第7页第1–2栏Detailed Description Overview"
+        ],
+        [
+          "Devices, systems, and methods for direct cache injection in networking devices — US20260300177A1",
+          "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/20260300177",
+          "PDF第1页署名；第8–9页¶0009–0024"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "anil-interrupt-cache-family91584645",
+          "title": "Interrupt cache configuration — US12182611B2",
+          "authors": "Philip Ng; Anil Kumar",
+          "date": "2024-12-31授权；2024-06-27首次公开；2022-12-22申请",
+          "url": "https://patentimages.storage.googleapis.com/16/2d/cf/cb4696fa7c1768/US12182611.pdf",
+          "locator": "PDF第1页；第7页第1–2栏Detailed Description Overview",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读原PDF首页及机制正文；热集中断缓存、阈值与计时触发、替换时发出被替换中断。",
+          "evidenceStrength": "AMD与ATI；两位共同发明人；不推断个人模块分工。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "anil-direct-cache-injection-us19091708",
+          "title": "Devices, systems, and methods for direct cache injection in networking devices — US20260300177A1",
+          "authors": "Mahesh UdayKumar Wagh; Anil Kumar; Amit P. Apte; Xuanhua Li; Vydhyanathan Kalyanasundharam; Kevin M. Lepak; Kieran Mansley; Jay Fleischman; Nitish Paliwal",
+          "date": "2026-10-01公开；2025-03-26申请",
+          "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/20260300177",
+          "locator": "PDF第1页署名；第8–9页¶0009–0024",
+          "type": "公开专利申请说明书",
+          "contentStatus": "已读USPTO原PDF首页及机制正文；缓存资源标识与局部性提示、拓扑和调度变化下的定向放置。",
+          "evidenceStrength": "AMD与Xilinx；九位共同发明人；申请公开不等于授权或部署。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "anil-interrupt-cache-family91584645",
+          "text": "授权PDF列Philip Ng与Anil Kumar；正文描述热集中断聚合与替换时发消息。"
+        },
+        {
+          "workId": "anil-direct-cache-injection-us19091708",
+          "text": "USPTO公开PDF列九位发明人，包括Austin的Anil Kumar；¶0011–0012描述资源标识、局部性提示与驱动设置。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "两项不同申请、不同技术问题的独立专利作品；原PDF机制正文已读。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-amd-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "仅所列作品归属与机制审核；当前正式职称及产品采用未核实。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "热集状态与消费位置",
+        "skills": [
+          "A5",
+          "A7",
+          "A8"
+        ],
+        "question": "当中断热集超过缓存容量或软件线程迁移时，事件尾延迟与数据定向放置如何退化？如何证明没有丢中断、错误路由或严重缓存污染？",
+        "variables": "活跃中断向量数、缓存容量、计时阈值、事件到达率、线程迁移频率、缓存占用、p99延迟",
+        "model": "编辑模型：以有限状态覆盖热集，以放置提示匹配实际消费者；分别测量聚合效率和端到端延迟。",
+        "crossover": "减少硬件状态和访存成本的收益超过替换、迁移及污染开销。",
+        "counterexample": "向量均匀分散造成持续替换，或线程高频迁移让放置提示过期。",
+        "validation": "压力扫描热集/容量比和迁移频率，核对无事件丢失、数据一致性、p99延迟及缓存污染。",
+        "transfer": "迁移至虚拟化设备通知聚合与多NUMA节点网络接收路径。"
+      }
     }
   ],
   "research": {
@@ -51298,7 +51407,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 413,
+    "totalProfiles": 414,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -51328,11 +51437,11 @@
       "research/batches/2026-11-12-weekly.json",
       "research/batches/2026-11-12-amd-nominations.json"
     ],
-    "completedTotal": 412,
+    "completedTotal": 413,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 118,
-    "additionalCompleted": 112,
+    "additionalPlannedScope": 119,
+    "additionalCompleted": 113,
     "resolvedCandidateDuplicates": 1
   }
 }
