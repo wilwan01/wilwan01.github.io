@@ -1,0 +1,138 @@
+{
+  "id": "robert-hormuth-evidence-20261112",
+  "person": "Robert Hormuth",
+  "aliases": [
+    "Robert W. Hormuth"
+  ],
+  "checkedAt": "2026-11-12",
+  "status": "evidence_threshold_met_pending_catalog_integration_and_release",
+  "dedup": {
+    "catalog": "ai/architects/catalog.json",
+    "nameAndPatentMatches": 0,
+    "terms": [
+      "Hormuth",
+      "0318371",
+      "0325998",
+      "8843772",
+      "10102170"
+    ]
+  },
+  "sourceAudit": [
+    {
+      "workId": "hormuth-power-allocation-family49622523",
+      "title": "Systems and methods for dynamic power allocation in an information handling system environment — US20130318371A1",
+      "authors": "Robert W. Hormuth",
+      "date": "2013-11-28（公开）；2012-05-22（申请）",
+      "url": "https://patentimages.storage.googleapis.com/9f/0a/8a/b649abfc291213/US20130318371A1.pdf",
+      "locator": "首页署名；¶0031–0035及¶0040–0041；PDF第12–14页（从1计）",
+      "type": "专利公开正文（Google托管原始公开PDF）",
+      "contentStatus": "已读取唯一发明人署名、BMC功率额度借贷、优先级、超时回收及集中式替代实施例。",
+      "evidenceStrength": "唯一列名发明人；对应Dell受让记录；只证明披露方案，不证明实硅、出货或测量收益。",
+      "role": "独立技术作品及机制正文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-11-12"
+    },
+    {
+      "workId": "hormuth-io-switch-family49671661",
+      "title": "System and Method for Providing Input/Output Functionality by an I/O Complex Switch — US20130325998A1",
+      "authors": "Robert W. Hormuth、Robert L. Winter、Shawn J. Dube、Bradley J. Booth、Geng Lin、Jimmy Pike",
+      "date": "2013-12-05（公开）；2013-05-17（申请）；2012-05-18（临时申请优先权）",
+      "url": "https://patentimages.storage.googleapis.com/ba/61/62/726788b1c65930/US20130325998A1.pdf",
+      "locator": "首页署名与Dell申请人/受让人；¶0023–0026（PDF第21–22页）；权利要求1、8、10（PDF第34页）",
+      "type": "专利公开正文（Google托管原始公开PDF）",
+      "contentStatus": "已读取PCIe多功能设备枚举、管理/网络/RDMA/存储/远程组件控制端点及接口组成。",
+      "evidenceStrength": "六位共同发明人；不推断个人独占模块；未核实产品实现。",
+      "role": "第二项独立技术作品及机制正文",
+      "primary": true,
+      "substantive": true,
+      "mechanismBody": true,
+      "retrievedAt": "2026-11-12"
+    },
+    {
+      "workId": "hormuth-ocp-appointment2025",
+      "title": "OCP Adds Three New Companies to its Board of Directors",
+      "authors": "Open Compute Project Foundation",
+      "date": "2025-10-13",
+      "url": "https://www.opencompute.org/news/ocp-adds-three-new-companies-to-its-board-of-directors/",
+      "locator": "正文日期及Robert Hormuth代表介绍段",
+      "type": "机构官方公告",
+      "contentStatus": "确认AMD Architecture and Strategy CVP、2020年加入AMD；此前Dell服务器业务CTO，公告称在Dell13年、Intel8年、National Instruments11年。",
+      "evidenceStrength": "仅身份/履历证据；不按头衔或年资计技术作品。",
+      "role": "历史身份与团队职责",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "retrievedAt": "2026-11-12"
+    },
+    {
+      "workId": "hormuth-ocp-board-current",
+      "title": "OCP Board Member — Robert Hormuth",
+      "authors": "Open Compute Project Foundation",
+      "date": "未知（无可核实网页更新日期）",
+      "url": "https://www.opencompute.org/person-role/board-member/",
+      "locator": "Robert Hormuth成员卡标题及个人正文",
+      "type": "机构官方成员页面",
+      "contentStatus": "本轮读取仍列AMD。卡片标题CVP GM；正文Corporate Vice President, Architecture and Strategy, AMD Data Center Solutions Group。标题与正文不完全一致，采用正文并保留差异；职责最后观察2026-11-12。",
+      "evidenceStrength": "现任机构与页面所列职责观察，不推定确切转岗日期。",
+      "role": "当前身份核对",
+      "primary": true,
+      "substantive": false,
+      "mechanismBody": false,
+      "retrievedAt": "2026-11-12"
+    }
+  ],
+  "independence": [
+    {
+      "workId": "hormuth-power-allocation-family49622523",
+      "familyId": "49622523",
+      "application": "US13/477837",
+      "versions": [
+        "US20130318371A1",
+        "US8843772B2"
+      ],
+      "metadata": "https://patents.google.com/patent/US20130318371A1/en",
+      "count": 1
+    },
+    {
+      "workId": "hormuth-io-switch-family49671661",
+      "familyId": "49671661",
+      "application": "US13/897055",
+      "priorityApplication": "US61/649064",
+      "versions": [
+        "US20130325998A1",
+        "US10102170B2"
+      ],
+      "metadata": "https://patents.google.com/patent/US20130325998A1/en",
+      "count": 1
+    }
+  ],
+  "profileFacts": {
+    "field": "服务器平台、机架功率管理与解耦I/O架构",
+    "core": "在机架功率预算内分配节点可用功率，并通过多功能PCIe端点集中提供节点I/O与管理服务。",
+    "contributions": [
+      "动态功率分配专利的唯一列名发明人：功率池额度借贷、节点优先级和故障超时回收。",
+      "I/O complex switch专利共同发明人：以多功能PCIe端点连接节点与共享网络、管理、RDMA、存储及远程组件服务。"
+    ],
+    "contributionBasis": "两个独立专利族；一项唯一署名、一项六人共同署名。专利披露层级，不作为实硅、生产测量或商业采用证据。",
+    "background": "OCP于2025-10-13公告其代表AMD加入董事会并列Architecture and Strategy CVP；2020年加入AMD，此前Dell服务器业务CTO。2026-11-12读取官方成员正文仍为该职责；卡片标题CVP GM与正文有差异。",
+    "boundary": "不得据组织头衔称其为Zen、EPYC CPU核心或GPU首席设计者；不得把Dell团队成果或联盟标准整体归于个人。",
+    "diagnostic": "功率额度发生并发申请、消息丢失或节点崩溃时，如何避免总预算超配？集中I/O的带宽争用、初始化依赖与故障域如何限制可扩展节点数？",
+    "editorTradeoffs": [
+      "功率池提高闲置预算复用，但需验证分布式额度一致性、优先级饥饿和故障回收安全。",
+      "集中共享I/O减少节点重复组件，但增加共享链路和交换控制器故障域。"
+    ],
+    "strongestCounterexamples": [
+      "故障节点未及时回收或重复使用功率额度可能导致超配；专利方案未提供本轮核验的生产故障数据。",
+      "高并发I/O或远程服务中断可使集中交换架构性能/可用性不及独立节点。"
+    ]
+  },
+  "gaps": [
+    "未核实两项专利对应具体量产产品或独立性能数据。",
+    "共同发明专利未提供个人模块分工。",
+    "未以职位或联盟参与声称拥有CPU/GPU微架构独占贡献。",
+    "当前职责网页更新时间未知；仅记录读取日期和标题差异。"
+  ],
+  "scope": "只核验所列公开作品与身份；不穷尽生涯成果；不包含私人联系资料。"
+}

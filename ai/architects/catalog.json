@@ -254,7 +254,8 @@
         "josep-torrellas",
         "per-stenstrom",
         "steven-k-reinhardt",
-        "yuan-xie"
+        "yuan-xie",
+        "gary-smerdon"
       ]
     },
     {
@@ -420,7 +421,8 @@
         "feng-ren",
         "zheming-li",
         "wei-lin",
-        "xianguo-zhang"
+        "xianguo-zhang",
+        "robert-hormuth"
       ]
     },
     {
@@ -50960,6 +50962,332 @@
         "validation": "分别消融协作和验证机制，报告正确性及端到端成本；需要实测后才推广部署判断。",
         "transfer": "迁移到存算协同、异构编译和系统协同设计的边界审查。"
       }
+    },
+    {
+      "id": "gary-smerdon",
+      "name": "Gary Smerdon",
+      "aliases": [],
+      "field": "预测式内存分层与薄配置高可用系统",
+      "domain": "memory",
+      "relatedDomains": [
+        "datacenter",
+        "correctness"
+      ],
+      "core": "编辑提炼：通过预测性DRAM/Flash页迁移与薄配置备用服务器的故障扩容，研究以更少常驻资源维持性能和可用性的条件。",
+      "background": "SNIA 2025年讲者记录列MEXT CEO与创始人；AMD于2026年6月公告收购MEXT。2026年11月10日SDxCentral直接采访报道其AMD业务发展副总裁职衔，该职衔未获官方任命文件独立核验。其HPE受让专利与MEXT报告分属不同作品和机构背景；本人讲述团队方案及共同发明署名不能证明独占设计责任。",
+      "contributions": [
+        "在SNIA报告MEXT预测式DRAM/Flash页分层：冷页移至Flash，缺页时拉取并预测回迁相关页。",
+        "共同发明薄配置备用服务器方案：维持数据库状态，故障时从已启动的备用节点池扩容资源映射，无需重启客户操作系统。"
+      ],
+      "argument": "编辑条件模型：两项作品是独立系统方案，分别检验内存预测与备用资源扩容。资源节约须扣除预测计算、误取与恢复成本；正常命中与故障/缺页尾部不能以同一延迟数字代表。",
+      "evidence": "一项本人会议技术报告与一项独立高可用专利家族；两个不同机制，不重复计算同场材料或专利版本。",
+      "habits": [
+        "编辑归纳：把常态节省与失效时额外成本分别审计。"
+      ],
+      "questions": [
+        "DRAM减少后，预测错误与故障扩容会把尾延迟或恢复时间推到哪里？"
+      ],
+      "boundary": "会议材料展示机制框图而非完整可复现模型；100ns对应DRAM读取，不能当作Flash随机访问实测。厂商收益主张未独立复现。专利是公开方案，不证明商业部署；HPE受让专利不得归成AMD技术资产。",
+      "diagnostic": "在固定工作集与服务等级下对比纯DRAM、无预测分层和预测分层，并单独注入缺页突发、备用池耗尽及主节点故障。",
+      "notes": [],
+      "sources": [
+        [
+          "Radical Reduction in Computing Costs with AI-powered Predictive Memory Technology",
+          "https://www.snia.org/sites/default/files/2025-09/SNIA-SDC25-Smerdon-Radical-Reduction-Computing-Costs.pdf",
+          "PDF第20、22、23、39页；SNIA session19281核对讲者与日期"
+        ],
+        [
+          "US12443497B2: High availability systems having thinly-provisioned secondary servers",
+          "https://patents.google.com/patent/US12443497B2/en",
+          "发明人/受让人表；说明书Fig.6–7；权利要求17–20；family89381075"
+        ],
+        [
+          "SNIA SDC2025 speaker and session record",
+          "https://www.snia.org/sniadeveloper/session/19281",
+          "讲者Gary Smerdon CEO & Founder MEXT；session时间"
+        ],
+        [
+          "AMD Acquires MEXT for Memory Optimization",
+          "https://www.amd.com/en/blogs/2026/amd-acquires-mext-for-memory-optimization.html",
+          "收购MEXT公告；发布日期与newsroom列表差异"
+        ],
+        [
+          "Flash, a software sauce and a guy named Gary: AMD’s MEXT acquisition looks set to reshape AI memory costs",
+          "https://www.sdxcentral.com/analysis/flash-a-software-sauce-and-a-guy-named-gary-amds-mext-acquisition-looks-set-to-reshape-ai-memory-costs/",
+          "记者直接采访；AMD corporate VP business development职衔"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mext-sdc2025-predictive-memory",
+          "title": "Radical Reduction in Computing Costs with AI-powered Predictive Memory Technology",
+          "authors": "Gary Smerdon；MEXT团队机制报告",
+          "date": "2025-09-15",
+          "url": "https://www.snia.org/sites/default/files/2025-09/SNIA-SDC25-Smerdon-Radical-Reduction-Computing-Costs.pdf",
+          "locator": "PDF第20、22、23、39页；SNIA session19281核对讲者与日期",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读冷热页分层、缺页与预测回迁框图及驱动/ensemble engine/观测组成；未公开完整模型训练细节，厂商结果未独立复现。",
+          "evidenceStrength": "本人报告的一手团队技术机制，不确认个人独占设计",
+          "role": "本人报告的一手团队技术机制，不确认个人独占设计",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "ha-thin-secondary-family89381075",
+          "title": "US12443497B2: High availability systems having thinly-provisioned secondary servers",
+          "authors": "Eric P. Fitzpatrick、Isaac R. Nassi、David P. Reed、Gary Smerdon",
+          "date": "2025-10-14（授权公开）；优先权2022-06-29",
+          "url": "https://patents.google.com/patent/US12443497B2/en",
+          "locator": "发明人/受让人表；说明书Fig.6–7；权利要求17–20；family89381075",
+          "type": "专利说明书正文（所列部分）",
+          "contentStatus": "已读薄配置备用服务器与故障扩容机制；Hewlett Packard Enterprise Development LP受让，非AMD专利。同族A1/B2仅计一项；公开技术方案不等于量产。",
+          "evidenceStrength": "共同发明署名及独立高可用机制，非独占贡献",
+          "role": "共同发明署名及独立高可用机制，非独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "smerdon-sdc2025-identity",
+          "title": "SNIA SDC2025 speaker and session record",
+          "authors": "SNIA",
+          "date": "2025-09-15（会期）",
+          "url": "https://www.snia.org/sniadeveloper/session/19281",
+          "locator": "讲者Gary Smerdon CEO & Founder MEXT；session时间",
+          "type": "机构人物简介",
+          "contentStatus": "核对本人演讲及当时MEXT身份；页面通用页脚会期不是该材料日期。",
+          "evidenceStrength": "身份来源，不能增加独立作品数",
+          "role": "身份来源，不能增加独立作品数",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "amd-mext-acquisition2026",
+          "title": "AMD Acquires MEXT for Memory Optimization",
+          "authors": "Dan McNamara / AMD",
+          "date": "2026-06-15（博客）；newsroom列表显示06-14，保留差异",
+          "url": "https://www.amd.com/en/blogs/2026/amd-acquires-mext-for-memory-optimization.html",
+          "locator": "收购MEXT公告；发布日期与newsroom列表差异",
+          "type": "机构公告",
+          "contentStatus": "核实MEXT归入AMD的公司事件；非Gary署名作品，不能据收购推断独占技术归属。",
+          "evidenceStrength": "机构关系与时间边界",
+          "role": "机构关系与时间边界",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "smerdon-role-interview20261110",
+          "title": "Flash, a software sauce and a guy named Gary: AMD’s MEXT acquisition looks set to reshape AI memory costs",
+          "authors": "SDxCentral采访报道",
+          "date": "2026-11-10",
+          "url": "https://www.sdxcentral.com/analysis/flash-a-software-sauce-and-a-guy-named-gary-amds-mext-acquisition-looks-set-to-reshape-ai-memory-costs/",
+          "locator": "记者直接采访；AMD corporate VP business development职衔",
+          "type": "采访新闻报道",
+          "contentStatus": "仅作为报道时职衔参考，非AMD官方任命文件；不据此称首席架构师。",
+          "evidenceStrength": "二手身份参考，不计技术作品",
+          "role": "二手身份参考，不计技术作品",
+          "primary": false,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "mext-sdc2025-predictive-memory",
+          "text": "SNIA会议记录将Gary Smerdon列为MEXT讲者；技术幻灯片区分Flash取页与预先回迁后DRAM命中路径。"
+        },
+        {
+          "workId": "ha-thin-secondary-family89381075",
+          "text": "US12443497B2列四名共同发明人，包括Gary Smerdon；受让人为HPE，说明书与权利要求描述备用服务器按故障需要扩容。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "本人报告及共同发明署名支持有限归属，非独占成果或官方获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-amd-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "所列两项作品审核；不代表穷尽成果、确认生产采用或官方架构师职衔。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "常驻资源节约与失效代价",
+        "skills": [
+          "A3",
+          "A5",
+          "A8",
+          "A9"
+        ],
+        "question": "资源压缩后，何时尾延迟或恢复代价超过节省？",
+        "variables": "DRAM容量、冷页比例、误取率、Flash队列、预测CPU成本、备用池容量、恢复时限",
+        "model": "编辑模型：比较满足同一服务等级的全成本；分开正常命中、预测失败与故障恢复路径。",
+        "crossover": "资源节省大于预测和预留成本，且最坏负载下仍满足既定尾延迟与恢复目标。",
+        "counterexample": "相关性突然变化引发误取风暴，或多个节点同时故障耗尽备用池。",
+        "validation": "消融预测并注入突发缺页及并发故障，测p99/p99.9、恢复时间和数据一致性；不以框图延迟代替实测。",
+        "transfer": "迁移到缓存预取、分层存储和云资源池容量规划。"
+      }
+    },
+    {
+      "id": "robert-hormuth",
+      "name": "Robert Hormuth",
+      "aliases": [
+        "Robert W. Hormuth"
+      ],
+      "field": "服务器平台、机架功率管理与解耦I/O架构",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "physical-energy",
+        "network",
+        "correctness"
+      ],
+      "core": "编辑提炼：在机架功率预算内分配节点可用功率，并通过多功能PCIe端点集中提供节点I/O与管理服务。",
+      "background": "OCP于2025-10-13公告其代表AMD加入董事会并列Architecture and Strategy CVP；2020年加入AMD，此前Dell服务器业务CTO。2026-11-12读取官方成员正文仍为该职责；卡片标题CVP GM与正文有差异。 两项专利为Dell背景作品，不能因现职归为AMD专利。",
+      "contributions": [
+        "动态功率分配专利的唯一列名发明人：功率池额度借贷、节点优先级和故障超时回收。",
+        "I/O complex switch专利共同发明人：以多功能PCIe端点连接节点与共享网络、管理、RDMA、存储及远程组件服务。"
+      ],
+      "argument": "编辑条件模型：资源池的复用收益取决于额度控制一致性与共享故障域；省去节点重复资源也可能放大争用和故障影响。",
+      "evidence": "两个不同申请与专利族分别支持动态功率分配及共享I/O机制；机构材料仅核身份。",
+      "habits": [
+        "编辑归纳：先给共享资源设定可检查的不变量，再检查失效路径。"
+      ],
+      "questions": [
+        "功率额度发生并发申请、消息丢失或节点崩溃时，如何避免总预算超配？集中I/O的带宽争用、初始化依赖与故障域如何限制可扩展节点数？"
+      ],
+      "boundary": "不得据组织头衔称其为Zen、EPYC CPU核心或GPU首席设计者；不得把Dell团队成果或联盟标准整体归于个人。 两项作品均为专利披露，不证明实硅、量产或独立收益；共同作品未划定个人模块分工。",
+      "diagnostic": "功率额度发生并发申请、消息丢失或节点崩溃时，如何避免总预算超配？集中I/O的带宽争用、初始化依赖与故障域如何限制可扩展节点数？",
+      "notes": [],
+      "sources": [
+        [
+          "Systems and methods for dynamic power allocation in an information handling system environment — US20130318371A1",
+          "https://patentimages.storage.googleapis.com/9f/0a/8a/b649abfc291213/US20130318371A1.pdf",
+          "首页署名；¶0031–0035及¶0040–0041；PDF第12–14页（从1计）"
+        ],
+        [
+          "System and Method for Providing Input/Output Functionality by an I/O Complex Switch — US20130325998A1",
+          "https://patentimages.storage.googleapis.com/ba/61/62/726788b1c65930/US20130325998A1.pdf",
+          "首页署名与Dell申请人/受让人；¶0023–0026（PDF第21–22页）；权利要求1、8、10（PDF第34页）"
+        ],
+        [
+          "OCP Adds Three New Companies to its Board of Directors",
+          "https://www.opencompute.org/news/ocp-adds-three-new-companies-to-its-board-of-directors/",
+          "正文日期及Robert Hormuth代表介绍段"
+        ],
+        [
+          "OCP Board Member — Robert Hormuth",
+          "https://www.opencompute.org/person-role/board-member/",
+          "Robert Hormuth成员卡标题及个人正文"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "hormuth-power-allocation-family49622523",
+          "title": "Systems and methods for dynamic power allocation in an information handling system environment — US20130318371A1",
+          "authors": "Robert W. Hormuth",
+          "date": "2013-11-28（公开）；2012-05-22（申请）",
+          "url": "https://patentimages.storage.googleapis.com/9f/0a/8a/b649abfc291213/US20130318371A1.pdf",
+          "locator": "首页署名；¶0031–0035及¶0040–0041；PDF第12–14页（从1计）",
+          "type": "公开专利申请说明书",
+          "contentStatus": "已读取唯一发明人署名、BMC功率额度借贷、优先级、超时回收及集中式替代实施例。 来源为Google托管原始公开PDF。",
+          "evidenceStrength": "唯一列名发明人；对应Dell受让记录；只证明披露方案，不证明实硅、出货或测量收益。",
+          "role": "独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "hormuth-io-switch-family49671661",
+          "title": "System and Method for Providing Input/Output Functionality by an I/O Complex Switch — US20130325998A1",
+          "authors": "Robert W. Hormuth、Robert L. Winter、Shawn J. Dube、Bradley J. Booth、Geng Lin、Jimmy Pike",
+          "date": "2013-12-05（公开）；2013-05-17（申请）；2012-05-18（临时申请优先权）",
+          "url": "https://patentimages.storage.googleapis.com/ba/61/62/726788b1c65930/US20130325998A1.pdf",
+          "locator": "首页署名与Dell申请人/受让人；¶0023–0026（PDF第21–22页）；权利要求1、8、10（PDF第34页）",
+          "type": "公开专利申请说明书",
+          "contentStatus": "已读取PCIe多功能设备枚举、管理/网络/RDMA/存储/远程组件控制端点及接口组成。 来源为Google托管原始公开PDF。",
+          "evidenceStrength": "六位共同发明人；不推断个人独占模块；未核实产品实现。",
+          "role": "第二项独立技术作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "hormuth-ocp-appointment2025",
+          "title": "OCP Adds Three New Companies to its Board of Directors",
+          "authors": "Open Compute Project Foundation",
+          "date": "2025-10-13",
+          "url": "https://www.opencompute.org/news/ocp-adds-three-new-companies-to-its-board-of-directors/",
+          "locator": "正文日期及Robert Hormuth代表介绍段",
+          "type": "机构官方公告",
+          "contentStatus": "确认AMD Architecture and Strategy CVP、2020年加入AMD；此前Dell服务器业务CTO，公告称在Dell13年、Intel8年、National Instruments11年。",
+          "evidenceStrength": "仅身份/履历证据；不按头衔或年资计技术作品。",
+          "role": "历史身份与团队职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "hormuth-ocp-board-current",
+          "title": "OCP Board Member — Robert Hormuth",
+          "authors": "Open Compute Project Foundation",
+          "date": "未知（无可核实网页更新日期）",
+          "url": "https://www.opencompute.org/person-role/board-member/",
+          "locator": "Robert Hormuth成员卡标题及个人正文",
+          "type": "机构官方成员页面",
+          "contentStatus": "本轮读取仍列AMD。卡片标题CVP GM；正文Corporate Vice President, Architecture and Strategy, AMD Data Center Solutions Group。标题与正文不完全一致，采用正文并保留差异；职责最后观察2026-11-12。",
+          "evidenceStrength": "现任机构与页面所列职责观察，不推定确切转岗日期。",
+          "role": "当前身份核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "hormuth-power-allocation-family49622523",
+          "text": "动态功率分配申请列Robert W. Hormuth为唯一发明人；正文描述节点功率额度借贷、优先级与超时回收。"
+        },
+        {
+          "workId": "hormuth-io-switch-family49671661",
+          "text": "I/O complex switch申请列包括Robert W. Hormuth在内的六位共同发明人；正文和权利要求描述多功能PCIe端点与共享服务接口。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "两个独立专利族；一项唯一署名、一项六人共同署名。专利披露层级，不作为实硅、生产测量或商业采用证据。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-amd-nominations",
+        "standard": "contribution-led-v1",
+        "meaning": "仅所列两项公开专利与身份审核，不代表穷尽生涯成果或核实商业实现。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "共享资源预算与故障域",
+        "skills": [
+          "A5",
+          "A7",
+          "A8",
+          "A9"
+        ],
+        "question": "功率额度发生并发申请、消息丢失或节点崩溃时，如何避免总预算超配？集中I/O的带宽争用、初始化依赖与故障域如何限制可扩展节点数？",
+        "variables": "机架总预算、节点额度、借还消息延迟、故障超时、PCIe带宽、共享队列、服务恢复时间",
+        "model": "编辑模型：在总预算不超配的约束下分配额度；以共享链路和控制器容量约束并发I/O，不把节点数直接当吞吐增益。",
+        "crossover": "复用节省超过协调、争用及冗余成本，并同时满足功率安全与可用性约束。",
+        "counterexample": "额度重复消费导致超配；共享I/O控制器故障扩大影响范围，或热点让独立节点方案更优。",
+        "validation": "注入消息重复/丢失、节点崩溃及I/O突发；检查额度不变量、尾延迟、恢复过程与故障隔离，而非仅比较正常均值。",
+        "transfer": "迁移到云配额池、交换式资源解耦和分布式限流。"
+      }
     }
   ],
   "research": {
@@ -50970,7 +51298,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 411,
+    "totalProfiles": 413,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50997,13 +51325,14 @@
       "research/batches/2026-10-25-weekly.json",
       "research/batches/2026-11-01-weekly.json",
       "research/batches/2026-11-08-weekly.json",
-      "research/batches/2026-11-12-weekly.json"
+      "research/batches/2026-11-12-weekly.json",
+      "research/batches/2026-11-12-amd-nominations.json"
     ],
-    "completedTotal": 410,
+    "completedTotal": 412,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 116,
-    "additionalCompleted": 110,
+    "additionalPlannedScope": 118,
+    "additionalCompleted": 112,
     "resolvedCandidateDuplicates": 1
   }
 }

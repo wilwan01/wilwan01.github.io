@@ -1,0 +1,47 @@
+{
+  "candidate": "Gary Smerdon",
+  "checkedAt": "2026-11-12T17:56:50.924269+00:00",
+  "decision": "eligible_pending_validation_and_deployment",
+  "identity": {
+    "historical": "SNIA SDC2025 names Gary Smerdon as CEO & Founder, MEXT; his public acquisition post describes cofounding with David Reed and Robert Minnear.",
+    "current": "AMD affiliation supported by acquisition announcement and personal announcement; CVP business-development title reported in 2026-11-10 SDxCentral first-hand interview, not verified in an AMD leadership bio.",
+    "dateConflict": "AMD article says June 15, 2026; newsroom index says June 14. Preserve article date and discrepancy.",
+    "sources": [
+      "https://www.snia.org/sniadeveloper/session/19281",
+      "https://www.snia.org/sniadeveloper/sessions-2025",
+      "https://www.linkedin.com/posts/garysmerdon_today-marks-a-truly-special-moment-for-me-activity-7472287163460657152-Eini",
+      "https://www.amd.com/en/blogs/2026/amd-acquires-mext-for-memory-optimization.html",
+      "https://www.sdxcentral.com/analysis/flash-a-software-sauce-and-a-guy-named-gary-amds-mext-acquisition-looks-set-to-reshape-ai-memory-costs/"
+    ]
+  },
+  "independentWorks": [
+    {
+      "title": "Radical Reduction in Computing Costs with AI-powered Predictive Memory Technology",
+      "date": "2025-09-15",
+      "url": "https://www.snia.org/sites/default/files/2025-09/SNIA-SDC25-Smerdon-Radical-Reduction-Computing-Costs.pdf",
+      "readRange": "PDF pp20,22,23,39; p22 diagram visually inspected",
+      "sha256": "e2326480d1abd305b827c9dfeb0dcd4c8e2f604119d9982b86a7711d25f27900",
+      "mechanism": "Cold pages move to Flash; misses pull pages while predictions push related pages into DRAM before demand. Linux driver, ensemble prediction engine and observability are distinct components.",
+      "boundary": "Conference presentation of team technology, not sole invention; implementation details and independent performance not established. 100ns label is local DRAM read, not Flash latency. FMS and later MEXT talks are same project, not extra independent works."
+    },
+    {
+      "title": "High availability systems having thinly-provisioned secondary servers",
+      "date": "2025-10-14",
+      "url": "https://patents.google.com/patent/US12443497B2/en",
+      "family": "89381075",
+      "priorityDate": "2022-06-29",
+      "inventors": [
+        "Eric P. Fitzpatrick",
+        "Isaac R. Nassi",
+        "David P. Reed",
+        "Gary Smerdon"
+      ],
+      "assignee": "Hewlett Packard Enterprise Development LP",
+      "readRange": "Inventor/assignment/family metadata; description Fig6–7; claims17–20",
+      "mechanism": "A thinly provisioned secondary maintains database state; on primary failure spare powered/booted nodes expand actual allocation through resource mapping without guest OS disruption.",
+      "boundary": "Patent disclosure, not evidence of commercial implementation or measured recovery time; preserve co-inventor attribution and non-AMD assignee."
+    }
+  ],
+  "editorialDiagnostic": "Predictive paging requires lead time greater than fetch/queue delay without intolerable bandwidth or cache pollution; HA expansion requires ready spares and state consistency within recovery objective.",
+  "publication": "Pending catalog integration; no deployed claim."
+}

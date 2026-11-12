@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-12",
+  "research_cutoff": "2026-11-12T11:19:08+00:00",
+  "candidate_name": "Anil Kumar",
+  "status": "needs-identity-confirmation",
+  "catalog_action": "not-added",
+  "identity": {
+    "candidate_profile": "https://www.linkedin.com/in/anil-kumar-2066611",
+    "candidate_location": "Austin, Texas, United States",
+    "candidate_employer": "AMD",
+    "assessment": "Patent inventor name, AMD affiliation and Austin location are consistent with this profile, but do not uniquely establish that this is the person intended by the user. Current exact role is not independently verified.",
+    "confirmation_needed": "User-provided LinkedIn or personal profile URL, or full distinguishing name and role."
+  },
+  "sources": [
+    {
+      "id": "anil-us12182611-official",
+      "url": "https://patentsgazette.uspto.gov/week53/OG/html/1529-5/US12182611-20241231.html",
+      "title": "Interrupt cache configuration",
+      "publication_date": "2024-12-31",
+      "read_date": "2026-11-12",
+      "type": "primary-official-patent-gazette",
+      "read_scope": "Bibliographic record and claim 1",
+      "supports": "Philip Ng and Anil Kumar (Austin, TX) are named inventors; AMD/ATI affiliation; application 18/145457 filed 2022-12-22; prior publication US20240211300A1 on 2024-06-27."
+    },
+    {
+      "id": "anil-us12182611-body",
+      "url": "https://patents.justia.com/patent/12182611",
+      "title": "Interrupt cache configuration",
+      "publication_date": "2024-12-31",
+      "read_date": "2026-11-12",
+      "type": "primary-patent-text-mirror",
+      "read_scope": "Detailed Description, particularly overview and descriptions of Figures 2–4; claims",
+      "supports": "Finite hot-set interrupt cache coalesces repeated vectors using counters and timers; eviction emits an interrupt message instead of dropping the event.",
+      "limitation": "Patent mechanism; no verified implementation, silicon result or commercial adoption."
+    },
+    {
+      "id": "anil-us20260300177",
+      "url": "https://patents.justia.com/patent/20260300177",
+      "title": "Devices, systems, and methods for direct cache injection in networking devices",
+      "publication_date": "2026-10-01",
+      "read_date": "2026-11-12",
+      "type": "primary-patent-text-mirror",
+      "read_scope": "Bibliographic record, Detailed Description opening, figure descriptions, claims 18–20",
+      "application_number": "19/091708",
+      "filing_date": "2025-03-26",
+      "supports": "AMD/Xilinx application names Anil Kumar (Austin, TX) among nine joint inventors. Cache-resource identifier and locality hint steer coherent writes toward a host cache; driver programming uses host topology.",
+      "limitation": "Application, not established grant or deployment. Identity bridge to intended person remains unresolved."
+    },
+    {
+      "id": "anil-us20260187013",
+      "url": "https://patents.justia.com/patent/20260187013",
+      "title": "Protocol enhancements for low latency applications",
+      "publication_date": "2026-07-02",
+      "read_date": "2026-11-12",
+      "type": "primary-patent-text-mirror",
+      "read_scope": "Bibliographic record, Detailed Description opening, figure descriptions and claims",
+      "application_number": "19/006047",
+      "filing_date": "2024-12-30",
+      "supports": "AMD/Xilinx application names Anil Kumar (Austin, TX) in the same nine-person team. Device push-write sends data without waiting for a host command; CQID/UQID associate data and requests, with credit-based flow control.",
+      "limitation": "Application, not established deployment. Do not automatically count separately from direct-cache-injection project."
+    }
+  ],
+  "independent_work_assessment": {
+    "candidate_pair": [
+      "anil-us12182611-body",
+      "anil-us20260300177"
+    ],
+    "reason": "Interrupt-coalescing cache and network cache-directed coherent writes address distinct mechanisms and have different filing dates and co-inventor sets. They are strong candidates for two independent works once personal identity is resolved.",
+    "not_final_admission_decision": true,
+    "family_caveat": "Complete patent-family verification remains pending. The two network applications share the same inventor team and may belong to one broader project; do not count different application numbers alone as independent works."
+  },
+  "excluded_identity_merges": [
+    {
+      "name": "A. V. Anil Kumar",
+      "profile": "https://in.linkedin.com/in/a-v-anil-kumar-45705227",
+      "distinction": "Bengaluru; emulation, prototyping and pre-silicon validation profile. Do not attribute its Xilinx boot/configuration patents to the Austin candidate."
+    },
+    {
+      "name": "Anil Kumar Kandala",
+      "profile": "https://in.linkedin.com/in/anilkk",
+      "distinction": "Hyderabad; analog/custom digital and programmable-logic profile. Do not attribute its circuit/FPGA patents to the Austin candidate."
+    }
+  ],
+  "gaps": [
+    "Unique identity confirmation from user or authoritative biographical linkage.",
+    "Verified exact current role and last-confirmed employment date.",
+    "Complete patent-family and project-independence check before formal admission."
+  ],
+  "next_action": "Ask user for the intended person’s LinkedIn/profile URL or distinguishing full name. Resume from these sources after confirmation; do not repeat broad same-name searches.",
+  "claims_boundary": "Co-inventorship only; no assertion of sole authorship, product leadership, measured performance or commercial adoption. Historical and 2026 patent publications are separately dated, not represented as new weekly product events."
+}
