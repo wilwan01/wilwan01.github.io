@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "design": "Retrospective historical supplementation; dates and prices were already inspected. This is a frozen calculation specification, NOT an ex-ante preregistration or prediction.",
+  "universe": ["AMD-20260911-GS", "AMD-20261103-Q3", "AMD-20261110-SP7"],
+  "selection": "GS is a newly documented historical conference case with readable body and mature windows, not a replacement for the original AMD Nov10 case. Q3 rechecks a case preserved in the inherited Nov8 report. Selection by evidence availability introduces selection bias.",
+  "baseline": "Last regular-session close strictly before documented event time; after-close release uses same-date close. For GS conflicting timezone labels both fall within the session, so previous-session close is unchanged.",
+  "windows": "Event date close (unavailable as a post-event endpoint for after-close releases); next, fifth and twentieth trading-session closes AFTER the calendar release/conference date. All cumulative from baseline, not consecutive daily returns. Calendar offsets and explicit endpoints are stored per event.",
+  "price_convention": "USD Close column, source split-adjusted; excludes cash dividends. Do not mix Adj.Close or unadjusted pre-split prices. No intraday or total-return claim.",
+  "formula": "100*(endpoint_close/baseline_close-1); relative_pp = AMD_return_pct - SOXX_return_pct. No beta adjustment or causal abnormal-return model.",
+  "benchmark": "SOXX semiconductor sector ETF. Matched dates and price convention; includes AMD exposure and cannot remove issuer weight, beta, macro or concurrent-news effects.",
+  "cutoff_rule": "Only completed regular-session closes at or before cutoff. Future/missing endpoints remain null; never substitute a shorter window. New York market close converted to UTC for validation.",
+  "interpretation": "Historical association only; no ex-ante forecast score, isolated Q&A response, attention prediction or event causality. Report negative results and confounders. A single retrospectively selected issuer cannot establish H1-H7 statistically."
+}

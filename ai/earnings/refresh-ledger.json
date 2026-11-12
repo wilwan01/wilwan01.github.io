@@ -767,7 +767,16 @@
           "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "DLR_2026Q3",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA219"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       },
       {
         "company": "Eaton",
@@ -853,7 +862,16 @@
           "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "EQIX_2026Q3",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA220"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       },
       {
         "company": "HPE",
@@ -982,7 +1000,16 @@
           "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "KLAC_2027Q1",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA221"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       },
       {
         "company": "Lam Research",
@@ -1412,7 +1439,16 @@
           "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "005930.KS_2026Q3",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA223"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       },
       {
         "company": "Schneider Electric",
@@ -1498,7 +1534,16 @@
           "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "000660.KS_2026Q3",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA222"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       },
       {
         "company": "Supermicro",
@@ -1681,7 +1726,16 @@
           "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
         },
         "success_coverage_advanced": false,
-        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+        "historical_primary_call_followthrough": {
+          "quarter_id": "VRT_2026Q3",
+          "status": "selected_transcript_passages_reviewed_not_audio_verified",
+          "question_ids": [
+            "QA224"
+          ],
+          "record_url": "refresh-followthrough-20261112.json",
+          "success_coverage_advanced": false
+        }
       }
     ],
     "coverage_summary": {
@@ -1695,7 +1749,7 @@
     },
     "gaps": [
       "All inherited issuer unresolved windows remain open; checks are bounded, not a complete SEC/IR census.",
-      "Prior main-call bodies for Digital Realty, Equinix, KLA, SK hynix, Samsung and Vertiv remain unreviewed.",
+      "Historical followthrough read selected main-call Q&A for Digital Realty, Equinix, KLA, SK hynix, Samsung and Vertiv; complete Q&A and audio verification remain open. See refresh-followthrough-20261112.json.",
       "Qualcomm official transcript indexed but unresolved; selected public mirror not audio-verified. Arm issuer-hosted transcript also not audio-verified.",
       "No frozen comparable pre-release consensus established. Prior management guidance is not consensus.",
       "No distinct new post-earnings analyst call verified; this is not evidence of absence. Samsung prior NDR remains unreviewed.",
@@ -1705,7 +1759,32 @@
       "CoreWeave two selected exchanges only; no audio/full call audit or full cash-flow reconciliation.",
       "Applied Materials and Cisco scheduled after this morning cutoff; do not pre-count results."
     ],
-    "counting_rule": "One CoreWeave quarter and its reviewed main call are one event slot; TSMC monthly sales add neither quarter nor call. No new synthetic exercise or repeated personal pattern."
+    "counting_rule": "One CoreWeave quarter and its reviewed main call are one event slot; TSMC monthly sales add neither quarter nor call. No new synthetic exercise or repeated personal pattern.",
+    "followthrough": {
+      "run_id": "earnings-followthrough-20261112",
+      "research_cutoff_at": "2026-11-12T11:19:08+00:00",
+      "baseline_commit": "e126832",
+      "execution_date": "2026-11-12",
+      "classification": "Historical evidence backfill within unchanged research cutoff",
+      "new_quarters": 0,
+      "new_event_slots": 0,
+      "new_post_earnings_calls": 0,
+      "newly_reviewed_existing_primary_call_bodies": 6,
+      "new_selected_questions": 6,
+      "question_ids": [
+        "QA219",
+        "QA220",
+        "QA221",
+        "QA222",
+        "QA223",
+        "QA224"
+      ],
+      "new_cases": 0,
+      "new_skills": 0,
+      "delivery_status": "prepared_not_published",
+      "limitations": "Selected mirror passages only; full Q&A/audio remain unverified. Broader35-company partial coverage unchanged; no recurring personal pattern certified.",
+      "record_url": "refresh-followthrough-20261112.json"
+    }
   },
   "history": [
     {

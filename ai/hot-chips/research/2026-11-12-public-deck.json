@@ -1,0 +1,58 @@
+{
+  "research_cutoff": "2026-11-12T11:19:08+00:00",
+  "read_date": "2026-11-12",
+  "check_status": "partial_coverage",
+  "delivery_status": "prepared_not_deployed",
+  "next_action": "Independent source review, browser validation, integration and deployment verification",
+  "historical_downloads_changed": false,
+  "module": "hot-chips",
+  "scope": "One public DMR presentation read in full as extracted text; slide 19 diagram visually checked. No conference recording or audience transcript newly reviewed. Prior annual counts unchanged.",
+  "prior_coverage_record": "ai/method/research/2026-11-12-technical-pages.json",
+  "sources": [
+    {
+      "id": "intel-dmr-hc2026-public-deck",
+      "author": "Krishnakanth Sistla",
+      "role_at_event": "Intel Fellow / Chief Architect, Xeon Performance",
+      "title": "Diamond Rapids: Intel’s Next Generation Xeon CPU",
+      "event_date": "2026-08-24",
+      "publication_date": null,
+      "publication_date_note": "Intel official newsroom dates event coverage 2026-08-24; exact public-file publication date not established. Deck is the historical conference material, not claimed as a new November disclosure.",
+      "event_date_source": "https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-outlines-architectures-for-agentic-ai-at-hot-chips-2026.html",
+      "url": "https://cdrdv2.intel.com/v1/dl/getContent/926846?fileName=diamond-rapids-hot-chips-2026-keynote-presentation.pdf",
+      "original_landing": "https://www.intel.com/content/www/us/en/content-details/926846/diamond-rapids-intel-s-next-generation-xeon-cpu-keynote-handout-for-customers.html",
+      "source_type": "official_vendor_presentation",
+      "actual_read_range": "23 PDF pages; text extraction; slide 19 visual inspection",
+      "sha256": "b2e146704d521b5fbab9e587777436e58c818a70cc1e0d011092963031362d70",
+      "claims": [
+        {
+          "location": "slides 7, 11, 19",
+          "claim": "Directory metadata on-die; not proof of data-source policy.",
+          "type": "vendor_mechanism_disclosure"
+        },
+        {
+          "location": "slide 15",
+          "claim": "DDR5 up to 8000 MT/s differs from MRDIMM up to 12800 MT/s.",
+          "type": "vendor_specification"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "No independent performance test or audio reviewed",
+    "Clean-line peer-cache versus DRAM selection policy, counters and concurrent latency remain open",
+    "Vera and HBM4 public-body followups not covered in this selection"
+  ],
+  "question_count_delta": 0,
+  "modified_pages": [
+    "ai/hot-chips/2026.html"
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "html_parse_and_unique_addendum": "passed",
+    "local_link_targets": "passed",
+    "historical_body_and_counts_preservation": "passed",
+    "git_diff_check": "passed",
+    "browser": "not_executed_by_this_research_agent",
+    "deployment": "not_deployed"
+  }
+}

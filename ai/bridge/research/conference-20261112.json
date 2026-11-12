@@ -227,5 +227,31 @@
     "path": "conference-inherited-20261108.json",
     "status": "archived verbatim from recorded automation result; NOT reverified; old citation IDs are nonportable",
     "original_run_id": "356080b5-b8c4-8327-818c-dbe10ae88af8"
+  },
+  "followthrough": {
+    "classification": "Historical supplementation, not new current-week statements",
+    "inputs": "conference-return-inputs-20261112.json",
+    "method": "conference-return-method-20261112.json",
+    "results": "conference-return-results-20261112.json",
+    "calculator": "../tools/calculate_conference_returns.py",
+    "scope": "Three bounded AMD cases; GS day0/1/5/20, Q3 day1/5, original SP7 day0/1. Remaining inherited cases not reverified.",
+    "delivery": "Prepared for root validation and deployment; not yet verified live.",
+    "validation": {
+      "calculator": "PASS: --check validates cutoff, endpoint offsets, positive prices, input/method hashes and deterministic saved results",
+      "json": "PASS: all conference research JSON parse",
+      "page_static": "PASS: unique IDs, new internal resource links exist, inline JavaScript node --check",
+      "diff": "PASS: git diff --check",
+      "browser": "Pending root browser verification",
+      "deployment": "Not yet performed by this agent"
+    },
+    "supersedes": {
+      "preservation": "Original market_cases.return_status, gaps and resume entries are retained as the initial-run historical checkpoint, not the latest state.",
+      "fields": [
+        "market_cases[0].return_status",
+        "gaps[0]",
+        "resume[0]"
+      ],
+      "current_state": "Release archive timestamps and eight bounded daily AMD/SOXX associations are now verified/calculated in the linked followthrough records. This supersedes the earlier no-verified-returns status. Earliest global disclosure, GS exact answer clock, remaining inherited cases and immature windows remain unresolved."
+    }
   }
 }

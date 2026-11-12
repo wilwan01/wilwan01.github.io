@@ -1,0 +1,64 @@
+{
+  "research_cutoff": "2026-11-12T11:19:08+00:00",
+  "read_date": "2026-11-12",
+  "check_status": "partial_coverage",
+  "delivery_status": "prepared_not_deployed",
+  "next_action": "Independent source review, browser validation, integration and deployment verification",
+  "historical_downloads_changed": false,
+  "module": "architecture-notes",
+  "scope": "Bounded review of E06, E07, E08, E11 and E13 bodies; substantive historical primary-paper followthrough only for E06. Other essays are not marked deeply verified.",
+  "prior_coverage_record": "ai/method/research/2026-11-12-technical-pages.json",
+  "sources": [
+    {
+      "id": "distserve-osdi24",
+      "authors": [
+        "Yinmin Zhong",
+        "Shengyu Liu",
+        "Junda Chen",
+        "Jianbo Hu",
+        "Yibo Zhu",
+        "Xuanzhe Liu",
+        "Xin Jin",
+        "Hao Zhang"
+      ],
+      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
+      "publication_date": "2024-07",
+      "url": "https://www.usenix.org/system/files/osdi24-zhong-yinmin.pdf",
+      "original_landing": "https://www.usenix.org/conference/osdi24/presentation/zhong-yinmin",
+      "source_type": "original_conference_paper",
+      "actual_read_range": "Sections 3.3, 4.2, 4.3, 6.1; printed pp.198–201; selected body rather than complete paper",
+      "claims": [
+        {
+          "location": "section 4.2, printed pp.199–200",
+          "claim": "Paired pipeline stages keep KV transfer within NVLink node under slow cross-node links."
+        },
+        {
+          "location": "section 4.3, printed p.200",
+          "claim": "Decode pulls queued KV; preemption/fault tolerance not implemented."
+        },
+        {
+          "location": "section 6.1, printed p.201",
+          "claim": "Four nodes with eight A100 80GB each, 25 Gbps inter-node links; FP16 OPT and Poisson arrivals."
+        }
+      ]
+    }
+  ],
+  "evidence_change_type": "newly_read_historical_support_and_limits",
+  "gaps": [
+    "No production trace or new benchmark run",
+    "No claim that illustrative latency values are measured",
+    "All other notes require their own targeted source-body review"
+  ],
+  "modified_pages": [
+    "ai/notes/e06.html"
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "html_parse_and_unique_addendum": "passed",
+    "local_link_targets": "passed",
+    "historical_body_and_counts_preservation": "passed",
+    "git_diff_check": "passed",
+    "browser": "not_executed_by_this_research_agent",
+    "deployment": "not_deployed"
+  }
+}
