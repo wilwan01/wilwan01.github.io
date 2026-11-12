@@ -49,7 +49,8 @@ jobs:
               assert(catalog.profiles.length >= 413);
               const expectedProfiles=catalog.profiles.length;
               const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
-              if(catalog.profiles.some(p=>p.id==='anil-kumar')) targets.push(['Anil Kumar','anil-kumar']);
+              assert(catalog.profiles.some(p=>p.id==='anil-kumar-amd-austin'));
+              targets.push(['Anil Kumar','anil-kumar-amd-austin']);
               report.testedProfiles=targets;
               assert.equal(index.count,index.entries.length);
               assert(!index.entries.some(x=>x.u.includes('/research/')));
