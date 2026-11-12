@@ -1,0 +1,102 @@
+{
+  "review": "crusoe-neocloud-integration-20261112",
+  "base_sha": "348ea79cce4f0192183f8f39d5bbc9eec3d7543d",
+  "observed_at": "2026-11-12T22:15:19.437914+00:00",
+  "reused_pr": {
+    "url": "https://github.com/wilwan01/wilwan01.github.io/pull/80",
+    "head_sha": "a2ebe82d566b2d4751d9f92b1585949152add103",
+    "items": [
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18"
+    ],
+    "ledger": "neocloud-20261112.json",
+    "note": "Preserved source/claim records and original validation as historical PR80 state, not current release results."
+  },
+  "scope": [
+    "C19 Crusoe service model"
+  ],
+  "counts": {
+    "original_items": 13,
+    "reused_prepared_items": 5,
+    "new_items": 1,
+    "final_items": 19,
+    "buyers_operators": 15,
+    "themes": 4,
+    "neocloud_items": 8
+  },
+  "sources": [
+    {
+      "label": "Crusoe Infrastructure Cloud — compute and orchestration",
+      "url": "https://docs.crusoe.ai/infrastructure-cloud/overview/index.html",
+      "type": "primary",
+      "author": "Crusoe",
+      "institution_at_publication": "Crusoe; corporate documentation/product publisher",
+      "published_at": null,
+      "read_at": "2026-11-12T22:15:19.437914+00:00",
+      "locator": "Infrastructure Cloud, body lines 67–70",
+      "reading_scope": "Selected substantive official body sections; publication date unknown. Current service-scope observation, not a dated announcement.",
+      "access_channel": "official page body via web retrieval",
+      "supports": "GPU/CPU VMs, persistent/object storage, VPC networking and managed Kubernetes/Slurm service building blocks"
+    },
+    {
+      "label": "Crusoe Cloud — provisioning and capacity options",
+      "url": "https://www.crusoe.ai/cloud",
+      "type": "primary",
+      "author": "Crusoe",
+      "institution_at_publication": "Crusoe; corporate documentation/product publisher",
+      "published_at": null,
+      "read_at": "2026-11-12T22:15:19.437914+00:00",
+      "locator": "Build and provision GPU clusters; Train and scale, body lines 159–191",
+      "reading_scope": "Selected substantive official body sections; publication date unknown. Current service-scope observation, not a dated announcement.",
+      "access_channel": "official page body via web retrieval",
+      "supports": "Console/CLI/API/Terraform/SDK provisioning; vendor-described on-demand, spot and reserved options"
+    },
+    {
+      "label": "Crusoe Data Centers — facility and energy scope",
+      "url": "https://www.crusoe.ai/data-centers",
+      "type": "primary",
+      "author": "Crusoe",
+      "institution_at_publication": "Crusoe; corporate documentation/product publisher",
+      "published_at": null,
+      "read_at": "2026-11-12T22:15:19.437914+00:00",
+      "locator": "Our approach / Speed to market / Independent power solutions, body lines 103–135",
+      "reading_scope": "Selected substantive official body sections; publication date unknown. Current service-scope observation, not a dated announcement.",
+      "access_channel": "official page body via web retrieval",
+      "supports": "Vendor describes facility build, manufacturing and energy development separately from GPU cloud services; no quantities or delivery milestones audited"
+    }
+  ],
+  "claims": {
+    "C19": {
+      "source_urls": [
+        "https://docs.crusoe.ai/infrastructure-cloud/overview/index.html",
+        "https://www.crusoe.ai/cloud",
+        "https://www.crusoe.ai/data-centers"
+      ],
+      "supported_scope": "Vendor-described service menu and distinction from physical development; no independent operational, financial or customer verification"
+    }
+  },
+  "preservation": {
+    "original_13_equal_latest_master": true,
+    "prepared_C14_C18_equal_PR80": true,
+    "original_PR80_ledger_preserved_exactly": true,
+    "historical_weekly_ledger_untouched": true
+  },
+  "gaps": [
+    "Publication dates unknown: no dated new-event claim",
+    "No live provisioning, availability, pricing, utilization, contract or delivered-capacity audit",
+    "Browser and public deployment validation delegated to release integration; not yet completed here"
+  ],
+  "validation": {
+    "json_and_required_fields": "passed:19 unique stable IDs, bilingual display fields, known groups/evidence levels",
+    "links": "passed:all customer cross-links resolve",
+    "preservation": "passed:13 current master records and5 PR80 records unchanged",
+    "ref_js_syntax": "passed: node --check ai/ref.js",
+    "diff_check": "passed: git diff --check -- ai/customers",
+    "browser": "pending integration",
+    "search_index": "pending integration; no search-index files edited"
+  },
+  "delivery_status": "prepared_not_merged_not_deployed"
+}

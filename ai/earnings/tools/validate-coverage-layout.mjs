@@ -1,0 +1,21 @@
+// Layout-only checks; no claim of source re-review or browser validation.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {execFileSync} from 'node:child_process';
+const h = fs.readFileSync('ai/earnings/index.html', 'utf8');
+const c = JSON.parse(fs.readFileSync('ai/analysts/corpus.json', 'utf8'));
+const ids = [...h.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
+assert.equal(ids.length, new Set(ids).size);
+assert.deepEqual(JSON.parse(h.match(/<script id="ledger-data" type="application\/json">([\s\S]*?)<\/script>/)[1]), c.ledger);
+for (const q of c.ledger) assert.ok(ids.includes(q.id));
+for (const d of c.financial_disclosures) assert.ok(ids.includes('company-evidence-' + d.id), d.id);
+assert.equal((h.match(/class="coverage-disclosure"/g) || []).length, c.financial_disclosures.length);
+const archive = h.match(/<!-- coverage-archive:start -->([\s\S]*?)<!-- coverage-archive:end -->/)[1];
+assert.ok(archive.startsWith('<details id="coverage-evidence-archive"><summary>'));
+assert.ok(!/<section id="(?:latest-refresh|refresh-[^"]+)">/.test(h.replace(archive, '')));
+const coverage = h.match(/<section id="coverage">([\s\S]*?)<\/section>/)[1];
+assert.equal((coverage.match(/<tr><td><strong>/g) || []).length, c.counts.companies);
+for (const m of h.matchAll(/<script>([\s\S]*?)<\/script>/g)) new vm.Script(m[1]);
+execFileSync('node', ['ai/earnings/tools/sync-coverage.mjs', '--check']);
+console.log(JSON.stringify({status:'passed', companies:c.counts.companies, disclosures:c.financial_disclosures.length, selected_qa:c.ledger.length, evidence_cutoff:c.cutoff_at, archived_snapshots:(archive.match(/<section /g)||[]).length, checks:['identity integrity','embedded ledger equality','all financial disclosures rendered','collapsed historical snapshots','inline JavaScript syntax','render idempotence'], browser:'separate check required'}, null, 2));
