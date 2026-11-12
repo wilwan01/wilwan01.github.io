@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-12",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -217,7 +217,8 @@
         "qi-guo",
         "yongwei-zhao",
         "xing-hu",
-        "yuanbo-wen"
+        "yuanbo-wen",
+        "xinkai-song"
       ]
     },
     {
@@ -50827,6 +50828,138 @@
         "validation": "在同一算子集合和硬件上逐项消融生成、重排、SMT修复与两级调优，报告功能通过率、错误分布、编译开销、运行性能及人工修改量。",
         "transfer": "用于GPU／AI加速器编译器、算子迁移和异构软件栈评审；不由论文结果外推未测平台或现网产品性能。"
       }
+    },
+    {
+      "id": "xinkai-song",
+      "name": "宋新开",
+      "aliases": [
+        "Xinkai Song"
+      ],
+      "field": "AI加速器存储计算协同与异构张量程序转译",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "编辑提炼：硬件的数据移动与软件的转换搜索都需要显式边界；先识别限制，再选择协作和验证机制。",
+      "background": "计算所官方主页列智能处理器研究中心副研究员，任职起于2023年9月；此前为助理研究员。论文姓名、机构和songxinkai邮箱对应。两项作品均仅确认共同署名，不推断首席架构师头衔或独占设计责任；现职以本次读取的机构网页为最后确认依据。",
+      "contributions": [
+        "共同署名Cambricon-LLM：研究NPU与片上计算Flash的分工、分块和纠错。",
+        "共同署名QiMeng-Xpiler：研究LLM辅助变换、SMT局部修复及分层调优。"
+      ],
+      "argument": "编辑条件模型：减少移动或缩小搜索空间必须同时满足精度、正确性和资源约束，局部收益不自动成为端到端收益。",
+      "evidence": "2024年硬件架构论文与2025年编译系统论文，机制和项目独立；机构主页仅作身份核验。",
+      "habits": [
+        "编辑归纳：把成本、验证与失效条件放进同一设计边界。"
+      ],
+      "questions": [
+        "局部优化何时会把瓶颈移到另一个部件或验证阶段？"
+      ],
+      "boundary": "Cambricon-LLM采用仿真和面积功耗估算，不能称已量产芯片或生产实测；QiMeng-Xpiler限于论文所测算子与VNNI/CUDA/HIP/BANG接口。共同署名不能划定个人模块责任，两篇也不证明稳定个人观点。",
+      "diagnostic": "编辑建议：分别改变工作负载和约束，核对整体收益、正确性与新增成本，不以单一峰值作结论。",
+      "notes": [],
+      "sources": [
+        [
+          "Cambricon-LLM: A Chiplet-Based Hybrid Architecture for On-Device Inference of 70B LLM",
+          "https://arxiv.org/html/2409.15654v1",
+          "作者/机构表；§IV架构、§V分块、§VI纠错、§VII实验设置及§VIII结果"
+        ],
+        [
+          "QiMeng-Xpiler: Transcompiling Tensor Programs for Deep Learning Systems with a Neural-Symbolic Approach",
+          "https://www.usenix.org/system/files/osdi25-dong.pdf",
+          "封面及首页署名；§1.1–1.2、§3–5、§7–8"
+        ],
+        [
+          "宋新开：中国科学院计算技术研究所人员主页",
+          "https://www.ict.ac.cn/sourcedb/cn/jssrck/202404/t20240429_7142027.html",
+          "姓名、部门、邮箱、简历和主要论著"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "cambricon-llm-arxiv2024",
+          "title": "Cambricon-LLM: A Chiplet-Based Hybrid Architecture for On-Device Inference of 70B LLM",
+          "authors": "Zhongkai Yu、Shengwen Liang、Tianyun Ma、Yunke Cai、Ziyuan Nan、Di Huang、Xinkai Song等15位作者（完整署名见正文）",
+          "date": "2024-09-24（arXiv v1）",
+          "url": "https://arxiv.org/html/2409.15654v1",
+          "locator": "作者/机构表；§IV架构、§V分块、§VI纠错、§VII实验设置及§VIII结果",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、机制正文和仿真评估说明；不作为量产或实硅测量证据。",
+          "evidenceStrength": "作者公开论文；宋新开为共同作者，未给出个人模块分工。",
+          "role": "机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "qimeng-xpiler-osdi2025",
+          "title": "QiMeng-Xpiler: Transcompiling Tensor Programs for Deep Learning Systems with a Neural-Symbolic Approach",
+          "authors": "Shouyang Dong、Yuanbo Wen、Jun Bi、Di Huang、Jiaming Guo、Jianxing Xu、Ruibai Xu、Xinkai Song、Yifan Hao、Ling Li、Xuehai Zhou、Tianshi Chen、Qi Guo、Yunji Chen",
+          "date": "2025-07（OSDI 2025）",
+          "url": "https://www.usenix.org/system/files/osdi25-dong.pdf",
+          "locator": "封面及首页署名；§1.1–1.2、§3–5、§7–8",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取共同署名、神经—符号变换与四平台实验范围。",
+          "evidenceStrength": "会议官方论文；团队合作，作者顺序不证明独占模块贡献。",
+          "role": "独立作品及机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-12"
+        },
+        {
+          "workId": "xinkai-song-ict-profile",
+          "title": "宋新开：中国科学院计算技术研究所人员主页",
+          "authors": "中国科学院计算技术研究所",
+          "date": "未知（页面路径含2024-04-29，不将其当作最后更新时间）",
+          "url": "https://www.ict.ac.cn/sourcedb/cn/jssrck/202404/t20240429_7142027.html",
+          "locator": "姓名、部门、邮箱、简历和主要论著",
+          "type": "机构人物简介",
+          "contentStatus": "官方主页显示2023年9月起副研究员、此前助理研究员，邮箱与论文署名对应；发布日期和更新日期未确认。",
+          "evidenceStrength": "身份与网页所列职责锚点，不计技术作品。",
+          "role": "身份及历史职责核对",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-12"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "cambricon-llm-arxiv2024",
+          "text": "Cambricon-LLM作者表列宋新开为计算所共同作者；正文说明硬件协作及模拟评估。"
+        },
+        {
+          "workId": "qimeng-xpiler-osdi2025",
+          "text": "QiMeng-Xpiler作者表列宋新开为计算所共同作者；其软件方法独立于Cambricon-LLM。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "共同署名作品的有限贡献归属及编辑条件模型，不是个人独占成果或获奖理由。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-12-weekly",
+        "standard": "contribution-led-v1",
+        "meaning": "仅所列作品证据审核，不代表穷尽成果或确认商业采用。",
+        "verifiedAt": "2026-11-12"
+      },
+      "challenge": {
+        "lens": "局部协作收益与系统约束",
+        "skills": [
+          "A3",
+          "A6",
+          "A8",
+          "A9"
+        ],
+        "question": "局部优化何时会把瓶颈移到另一个部件或验证阶段？",
+        "variables": "输入规模、并发度、数据移动、计算资源、错误率、验证时间",
+        "model": "编辑模型：以同等正确性和资源边界比较端到端成本。",
+        "crossover": "验证后的整体收益超过新增协作与纠错成本。",
+        "counterexample": "高并发改变瓶颈，或错误与修复成本吞没局部加速。",
+        "validation": "分别消融协作和验证机制，报告正确性及端到端成本；需要实测后才推广部署判断。",
+        "transfer": "迁移到存算协同、异构编译和系统协同设计的边界审查。"
+      }
     }
   ],
   "research": {
@@ -50837,7 +50970,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 410,
+    "totalProfiles": 411,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -50863,13 +50996,14 @@
       "research/batches/2026-10-18-weekly.json",
       "research/batches/2026-10-25-weekly.json",
       "research/batches/2026-11-01-weekly.json",
-      "research/batches/2026-11-08-weekly.json"
+      "research/batches/2026-11-08-weekly.json",
+      "research/batches/2026-11-12-weekly.json"
     ],
-    "completedTotal": 409,
+    "completedTotal": 410,
     "remainingCatalog": 1,
     "remainingPlanned": 5,
-    "additionalPlannedScope": 115,
-    "additionalCompleted": 109,
+    "additionalPlannedScope": 116,
+    "additionalCompleted": 110,
     "resolvedCandidateDuplicates": 1
   }
 }

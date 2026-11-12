@@ -1,0 +1,113 @@
+{
+  "run_id": "weekly-20261112",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "timezone": "Europe/London",
+  "base_sha": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "scope": "energy",
+  "check_status": "partial",
+  "evidence_status": "qualified_changes",
+  "delivery_status": "prepared_not_deployed",
+  "changes": [
+    {
+      "id": "E01",
+      "kind": "gap_pointer_update"
+    },
+    {
+      "id": "E06",
+      "kind": "historical_primary_evidence"
+    },
+    {
+      "id": "E07",
+      "kind": "new_programme_with_historical_agreement"
+    }
+  ],
+  "sources": [
+    {
+      "label": "IEA Key Questions on Energy and AI, executive summary",
+      "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary",
+      "type": "primary",
+      "published_at": "2026-04-16",
+      "read_at": "2026-11-12",
+      "locator": "Our updated data centre electricity demand outlook",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    },
+    {
+      "label": "OpenAI Grid Protectors Program",
+      "url": "https://openai.com/index/grid-protectors-program/",
+      "type": "primary",
+      "published_at": "2026-11-02",
+      "read_at": "2026-11-12",
+      "locator": "A model in Georgia; Looking forward",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    },
+    {
+      "label": "Georgia Power Effingham project announcement",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/georgia-power-to-serve-openai-project-in-effingham-county.html",
+      "type": "primary",
+      "published_at": "2026-07-22",
+      "read_at": "2026-11-12",
+      "locator": "Paragraph beginning In addition; 25-year agreement",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    }
+  ],
+  "gaps": [
+    "PJM latest auction primary text and all Stargate site operating MW not verified.",
+    "Abilene spring estimates remain historical and are not current operational-capacity claims.",
+    "OpenAI November5 compact read as future voluntary commitments/policy proposals, not enacted law; not added as an operating-capacity event."
+  ],
+  "preserved_previous_records": [
+    {
+      "id": "E01",
+      "group": "demand",
+      "date": "2025-04-10",
+      "title": {
+        "zh": "IEA《能源与AI》：2030年数据中心用电约945 TWh",
+        "en": "IEA Energy and AI: data-centre electricity about 945 TWh by 2030"
+      },
+      "summary": {
+        "zh": "IEA 估计2024年数据中心用电约415 TWh（占全球约1.5%），基准情景2030年约945 TWh，2035年约1,200 TWh；AI优化数据中心用电到2030年增长逾四倍。",
+        "en": "The IEA estimates data-centre use at about 415 TWh in 2024 (about 1.5% of global electricity), about 945 TWh by 2030 and about 1,200 TWh by 2035 in its Base Case; AI-optimised data-centre demand more than quadruples by 2030."
+      },
+      "facts": [
+        {
+          "zh": "美国将贡献2030年前数据中心用电增量的近一半，中国次之。",
+          "en": "The US accounts for almost half of the growth to 2030, with China second."
+        }
+      ],
+      "evidence": "primary-located",
+      "sources": [
+        {
+          "label": "IEA news release",
+          "url": "https://www.iea.org/news/ai-is-set-to-drive-surging-electricity-demand-from-data-centres-while-offering-the-potential-to-transform-how-the-energy-sector-works",
+          "type": "primary"
+        },
+        {
+          "label": "IEA executive summary",
+          "url": "https://www.iea.org/reports/energy-and-ai/executive-summary",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "只读了搜索摘要；这是2025年4月的预测，之后是否更新未核实。",
+        "en": "Only search summaries were read; this is an April 2025 forecast and later updates were not checked."
+      },
+      "links": {
+        "terms": [
+          "twh-gw"
+        ],
+        "bridge": [
+          "B6"
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "unique_ids": "passed",
+    "browser": "pending_parent_integration"
+  },
+  "next_recovery": "Review listed source gaps; do not treat this cutoff as complete historical coverage."
+}

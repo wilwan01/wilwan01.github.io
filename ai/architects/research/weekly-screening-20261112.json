@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-12",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "baseCommit": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "catalogBefore": 410,
+  "catalogAfter": 411,
+  "admitted": [
+    "xinkai-song"
+  ],
+  "publicationState": "prepared-not-published",
+  "coverageState": "partial-bounded-screening",
+  "scope": "读取全部当前目录、固定批次及上次筛选；针对宋新开正文缺口深研，并对5位既有待补候选和国内/海外公司入口作有界线索检查。搜索无结果不证明不存在作品，未推进全球覆盖截止。",
+  "checks": [
+    {
+      "name": "宋新开",
+      "decision": "qualified-pending-integration-review",
+      "changeType": "newly-verified-historical-evidence",
+      "works": [
+        "cambricon-llm-arxiv2024",
+        "qimeng-xpiler-osdi2025"
+      ],
+      "reason": "两项不同项目共同署名正文及ICT身份锚点；不再等待Cambricon-G/R，亦不声称读过两者正文。",
+      "sourceUrls": [
+        "https://arxiv.org/html/2409.15654v1",
+        "https://www.usenix.org/system/files/osdi25-dong.pdf",
+        "https://www.ict.ac.cn/sourcedb/cn/jssrck/202404/t20240429_7142027.html"
+      ]
+    }
+  ],
+  "pendingRecheck": [
+    {
+      "name": "张羽立",
+      "state": "partial",
+      "gap": "搜索出现2012年积分图论文线索，尚未将同名署名与M100作者完成身份连接，不计第二作品。",
+      "nextAction": "取得期刊作者单位及候选人可靠履历并交叉核对。"
+    },
+    {
+      "name": "单天逸",
+      "state": "partial",
+      "source": "https://www.iluvatar.com/newsDetails?code=tszxzpgbxpsdjglxttybdxlxncygjzls&topicId=495",
+      "gap": "2026-01-25公司路线图正文可确认发言人角色，但不提供第二项可个人归属的独立机制作品；厂商性能主张不升级为实测。"
+    },
+    {
+      "name": "赵立东",
+      "state": "partial",
+      "excludedSource": "https://mse.buaa.edu.cn/info/1064/1808.htm",
+      "gap": "同名北航材料教授的专利不可归到芯片公司候选人；继续缺个人可归属的两项技术作品。"
+    },
+    {
+      "name": "刘意",
+      "state": "partial",
+      "gap": "定向检索未解决同名身份锚点，不新增不确定论文或专利。"
+    },
+    {
+      "name": "姚刚（George Yao）",
+      "state": "partial",
+      "gap": "检索出现Zhaohui George Yao及TSMC George Yao等专利署名，未建立目标候选身份链接，均不计入。"
+    }
+  ],
+  "futureLeads": [
+    {
+      "name": "Deepak Narayanan",
+      "catalogDuplicate": false,
+      "source": "https://developer.nvidia.com/blog/author/dnarayanan/",
+      "sourceType": "官方人物及文章列表",
+      "readingScope": "作者简介及所列文章题名/日期",
+      "gap": "官方NVIDIA页确认ADLR高级应用深度学习研究科学家；Megatron论文线索已定位，但本轮未完成两项独立正文及个人贡献复核。",
+      "nextAction": "读取Megatron与独立PipeDream或MegaBlocks正文，防止把同项目博客重复计作作品。"
+    }
+  ],
+  "vendorScan": {
+    "state": "partial",
+    "queries": [
+      "site.alibabacloud.com blog architect November 2026",
+      "site.bytedance.com systems paper 2026",
+      "site.tencent.com 2026 论文 架构",
+      "site.research.baidu.com 2026 systems",
+      "site.nvidia.com architecture 2026 November"
+    ],
+    "result": "已完成有界搜索尝试；未取得另一位满足个人归属与双作品门槛的新增人物，不据此认定厂商没有新增成果。"
+  },
+  "deduplication": "宋新开此前仅为正文待审线索和其他论文合作者，不在410人目录或固定批次。QiMeng-Xpiler复用既有workId，不将同一作品因新增人物再次计算为全站新作品。",
+  "activePendingCandidates": 5,
+  "failedReads": [
+    {
+      "url": "https://dl.yongwei.site/C.pdf",
+      "failure": "web fetch timeout",
+      "impact": "未用于本次准入；改用可读取独立作品，不标记其正文已核实。"
+    }
+  ],
+  "deployment": "not-attempted-by-research-agent"
+}

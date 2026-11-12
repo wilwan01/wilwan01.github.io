@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-06",
-  "as_of": "2026-11-06",
+  "version": "2026-11-12",
+  "as_of": "2026-11-12",
   "method": "Evidence-backed cross-document thought atlas; profiles are editorial reconstructions, not complete personas. 6 November increment adds five genuinely new buy-side and five genuinely new sell-side source-time profiles, 33 source records and 30 synthetic challenge cards. Historical materials describe methods, not current recommendations.",
   "sources": [
     {
@@ -4545,7 +4545,17 @@
       "retrieval_level": "public transcript mirror selected passage",
       "summary": "Asks how many wafers correspond to a gigawatt of AI capacity; management declines a universal conversion because configurations differ.",
       "locator": "Q&A; question begins near captured line 761; inherited QA061",
-      "audit": "Re-read from dated ledger 2026-11-06. Question, management testimony and editor model remain separate."
+      "audit": "Re-read from dated ledger 2026-11-06. Question, management testimony and editor model remain separate.",
+      "same_underlying_artifact_as": "S36SRC2",
+      "additional_readings": [
+        {
+          "date": "2026-11-12",
+          "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2025-10/6860312f04fd291d0f26b46c1234f84e6332717e/TSMC%203Q25%20Transcript.pdf",
+          "locator": "printed pp.15–16, Krish Sankar / Cowen and Company LLC",
+          "access": "Issuer-hosted PDF named exchange re-read; no audio verification.",
+          "summary": "Matches the older profile’s GW-to-wafer question; mirror retained for history, not counted as another independent work."
+        }
+      ]
     },
     {
       "id": "W104-KS26A",
@@ -4750,6 +4760,70 @@
       "summary": "Lists Andre Kukhnin at UBS.",
       "locator": "UBS row; page states last update October 2026",
       "audit": "Identity support only."
+    },
+    {
+      "id": "W112-BI01",
+      "title": "2025 Year-End Letter: Equity Dislocation",
+      "date": "2026-02-25",
+      "date_basis": "GMO archive publication date; letter originally written 2026-01-08, views through December 2025.",
+      "url": "https://www.gmo.com/americas/research-library/2025-year-end-letter-equity-dislocation_insights/",
+      "authors": "Ben Inker and George Sakoulis / GMO",
+      "summary": "Joint account distinguishes security selection and rebalancing from aggregate valuation-spread convergence.",
+      "locator": "Five-Year Retrospective; Drivers of 2025 Performance",
+      "access": "Official HTML substantive sections read 2026-11-12; linked Download here points to a different Event-Driven PDF, so that PDF was not used as evidence.",
+      "retrieval_level": "primary HTML selected substantive sections",
+      "retrieved_at": "2026-11-12"
+    },
+    {
+      "id": "W112-BI02",
+      "title": "25 Years of Benchmark-Free Investing",
+      "date": "2026-09-09",
+      "date_basis": "GMO research archive date; PDF masthead September 2026.",
+      "url": "https://www.gmo.com/asia/research-library/25-years-of-benchmark-free-investing_whitepaper/",
+      "authors": "Ben Inker / GMO",
+      "summary": "Treats recession, inflation and liquidity as shared economic risks; acknowledges mistakes in historical profitability assumptions.",
+      "locator": "Focus on Outcomes—A Total Portfolio Mindset; Hits & Misses Over 25 Years",
+      "access": "Official HTML named sections and linked PDF masthead read 2026-11-12; historical performance and proprietary forecasts not independently reconstructed.",
+      "retrieval_level": "primary HTML substantive sections; original PDF masthead",
+      "retrieved_at": "2026-11-12"
+    },
+    {
+      "id": "W112-BIROLE",
+      "title": "GMO firm management — Ben Inker",
+      "date": "undated",
+      "url": "https://www.gmo.com/americas/people/firm-management/",
+      "authors": "GMO",
+      "summary": "Lists Ben Inker as Co-Head of Asset Allocation and portfolio manager.",
+      "locator": "Ben Inker biography",
+      "access": "Official identity page read 2026-11-12; identity only, not a substantive work.",
+      "retrieval_level": "primary identity page",
+      "retrieved_at": "2026-11-12"
+    },
+    {
+      "id": "W112-SL02",
+      "title": "TSMC 2026-07-16 call — Sunny Lin selected questions",
+      "date": "2026-07-16",
+      "date_basis": "Call date from issuer-hosted transcript masthead; upload timestamp not established.",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-07/57b65edbfe6e480e74abe202be983ecbde79e934/TSMC%202Q26%20Transcript.pdf",
+      "authors": "Sunny Lin / UBS (questions); TSMC management (answers)",
+      "summary": "Lin requests multi-year capital spending visibility and the schedule behind Arizona investment; management makes the schedule conditional on demand.",
+      "locator": "Sunny Lin Q&A, printed pp.7–8",
+      "access": "Issuer-hosted transcript selected named Q&A and roster read 2026-11-12; not audio verified. No complete UBS model accessed.",
+      "retrieval_level": "primary issuer-hosted selected transcript",
+      "retrieved_at": "2026-11-12"
+    },
+    {
+      "id": "W112-SL03",
+      "title": "TSMC 2026-10-15 call — Sunny Lin selected questions",
+      "date": "2026-10-15",
+      "date_basis": "Call date from issuer-hosted transcript masthead; upload timestamp not established.",
+      "url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2026-10/eba4fac72873bf546b669bd2b5d973df5c93215d/TSMC%203Q26%20Transcript.pdf",
+      "authors": "Sunny Lin / UBS (questions); TSMC management (answers)",
+      "summary": "Lin separates capital intensity, equipment inflation and overseas ramp timing; management reiterates its conditional revenue-versus-capex view and clarifies the dilution horizon.",
+      "locator": "Sunny Lin Q&A, printed pp.13–14",
+      "access": "Issuer-hosted transcript selected named Q&A and roster read 2026-11-12; not audio verified. No complete UBS model accessed.",
+      "retrieval_level": "primary issuer-hosted selected transcript",
+      "retrieved_at": "2026-11-12"
     }
   ],
   "profiles": [
@@ -9632,15 +9706,17 @@
     },
     {
       "id": "krish-sankar",
-      "name": "Krish Sankar",
+      "name": "Sreekrishnan (Krish) Sankarnarayanan / TD Cowen",
       "side": "sell",
-      "role": "TD Cowen分析师（材料时身份）",
-      "scope": "订单可见度与GW到晶圆桥",
+      "role": "TD Cowen semiconductor and semiconductor-equipment analyst at the dated sources",
+      "scope": "Demand comparable physical units before translating power, architecture mix or equipment pricing into wafers, revenue and margins",
       "focus": [
-        "订单可见度",
-        "GW到晶圆桥"
+        "GW-to-wafer conversion",
+        "CPU/GPU counting units",
+        "equipment value pricing",
+        "configuration mix"
       ],
-      "boundary": "跨两份材料的公开提问样本；管理层答复不是分析师预测，以下练习由编辑合成。",
+      "boundary": "Three public transcript examples across different mechanisms support method samples, not a single repeated personal pattern, licensed TD Cowen forecasts or current rating.",
       "timeline": [
         {
           "date": "2025-04-16",
@@ -9657,14 +9733,57 @@
             "S36SRC2"
           ],
           "locator": "pp.15–16"
+        },
+        {
+          "date": "2025-10-16",
+          "text": "Asked for the wafer content behind one GW and exposed configuration dependence.",
+          "source_ids": [
+            "W104-KS25"
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "text": "Asked when CPU/GPU ratios pass parity, requiring comparable counting units.",
+          "source_ids": [
+            "W104-KS26A"
+          ]
+        },
+        {
+          "date": "2026-07-28",
+          "text": "Separated equipment price changes into cost recovery and delivered-value pricing.",
+          "source_ids": [
+            "W104-KS26K"
+          ]
         }
       ],
       "gaps": [
         "两份选读材料仅支持公开提问样本，未认证持续个人方法或预测业绩",
         "未取得个人付费报告、完整估值模型及投资回报核验",
-        "至少一项为公开第三方问答转录，未与录音逐字校对"
+        "至少一项为公开第三方问答转录，未与录音逐字校对",
+        "No licensed note, forecast model, target price or current recommendation was accessed.",
+        "The three prompts are mechanism-distinct and are not certified as one recurring pattern."
       ],
-      "comparison": "订单可见度与GW到晶圆桥"
+      "comparison": "Physical-to-financial denominator samples; no recurring-pattern certification. The November 6 duplicate identity was merged on November 12, retaining every source and card.",
+      "current_role": {
+        "title": "Analyst, TD Cowen",
+        "as_of": "2026-05-13",
+        "access": "W104-KSROLE"
+      },
+      "reasoning_model": {
+        "uncertainty": "Whether headline power, unit ratios or price increases represent comparable economic content.",
+        "evidence": "Configuration, wafer content, workload role, product generation and like-for-like price.",
+        "causal_chain": "physical system mix → device/tool content → qualified volume × price → revenue and margin",
+        "transmission": "AI capex sets system demand; architecture allocates content; supplier share and pricing determine company cash flow and valuation.",
+        "bridge": "Revenue = systems × content/system × share × ASP; margin requires cost recovery and mix separately.",
+        "assumptions": "Units, periods and product generations are normalized.",
+        "validity": "Semis, equipment and heterogeneous AI systems.",
+        "counterexample": "A software or service bottleneck dominates value while physical content is stable.",
+        "falsification": "Normalized content/price bridge misses reported segment revenue for two quarters without an identified timing item."
+      },
+      "aliases": [
+        "Krish Sankar",
+        "Sreekrishnan Sankarnarayanan"
+      ]
     },
     {
       "id": "toshiya-hari",
@@ -13582,64 +13701,6 @@
       }
     },
     {
-      "id": "krish-sankar-td-cowen",
-      "name": "Sreekrishnan (Krish) Sankarnarayanan / TD Cowen",
-      "side": "sell",
-      "role": "TD Cowen semiconductor and semiconductor-equipment analyst at the dated sources",
-      "current_role": {
-        "title": "Analyst, TD Cowen",
-        "as_of": "2026-05-13",
-        "access": "W104-KSROLE"
-      },
-      "scope": "Demand comparable physical units before translating power, architecture mix or equipment pricing into wafers, revenue and margins",
-      "focus": [
-        "GW-to-wafer conversion",
-        "CPU/GPU counting units",
-        "equipment value pricing",
-        "configuration mix"
-      ],
-      "boundary": "Three public transcript examples across different mechanisms support method samples, not a single repeated personal pattern, licensed TD Cowen forecasts or current rating.",
-      "timeline": [
-        {
-          "date": "2025-10-16",
-          "text": "Asked for the wafer content behind one GW and exposed configuration dependence.",
-          "source_ids": [
-            "W104-KS25"
-          ]
-        },
-        {
-          "date": "2026-05-06",
-          "text": "Asked when CPU/GPU ratios pass parity, requiring comparable counting units.",
-          "source_ids": [
-            "W104-KS26A"
-          ]
-        },
-        {
-          "date": "2026-07-28",
-          "text": "Separated equipment price changes into cost recovery and delivered-value pricing.",
-          "source_ids": [
-            "W104-KS26K"
-          ]
-        }
-      ],
-      "gaps": [
-        "No licensed note, forecast model, target price or current recommendation was accessed.",
-        "The three prompts are mechanism-distinct and are not certified as one recurring pattern."
-      ],
-      "comparison": "Sankar repeatedly seeks a physical-to-financial denominator, but the sampled mechanisms differ enough to remain bounded examples.",
-      "reasoning_model": {
-        "uncertainty": "Whether headline power, unit ratios or price increases represent comparable economic content.",
-        "evidence": "Configuration, wafer content, workload role, product generation and like-for-like price.",
-        "causal_chain": "physical system mix → device/tool content → qualified volume × price → revenue and margin",
-        "transmission": "AI capex sets system demand; architecture allocates content; supplier share and pricing determine company cash flow and valuation.",
-        "bridge": "Revenue = systems × content/system × share × ASP; margin requires cost recovery and mix separately.",
-        "assumptions": "Units, periods and product generations are normalized.",
-        "validity": "Semis, equipment and heterogeneous AI systems.",
-        "counterexample": "A software or service bottleneck dominates value while physical content is stable.",
-        "falsification": "Normalized content/price bridge misses reported segment revenue for two quarters without an identified timing item."
-      }
-    },
-    {
       "id": "mark-murphy-jpm",
       "name": "Mark Murphy / J.P. Morgan",
       "side": "sell",
@@ -13889,6 +13950,106 @@
         "validity": "Long-cycle electrical and data-center equipment.",
         "counterexample": "Framework agreements are flexible forecasts rather than firm dated orders.",
         "falsification": "Delivered/accepted revenue misses cohort schedule by >15% for two periods without backlog replacement."
+      }
+    },
+    {
+      "id": "ben-inker-gmo",
+      "name": "Ben Inker / GMO",
+      "side": "buy",
+      "role": "GMO Asset Allocation portfolio manager; coauthor George Sakoulis retained for the January 2026 letter.",
+      "current_role": {
+        "title": "Co-Head of Asset Allocation, Portfolio Manager",
+        "as_of": "2026-11-12",
+        "access": "W112-BIROLE"
+      },
+      "scope": "Mandate-aware allocation, economic-risk overlap and model revision",
+      "focus": [
+        "absolute versus relative risk",
+        "rebalancing attribution",
+        "structural profitability change"
+      ],
+      "boundary": "Two differently dated public works support bounded editorial method samples; no independent performance audit or permanent personal-pattern claim.",
+      "timeline": [
+        {
+          "date": "2026-01-08",
+          "text": "Joint client letter examines rebalancing and security selection; public publication 2026-02-25.",
+          "source_ids": [
+            "W112-BI01"
+          ]
+        },
+        {
+          "date": "2026-09-09",
+          "text": "Retrospective revisits benchmark objectives, shared risk and mistaken fundamental assumptions.",
+          "source_ids": [
+            "W112-BI02"
+          ]
+        }
+      ],
+      "gaps": [
+        "Underlying portfolios, borrow costs and proprietary forecast models were not reproduced.",
+        "Historical method evidence is newly catalogued, not a November investment recommendation."
+      ],
+      "comparison": "Complements physical-capacity analysis by testing portfolio objective, economic exposure overlap and forecast-model misspecification.",
+      "reasoning_model": {
+        "uncertainty": "Does apparent diversification survive a common adverse state?",
+        "evidence": "Mandate, scenario losses, financing terms and cohort fundamentals.",
+        "causal_chain": "economic shock → correlated operating losses → financing stress → portfolio impairment",
+        "transmission": "Editorial reconstruction: sector labels may conceal common cash-flow and refinancing exposure.",
+        "bridge": "Scenario loss = Σ exposure weight × conditional loss; reconcile realized attribution separately.",
+        "assumptions": "Comparable horizons, exposure bases and realistic liquidity.",
+        "validity": "Multi-asset or technology-heavy portfolios with observable risk drivers.",
+        "counterexample": "Stable historical correlations can fail when financing terms change.",
+        "falsification": "Re-estimate at each review when realized driver behavior persistently exceeds declared scenario bounds; no author-specified numerical trigger is claimed."
+      }
+    },
+    {
+      "id": "sunny-lin-ubs",
+      "name": "Sunny Lin / UBS",
+      "side": "sell",
+      "role": "UBS analyst at the two source-time TSMC calls",
+      "current_role": {
+        "title": "UBS analyst, last verified call roster",
+        "as_of": "2026-10-15",
+        "access": "W112-SL03; subsequent employment changes not independently checked"
+      },
+      "scope": "Translate capex announcements into physical capacity, timing and margin effects",
+      "focus": [
+        "multi-year spending",
+        "tool inflation",
+        "overseas ramp timing"
+      ],
+      "boundary": "Two issuer-hosted call samples; no complete licensed UBS forecast or recurring personal-pattern certification.",
+      "timeline": [
+        {
+          "date": "2026-07-16",
+          "text": "Asks for multi-year capex visibility and commissioning schedule.",
+          "source_ids": [
+            "W112-SL02"
+          ]
+        },
+        {
+          "date": "2026-10-15",
+          "text": "Questions tool inflation, capital intensity and overseas margin-dilution timing.",
+          "source_ids": [
+            "W112-SL03"
+          ]
+        }
+      ],
+      "gaps": [
+        "No comparable frozen UBS estimates, rating model or target-price assumptions.",
+        "Future commissioned capacity and fab-level cost curves remain unverified."
+      ],
+      "comparison": "Complements backlog-conversion methods with nominal-versus-physical capex and vintage-specific ramp economics.",
+      "reasoning_model": {
+        "uncertainty": "Does greater spending increase usable capacity or mainly pay for inflation and earlier ramp costs?",
+        "evidence": "Tool prices, capacity units, qualification dates, fab cohorts and management timeline.",
+        "causal_chain": "spending authorization → priced tools → installed capacity → qualification → utilization → margin/cash",
+        "transmission": "Editorial reconstruction: demand affects investment; geography and timing affect costs before revenue.",
+        "bridge": "Physical input ≈ nominal investment / unit price; accepted capacity further depends on mix, yield and timing.",
+        "assumptions": "Same asset mix and period, no double-counted announcements.",
+        "validity": "Capital-intensive manufacturing expansion.",
+        "counterexample": "More expensive tools deliver higher throughput, invalidating a simple price deflator.",
+        "falsification": "Compare qualified output and ramp costs at each announced commissioning milestone; no author-specific numerical trigger claimed."
       }
     }
   ],
@@ -24524,7 +24685,7 @@
     },
     {
       "id": "W104-06-C1",
-      "profile": "krish-sankar-td-cowen",
+      "profile": "krish-sankar",
       "title": "GW to wafer bridge",
       "source_ids": [
         "W104-KS25"
@@ -24554,7 +24715,7 @@
     },
     {
       "id": "W104-06-C2",
-      "profile": "krish-sankar-td-cowen",
+      "profile": "krish-sankar",
       "title": "CPU/GPU ratio normalization",
       "source_ids": [
         "W104-KS26A"
@@ -24584,7 +24745,7 @@
     },
     {
       "id": "W104-06-C3",
-      "profile": "krish-sankar-td-cowen",
+      "profile": "krish-sankar",
       "title": "Cost recovery versus value pricing",
       "source_ids": [
         "W104-KS26K"
@@ -24972,14 +25133,190 @@
         "F18",
         "T3"
       ]
+    },
+    {
+      "profile": "ben-inker-gmo",
+      "attribution": "Source observations are attributed to the named authors; all equations, numbers, thresholds and exercises below are editorial synthetic designs, not author forecasts or transactions.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-BI-C1",
+      "title": "Different labels, one liquidity shock",
+      "source_ids": [
+        "W112-BI02"
+      ],
+      "locator": "Focus on Outcomes—A Total Portfolio Mindset",
+      "source_paraphrase": "Different asset classes can share impairment drivers.",
+      "model": "Portfolio scenario loss = sum(weight × scenario loss); fund liquidity is a separate survival constraint.",
+      "variables_units": "weights %, loss %, cash currency units",
+      "boundary": "Common horizon and fully specified exposures.",
+      "decision_boundary": "Synthetic risk budget: scenario loss ≤15% and stressed margin fully funded.",
+      "counterexample": "Liquid securities become correlated through forced selling.",
+      "test": "Compare conditional drawdowns and available financing, not only ordinary correlations.",
+      "deadline": "Before allocation and each financing renewal",
+      "question": "Synthetic: 50% equity loses30%, 30% debt loses20%, 20% cash loses0. Compute portfolio loss and test a15% limit.",
+      "constraint": "A margin call of8% of initial NAV arises; only5% of NAV cash is available after redemptions. Can the book survive without sales?",
+      "transfer": "Apply the same method to a portfolio of chip vendors and data-center developers funded by the same lenders.",
+      "tags": [
+        "F22",
+        "F14",
+        "T5"
+      ]
+    },
+    {
+      "profile": "ben-inker-gmo",
+      "attribution": "Source observations are attributed to the named authors; all equations, numbers, thresholds and exercises below are editorial synthetic designs, not author forecasts or transactions.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-BI-C2",
+      "title": "Attribution without spread convergence",
+      "source_ids": [
+        "W112-BI01"
+      ],
+      "locator": "Five-Year Retrospective; Drivers of 2025 Performance",
+      "source_paraphrase": "Joint authors separate rebalancing and selection from aggregate spread narrowing.",
+      "model": "Synthetic one-period net return = long return − short return − costs at equal initial notionals.",
+      "variables_units": "returns % of initial NAV; cost percentage points",
+      "boundary": "Dollar-neutral equal notionals, no intraperiod leverage change.",
+      "decision_boundary": "Explain positive net return before attributing it to convergence.",
+      "counterexample": "Borrow recalls and momentum can overwhelm selection.",
+      "test": "Freeze holdings and decompose price, fundamentals, turnover and financing.",
+      "deadline": "Each attribution period",
+      "question": "Synthetic: long book gains12%, shorted book gains8%, total costs2% of NAV; each book initially equals NAV. Calculate net return. Does it prove spread convergence?",
+      "constraint": "Borrow cost adds3 percentage points. Recalculate and identify what evidence separates selection from factor repricing.",
+      "transfer": "Test an old-GPU versus new-GPU hardware-value pair after matching age, configuration and market liquidity.",
+      "tags": [
+        "F2",
+        "F21",
+        "F22",
+        "T6"
+      ]
+    },
+    {
+      "profile": "ben-inker-gmo",
+      "attribution": "Source observations are attributed to the named authors; all equations, numbers, thresholds and exercises below are editorial synthetic designs, not author forecasts or transactions.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-BI-C3",
+      "title": "When mean reversion uses the wrong anchor",
+      "source_ids": [
+        "W112-BI02"
+      ],
+      "locator": "Hits & Misses Over 25 Years",
+      "source_paraphrase": "The retrospective acknowledges errors in assumed fundamental trends.",
+      "model": "Editorial scenario earnings = revenue × sustainable margin; compare structural and cyclical anchors before valuation.",
+      "variables_units": "annual revenue currency; margin %; earnings currency",
+      "boundary": "Matched business perimeter and consistent accounting.",
+      "decision_boundary": "Keep both anchors until independent cohort and competition evidence distinguishes them.",
+      "counterexample": "Peak scarcity margins look structural shortly before new supply arrives.",
+      "test": "Use constant-cohort margins, entry, reinvestment returns and customer concentration.",
+      "deadline": "Next two earnings releases; do not retroactively rewrite the original forecast",
+      "question": "Synthetic: annual revenue100; historical margin10%, proposed structural margin18%. Compute earnings under both anchors and the valuation ratio at a common multiple.",
+      "constraint": "New entrants cut price10% while costs initially stay82. Calculate margin and reassess the18% anchor.",
+      "transfer": "Apply to cloud infrastructure margins after an efficiency gain and subsequent price competition.",
+      "tags": [
+        "F4",
+        "F14",
+        "F21",
+        "T6"
+      ]
+    },
+    {
+      "profile": "sunny-lin-ubs",
+      "attribution": "Named questions belong to Sunny Lin, replies to TSMC management; equations, values, thresholds and training scenarios are editorial synthesis, not UBS forecasts.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-SL-C1",
+      "title": "Nominal capex is not physical capacity",
+      "source_ids": [
+        "W112-SL03"
+      ],
+      "locator": "Printed pp.13–14, equipment-price question",
+      "source_paraphrase": "Lin asks whether higher equipment prices contribute to higher spending.",
+      "model": "For a matched asset mix, real input growth = (1+nominal growth)/(1+price growth)−1.",
+      "variables_units": "spending currency; matched tool-price index; input growth %",
+      "boundary": "Unchanged mix and no throughput improvement embedded in price.",
+      "decision_boundary": "Do not equate nominal growth with installed-output growth.",
+      "counterexample": "A pricier tool has superior throughput and yield.",
+      "test": "Normalize tool count, throughput, mix, installation and qualification.",
+      "deadline": "Next capital-spending disclosure and first qualified production",
+      "question": "Synthetic: capex rises from100 to120 and matched tool prices rise10%. Estimate physical input growth.",
+      "constraint": "Each new tool now produces15% more output, but qualification takes an extra quarter. What can and cannot be inferred about next-quarter capacity?",
+      "transfer": "Apply to GPU procurement with changing accelerator generation and delivered-token throughput.",
+      "tags": [
+        "F9",
+        "F18",
+        "F25",
+        "T2"
+      ]
+    },
+    {
+      "profile": "sunny-lin-ubs",
+      "attribution": "Named questions belong to Sunny Lin, replies to TSMC management; equations, values, thresholds and training scenarios are editorial synthesis, not UBS forecasts.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-SL-C2",
+      "title": "Announcements need a commissioning curve",
+      "source_ids": [
+        "W112-SL02"
+      ],
+      "locator": "Sunny Lin Arizona schedule follow-up, printed pp.7–8",
+      "source_paraphrase": "Lin asks for capacity timing behind a multi-year investment announcement.",
+      "model": "Annual available capacity-months = sum(qualified capacity × months active).",
+      "variables_units": "capacity units; months; capacity-months/year",
+      "boundary": "Qualification gates and phase dates are independently specified.",
+      "decision_boundary": "Recognize capacity only after the stated operating gate.",
+      "counterexample": "Tools are installed but customer qualification or utilities lag.",
+      "test": "Track site, equipment, qualification and customer acceptance separately.",
+      "deadline": "Each phase commissioning milestone",
+      "question": "Synthetic: phaseA offers40 units fromJuly1; phaseB offers60 fromOctober1. Compute first-year capacity-months and annual-average units.",
+      "constraint": "PhaseB is delayed toJanuary1 next year. Recalculate and identify why total planned investment need not change.",
+      "transfer": "Apply to energized data-center MW with phased grid connections.",
+      "tags": [
+        "F9",
+        "F18",
+        "F14",
+        "T3"
+      ]
+    },
+    {
+      "profile": "sunny-lin-ubs",
+      "attribution": "Named questions belong to Sunny Lin, replies to TSMC management; equations, values, thresholds and training scenarios are editorial synthesis, not UBS forecasts.",
+      "scenario_type": "synthetic teaching case",
+      "forecast_outcome": "No performance claim.",
+      "id": "W112-SL-C3",
+      "title": "Ramp timing changes the margin denominator",
+      "source_ids": [
+        "W112-SL03"
+      ],
+      "locator": "Printed p.14, overseas dilution clarification",
+      "source_paraphrase": "Lin links overseas margin dilution to possible acceleration of fab phases.",
+      "model": "Consolidated gross margin = sum(revenue by cohort × cohort margin)/total revenue.",
+      "variables_units": "quarterly revenue currency; cohort margin %; percentage points",
+      "boundary": "Same gross-margin accounting and period; no duplicated ramp costs.",
+      "decision_boundary": "A changed cohort mix is not necessarily weaker mature-fab economics.",
+      "counterexample": "Poor mature-fab utilization can mimic a ramp-mix effect.",
+      "test": "Separate mature operations, new-site share, yield and startup-cost treatment.",
+      "deadline": "Next two ramp-quarter disclosures",
+      "question": "Synthetic: mature revenue90 at60% gross margin; new-fab revenue10 at30%. Compute total gross margin.",
+      "constraint": "New-fab revenue rises to20 while mature revenue stays90 and cohort margins are unchanged. Compute margin and gross-profit dollars; explain differing directions.",
+      "transfer": "Apply to a cloud provider adding low-utilization regions.",
+      "tags": [
+        "F2",
+        "F4",
+        "F18",
+        "T3"
+      ]
     }
   ],
   "comparison": "可比较宏观周期、资本配置、因子估值、AI资本周期、物理瓶颈、工作负载经济、现金融资、证伪和证券定价；所有方法均须回到来源边界、变量口径、最强反例和期限。",
-  "coverage": "240份方法档案、414条来源记录、405张合成挑战卡；买方/VC 120，卖方 120。不是完整覆盖、当前推荐或真实财报问答新增。",
+  "coverage": "241份方法档案、419条来源记录、411张合成挑战卡；买方/VC 121，卖方 120。新增2人并合并1个重复身份，净增1人；不是完整覆盖、当前推荐或真实财报问答新增。",
   "role_counts": {
-    "buy_side": 120,
+    "buy_side": 121,
     "sell_side": 120
   },
-  "research_cutoff": "2026-11-06T09:03:40+00:00 Europe/London",
-  "candidate_pipeline": "candidate-pipeline.json"
+  "research_cutoff": "2026-11-12T11:19:08+00:00",
+  "candidate_pipeline": "candidate-pipeline.json",
+  "profile_id_aliases": {
+    "krish-sankar-td-cowen": "krish-sankar"
+  }
 }

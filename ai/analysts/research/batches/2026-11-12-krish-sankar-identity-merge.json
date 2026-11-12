@@ -1,0 +1,102 @@
+{
+  "reason": "Same TD Cowen analyst, same 2025-10-16 TSMC GW-to-wafer question; preserve earlier stable ID.",
+  "original_profiles": [
+    {
+      "id": "krish-sankar",
+      "name": "Krish Sankar",
+      "side": "sell",
+      "role": "TD Cowen分析师（材料时身份）",
+      "scope": "订单可见度与GW到晶圆桥",
+      "focus": [
+        "订单可见度",
+        "GW到晶圆桥"
+      ],
+      "boundary": "跨两份材料的公开提问样本；管理层答复不是分析师预测，以下练习由编辑合成。",
+      "timeline": [
+        {
+          "date": "2025-04-16",
+          "text": "追问次年增长需要的订单及区域构成。",
+          "source_ids": [
+            "R2S2-ASML125"
+          ],
+          "locator": "Sankar具名问答"
+        },
+        {
+          "date": "2025-10-16",
+          "text": "询问1GW AI容量如何映射晶圆需求及GPU/ASIC组合。",
+          "source_ids": [
+            "S36SRC2"
+          ],
+          "locator": "pp.15–16"
+        }
+      ],
+      "gaps": [
+        "两份选读材料仅支持公开提问样本，未认证持续个人方法或预测业绩",
+        "未取得个人付费报告、完整估值模型及投资回报核验",
+        "至少一项为公开第三方问答转录，未与录音逐字校对"
+      ],
+      "comparison": "订单可见度与GW到晶圆桥"
+    },
+    {
+      "id": "krish-sankar-td-cowen",
+      "name": "Sreekrishnan (Krish) Sankarnarayanan / TD Cowen",
+      "side": "sell",
+      "role": "TD Cowen semiconductor and semiconductor-equipment analyst at the dated sources",
+      "current_role": {
+        "title": "Analyst, TD Cowen",
+        "as_of": "2026-05-13",
+        "access": "W104-KSROLE"
+      },
+      "scope": "Demand comparable physical units before translating power, architecture mix or equipment pricing into wafers, revenue and margins",
+      "focus": [
+        "GW-to-wafer conversion",
+        "CPU/GPU counting units",
+        "equipment value pricing",
+        "configuration mix"
+      ],
+      "boundary": "Three public transcript examples across different mechanisms support method samples, not a single repeated personal pattern, licensed TD Cowen forecasts or current rating.",
+      "timeline": [
+        {
+          "date": "2025-10-16",
+          "text": "Asked for the wafer content behind one GW and exposed configuration dependence.",
+          "source_ids": [
+            "W104-KS25"
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "text": "Asked when CPU/GPU ratios pass parity, requiring comparable counting units.",
+          "source_ids": [
+            "W104-KS26A"
+          ]
+        },
+        {
+          "date": "2026-07-28",
+          "text": "Separated equipment price changes into cost recovery and delivered-value pricing.",
+          "source_ids": [
+            "W104-KS26K"
+          ]
+        }
+      ],
+      "gaps": [
+        "No licensed note, forecast model, target price or current recommendation was accessed.",
+        "The three prompts are mechanism-distinct and are not certified as one recurring pattern."
+      ],
+      "comparison": "Sankar repeatedly seeks a physical-to-financial denominator, but the sampled mechanisms differ enough to remain bounded examples.",
+      "reasoning_model": {
+        "uncertainty": "Whether headline power, unit ratios or price increases represent comparable economic content.",
+        "evidence": "Configuration, wafer content, workload role, product generation and like-for-like price.",
+        "causal_chain": "physical system mix → device/tool content → qualified volume × price → revenue and margin",
+        "transmission": "AI capex sets system demand; architecture allocates content; supplier share and pricing determine company cash flow and valuation.",
+        "bridge": "Revenue = systems × content/system × share × ASP; margin requires cost recovery and mix separately.",
+        "assumptions": "Units, periods and product generations are normalized.",
+        "validity": "Semis, equipment and heterogeneous AI systems.",
+        "counterexample": "A software or service bottleneck dominates value while physical content is stable.",
+        "falsification": "Normalized content/price bridge misses reported segment revenue for two quarters without an identified timing item."
+      }
+    }
+  ],
+  "checked_at": "2026-11-12",
+  "official_identity_url": "https://www.semi.org/en/industry-strategy-symposium-iss-speaker-abstract-bio-krish-sankar",
+  "official_same_exchange_url": "https://investor.tsmc.com/chinese/encrypt/files/encrypt_file/reports/2025-10/6860312f04fd291d0f26b46c1234f84e6332717e/TSMC%203Q25%20Transcript.pdf"
+}

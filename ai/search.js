@@ -16,7 +16,7 @@ function draw(){
   $('#results').innerHTML=terms.length?(res.slice(0,limit).map(e=>`<article class="card" style="padding:12px 16px;margin-bottom:10px"><span class="sectag">${SEC[e.s]?SEC[e.s][0]+' / '+SEC[e.s][1]:e.s}</span><span class="sectag">${e.l==='bi'?'中/EN':e.l==='zh'?'中文':'EN'}</span><a href="${esc(e.u)}">${hl(e.t,terms)}</a>${e.x?`<div class="muted" style="font-size:14px">${hl(e.x.slice(0,180),terms)}${e.x.length>180?'…':''}</div>`:''}</article>`).join('')+(res.length>limit?`<p><button class="chip-btn" id="more">显示更多 / Show more</button></p>`:'')||'<p class="empty">没有匹配项 / No results.</p>'):'<p class="empty">输入关键词：公司、人物、术语、标准、事件… / Type a company, person, term, standard or event…</p>';
 }
 async function init(){
-  const r=await fetch('/ai/search-index.json?v=20261011-2');if(!r.ok)throw Error('index');
+  const r=await fetch('/ai/search-index.json',{cache:'no-cache'});if(!r.ok)throw Error('index');
   const d=await r.json();entries=d.entries;
   q=new URLSearchParams(location.search).get('q')||'';$('#q').value=q;
   $('#q').addEventListener('input',e=>{q=e.target.value;limit=40;history.replaceState(null,'',q?'?q='+encodeURIComponent(q):location.pathname);draw()});

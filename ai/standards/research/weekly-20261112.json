@@ -1,0 +1,186 @@
+{
+  "run_id": "weekly-20261112",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "timezone": "Europe/London",
+  "base_sha": "370b7dba588f4f936ca0fafa67eb1f42e688aa51",
+  "scope": "standards",
+  "check_status": "partial",
+  "evidence_status": "qualified_changes",
+  "delivery_status": "prepared_not_deployed",
+  "changes": [
+    {
+      "id": "S09",
+      "kind": "historical_primary_evidence"
+    },
+    {
+      "id": "S10",
+      "kind": "historical_primary_evidence"
+    },
+    {
+      "id": "S01",
+      "kind": "gap_resolved"
+    },
+    {
+      "id": "S04",
+      "kind": "gap_resolved"
+    }
+  ],
+  "sources": [
+    {
+      "label": "UALink four-specification release, 7 Apr 2026",
+      "url": "https://ualinkconsortium.org/wp-content/uploads/2026/04/UALink-2.0-Specification-PR_FINAL.pdf",
+      "type": "primary",
+      "published_at": "2026-04-07",
+      "read_at": "2026-11-12",
+      "locator": "pp.1–2 New UALink Specifications",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    },
+    {
+      "label": "CXL 4.0 announcement, 18 Nov 2025",
+      "url": "https://computeexpresslink.org/wp-content/uploads/2025/11/CXL_4.0-Specification-Release_FINAL_Website-Copy.pdf",
+      "type": "primary",
+      "published_at": "2025-11-18",
+      "read_at": "2026-11-12",
+      "locator": "p.1 Key features",
+      "reading_scope": "Selected relevant body sections; not full underlying specification or contract",
+      "read_at_precision": "date; exact original reading time not retained"
+    }
+  ],
+  "gaps": [
+    "Normative specifications not read; no interoperability or silicon qualification verified.",
+    "Current UALink landing page lists Chiplet 1.01 and 128G DL/PL 1.0 without verified publication dates; not backdated into April release.",
+    "UEC, UCIe, JEDEC, PCI-SIG, OCP and NVLink entries not fully refreshed."
+  ],
+  "preserved_previous_records": [
+    {
+      "id": "S01",
+      "name": "UALink 200G 1.0",
+      "org": "UALink Consortium",
+      "layer": "scale-up",
+      "date": "2025-04-08",
+      "status": {
+        "zh": "1.0 规范公开",
+        "en": "1.0 specification public"
+      },
+      "summary": {
+        "zh": "面向AI算力池内加速器与交换机的低延迟、高带宽互连：200G每通道，单个计算池最多1,024个加速器；提供读、写与原子事务的加载/存储协议。",
+        "en": "Low-latency, high-bandwidth interconnect between accelerators and switches in an AI pod: 200G per lane, up to 1,024 accelerators per pod, with a load/store protocol using read, write and atomic transactions."
+      },
+      "facts": [
+        {
+          "zh": "联盟新闻稿称代表85家以上成员公司。",
+          "en": "The press release says the consortium represents more than 85 member companies."
+        },
+        {
+          "zh": "新闻稿称其设计目标为93%有效峰值带宽（联盟自述，未经独立验证）。",
+          "en": "The release cites 93% effective peak bandwidth as a design aim (consortium claim, not independently verified)."
+        }
+      ],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "UALink Consortium news release, 8 Apr 2025",
+          "url": "https://ualinkconsortium.org/wp-content/uploads/2025/04/UALink-1.0-Specification-PR_FINAL.pdf",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "据单一来源，2026年4月出现2.0版；本页未核实。",
+        "en": "One secondary source mentions a 2.0 version in April 2026; not verified here."
+      },
+      "links": {
+        "hotchips": [
+          {
+            "year": 2019,
+            "title": "Interconnect names leave mechanisms unresolved."
+          },
+          {
+            "year": 2025,
+            "title": "Fabric mechanisms mattered beyond bandwidth."
+          },
+          {
+            "year": 2026,
+            "title": "Fabric behavior."
+          }
+        ],
+        "bridge": [
+          "B7"
+        ],
+        "earnings": [
+          "QA099",
+          "QA118",
+          "QA114"
+        ],
+        "terms": [
+          "scale-up",
+          "accelerator-pod"
+        ]
+      }
+    },
+    {
+      "id": "S04",
+      "name": "CXL 3.2",
+      "org": "CXL Consortium",
+      "layer": "memory",
+      "date": "2024-12-03",
+      "status": {
+        "zh": "3.2 规范发布",
+        "en": "3.2 specification released"
+      },
+      "summary": {
+        "zh": "开放的一致性互连：新增用于内存分层的热页监测单元（CHMU）、通用事件记录、在线固件激活，并通过可信安全协议（TSP）扩展安全；与此前所有CXL规范完全向后兼容。",
+        "en": "Open coherent interconnect: adds a Hot-Page Monitoring Unit (CHMU) for memory tiering, common event records, online firmware activation and extends security through the Trusted Security Protocol (TSP); fully backward compatible with all earlier CXL specifications."
+      },
+      "facts": [],
+      "evidence": "primary-read",
+      "sources": [
+        {
+          "label": "CXL Consortium: CXL 3.2 announcement",
+          "url": "https://computeexpresslink.org/wp-content/uploads/2024/12/CXL_3.2-Spec-Announcement_FINAL-1.pdf",
+          "type": "primary"
+        }
+      ],
+      "caveat": {
+        "zh": "仅一份百科类来源称CXL 4.0已于2025年11月18日发布（128 GT/s）；本页未核实。",
+        "en": "Only an encyclopaedic source says CXL 4.0 was released on 18 Nov 2025 (128 GT/s); not verified here."
+      },
+      "links": {
+        "hotchips": [
+          {
+            "year": 2022,
+            "title": "Scale depends on mapping and coordination"
+          },
+          {
+            "year": 2024,
+            "title": "Memory placement and coherence drew sustained probing."
+          },
+          {
+            "year": 2025,
+            "title": "Memory expansion needed an access model."
+          }
+        ],
+        "bridge": [
+          "B8",
+          "B11"
+        ],
+        "earnings": [
+          "QA059",
+          "QA157",
+          "QA046"
+        ],
+        "terms": [
+          "cxl",
+          "coherence",
+          "kv-cache"
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "json_parse": "passed",
+    "unique_ids": "passed",
+    "browser": "pending_parent_integration"
+  },
+  "next_recovery": "Review listed source gaps; do not treat this cutoff as complete historical coverage."
+}

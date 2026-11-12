@@ -1,0 +1,1282 @@
+{
+  "run_id": "earnings-refresh-2026-11-12",
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "timezone": "Europe/London",
+  "method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+  "companies": [
+    {
+      "company": "Alibaba",
+      "url": "https://www.alibabagroup.com/en-US/ir-financial-reports-quarterly-results",
+      "official_ref": "turn118view0",
+      "endpoint_status": "partial_archive",
+      "observation": "September heading without release link; June and March release links visible; placeholder is not results.",
+      "locator": "lines43–64",
+      "query": "\"Alibaba\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 0,
+      "confirmed_absence": false,
+      "post_call_query": "\"Alibaba\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Alphabet",
+      "url": "https://abc.xyz/investor/earnings/",
+      "official_ref": "turn118view1",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Earnings year selector only; no result body.",
+      "locator": "lines22–30",
+      "query": "\"Alphabet\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 0,
+      "confirmed_absence": false,
+      "post_call_query": "\"Alphabet\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Amazon",
+      "url": "https://ir.aboutamazon.com/quarterly-results/default.aspx",
+      "official_ref": "turn118view2",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Quarterly-results heading only.",
+      "locator": "lines29–41",
+      "query": "\"Amazon\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 0,
+      "confirmed_absence": false,
+      "post_call_query": "\"Amazon\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "AMD",
+      "url": "https://ir.amd.com/financial-information/financial-results",
+      "official_ref": "turn118view3",
+      "endpoint_status": "selected_archive",
+      "observation": "Q3 2026 latest block; previously recorded.",
+      "locator": "lines34–48",
+      "query": "\"AMD\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 0,
+      "confirmed_absence": false,
+      "post_call_query": "\"AMD\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Applied Materials",
+      "url": "https://ir.appliedmaterials.com/financial-information/quarterly-results/",
+      "official_ref": "turn118view4",
+      "endpoint_status": "partial_archive",
+      "observation": "Opening excerpt mostly navigation; not a complete archive review.",
+      "locator": "lines0–117",
+      "query": "\"Applied Materials\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 1,
+      "confirmed_absence": false,
+      "post_call_query": "\"Applied Materials\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Arista",
+      "url": "https://www.arista.com/en/company/news/press-release/25025-pr-20261103",
+      "official_ref": "turn118view5",
+      "endpoint_status": "historical_release_only",
+      "observation": "November3 release read; already counted; cannot establish later absence.",
+      "locator": "lines27–41",
+      "query": "\"Arista\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 1,
+      "confirmed_absence": false,
+      "post_call_query": "\"Arista\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Arm",
+      "url": "https://investors.arm.com/financials/quarterly-annual-results",
+      "official_ref": "turn118view6",
+      "endpoint_status": "selected_archive",
+      "observation": "FY2027 Q2 Nov4 result and official transcript links; already counted.",
+      "locator": "lines3–26",
+      "query": "\"Arm\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 1,
+      "confirmed_absence": false,
+      "post_call_query": "\"Arm\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "ASML",
+      "url": "https://investor.asml.com/quarterly-results",
+      "official_ref": "turn121view0",
+      "endpoint_status": "access_blocked",
+      "observation": "403 Forbidden.",
+      "locator": "fetch failure",
+      "query": "\"ASML\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 1,
+      "confirmed_absence": false,
+      "post_call_query": "\"ASML\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Baidu",
+      "url": "https://ir.baidu.com/",
+      "official_ref": "turn121view1",
+      "endpoint_status": "selected_archive",
+      "observation": "Q3 scheduled November16; Q2 latest presented results.",
+      "locator": "lines4–50",
+      "query": "\"Baidu\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 2,
+      "confirmed_absence": false,
+      "post_call_query": "\"Baidu\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Broadcom",
+      "url": "https://investors.broadcom.com/financial-information/quarterly-results",
+      "official_ref": "turn121view2",
+      "endpoint_status": "stale_archive",
+      "observation": "Visible latest FY2026 Q2; later periods not established by extraction.",
+      "locator": "lines10–27",
+      "query": "\"Broadcom\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 2,
+      "confirmed_absence": false,
+      "post_call_query": "\"Broadcom\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Cisco",
+      "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-schedules-conference-call-for-q1-fiscal-year-2027-financial-results.html",
+      "official_ref": "turn121view3",
+      "endpoint_status": "future_notice",
+      "observation": "Nov12 after US close, beyond this morning cutoff.",
+      "locator": "lines97–125",
+      "query": "\"Cisco\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 2,
+      "confirmed_absence": false,
+      "post_call_query": "\"Cisco\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "CoreWeave",
+      "url": "https://investors.coreweave.com/financials/quarterly-results/",
+      "official_ref": "turn121view4",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Quarterly archive shell; separate Nov10 release and official call verified.",
+      "locator": "lines4–16",
+      "query": "\"CoreWeave\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 2,
+      "confirmed_absence": false,
+      "post_call_query": "\"CoreWeave\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Dell",
+      "url": "https://investors.delltechnologies.com/financial-information/financial-results",
+      "official_ref": "turn121view5",
+      "endpoint_status": "selected_archive",
+      "observation": "FY2027 Q2 latest block.",
+      "locator": "lines39–53",
+      "query": "\"Dell\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 3,
+      "confirmed_absence": false,
+      "post_call_query": "\"Dell\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Digital Realty",
+      "url": "https://investor.digitalrealty.com/financials/quarterly-results",
+      "official_ref": "turn121view6",
+      "endpoint_status": "selected_archive",
+      "observation": "Q3 2026 materials listed; prior recorded result.",
+      "locator": "lines59–79",
+      "query": "\"Digital Realty\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 3,
+      "confirmed_absence": false,
+      "post_call_query": "\"Digital Realty\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Eaton",
+      "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118226000037/etn09302026exhibit99.htm",
+      "official_ref": "turn122view0",
+      "endpoint_status": "historical_release_only",
+      "observation": "November3 results already counted; not later-period archive coverage.",
+      "locator": "lines4–19",
+      "query": "\"Eaton\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 3,
+      "confirmed_absence": false,
+      "post_call_query": "\"Eaton\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Equinix",
+      "url": "https://investor.equinix.com/financial-information/financial-results",
+      "official_ref": "turn122view1",
+      "endpoint_status": "partial_archive",
+      "observation": "Returned excerpt navigation; no comprehensive archive read.",
+      "locator": "lines0–47",
+      "query": "\"Equinix\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 3,
+      "confirmed_absence": false,
+      "post_call_query": "\"Equinix\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "HPE",
+      "url": "https://investors.hpe.com/financial/quarterly-results",
+      "official_ref": "turn122view2",
+      "endpoint_status": "selected_archive",
+      "observation": "2026 Q1–Q3 materials; Q4 empty.",
+      "locator": "lines79–96",
+      "query": "\"HPE\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 4,
+      "confirmed_absence": false,
+      "post_call_query": "\"HPE\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Intel",
+      "url": "https://www.intc.com/financial-info/financial-results",
+      "official_ref": "turn122view3",
+      "endpoint_status": "selected_archive",
+      "observation": "Q3 2026 materials visible, already counted.",
+      "locator": "lines54–79",
+      "query": "\"Intel\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 4,
+      "confirmed_absence": false,
+      "post_call_query": "\"Intel\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "KLA",
+      "url": "https://ir.kla.com/news-events/press-releases",
+      "official_ref": "turn122view4",
+      "endpoint_status": "selected_archive",
+      "observation": "Nov5 dividend and Oct28 earnings listed; no new result in displayed portion.",
+      "locator": "lines51–63",
+      "query": "\"KLA\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 4,
+      "confirmed_absence": false,
+      "post_call_query": "\"KLA\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Lam Research",
+      "url": "https://investor.lamresearch.com/quarterly-results",
+      "official_ref": "turn122view5",
+      "endpoint_status": "selected_archive",
+      "observation": "September2026 quarter latest visible.",
+      "locator": "lines12–41",
+      "query": "\"Lam Research\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 4,
+      "confirmed_absence": false,
+      "post_call_query": "\"Lam Research\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Lenovo",
+      "url": "https://investor.lenovo.com/en/financial/results.php",
+      "official_ref": "turn122view6",
+      "endpoint_status": "selected_archive",
+      "observation": "FY2026/27 Q1 latest visible.",
+      "locator": "lines79–93",
+      "query": "\"Lenovo\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 5,
+      "confirmed_absence": false,
+      "post_call_query": "\"Lenovo\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Marvell",
+      "url": "https://investor.marvell.com/news-events/press-releases/detail/1040/marvell-and-lumentum-to-combine-creating-a-category-leader-in-ai-connectivity",
+      "official_ref": "turn124view0",
+      "endpoint_status": "historical_release_only",
+      "observation": "Previously recorded merger announcement; does not establish new earnings absence.",
+      "locator": "lines81–85",
+      "query": "\"Marvell\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 5,
+      "confirmed_absence": false,
+      "post_call_query": "\"Marvell\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Meta",
+      "url": "https://investor.atmeta.com/investor-events/default.aspx",
+      "official_ref": "turn124view1",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Events shell with no extracted past-event records.",
+      "locator": "lines81–89",
+      "query": "\"Meta\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 5,
+      "confirmed_absence": false,
+      "post_call_query": "\"Meta\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Micron",
+      "url": "https://investors.micron.com/financials/quarterly-results/default.aspx",
+      "official_ref": "turn124view2",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Quarterly-result selectors only.",
+      "locator": "lines4–15",
+      "query": "\"Micron\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 5,
+      "confirmed_absence": false,
+      "post_call_query": "\"Micron\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Microsoft",
+      "url": "https://www.microsoft.com/en-us/investor/default?l=5",
+      "official_ref": "turn124view3",
+      "endpoint_status": "selected_archive",
+      "observation": "Oct28 FY27Q1 latest announcement displayed.",
+      "locator": "lines90–123",
+      "query": "\"Microsoft\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 6,
+      "confirmed_absence": false,
+      "post_call_query": "\"Microsoft\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "NVIDIA",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx",
+      "official_ref": "turn124view4",
+      "endpoint_status": "future_notice",
+      "observation": "Nov17 FY2027Q3 call announced; not completed.",
+      "locator": "lines98–106",
+      "query": "\"NVIDIA\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 6,
+      "confirmed_absence": false,
+      "post_call_query": "\"NVIDIA\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Oracle",
+      "url": "https://investor.oracle.com/home/",
+      "official_ref": "turn124view5",
+      "endpoint_status": "dynamic_shell",
+      "observation": "Investor news/events headings without event records.",
+      "locator": "lines14–20",
+      "query": "\"Oracle\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 6,
+      "confirmed_absence": false,
+      "post_call_query": "\"Oracle\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Qualcomm",
+      "url": "https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-Schedules-Fourth-Quarter-and-Fiscal-2026-Earnings-Release-and-Conference-Call/default.aspx",
+      "official_ref": "turn124view6",
+      "endpoint_status": "historical_notice_only",
+      "observation": "October22 announcement for Nov4 call; actual results already recorded previously.",
+      "locator": "lines44–51",
+      "query": "\"Qualcomm\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 6,
+      "confirmed_absence": false,
+      "post_call_query": "\"Qualcomm\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Samsung",
+      "url": "https://news.samsung.com/global/category/press-release",
+      "official_ref": "turn127view0",
+      "endpoint_status": "selected_archive",
+      "observation": "Nov11 sports release; Oct29 Q3 result already recorded.",
+      "locator": "lines65–73",
+      "query": "\"Samsung\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 7,
+      "confirmed_absence": false,
+      "post_call_query": "\"Samsung\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Schneider Electric",
+      "url": "https://www.se.com/ww/en/about-us/investor-relations/financial-results/",
+      "official_ref": "turn127view1",
+      "endpoint_status": "selected_archive",
+      "observation": "Oct16 Q3 revenue row; FY result unavailable.",
+      "locator": "lines14–35",
+      "query": "\"Schneider Electric\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 7,
+      "confirmed_absence": false,
+      "post_call_query": "\"Schneider Electric\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "SK hynix",
+      "url": "https://news.skhynix.com/en/",
+      "official_ref": "turn127view2",
+      "endpoint_status": "selected_archive",
+      "observation": "Nov11 technical news; Oct28 Q3 earnings already recorded.",
+      "locator": "lines32–71",
+      "query": "\"SK hynix\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 7,
+      "confirmed_absence": false,
+      "post_call_query": "\"SK hynix\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Supermicro",
+      "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+      "official_ref": "turn127view3",
+      "endpoint_status": "historical_release_only",
+      "observation": "Nov3 results already recorded; no financial-close filing audit.",
+      "locator": "lines51–69",
+      "query": "\"Supermicro\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 7,
+      "confirmed_absence": false,
+      "post_call_query": "\"Supermicro\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Tencent",
+      "url": "https://www.tencent.com/investors/results/",
+      "official_ref": "turn127view4",
+      "endpoint_status": "partial_archive",
+      "observation": "Opening excerpt navigation; search shows Q2 latest; cannot establish complete archive.",
+      "locator": "lines103–122",
+      "query": "\"Tencent\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 8,
+      "confirmed_absence": false,
+      "post_call_query": "\"Tencent\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "TSMC",
+      "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+      "official_ref": "turn127view5",
+      "endpoint_status": "historical_quarter_only",
+      "observation": "Q3 page already recorded; separate October monthly report verified.",
+      "locator": "quarter page opening; separate monthly body",
+      "query": "\"TSMC\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 8,
+      "confirmed_absence": false,
+      "post_call_query": "\"TSMC\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    },
+    {
+      "company": "Vertiv",
+      "url": "https://investors.vertiv.com/news/default.aspx",
+      "official_ref": "turn127view6",
+      "endpoint_status": "partial_archive",
+      "observation": "Opening excerpt navigation; archive incomplete.",
+      "locator": "lines0–22",
+      "query": "\"Vertiv\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+      "search_batch": 8,
+      "confirmed_absence": false,
+      "post_call_query": "\"Vertiv\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+    }
+  ],
+  "search_batches": [
+    {
+      "companies": [
+        "Alibaba",
+        "Alphabet",
+        "Amazon",
+        "AMD"
+      ],
+      "results": [
+        {
+          "title_url": "AMD Reports Third Quarter 2026 Financial Results :: Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/news-events/press-releases/detail/1303/amd-reports-third-quarter-2026-financial-results)",
+          "ref": "turn131search0"
+        },
+        {
+          "title_url": "Alibaba Group Will Announce September Quarter 2026 Results on November 19, 2026-Alibaba Group (https://www.alibabagroup.com/en-US/document-2054756418245885952)",
+          "ref": "turn131search1"
+        },
+        {
+          "title_url": "Alibaba Investor Relations - Alibaba Group (https://www.alibabagroup.com/en-US/ir-news-filings)",
+          "ref": "turn131search2"
+        },
+        {
+          "title_url": "AMD Reports Third Quarter 2026 Financial Results - AMD Newsroom (https://newsroom.amd.com/news/amd-reports-third-quarter-2026-earnings/)",
+          "ref": "turn131search3"
+        },
+        {
+          "title_url": "News and Media Resources - Alibaba Group (https://www.alibabagroup.com/en-US/news-press-releases)",
+          "ref": "turn131search4"
+        },
+        {
+          "title_url": "Amazon.com, Inc. - Amazon.com Announces Third Quarter Results (https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/)",
+          "ref": "turn131search5"
+        },
+        {
+          "title_url": "Amazon Q3 2026 earnings report: Read the release (https://www.aboutamazon.com/news/company-news/amazon-earnings-q3-2026-report?trk=organization_guest_main-feed-card-text)",
+          "ref": "turn131search6"
+        },
+        {
+          "title_url": "November 3, 2026 - EX-99.1 - 8-K: Current report | Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000188/q32026991.htm)",
+          "ref": "turn131search7"
+        },
+        {
+          "title_url": "Financial Results :: Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/financial-information/financial-results)",
+          "ref": "turn131search8"
+        },
+        {
+          "title_url": "Alphabet Investor Relations - Investors - Earnings (https://abc.xyz/investor/earnings/)",
+          "ref": "turn131search9"
+        },
+        {
+          "title_url": "Amazon Q2 2026 earnings report: Read the release (https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report)",
+          "ref": "turn131search10"
+        },
+        {
+          "title_url": "AMD Reports Second Quarter 2026 Financial Results :: Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results)",
+          "ref": "turn131search11"
+        },
+        {
+          "title_url": "Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/?page=1)",
+          "ref": "turn131search15"
+        },
+        {
+          "title_url": "Alphabet Investor Relations - Investors (https://abc.xyz/investor/)",
+          "ref": "turn131search16"
+        },
+        {
+          "title_url": "Alibaba Group Announces June Quarter 2026 Results-Alibaba Group (https://www.alibabagroup.com/en-US/document-2026456290057781248)",
+          "ref": "turn131search17"
+        },
+        {
+          "title_url": "August 4, 2026 - EX-99.1 - 8-K: Current report | Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000121/q22026991.htm)",
+          "ref": "turn131search18"
+        },
+        {
+          "title_url": "Press Releases :: Advanced Micro Devices, Inc. (AMD) (https://ir.amd.com/news-events/press-releases?category=financial)",
+          "ref": "turn131search19"
+        },
+        {
+          "title_url": "Alibaba Investor Relations - Alibaba Group (https://home.alibabagroup.com/en-US/ir-financial-reports-quarterly-results)",
+          "ref": "turn131search20"
+        },
+        {
+          "title_url": "AMD Reports Second Quarter 2026 Earnings - AMD Newsroom (https://newsroom.amd.com/news/amd-2q-2026-earnings/)",
+          "ref": "turn131search21"
+        },
+        {
+          "title_url": "Alibaba Investor Relations - Alibaba Group (https://www.alibabagroup.com/en-US/ir-financial-reports-financial-results)",
+          "ref": "turn131search24"
+        },
+        {
+          "title_url": "Alphabet Investor Relations - Investors - Events - Event Details (https://abc.xyz/investor/events/event-details/)",
+          "ref": "turn131search25"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Applied Materials",
+        "Arista",
+        "Arm",
+        "ASML"
+      ],
+      "results": [
+        {
+          "title_url": "Arista Networks - Arista Networks, Inc. Reports Third Quarter 2026 Financial Results (https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2026/Arista-Networks-Inc--Reports-Third-Quarter-2026-Financial-Results/default.aspx)",
+          "ref": "turn132search0"
+        },
+        {
+          "title_url": "ASML reports €11.7 billion total net sales and €5.0 billion net income in Q3 2026 | Wed, 10/14/2026 - 07:00 (https://investor.asml.com/news-releases/news-release-details/asml-reports-eu11.7-billion-total-net-sales-and-eu5.0-billion-net-income-q3-2026)",
+          "ref": "turn132search1"
+        },
+        {
+          "title_url": "Press releases | ASML - Supplying the semiconductor industry (https://investor.asml.com/news/press-releases)",
+          "ref": "turn132search2"
+        },
+        {
+          "title_url": "Quarterly results | ASML - Supplying the semiconductor industry (https://www.investor.asml.com/quarterly-results)",
+          "ref": "turn132search4"
+        },
+        {
+          "title_url": "ASML reports €9.3 billion total net sales and €2.9 billion net income in Q2 2026 | Wed, 07/15/2026 - 08:00 (https://www.investor.asml.com/news-releases/news-release-details/q2-2026-financial-results)",
+          "ref": "turn132search5"
+        },
+        {
+          "title_url": "Events | Applied Materials (https://investors.appliedmaterials.com/events)",
+          "ref": "turn132search6"
+        },
+        {
+          "title_url": "Investor Relations | Applied Materials (https://ir.appliedmaterials.com/)",
+          "ref": "turn132search7"
+        },
+        {
+          "title_url": "Events | Applied Materials (https://ir.appliedmaterials.com/events)",
+          "ref": "turn132search11"
+        },
+        {
+          "title_url": "Arista Networks - Home (https://investors.arista.com/Home/default.aspx)",
+          "ref": "turn132search12"
+        },
+        {
+          "title_url": "Applied Materials Announces Third Quarter 2026 Results (https://www.appliedmaterials.com/us/en/newsroom/press-releases/081326-applied-materials-announces-third-quarter-2026-results.html)",
+          "ref": "turn132search13"
+        },
+        {
+          "title_url": "Arista Networks - Home (https://investors.arista.com/Home/)",
+          "ref": "turn132search15"
+        },
+        {
+          "title_url": "Arista Networks, Inc. Reports Third Quarter 2026 Financial Results - Arista (https://www.arista.com/zh/company/news/press-release/25025-pr-20261103)",
+          "ref": "turn132search19"
+        },
+        {
+          "title_url": "Arm delivers record-breaking quarter and full-year results   - Arm Newsroom (https://newsroom.arm.com/news/arm-q4-fye26-results)",
+          "ref": "turn132search20"
+        },
+        {
+          "title_url": "Arista Networks, Inc. Reports Second Quarter 2026 Financial Results - Arista (https://www.arista.com/company/news/press-release/24401-pr-20260804)",
+          "ref": "turn132search21"
+        },
+        {
+          "title_url": "Quarterly Earnings | Applied Materials (https://ir.appliedmaterials.com/financial-information/quarterly-results)",
+          "ref": "turn132search22"
+        },
+        {
+          "title_url": "Quarterly Earnings | Applied Materials (https://investor.appliedmaterials.com/financial-information/quarterly-results)",
+          "ref": "turn132search23"
+        },
+        {
+          "title_url": "Quarterly Earnings | Applied Materials (https://investors.appliedmaterials.com/financial-information/quarterly-results)",
+          "ref": "turn132search24"
+        },
+        {
+          "title_url": "News and Media (https://www.appliedmaterials.com/eu/en/news-and-media.html)",
+          "ref": "turn132search25"
+        },
+        {
+          "title_url": "News and Media (https://www.appliedmaterials.com/in/en/news-and-media.html)",
+          "ref": "turn132search27"
+        },
+        {
+          "title_url": "Investors | ASML - Supplying the semiconductor industry (https://investor.asml.com/)",
+          "ref": "turn132search31"
+        },
+        {
+          "title_url": "Earnings | Applied Materials (https://ir.appliedmaterials.com/taxonomy/term/3896)",
+          "ref": "turn132search32"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Baidu",
+        "Broadcom",
+        "Cisco",
+        "CoreWeave"
+      ],
+      "results": [
+        {
+          "title_url": "CoreWeave - CoreWeave Reports Strong Third Quarter 2026 Results (https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx)",
+          "ref": "turn133search0"
+        },
+        {
+          "title_url": "Broadcom Inc. Announces Third Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend (https://www.broadcom.com/company/news/apj/financial-releases/64671)",
+          "ref": "turn133search1"
+        },
+        {
+          "title_url": "Document (https://www.sec.gov/Archives/edgar/data/1769628/000176962826000461/coreweave3q26earningspress.htm)",
+          "ref": "turn133search2"
+        },
+        {
+          "title_url": "Cisco Reports Fourth Quarter Earnings (https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m08/cisco-reports-fourth-quarter-earnings.html)",
+          "ref": "turn133search3"
+        },
+        {
+          "title_url": "Investor Overview | Baidu Inc (https://ir.baidu.com/investor-overview/)",
+          "ref": "turn133search4"
+        },
+        {
+          "title_url": "CoreWeave - Investor Relations (https://investors.coreweave.com/overview/)",
+          "ref": "turn133search7"
+        },
+        {
+          "title_url": "Press Releases | Baidu Inc (https://ir.baidu.com/press-releases)",
+          "ref": "turn133search9"
+        },
+        {
+          "title_url": "Cisco Systems Inc. - Financials - Quarterly Results (https://investor.cisco.com/financials/quarterly-results/default.aspx)",
+          "ref": "turn133search11"
+        },
+        {
+          "title_url": "Cisco Systems Inc. - CISCO REPORTS FOURTH QUARTER AND FISCAL YEAR 2026 EARNINGS (https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-FOURTH-QUARTER-AND-FISCAL-YEAR-2026-EARNINGS/default.aspx)",
+          "ref": "turn133search17"
+        },
+        {
+          "title_url": "CoreWeave - CoreWeave Reports Strong Second Quarter 2026 Results (https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx)",
+          "ref": "turn133search18"
+        },
+        {
+          "title_url": "Cisco Systems Inc. - CISCO REPORTS THIRD QUARTER EARNINGS (https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-THIRD-QUARTER-EARNINGS/default.aspx)",
+          "ref": "turn133search19"
+        },
+        {
+          "title_url": "Cisco Systems Inc. - News (https://investor.cisco.com/news/)",
+          "ref": "turn133search20"
+        },
+        {
+          "title_url": "CoreWeave 3Q26 Outlook Presentation (https://investors.coreweave.com/files/content_files/CoreWeave-4Q-and-FY2026-Outlook-Presentation-_1_.pdf)",
+          "ref": "turn133search53"
+        },
+        {
+          "title_url": "Financial News | Broadcom Inc. (https://investors.broadcom.com/financial-information/financial-news-releases)",
+          "ref": "turn133search21"
+        },
+        {
+          "title_url": "Investor Center | Broadcom Inc. (https://investors.broadcom.com/)",
+          "ref": "turn133search22"
+        },
+        {
+          "title_url": "Past Events | Baidu Inc (https://ir.baidu.com/past-events/)",
+          "ref": "turn133search27"
+        },
+        {
+          "title_url": "Cisco Systems Inc. - CISCO REPORTS SECOND QUARTER EARNINGS (https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-SECOND-QUARTER-EARNINGS/default.aspx)",
+          "ref": "turn133search31"
+        },
+        {
+          "title_url": "Broadcom Inc. Announces Second Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend (https://www.broadcom.com/company/news/financial-releases/64371)",
+          "ref": "turn133search32"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Dell",
+        "Digital Realty",
+        "Eaton",
+        "Equinix"
+      ],
+      "results": [
+        {
+          "title_url": "Financial Information :: Equinix, Inc. (EQIX) (https://investor.equinix.com/financial-information)",
+          "ref": "turn135search0"
+        },
+        {
+          "title_url": "Equinix Reports Third-Quarter Results and Raises 2026 Guidance - Oct 28, 2026 (https://newsroom.equinix.com/2026-10-28-Equinix-Reports-Third-Quarter-Results-and-Raises-2026-Guidance)",
+          "ref": "turn135search2"
+        },
+        {
+          "title_url": "Equinix Reports Second-Quarter Results, Raises 2026 Guidance and Long-Term Outlook :: Equinix, Inc. (EQIX) (https://investor.equinix.com/news-events/press-releases/detail/1114/equinix-reports-second-quarter-results-raises-2026)",
+          "ref": "turn135search5"
+        },
+        {
+          "title_url": "Financial Results :: Equinix, Inc. (EQIX) (https://investor.equinix.com/financial-information/financial-results)",
+          "ref": "turn135search11"
+        },
+        {
+          "title_url": "Equinix, Inc. (EQIX) (https://investor.equinix.com/?ls=Public+Relations&lsd=23q1__--_%2Finvestors_pr-equinix_pr-newswire_press-release__us-en_AMER_23q1-earnings-alert_awareness)",
+          "ref": "turn135search20"
+        },
+        {
+          "title_url": "Dell Technologies Delivers Fourth Quarter and Full-Year Fiscal 2026 Results :: Dell Technologies, Inc. (DELL) (https://investors.delltechnologies.com/news-events/press-releases/detail/93/dell-technologies-delivers-fourth-quarter-and-full-year-fiscal-2026-results)",
+          "ref": "turn135search28"
+        },
+        {
+          "title_url": "Dell Technologies, Inc. (DELL) (https://investors.delltechnologies.com/?page=1)",
+          "ref": "turn135search30"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "HPE",
+        "Intel",
+        "KLA",
+        "Lam Research"
+      ],
+      "results": [
+        {
+          "title_url": "Lam Research Corporation Reports Financial Results for the Quarter Ended September 27, 2026 - Oct 21, 2026 (https://investor.lamresearch.com/2026-10-21-Lam-Research-Corporation-Reports-Financial-Results-for-the-Quarter-Ended-September-27%2C-2026)",
+          "ref": "turn136search0"
+        },
+        {
+          "title_url": "HPE reports fiscal 2026 third quarter results | HPE (https://www.hpe.com/us/en/newsroom/press-release/2026/09/hpe-reports-fiscal-2026-third-quarter-results.html)",
+          "ref": "turn136search1"
+        },
+        {
+          "title_url": "Lam Research Corporation Reports Financial Results for the Quarter Ended September 27, 2026 - Oct 21, 2026 (https://newsroom.lamresearch.com/2026-10-21-Lam-Research-Corporation-Reports-Financial-Results-for-the-Quarter-Ended-September-27%2C-2026)",
+          "ref": "turn136search2"
+        },
+        {
+          "title_url": "Hewlett Packard Enterprise (https://investors.hpe.com/)",
+          "ref": "turn136search3"
+        },
+        {
+          "title_url": "News & Events – Hewlett Packard Enterprise (https://investors.hpe.com/news-and-events)",
+          "ref": "turn136search5"
+        },
+        {
+          "title_url": "Financial Results :: Intel Corporation (INTC) (https://www.intc.com/financial-info/financial-results)",
+          "ref": "turn136search7"
+        },
+        {
+          "title_url": "KLA CORPORATION REPORTS FISCAL 2026 FOURTH QUARTER AND FULL YEAR RESULTS :: KLA Corporation (KLAC) (https://ir.kla.com/news-events/press-releases/detail/518/kla-corporation-reports-fiscal-2026-fourth-quarter-and-full)",
+          "ref": "turn136search9"
+        },
+        {
+          "title_url": "Press Releases :: Intel Corporation (INTC) (https://www.intc.com/news-events/press-releases?category=financial&page=1)",
+          "ref": "turn136search15"
+        },
+        {
+          "title_url": "Lam Research Corporation Reports Financial Results for the Quarter Ended June 28, 2026 - Jul 29, 2026 (https://investor.lamresearch.com/2026-07-29-Lam-Research-Corporation-Reports-Financial-Results-for-the-Quarter-Ended-June-28%2C-2026)",
+          "ref": "turn136search18"
+        },
+        {
+          "title_url": "Lam Research Investor Relations - Quarterly Results (https://investor.lamresearch.com/quarterly-results)",
+          "ref": "turn136search27"
+        },
+        {
+          "title_url": "Press Releases :: KLA Corporation (KLAC) (https://ir.kla.com/news-events/press-releases?page=2)",
+          "ref": "turn136search36"
+        },
+        {
+          "title_url": "Stock – Hewlett Packard Enterprise (https://investors.hpe.com/stock)",
+          "ref": "turn136search38"
+        },
+        {
+          "title_url": "HPE reports fiscal 2026 second quarter results | HPE (https://www.hpe.com/us/en/newsroom/press-release/2026/06/hpe-reports-fiscal-2026-second-quarter-results.html)",
+          "ref": "turn136search42"
+        },
+        {
+          "title_url": "Investor Relations :: Intel Corporation (INTC) (https://www.intc.com/?wapkw=%24INTC+Q2+2026)",
+          "ref": "turn136search44"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Lenovo",
+        "Marvell",
+        "Meta",
+        "Micron"
+      ],
+      "results": [
+        {
+          "title_url": "Meta - Meta Reports Third Quarter 2026 Results (https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/)",
+          "ref": "turn137search0"
+        },
+        {
+          "title_url": "Meta - Investor Events (https://investor.atmeta.com/investor-events/)",
+          "ref": "turn137search1"
+        },
+        {
+          "title_url": "Meta - Meta Reports Third Quarter 2026 Results (https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx)",
+          "ref": "turn137search2"
+        },
+        {
+          "title_url": "Micron Technology, Inc. - Financials - Quarterly results (https://investors.micron.com/financials/quarterly-results/default.aspx)",
+          "ref": "turn137search3"
+        },
+        {
+          "title_url": "Meta - Home (https://investor.atmeta.com/home/default.aspx)",
+          "ref": "turn137search4"
+        },
+        {
+          "title_url": "Micron Technology, Inc. - Micron Technology, Inc. Reports Record Fiscal Fourth-Quarter and Full-Year 2026 Results (https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn137search6"
+        },
+        {
+          "title_url": "Financial Results | Marvell Technology, Inc. (MRVL) (https://investor.marvell.com/financial-information/financial-results)",
+          "ref": "turn137search7"
+        },
+        {
+          "title_url": "Micron Technology, Inc. - Investor Relations (https://investors.micron.com/overview/)",
+          "ref": "turn137search9"
+        },
+        {
+          "title_url": "Announcements | Lenovo (https://investor.lenovo.com/en/publications/announcements.php)",
+          "ref": "turn137search11"
+        },
+        {
+          "title_url": "Meta - Financials (https://investor.atmeta.com/financials/default.aspx)",
+          "ref": "turn137search12"
+        },
+        {
+          "title_url": "Investor Calendar | Lenovo (https://investor.lenovo.com/en/ir/calendar.php)",
+          "ref": "turn137search13"
+        },
+        {
+          "title_url": "Key Financial Data | Lenovo (https://investor.lenovo.com/en/financial/key_fin_data.php)",
+          "ref": "turn137search15"
+        },
+        {
+          "title_url": "Micron Technology, Inc. - Micron Technology, Inc. Reports Record Fiscal Fourth-Quarter and Full-Year 2026 Results (https://stage-investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx)",
+          "ref": "turn137search18"
+        },
+        {
+          "title_url": "Income Statement | Lenovo (https://investor.lenovo.com/en/financial/income_statement.php)",
+          "ref": "turn137search26"
+        },
+        {
+          "title_url": "Investor Relations | Marvell Technology, Inc. (MRVL) (https://investor.marvell.com/?pagetemplate=googlesitemap)",
+          "ref": "turn137search28"
+        },
+        {
+          "title_url": "Corporate News | Lenovo (https://investor.lenovo.com/en/news/corpnews.php)",
+          "ref": "turn137search30"
+        },
+        {
+          "title_url": "Press Kits - Lenovo StoryHub (https://news.lenovo.com/press-kits/)",
+          "ref": "turn137search35"
+        },
+        {
+          "title_url": "Results & Presentations | Lenovo (https://investor.lenovo.com/en/financial/results.php)",
+          "ref": "turn137search39"
+        },
+        {
+          "title_url": "Lenovo Delivers Exceptional Fourth Quarter Results – Maintaining Growth and Concluding Strongest Year in the Group’s History - Lenovo StoryHub (https://news.lenovo.com/pressroom/press-releases/fy-2025-26/)",
+          "ref": "turn137search43"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Microsoft",
+        "NVIDIA",
+        "Oracle",
+        "Qualcomm"
+      ],
+      "results": [
+        {
+          "title_url": "NVIDIA Corporation - NVIDIA Announces Financial Results for Second Quarter Fiscal 2027 (https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/)",
+          "ref": "turn138search0"
+        },
+        {
+          "title_url": "Qualcomm Schedules Fourth Quarter and Fiscal 2026 Earnings Release and Conference Call | Qualcomm (https://www.qualcomm.com/news/releases/2026/10/qualcomm-schedules-fourth-quarter-and-fiscal-2026-earnings-relea)",
+          "ref": "turn138search1"
+        },
+        {
+          "title_url": "Qualcomm Earnings Release Available on Company’s Investor Relations Website | Qualcomm (https://www.qualcomm.com/news/releases/2026/11/qualcomm-earnings-release-available-on-company-s-investor-relati)",
+          "ref": "turn138search2"
+        },
+        {
+          "title_url": "FY26 Q4 - Press Releases - Investor Relations - Microsoft (https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast)",
+          "ref": "turn138search3"
+        },
+        {
+          "title_url": "Oracle - Oracle Announces Record Q4 and FY 2026 Results Driven by Cloud Infrastructure & Cloud Applications (https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/)",
+          "ref": "turn138search4"
+        },
+        {
+          "title_url": "Qualcomm Technology News & Trends | Qualcomm (https://www.qualcomm.com/news)",
+          "ref": "turn138search5"
+        },
+        {
+          "title_url": "Press Announcements and News Releases | Qualcomm (https://www.qualcomm.com/news/releases)",
+          "ref": "turn138search6"
+        },
+        {
+          "title_url": "Qualcomm - Investor Relations (https://investor.qualcomm.com/overview/)",
+          "ref": "turn138search7"
+        },
+        {
+          "title_url": "Qualcomm - Qualcomm Earnings Release Available on Company's Investor Relations Website (https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-Earnings-Release-Available-on-Companys-Investor-Relations-Website-c5258267a/default.aspx)",
+          "ref": "turn138search8"
+        },
+        {
+          "title_url": "Oracle - Investor Relations (https://investor.oracle.com/home/default.aspx)",
+          "ref": "turn138search9"
+        },
+        {
+          "title_url": "NVIDIA Corporation - NVIDIA Announces Financial Results for Fourth Quarter and Fiscal 2026 (https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026/)",
+          "ref": "turn138search11"
+        },
+        {
+          "title_url": "NVIDIA Corporation - NVIDIA Announces Financial Results for First Quarter Fiscal 2027 (https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027/default.aspx?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn138search13"
+        },
+        {
+          "title_url": "## BUSINESS OVERVIEW (https://www.sec.gov/Archives/edgar/data/1045810/000104581026000038/a2026-annualxreportxwebxfi.pdf)",
+          "ref": "turn138search50"
+        },
+        {
+          "title_url": "FY26 Q4 - Press Releases - Investor Relations - Microsoft (https://lachlanrussell.com/api/p/www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast?sid=session_1792659483498029356_tT2B2Upm9bY%3D)",
+          "ref": "turn138search15"
+        },
+        {
+          "title_url": "Oracle - Investor Relations (https://investor.oracle.com/home/default.aspx?os=0)",
+          "ref": "turn138search16"
+        },
+        {
+          "title_url": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call (https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4)",
+          "ref": "turn138search17"
+        },
+        {
+          "title_url": "FY27 Q1 - Press Releases - Investor Relations - Microsoft (https://sex8x8.com/__proxy/www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast)",
+          "ref": "turn138search21"
+        },
+        {
+          "title_url": "Oracle - Investor Relations (https://investor.oracle.com/home/default.aspx?page=results-centre&print=1)",
+          "ref": "turn138search25"
+        },
+        {
+          "title_url": "Qualcomm - News & Events - Press Releases (https://investor.qualcomm.com/news-events/press-releases/?page=10)",
+          "ref": "turn138search26"
+        },
+        {
+          "title_url": "NVIDIA Announces Financial Results for First Quarter Fiscal 2027 | NVIDIA Newsroom (https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027?stream=top)",
+          "ref": "turn138search34"
+        },
+        {
+          "title_url": "NVIDIA Corporation - Financial Reports (https://investor.nvidia.com/financial-info/financial-reports/default.aspx?lang=tr-TR)",
+          "ref": "turn138search35"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Samsung",
+        "Schneider Electric",
+        "SK hynix",
+        "Supermicro"
+      ],
+      "results": [
+        {
+          "title_url": "SK hynix Announces 3Q26 Financial Results | SK hynix Newsroom (https://news.skhynix.com/en/q3-2026-business-results/?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn139search0"
+        },
+        {
+          "title_url": "public-disclosure-view |  GLOBAL (https://www.samsung.com/global/ir/reports-disclosures/public-disclosure-view.84775/?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn139search1"
+        },
+        {
+          "title_url": "Super Micro Computer, Inc. - Financials - Quarterly Results (https://ir.supermicro.com/financials/quarterly-results/)",
+          "ref": "turn139search2"
+        },
+        {
+          "title_url": "Super Micro Computer, Inc. - Supermicro Announces Fourth Quarter and Full Fiscal Year 2026 Financial Results (https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Fourth-Quarter-and-Full-Fiscal-Year-2026-Financial-Results/default.aspx)",
+          "ref": "turn139search3"
+        },
+        {
+          "title_url": "Quarterly financial results | Schneider Electric (https://www.se.com/ww/en/about-us/investor-relations/financial-results/)",
+          "ref": "turn139search5"
+        },
+        {
+          "title_url": "Financial releases and regulated information | Schneider Electric (https://www.se.com/ww/en/about-us/investor-relations/regulatory-information/overview/)",
+          "ref": "turn139search6"
+        },
+        {
+          "title_url": "Samsung Electronics Announces Third Quarter 2026 Results – Samsung Global Newsroom (https://news.samsung.com/global/samsung-electronics-announces-third-quarter-2026-results)",
+          "ref": "turn139search7"
+        },
+        {
+          "title_url": "SK hynix Announces 2Q26 Financial Results | SK hynix Newsroom (https://news.skhynix.com/en/q2-2026-business-results/?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn139search9"
+        },
+        {
+          "title_url": "Samsung Electronics Announces Third Quarter 2026 Results – Samsung Global Newsroom (https://news.samsung.com/global/samsung-electronics-announces-third-quarter-2026-results?trk=article-ssr-frontend-pulse_little-text-block)",
+          "ref": "turn139search10"
+        },
+        {
+          "title_url": "IR | SK hynix Newsroom (https://news.skhynix.com/en/category/ir/)",
+          "ref": "turn139search11"
+        },
+        {
+          "title_url": "Super Micro Computer, Inc. - Supermicro Provides Fourth Quarter of Fiscal Year 2026 Preliminary Business Update (https://ir.supermicro.com/news/news-details/2026/Supermicro-Provides-Fourth-Quarter-of-Fiscal-Year-2026-Preliminary-Business-Update/default.aspx)",
+          "ref": "turn139search14"
+        },
+        {
+          "title_url": "Supermicro Announces First Quarter of Fiscal Year 2027 Financial Results | Supermicro (https://www.supermicro.com/zh-cn/pressreleases/supermicro-announces-first-quarter-fiscal-year-2027-financial-results)",
+          "ref": "turn139search17"
+        },
+        {
+          "title_url": "Earnings | SK hynix Newsroom (https://news.skhynix.com/en/tag/earnings/)",
+          "ref": "turn139search18"
+        },
+        {
+          "title_url": "Investor events | Schneider Electric (https://www.se.com/ww/en/about-us/investor-relations/financial-calendar-and-events/)",
+          "ref": "turn139search19"
+        },
+        {
+          "title_url": "Samsung Electronics Announces Earnings Guidance for Third Quarter 2026 – Samsung Newsroom Nederland (https://news.samsung.com/nl/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026)",
+          "ref": "turn139search23"
+        },
+        {
+          "title_url": "(https://www.skhynix.com/ir/UI-FR-IR01/)",
+          "ref": "turn139search25"
+        },
+        {
+          "title_url": "Supermicro Announces Fourth Quarter and Full Fiscal Year 2026 Financial Results | Supermicro (https://www.supermicro.com/fr-fr/pressreleases/supermicro-announces-fourth-quarter-and-full-fiscal-year-2026-financial-results)",
+          "ref": "turn139search26"
+        },
+        {
+          "title_url": "Sustainability reports | Schneider Electric (https://www.se.com/ww/en/about-us/sustainability/sustainability-reports/)",
+          "ref": "turn139search33"
+        },
+        {
+          "title_url": "Analyst coverage and consensus | Schneider Electric (https://www.se.com/ww/en/about-us/investor-relations/share-information/analyst-coverage-and-consensus/)",
+          "ref": "turn139search36"
+        }
+      ]
+    },
+    {
+      "companies": [
+        "Tencent",
+        "TSMC",
+        "Vertiv"
+      ],
+      "results": [
+        {
+          "title_url": "Vertiv Holdings Co. - Vertiv Reports Strong Third Quarter 2026 with Net Sales Growth of 61%, Organic Orders Growth over 100% and Diluted EPS Growth of 91% (Adjusted Diluted EPS Growth of 78%); Raises Full Year 2026 Guidance Across All Key Metrics (https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-Third-Quarter-2026-with-Net-Sales-Growth-of-61-Organic-Orders-Growth-over-100-and-Diluted-EPS-Growth-of-91-Adjusted-Diluted-EPS-Growth-of-78-Raises-Full-Year-2026-Guidance-Across-All-Key-Metrics/)",
+          "ref": "turn141search0"
+        },
+        {
+          "title_url": "Vertiv Holdings Co. - News (https://investors.vertiv.com/news/default.aspx)",
+          "ref": "turn141search1"
+        },
+        {
+          "title_url": "Investors - Tencent (https://www.tencent.com/investors/)",
+          "ref": "turn141search2"
+        },
+        {
+          "title_url": "TSMC Reports Third Quarter EPS of NT$29.43 (https://pr.tsmc.com/english/news/3346)",
+          "ref": "turn141search3"
+        },
+        {
+          "title_url": "Investors - Tencent (https://www.tencent.com/Investors/)",
+          "ref": "turn141search5"
+        },
+        {
+          "title_url": "Results - Tencent (https://www.tencent.com/investors/results/)",
+          "ref": "turn141search6"
+        },
+        {
+          "title_url": "Vertiv Holdings Co. - Vertiv Reports Strong First Quarter with Diluted EPS Growth of 136% (Adjusted Diluted EPS Growth of +83%); Raises Full-Year Guidance (https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-First-Quarter-with-Diluted-EPS-Growth-of-136-Adjusted-Diluted-EPS-Growth-of-83-Raises-Full-Year-Guidance/)",
+          "ref": "turn141search7"
+        },
+        {
+          "title_url": "Vertiv Holdings Co. - Events & Presentations - Events & Presentations (https://investors.vertiv.com/events-presentations/events-presentations/default.aspx)",
+          "ref": "turn141search10"
+        },
+        {
+          "title_url": "Vertiv Holdings Co. - Vertiv Reports Strong Fourth Quarter with Organic Orders Growth of 252% and Diluted EPS Growth of 200% (Adjusted Diluted EPS +37%) (https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-Fourth-Quarter-with-Organic-Orders-Growth-of-252-and-Diluted-EPS-Growth-of-200-Adjusted-Diluted-EPS-37/)",
+          "ref": "turn141search11"
+        },
+        {
+          "title_url": "TSMC Reports Second Quarter EPS of NT$27.25 (https://pr.tsmc.com/japanese/news/3326)",
+          "ref": "turn141search30"
+        }
+      ]
+    }
+  ],
+  "post_call_search_batches": [
+    {
+      "companies": [
+        "Alibaba",
+        "Alphabet",
+        "Amazon",
+        "AMD"
+      ],
+      "source_refs": [
+        "turn156search0",
+        "turn156search1",
+        "turn156search2",
+        "turn156search3",
+        "turn156search4",
+        "turn156search5",
+        "turn156search6",
+        "turn156search7",
+        "turn156search8"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Applied Materials",
+        "Arista",
+        "Arm",
+        "ASML"
+      ],
+      "source_refs": [
+        "turn157search0",
+        "turn157search1",
+        "turn157search2",
+        "turn157search3",
+        "turn157search4",
+        "turn157search5",
+        "turn157search6"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Baidu",
+        "Broadcom",
+        "Cisco",
+        "CoreWeave"
+      ],
+      "source_refs": [
+        "turn158search0",
+        "turn158search1",
+        "turn158search2",
+        "turn158search3",
+        "turn158search4",
+        "turn158search5",
+        "turn158search6",
+        "turn158search7",
+        "turn158search8"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Dell",
+        "Digital Realty",
+        "Eaton",
+        "Equinix"
+      ],
+      "source_refs": [
+        "turn159search0",
+        "turn159search1",
+        "turn159search2",
+        "turn159search3",
+        "turn159search4",
+        "turn159search5"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "HPE",
+        "Intel",
+        "KLA",
+        "Lam Research"
+      ],
+      "source_refs": [
+        "turn160search22",
+        "turn160search0",
+        "turn160search1",
+        "turn160search2",
+        "turn160search3"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Lenovo",
+        "Marvell",
+        "Meta",
+        "Micron"
+      ],
+      "source_refs": [
+        "turn161search0",
+        "turn161search1",
+        "turn161search2",
+        "turn161search3",
+        "turn161search4",
+        "turn161search5",
+        "turn161search6",
+        "turn161search7",
+        "turn161search8"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Microsoft",
+        "NVIDIA",
+        "Oracle",
+        "Qualcomm"
+      ],
+      "source_refs": [
+        "turn162news40",
+        "turn162search0",
+        "turn162search1",
+        "turn162search2",
+        "turn162search3",
+        "turn162search4",
+        "turn162search5",
+        "turn162search6",
+        "turn162search7",
+        "turn162search8"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Samsung",
+        "Schneider Electric",
+        "SK hynix",
+        "Supermicro"
+      ],
+      "source_refs": [
+        "turn163search0",
+        "turn163search1",
+        "turn163search2",
+        "turn163search3",
+        "turn163search4"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    },
+    {
+      "companies": [
+        "Tencent",
+        "TSMC",
+        "Vertiv"
+      ],
+      "source_refs": [
+        "turn164search0",
+        "turn164search3",
+        "turn164search1"
+      ],
+      "interpretation": "Discovery only; irrelevant/historical results may be returned. No distinct new post-call verified; absence not established."
+    }
+  ]
+}

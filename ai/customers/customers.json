@@ -1,9 +1,9 @@
 {
  "version": 1,
- "as_of": "2026-10-18",
+ "as_of": "2026-11-12",
  "scope": {
-  "zh": "谁在买、为何买、怎么付钱：九个买家的资本开支与财报问答，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。",
-  "en": "Who buys, why, and how they pay: capex and Q&A for nine buyers plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided."
+  "zh": "谁在买、为何买、怎么付钱：九个买家的资本开支与财报问答，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
+  "en": "Who buys, why, and how they pay: capex and Q&A for nine buyers plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
  },
  "evidence_levels": {
   "primary-read": {
@@ -49,14 +49,14 @@
   {
    "id": "C01",
    "group": "us",
-   "date": "2026-07-29",
+   "date": "2026-10-21",
    "title": {
-    "zh": "Meta：2026年资本开支指引 $130–145B",
-    "en": "Meta: 2026 capex outlook $130–145B"
+    "zh": "Meta：2026年资本开支指引收窄至$135–145B",
+    "en": "Meta: 2026 capex outlook narrowed to $135–145B"
    },
    "summary": {
-    "zh": "Meta 在2026年Q2业绩中将全年资本开支（含融资租赁本金）收窄至$130–145B；财报问答显示其区分了报告资本开支与合资数据中心建设。",
-    "en": "In its Q2 2026 results Meta narrowed full-year capex (including finance-lease principal) to $130–145B; the Q&A shows it separates reported capex from joint-venture data-center construction."
+    "zh": "Q3公告将全年资本开支（含融资租赁本金）下限由$130B提高至$135B，上限保持$145B。该金额是公司全年指引，不是已交付AI算力或纯GPU采购额。",
+    "en": "The Q3 release raises the lower end of full-year capex including finance-lease principal from $130B to $135B, keeping $145B at the top. It is company guidance, not delivered AI capacity or GPU-only purchases."
    },
    "facts": [
     {
@@ -64,8 +64,12 @@
      "en": "Q2 capex including finance-lease principal $31.08B; operating cash flow $31.86B; free cash flow $0.784B."
     },
     {
-     "zh": "此前指引为$125–145B（出处：新闻稿原文）。",
-     "en": "Prior outlook was $125–145B (source: press-release text)."
+     "zh": "Q2时指引从$125–145B收窄至$130–145B；Q3进一步收窄至$135–145B。",
+     "en": "Q2 narrowed the range from $125–145B to $130–145B; Q3 narrowed it further to $135–145B."
+    },
+    {
+     "zh": "Q3资本开支$34.91B、经营现金流$32.79B、自由现金流−$2.12B；上方Q2金额保留为历史比较。",
+     "en": "Q3 capex $34.91B, operating cash flow $32.79B and free cash flow −$2.12B; Q2 figures above remain historical comparisons."
     }
    ],
    "evidence": "primary-read",
@@ -74,11 +78,20 @@
      "label": "Meta Q2 2026 results (press release PDF)",
      "url": "https://s21.q4cdn.com/399680738/files/doc_news/Meta-Reports-Second-Quarter-2026-Results-2026.pdf",
      "type": "primary"
+    },
+    {
+     "label": "Meta Q3 2026 release — capex and CFO outlook",
+     "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+     "type": "primary",
+     "published_at": "2026-10-21",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "Operational highlights; CFO Outlook Commentary",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
     }
    ],
    "caveat": {
-    "zh": "新闻稿PDF已用文本提取核对上述数字；组件涨价对指引的归因来自二手报道，未在此核对。",
-    "en": "The figures above were checked by text extraction from the release PDF; the attribution of the raise to component pricing comes from press coverage and is not checked here."
+    "zh": "本轮已读Q3公告相关正文；旧Q2问答链接保留且不代表Q3证词。未据总资本开支推断芯片供应商份额或已通电容量。",
+    "en": "Relevant Q3 release text read this run. Retained Q2 Q&A links are not Q3 testimony. Total capex does not establish chip-vendor share or energised capacity."
    },
    "links": {
     "earnings": [
@@ -655,5 +668,14 @@
     ]
    }
   }
- ]
+ ],
+ "refresh_coverage": {
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "status": "partial",
+  "note": {
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
+  },
+  "record": "research/weekly-20261112.json"
+ }
 }

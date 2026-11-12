@@ -1,9 +1,9 @@
 {
  "version": 1,
- "as_of": "2026-10-22",
+ "as_of": "2026-11-12",
  "scope": {
-  "zh": "财报日期来自站内财报刷新台账（每周一伦敦时间09:00更新），其余为会议、电网与基准节点，每条带来源与证据级别。",
-  "en": "Earnings dates come from the site’s earnings-refresh ledger (updated Mondays 09:00 London); the rest are conference, grid and benchmark milestones, each with a source and evidence level."
+  "zh": "财报日期来自站内财报刷新台账；其他条目为带来源的会议、电网与基准节点。11月12日增量核验不表示全部历史条目已重核。",
+  "en": "Earnings dates use the site refresh ledger; other entries are sourced conference, grid and benchmark milestones. The November 12 increment does not reverify every historical entry."
  },
  "evidence_levels": {
   "primary-read": {
@@ -105,13 +105,14 @@
     "zh": "SC26 超算大会（芝加哥）",
     "en": "SC26 supercomputing conference (Chicago)"
    },
-   "evidence": "primary-located",
+   "evidence": "primary-read",
    "url": "https://sc26.supercomputing.org/",
    "note": {
-    "zh": "展览11月17–19日。",
-    "en": "Exhibits open 17–19 November."
+    "zh": "官方会期已核。公开录像覆盖尚未核实；不能将议程等同于已发生披露。",
+    "en": "Official conference dates checked. Recording coverage remains unverified; an agenda is not a completed disclosure."
    },
-   "links": {}
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00"
   },
   {
    "id": "K04",
@@ -427,6 +428,206 @@
    "cat": "compute-finance",
    "evidence": "primary-read",
    "links": {}
+  },
+  {
+   "id": "K18",
+   "date": "2026-12-01",
+   "cat": "bank",
+   "title": {
+    "zh": "UBS Global Technology and AI — AMD",
+    "en": "UBS Global Technology and AI — AMD"
+   },
+   "evidence": "primary-read",
+   "url": "https://ir.amd.com/news-events/ir-calendar",
+   "note": {
+    "zh": "AMD官方确认参会日；讲者、时刻及具体公开访问待核。检验问题：CPU供货、客户验证和云实例可用性较11月10日有何增量？",
+    "en": "AMD participant date confirmed; speaker, time and access pending. Test supply, qualification and cloud availability increments since November 10."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "UBS"
+  },
+  {
+   "id": "K19",
+   "date": "2026-12-09",
+   "cat": "bank",
+   "title": {
+    "zh": "Barclays Global Technology — AMD",
+    "en": "Barclays Global Technology — AMD"
+   },
+   "evidence": "primary-read",
+   "url": "https://ir.amd.com/news-events/ir-calendar",
+   "note": {
+    "zh": "仅确认AMD参会日，不代表完整会期；具体时刻、讲者及访问待核。检验可交付供给与需求兑现。",
+    "en": "AMD participation date only, not full conference span; time, speaker and access pending. Test deliverable supply and demand conversion."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "Barclays"
+  },
+  {
+   "id": "K20",
+   "date": "2026-12-01",
+   "cat": "bank",
+   "title": {
+    "zh": "UBS Global AI and Tech — Arista",
+    "en": "UBS Global AI and Tech — Arista"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.arista.com/en/company/news/press-release/24817-pr-20261006",
+   "note": {
+    "zh": "Chantelle Breithaupt（CFO）、Rudolph Araujo；12:15–12:45 ET，官方宣布公开音频。检验AI网络订单转收入与部署时滞，不能提前假定新披露。",
+    "en": "Chantelle Breithaupt (CFO), Rudolph Araujo; 12:15–12:45 ET; public audio announced. Test AI networking order conversion and deployment lags."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "UBS",
+   "local_time": "12:15–12:45",
+   "timezone": "America/New_York"
+  },
+  {
+   "id": "K21",
+   "date": "2026-12-07",
+   "cat": "bank",
+   "title": {
+    "zh": "Wells Fargo TMT — Arista",
+    "en": "Wells Fargo TMT — Arista"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.arista.com/en/company/news/press-release/24817-pr-20261006",
+   "note": {
+    "zh": "Chantelle Breithaupt、Bala Reddy；10月6日公告的时刻为待定，搜索索引显示更新时刻但正文未重现，因此保留待核。官方宣布公开音频；检验收入与资本开支传导。",
+    "en": "Chantelle Breithaupt, Bala Reddy. Release leaves time TBD; indexed later time not reproduced in fetched body, so unverified. Public audio announced; test revenue/capex transmission."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "Wells Fargo"
+  },
+  {
+   "id": "K22",
+   "date": "2026-12-10",
+   "cat": "bank",
+   "title": {
+    "zh": "Barclays Global Technology — Arista",
+    "en": "Barclays Global Technology — Arista"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.arista.com/en/company/news/press-release/24817-pr-20261006",
+   "note": {
+    "zh": "Todd Nightingale（President/COO）、Hardev Singh；13:30–14:00 ET，官方宣布公开音频。检验产品可用性与客户规模部署，区分试验和收入。",
+    "en": "Todd Nightingale (President/COO), Hardev Singh; 13:30–14:00 ET; public audio announced. Test availability and production adoption versus trials."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "Barclays",
+   "local_time": "13:30–14:00",
+   "timezone": "America/New_York"
+  },
+  {
+   "id": "K23",
+   "date": "2026-11-19",
+   "cat": "bank",
+   "title": {
+    "zh": "Morgan Stanley European TMT — ASM",
+    "en": "Morgan Stanley European TMT — ASM"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.asm.com/calendar",
+   "note": {
+    "zh": "Barcelona；ASM官方参会日。讲者、时刻、公开回放未确认。检验先进节点及存储投资如何传到设备需求；不推断闭门内容。",
+    "en": "Barcelona; ASM participant date. Speaker, time and public replay unconfirmed. Test advanced-node/memory investment transmission; no private-content inference."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "Morgan Stanley"
+  },
+  {
+   "id": "K24",
+   "date": "2026-11-16",
+   "cat": "conference",
+   "title": {
+    "zh": "SC26 NVIDIA Special Address — Ian Buck",
+    "en": "SC26 NVIDIA Special Address — Ian Buck"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.nvidia.com/en-us/events/supercomputing/",
+   "note": {
+    "zh": "16:00–17:00 CT；厂商特别演讲，不是SC26大会主旨报告。公开直播尚未确认。检验系统部署、工作负载与瓶颈，勿用预告推断性能。",
+    "en": "16:00–17:00 CT; vendor special address, not the SC26 conference keynote. Public stream unconfirmed. Test deployment and workload bottlenecks."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "NVIDIA / SC26",
+   "local_time": "16:00–17:00",
+   "timezone": "America/Chicago"
+  },
+  {
+   "id": "K25",
+   "date": "2026-11-17",
+   "cat": "conference",
+   "title": {
+    "zh": "Microsoft Ignite 2026",
+    "en": "Microsoft Ignite 2026"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.microsoft.com/en-us/security/blog/2026/09/30/secure-whats-next-your-guide-to-microsoft-security-at-microsoft-ignite-2026/",
+   "note": {
+    "zh": "会期11月17–20日；11月17日10:00–12:00 PT开幕，Satya Nadella及Judson Althoff，官方提供线上体验。检验云容量、定制芯片和实际客户部署。",
+    "en": "November 17–20; opening November 17, 10:00–12:00 PT with Satya Nadella and Judson Althoff; online experience announced. Test cloud capacity, custom silicon and customer deployment."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "Microsoft",
+   "end": "2026-11-20",
+   "local_time": "10:00–12:00 (opening)",
+   "timezone": "America/Los_Angeles"
+  },
+  {
+   "id": "K26",
+   "date": "2026-12-01",
+   "cat": "conference",
+   "title": {
+    "zh": "AWS re:Invent — CEO Keynote",
+    "en": "AWS re:Invent — CEO Keynote"
+   },
+   "evidence": "primary-read",
+   "url": "https://aws.amazon.com/events/reinvent/sessions/keynotes/",
+   "note": {
+    "zh": "Matt Garman；官方页面列08:30–10:30，主日程标PDT但12月夏令时已结束：保留原文且不生成UTC时刻，待核。提供免费直播。检验生产规模、实例可用性和单位经济。",
+    "en": "Matt Garman; page lists 08:30–10:30. Agenda labels PDT despite December standard time: retain source wording, do not convert to UTC pending clarification. Free livestream available. Test production scale, availability and economics."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "AWS",
+   "local_time": "08:30–10:30; timezone label unresolved"
+  },
+  {
+   "id": "K27",
+   "date": "2026-11-16",
+   "cat": "bank",
+   "title": {
+    "zh": "J.P. Morgan APAC Technology — Silicon Motion",
+    "en": "J.P. Morgan APAC Technology — Silicon Motion"
+   },
+   "evidence": "primary-read",
+   "url": "https://ir.siliconmotion.com/events",
+   "note": {
+    "zh": "Hong Kong；官方参会日。讲者、时刻及公开回放待核。仅跟踪企业级SSD控制器与AI存储需求，消费业务不作infra代理。",
+    "en": "Hong Kong; official participant date. Speaker, time and replay unconfirmed. Track enterprise SSD controllers/AI storage; do not proxy infra with consumer business."
+   },
+   "links": {},
+   "checked_at": "2026-11-12T11:23:05.060256+00:00",
+   "status": "confirmed",
+   "organizer": "J.P. Morgan"
   }
  ],
  "finance_subcategories": [

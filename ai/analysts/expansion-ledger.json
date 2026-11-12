@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-06",
+  "version": "2026-11-12",
   "batches": [
     {
       "id": "initial-20261005",
@@ -1555,6 +1555,78 @@
         "No licensed sell-side research, private holdings, transaction records or target-price models were accessed.",
         "Historical materials are methods, not this week’s recommendations."
       ]
+    },
+    {
+      "id": "weekly-thoughts-20261112",
+      "research_cutoff": "2026-11-12T11:19:08+00:00",
+      "before": {
+        "profiles": 240,
+        "buy_side": 120,
+        "sell_side": 120,
+        "sources": 414,
+        "cards": 405
+      },
+      "after": {
+        "profiles": 241,
+        "buy_side": 121,
+        "sell_side": 120,
+        "sources": 419,
+        "cards": 411
+      },
+      "new_profiles": [
+        "ben-inker-gmo",
+        "sunny-lin-ubs"
+      ],
+      "updated_profiles": [
+        "krish-sankar"
+      ],
+      "merged_duplicate_profiles": {
+        "krish-sankar-td-cowen": "krish-sankar"
+      },
+      "new_sources": [
+        "W112-BI01",
+        "W112-BI02",
+        "W112-BIROLE",
+        "W112-SL02",
+        "W112-SL03"
+      ],
+      "new_cards": [
+        "W112-BI-C1",
+        "W112-BI-C2",
+        "W112-BI-C3",
+        "W112-SL-C1",
+        "W112-SL-C2",
+        "W112-SL-C3"
+      ],
+      "real_qa_added": 0,
+      "status": "draft_content_validated_pending_independent_review_and_browser",
+      "target": {
+        "buy": 5,
+        "sell": 5
+      },
+      "actual": {
+        "buy": 1,
+        "sell": 1
+      },
+      "scope": "Bounded identity audit plus two-work admissions for Ben Inker and Sunny Lin. Remaining4 buy/4 sell target not completed; no claim that no other qualified candidates exist.",
+      "pending": [
+        {
+          "candidate": "James Montier",
+          "status": "lead_only",
+          "gap": "Official research archive located; two substantive dated materials and decision-role eligibility not yet audited."
+        },
+        {
+          "candidate": "Michael Lindsell",
+          "status": "lead_only",
+          "gap": "Official annual reports and role page located; individual-versus-team method attribution not completed."
+        },
+        {
+          "candidate": "Sidney Ho",
+          "status": "lead_only",
+          "gap": "Public conference mirrors found; two primary/issuer-hosted dated substantive exchanges not yet read."
+        }
+      ],
+      "source_caveat": "GMO Equity Dislocation page Download here points to unrelated Event-Driven PDF; only named HTML used."
     }
   ],
   "deduplication": {
@@ -1876,6 +1948,24 @@
       "candidate": "third-party inputs in AI capital-cycle essays",
       "reason": "Selected Verdad and Grantham materials cite external estimates that were not fully reconstructed.",
       "action": "Retain as author-sourced inputs; independently normalize before using as current numerical forecasts."
+    },
+    {
+      "candidate": "James Montier",
+      "status": "lead_only",
+      "gap": "Official research archive located; two substantive dated materials and decision-role eligibility not yet audited."
+    },
+    {
+      "candidate": "Michael Lindsell",
+      "status": "lead_only",
+      "gap": "Official annual reports and role page located; individual-versus-team method attribution not completed."
+    },
+    {
+      "candidate": "Sidney Ho",
+      "status": "lead_only",
+      "gap": "Public conference mirrors found; two primary/issuer-hosted dated substantive exchanges not yet read."
     }
-  ]
+  ],
+  "profile_id_aliases": {
+    "krish-sankar-td-cowen": "krish-sankar"
+  }
 }
