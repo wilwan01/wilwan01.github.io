@@ -1,0 +1,58 @@
+{
+  "id": "conference-remaining-validation-20261112",
+  "checkedAt": "2026-11-12T21:57:58.656253+00:00",
+  "baseCommit": "718588fe958a1b578c0d10630b9d5c31afe06343",
+  "batch": "batches/2026-11-12-conference-remaining.json",
+  "counts": {
+    "catalogBefore": 433,
+    "preparedCatalog": 471,
+    "qualifiedNew": 38,
+    "auditedProfiles": 470,
+    "preservedUnauditedProfiles": 1,
+    "searchBefore": 1715,
+    "preparedSearch": 1753,
+    "fixedBatches": 31,
+    "batchRecords": 481,
+    "thisBatchReviewed": 42,
+    "heldThisBatch": 4,
+    "allPriorityGroupsReviewed": 56,
+    "allPriorityQualified": 52,
+    "priorPlannedGapsPreserved": 5
+  },
+  "evidenceReview": {
+    "status": "passed",
+    "method": "Six parallel research groups, parent integration audit and cross-agent identity/independence/selected-body reviews; not a formal independent GitHub review.",
+    "corrections": [
+      "Limited indexed original-body excerpts distinguished from generated search summaries and direct opens.",
+      "Deepak Arm patent body read directly from Justia original-document mirror; Fungible2017 and Arm2025 priority families distinct.",
+      "John Sell supported by two independent patents; unread Xbox image slides not counted.",
+      "Lance unlinked historical journal claim removed; generic2026timing wording removed.",
+      "Charlesworth Starfire locator extended through3.3 based on independent read.",
+      "SATA NCQ labelled author technical report; patent mirror uses selected-body format with mirror metadata."
+    ],
+    "limits": [
+      "Historical/current roles and team authorship explicitly separated.",
+      "Patent proposal does not establish implementation, adoption or performance.",
+      "No private VCEW content used.",
+      "56prioritygroups reviewed; raw annual name groups are not an exhaustive completed-admission census."
+    ]
+  },
+  "checks": {
+    "catalogValidator": "passed:471profiles,31batches,481records,470audited",
+    "renderIdempotence": "passed",
+    "searchIdempotence": "passed:1753entries",
+    "oldProfiles": "passed:all433preexisting profile objects identical",
+    "inlineJavaScript": "passed:node --check",
+    "workflowSyntax": "passed:YAML and complete embeddedJS;38new+22regression targets",
+    "crossListReconciliation": "passed:four original program snapshots retained with followup mapping",
+    "diffWhitespace": "passed"
+  },
+  "browser": {
+    "status": "pending",
+    "method": "Exact PR head GitHub-hosted Chromium;desktop1440x1000/mobile390x844;all60targets"
+  },
+  "publication": {
+    "status": "not-yet-published",
+    "receiptPolicy": "This is a committed prepublication snapshot. Subsequent PR release receipt records exactheadCI, immutablemerge/tree, Pages build and actualpublicbyte/count/search verification."
+  }
+}
