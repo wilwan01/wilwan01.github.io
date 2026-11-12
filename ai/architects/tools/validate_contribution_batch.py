@@ -53,7 +53,7 @@ PRIMARY_BODY_TYPES.add('论文正文（所列页）')
 # Existing Alben/Ross records use these equivalent selected-body labels. This
 # does not upgrade indexed access to a direct read or an abstract to a body.
 # Keep retrieval limitations visible and retain both independent-work gates.
-SELECTED_PAPER_BODY_TYPES={'论文正文（所列章节）','原论文局部正文'}
+SELECTED_PAPER_BODY_TYPES={'论文正文（所列章节）','原论文局部正文','技术专著正文（所列章节）'}
 PRIMARY_BODY_TYPES.update(SELECTED_PAPER_BODY_TYPES)
 for profile in c['profiles']:
  for source in profile.get('sourceAudit',[]):
