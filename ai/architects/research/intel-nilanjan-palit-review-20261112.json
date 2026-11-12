@@ -1,0 +1,150 @@
+{
+  "status": "qualified-evidence-ready-not-integrated",
+  "reviewedAt": "2026-11-12T20:08:10.762623+00:00",
+  "baseCommit": "395696c00a511b5af3df3cef84ff8be7e1f6f5c2",
+  "candidate": "Nilanjan Palit",
+  "identity": {
+    "conclusion": "官方技术署名与Intel机构归属明确；无需依据头衔推断。",
+    "lastOfficialAffiliationDate": "2025-09-12",
+    "currentTitle": "未核实",
+    "sameNameExclusions": "不使用仅姓名匹配的非技术履历或搜索摘要作为身份依据。"
+  },
+  "profile": {
+    "id": "nilanjan-palit",
+    "name": "Nilanjan Palit",
+    "aliases": [],
+    "field": "CPU功耗控制与运行时固件更新",
+    "domain": "physical-energy",
+    "relatedDomains": [
+      "datacenter",
+      "correctness"
+    ],
+    "core": "编辑提炼：把运行时控制的局部动作与服务可观察影响分开验收。",
+    "background": "Intel技术贡献者。2021年Intel技术指南共同署名；2025-09-12 OCP规范明确列在Intel作者组。正式现任职称及2025年后的任职变化未独立核实，不按头衔入库。",
+    "contributions": [
+      "共同撰写低时延功耗指南，解释DPDK工作负载感知的频率控制及请求等待与实际调频的区别。",
+      "参与跨公司OCP CPU固件运行时更新规范，描述版本、签名、状态验证及带内/带外更新流程。"
+    ],
+    "argument": "编辑条件模型：降低局部控制成本不自动保证服务SLO；工作负载突发和错误状态转移仍可能使系统失效。",
+    "evidence": "两份独立的官方署名技术作品：2021年Intel指南与2025年OCP规范；两者机制正文均已按所列范围读取。",
+    "habits": [
+      "编辑归纳：分别检查控制动作、系统状态和服务结果。"
+    ],
+    "questions": [
+      "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？"
+    ],
+    "boundary": "技术指南含厂商产品说明；本卡不采用未经复核的性能数字。OCP规范不等于各厂商已实现或部署；更新为运行时非持久范围，部分功能/场景另有限制。均为团队共同作品，不认定个人独占设计或全芯片主架构职责。",
+    "diagnostic": "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？",
+    "notes": [],
+    "sources": [
+      [
+        "Enhanced Power Management for Low-Latency Workloads",
+        "https://networkbuilders.intel.com/docs/networkbuilders/power-management-enhanced-power-management-for-low-latency-workloads-technology-guide-1617438252.pdf",
+        "PDF第1页作者；第2页修订日期；第3–7页§2–4、图2–3"
+      ],
+      [
+        "Hyperscale CPU Impactless Firmware Updates Requirements, v0.7",
+        "https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf",
+        "PDF第1页作者及生效日期、第4页修订表；§1.1、§1.4–1.5、§2.1–2.2、§3.1–3.2（正文第10、14–22页）"
+      ]
+    ],
+    "sourceAudit": [
+      {
+        "workId": "nilanjan-palit-low-latency-power-guide-2021",
+        "title": "Enhanced Power Management for Low-Latency Workloads",
+        "authors": "David Hunt; Reshma Pattan; Chris MacNamara; Karen Shemer; Nilanjan Palit; Pinkesh Shah",
+        "date": "2021-04（修订001；精确日未知）",
+        "url": "https://networkbuilders.intel.com/docs/networkbuilders/power-management-enhanced-power-management-for-low-latency-workloads-technology-guide-1617438252.pdf",
+        "locator": "PDF第1页作者；第2页修订日期；第3–7页§2–4、图2–3",
+        "type": "作者技术报告全文",
+        "contentStatus": "已读官方PDF文本的署名、修订日期及所列机制章节；未逐页核验测试图表，不引用性能数字。",
+        "evidenceStrength": "六位共同作者；署名可证明技术作品贡献，不证明功能由个人独立设计。",
+        "role": "独立技术作品及机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "Intel官方技术指南"
+      },
+      {
+        "workId": "nilanjan-palit-ocp-impactless-fw-v07-2025",
+        "title": "Hyperscale CPU Impactless Firmware Updates Requirements, v0.7",
+        "authors": "Giri Mudusuru; Alex Akesson; Rama Bhimanadhuni; Rajat Madhusudan; Jicksen Joy; Sean Malley; Josef Zeevi; Justin King; Mathias Brossard; Jose Marinho; Gareth Stockwell; Daniil Egranov; Anil Agrawal; Balaji Vembu; John Leung; Allison Goodman; Nilanjan Palit; Jonathan Bentley",
+        "date": "2025-09-12（封面生效及修订日期；URL文件名另含2025-09-29）",
+        "url": "https://www.opencompute.org/documents/hyperscale-cpu-impactless-firmware-updates-requirements-specification-v0-7-9-29-2025-pdf",
+        "locator": "PDF第1页作者及生效日期、第4页修订表；§1.1、§1.4–1.5、§2.1–2.2、§3.1–3.2（正文第10、14–22页）",
+        "type": "技术规范全文",
+        "contentStatus": "已读官方PDF所列正文；首页截图核对Nilanjan Palit列于Intel作者组。",
+        "evidenceStrength": "十八位跨机构共同作者，Intel组四人；文档未细分个人条款责任。",
+        "role": "独立技术作品及机制正文",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-12",
+        "formatDetail": "OCP官方多机构技术规范"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "workId": "nilanjan-palit-low-latency-power-guide-2021",
+        "text": "指南列六位作者，包括Nilanjan Palit；讨论轮询负载和调频的两个时间组成。"
+      },
+      {
+        "workId": "nilanjan-palit-ocp-impactless-fw-v07-2025",
+        "text": "规范首页在Intel组列Nilanjan Palit；正文规定更新的验证、状态与范围约束。"
+      }
+    ],
+    "awardsVerified": [],
+    "contributionBasis": "两项不同技术问题、不同时间、不同作者组合的官方技术作品；不是同一项目版本或转载。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-12-intel-nominations",
+      "standard": "contribution-led-v1",
+      "meaning": "所列作品署名和机制审核完成；当前正式职称及产品部署不在已核实范围。",
+      "verifiedAt": "2026-11-12"
+    },
+    "challenge": {
+      "lens": "运行时动作与可观察影响",
+      "skills": [
+        "A5",
+        "A7",
+        "A8"
+      ],
+      "question": "在突发低时延业务上改变频率或运行时固件时，如何分别验证响应延迟、服务尾延迟和状态正确性，而不把短暂动作等同于端到端无影响？",
+      "variables": "控制请求等待、实际执行耗时、业务突发率、队列深度、p99延迟、版本/签名验证状态",
+      "model": "编辑模型：分离控制路径延迟、执行停顿与业务恢复，逐项测量并联立正确性约束。",
+      "crossover": "节能或维护收益超过延迟/状态切换成本，同时保持目标SLO与安全约束。",
+      "counterexample": "动作很快但排队迟缓，或业务保持运行却接受了不兼容的状态。",
+      "validation": "在负载突发和无效更新输入下分别测试尾延迟、请求时序、版本检查及失败恢复。",
+      "transfer": "迁移至设备运行时重配置与在线维护窗口设计。"
+    }
+  },
+  "independenceAudit": {
+    "independentWorks": 2,
+    "conclusion": "Intel低时延CPU功耗技术指南与OCP跨供应商固件更新规范，技术对象、日期与作者组合不同，分别计一项。",
+    "patentsUsedForAdmission": false,
+    "patentLeadsNotCounted": [
+      "US20210303357A1",
+      "US20240273028A1"
+    ],
+    "duplicateRules": "同一指南或规范的版本、镜像和演讲复述均不额外计数。"
+  },
+  "verification": {
+    "method": "公开来源检索工具读取官方PDF实质正文；OCP首页截图核对署名及日期。",
+    "readRange": "来源台账逐条列明；不声称阅读全文或核验所有测试数据。",
+    "directDownloadAttempts": "本地urllib下载OCP返回403、Intel返回503；不将失败下载称为已保存原PDF。官方PDF已通过检索工具读取。",
+    "intelScreenshot": "截图端点DisabledError；其署名和日期通过官方PDF解析正文核实。",
+    "publicationDateCaution": "Intel指南应采用正文修订日期2021-04，而非搜索索引所报时间。OCP采用封面/修订表2025-09-12，而非文件名9/29。"
+  },
+  "gaps": [
+    "2025-09-12之后的现任职称与机构变化未独立核实。",
+    "未将团队文档推断为个人功能所有权、独立生产验证或全芯片主设计责任。"
+  ],
+  "delivery": "仅研究与建议档案已准备；目录集成、页面验证、PR、合并和部署待主任务验收。",
+  "integration": {
+    "batch": "2026-11-12-intel-nominations",
+    "reviewDecision": "admit",
+    "deliveryStatus": "prepared-not-deployed",
+    "canonicalSourceTypes": "复用现有schema，formatDetail保留来源格式；contentStatus限定实际读取范围。"
+  }
+}
