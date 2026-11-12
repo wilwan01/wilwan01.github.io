@@ -105,11 +105,36 @@ jobs:
                 assert.equal(index.entries.filter(x=>x.u===`/ai/architects/#${record.id}`).length,1);
                 if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
               }
-              const excludedPending=[...pending,...conferencePending.filter(r=>r.kind==='candidate')];
+              const remainingBatchId='2026-11-12-conference-remaining';
+              const remainingBatchPath=`ai/architects/research/batches/${remainingBatchId}.json`;
+              assert(fs.existsSync(remainingBatchPath),'Missing remaining followup admission batch');
+              const remainingBatch=JSON.parse(fs.readFileSync(remainingBatchPath,'utf8'));
+              assert(Array.isArray(remainingBatch.records),'Remaining batch records must be an array');
+              const remainingComplete=remainingBatch.records.filter(r=>r.status==='complete');
+              const remainingPending=remainingBatch.records.filter(r=>r.status!=='complete');
+              assert(remainingBatch.completedNew>0,'Remaining batch must admit at least one new profile');
+              assert.equal(remainingComplete.filter(r=>r.kind==='candidate').length,remainingBatch.completedNew);
+              assert.equal(remainingComplete.filter(r=>r.kind==='existing').length,remainingBatch.completedExisting);
+              assert.equal(remainingComplete.length,remainingBatch.completedNew+remainingBatch.completedExisting);
+              assert.equal(remainingBatch.records.length,remainingBatch.plannedScope);
+              assert.equal(new Set(remainingBatch.records.map(r=>r.id)).size,remainingBatch.records.length);
+              const remainingActualCounts={};
+              for(const record of remainingBatch.records) remainingActualCounts[record.status]=(remainingActualCounts[record.status]||0)+1;
+              assert.deepEqual(remainingBatch.counts,remainingActualCounts);
+              for(const record of remainingComplete){
+                const profile=catalog.profiles.find(p=>p.id===record.id);
+                assert(profile,`Missing remaining admitted profile ${record.id}`);
+                assert.equal(profile.researchStatus.batch,remainingBatchId);
+                assert.equal(index.entries.filter(x=>x.u===`/ai/architects/#${record.id}`).length,1);
+                if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
+              }
+              const excludedPending=[...pending,...conferencePending.filter(r=>r.kind==='candidate'),...remainingPending.filter(r=>r.kind==='candidate')];
               for(const record of excludedPending){
                 assert(!catalog.profiles.some(p=>p.id===record.id),`Pending candidate in catalog: ${record.id}`);
                 assert(!index.entries.some(x=>x.u===`/ai/architects/#${record.id}`),`Pending candidate in search: ${record.id}`);
               }
+              report.remainingAdmissionBatch=remainingBatchPath;
+              report.remainingCompletedNew=remainingBatch.completedNew;
               report.conferenceAdmissionBatch=conferenceBatchPath;
               report.conferenceCompletedNew=conferenceBatch.completedNew;
               report.admissionBatch=batchPath;

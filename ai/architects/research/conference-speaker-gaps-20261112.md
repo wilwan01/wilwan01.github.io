@@ -99,3 +99,13 @@
 - [合并优先队列、去重修正与检查状态](conference-speaker-gaps-20261112.json)
 
 正式目录、页面、搜索及现有研究内容均保持不变；仅保存研究清单。最终PR合并和部署状态见PR验证回执。
+
+## 后续逐人审核（2026-11-12）
+
+原始56组优先姓名现已全部形成明确审核结论：PR #84已发布15人；剩余41组中37人通过、4人待补证。另完成Mike／Michael Houston身份桥接与两项独立作品审核，本批共准备新增38人，目录433→471。
+
+- [本批逐人结论与待补事项](batches/2026-11-12-conference-remaining.html)
+- [完整来源审计](conference-remaining-20261112.json)
+- [验证记录](conference-remaining-validation-20261112.json)；最终合并、浏览器及线上凭据见对应PR发布回执。
+
+4项待补为Sun时期Michael O’Connor、David Suggs、Jaideep Dastidar和Saurabh Pradhan。没有把姓名相似、同一项目重复报告、产品博客或未取得正文材料强行计入门槛。各年份原始清单保留历史快照，并附本轮名称对应；56组优先候选的审核不等于所有原始讲者姓名组均已完成入库深研。
