@@ -1,0 +1,372 @@
+{
+  "id": "reach-silber-followup-20261113",
+  "checkedAt": "2026-11-13T15:06:07.760930+00:00",
+  "candidateId": "frederique-silber-chaussumier",
+  "decision": "admit",
+  "profile": {
+    "id": "frederique-silber-chaussumier",
+    "name": "Frédérique Silber-Chaussumier",
+    "aliases": [],
+    "field": "性能评估、基准方法与并行转换",
+    "domain": "hpc",
+    "relatedDomains": [
+      "compiler-runtime",
+      "cpu"
+    ],
+    "core": "共同研究可重复的CPU混部评估与OpenMP到MPI转换，把隐含的资源和通信假设变成可检查机制。",
+    "background": "REACH2026名录列Arm Senior Principal CPU Architect及SPEC CPU Committee Chair；SPEC2026论文署名Arm。STEP2008出版方给出本人全名，2009同项目幻灯片列D. Millot、A. Muller、C. Parrot、F. Silber-Chaussumier及TELECOM SudParis；技术归属为共同作品，不假称本人是现场演讲者或唯一设计者。",
+    "contributions": [
+      "共同署名SPEC CPU2026论文，说明以PMC/BBV观察负载多样性及确定性的Rolling Round-Robin混部排程。",
+      "参与STEP共同作品：用过程提取、数组区域分析和MPI生成，把OpenMP的隐式数据共享转为显式通信。"
+    ],
+    "argument": "SPEC正文区分固定工作量与随副本增长的扩展方式；RRR用确定但错位的顺序安排混部。STEP先把OpenMP结构提取为过程，再由PIPS分析READ/WRITE/IN/OUT区域并生成MPI数据类型与通信。其2009实验明确暴露频繁通信和多传数据的代价，不能将自动转换等同于自动提速。",
+    "evidence": "SPEC2026已保存的机制正文审计，加上本轮新读取的STEP2009共同署名幻灯片，支持两项独立技术作品；STEP2008/2009只计一次。",
+    "habits": [
+      "编辑归纳：先显式化工作量、排程与通信，再比较性能。",
+      "把失败负载和争用模式与成功案例一起保留。"
+    ],
+    "questions": [
+      "同构rate领先的机器，在确定性混部下还领先吗？",
+      "自动生成的MPI是否多传了数据，或把通信放到了过密的同步点？"
+    ],
+    "boundary": "RRR在已读SPEC论文中为exhibition模式，不冒称正式混部总分。STEP的2009结果限于所测旧集群与应用；高通信频率或区域过度近似可抵消收益，不代表当代所有程序或平台。",
+    "diagnostic": "固定程序结果、编译配置与线程绑定；分别测混部个体减速及转换后通信次数、字节量和重复运行方差。",
+    "challenge": {
+      "lens": "从隐含共享到可测量争用",
+      "skills": [
+        "A2",
+        "A3",
+        "A8"
+      ],
+      "question": "共享内存版本能正确并行，就能在分布式机器上高效运行吗？",
+      "variables": "计算时间Tcomp(s)、通信字节B(bytes)、有效带宽BW(bytes/s)、消息数N、每消息固定成本L(s)、同步等待Ts(s)。",
+      "model": "编辑诊断模型：Ttotal≈Tcomp+B/BW+N×L+Ts；仅在阶段不重叠、单位一致时使用，重叠流水须另建模型。",
+      "crossover": "并行节省的计算时间必须大于新增通信与同步成本；不存在仅凭核心数即可确定的统一阈值。",
+      "counterexample": "循环被均分，但每个短循环末尾交换过度近似的数组区域，计算变少而通信和等待占比上升。",
+      "validation": "固定输出正确性，记录数组访问区域、真实传输量、消息频率和各进程等待；比较生成代码与明确同口径的手写或共享内存版本。",
+      "transfer": "迁移至CPU/GPU集群时重新测量互连、区域分析精度和工作量，不外推2009年的速度数字。"
+    },
+    "sourceAudit": [
+      {
+        "workId": "silber-spec2026",
+        "title": "SPEC CPU: The Next Generation",
+        "url": "https://arxiv.org/pdf/2605.01575",
+        "authors": "Mahesh Madhav et al.（34位共同作者；Frédérique Silber-Chaussumier署名Arm）",
+        "date": "2026-05-02",
+        "locator": "v1作者及机构页；§VII–VIII pp.10–12：PMC/BBV分析、强弱扩展、Rolling Round-Robin",
+        "type": "论文正文（所列章节）",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "contentStatus": "复用前一轮已读取并保存的所列机制正文审计；本轮没有重复全文研究。",
+        "role": "个人署名与独立技术作品核验",
+        "retrievedAt": "2026-11-13",
+        "evidenceStrength": "一手材料；结论限定于实际读取范围",
+        "retrievedSha256": "54facc9a62909ad7986220a94fbcddf5b63f26e43fd3f463fcb23badb5ccc5f1"
+      },
+      {
+        "workId": "silber-step2008",
+        "title": "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+        "authors": "Daniel Millot; Alain Muller; Christian Parrot; Frédérique Silber-Chaussumier",
+        "date": "2008",
+        "locator": "出版方作者/机构、Abstract；IWOMP2008 pp.83–99；DOI10.1007/978-3-540-79561-2_8",
+        "type": "出版方原论文摘要",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+        "role": "保留早期发表与完整姓名的定位证据；不作为第二项已读正文或第三项作品",
+        "retrievedAt": "2026-11-13",
+        "evidenceStrength": "一手材料；结论限定于实际读取范围"
+      },
+      {
+        "workId": "silber-step2008",
+        "title": "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+        "url": "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+        "authors": "D. Millot; A. Muller; C. Parrot; F. Silber-Chaussumier — Institut TELECOM / TELECOM SudParis",
+        "date": "2009（ParCo09/PPTMA；具体上传日期未标注）",
+        "locator": "PDF物理页1、7–19、20–21、28–29；展示编号1、7–16、17–18、25–26；作者页、三阶段转换、区域分析、MPI生成、失败负载与结论。",
+        "type": "团队作者幻灯片",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "contentStatus": "已读取署名与所列机制/边界正文；完整PDF29页取得并校验哈希。图中速度曲线未重新数字化，不引用其数值。",
+        "role": "第二项独立技术作品的正文；与STEP2008摘要同项目只计一次；不推断本人现场演讲",
+        "retrievedAt": "2026-11-13",
+        "evidenceStrength": "一手团队署名幻灯片，HLRS项目网站存档托管",
+        "retrievedSha256": "261b9565376e5f0120eaa5eb539557de19d251a5e46f64aa9935f0c313729c0e",
+        "sourceClass": "original coauthored slides hosted by the project archive",
+        "versionNote": "29物理页含动画重复页，展示页码计为26；不同于未取得的STEP2008期刊/会议全文。"
+      }
+    ],
+    "sourceFacts": [
+      {
+        "workId": "silber-spec2026",
+        "text": "SPEC论文署名本人及Arm；已保存的§VII–VIII审计覆盖扩展方式、BBV及RRR，并保留其exhibition状态。"
+      },
+      {
+        "workId": "silber-step2008",
+        "text": "STEP幻灯片作者页列本人；设计将顺序区域复制执行、并行循环分配到进程，再以PIPS数组区域分析生成MPI通信；结果页报告FT/MG因通信频繁和多传数据表现不佳。"
+      }
+    ],
+    "sources": [
+      [
+        "SPEC CPU: The Next Generation",
+        "https://arxiv.org/pdf/2605.01575",
+        "2026-05-02 · 论文正文（所列章节）"
+      ],
+      [
+        "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+        "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+        "2008 · 出版方原论文摘要"
+      ],
+      [
+        "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+        "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+        "2009（ParCo09/PPTMA；具体上传日期未标注） · 团队作者幻灯片"
+      ]
+    ],
+    "notes": [],
+    "awardsVerified": [],
+    "contributionBasis": "基于共同署名技术作品的编辑提炼；委员会领导与团队作品不等于个人独占发明。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-13-reach",
+      "standard": "contribution-led-v1",
+      "verifiedAt": "2026-11-13",
+      "meaning": "所选两项独立技术作品及所列机制范围通过核验；STEP2008/2009不重复计数，不表示穷尽个人成果。"
+    },
+    "conferenceEvidence": [
+      {
+        "conference": "IET REACH",
+        "year": 2026,
+        "url": "https://reach.theiet.org/2026-speakers",
+        "readAt": "2026-11-13",
+        "role": "讲者身份与当届机构；不计技术作品"
+      }
+    ],
+    "identityEvidence": [
+      {
+        "name": "Frédérique Silber-Chaussumier",
+        "url": "https://www.spec.org/blog/2026/cpu2026/",
+        "readRange": "本人署名、CPU委员会主席及基准开发文章正文"
+      }
+    ],
+    "admissionGate": {
+      "standard": "two-distinct-primary-works-one-body-v1",
+      "independentWorks": 2,
+      "mechanismBodiesRead": 2,
+      "decision": "admit",
+      "counts": "SPEC2026一个作品；STEP2008摘要与STEP2009共同署名幻灯片同一作品。"
+    }
+  },
+  "profiles": [
+    {
+      "id": "frederique-silber-chaussumier",
+      "name": "Frédérique Silber-Chaussumier",
+      "aliases": [],
+      "field": "性能评估、基准方法与并行转换",
+      "domain": "hpc",
+      "relatedDomains": [
+        "compiler-runtime",
+        "cpu"
+      ],
+      "core": "共同研究可重复的CPU混部评估与OpenMP到MPI转换，把隐含的资源和通信假设变成可检查机制。",
+      "background": "REACH2026名录列Arm Senior Principal CPU Architect及SPEC CPU Committee Chair；SPEC2026论文署名Arm。STEP2008出版方给出本人全名，2009同项目幻灯片列D. Millot、A. Muller、C. Parrot、F. Silber-Chaussumier及TELECOM SudParis；技术归属为共同作品，不假称本人是现场演讲者或唯一设计者。",
+      "contributions": [
+        "共同署名SPEC CPU2026论文，说明以PMC/BBV观察负载多样性及确定性的Rolling Round-Robin混部排程。",
+        "参与STEP共同作品：用过程提取、数组区域分析和MPI生成，把OpenMP的隐式数据共享转为显式通信。"
+      ],
+      "argument": "SPEC正文区分固定工作量与随副本增长的扩展方式；RRR用确定但错位的顺序安排混部。STEP先把OpenMP结构提取为过程，再由PIPS分析READ/WRITE/IN/OUT区域并生成MPI数据类型与通信。其2009实验明确暴露频繁通信和多传数据的代价，不能将自动转换等同于自动提速。",
+      "evidence": "SPEC2026已保存的机制正文审计，加上本轮新读取的STEP2009共同署名幻灯片，支持两项独立技术作品；STEP2008/2009只计一次。",
+      "habits": [
+        "编辑归纳：先显式化工作量、排程与通信，再比较性能。",
+        "把失败负载和争用模式与成功案例一起保留。"
+      ],
+      "questions": [
+        "同构rate领先的机器，在确定性混部下还领先吗？",
+        "自动生成的MPI是否多传了数据，或把通信放到了过密的同步点？"
+      ],
+      "boundary": "RRR在已读SPEC论文中为exhibition模式，不冒称正式混部总分。STEP的2009结果限于所测旧集群与应用；高通信频率或区域过度近似可抵消收益，不代表当代所有程序或平台。",
+      "diagnostic": "固定程序结果、编译配置与线程绑定；分别测混部个体减速及转换后通信次数、字节量和重复运行方差。",
+      "challenge": {
+        "lens": "从隐含共享到可测量争用",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "共享内存版本能正确并行，就能在分布式机器上高效运行吗？",
+        "variables": "计算时间Tcomp(s)、通信字节B(bytes)、有效带宽BW(bytes/s)、消息数N、每消息固定成本L(s)、同步等待Ts(s)。",
+        "model": "编辑诊断模型：Ttotal≈Tcomp+B/BW+N×L+Ts；仅在阶段不重叠、单位一致时使用，重叠流水须另建模型。",
+        "crossover": "并行节省的计算时间必须大于新增通信与同步成本；不存在仅凭核心数即可确定的统一阈值。",
+        "counterexample": "循环被均分，但每个短循环末尾交换过度近似的数组区域，计算变少而通信和等待占比上升。",
+        "validation": "固定输出正确性，记录数组访问区域、真实传输量、消息频率和各进程等待；比较生成代码与明确同口径的手写或共享内存版本。",
+        "transfer": "迁移至CPU/GPU集群时重新测量互连、区域分析精度和工作量，不外推2009年的速度数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "silber-spec2026",
+          "title": "SPEC CPU: The Next Generation",
+          "url": "https://arxiv.org/pdf/2605.01575",
+          "authors": "Mahesh Madhav et al.（34位共同作者；Frédérique Silber-Chaussumier署名Arm）",
+          "date": "2026-05-02",
+          "locator": "v1作者及机构页；§VII–VIII pp.10–12：PMC/BBV分析、强弱扩展、Rolling Round-Robin",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "复用前一轮已读取并保存的所列机制正文审计；本轮没有重复全文研究。",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "54facc9a62909ad7986220a94fbcddf5b63f26e43fd3f463fcb23badb5ccc5f1"
+        },
+        {
+          "workId": "silber-step2008",
+          "title": "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+          "url": "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+          "authors": "Daniel Millot; Alain Muller; Christian Parrot; Frédérique Silber-Chaussumier",
+          "date": "2008",
+          "locator": "出版方作者/机构、Abstract；IWOMP2008 pp.83–99；DOI10.1007/978-3-540-79561-2_8",
+          "type": "出版方原论文摘要",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "保留早期发表与完整姓名的定位证据；不作为第二项已读正文或第三项作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        },
+        {
+          "workId": "silber-step2008",
+          "title": "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+          "url": "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+          "authors": "D. Millot; A. Muller; C. Parrot; F. Silber-Chaussumier — Institut TELECOM / TELECOM SudParis",
+          "date": "2009（ParCo09/PPTMA；具体上传日期未标注）",
+          "locator": "PDF物理页1、7–19、20–21、28–29；展示编号1、7–16、17–18、25–26；作者页、三阶段转换、区域分析、MPI生成、失败负载与结论。",
+          "type": "团队作者幻灯片",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取署名与所列机制/边界正文；完整PDF29页取得并校验哈希。图中速度曲线未重新数字化，不引用其数值。",
+          "role": "第二项独立技术作品的正文；与STEP2008摘要同项目只计一次；不推断本人现场演讲",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手团队署名幻灯片，HLRS项目网站存档托管",
+          "retrievedSha256": "261b9565376e5f0120eaa5eb539557de19d251a5e46f64aa9935f0c313729c0e",
+          "sourceClass": "original coauthored slides hosted by the project archive",
+          "versionNote": "29物理页含动画重复页，展示页码计为26；不同于未取得的STEP2008期刊/会议全文。"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "silber-spec2026",
+          "text": "SPEC论文署名本人及Arm；已保存的§VII–VIII审计覆盖扩展方式、BBV及RRR，并保留其exhibition状态。"
+        },
+        {
+          "workId": "silber-step2008",
+          "text": "STEP幻灯片作者页列本人；设计将顺序区域复制执行、并行循环分配到进程，再以PIPS数组区域分析生成MPI通信；结果页报告FT/MG因通信频繁和多传数据表现不佳。"
+        }
+      ],
+      "sources": [
+        [
+          "SPEC CPU: The Next Generation",
+          "https://arxiv.org/pdf/2605.01575",
+          "2026-05-02 · 论文正文（所列章节）"
+        ],
+        [
+          "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+          "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+          "2008 · 出版方原论文摘要"
+        ],
+        [
+          "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+          "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+          "2009（ParCo09/PPTMA；具体上传日期未标注） · 团队作者幻灯片"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "基于共同署名技术作品的编辑提炼；委员会领导与团队作品不等于个人独占发明。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选两项独立技术作品及所列机制范围通过核验；STEP2008/2009不重复计数，不表示穷尽个人成果。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2026,
+          "url": "https://reach.theiet.org/2026-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Frédérique Silber-Chaussumier",
+          "url": "https://www.spec.org/blog/2026/cpu2026/",
+          "readRange": "本人署名、CPU委员会主席及基准开发文章正文"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "admit",
+        "counts": "SPEC2026一个作品；STEP2008摘要与STEP2009共同署名幻灯片同一作品。"
+      }
+    }
+  ],
+  "held": [],
+  "closedGap": "从HLRS webarchiv公开项目存档读取到STEP2009共同署名机制幻灯片；关闭第二项实质正文缺口。",
+  "preservedEarlierEvidence": {
+    "file": "ai/architects/research/reach-other-20261113.json",
+    "candidate": "frederique-silber-chaussumier",
+    "earlierFailures": [
+      {
+        "url": "https://segl.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/parco2009finalpaperpdf/step.pdf",
+        "result": "web timeout /502；直接HTTPS503"
+      },
+      {
+        "url": "https://www-inf.telecom-sudparis.eu/COURS/CSC4508.old/Current/Poly/poly-1pp.pdf",
+        "result": "web TimeoutError"
+      }
+    ],
+    "note": "旧失败路线及未读STEP2008全文边界保留；新域名取得的是2009幻灯片，不伪称取得旧论文全文。"
+  },
+  "newSource": {
+    "workId": "silber-step2008",
+    "title": "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+    "url": "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+    "authors": "D. Millot; A. Muller; C. Parrot; F. Silber-Chaussumier — Institut TELECOM / TELECOM SudParis",
+    "date": "2009（ParCo09/PPTMA；具体上传日期未标注）",
+    "locator": "PDF物理页1、7–19、20–21、28–29；展示编号1、7–16、17–18、25–26；作者页、三阶段转换、区域分析、MPI生成、失败负载与结论。",
+    "type": "团队作者幻灯片",
+    "primary": true,
+    "substantive": true,
+    "mechanismBody": true,
+    "contentStatus": "已读取署名与所列机制/边界正文；完整PDF29页取得并校验哈希。图中速度曲线未重新数字化，不引用其数值。",
+    "role": "第二项独立技术作品的正文；与STEP2008摘要同项目只计一次；不推断本人现场演讲",
+    "retrievedAt": "2026-11-13",
+    "evidenceStrength": "一手团队署名幻灯片，HLRS项目网站存档托管",
+    "retrievedSha256": "261b9565376e5f0120eaa5eb539557de19d251a5e46f64aa9935f0c313729c0e",
+    "sourceClass": "original coauthored slides hosted by the project archive",
+    "versionNote": "29物理页含动画重复页，展示页码计为26；不同于未取得的STEP2008期刊/会议全文。"
+  },
+  "notCountedAsAdditionalWork": [
+    "STEP2008摘要",
+    "SPEC博客",
+    "dSTEP技术报告搜索线索"
+  ],
+  "rootInstructions": "在原固定批次中更新该pending记录，避免相同人物ID出现在第二个固定批次；主代理核验并发布。",
+  "validation": {
+    "json": "passed",
+    "independentWorks": 2,
+    "sourceFactsResolved": true,
+    "publication": "not performed by this research agent"
+  }
+}

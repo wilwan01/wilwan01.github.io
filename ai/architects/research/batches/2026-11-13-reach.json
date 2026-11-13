@@ -7,10 +7,10 @@
   "plannedExisting": 0,
   "plannedCandidates": 32,
   "completedExisting": 0,
-  "completedNew": 28,
+  "completedNew": 32,
   "counts": {
-    "complete": 28,
-    "pending": 4
+    "complete": 32,
+    "pending": 0
   },
   "records": [
     {
@@ -1689,50 +1689,407 @@
       "id": "emre-ozer",
       "name": "Emre Ozer",
       "kind": "candidate",
-      "status": "pending",
-      "reason": "第一项已读机制正文；第二项 PlasticARM 仅出版社公开摘要及作者贡献声明，尚缺第二项可读取实质正文。",
-      "nextAction": "读取 PlasticARM 可合法访问的技术正文，或另一项本人署名的独立机制作品；复用已核验第一项。",
+      "status": "complete",
+      "reason": "把算法选择与柔性工艺约束共同纳入架构设计，比较固定分类电路和可编程处理器的实现代价。",
+      "nextAction": "后续仅追踪实质新证据；本次身份及独立作品缺口已补齐。",
       "sources": [
-        "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
-        "https://www.nature.com/articles/s41586-021-03625-w",
-        "https://reach.theiet.org/2026-speakers/2025-speakers"
+        {
+          "workId": "ozer-flexible-ml-2020",
+          "title": "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+          "url": "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+          "date": "2020-07-06（Nature Electronics 3，419–425）",
+          "authors": "Emre Ozer; Jedrzej Kufel; James Myers; John Biggs; Gavin Brown; Anjit Rana; Antony Sou; Catherine Ramsdale; Scott White",
+          "locator": "作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions",
+          "contentStatus": "已读大学托管接受稿的 UB-FVC 查表/投票机制与作者贡献声明。",
+          "sourceFacts": [
+            "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "ozer-flexible-tsetlin-2025",
+          "title": "A Tsetlin Machine Image Classification Accelerator on a Flexible Substrate",
+          "url": "https://arxiv.org/html/2510.15519v1",
+          "date": "2025-10-17（arXiv v1；作者注明ISTM2025接受）",
+          "authors": "Yushu Qin; Marcos L. L. Sartori; Shengyu Duan; Emre Ozer; Rishad Shafik; Alex Yakovlev",
+          "locator": "署名机构；§II-A–C、§III-A–B、§IV–V；HTML行31–32、48–106、128–149。",
+          "contentStatus": "实际读取作者提交正文的模型生成、逻辑映射、物理实现、综合与仿真、结论及未来工作；未复现实验。",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "type": "论文正文（所列章节）",
+          "retrievedAt": "2026-11-13",
+          "sourceCategory": "作者提交的一手论文正文",
+          "role": "第三项独立技术作品、机制正文及Pragmatic机构署名交叉核验",
+          "evidenceStrength": "直接读取作者提交正文；共同署名，不支持Ozer个人独占设计；该文报告综合/仿真阶段而非量产测量。"
+        },
+        {
+          "workId": "ozer-plasticarm-2021",
+          "title": "A natively flexible 32-bit Arm microprocessor",
+          "url": "https://www.academia.edu/94971368/A_natively_flexible_32_bit_Arm_microprocessor",
+          "date": "2021-07-21（Nature 595，532–536）",
+          "authors": "John Biggs; James Myers; Jedrzej Kufel; Emre Ozer; Simon Craske; Antony Sou; Catherine Ramsdale; Ken Williamson; Richard Price; Scott White",
+          "locator": "Nature595 pp.533–534，Fig.1及PlasticARM system architecture；镜像读取行15–38；个人归属另参出版社Author contributions。",
+          "contentStatus": "本轮实际读取原论文公开镜像的架构正文：寄存器映射到RAM、AHB-LITE、ROM/RAM及面积—访问速度交换。不是仅摘要，也不声称逐页读完全文；出版社直接访问重定向受阻，镜像性质明确保留。",
+          "sourceFacts": [
+            "PlasticARM把架构寄存器映射到SoC RAM，以较慢的寄存器访问换CPU面积；Ozer个人归属仍限于官方贡献声明的数据分析与论文写作。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "已读原文机制段，镜像与原出版署名一致；不是对产品后续采用或个人独占发明的证明。",
+          "originalUrl": "https://www.nature.com/articles/s41586-021-03625-w",
+          "sourceCategory": "公开镜像中的原论文正文；DOI、署名与贡献分工对照出版社记录"
+        },
+        {
+          "workId": "emre-ozer-reach-identity",
+          "title": "REACH 2025 speakers — Emre Ozer",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Emre Ozer speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "priorReviews": [
+        {
+          "checkedAt": "2026-11-13",
+          "publicationPR": 101,
+          "id": "emre-ozer",
+          "name": "Emre Ozer",
+          "kind": "candidate",
+          "status": "pending",
+          "reason": "第一项已读机制正文；第二项 PlasticARM 仅出版社公开摘要及作者贡献声明，尚缺第二项可读取实质正文。",
+          "nextAction": "读取 PlasticARM 可合法访问的技术正文，或另一项本人署名的独立机制作品；复用已核验第一项。",
+          "sources": [
+            "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+            "https://www.nature.com/articles/s41586-021-03625-w",
+            "https://reach.theiet.org/2026-speakers/2025-speakers"
+          ]
+        }
       ]
     },
     {
       "id": "cameron-barker",
       "name": "Cameron Barker",
       "kind": "candidate",
-      "status": "pending",
-      "reason": "尚未核验第二项独立、可归属目标Infleqtion讲者的一手技术作品及机制正文。；检索出现与Elliot J. Crowley等合著的同名AI论文；不能未经机构/身份桥接并入目标人物。",
-      "nextAction": "Infleqtion/Superstaq官方提交记录、个人作者档案与独立论文署名/机构页。",
+      "status": "complete",
+      "reason": "参与将中性原子运动、原位门和逻辑编码连接的量子架构，并共同研究耗散系统长期振荡的谱条件。",
+      "nextAction": "后续仅追踪实质新证据；本次身份及独立作品缺口已补齐。",
       "sources": [
-        "https://www.qda.global/speakers?e77a0dc8_page=2",
-        "https://arxiv.org/abs/2509.13247"
+        {
+          "workId": "barker-sqale-motion",
+          "title": "Demonstration of a Logical Architecture Uniting Motion and In-Place Entanglement",
+          "authors": "Rich Rines; Benjamin Hall; Mariesa H. Teo; Joshua Viszlai; Daniel C. Cole; David Mason; Cameron Barker; 等共38位共同作者",
+          "date": "2025-09-16（v1）；2026-04-02（所读v2提交日期）",
+          "url": "https://arxiv.org/pdf/2509.13247v2",
+          "locator": "PDF pp.1–5，署名/机构，§I，§II.A–E，§III开头及结果边界",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读原子分块运动与原位门、编码/编译、后选择/丢失修正、泄漏检测及不可扩展Shor边界；未声称核验全部实验或独立复现。PDF首页另印April6,2026；版本时间采用arXiv提交历史。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "34b6f489f82f4c4b12c131ce6be01c9968226719ebc4430c0e4c6384576217f7"
+        },
+        {
+          "workId": "booker-dissipative-time-crystals",
+          "title": "Non-stationarity and dissipative time crystals: spectral properties and finite-size effects",
+          "authors": "Cameron Booker; Berislav Buča; Dieter Jaksch",
+          "date": "2020-08-28（出版PDF所列Published）",
+          "url": "https://inspirehep.net/files/05f50f238f641c20d3ac9c1eb1c1d219",
+          "locator": "PDF pp.1、4–6、15，作者/机构，§2–4及§5开头，ORCID iDs",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读Lindblad/谱条件、可公度频率、暗态和动力学对称性边界，以及p.15的作者ORCID。原出版DOI10.1088/1367-2630/ababc4；INSPIRE公开存储原始出版正文，内容一手、托管为镜像。未声称审阅全部数值实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "34e24ea2c5b73691e657271d96fb40763c9b68ed2b9eb14d6a6603c26959a514",
+          "origin": "原始出版论文：New Journal of Physics 22 (2020) 085007，DOI10.1088/1367-2630/ababc4；实际读取渠道为INSPIRE公开研究库所托管的出版PDF镜像。"
+        },
+        {
+          "workId": "barker-booker-orcid",
+          "title": "ORCID public person record 0000-0003-1038-3220",
+          "authors": "Cameron Barker（记录本人）",
+          "date": "2025-08-04（姓名/别名字段修改时间）；读取2026-11-13",
+          "url": "https://pub.orcid.org/v3.0/0000-0003-1038-3220/person",
+          "locator": "JSON $.name；$.other-names.other-name[0]及其source/source-orcid",
+          "type": "作者公开身份记录（API正文）",
+          "contentStatus": "直接GET公开API并解析JSON：given-names=Cameron；family-name=Barker；other-name=Cameron Booker；别名source-orcid为同一ID，source-name为Cameron Barker。网页JS壳不作为正文读取依据。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "9ea7da436bebd380d8ec266511b66238e19496126ab33347ea97a7736bd828e9"
+        },
+        {
+          "workId": "barker-qda-2026",
+          "title": "QDA Forum 2026 speakers",
+          "authors": "Quantum Datacenter Alliance",
+          "date": "2026（页面未标发布日期；会议2026-10-01）",
+          "url": "https://www.qda.global/speakers?e77a0dc8_page=2",
+          "locator": "Cameron Barker条目；网页L49–64",
+          "type": "机构人物简介",
+          "contentStatus": "已读Infleqtion UK Software Team Lead、全栈软件架构与Superstaq maintainer描述；不把宣传性能语句当独立验证。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "barker-reach-2026",
+          "title": "IET REACH 2026 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2026（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Cameron Barker讲者条目及其公开个人页链接；网页L147–151",
+          "type": "机构人物简介",
+          "contentStatus": "已读Software Team Lead, Infleqtion, UK；该条目个人链接确为https://www.linkedin.com/in/cameron-booker/。链接地址用于身份交叉核对；LinkedIn直接读取受限，不作独立技术作品。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "priorReviews": [
+        {
+          "checkedAt": "2026-11-13",
+          "publicationPR": 101,
+          "id": "cameron-barker",
+          "name": "Cameron Barker",
+          "kind": "candidate",
+          "status": "pending",
+          "reason": "尚未核验第二项独立、可归属目标Infleqtion讲者的一手技术作品及机制正文。；检索出现与Elliot J. Crowley等合著的同名AI论文；不能未经机构/身份桥接并入目标人物。",
+          "nextAction": "Infleqtion/Superstaq官方提交记录、个人作者档案与独立论文署名/机构页。",
+          "sources": [
+            "https://www.qda.global/speakers?e77a0dc8_page=2",
+            "https://arxiv.org/abs/2509.13247"
+          ]
+        }
       ]
     },
     {
       "id": "matthew-leung",
       "name": "Matthew Leung",
       "kind": "candidate",
-      "status": "pending",
-      "reason": "专利同名与公司相同仍缺少将发明人可靠桥接到目标讲者的个人身份材料。；MLCAD2020公开材料为演讲摘要，未取得机制正文；尚无两项独立可归属作品。",
-      "nextAction": "本人/机构可核验技术履历、发明人地址/合作网络或公开演讲幻灯片；另一个独立专利族。",
+      "status": "complete",
+      "reason": "把通信算法控制与可复制数据通路分离，并为FFT下一阶段预先组织数据。",
+      "nextAction": "后续仅追踪实质新证据；本次身份及独立作品缺口已补齐。",
       "sources": [
-        "https://reach.theiet.org/about-the-conference/committee",
-        "https://patents.google.com/patent/US8526513B2/en",
-        "https://www.jku.at/fileadmin/gruppen/343/Downloads/2020_11_17_Wille_Best_Paper_Award_Nominee_MLCAD.pdf"
+        {
+          "workId": "leung-vector-control-us11510246",
+          "title": "Programmable architecture for digital communication systems that support vector processing and the associated methodology — US7685405B1",
+          "url": "https://patents.google.com/patent/US7685405B1/en",
+          "authors": "Jacky S. Chow; Pak Hei Matthew Leung; Eugene Yuk-Yin Tang",
+          "date": "2010-03-23",
+          "locator": "发明人及申请/优先权信息；Description：Cross Reference、Figs.1–4相关正文，global control、algorithm controllers、datapath及复制向量通路",
+          "type": "专利说明书正文（所列部分）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列说明书正文及书目信息；Google Patents为美国专利公开文本镜像",
+          "role": "三人共同发明及控制/数据通路机制；Marvell时期作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手专利披露；证明所列共同发明，不证明产品采用或性能复现",
+          "sourceNature": "primary-patent-publication-via-public-mirror",
+          "originalPublication": "US7685405B1",
+          "applicationNumber": "US11/510,246",
+          "priorityDate": "2005-10-14",
+          "priorityApplication": "US60/727,046",
+          "originalAssignee": "Marvell International Ltd"
+        },
+        {
+          "workId": "leung-fft-memory-us11835214",
+          "title": "Methods and apparatus for providing an efficient FFT memory addressing and storage scheme — US7996453B1",
+          "url": "https://patents.google.com/patent/US7996453B1/en",
+          "authors": "Pak Hei Matthew Leung",
+          "date": "2011-08-09",
+          "locator": "发明人及申请/优先权信息；Description：Cross Reference；Detailed Description Figs.1–5、Eqs.1–3，单地址蝶形数据组、旋转寻址与shuffle寄存器",
+          "type": "专利说明书正文（所列部分）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列说明书正文及书目信息；Google Patents为美国专利公开文本镜像",
+          "role": "单一所列发明人；FFT数据布局及寻址机制；Marvell时期作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手专利披露；不把设计实施例当作实硅或商业采用证据",
+          "sourceNature": "primary-patent-publication-via-public-mirror",
+          "originalPublication": "US7996453B1",
+          "applicationNumber": "US11/835,214",
+          "priorityDate": "2006-08-16",
+          "priorityApplication": "US60/822,569",
+          "originalAssignee": "Marvell International Ltd"
+        },
+        {
+          "workId": "leung-mlcad2020-identity",
+          "title": "MLCAD20 Plenary III — Design Challenges on Post Moore’s Law Era: author and biography",
+          "url": "https://www.sigda.org/publications/mlcad20-toc/",
+          "authors": "Pak Hei Matthew Leung; ACM SIGDA conference record",
+          "date": "2020-11-17",
+          "locator": "Plenary III：题名下作者全名；紧随其后的Biography；日期为SIGDA页面发表日期",
+          "type": "会议人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取作者名、摘要与履历；未读取完整演讲，不计独立技术作品",
+          "role": "把Pak Hei Matthew Leung与Matthew Leung、Huawei HK及Michigan/Stanford学历明确连接",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "官方会议作者与履历记录；仅作为身份桥接"
+        },
+        {
+          "workId": "leung-reach-committee-identity",
+          "title": "IET REACH Committee — Matthew Leung",
+          "url": "https://reach.theiet.org/about-the-conference/committee",
+          "authors": "The Institution of Engineering and Technology",
+          "date": "unknown",
+          "locator": "Matthew Leung条目：Research Director in Computer Architecture、Huawei UK、学历及既往Marvell/ASTRI/Sun/Apple经历",
+          "type": "机构人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取该人物完整履历段；页面无明确发表日期",
+          "role": "会议侧角色、历史机构与研究领域核对；不计技术作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "主办方公开身份说明；角色限于本次读取页面所载，不推断任职起止日期"
+        },
+        {
+          "workId": "leung-reach2025-speaker-identity",
+          "title": "IET REACH 2025 speakers — Matthew Leung",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "The Institution of Engineering and Technology",
+          "date": "2025",
+          "locator": "2025 speakers标题、年份说明及Matthew Leung条目；date表示名单所属会议年度，页面发布日期未知",
+          "type": "会议人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取官方2025讲者名单中Matthew Leung及Huawei UK架构研究职责；未读取该场演讲正文",
+          "role": "确认2025讲者名单归属与当届机构；不计技术作品，也不据此断言实际演讲内容",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "官方历届名单，限定为名单与身份核验；没有视频或完整演讲核验"
+        }
+      ],
+      "priorReviews": [
+        {
+          "checkedAt": "2026-11-13",
+          "publicationPR": 101,
+          "id": "matthew-leung",
+          "name": "Matthew Leung",
+          "kind": "candidate",
+          "status": "pending",
+          "reason": "专利同名与公司相同仍缺少将发明人可靠桥接到目标讲者的个人身份材料。；MLCAD2020公开材料为演讲摘要，未取得机制正文；尚无两项独立可归属作品。",
+          "nextAction": "本人/机构可核验技术履历、发明人地址/合作网络或公开演讲幻灯片；另一个独立专利族。",
+          "sources": [
+            "https://reach.theiet.org/about-the-conference/committee",
+            "https://patents.google.com/patent/US8526513B2/en",
+            "https://www.jku.at/fileadmin/gruppen/343/Downloads/2020_11_17_Wille_Best_Paper_Award_Nominee_MLCAD.pdf"
+          ]
+        }
       ]
     },
     {
       "id": "frederique-silber-chaussumier",
       "name": "Frédérique Silber-Chaussumier",
       "kind": "candidate",
-      "status": "pending",
-      "reason": "第二项独立实质正文尚未读取。不得将SPEC本人博客与SPEC论文重复计为两个项目作品。",
-      "nextAction": "合法可读STEP2008/2009论文正文，或本人独立并行编译作品正文；保留已有SPEC核验，不重做。",
+      "status": "complete",
+      "reason": "共同研究可重复的CPU混部评估与OpenMP到MPI转换，把隐含的资源和通信假设变成可检查机制。",
+      "nextAction": "后续仅追踪实质新证据；本次身份及独立作品缺口已补齐。",
       "sources": [
-        "https://arxiv.org/pdf/2605.01575",
-        "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8"
+        {
+          "workId": "silber-spec2026",
+          "title": "SPEC CPU: The Next Generation",
+          "url": "https://arxiv.org/pdf/2605.01575",
+          "authors": "Mahesh Madhav et al.（34位共同作者；Frédérique Silber-Chaussumier署名Arm）",
+          "date": "2026-05-02",
+          "locator": "v1作者及机构页；§VII–VIII pp.10–12：PMC/BBV分析、强弱扩展、Rolling Round-Robin",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "复用前一轮已读取并保存的所列机制正文审计；本轮没有重复全文研究。",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "54facc9a62909ad7986220a94fbcddf5b63f26e43fd3f463fcb23badb5ccc5f1"
+        },
+        {
+          "workId": "silber-step2008",
+          "title": "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+          "url": "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+          "authors": "Daniel Millot; Alain Muller; Christian Parrot; Frédérique Silber-Chaussumier",
+          "date": "2008",
+          "locator": "出版方作者/机构、Abstract；IWOMP2008 pp.83–99；DOI10.1007/978-3-540-79561-2_8",
+          "type": "出版方原论文摘要",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "保留早期发表与完整姓名的定位证据；不作为第二项已读正文或第三项作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        },
+        {
+          "workId": "silber-step2008",
+          "title": "From OpenMP to MPI: first experiments of the STEP source-to-source transformation",
+          "url": "https://webarchiv.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/millot-step.pdf",
+          "authors": "D. Millot; A. Muller; C. Parrot; F. Silber-Chaussumier — Institut TELECOM / TELECOM SudParis",
+          "date": "2009（ParCo09/PPTMA；具体上传日期未标注）",
+          "locator": "PDF物理页1、7–19、20–21、28–29；展示编号1、7–16、17–18、25–26；作者页、三阶段转换、区域分析、MPI生成、失败负载与结论。",
+          "type": "团队作者幻灯片",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取署名与所列机制/边界正文；完整PDF29页取得并校验哈希。图中速度曲线未重新数字化，不引用其数值。",
+          "role": "第二项独立技术作品的正文；与STEP2008摘要同项目只计一次；不推断本人现场演讲",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手团队署名幻灯片，HLRS项目网站存档托管",
+          "retrievedSha256": "261b9565376e5f0120eaa5eb539557de19d251a5e46f64aa9935f0c313729c0e",
+          "sourceClass": "original coauthored slides hosted by the project archive",
+          "versionNote": "29物理页含动画重复页，展示页码计为26；不同于未取得的STEP2008期刊/会议全文。"
+        }
+      ],
+      "priorReviews": [
+        {
+          "checkedAt": "2026-11-13",
+          "publicationPR": 101,
+          "id": "frederique-silber-chaussumier",
+          "name": "Frédérique Silber-Chaussumier",
+          "kind": "candidate",
+          "status": "pending",
+          "reason": "第二项独立实质正文尚未读取。不得将SPEC本人博客与SPEC论文重复计为两个项目作品。",
+          "nextAction": "合法可读STEP2008/2009论文正文，或本人独立并行编译作品正文；保留已有SPEC核验，不重做。",
+          "sources": [
+            "https://arxiv.org/pdf/2605.01575",
+            "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8"
+          ]
+        }
       ]
     }
   ],
@@ -1741,9 +2098,28 @@
     "会议名单仅证明名录所列身份，不作为技术作品；共同作品不归为个人独占。",
     "论文版本、同项目重复演讲及同族专利不重复计数；所有结论限于sourceAudit所记实际读取范围。",
     "完整讲者名单和分组研究：../reach-speakers-20261113.json。",
-    "年度复核与AI Infra Research周更共享该台账；只有证据实质变化才重开研究。"
+    "年度复核与AI Infra Research周更共享该台账；只有证据实质变化才重开研究。",
+    "同日后续补证：Ozer、Silber-Chaussumier、Barker、Leung四位转为完成；priorReviews及原分组研究保留初审缺口，详见../reach-followup-20261113.json。"
   ],
   "publication": {
-    "status": "prepared"
-  }
+    "status": "prepared",
+    "previousVerifiedPR": 101,
+    "scope": "本次四人补证发布；最终部署凭据见后续PR评论。"
+  },
+  "continuations": [
+    {
+      "date": "2026-11-13",
+      "baseCommit": "dd25116a47112d5063b7e229e7b9f6acccfb6299",
+      "completedIds": [
+        "cameron-barker",
+        "emre-ozer",
+        "frederique-silber-chaussumier",
+        "matthew-leung"
+      ],
+      "evidenceGate": "two-distinct-primary-works-one-body-v1",
+      "requiresMechanismBody": true,
+      "priorCompletedNew": 28,
+      "newlyCompleted": 4
+    }
+  ]
 }

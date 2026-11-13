@@ -8,8 +8,8 @@
     "appearances": 44,
     "uniqueSpeakers": 41,
     "existing": 9,
-    "newAdmissions": 28,
-    "pending": 4
+    "newAdmissions": 32,
+    "pending": 0
   },
   "speakers": [
     {
@@ -201,10 +201,18 @@
         }
       ],
       "profileId": "emre-ozer",
-      "status": "pending",
-      "gaps": [
-        "第一项已读机制正文；第二项 PlasticARM 仅出版社公开摘要及作者贡献声明，尚缺第二项可读取实质正文。"
-      ]
+      "status": "admitted-followup",
+      "gaps": [],
+      "priorReviews": [
+        {
+          "status": "pending",
+          "gaps": [
+            "第一项已读机制正文；第二项 PlasticARM 仅出版社公开摘要及作者贡献声明，尚缺第二项可读取实质正文。"
+          ],
+          "publicationPR": 101
+        }
+      ],
+      "profileUrl": "https://wilwan01.github.io/ai/architects/#emre-ozer"
     },
     {
       "name": "Lieven Eeckhout",
@@ -419,11 +427,19 @@
         }
       ],
       "profileId": "matthew-leung",
-      "status": "pending",
-      "gaps": [
-        "专利同名与公司相同仍缺少将发明人可靠桥接到目标讲者的个人身份材料。",
-        "MLCAD2020公开材料为演讲摘要，未取得机制正文；尚无两项独立可归属作品。"
-      ]
+      "status": "admitted-followup",
+      "gaps": [],
+      "priorReviews": [
+        {
+          "status": "pending",
+          "gaps": [
+            "专利同名与公司相同仍缺少将发明人可靠桥接到目标讲者的个人身份材料。",
+            "MLCAD2020公开材料为演讲摘要，未取得机制正文；尚无两项独立可归属作品。"
+          ],
+          "publicationPR": 101
+        }
+      ],
+      "profileUrl": "https://wilwan01.github.io/ai/architects/#matthew-leung"
     },
     {
       "name": "Paul Kelly",
@@ -678,11 +694,19 @@
         }
       ],
       "profileId": "cameron-barker",
-      "status": "pending",
-      "gaps": [
-        "尚未核验第二项独立、可归属目标Infleqtion讲者的一手技术作品及机制正文。",
-        "检索出现与Elliot J. Crowley等合著的同名AI论文；不能未经机构/身份桥接并入目标人物。"
-      ]
+      "status": "admitted-followup",
+      "gaps": [],
+      "priorReviews": [
+        {
+          "status": "pending",
+          "gaps": [
+            "尚未核验第二项独立、可归属目标Infleqtion讲者的一手技术作品及机制正文。",
+            "检索出现与Elliot J. Crowley等合著的同名AI论文；不能未经机构/身份桥接并入目标人物。"
+          ],
+          "publicationPR": 101
+        }
+      ],
+      "profileUrl": "https://wilwan01.github.io/ai/architects/#cameron-barker"
     },
     {
       "name": "Frédérique Silber-Chaussumier",
@@ -697,10 +721,18 @@
         }
       ],
       "profileId": "frederique-silber-chaussumier",
-      "status": "pending",
-      "gaps": [
-        "第二项独立实质正文尚未读取。不得将SPEC本人博客与SPEC论文重复计为两个项目作品。"
-      ]
+      "status": "admitted-followup",
+      "gaps": [],
+      "priorReviews": [
+        {
+          "status": "pending",
+          "gaps": [
+            "第二项独立实质正文尚未读取。不得将SPEC本人博客与SPEC论文重复计为两个项目作品。"
+          ],
+          "publicationPR": 101
+        }
+      ],
+      "profileUrl": "https://wilwan01.github.io/ai/architects/#frederique-silber-chaussumier"
     }
   ],
   "researchFiles": [
@@ -720,6 +752,22 @@
   },
   "publication": {
     "status": "prepared",
-    "finalReceipt": "PR release verification comment; not implied by this pre-merge snapshot"
-  }
+    "previousVerifiedPR": 101,
+    "finalReceipt": "Follow-up PR release verification comment"
+  },
+  "followups": [
+    {
+      "checkedAt": "2026-11-13T15:10:59.360073+00:00",
+      "baseCommit": "dd25116a47112d5063b7e229e7b9f6acccfb6299",
+      "newlyAdmitted": [
+        "cameron-barker",
+        "emre-ozer",
+        "frederique-silber-chaussumier",
+        "matthew-leung"
+      ],
+      "previousPending": 4,
+      "remainingPending": 0,
+      "record": "reach-followup-20261113.json"
+    }
+  ]
 }
