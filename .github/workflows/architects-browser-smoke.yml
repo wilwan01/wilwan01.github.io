@@ -128,7 +128,23 @@ jobs:
                 assert.equal(index.entries.filter(x=>x.u===`/ai/architects/#${record.id}`).length,1);
                 if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
               }
-              const excludedPending=[...pending,...conferencePending.filter(r=>r.kind==='candidate'),...remainingPending.filter(r=>r.kind==='candidate')];
+              const reachBatchPath='ai/architects/research/batches/2026-11-13-reach.json';
+              const reachBatch=JSON.parse(fs.readFileSync(reachBatchPath,'utf8'));
+              const reachComplete=reachBatch.records.filter(r=>r.status==='complete');
+              const reachPending=reachBatch.records.filter(r=>r.status!=='complete');
+              assert.equal(reachComplete.length,reachBatch.completedNew);
+              assert.equal(reachBatch.records.length,reachBatch.plannedScope);
+              assert.equal(new Set(reachBatch.records.map(r=>r.id)).size,reachBatch.records.length);
+              for(const record of reachComplete){
+                const profile=catalog.profiles.find(p=>p.id===record.id);
+                assert(profile,`Missing REACH profile ${record.id}`);
+                assert.equal(profile.researchStatus.batch,'2026-11-13-reach');
+                assert.equal(index.entries.filter(x=>x.u===`/ai/architects/#${record.id}`).length,1);
+                if(!targets.some(([,id])=>id===record.id)) targets.push([profile.name,profile.id]);
+              }
+              report.reachAdmissionBatch=reachBatchPath;
+              report.reachCompletedNew=reachBatch.completedNew;
+              const excludedPending=[...pending,...conferencePending.filter(r=>r.kind==='candidate'),...remainingPending.filter(r=>r.kind==='candidate'),...reachPending];
               for(const record of excludedPending){
                 assert(!catalog.profiles.some(p=>p.id===record.id),`Pending candidate in catalog: ${record.id}`);
                 assert(!index.entries.some(x=>x.u===`/ai/architects/#${record.id}`),`Pending candidate in search: ${record.id}`);

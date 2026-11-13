@@ -149,7 +149,18 @@
         "irma-esmer-papazian",
         "lance-hacking",
         "beeman-strong",
-        "jeff-wilcox"
+        "jeff-wilcox",
+        "martin-recktenwald",
+        "frederic-piry",
+        "mark-hayter",
+        "adi-yoaz",
+        "atiq-bajwa",
+        "chris-wilkerson",
+        "tariq-kurd",
+        "karu-sankaralingam",
+        "boris-grot",
+        "hidetsugu-irie",
+        "miquel-moreto"
       ]
     },
     {
@@ -254,7 +265,13 @@
         "hongyang-jia",
         "chandru-ramakrishnan",
         "pankaj-kansal",
-        "vinod-grover"
+        "vinod-grover",
+        "olivier-temam",
+        "carlo-luschi",
+        "michaela-blott",
+        "partha-maji",
+        "marian-verhelst",
+        "themis-prodromakis"
       ]
     },
     {
@@ -297,7 +314,9 @@
         "amber-huffman",
         "john-sell",
         "jin-hyun-kim",
-        "alan-charlesworth"
+        "alan-charlesworth",
+        "dong-ping-zhang",
+        "timothy-jones"
       ]
     },
     {
@@ -384,7 +403,12 @@
         "xinyu-niu",
         "ben-sander",
         "stephane-eranian",
-        "mike-houston"
+        "mike-houston",
+        "albert-cohen",
+        "satnam-singh",
+        "david-gregg",
+        "paul-kelly",
+        "cristina-silvano"
       ]
     },
     {
@@ -475,7 +499,8 @@
         "john-kubiatowicz",
         "praveen-mosur",
         "deepak-goel",
-        "anurag-agrawal"
+        "anurag-agrawal",
+        "jangwoo-kim"
       ]
     },
     {
@@ -500,7 +525,9 @@
         "fabrizio-petrini",
         "toshio-yoshida",
         "samantika-sury",
-        "jeff-mcveigh"
+        "jeff-mcveigh",
+        "bill-mccoll",
+        "simon-mcintosh-smith"
       ]
     },
     {
@@ -543,7 +570,8 @@
         "krishnakanth-sistla",
         "benjamin-gaudette",
         "nilanjan-palit",
-        "lara-oliver"
+        "lara-oliver",
+        "plamen-asenov"
       ]
     }
   ],
@@ -58936,6 +58964,3852 @@
         "verifiedAt": "2026-11-13",
         "meaning": "公开身份、职责与所列贡献的有限核验完成；机制级作品审计未完成。"
       }
+    },
+    {
+      "id": "martin-recktenwald",
+      "name": "Martin Recktenwald",
+      "aliases": [],
+      "field": "系统频率协调与专用指令",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "把系统状态协调与可恢复执行纳入通用处理器的机制设计。",
+      "background": "REACH 2026 会议简介记录：IBM Senior Technical Staff Member、Core Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。",
+        "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+      ],
+      "argument": "编辑归纳：局部吞吐收益需要扣除协调、保存和恢复状态的代价。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "长操作和系统调频如何保证中断、恢复与跨部件一致性？"
+      ],
+      "questions": [
+        "长操作和系统调频如何保证中断、恢复与跨部件一致性？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：注入切换与中断，核对恢复后的数据、状态一致性及端到端延迟。",
+      "challenge": {
+        "lens": "系统频率协调与专用指令",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "长操作和系统调频如何保证中断、恢复与跨部件一致性？",
+        "variables": "总线静止时间、切换延迟、参数块大小、中断恢复时间",
+        "model": "编辑训练模型：局部吞吐收益需要扣除协调、保存和恢复状态的代价。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "频繁调频或短列表任务使协调和参数准备成为主要开销。",
+        "validation": "建议验证：注入切换与中断，核对恢复后的数据、状态一致性及端到端延迟。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "recktenwald-dvfs-2003-family",
+          "title": "Method and apparatus for dynamic system-level frequency scaling",
+          "url": "https://patents.google.com/patent/US7865749B2/en",
+          "date": "2011-01-04（优先权 2003-10-31）",
+          "authors": "Peter A. Sandon; Cedric Lichtenau; Martin Recktenwald; Thomas Pflueger; Rolf Hilgendorf",
+          "locator": "Figures 2–4；总线静止、就绪通知与分频选择实施例",
+          "contentStatus": "已读署名、优先权及说明书相关机制；Google Patents 为专利公开镜像。",
+          "sourceFacts": [
+            "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "recktenwald-sortl-2018-family",
+          "title": "Sort and merge instruction for a general-purpose processor",
+          "url": "https://patents.google.com/patent/CA3307478A1/en",
+          "date": "2026-05-13（优先权 2018-11-06）",
+          "authors": "Bruce Conrad Giamei; Martin Recktenwald; Donald William Schmidt; Timothy Slegel; Aditya Nitin Puranik; Mark Farrell; Christian Jacobi; Jonathan Bradbury; Christian Gerhard Zoellin",
+          "locator": "说明书 [0001]–[0012]、[0030]–[0032]",
+          "contentStatus": "已读署名、优先权、SORTL 参数块与中断恢复说明；公开专利镜像。",
+          "sourceFacts": [
+            "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "martin-recktenwald-reach-identity",
+          "title": "REACH 2026 speakers — Martin Recktenwald",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Martin Recktenwald speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Method and apparatus for dynamic system-level frequency scaling",
+          "https://patents.google.com/patent/US7865749B2/en",
+          "2011-01-04（优先权 2003-10-31）；Figures 2–4；总线静止、就绪通知与分频选择实施例"
+        ],
+        [
+          "Sort and merge instruction for a general-purpose processor",
+          "https://patents.google.com/patent/CA3307478A1/en",
+          "2026-05-13（优先权 2018-11-06）；说明书 [0001]–[0012]、[0030]–[0032]"
+        ],
+        [
+          "REACH 2026 speakers — Martin Recktenwald",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Martin Recktenwald speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "recktenwald-dvfs-2003-family",
+          "text": "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。"
+        },
+        {
+          "workId": "recktenwald-sortl-2018-family",
+          "text": "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "2003 年优先权的系统调频族与 2018 年优先权的排序指令族在技术问题和专利族上独立；加拿大后续公开不算第三作品。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "frederic-piry",
+      "name": "Frederic Piry",
+      "aliases": [
+        "Frédéric Piry",
+        "Frederic Claude Marie Piry"
+      ],
+      "field": "一致性低功耗与执行特征掩蔽",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "把低功耗状态和执行路径变化纳入处理器的正确性与安全边界。",
+      "background": "REACH 2026 会议简介记录：Arm VP CPU Technology、Fellow。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。",
+        "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+      ],
+      "argument": "编辑归纳：省电和掩蔽收益必须分别对照一致性成本与可观测泄漏检验。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？"
+      ],
+      "questions": [
+        "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利披露不是已量产证明；申请状态和专利有效性不在本技术审计结论内。未将随机化视为已经证明的侧信道安全。",
+      "diagnostic": "建议验证：测核心休眠时的完整系统功耗和一致性流量；在指定威胁模型下测试泄漏，不以随机化直接判定安全。",
+      "challenge": {
+        "lens": "一致性低功耗与执行特征掩蔽",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？",
+        "variables": "缓存待机功耗、一致性延迟、执行时间分布、攻击者观察窗口",
+        "model": "编辑训练模型：省电和掩蔽收益必须分别对照一致性成本与可观测泄漏检验。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "缓存持续活动抵消省电；重复采样也可能消除随机执行带来的掩蔽。",
+        "validation": "建议验证：测核心休眠时的完整系统功耗和一致性流量；在指定威胁模型下测试泄漏，不以随机化直接判定安全。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "piry-coherent-power-2003-family",
+          "title": "Power control within a coherent multi-processing system",
+          "url": "https://patents.google.com/patent/US20050005073A1/en",
+          "date": "2005-01-06（优先权 2003-07-02）",
+          "authors": "Julie-Anne Pruvost; Frederic Piry; Norbert Lataille; Gilles Grandou; Anthony Goodacre",
+          "locator": "说明书核心/缓存独立时钟及 Fig. 5；SCU 一致性请求处理",
+          "contentStatus": "已读署名及核心低功耗、缓存继续服务一致性请求的机制；公开专利镜像。",
+          "sourceFacts": [
+            "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "piry-masking-2002-family",
+          "title": "Processing activity masking in a data processing system",
+          "url": "https://patents.google.com/patent/US7313677B2/en",
+          "date": "2007-12-25（优先权 2002-12-12）",
+          "authors": "Frederic Claude Marie Piry",
+          "locator": "说明书原生/软件模拟执行选择；Figs. 13–14；权利要求 1–26",
+          "contentStatus": "已读独立发明人及伪随机选择硬件/软件执行路径、功耗/时间特征掩蔽机制。",
+          "sourceFacts": [
+            "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "frederic-piry-reach-identity",
+          "title": "REACH 2026 speakers — Frederic Piry",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Frederic Piry speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Power control within a coherent multi-processing system",
+          "https://patents.google.com/patent/US20050005073A1/en",
+          "2005-01-06（优先权 2003-07-02）；说明书核心/缓存独立时钟及 Fig. 5；SCU 一致性请求处理"
+        ],
+        [
+          "Processing activity masking in a data processing system",
+          "https://patents.google.com/patent/US7313677B2/en",
+          "2007-12-25（优先权 2002-12-12）；说明书原生/软件模拟执行选择；Figs. 13–14；权利要求 1–26"
+        ],
+        [
+          "REACH 2026 speakers — Frederic Piry",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Frederic Piry speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "piry-coherent-power-2003-family",
+          "text": "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。"
+        },
+        {
+          "workId": "piry-masking-2002-family",
+          "text": "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "两个不同优先权的专利族：一致性低功耗与执行特征掩蔽；不把同族授权与申请重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "mark-hayter",
+      "name": "Mark Hayter",
+      "aliases": [
+        "Mark D. Hayter",
+        "Mark David Hayter"
+      ],
+      "field": "网络 SoC、缓存分配与 DMA",
+      "domain": "cpu",
+      "relatedDomains": [
+        "network",
+        "memory"
+      ],
+      "core": "把包数据的缓存位置和搬运控制放在同一个 SoC 设计问题中。",
+      "background": "REACH 2026 会议简介记录：Cambridge Visiting Industrial Fellow。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。",
+        "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+      ],
+      "argument": "编辑归纳：选择性缓存与描述符控制的收益取决于真实复用和可隐藏的 CPU 开销。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？"
+      ],
+      "questions": [
+        "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：固定包长分布，比较 CPU 周期、缓存缺失、队列尾延迟与内存带宽。",
+      "challenge": {
+        "lens": "网络 SoC、缓存分配与 DMA",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？",
+        "variables": "包头大小、缓存占用、内存字节、描述符延迟、队列等待",
+        "model": "编辑训练模型：选择性缓存与描述符控制的收益取决于真实复用和可隐藏的 CPU 开销。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "大包体误入缓存或长等待控制描述符阻塞队列，可能抵消卸载收益。",
+        "validation": "建议验证：固定包长分布，比较 CPU 周期、缓存缺失、队列尾延迟与内存带宽。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "hayter-packet-soc-2001-family",
+          "title": "System on a chip for packet processing",
+          "url": "https://patents.google.com/patent/US20020174252A1/en",
+          "date": "2002-11-21（优先权 2001-05-18）",
+          "authors": "Mark Hayter; Shailendra Desai; Daniel Dobberpuhl; Kwong-Tak Chui",
+          "locator": "说明书 [0059]–[0072]、[0082]–[0083]；Figs. 3–4",
+          "contentStatus": "已读发明人及逐事务缓存分配、包头/包体路径；转让记录使用 Mark D. Hayter。",
+          "sourceFacts": [
+            "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "hayter-unified-dma-2005-family",
+          "title": "Unified DMA",
+          "url": "https://patents.google.com/patent/US20070073922A1/en",
+          "date": "2007-03-29（优先权 2005-09-29）",
+          "authors": "Dominic Go; Mark Hayter; Zongjian Chen; Ruchi Wadhawan",
+          "locator": "接口总述；Figs. 10–11 描述符处理",
+          "contentStatus": "已读 P.A. Semi 署名与转让、传输/控制描述符和定时等待机制。",
+          "sourceFacts": [
+            "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "mark-hayter-reach-identity",
+          "title": "REACH 2026 speakers — Mark Hayter",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Mark Hayter speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "System on a chip for packet processing",
+          "https://patents.google.com/patent/US20020174252A1/en",
+          "2002-11-21（优先权 2001-05-18）；说明书 [0059]–[0072]、[0082]–[0083]；Figs. 3–4"
+        ],
+        [
+          "Unified DMA",
+          "https://patents.google.com/patent/US20070073922A1/en",
+          "2007-03-29（优先权 2005-09-29）；接口总述；Figs. 10–11 描述符处理"
+        ],
+        [
+          "REACH 2026 speakers — Mark Hayter",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Mark Hayter speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "hayter-packet-soc-2001-family",
+          "text": "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。"
+        },
+        {
+          "workId": "hayter-unified-dma-2005-family",
+          "text": "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "包缓存分配的 2001 年族与统一 DMA 的 2005 年族独立；转让记录的 Mark D. Hayter 姓名一致，历史公司归属不外推现职。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "adi-yoaz",
+      "name": "Adi Yoaz",
+      "aliases": [],
+      "field": "推测调度与取指缓存",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "减少调度等待和前端冗余，需要连同误预测与恢复成本一起评估。",
+      "background": "REACH 2025 会议简介记录：Huawei CPU Core Portfolio Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。",
+        "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+      ],
+      "argument": "编辑归纳：提前调度和压缩前端的净收益取决于误预测、重新取指与额外结构的总成本。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "推测减少的等待是否大于误预测恢复和缓存结构成本？"
+      ],
+      "questions": [
+        "推测减少的等待是否大于误预测恢复和缓存结构成本？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "共同署名的 Intel Israel 历史研究；不得归为当前 Huawei 产品实现。论文模拟结果不是量产芯片实测，个人机制分工未由作者声明拆分。",
+      "diagnostic": "建议验证：在同一模拟基线分别关闭各机制，检查误预测率、重放、前端停顿和总 IPC。",
+      "challenge": {
+        "lens": "推测调度与取指缓存",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "推测减少的等待是否大于误预测恢复和缓存结构成本？",
+        "variables": "预测准确率、重放周期、块重复率、取指带宽、面积",
+        "model": "编辑训练模型：提前调度和压缩前端的净收益取决于误预测、重新取指与额外结构的总成本。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "难预测的访存依赖或高分支熵使提前调度和块复用失效。",
+        "validation": "建议验证：在同一模拟基线分别关闭各机制，检查误预测率、重放、前端停顿和总 IPC。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "yoaz-load-scheduling-1999",
+          "title": "Speculation Techniques for Improving Load Related Instruction Scheduling",
+          "url": "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/LoadSched_ISCA26.pdf",
+          "date": "1999（ISCA，pp. 42–53）",
+          "authors": "Adi Yoaz; Mattan Erez; Ronny Ronen; Stephan Jourdan",
+          "locator": "署名页；§1.1–2 负载依赖和调度机制",
+          "contentStatus": "已读大学托管共同作者论文 PDF 的署名、引言及负载调度机制；Intel Israel 工作。",
+          "sourceFacts": [
+            "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "yoaz-xbc-2000",
+          "title": "eXtended Block Cache",
+          "url": "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/XBC_HPCA6.pdf",
+          "date": "2000（HPCA，pp. 61–70）",
+          "authors": "Stephan Jourdan; Lihu Rappoport; Yoav Almog; Mattan Erez; Adi Yoaz; Ronny Ronen",
+          "locator": "署名页；§2、§3.1 XBC 组织",
+          "contentStatus": "已读共同作者公开 PDF：多入口单出口块、结束地址索引和反向存储机制。",
+          "sourceFacts": [
+            "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "adi-yoaz-reach-identity",
+          "title": "REACH 2025 speakers — Adi Yoaz",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Adi Yoaz speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Speculation Techniques for Improving Load Related Instruction Scheduling",
+          "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/LoadSched_ISCA26.pdf",
+          "1999（ISCA，pp. 42–53）；署名页；§1.1–2 负载依赖和调度机制"
+        ],
+        [
+          "eXtended Block Cache",
+          "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/XBC_HPCA6.pdf",
+          "2000（HPCA，pp. 61–70）；署名页；§2、§3.1 XBC 组织"
+        ],
+        [
+          "REACH 2025 speakers — Adi Yoaz",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Adi Yoaz speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "yoaz-load-scheduling-1999",
+          "text": "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。"
+        },
+        {
+          "workId": "yoaz-xbc-2000",
+          "text": "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "1999 负载调度和 2000 指令前端缓存是不同技术问题与独立论文，不把同文版本重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "atiq-bajwa",
+      "name": "Atiq Bajwa",
+      "aliases": [
+        "Atiq A. Bajwa"
+      ],
+      "field": "乱序控制流与处理器能耗",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "从控制流传递到整机电源状态，设计收益受状态管理成本约束。",
+      "background": "REACH 2025 会议简介记录：Ampere CTO、Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。",
+        "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+      ],
+      "argument": "编辑归纳：收益依赖负载状态分布；更深空闲只有覆盖转换成本时才节能。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？"
+      ],
+      "questions": [
+        "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "历史 Intel 共同作品与会议时点 Ampere 职务分列；专利权利要求不证明已实现。Haswell 团队设计不归于个人独占。",
+      "diagnostic": "建议验证：分开持续负载与突发负载，记录每任务能量、转换时间及尾延迟。",
+      "challenge": {
+        "lens": "乱序控制流与处理器能耗",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？",
+        "variables": "分支目标可用时间、状态切换延迟、活动/空闲占比、每任务能量",
+        "model": "编辑训练模型：收益依赖负载状态分布；更深空闲只有覆盖转换成本时才节能。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "持续繁忙的服务器很少进入深空闲，客户端机制的收益不能直接迁移。",
+        "validation": "建议验证：分开持续负载与突发负载，记录每任务能量、转换时间及尾延迟。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "bajwa-control-flow-1995-family",
+          "title": "Method and apparatus for changing flow of control in a processor",
+          "url": "https://patents.justia.com/patent/5809271",
+          "date": "1998-09-15（申请 1995-08-23）",
+          "authors": "Robert P. Colwell; Atiq Bajwa; Michael A. Fetterman; Andrew F. Glew; Glenn J. Hinton; David B. Papworth",
+          "locator": "US5809271；仅摘要、权利要求 1–7、发明人信息（不是说明书描述部分）",
+          "contentStatus": "已读 Justia 专利公开镜像的摘要、权利要求 1–7、发明人及授权信息。未取得或阅读说明书描述部分，不声称阅读全文。",
+          "sourceFacts": [
+            "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利权利要求正文（所列权利要求）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "bajwa-haswell-2014",
+          "title": "Haswell: The Fourth-Generation Intel Core Processor",
+          "url": "https://pages.cs.wisc.edu/~david/courses/cs758/Fall2016/handouts/restricted/Haswell.pdf",
+          "date": "2014（IEEE Micro 34(2)，pp. 6–20）",
+          "authors": "Per Hammarlund; Alberto J. Martinez; Atiq A. Bajwa 等 Intel 合著者",
+          "locator": "署名页及 pp. 6–9 电源管理部分",
+          "contentStatus": "已读公开大学教学镜像的署名和 S0ix、FIVR 机制；未逐页审计其余章节。",
+          "sourceFacts": [
+            "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "atiq-bajwa-reach-identity",
+          "title": "REACH 2025 speakers — Atiq Bajwa",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Atiq Bajwa speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Method and apparatus for changing flow of control in a processor",
+          "https://patents.justia.com/patent/5809271",
+          "1998-09-15（申请 1995-08-23）；US5809271；摘要、权利要求 1–7、发明人信息"
+        ],
+        [
+          "Haswell: The Fourth-Generation Intel Core Processor",
+          "https://pages.cs.wisc.edu/~david/courses/cs758/Fall2016/handouts/restricted/Haswell.pdf",
+          "2014（IEEE Micro 34(2)，pp. 6–20）；署名页及 pp. 6–9 电源管理部分"
+        ],
+        [
+          "REACH 2025 speakers — Atiq Bajwa",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Atiq Bajwa speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "bajwa-control-flow-1995-family",
+          "text": "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。"
+        },
+        {
+          "workId": "bajwa-haswell-2014",
+          "text": "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "1995 年申请的分支控制流专利与 2014 Haswell 技术论文独立；未把 Haswell 媒体介绍重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "chris-wilkerson",
+      "name": "Chris Wilkerson",
+      "aliases": [],
+      "field": "低电压缓存与纠错",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "允许受控的容量和纠错代价，换取缓存工作电压或刷新能耗的下降。",
+      "background": "REACH 2025 会议简介记录：Intel Principal Engineer。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。",
+        "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+      ],
+      "argument": "编辑归纳：比较每任务总能量，计入失效屏蔽造成的缺失和 ECC 的慢路径。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "电压或刷新节省是否被容量损失、纠错和读取放大抵消？"
+      ],
+      "questions": [
+        "电压或刷新节省是否被容量损失、纠错和读取放大抵消？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "共同署名研究及模拟/模型结果，不是对所有生产缓存的结论；未用未核实的 Christopher 别名合并人物。",
+      "diagnostic": "建议验证：扫电压、温度与保持时间，报告容量、错误分布、尾延迟和完整内存能量。",
+      "challenge": {
+        "lens": "低电压缓存与纠错",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "电压或刷新节省是否被容量损失、纠错和读取放大抵消？",
+        "variables": "故障率、可用容量、纠错延迟、刷新能量、读取字节",
+        "model": "编辑训练模型：比较每任务总能量，计入失效屏蔽造成的缺失和 ECC 的慢路径。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "高错误率或不利访问局部性触发大量慢纠错与外存访问。",
+        "validation": "建议验证：扫电压、温度与保持时间，报告容量、错误分布、尾延迟和完整内存能量。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "wilkerson-vccmin-2008",
+          "title": "Trading Off Cache Capacity for Low Voltage Operation",
+          "url": "https://www.cs.sfu.ca/~alaa/papers/ieeemicro09_vccmin.pdf",
+          "date": "2009（IEEE Micro；对应 ISCA 2008 工作）",
+          "authors": "Chris Wilkerson; Hongliang Gao; Alaa R. Alameldeen; Zeshan Chishti; Muhammad Khellah; Shih-Lien Lu",
+          "locator": "署名页；pp. 99–101 word disabling / bit fix",
+          "contentStatus": "已读共同作者公开 PDF 的低电压失效映射、字禁用和修复机制。",
+          "sourceFacts": [
+            "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "wilkerson-hiecc-2010",
+          "title": "Reducing Cache Power with Low-Cost, Multi-Bit Error-Correcting Codes",
+          "url": "https://www.cs.sfu.ca/~alaa/papers/isca10_refresh.pdf",
+          "date": "2010（ISCA）",
+          "authors": "Chris Wilkerson; Alaa R. Alameldeen; Zeshan Chishti; Wei Wu; Dinesh Somasekhar; Shih-Lien Lu",
+          "locator": "署名页；§3.2、§5",
+          "contentStatus": "已读 HiECC 快慢纠错路径、1 KB 纠错块、RALT 与功耗边界；未复现实验。",
+          "sourceFacts": [
+            "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "chris-wilkerson-reach-identity",
+          "title": "REACH 2025 speakers — Chris Wilkerson",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Chris Wilkerson speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Trading Off Cache Capacity for Low Voltage Operation",
+          "https://www.cs.sfu.ca/~alaa/papers/ieeemicro09_vccmin.pdf",
+          "2009（IEEE Micro；对应 ISCA 2008 工作）；署名页；pp. 99–101 word disabling / bit fix"
+        ],
+        [
+          "Reducing Cache Power with Low-Cost, Multi-Bit Error-Correcting Codes",
+          "https://www.cs.sfu.ca/~alaa/papers/isca10_refresh.pdf",
+          "2010（ISCA）；署名页；§3.2、§5"
+        ],
+        [
+          "REACH 2025 speakers — Chris Wilkerson",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Chris Wilkerson speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "wilkerson-vccmin-2008",
+          "text": "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。"
+        },
+        {
+          "workId": "wilkerson-hiecc-2010",
+          "text": "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "低电压 SRAM 容量交换与 eDRAM 保留/刷新纠错是两项独立工作；2008 会议与 2009 Micro 版本只算一项。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "tariq-kurd",
+      "name": "Tariq Kurd",
+      "aliases": [],
+      "field": "乱序结果管理与浮点特殊值",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "core": "把推测结果和异常数值的处理代价显式放入执行数据通路。",
+      "background": "REACH 2025 会议简介记录：Codasip Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。",
+        "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+      ],
+      "argument": "编辑归纳：常见路径与异常路径解耦的收益，受缓冲和校正/恢复成本限制。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？"
+      ],
+      "questions": [
+        "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：注入分支恢复、依赖冲突、零与非规格化值，核对结果和架构状态。",
+      "challenge": {
+        "lens": "乱序结果管理与浮点特殊值",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？",
+        "variables": "广播带宽、结果缓冲容量、恢复延迟、特殊值频率、比较延迟",
+        "model": "编辑训练模型：常见路径与异常路径解耦的收益，受缓冲和校正/恢复成本限制。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "推测失败密集或特殊值频繁时，额外缓冲及校正成为瓶颈。",
+        "validation": "建议验证：注入分支恢复、依赖冲突、零与非规格化值，核对结果和架构状态。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "kurd-stunt-2014-family",
+          "title": "Stunt box to broadcast and store results until retirement for an out-of-order processor",
+          "url": "https://patents.google.com/patent/US10713049B2/en",
+          "date": "2020-07-14（优先权 2014-04-25）",
+          "authors": "Sophie Wilson; Tariq Kurd",
+          "locator": "摘要、结果存储/仲裁说明及权利要求",
+          "contentStatus": "已读原始 Avago/Broadcom 专利族的署名、推测结果广播保存与确认后更新机制。",
+          "sourceFacts": [
+            "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "kurd-nonarithmetic-2001-family",
+          "title": "Circuitry and method for performing non-arithmetic operations",
+          "url": "https://patents.google.com/patent/US7395296B2/en",
+          "date": "2008-07-01（优先权 2001-11-23）",
+          "authors": "Tariq Kurd",
+          "locator": "说明书比较器、特殊浮点值检测与校正路径",
+          "contentStatus": "已读单独发明人、原始 STMicroelectronics UK 归属及并行比较/特殊值检测机制。",
+          "sourceFacts": [
+            "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "tariq-kurd-reach-identity",
+          "title": "REACH 2025 speakers — Tariq Kurd",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Tariq Kurd speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Stunt box to broadcast and store results until retirement for an out-of-order processor",
+          "https://patents.google.com/patent/US10713049B2/en",
+          "2020-07-14（优先权 2014-04-25）；摘要、结果存储/仲裁说明及权利要求"
+        ],
+        [
+          "Circuitry and method for performing non-arithmetic operations",
+          "https://patents.google.com/patent/US7395296B2/en",
+          "2008-07-01（优先权 2001-11-23）；说明书比较器、特殊浮点值检测与校正路径"
+        ],
+        [
+          "REACH 2025 speakers — Tariq Kurd",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Tariq Kurd speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "kurd-stunt-2014-family",
+          "text": "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。"
+        },
+        {
+          "workId": "kurd-nonarithmetic-2001-family",
+          "text": "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "2014 乱序结果族与 2001 浮点比较族独立；US10346165B2 等同族锁定机制未重复计数。后续专利转让不推断就业。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      }
+    },
+    {
+      "id": "olivier-temam",
+      "name": "Olivier Temam",
+      "aliases": [],
+      "field": "机器学习加速器与数据局部性",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "参与 DianNao 与 DaDianNao 的共同设计，把神经网络计算的瓶颈从算术单元扩展到权重存储、复用与跨芯片通信。",
+      "background": "2014 年论文署名技术贡献属于共同研究团队；REACH 2026 将其列为 Google DeepMind Director（法国），仅作为会议所列角色。",
+      "contributions": [
+        "DianNao 用神经功能单元和分离的输入、输出及突触缓存组织低成本机器学习计算。",
+        "DaDianNao 以大容量片上存储和多芯片分区减少权重搬运，暴露存储容量与互连的共同约束。"
+      ],
+      "argument": "DianNao 将神经计算放入 NFU，并以分离的输入、输出和突触缓冲区安排分块复用，减少计算单元等待数据。DaDianNao 进一步让权重驻留在分银行的片上 eDRAM 中，并把更大网络分布到多芯片。两者把问题从增加算术单元转向容量、复用和通信的共同设计；模型超出驻留容量或切分产生大量通信时，局部吞吐优势会受限。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：从算术吞吐追踪到权重与通信瓶颈",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。"
+      ],
+      "boundary": "论文设计与评估不等于后续商品芯片实测或商业采用；不能将共同成果归于一人。",
+      "diagnostic": "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "diannao",
+          "title": "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "authors": "Tianshi Chen, Zidong Du, Ninghui Sun, Jia Wang, Chengyong Wu, Yunji Chen, Olivier Temam",
+          "date": "2014",
+          "url": "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "locator": "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07",
+          "reusedFrom": "ai/architects/research/batches/2026-10-07-expansion20.json",
+          "reuseCheckedAt": "2026-11-13"
+        },
+        {
+          "workId": "dadiannao",
+          "title": "DaDianNao: A Machine-Learning Supercomputer",
+          "authors": "Yunji Chen, Tao Luo, Shaoli Liu, Shijin Zhang, Liqiang He, Jia Wang, Ling Li, Tianshi Chen, Zhiwei Xu, Ninghui Sun, Olivier Temam",
+          "date": "2014",
+          "url": "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "locator": "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07",
+          "reusedFrom": "ai/architects/research/batches/2026-10-07-expansion20.json",
+          "reuseCheckedAt": "2026-11-13"
+        },
+        {
+          "workId": "reach-2026-speaker-olivier-temam",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Olivier Temam speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "2014 · 共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献"
+        ],
+        [
+          "DaDianNao: A Machine-Learning Supercomputer",
+          "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "2014 · 共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "diannao",
+          "text": "DianNao 的 NFU 与 NBin/NBout/SB 数据组织支持分块复用；Temam 为共同作者。"
+        },
+        {
+          "workId": "dadiannao",
+          "text": "DaDianNao 的 eDRAM 分银行、权重驻留和多芯片组织是另一项体系结构作品；不是 DianNao 的转载或论文版本。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "从算术吞吐追踪到权重与通信瓶颈",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "片上容量、权重字节、复用次数、片外带宽、跨芯片流量",
+        "model": "本站编辑条件性模型（非作者原公式）：总执行时间由计算、供数和跨芯片同步共同约束。",
+        "crossover": "足够权重驻留与复用抵消存储、互连成本时成立。",
+        "counterexample": "小批次、超容量模型或通信密集切分使片上算术优势难以兑现。",
+        "validation": "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "dong-ping-zhang",
+      "name": "Dong Ping Zhang",
+      "aliases": [],
+      "field": "近存计算与内存密集数据结构",
+      "domain": "memory",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter"
+      ],
+      "core": "参与 TOP-PIM 与 Horton Tables，以计算靠近内存和减少多余哈希访存两条独立路径降低数据移动成本。",
+      "background": "2014/2016 作品列 AMD Research；REACH 2026 列 Cerebras Systems Technical Director of Product。论文贡献不能据此延伸为 Cerebras 芯片设计个人归属。",
+      "contributions": [
+        "TOP-PIM 研究把吞吐型 GPU 计算单元放到存储堆叠逻辑层，并把功耗与热限制纳入设计。",
+        "Horton Tables 在桶内保留重映射信息，减少成功和失败查询需触及的桶数。"
+      ],
+      "argument": "TOP-PIM 把吞吐型 GPU 计算单元放入存储堆叠的逻辑层，以更短的数据路径换取供数能效，但必须同时承担堆叠热限制和受限计算功率。Horton Tables 则偏向一个主哈希函数，在桶内用 remap entries 记录溢出元素所用的次级哈希，从而减少查询额外读取的桶。前者改变每次数据移动的代价，后者减少移动次数；预测型 PIM 结果与哈希算法实测须分别看待。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：以访存次数和每次数据移动成本共同建模",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。"
+      ],
+      "boundary": "Horton Tables 与 TOP-PIM 为独立算法/架构作品；不将另一个 PIM 后续应用论文重复充数。会议现职只确认名录所列范围。",
+      "diagnostic": "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "top-pim-2014",
+          "title": "TOP-PIM: Throughput-Oriented Programmable Processing in Memory",
+          "authors": "Dong Ping Zhang; Nuwan Jayasena; Alexander Lyashevsky; Joseph L. Greathouse; Lifan Xu; Michael Ignatowski",
+          "date": "2014-06",
+          "url": "https://www.computermachines.org/joe/publications/pdfs/hpdc2014_top-pim.pdf",
+          "locator": "§3.1–3.2，§5–7",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读作者署名、堆叠组织与 GPU 型 PIM 架构、建模评估边界；下载全文，不宣称全部细节逐字审阅。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "abdc0fe2070f4dbd7f4132b25b35e34062c1311f20b3a9f991fdc4f6ca7ad07f"
+        },
+        {
+          "workId": "horton-tables-2016",
+          "title": "Horton Tables: Fast Hash Tables for In-Memory Data-Intensive Computing",
+          "authors": "Alex D. Breslow; Dong Ping Zhang; Joseph L. Greathouse; Nuwan Jayasena; Dean M. Tullsen",
+          "date": "2016-06",
+          "url": "https://www.usenix.org/system/files/conference/atc16/atc16_paper-breslow.pdf",
+          "locator": "pp.281–284，§4–5 指向；已读署名、导论与 remap-entry 原理",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读会议正文署名、数据移动问题、主/次哈希和桶内 remap 记录机制；不将全文可下载等同所有章节详读。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "6f0d3502c945a13eb0ebd2d77f58e7fb71f85bc6bbd535eeebe5468d8cf1eba7"
+        },
+        {
+          "workId": "reach-2026-speaker-dong-ping-zhang",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Dong Ping Zhang speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "TOP-PIM: Throughput-Oriented Programmable Processing in Memory",
+          "https://www.computermachines.org/joe/publications/pdfs/hpdc2014_top-pim.pdf",
+          "2014-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "Horton Tables: Fast Hash Tables for In-Memory Data-Intensive Computing",
+          "https://www.usenix.org/system/files/conference/atc16/atc16_paper-breslow.pdf",
+          "2016-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "top-pim-2014",
+          "text": "TOP-PIM 是基于硬件测量特征的预测/分析设计，不是已制造的 PIM 商品实硅。"
+        },
+        {
+          "workId": "horton-tables-2016",
+          "text": "Horton Tables 的主哈希偏置与 remap entries 减少多余缓存行读取；Zhang 为共同作者。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "以访存次数和每次数据移动成本共同建模",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "查询混合、装载率、缓存行次数、PIM 热功率和链路成本",
+        "model": "本站编辑条件性模型（非作者原公式）：总数据代价取决于每任务访问次数与每次传输成本。",
+        "crossover": "省下的数据移动必须覆盖元数据维护或近存计算约束。",
+        "counterexample": "写密集哈希维护或计算密集任务让降低读流量不再主导。",
+        "validation": "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "carlo-luschi",
+      "name": "Carlo Luschi",
+      "aliases": [],
+      "field": "AI 模型与加速器协同优化",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "hpc"
+      ],
+      "core": "参与把实际训练时间而非 FLOPs 作为优化目标，并将 IPU 的片上存储和并行能力用于量子化学数据生成。",
+      "background": "所选 2021/2023 论文列 Graphcore；REACH 2025/2026 均列 Graphcore VP & Head of Research。贡献限于署名团队作品。",
+      "contributions": [
+        "EfficientNet 工作联合改变分组卷积、批次无关归一化与训练分辨率，匹配实际加速器约束。",
+        "PySCF_IPU 将 DFT 数据生成映射至 IPU，并公开 QM1B 数据与其精度范围。"
+      ],
+      "argument": "EfficientNet 优化通过增大卷积分组、调整通道扩张比例，提高算术强度与向量利用率，同时用批次无关归一化适应片上容量所要求的小批次。PySCF_IPU 利用片上存储和 MIMD 并行处理小型 DFT 计算，将科学计算组织为可规模生成训练数据的流水。优化目标是达到同一任务质量所需的实际时间；更低 FLOPs 或更多低分辨率标签本身均不能保证更好的最终结果。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：区分理论计算量与可实现吞吐",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。"
+      ],
+      "boundary": "属于特定 IPU 与应用的共同研究；不代表 Luschi 个人独创 IPU，也不将原硬件结果外推到新代产品。",
+      "diagnostic": "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "efficientnet-ipu-2021",
+          "title": "Making EfficientNet More Efficient: Exploring Batch-Independent Normalization, Group Convolutions and Reduced Resolution Training",
+          "authors": "Dominic Masters; Antoine Labatie; Zach Eaton-Rosen; Carlo Luschi",
+          "date": "2021-06",
+          "url": "https://arxiv.org/pdf/2106.03640",
+          "locator": "§2.2–3.2，训练与评估方法",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、硬件约束、group convolution 与归一化机制正文。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "c808092a11b26d9ed50a001f194c396234d7afe14be67799c884a7e2979e6afa"
+        },
+        {
+          "workId": "pyscf-ipu-qm1b-2023",
+          "title": "Generating QM1B with PySCF_IPU",
+          "authors": "Alexander Mathiasen; Hatem Helal; Kerstin Klaser; Paul Balanca; Josef Dean; Carlo Luschi; Dominique Beaini; Andrew Fitzgibbon; Dominic Masters",
+          "date": "2023",
+          "url": "https://papers.neurips.cc/paper_files/paper/2023/file/ac7f98dd0b342edaf3be79844a180a6b-Paper-Datasets_and_Benchmarks.pdf",
+          "locator": "§2–3，数据集与精度限制",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读共同署名、PySCF_IPU 原理、片上容量/MIMD 动机及低分辨率数据局限。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "9f713920ba1a68b5e5dd2d932597ae1f4b30e0fdd1628707aec46680d2837b1f"
+        },
+        {
+          "workId": "reach-2025-speaker-carlo-luschi",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Carlo Luschi speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "reach-2026-speaker-carlo-luschi",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Carlo Luschi speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "Making EfficientNet More Efficient: Exploring Batch-Independent Normalization, Group Convolutions and Reduced Resolution Training",
+          "https://arxiv.org/pdf/2106.03640",
+          "2021-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "Generating QM1B with PySCF_IPU",
+          "https://papers.neurips.cc/paper_files/paper/2023/file/ac7f98dd0b342edaf3be79844a180a6b-Paper-Datasets_and_Benchmarks.pdf",
+          "2023 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "efficientnet-ipu-2021",
+          "text": "分组大小与算术强度、向量利用率、激活容量和小批次归一化相互耦合；不能仅比较 FLOPs。"
+        },
+        {
+          "workId": "pyscf-ipu-qm1b-2023",
+          "text": "PySCF_IPU 用片上内存与 MIMD 支持小型 DFT 任务；数据量增加不自动消除基组与精度偏差。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "区分理论计算量与可实现吞吐",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "精度、批次、向量利用率、激活容量、数据生成误差",
+        "model": "本站编辑条件性模型（非作者原公式）：在达到同一质量阈值后比较训练或数据生成的端到端时间。",
+        "crossover": "任务质量与误差边界可接受且硬件利用率提升时成立。",
+        "counterexample": "低 FLOPs 模型访存受限，或海量低精度标签引入系统偏差。",
+        "validation": "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "michaela-blott",
+      "name": "Michaela Blott",
+      "aliases": [],
+      "field": "FPGA 数据流与低精度 AI",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "compiler-runtime"
+      ],
+      "core": "参与 FINN 与线速哈希表，把神经网络和数据中心查询分别重组为可流水化、资源可配置的 FPGA 数据流。",
+      "background": "FINN 和哈希表论文署名 Xilinx Research/Labs；REACH 2025 列 AMD Senior Fellow。按作品时期归属，不倒填为 AMD 当时成果。",
+      "contributions": [
+        "FINN 用二值点积、阈值融合和每层资源折叠生成异构流式推理引擎。",
+        "线速哈希表通过桶内并行、键值分离和并发控制匹配网络包到达率。"
+      ],
+      "argument": "FINN 将二值点积和归一化后的符号激活转为 popcount 与阈值比较，再用每层折叠因子控制并行资源，使流式各级接近目标吞吐。线速哈希表把键和值分离、并行比较桶内元素，并使长键读取时间与对应网络包的接收时间匹配。两项作品均需把算子或查询改造成稳定数据流；精度损失、层间失衡及内存背压会限制局部硬件节省的收益。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：让流水线吞吐匹配资源与到达率",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。"
+      ],
+      "boundary": "FINN 与 FINN-R 不重复计作两项；本次第二项为独立的线速哈希工作。FPGA 实验不等同当前所有设备的表现。",
+      "diagnostic": "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "finn-2017",
+          "title": "FINN: A Framework for Fast, Scalable Binarized Neural Network Inference",
+          "authors": "Yaman Umuroglu; Nicholas J. Fraser; Giulio Gambardella; Michaela Blott; Philip Leong; Magnus Jahre; Kees Vissers",
+          "date": "2017（预印本 2016-12）",
+          "url": "https://arxiv.org/pdf/1612.07119",
+          "locator": "§4.1–4.4，尤其 MVTU 与 folding",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、异构流式结构、popcount/阈值优化及折叠机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "051fcdd962807b88222a47bc1a76f47a12d923ad110ee8e39e0237b3772baede"
+        },
+        {
+          "workId": "line-rate-hash-2015",
+          "title": "A Hash Table for Line-Rate Data Processing",
+          "authors": "Zsolt István; Gustavo Alonso; Michaela Blott; Kees Vissers",
+          "date": "2015-03",
+          "url": "https://zistvan.github.io/doc/trets15-istvan.pdf",
+          "locator": "§4–5，尤其 key striping 与 concurrency control",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、键值解耦、可变键长度、桶访问与并发控制正文。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "ad19464016fcbe4d87419fa10df902e415dffe191959590d18b25fa9278af7d9"
+        },
+        {
+          "workId": "reach-2025-speaker-michaela-blott",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Michaela Blott speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "FINN: A Framework for Fast, Scalable Binarized Neural Network Inference",
+          "https://arxiv.org/pdf/1612.07119",
+          "2017（预印本 2016-12） · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "A Hash Table for Line-Rate Data Processing",
+          "https://zistvan.github.io/doc/trets15-istvan.pdf",
+          "2015-03 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "finn-2017",
+          "text": "FINN 把二值累加与批归一化/符号激活转为 popcount 和阈值计算；折叠用于吞吐与 FPGA 资源权衡。"
+        },
+        {
+          "workId": "line-rate-hash-2015",
+          "text": "线速哈希把读取较长 key 的时间控制在对应包接收时间内，代价包括存储效率和表容量约束。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "让流水线吞吐匹配资源与到达率",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "层间吞吐、折叠因子、资源预算、包大小、键长度、内存带宽",
+        "model": "本站编辑条件性模型（非作者原公式）：端到端吞吐受最慢流水级约束；资源分配需匹配每级工作量。",
+        "crossover": "精度可接受、各级平衡且输入输出未成为新瓶颈时成立。",
+        "counterexample": "量化导致任务失效，或长键/更新冲突使流水线背压。",
+        "validation": "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "partha-maji",
+      "name": "Partha Maji",
+      "aliases": [],
+      "field": "高效神经网络与量化不确定性",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "把模型结构与算术实现联合优化，并把量化的验收从分类精度扩展到预测不确定性的质量。",
+      "background": "2018 论文署名 Cambridge；2021 论文署名 Arm ML Research Lab。REACH 2025 列 Microsoft Senior Director – AI Hardware Acceleration，为会议所列角色。",
+      "contributions": [
+        "1D-FALCON 将低秩结构近似与一维快速卷积相结合；作者声明明确 Maji 设计及实施实验并撰写论文。",
+        "BNN 量化工作研究均匀量化与量化感知训练对预测和不确定性估计的影响。"
+      ],
+      "argument": "1D-FALCON 先用低秩近似改写卷积结构，再以一维 Toom–Cook 运算减少乘法，使模型近似和算术实现协同而非各自优化。BNN 工作通过均匀仿射量化与量化感知训练降低权重和激活位宽，并考察多次采样推理的准确率和不确定性。验收因此不能只看操作数或分类准确率，还需检查采样总成本、校准和目标数据分布的边界。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：压缩同时保留任务质量与不确定性",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。"
+      ],
+      "boundary": "共同署名不能支持个人独占；论文任务范围不等于通用安全保证或 Microsoft 现有产品实测。",
+      "diagnostic": "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "maji-conv-2018",
+          "title": "On the Reduction of Computational Complexity of Deep Convolutional Neural Networks",
+          "authors": "Partha Maji; Robert Mullins",
+          "date": "2018-04-23",
+          "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/29a58de2-1e26-4583-aebf-ca6fdc2ca606/content",
+          "locator": "§3–4；Author Contributions",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读结构低秩近似与 Toom–Cook 卷积组合、作者贡献声明；这是 ICANN 2017 扩展版，仅计一次。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "5d2de3db2c3e7034e61287e8e3b2f81fa82fdc940fa4bbdfd415d7c12e11bd3a"
+        },
+        {
+          "workId": "maji-bnn-2021",
+          "title": "On the Effects of Quantisation on Model Uncertainty in Bayesian Neural Networks",
+          "authors": "Martin Ferianc; Partha Maji; Matthew Mattina; Miguel Rodrigues",
+          "date": "2021",
+          "url": "https://proceedings.mlr.press/v161/ferianc21a/ferianc21a.pdf",
+          "locator": "§3.1–3.2，实验任务与边界",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读作者机构、uniform affine quantisation/QAT 与 Bayesian 推理采样机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "1f9c2d2d0e1e4abd5e1b672726f4d3e322c5003a8afe0660a33df908e978ebde"
+        },
+        {
+          "workId": "reach-2025-speaker-partha-maji",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Partha Maji speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "On the Reduction of Computational Complexity of Deep Convolutional Neural Networks",
+          "https://api.repository.cam.ac.uk/server/api/core/bitstreams/29a58de2-1e26-4583-aebf-ca6fdc2ca606/content",
+          "2018-04-23 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "On the Effects of Quantisation on Model Uncertainty in Bayesian Neural Networks",
+          "https://proceedings.mlr.press/v161/ferianc21a/ferianc21a.pdf",
+          "2021 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "maji-conv-2018",
+          "text": "2018 论文将低秩模型近似与 Toom–Cook 算术协同；不将 2017 会议版另计独立作品。"
+        },
+        {
+          "workId": "maji-bnn-2021",
+          "text": "2021 论文共同研究三类 Bayesian 推理方案的量化；保持准确率不必然等于保持校准。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "压缩同时保留任务质量与不确定性",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "运算数、精度位宽、采样次数、准确率、校准误差和延迟",
+        "model": "本站编辑条件性模型（非作者原公式）：总代价应包含模型计算、Bayesian 多次采样以及维持质量所需的补偿。",
+        "crossover": "端到端成本下降且目标域质量与校准均达标时成立。",
+        "counterexample": "常规准确率不变，但分布外样本过度自信，或采样开销抵消低位宽收益。",
+        "validation": "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "marian-verhelst",
+      "name": "Marian Verhelst",
+      "aliases": [],
+      "field": "可伸缩 AI 电路与架构映射探索",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "参与 Envision 的精度—电压—频率协同设计与 ZigZag 的内存中心映射探索，连接可编程精度、电路代价和数据流。",
+      "background": "所选论文均列 KU Leuven；REACH 2026 列 KU Leuven Professor。Envision 芯片与 ZigZag 框架为团队共同作品。",
+      "contributions": [
+        "Envision 通过子字并行重用低精度模式下空闲算术单元，并联合电压和频率调整。",
+        "ZigZag 对各操作数和存储层分别表示循环映射，探索以往受均匀映射限制而遗漏的设计点。"
+      ],
+      "argument": "Envision 在低精度模式下将闲置算术单元重组为子字并行运算，再联合调整电压和频率，使精度下降真正转化为能耗伸缩。ZigZag 对各操作数在不同存储层的循环映射分别建模，允许非均匀映射，并估计访问量、带宽约束和硬件成本。前者展示具体芯片机制，后者探索架构与映射空间；解析最优点仍须在相同准确率、时限和实际存储代价下验证。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：把精度收益落实为电路与数据流收益",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。"
+      ],
+      "boundary": "不把论文标题中的最高能效当作通用配置；ZigZag 的不同预印本/期刊版本只计一个作品。",
+      "diagnostic": "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "envision-2017",
+          "title": "Envision: A 0.26-to-10TOPS/W Subword-Parallel Dynamic-Voltage-Accuracy-Frequency-Scalable Convolutional Neural Network Processor in 28nm FDSOI",
+          "authors": "Bert Moons; Roel Uytterhoeven; Wim Dehaene; Marian Verhelst",
+          "date": "2017",
+          "url": "https://lirias.kuleuven.be/bitstream/123456789/579133/1/isscc_oa.pdf",
+          "locator": "ISSCC pp.246–247，Fig.14.5.1–2",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "通过网页 PDF 正文读取作者与 DVAFS 机制段落；本地下载返回 503，但公开检索正文成功。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "zigzag-2020",
+          "title": "ZigZag: A Memory-Centric Rapid DNN Accelerator Design Space Exploration Framework",
+          "authors": "Linyan Mei; Pouya Houshmand; Vikram Jain; Sebastian Giraldo; Marian Verhelst",
+          "date": "2020-07（所读预印本版本）",
+          "url": "https://arxiv.org/pdf/2007.11360",
+          "locator": "§III，memory-centric dataflow 与 uneven mapping",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读共同署名、内存中心循环表示、成本估计器及非均匀映射机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "2f6950ff708a0a0b5afac67d834fc8218e9c7ea4f49d4486c22b0273b30ffdb2"
+        },
+        {
+          "workId": "reach-2026-speaker-marian-verhelst",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Marian Verhelst speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "Envision: A 0.26-to-10TOPS/W Subword-Parallel Dynamic-Voltage-Accuracy-Frequency-Scalable Convolutional Neural Network Processor in 28nm FDSOI",
+          "https://lirias.kuleuven.be/bitstream/123456789/579133/1/isscc_oa.pdf",
+          "2017 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "ZigZag: A Memory-Centric Rapid DNN Accelerator Design Space Exploration Framework",
+          "https://arxiv.org/pdf/2007.11360",
+          "2020-07（所读预印本版本） · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "envision-2017",
+          "text": "Envision 的 DVAFS 在精度降低时重新使用算术硬件并配合电压频率伸缩；属于具体芯片和实验条件。"
+        },
+        {
+          "workId": "zigzag-2020",
+          "text": "ZigZag 的内存中心表示把映射、层次容量、带宽和技术成本联合起来；解析估计不等于所有设计已实现。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "把精度收益落实为电路与数据流收益",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "任务准确率、位宽、电压、频率、存储访问量、带宽和阵列利用率",
+        "model": "本站编辑条件性模型（非作者原公式）：总能耗包含计算和各层存储访问，映射改变访问次数与停顿。",
+        "crossover": "精度仍达标且硬件确实利用可缩减资源时，低位宽才兑现为系统收益。",
+        "counterexample": "降低位宽却仍受外存带宽、固定开销或低利用率限制。",
+        "validation": "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "karu-sankaralingam",
+      "name": "Karu Sankaralingam",
+      "aliases": [
+        "Karthikeyan Sankaralingam"
+      ],
+      "field": "数据流执行与动态专用化",
+      "domain": "cpu",
+      "relatedDomains": [
+        "gpu-ai",
+        "compiler-runtime"
+      ],
+      "core": "通过 TRIPS 与 DySER 探索把通用执行重组为数据流与可配置专用数据通路。",
+      "background": "REACH 2025 列 NVIDIA Principal Research Scientist、University of Wisconsin–Madison Professor；TRIPS 论文时期为 UT Austin，DySER 为 Wisconsin 团队。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "TRIPS 将执行网格、指令帧与存储资源按 ILP/TLP/DLP 模式配置，以数据依赖驱动分布式执行。",
+        "DySER 由编译器识别热路径树，配置计算单元间静态路由并复用多次执行，以摊销配置与通用控制成本。"
+      ],
+      "argument": "编辑归纳：动态专用化净收益取决于重复执行节省减去配置与数据供给开销。",
+      "evidence": "TRIPS 与 DySER 为不同项目和机制；TRIPS 期刊/会议重述、DySER 后续 OpenSPARC 版本未另计。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "热路径可复用多久，配置、搬运与编译开销会否吃掉执行节省？"
+      ],
+      "boundary": "TRIPS 为所选架构研究、DySER 技术报告含模拟与 RTL 综合；不当作 NVIDIA 产品实现。热路径不稳定或数据供给不足会削弱专用化。",
+      "diagnostic": "建议检验：热路径可复用多久，配置、搬运与编译开销会否吃掉执行节省？",
+      "notes": [],
+      "sources": [
+        [
+          "Exploiting ILP, TLP, and DLP with the Polymorphous TRIPS Architecture",
+          "https://www.cs.cmu.edu/afs/cs/academic/class/15740-f03/public/doc/discussions/multiprocessors/parprocs/trips_isca03.pdf",
+          "PDF pp.1–4，署名、§2.3、§3.1"
+        ],
+        [
+          "Design and Evaluation of Dynamically Specialized Datapaths with the DySER Architecture",
+          "https://research.cs.wisc.edu/techreports/2010/TR1683.pdf",
+          "Technical Report 1683，PDF pp.1–3，§2"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "Karu Sankaralingam 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "karu-trips",
+          "title": "Exploiting ILP, TLP, and DLP with the Polymorphous TRIPS Architecture",
+          "authors": "Karthikeyan Sankaralingam; Ramadass Nagarajan; Haiming Liu; Changkyu Kim; Jaehyuk Huh; Doug Burger; Stephen W. Keckler; Charles R. Moore",
+          "date": "2003",
+          "url": "https://www.cs.cmu.edu/afs/cs/academic/class/15740-f03/public/doc/discussions/multiprocessors/parprocs/trips_isca03.pdf",
+          "locator": "PDF pp.1–4，署名、§2.3、§3.1",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、可配置帧/寄存器/存储结构及 D-morph 分布式指令窗口；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "17c330930dc5c6e54c03d57f642ef740d6090bd23df391d8dba9e26dde41dcba"
+        },
+        {
+          "workId": "karu-dyser",
+          "title": "Design and Evaluation of Dynamically Specialized Datapaths with the DySER Architecture",
+          "authors": "Venkatraman Govindaraju; Chen-Han Ho; Karthikeyan Sankaralingam",
+          "date": "2010-11",
+          "url": "https://research.cs.wisc.edu/techreports/2010/TR1683.pdf",
+          "locator": "Technical Report 1683，PDF pp.1–3，§2",
+          "type": "作者技术报告",
+          "contentStatus": "已读取作者与报告日期、路径树、动态专用执行资源及静态路由复用；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "e203cb41ae851b3e6d7fe9f9e54a4ff64c1ef782667aa0a836904524728d19ab"
+        },
+        {
+          "workId": "reach-2025-karu-sankaralingam",
+          "title": "IET REACH 2025 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Karu Sankaralingam 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "karu-trips",
+          "text": "TRIPS 将执行网格、指令帧与存储资源按 ILP/TLP/DLP 模式配置，以数据依赖驱动分布式执行。"
+        },
+        {
+          "workId": "karu-dyser",
+          "text": "DySER 由编译器识别热路径树，配置计算单元间静态路由并复用多次执行，以摊销配置与通用控制成本。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。TRIPS 与 DySER 为不同项目和机制；TRIPS 期刊/会议重述、DySER 后续 OpenSPARC 版本未另计。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "数据流执行与动态专用化",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "热路径可复用多久，配置、搬运与编译开销会否吃掉执行节省？",
+        "variables": "热路径覆盖率、重复次数、配置成本、数据搬运和执行能耗",
+        "model": "编辑条件模型：动态专用化净收益取决于重复执行节省减去配置与数据供给开销。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "短且变化频繁的路径使配置难以摊销。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "boris-grot",
+      "name": "Boris Grot",
+      "aliases": [],
+      "field": "服务器前端与 SMT 资源分配",
+      "domain": "cpu",
+      "relatedDomains": [
+        "datacenter",
+        "memory"
+      ],
+      "core": "针对服务器共性和负载不对称性，分别共享指令历史与重分配 SMT 指令窗口。",
+      "background": "REACH 2025、2026 均列 University of Edinburgh Professor；SHIFT 共同作者来自 EPFL/Edinburgh，Stretch 来自 Edinburgh、EPFL 与 Arm。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "SHIFT 用共享历史缓冲区和索引表记录共同工作负载的指令流，各核心通过私有流地址缓冲区重放并预取。",
+        "Stretch 根据在线服务的响应时间余量使用非对称 ROB 分区，在 batch-boost 与 QoS-boost 等模式间权衡吞吐和 QoS。"
+      ],
+      "argument": "编辑归纳：共享历史节省重复元数据；非对称窗口将有限容量分给边际收益更高且不破坏 QoS 的线程。",
+      "evidence": "SHIFT 的指令预取历史共享与 Stretch 的 SMT 窗口分配为两个独立作品。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "跨核历史共性或在线余量下降后，共享与非对称分配还有效吗？"
+      ],
+      "boundary": "两项为论文设计/评估，不证明量产采用；SHIFT 依赖跨核指令流共性，Stretch 不能从平均吞吐推出尾延迟达标。",
+      "diagnostic": "建议检验：跨核历史共性或在线余量下降后，共享与非对称分配还有效吗？",
+      "notes": [],
+      "sources": [
+        [
+          "SHIFT: Shared History Instruction Fetch for Lean-Core Server Processors",
+          "https://homepages.inf.ed.ac.uk/bgrot/pubs/SHIFT_MICRO13.pdf",
+          "PDF pp.1、3–4，§3、§4.1"
+        ],
+        [
+          "Stretch: Balancing QoS and Throughput for Colocated Server Workloads on SMT Cores",
+          "https://homepages.inf.ed.ac.uk/bgrot/pubs/STRETCH_HPCA19.pdf",
+          "PDF pp.1、3–6，§III、§IV.B"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "Boris Grot 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "grot-shift",
+          "title": "SHIFT: Shared History Instruction Fetch for Lean-Core Server Processors",
+          "authors": "Cansu Kaynak; Boris Grot; Babak Falsafi",
+          "date": "2013",
+          "url": "https://homepages.inf.ed.ac.uk/bgrot/pubs/SHIFT_MICRO13.pdf",
+          "locator": "PDF pp.1、3–4，§3、§4.1",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、跨核共性动机及共享历史缓冲区/索引表/私有流缓冲区机制；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "8433979ac338069204e0b571e1f2849c4d78ec4b38fbe10b2fa00eb99c25317f"
+        },
+        {
+          "workId": "grot-stretch",
+          "title": "Stretch: Balancing QoS and Throughput for Colocated Server Workloads on SMT Cores",
+          "authors": "Artemiy Margaritov; Siddharth Gupta; Rekai Gonzalez-Alberquilla; Boris Grot",
+          "date": "2019",
+          "url": "https://homepages.inf.ed.ac.uk/bgrot/pubs/STRETCH_HPCA19.pdf",
+          "locator": "PDF pp.1、3–6，§III、§IV.B",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、ROB/MLP 敏感性分析、B-mode/Q-mode 和限制/占用寄存器控制；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "3f68e9a14ed8057e6d040948019289be56e9646fa14a5add95abebe82b67ff4f"
+        },
+        {
+          "workId": "reach-2026-boris-grot",
+          "title": "IET REACH 2026 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2026（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Boris Grot 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "grot-shift",
+          "text": "SHIFT 用共享历史缓冲区和索引表记录共同工作负载的指令流，各核心通过私有流地址缓冲区重放并预取。"
+        },
+        {
+          "workId": "grot-stretch",
+          "text": "Stretch 根据在线服务的响应时间余量使用非对称 ROB 分区，在 batch-boost 与 QoS-boost 等模式间权衡吞吐和 QoS。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。SHIFT 的指令预取历史共享与 Stretch 的 SMT 窗口分配为两个独立作品。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "服务器前端与 SMT 资源分配",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "跨核历史共性或在线余量下降后，共享与非对称分配还有效吗？",
+        "variables": "指令历史共性、元数据面积、ROB 份额、服务负载、尾延迟",
+        "model": "编辑条件模型：共享历史节省重复元数据；非对称窗口将有限容量分给边际收益更高且不破坏 QoS 的线程。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "异构代码流缺少共性，或服务接近饱和后失去延迟余量。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "hidetsugu-irie",
+      "name": "Hidetsugu Irie",
+      "aliases": [
+        "入江英嗣"
+      ],
+      "field": "无重命名执行与预取时机",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "通过距离编码 ISA 与独立预取时机预测，分别减少核心管理开销和过早预取。",
+      "background": "REACH 2025 列 University of Tokyo Professor；STRAIGHT 为东京大学与 Fujitsu Laboratories 合作，T-SKID 为东京大学共同作者作品。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "STRAIGHT 将源操作数编码为与生产者的动态指令距离，去除寄存器重命名，并配套编译与乱序执行机制。",
+        "T-SKID 分开预测预取地址和发出时机；以触发 PC、目标 PC、在途表和近期请求队列学习合适的预取延迟。"
+      ],
+      "argument": "编辑归纳：核心元数据与缓存时序优化必须连同编译开销和数据驻留窗口一起评估。",
+      "evidence": "STRAIGHT ISA 与 T-SKID 缓存预取为不同项目；STRAIGHT 后续论文和芯片未重复计数。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "去掉重命名或延后预取时，节省的开销是否转成代码、停顿或缓存失效成本？"
+      ],
+      "boundary": "STRAIGHT 的收益须计入冗余移动指令、编译约束与恢复路径；T-SKID 所列结果为指定模拟配置，不代表所有负载或量产 CPU。",
+      "diagnostic": "建议检验：去掉重命名或延后预取时，节省的开销是否转成代码、停顿或缓存失效成本？",
+      "notes": [],
+      "sources": [
+        [
+          "STRAIGHT: Hazardless Processor Architecture Without Register Renaming",
+          "https://www.rsg.ci.i.u-tokyo.ac.jp/members/shioya/pdfs/Irie-MICRO%2718.pdf",
+          "PDF pp.1–3，§II、Fig.1"
+        ],
+        [
+          "T-SKID: Predicting When to Prefetch Separately from Address Prediction",
+          "https://www.rsg.ci.i.u-tokyo.ac.jp/members/shioya/pdfs/Koizumi-DATE%2722.pdf",
+          "PDF pp.1–3，§II、§III，Fig.3"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "Hidetsugu Irie 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "irie-straight",
+          "title": "STRAIGHT: Hazardless Processor Architecture Without Register Renaming",
+          "authors": "Hidetsugu Irie; Toru Koizumi; Akifumi Fukuda; Seiya Akaki; Satoshi Nakae; Yutaro Bessho; Ryota Shioya; Takahiro Notsu; Katsuhiro Yoda; Teruo Ishihara; Shuichi Sakai",
+          "date": "2018-10",
+          "url": "https://www.rsg.ci.i.u-tokyo.ac.jp/members/shioya/pdfs/Irie-MICRO%2718.pdf",
+          "locator": "PDF pp.1–3，§II、Fig.1",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、距离编码与寄存器重命名移除、编译补偿边界；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "f69e018e603c06691aa78f68d6cfc335777dcd3c1adebcab59641182a25b74b4"
+        },
+        {
+          "workId": "irie-tskid",
+          "title": "T-SKID: Predicting When to Prefetch Separately from Address Prediction",
+          "authors": "Toru Koizumi; Tomoki Nakamura; Yuya Degawa; Hidetsugu Irie; Shuichi Sakai; Ryota Shioya",
+          "date": "2022-03",
+          "url": "https://www.rsg.ci.i.u-tokyo.ac.jp/members/shioya/pdfs/Koizumi-DATE%2722.pdf",
+          "locator": "PDF pp.1–3，§II、§III，Fig.3",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、过早预取动机、独立地址/时机预测及 Target/IPT/RRPCQ 结构；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "e33ceb24ddacdfe05e8cb843b0737ab4d767aae1c6971d560e67fe40b536c94b"
+        },
+        {
+          "workId": "reach-2025-hidetsugu-irie",
+          "title": "IET REACH 2025 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Hidetsugu Irie 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "irie-straight",
+          "text": "STRAIGHT 将源操作数编码为与生产者的动态指令距离，去除寄存器重命名，并配套编译与乱序执行机制。"
+        },
+        {
+          "workId": "irie-tskid",
+          "text": "T-SKID 分开预测预取地址和发出时机；以触发 PC、目标 PC、在途表和近期请求队列学习合适的预取延迟。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。STRAIGHT ISA 与 T-SKID 缓存预取为不同项目；STRAIGHT 后续论文和芯片未重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "无重命名执行与预取时机",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "去掉重命名或延后预取时，节省的开销是否转成代码、停顿或缓存失效成本？",
+        "variables": "重命名能耗、代码膨胀、生产者距离、缓存驻留时间、预取提前量",
+        "model": "编辑条件模型：核心元数据与缓存时序优化必须连同编译开销和数据驻留窗口一起评估。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "动态控制流使距离编码补偿成本上升，或触发模式变化使预取变迟。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "jangwoo-kim",
+      "name": "Jangwoo Kim",
+      "aliases": [],
+      "field": "设备虚拟化与 CPU RTL 验证",
+      "domain": "datacenter",
+      "relatedDomains": [
+        "correctness",
+        "network"
+      ],
+      "core": "以 FPGA 并行化虚拟设备路径，并参与利用控制寄存器覆盖引导的 CPU 差分模糊测试。",
+      "background": "REACH 2025 列 MangoBoost CEO/Founder 与 Seoul National University Professor；本人 SNU 页面核实该双重身份。FVM 论文署名时期同时列 SNU / Samsung Memory Solutions Lab，DiFuzzRTL 为 SNU 团队。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "FVM 在 FPGA 引擎上实现虚拟 NVMe 队列、设备仿真和控制路径，以专用并行单元减少 host CPU 虚拟化开销。",
+        "DiFuzzRTL 从 mux 控制信号反向追踪控制寄存器，逐周期哈希寄存器状态形成覆盖反馈，引导 CPU RTL 差分测试。"
+      ],
+      "argument": "编辑归纳：卸载收益取决于保存的 host 工作和新增设备路径成本；验证收益取决于覆盖反馈的状态区分能力及测试吞吐。",
+      "evidence": "FVM 的存储设备虚拟化与 DiFuzzRTL 的 CPU 验证为两个独立系统；FVM 后续 SmartFVM 版本未另计。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "减少 host CPU 使用后，瓶颈移到哪里；覆盖增长又是否对应真实可触发的新错误？"
+      ],
+      "boundary": "FVM 为论文 FPGA 原型，不能据此认定所有 MangoBoost 产品实现相同；DiFuzzRTL 发现错误不等于形式化完备验证。两项均为共同作者成果。",
+      "diagnostic": "建议检验：减少 host CPU 使用后，瓶颈移到哪里；覆盖增长又是否对应真实可触发的新错误？",
+      "notes": [],
+      "sources": [
+        [
+          "FVM: FPGA-assisted Virtual Device Emulation for Fast, Scalable, and Flexible Storage Virtualization",
+          "https://www.usenix.org/system/files/osdi20-kwon.pdf",
+          "PDF pp.1、5–8，§2–4.3、Fig.7"
+        ],
+        [
+          "DiFuzzRTL: Differential Fuzz Testing to Find CPU Bugs",
+          "https://lifeasageek.github.io/papers/jaewon-difuzzrtl.pdf",
+          "PDF pp.1、7–9，§IV–V，Algorithm 1、Fig.7"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "Jangwoo Kim 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "kim-fvm",
+          "title": "FVM: FPGA-assisted Virtual Device Emulation for Fast, Scalable, and Flexible Storage Virtualization",
+          "authors": "Dongup Kwon; Junehyuk Boo; Dongryeong Kim; Jangwoo Kim",
+          "date": "2020-11",
+          "url": "https://www.usenix.org/system/files/osdi20-kwon.pdf",
+          "locator": "PDF pp.1、5–8，§2–4.3、Fig.7",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取作者和机构、sidecore 基线、FPGA 引擎队列及 SR-IOV 前端机制；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "bf5dd36d9b31f9c47aef81192682f2aa687a516eb6761f9cce82754067b8632a"
+        },
+        {
+          "workId": "kim-difuzz",
+          "title": "DiFuzzRTL: Differential Fuzz Testing to Find CPU Bugs",
+          "authors": "Jaewon Hur; Suhwan Song; Dongup Kwon; Eunjin Baek; Jangwoo Kim; Byoungyoung Lee",
+          "date": "2021",
+          "url": "https://lifeasageek.github.io/papers/jaewon-difuzzrtl.pdf",
+          "locator": "PDF pp.1、7–9，§IV–V，Algorithm 1、Fig.7",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取署名、控制寄存器反向数据流识别、逐周期覆盖与哈希反馈（作者公开 PDF）；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "reach-2025-jangwoo-kim",
+          "title": "IET REACH 2025 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Jangwoo Kim 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "kim-fvm",
+          "text": "FVM 在 FPGA 引擎上实现虚拟 NVMe 队列、设备仿真和控制路径，以专用并行单元减少 host CPU 虚拟化开销。"
+        },
+        {
+          "workId": "kim-difuzz",
+          "text": "DiFuzzRTL 从 mux 控制信号反向追踪控制寄存器，逐周期哈希寄存器状态形成覆盖反馈，引导 CPU RTL 差分测试。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。FVM 的存储设备虚拟化与 DiFuzzRTL 的 CPU 验证为两个独立系统；FVM 后续 SmartFVM 版本未另计。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "设备虚拟化与 CPU RTL 验证",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "减少 host CPU 使用后，瓶颈移到哪里；覆盖增长又是否对应真实可触发的新错误？",
+        "variables": "NVMe 队列数、设备数、host CPU 占用、FPGA 资源、寄存器覆盖、仿真速度",
+        "model": "编辑条件模型：卸载收益取决于保存的 host 工作和新增设备路径成本；验证收益取决于覆盖反馈的状态区分能力及测试吞吐。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "FPGA 资源或 PCIe 拥塞限制扩展；覆盖哈希碰撞或参考模型缺陷漏掉 RTL 错误。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "bill-mccoll",
+      "name": "Bill McColl",
+      "aliases": [
+        "William F. McColl",
+        "W. F. McColl"
+      ],
+      "field": "BSP 成本模型与并行编程接口",
+      "domain": "hpc",
+      "relatedDomains": [
+        "foundations",
+        "compiler-runtime"
+      ],
+      "core": "把并行计算的计算、通信和同步成本显式化，并参与形成可移植的 BSPlib 接口。",
+      "background": "REACH 2025 列 Huawei Zurich Computing Systems Lab Director；所选 1990 年代论文为 Oxford 团队工作，不能归为后来任职机构成果。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "Questions and Answers about BSP 共同论述 superstep 成本模型 w+hg+l，以及计算/通信不均衡和屏障对代价的影响。",
+        "BSPlib 共同定义 SPMD、远程内存访问与批量消息接口，明确同步和可见性规则，使模型可落实为编程库。"
+      ],
+      "argument": "编辑归纳：使用论文 superstep 模型 w+hg+l（按原单位校准），逐步累加而非用总工作量除以核数。",
+      "evidence": "两篇不同署名组合、不同 DOI/出版作品：BSP 计算成本论证与独立库接口规范；不是同一论文的镜像或会议/期刊版本。两者主题相关，未声称两个互不相关的研究方向。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "增加并行度时，最慢进程、最大通信量还是屏障次数先抵消计算节省？"
+      ],
+      "boundary": "BSP 模型原始提出者为 Leslie Valiant；不能把模型发明独归 McColl。简化成本模型不覆盖所有小消息启动、重叠执行和内存约束。",
+      "diagnostic": "建议检验：增加并行度时，最慢进程、最大通信量还是屏障次数先抵消计算节省？",
+      "notes": [],
+      "sources": [
+        [
+          "Questions and Answers about BSP",
+          "https://onlinelibrary.wiley.com/doi/pdf/10.1155/1997/532130",
+          "PDF pp.1、4–6，问题7–9及成本模型段"
+        ],
+        [
+          "BSPlib: The BSP Programming Library",
+          "https://research.engineering.nyu.edu/~suel/papers/bspprop.pdf",
+          "PDF 首页、正文 pp.3–8，§2 SPMD Framework"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "Bill McColl 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "mccoll-qa",
+          "title": "Questions and Answers about BSP",
+          "authors": "David B. Skillicorn; Jonathan M. D. Hill; W. F. McColl",
+          "date": "1997",
+          "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1155/1997/532130",
+          "locator": "PDF pp.1、4–6，问题7–9及成本模型段",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取作者、计算/通信/屏障成本、不平衡、启动成本与模型边界（出版方 PDF）；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "mccoll-bsplib",
+          "title": "BSPlib: The BSP Programming Library",
+          "authors": "Jonathan M. D. Hill; Bill McColl; Dan C. Stefanescu; Mark W. Goudreau; Kevin Lang; Satish B. Rao; Torsten Suel; Thanasis Tsantilas; Rob H. Bisseling",
+          "date": "1998",
+          "url": "https://research.engineering.nyu.edu/~suel/papers/bspprop.pdf",
+          "locator": "PDF 首页、正文 pp.3–8，§2 SPMD Framework",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取作者、SPMD 初始化/结束、进程和计时接口及同步限制（共同作者托管稿）；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "421ae2536db0c3715de42fe564145839faf16303137defc907ece5a24fb9c0cb"
+        },
+        {
+          "workId": "reach-2025-bill-mccoll",
+          "title": "IET REACH 2025 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Bill McColl 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "mccoll-qa",
+          "text": "Questions and Answers about BSP 共同论述 superstep 成本模型 w+hg+l，以及计算/通信不均衡和屏障对代价的影响。"
+        },
+        {
+          "workId": "mccoll-bsplib",
+          "text": "BSPlib 共同定义 SPMD、远程内存访问与批量消息接口，明确同步和可见性规则，使模型可落实为编程库。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。两篇不同署名组合、不同 DOI/出版作品：BSP 计算成本论证与独立库接口规范；不是同一论文的镜像或会议/期刊版本。两者主题相关，未声称两个互不相关的研究方向。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "BSP 成本模型与并行编程接口",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "增加并行度时，最慢进程、最大通信量还是屏障次数先抵消计算节省？",
+        "variables": "w：最大局部计算成本；h：最大收发量；g：通信单位成本；l：同步成本",
+        "model": "编辑条件模型：使用论文 superstep 模型 w+hg+l（按原单位校准），逐步累加而非用总工作量除以核数。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "细粒度同步或负载倾斜使更多节点更慢。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "simon-mcintosh-smith",
+      "name": "Simon McIntosh-Smith",
+      "aliases": [
+        "Simon N. McIntosh-Smith"
+      ],
+      "field": "HPC 性能可移植性与系统扩展",
+      "domain": "hpc",
+      "relatedDomains": [
+        "memory",
+        "datacenter"
+      ],
+      "core": "用同构计算内核与受控系统比较，区分可达到的内存带宽、编程模型代价和多节点扩展瓶颈。",
+      "background": "REACH 2026 列 Bristol Centre for Supercomputing Director；BabelStream 为 Bristol 四人合著，Isambard 报告由其演讲并明确致谢 Price、Poenaru、Deakin 等团队成员。 技术作品署名与该姓名相符；共同作者分工未在正文中细分。",
+      "contributions": [
+        "BabelStream 在不同并行编程模型中实现同一组 STREAM/点积内核，以数据量除执行时间比较可达到带宽，数组须大于末级缓存。",
+        "Isambard CUG 2019 报告在相同 Aries 网络、操作系统和 MPI 条件下比较 Arm/x86 扩展，区分单节点计算与规模化网络限制。"
+      ],
+      "argument": "编辑归纳：先固定内核语义与数据规模测可达到带宽，再用相同网络/软件条件检验扩展；局部优势可能在网络受限时消失。",
+      "evidence": "BabelStream 基准设计与 Isambard 生产系统扩展研究为两个独立作品；Isambard 论文/幻灯片/后续期刊报告不重复计数。",
+      "habits": [
+        "编辑归纳：先明确比较条件与成本，再检验机制是否仍有净收益。"
+      ],
+      "questions": [
+        "编程模型的带宽损失和集群通信损失，哪一个先限制真实应用？"
+      ],
+      "boundary": "BabelStream 不是端到端应用或 PCIe 传输基准；Isambard 历史配置不代表当前 Arm/x86 产品优劣。报告的性能结果为作者测量，未独立复现。",
+      "diagnostic": "建议检验：编程模型的带宽损失和集群通信损失，哪一个先限制真实应用？",
+      "notes": [],
+      "sources": [
+        [
+          "Evaluating attainable memory bandwidth of parallel programming models via BabelStream",
+          "https://research-information.bris.ac.uk/ws/files/109051447/gpu_stream_2.pdf",
+          "PDF pp.1–4，§1–2，Bristol 版本封面"
+        ],
+        [
+          "Scaling Results From Isambard: the First Generation of Arm-based Supercomputers",
+          "https://cug.org/proceedings/cug2019_proceedings/includes/files/pap105s2-file2.pdf",
+          "幻灯片1–8、22–24：Scalability comparisons、summary、team"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "Simon McIntosh-Smith 讲者条目"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "simon-babel",
+          "title": "Evaluating attainable memory bandwidth of parallel programming models via BabelStream",
+          "authors": "Tom Deakin; James Price; Matt Martineau; Simon McIntosh-Smith",
+          "date": "2018-10（正式出版；作者稿版权页2017）",
+          "url": "https://research-information.bris.ac.uk/ws/files/109051447/gpu_stream_2.pdf",
+          "locator": "PDF pp.1–4，§1–2，Bristol 版本封面",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读取作者、版本、五种内核、字节计数、缓存外数据与单节点测量范围（作者接受稿）；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "simon-cug",
+          "title": "Scaling Results From Isambard: the First Generation of Arm-based Supercomputers",
+          "authors": "Simon McIntosh-Smith（演讲）；Bristol/GW4 团队，报告致谢 James Price、Andrei Poenaru、Tom Deakin",
+          "date": "2019-05",
+          "url": "https://cug.org/proceedings/cug2019_proceedings/includes/files/pap105s2-file2.pdf",
+          "locator": "幻灯片1–8、22–24：Scalability comparisons、summary、team",
+          "type": "作者会议幻灯片",
+          "contentStatus": "已读取演讲署名、硬件/软件配置、扩展比较方法、结论与团队归属；未解读每张图的数据点；未声称审阅全文全部实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "502ce9bd76defd844996b70a78697ae6cea3e3f32b051d25f773a552cfb0897e"
+        },
+        {
+          "workId": "reach-2026-simon-mcintosh-smith",
+          "title": "IET REACH 2026 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2026（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Simon McIntosh-Smith 讲者条目",
+          "type": "机构人物简介",
+          "contentStatus": "已读取讲者姓名与该届所列机构、职责；不推定之后任职持续不变。",
+          "evidenceStrength": "官方会议身份记录，不计技术作品。",
+          "role": "身份与会议时机构",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "simon-babel",
+          "text": "BabelStream 在不同并行编程模型中实现同一组 STREAM/点积内核，以数据量除执行时间比较可达到带宽，数组须大于末级缓存。"
+        },
+        {
+          "workId": "simon-cug",
+          "text": "Isambard CUG 2019 报告在相同 Aries 网络、操作系统和 MPI 条件下比较 Arm/x86 扩展，区分单节点计算与规模化网络限制。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "署名一手作品与机制正文；贡献为编辑提炼，非官方奖项理由。BabelStream 基准设计与 Isambard 生产系统扩展研究为两个独立作品；Isambard 论文/幻灯片/后续期刊报告不重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "challenge": {
+        "lens": "HPC 性能可移植性与系统扩展",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "编程模型的带宽损失和集群通信损失，哪一个先限制真实应用？",
+        "variables": "字节数、内核时间、缓存容量、编译器、节点数、强/弱扩展和 MPI 开销",
+        "model": "编辑条件模型：先固定内核语义与数据规模测可达到带宽，再用相同网络/软件条件检验扩展；局部优势可能在网络受限时消失。",
+        "crossover": "只有机制节省超过附加成本，且正确性及服务约束仍满足时才有净收益。",
+        "counterexample": "微基准带宽领先但真实应用受同步、计算或网络瓶颈限制。",
+        "validation": "固定任务、配置和基线，改变关键变量并记录性能、成本与失效边界；不以论文单个数字替代本地验证。",
+        "transfer": "迁移时重新测量变量与约束，不直接外推历史机器结果。"
+      }
+    },
+    {
+      "id": "albert-cohen",
+      "name": "Albert Cohen",
+      "aliases": [],
+      "field": "多面体代码生成与多层编译表示",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "foundations"
+      ],
+      "core": "参与把复杂循环变换转成可执行代码，并以多层 IR 保留异构优化需要的高层语义。",
+      "background": "REACH 2025 官方名单记载其为Google DeepMind Research Scientist；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "与 Grosser、Verdoolaege 共同提出支持分段调度、模运算及上下文特化的通用 AST 生成方法。",
+        "作为 MLIR 论文共同作者，阐述可扩展方言、SSA/区域及渐进降级的编译基础设施。"
+      ],
+      "argument": "编辑归纳：保留优化需要的结构，逐步降级；专门化收益须抵扣代码膨胀和编译成本。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：高层结构在哪个降级阶段丢失，是否使后续优化无法恢复？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "高层结构在哪个降级阶段丢失，是否使后续优化无法恢复？"
+      ],
+      "boundary": "AST 生成正确不保证最佳调度或代码规模；MLIR 提供扩展基础设施，不保证不同方言自动兼容。不得把 MLIR 或 isl 全部成果归于 Cohen。",
+      "diagnostic": "记录每个 IR 阶段的结构、代码大小与时间，比较相同输入和正确性约束下的生成结果。",
+      "challenge": {
+        "lens": "多面体代码生成与多层编译表示",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "高层结构在哪个降级阶段丢失，是否使后续优化无法恢复？",
+        "variables": "编译时间、生成代码大小、保留的语义、运行时间、验证成本",
+        "model": "编辑训练模型：保留优化需要的结构，逐步降级；专门化收益须抵扣代码膨胀和编译成本。",
+        "crossover": "同样正确性与任务下，运行收益超过新增编译/维护负担才值得特化。",
+        "counterexample": "过早降低为通用指令丢失循环结构；过度版本化又造成指令缓存压力。",
+        "validation": "记录每个 IR 阶段的结构、代码大小与时间，比较相同输入和正确性约束下的生成结果。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "cohen-polyhedral-ast-2015",
+          "title": "Polyhedral AST generation is more than scanning polyhedra",
+          "url": "https://grosser.science/papers/grosser-2015-Polyhedral-AST-generation-is-more-than-scanning-polyhedra.pdf",
+          "authors": "Tobias Grosser; Sven Verdoolaege; Albert Cohen",
+          "date": "2015",
+          "locator": "作者预印本 PDF pp.1,3,14；§2概述及§5.3 For Node Construction",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "07363475c4f0a430b90d09364c9e9466ef2a3383b19c76f2e420b9c322388028"
+        },
+        {
+          "workId": "cohen-mlir-2020",
+          "title": "MLIR: A Compiler Infrastructure for the End of Moore’s Law",
+          "url": "https://arxiv.org/pdf/2002.11054",
+          "authors": "Chris Lattner; Mehdi Amini; Uday Bondhugula; Albert Cohen; Andy Davis; Jacques Pienaar; River Riddle; Tatiana Shpeisman; Nicolas Vasilache; Oleksandr Zinenko",
+          "date": "2020-03-01（v2；2021 CGO同项目不另计）",
+          "locator": "PDF pp.1–4，署名与§2 Design Principles",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "ca9de3d7b4b176e6523e197ec4a83caa82f988d9654af7b6aa5f0b1a48ae2494"
+        },
+        {
+          "workId": "reach-2025-speaker-list",
+          "title": "IET REACH 2025 speakers",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025届名单；页面未标具体发布日期",
+          "locator": "Albert Cohen speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "Polyhedral AST generation is more than scanning polyhedra",
+          "https://grosser.science/papers/grosser-2015-Polyhedral-AST-generation-is-more-than-scanning-polyhedra.pdf",
+          "2015"
+        ],
+        [
+          "MLIR: A Compiler Infrastructure for the End of Moore’s Law",
+          "https://arxiv.org/pdf/2002.11054",
+          "2020-03-01（v2；2021 CGO同项目不另计）"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "cohen-polyhedral-ast-2015",
+          "text": "共同署名；用 Presburger 关系和上下文信息生成循环/条件与索引表达式，检测步长并控制特化。"
+        },
+        {
+          "workId": "cohen-mlir-2020",
+          "text": "Cohen 署名 Google；MLIR 使用可扩展表示、SSA/区域及渐进降级，保留高层语义以支持异构编译。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "satnam-singh",
+      "name": "Satnam Singh",
+      "aliases": [],
+      "field": "函数式硬件描述与并发程序综合",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "gpu-ai",
+        "correctness"
+      ],
+      "core": "将函数式组合和显式并发用于硬件构建，让功能、布局与同步语义可一起设计。",
+      "background": "REACH 2026 官方名单记载其为Harmonic Software Engineer；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "Lava 技术文档把功能连接与相对布局放入组合子，表达结构化 FPGA 数据通路。",
+        "与 David Greaves 共同开发 Kiwi，将 C#/.NET 的显式并发构造映射为 FPGA 电路。"
+      ],
+      "argument": "编辑归纳：把并行性显式交给工具，同时检查通信、同步和物理布局是否吞掉并发收益。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：软件中的同步和布局意图在硬件中如何实现，代价在哪里？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "软件中的同步和布局意图在硬件中如何实现，代价在哪里？"
+      ],
+      "boundary": "Lava 文档针对旧 Virtex 系列，不能外推现代 FPGA 性能；Kiwi 只综合受支持的并发子集，不把任意 .NET 程序自动变成高效电路。",
+      "diagnostic": "检查生成 RTL 的通道/握手与布局约束，再以综合、时序和仿真检验吞吐及死锁边界。",
+      "challenge": {
+        "lens": "函数式硬件描述与并发程序综合",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "软件中的同步和布局意图在硬件中如何实现，代价在哪里？",
+        "variables": "布局距离、流水级、缓冲深度、同步等待、资源数与频率",
+        "model": "编辑训练模型：把并行性显式交给工具，同时检查通信、同步和物理布局是否吞掉并发收益。",
+        "crossover": "吞吐提升必须超过通信与同步开销，且满足资源和时序限制。",
+        "counterexample": "软件线程并行但争用同一个通道；组合子布局约束使布线成为瓶颈。",
+        "validation": "检查生成 RTL 的通道/握手与布局约束，再以综合、时序和仿真检验吞吐及死锁边界。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "singh-lava",
+          "title": "Lava — Layout in Lava",
+          "url": "https://satnam6502.github.io/lava/layout.html",
+          "authors": "Satnam Singh",
+          "date": "文档未标发布日期；Lava项目始于1998，不将此日期冒充文档日期",
+          "locator": "全文文字：Serial Composition、Parallel Composition、Serial Overlay、Four Sided Tiles；另读作者 /lava/ 项目说明",
+          "type": "作者软件技术文档",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献"
+        },
+        {
+          "workId": "singh-kiwi-2008",
+          "title": "Kiwi: Synthesis of FPGA Circuits from Parallel Programs",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2008/04/kiwi_fccm2008.pdf",
+          "authors": "David Greaves; Satnam Singh",
+          "date": "2008-04",
+          "locator": "PDF pp.1,3–4；§3 Parallel Circuit Descriptions、§4 Synthesis Flow",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "163ebbb6cec748a285210eb125d165641d62d1739b8e1951da615549bd382dba"
+        },
+        {
+          "workId": "reach-2026-speaker-list",
+          "title": "IET REACH 2026 speakers",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2026届名单；页面未标具体发布日期",
+          "locator": "Satnam Singh speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "Lava — Layout in Lava",
+          "https://satnam6502.github.io/lava/layout.html",
+          "文档未标发布日期；Lava项目始于1998，不将此日期冒充文档日期"
+        ],
+        [
+          "Kiwi: Synthesis of FPGA Circuits from Parallel Programs",
+          "https://www.microsoft.com/en-us/research/wp-content/uploads/2008/04/kiwi_fccm2008.pdf",
+          "2008-04"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "singh-lava",
+          "text": "作者技术文档说明组合子既连接电路功能又安排相对位置；串行叠放与并行布局具有不同物理语义。"
+        },
+        {
+          "workId": "singh-kiwi-2008",
+          "text": "共同署名 Cambridge/Microsoft 工作；C#并发库具有软件和硬件语义，.NET IL 经中间表示生成 Verilog，通道可映射为单槽缓冲。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "david-gregg",
+      "name": "David Gregg",
+      "aliases": [],
+      "field": "解释器、虚拟 ISA 与分支预测协同",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "cpu"
+      ],
+      "core": "用虚拟寄存器表示和派发代码结构减少解释器开销，并量化字节码与预测成本的交换。",
+      "background": "REACH 2025 官方名单记载其为Trinity College Dublin Professor in Computer Science；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "共同研究把 JVM 栈字节码转换为虚拟寄存器代码，以消除冗余搬运和减少派发次数。",
+        "与 Casey、Ertl 共同研究 VM 指令复制和超指令，改善解释器间接分支的预测上下文。"
+      ],
+      "argument": "编辑归纳：同时计入派发频次和每次派发成本；表示优化与代码复制必须在同一解释器条件下比较。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：减少派发的收益是否足以抵消字节码读取、代码膨胀和 I-cache 压力？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "减少派发的收益是否足以抵消字节码读取、代码膨胀和 I-cache 压力？"
+      ],
+      "boundary": "两条技术路线是不同机制，2003/2005同作版本不重复计数。历史 BTB 结果不能直接代表现代预测器；虚拟寄存器并非物理 CPU 寄存器。",
+      "diagnostic": "固定 VM 语义、程序和编译器，分别启用寄存器化、复制与组合，测量分支失误、取码及运行时间。",
+      "challenge": {
+        "lens": "解释器、虚拟 ISA 与分支预测协同",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "减少派发的收益是否足以抵消字节码读取、代码膨胀和 I-cache 压力？",
+        "variables": "派发次数、分支误预测、字节码读取量、代码大小、端到端时间",
+        "model": "编辑训练模型：同时计入派发频次和每次派发成本；表示优化与代码复制必须在同一解释器条件下比较。",
+        "crossover": "省下的派发和误预测时间超过额外取码与缓存开销。",
+        "counterexample": "大规模复制消除了目标混淆，却因 BTB 容量或指令缓存冲突降低性能。",
+        "validation": "固定 VM 语义、程序和编译器，分别启用寄存器化、复制与组合，测量分支失误、取码及运行时间。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "gregg-register-2005",
+          "title": "The Case for Virtual Register Machines",
+          "url": "https://www.scss.tcd.ie/David.Gregg/papers/Gregg-SoCP-2005.pdf",
+          "authors": "David Gregg; Andrew Beatty; Kevin Casey; Brian Davis; Andy Nisbet",
+          "date": "2005（预印本日期2004-07-08）",
+          "locator": "PDF pp.1–4,11；§2解释器派发、§5转换与冗余MOVE说明",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "841b05efd116f199b26c2c10fecaacb213c2faf334bc5edf731dbecd8cc53fca"
+        },
+        {
+          "workId": "gregg-branch-2007",
+          "title": "Optimizing Indirect Branch Prediction Accuracy in Virtual Machine Interpreters",
+          "url": "https://www.scss.tcd.ie/David.Gregg/papers/toplas05.pdf",
+          "authors": "Kevin Casey; M. Anton Ertl; David Gregg",
+          "date": "2007-10（TOPLAS；读取作者预印本）",
+          "locator": "PDF pp.1,7；§4.1 Replicating VM Instructions与Table II",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "d18944781fa813f33820b44658e0bf1c7c045d77fbfdce1c24108400f9d4ef7f"
+        },
+        {
+          "workId": "reach-2025-speaker-list",
+          "title": "IET REACH 2025 speakers",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025届名单；页面未标具体发布日期",
+          "locator": "David Gregg speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "The Case for Virtual Register Machines",
+          "https://www.scss.tcd.ie/David.Gregg/papers/Gregg-SoCP-2005.pdf",
+          "2005（预印本日期2004-07-08）"
+        ],
+        [
+          "Optimizing Indirect Branch Prediction Accuracy in Virtual Machine Interpreters",
+          "https://www.scss.tcd.ie/David.Gregg/papers/toplas05.pdf",
+          "2007-10（TOPLAS；读取作者预印本）"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "gregg-register-2005",
+          "text": "Gregg为共同作者；栈到寄存器翻译可移除MOVE并减少VM指令，但增加显式操作数与字节码读取。"
+        },
+        {
+          "workId": "gregg-branch-2007",
+          "text": "通过不同派发指令地址为重复VM操作创造不同BTB上下文；复制也可能增加容量/冲突失误。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "paul-kelly",
+      "name": "Paul H. J. Kelly",
+      "aliases": [
+        "Paul Kelly",
+        "Paul H J Kelly"
+      ],
+      "field": "领域专用并行编译与准确性约束的性能评估",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "hpc",
+        "gpu-ai"
+      ],
+      "core": "以领域抽象实现异构性能可移植性，并将准确性与能耗纳入应用性能评价。",
+      "background": "REACH 2025 官方名单记载其为Imperial College London Professor of Software Technology；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "OP2/Hydra 共同作品将非结构网格集合、映射和访问方式交给代码生成及平台后端。",
+        "SLAMBench 共同作品把同一场景轨迹、准确性、帧率与能耗放入可比较的 SLAM 评估。"
+      ],
+      "argument": "编辑归纳：用领域语义选择后端实现；性能比较必须固定输出质量和输入处理规则。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：换平台后的加速是否保持数值/轨迹准确性和相同输入工作量？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "换平台后的加速是否保持数值/轨迹准确性和相同输入工作量？"
+      ],
+      "boundary": "OP2适用非结构网格抽象，不能把一种应用的可移植性推广到任意程序。SLAMBench使用特定数据集和KinectFusion流程，不能把更快但更不准确的结果直接视为进步。",
+      "diagnostic": "用相同网格/场景及误差界对比CPU/GPU后端，报告各阶段时间和能耗，而非只报峰值吞吐。",
+      "challenge": {
+        "lens": "领域专用并行编译与准确性约束的性能评估",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "换平台后的加速是否保持数值/轨迹准确性和相同输入工作量？",
+        "variables": "运行时间、数据移动、帧率、轨迹误差、能耗、代码迁移成本",
+        "model": "编辑训练模型：用领域语义选择后端实现；性能比较必须固定输出质量和输入处理规则。",
+        "crossover": "在准确性约束下，端到端运行与能耗改善才算有效收益。",
+        "counterexample": "跳帧或改变精度获得更高帧率，但轨迹误差增加；间接网格访问仍使GPU受访存限制。",
+        "validation": "用相同网格/场景及误差界对比CPU/GPU后端，报告各阶段时间和能耗，而非只报峰值吞吐。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "kelly-op2-hydra",
+          "title": "Acceleration of a Full-scale Industrial CFD Application with OP2",
+          "url": "https://spiral.imperial.ac.uk/bitstreams/0f616ff1-9528-478b-b1f1-444a1edb3388/download",
+          "authors": "I. Z. Reguly; G. R. Mudalige; C. Bertolli; M. B. Giles; A. Betts; P. H. J. Kelly; D. Radford",
+          "date": "2015-07-08 online；2016卷期",
+          "locator": "PDF pp.1–4；§3.1 OP2 API、§3.2代码生成、Fig.4",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "2bedfe5a8d3bd5c5b6940b9161689201bd032ffc42171d1aee1a00a4a93c3344"
+        },
+        {
+          "workId": "kelly-slambench-2015",
+          "title": "Introducing SLAMBench, a performance and accuracy benchmarking methodology for SLAM",
+          "url": "https://arxiv.org/pdf/1410.2167",
+          "authors": "Luigi Nardi; Bruno Bodin; M. Zeeshan Zia; John Mawer; Andy Nisbet; Paul H. J. Kelly; Andrew J. Davison; Mikel Luján; Michael F. P. O’Boyle; Graham Riley; Nigel Topham; Steve Furber",
+          "date": "2015-02-26（v2；ICRA2015）",
+          "locator": "PDF pp.1–4；§IV SLAMBench、§IV-D Performance Evaluation Methodology",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "1e6253f201d5e0782a733afc9e56494ff903941c993403623d8e04c3f39830a7"
+        },
+        {
+          "workId": "reach-2025-speaker-list",
+          "title": "IET REACH 2025 speakers",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025届名单；页面未标具体发布日期",
+          "locator": "Paul H. J. Kelly speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "Acceleration of a Full-scale Industrial CFD Application with OP2",
+          "https://spiral.imperial.ac.uk/bitstreams/0f616ff1-9528-478b-b1f1-444a1edb3388/download",
+          "2015-07-08 online；2016卷期"
+        ],
+        [
+          "Introducing SLAMBench, a performance and accuracy benchmarking methodology for SLAM",
+          "https://arxiv.org/pdf/1410.2167",
+          "2015-02-26（v2；ICRA2015）"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "kelly-op2-hydra",
+          "text": "Kelly与Imperial/Oxford/IBM/Rolls-Royce共同署名；OP2以源到源翻译和平台后端将同一网格API映射到不同并行实现。"
+        },
+        {
+          "workId": "kelly-slambench-2015",
+          "text": "Kelly共同署名；同一预录场景、逐帧处理和真实轨迹参照用于比较帧率、误差和能耗。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "timothy-jones",
+      "name": "Timothy M. Jones",
+      "aliases": [
+        "Timothy Jones",
+        "Tim Jones"
+      ],
+      "field": "间接访存预取与软硬件协同",
+      "domain": "memory",
+      "relatedDomains": [
+        "compiler-runtime",
+        "cpu"
+      ],
+      "core": "把数据依赖地址的预取从编译器推导延伸到事件触发的小型硬件执行单元。",
+      "background": "REACH 2025 官方名单记载其为University of Cambridge Professor of Computer Architecture and Compilation；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "与 Sam Ainsworth 共同提出从循环归纳变量追溯地址依赖、插入分层软件预取的编译方法。",
+        "与 Ainsworth 共同提出以加载和预取返回事件触发小型可编程预取单元的硬件设计。"
+      ],
+      "argument": "编辑归纳：分别测量节省的等待、增加的地址计算及竞争；事件解耦也需要可用队列和带宽。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：地址生成、带宽与缓存污染是否抵消预取隐藏的访存等待？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "地址生成、带宽与缓存污染是否抵消预取隐藏的访存等待？"
+      ],
+      "boundary": "软件论文包含实际平台实验；事件触发硬件论文结果为仿真设计，不能称量产采用。两者机制不同，2019软件预取扩展版本不另计第三项。",
+      "diagnostic": "固定任务比较无预取、软件预取与事件硬件模型，报告额外指令、缓存流量、预取时效和端到端时间。",
+      "challenge": {
+        "lens": "间接访存预取与软硬件协同",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "地址生成、带宽与缓存污染是否抵消预取隐藏的访存等待？",
+        "variables": "提前距离、可用MSHR、地址生成指令、队列容量、内存带宽、有效预取比例",
+        "model": "编辑训练模型：分别测量节省的等待、增加的地址计算及竞争；事件解耦也需要可用队列和带宽。",
+        "crossover": "有足够内存级并行性且预取及时、有效时才有净收益。",
+        "counterexample": "纯串行依赖链或已饱和带宽下，更多预取只增加流量与污染。",
+        "validation": "固定任务比较无预取、软件预取与事件硬件模型，报告额外指令、缓存流量、预取时效和端到端时间。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "jones-indirect-sw-2017",
+          "title": "Software Prefetching for Indirect Memory Accesses",
+          "url": "https://www.cl.cam.ac.uk/~tmj32/papers/docs/ainsworth17-cgo.pdf",
+          "authors": "Sam Ainsworth; Timothy M. Jones",
+          "date": "2017-02（CGO）",
+          "locator": "PDF pp.1–4；§4 Software Prefetch Generation、Algorithm1",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "477f3f9319d542362901942d7e901c20cf0b95357267788e77c3c33c0ada36b2"
+        },
+        {
+          "workId": "jones-event-prefetch-2018",
+          "title": "An Event-Triggered Programmable Prefetcher for Irregular Workloads",
+          "url": "https://www.cl.cam.ac.uk/~tmj32/papers/docs/ainsworth18-asplos.pdf",
+          "authors": "Sam Ainsworth; Timothy M. Jones",
+          "date": "2018-03（ASPLOS）",
+          "locator": "PDF pp.1,3–5；§4.1–4.4、Fig.3",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "96036056d257641c90796f86f29d71fa897ac7a97f245f8e06f3693c34957da0"
+        },
+        {
+          "workId": "reach-2025-speaker-list",
+          "title": "IET REACH 2025 speakers",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025届名单；页面未标具体发布日期",
+          "locator": "Timothy M. Jones speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "Software Prefetching for Indirect Memory Accesses",
+          "https://www.cl.cam.ac.uk/~tmj32/papers/docs/ainsworth17-cgo.pdf",
+          "2017-02（CGO）"
+        ],
+        [
+          "An Event-Triggered Programmable Prefetcher for Irregular Workloads",
+          "https://www.cl.cam.ac.uk/~tmj32/papers/docs/ainsworth18-asplos.pdf",
+          "2018-03（ASPLOS）"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "jones-indirect-sw-2017",
+          "text": "共同署名Cambridge；深度优先回溯load对归纳变量的依赖，复制必要地址生成，并排除可能引入错误/副作用的路径。"
+        },
+        {
+          "workId": "jones-event-prefetch-2018",
+          "text": "地址过滤器、观察队列及小型PPU处理读事件和预取返回，能够基于已预取数据生成后续预取；设计评估是仿真。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "miquel-moreto",
+      "name": "Miquel Moretó",
+      "aliases": [
+        "Miquel Moreto",
+        "Miquel Moretó Planas"
+      ],
+      "field": "开放 RISC-V 实现与负载相关内存评估",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "hpc"
+      ],
+      "core": "共同推进可实现的开放处理器，并用带宽—延迟曲线连接内存硬件特性与应用行为。",
+      "background": "REACH 2025 官方名单记载其为Barcelona Supercomputing Center HPC Architecture Research Area Director；这是会议当期角色，不能据此保证现职持续不变。下列作品按署名机构与共同作者核对。",
+      "contributions": [
+        "Sargantana共同作品在顺序发射设计中结合重命名、乱序写回和非阻塞访存，支持长延迟单元集成。",
+        "Mess共同作品使用可控读写流量与指针追逐构建内存带宽—延迟曲线，连接基准、模拟和应用剖析。"
+      ],
+      "argument": "编辑归纳：把核心并行机制和工作负载实际读写流量放到对应的带宽—延迟曲线上评估。",
+      "evidence": "两项独立技术工作已核验；作者论文/技术文档的署名与所列机制正文可读。共同作品只支持共同贡献，不定位个人内部实现分工。",
+      "habits": [
+        "编辑提炼：增加并行性后，内存延迟何时上升到足以抵消吞吐收益？",
+        "用机制对应的反例和可测变量检验迁移边界。"
+      ],
+      "questions": [
+        "增加并行性后，内存延迟何时上升到足以抵消吞吐收益？"
+      ],
+      "boundary": "Sargantana论文版本支持RVV0.7.1子集；工艺角时序/实现结果不等于所有系统频率。Mess的近硬件延迟刻意减少TLB/OS影响，不能直接当完整服务延迟。",
+      "diagnostic": "按读写比例扫压力并测负载延迟，将应用测得流量叠加到曲线；核对核心实现的发射与写回限制。",
+      "challenge": {
+        "lens": "开放 RISC-V 实现与负载相关内存评估",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "增加并行性后，内存延迟何时上升到足以抵消吞吐收益？",
+        "variables": "读写比例、带宽、加载延迟、队列压力、发射阻塞、实现时序",
+        "model": "编辑训练模型：把核心并行机制和工作负载实际读写流量放到对应的带宽—延迟曲线上评估。",
+        "crossover": "在给定读写混合下，核心提供的并行性应能利用带宽而不过度推高排队延迟。",
+        "counterexample": "峰值读带宽高，但混合写流量更早饱和；核心频率提高却无法补偿数据等待。",
+        "validation": "按读写比例扫压力并测负载延迟，将应用测得流量叠加到曲线；核对核心实现的发射与写回限制。",
+        "transfer": "迁移到新平台前重测上述变量；不直接复用历史平台性能数字。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "moreto-sargantana-2022",
+          "title": "Sargantana: A 1 GHz+ In-Order RISC-V Processor with SIMD Vector Extensions in 22nm FD-SOI",
+          "url": "https://upcommons.upc.edu/bitstream/handle/2117/384912/sargantana_preprint.pdf?sequence=1",
+          "authors": "Víctor Soria-Pardos; Max Doblas; Guillem López-Paradís; Gerard Candón; Narcís Rodas; Xavier Carril; Pau Fontova-Musté; Neiel Leyva; Santiago Marco-Sola; Miquel Moretó",
+          "date": "2022（DSD）",
+          "locator": "PDF pp.1,3；Register Files and Renaming Mechanism、Fig.2–3",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "fe95608bec1aa5fb8127883c3c578512b829f725c74e3ebe5a29169e70b17003"
+        },
+        {
+          "workId": "moreto-mess-2024",
+          "title": "A Mess of Memory System Benchmarking, Simulation and Application Profiling",
+          "url": "https://arxiv.org/pdf/2405.10170",
+          "authors": "Pouya Esmaili-Dokht; Francesco Sgherzi; Valéria Soldera Girelli; Isaac Boixaderas; Mariana Carmin; Alireza Monemi; Adrià Armejach; Estanislao Mercadal; Germán Llort; Petar Radojkovic; Miquel Moreto; Judit Giménez; Xavier Martorell; Eduard Ayguadé; Jesus Labarta; Emanuele Confalonieri; Rishabh Dubey; Jason Adlard",
+          "date": "2024-12-08（v4；MICRO2024）",
+          "locator": "PDF pp.1,3–4；§II-A,C及Fig.2",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读取署名及所列机制正文范围；未声称逐页审读全文",
+          "role": "技术作品、机制及共同署名归属",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手正文；不证明个人独占贡献",
+          "retrievedSha256": "e6dc567e1f8066a83e466a9a6f8bca03508e6d0bc5ad6d017fd1cb8821597826"
+        },
+        {
+          "workId": "reach-2025-speaker-list",
+          "title": "IET REACH 2025 speakers",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2025届名单；页面未标具体发布日期",
+          "locator": "Miquel Moretó speaker entry",
+          "type": "会议主办方名单",
+          "contentStatus": "已读取讲者姓名及机构角色条目",
+          "role": "身份和会议当期角色；不计作技术作品",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "身份线索；与技术作品署名交叉核验"
+        }
+      ],
+      "sources": [
+        [
+          "Sargantana: A 1 GHz+ In-Order RISC-V Processor with SIMD Vector Extensions in 22nm FD-SOI",
+          "https://upcommons.upc.edu/bitstream/handle/2117/384912/sargantana_preprint.pdf?sequence=1",
+          "2022（DSD）"
+        ],
+        [
+          "A Mess of Memory System Benchmarking, Simulation and Application Profiling",
+          "https://arxiv.org/pdf/2405.10170",
+          "2024-12-08（v4；MICRO2024）"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "会议当期身份，不计作品"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "moreto-sargantana-2022",
+          "text": "Moretó署名BSC/UPC；重命名表和空闲列表检查点支持分支恢复，非阻塞访存和乱序写回减少顺序发射流水线的部分阻塞。"
+        },
+        {
+          "workId": "moreto-mess-2024",
+          "text": "共同署名BSC/UPC/Micron；指针追逐测延迟，其他核/SM生成可控读写压力，获得一族带宽—延迟曲线。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "editorial-synthesis-of-attributed-primary-technical-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "admissionGate": "two-distinct-primary-works-one-body-v1"
+    },
+    {
+      "id": "themis-prodromakis",
+      "name": "Themis Prodromakis",
+      "aliases": [],
+      "field": "忆阻器、神经形态计算与器件模型",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "共同把多状态忆阻器的学习能力与脉冲历史相关的器件模型连接起来，避免把理想突触当成实际器件。",
+      "background": "Edinburgh 官方研究档案列其为 Regius Chair of Engineering；2023论文署名归属 Edinburgh Centre for Electronics Frontiers。2026 REACH列其为APRIL AI Hub相关负责人；不将团队成果归为个人独作。",
+      "contributions": [
+        "共同署名2016年HfO2模拟忆阻突触工作，以前后神经元脉冲的叠加实现时差相关的权重变化，并用于小型字符识别网络。",
+        "共同署名2023年数据驱动模型，以脉冲幅值和宽度拟合电阻状态边界，并用边界条件更新状态。"
+      ],
+      "argument": "2023年正文把序列表征、边界拟合与Verilog-A实现连接；2016年正文通过前后脉冲形状把时差映射成器件电压，研究模拟突触学习。两篇技术目标及实验不同，不能把同项目版本重复计数。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：省略脉冲历史后，模型会不会高估可稳定写入的权重状态？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "省略脉冲历史后，模型会不会高估可稳定写入的权重状态？"
+      ],
+      "boundary": "2016年器件实验和小型网络示例、2023年器件表征及模型仿真不等于大规模AI加速器量产部署；新材料、脉冲范围和任务需重新校准。",
+      "diagnostic": "对不同极性、幅值、宽度和重复序列做留出验证，比较状态误差与网络任务质量。",
+      "challenge": {
+        "lens": "忆阻器、神经形态计算与器件模型",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "省略脉冲历史后，模型会不会高估可稳定写入的权重状态？",
+        "variables": "脉冲幅值V、宽度s、状态电阻Ω、拟合误差及编程开销。",
+        "model": "编辑诊断模型：可用状态由器件响应和脉冲边界共同约束，训练精度须加入写入噪声及控制成本。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "只拟合单脉冲曲线，却在长序列中出现状态饱和与误差积累。",
+        "validation": "对不同极性、幅值、宽度和重复序列做留出验证，比较状态误差与网络任务质量。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "prodromakis-iscas2023-model",
+          "title": "An Improved Data-Driven Memristor Model Accounting for Sequences Stimulus Features",
+          "url": "https://confcats-event-sessions.s3.amazonaws.com/iscas23/papers/2293.pdf",
+          "authors": "Guoyang Huang; Chaohan Wang; Zhaoguang Si; Lu Yang; Shiwei Wang; Alexander Serb; Themis Prodromakis; Christos Papavassiliou",
+          "date": "2023",
+          "locator": "作者页；§II–IV、式(1)–(2)、Algorithm 1；读取表征、边界拟合和状态更新正文",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "9997ac67e43e8ac6f9d128397ee25395fb0abc354f28b453c400d2b68b28ac2c"
+        },
+        {
+          "workId": "prodromakis-frontiers2016-stdp",
+          "title": "Analog Memristive Synapse in Spiking Networks Implementing Unsupervised Learning",
+          "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00482/full",
+          "authors": "Erika Covi; Stefano Brivio; Alexander Serb; Themis Prodromakis; Marco Fanciulli; Sabina Spiga",
+          "date": "2016-10-25",
+          "locator": "作者/机构；§3.2–3.3、Figures3–6：脉冲叠加、电压到时差映射、STDP与字符网络",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "prodromakis-iscas2023-model",
+          "text": "已读2023年§II–IV：通过测量序列拟合状态边界，Algorithm 1按四类边界情况更新RS；不把拟合视为芯片性能证明。"
+        },
+        {
+          "workId": "prodromakis-frontiers2016-stdp",
+          "text": "已读§3.2–3.3：前后脉冲叠加将相对时差映射到器件电压及电阻更新；小型网络使用STDP和winner-take-all进行字符识别。作者机构列本人Southampton。"
+        }
+      ],
+      "sources": [
+        [
+          "An Improved Data-Driven Memristor Model Accounting for Sequences Stimulus Features",
+          "https://confcats-event-sessions.s3.amazonaws.com/iscas23/papers/2293.pdf",
+          "2023 · 论文正文（所列章节）"
+        ],
+        [
+          "Analog Memristive Synapse in Spiking Networks Implementing Unsupervised Learning",
+          "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00482/full",
+          "2016-10-25 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2026,
+          "url": "https://reach.theiet.org/2026-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Themis Prodromakis",
+          "url": "https://www.research.ed.ac.uk/en/persons/themis-prodromakis/",
+          "readRange": "姓名、Regius Chair of Engineering及ORCID0000-0002-6267-6909"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "prodromakis-ncomms2016-learning",
+          "title": "Unsupervised learning in probabilistic neural networks with multi-state metal-oxide memristive synapses",
+          "url": "https://www.research.ed.ac.uk/en/publications/unsupervised-learning-in-probabilistic-neural-networks-with-multi/",
+          "authors": "Alexander Serb; Johannes Bill; Ali Khiat; Radu Berdan; Robert Legenstein; Themis Prodromakis",
+          "date": "2016-09-29",
+          "locator": "大学作者记录、Abstract和完整作者名单；DOI10.1038/ncomms12611",
+          "type": "作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
+    },
+    {
+      "id": "plamen-asenov",
+      "name": "Plamen Asenov",
+      "aliases": [],
+      "field": "DTCO、统计变异与紧凑模型",
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "memory",
+        "correctness"
+      ],
+      "core": "共同把器件变异的相关性带入电路模型，防止简单工艺角和阈值分布误判SRAM裕量。",
+      "background": "2015论文明确同时列出 Plamen Asenov 与 Asen Asenov，两人不同；Plamen履历为Glasgow BEng2009/PhD2012、曾任Arm片上存储设计师、当时GSS设计顾问。Synopsys官方作者页列其负责TCAD到SPICE及DTCO，与REACH2025身份一致。",
+      "contributions": [
+        "2015年共同提出分层紧凑模型提取：标称模型、全局变异响应面、各设计点局部统计模型。",
+        "2026年共同研究22nm FDSOI低温模型重新校准、背偏置与阈值工程，对比环振功率—延迟。"
+      ],
+      "argument": "2015年FinFET变异建模与2026年FDSOI低温校准涉及不同器件、条件和技术问题。2026作者页再次把Plamen（Synopsys）与Asen（Semiwise/Glasgow）分开，身份归属可交叉核对。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？"
+      ],
+      "boundary": "两篇均包含TCAD/SPICE建模，不能当作制程量产良率或数据中心节能实测。2026年分析需区分4K器件结果与制冷能耗；低于4K还需重新校准。",
+      "diagnostic": "用留出TCAD设计点和电路Monte Carlo，对比联合分布、尾部SNM与读电流。",
+      "challenge": {
+        "lens": "DTCO、统计变异与紧凑模型",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？",
+        "variables": "器件尺寸nm、Vt分布V、SNM V、读电流A、全局/局部协方差。",
+        "model": "编辑诊断模型：在保持联合分布和相关性的前提下估计电路裕量与尾部失效，比较简化模型偏差。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "均值与方差拟合正确，但相关性被破坏导致尾部失效率错误。",
+        "validation": "用留出TCAD设计点和电路Monte Carlo，对比联合分布、尾部SNM与读电流。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "plamen-asenov-finfet-dtco2015",
+          "title": "FinFET Centric Variability-Aware Compact Model Extraction and Generation Technology Supporting DTCO",
+          "url": "https://eprints.gla.ac.uk/108434/1/108434.pdf",
+          "authors": "Xingsheng Wang; Binjie Cheng; Dave Reid; Andrew Pender; Plamen Asenov; Campbell Millar; Asen Asenov",
+          "date": "2015",
+          "locator": "PDF作者/机构页、§II–III、Fig.3；末页Plamen Asenov个人履历",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "29e4fb18b550fc745bb9489386cfa3fa3d498b1a3610e109094fa8a14050656d"
+        },
+        {
+          "workId": "plamen-asenov-fdsoi-cryo2026",
+          "title": "FDSOI-Based Cryogenic Circuit Performance Enhancement Using Back-Biasing and Threshold Voltage Engineering",
+          "url": "https://eprints.gla.ac.uk/392649/1/392649.pdf",
+          "authors": "Tapas Dutta; Fikru Adamu-Lema; Djamel Bensouiah; German Cherstvov; Plamen Asenov; Asen Asenov",
+          "date": "2026-05-08",
+          "locator": "作者及机构页；§II–IV pp.269–270：PDK re-centering四步、7级环振及背偏置；DOI10.1109/JEDS.2026.3691285",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "plamen-asenov-finfet-dtco2015",
+          "text": "2015作者页分列Plamen与Asen；§III读取分层模型及两组参数用于全局和局部变异；末页Plamen履历与Synopsys学历信息一致。"
+        },
+        {
+          "workId": "plamen-asenov-fdsoi-cryo2026",
+          "text": "2026作者页明确Plamen Asenov属于Synopsys、Asen Asenov属于Semiwise/Glasgow。§II以室温PDK、晶圆测量、低温TCAD校准和紧凑模型提取四步构建预测模型，§III–IV比较7级环振及背偏置。"
+        }
+      ],
+      "sources": [
+        [
+          "FinFET Centric Variability-Aware Compact Model Extraction and Generation Technology Supporting DTCO",
+          "https://eprints.gla.ac.uk/108434/1/108434.pdf",
+          "2015 · 论文正文（所列章节）"
+        ],
+        [
+          "FDSOI-Based Cryogenic Circuit Performance Enhancement Using Back-Biasing and Threshold Voltage Engineering",
+          "https://eprints.gla.ac.uk/392649/1/392649.pdf",
+          "2026-05-08 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2025,
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Plamen Asenov",
+          "url": "https://www.synopsys.com/authors/plamen-asenov.html",
+          "readRange": "作者简介：TCAD到SPICE/DTCO职责，Glasgow BEng/PhD；与2015论文Plamen个人履历交叉，不混同Asen"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "plamen-asenov-sram2011",
+          "title": "The effect of compact modelling strategy on SNM and Read Current variability in Modern SRAM",
+          "url": "https://eprints.gla.ac.uk/100447/",
+          "authors": "Plamen Asenov; Fikru Adamu-Lema; Scott Roy; Campbell Millar; Asen Asenov; Gareth Roy; Urban Kovac; David Reid",
+          "date": "2011-09-08",
+          "locator": "Glasgow原记录作者表、Abstract；SISPAD2011 pp.283–286 DOI10.1109/SISPAD.2011.6035024",
+          "type": "作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
+    },
+    {
+      "id": "cristina-silvano",
+      "name": "Cristina Silvano",
+      "aliases": [],
+      "field": "设计空间探索与HPC自适应能效",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "physical-energy",
+        "hpc"
+      ],
+      "core": "把多目标架构探索与运行时自适应连接起来，将应用功能和能效、性能控制策略分离。",
+      "background": "Politecnico di Milano本人官方主页列其为Full Professor，研究计算机架构与EDA；REACH2025列为该校教授。MULTICUBE和ANTAREX均为多机构共同研究，不将框架各组件归为本人单独实现。",
+      "contributions": [
+        "共同署名MULTICUBE，以自动设计空间探索处理多核SoC能量与延迟的权衡。",
+        "共同署名ANTAREX工具链，以LARA/Clava表达额外功能策略，再将可调参数和监控连接到运行时。"
+      ],
+      "argument": "ANTAREX已读正文将应用C/C++、策略DSL、代码变换、动态编译和运行时调优分层；MULTICUBE是独立的较早SoC探索项目。ANTAREX2018和2019相关版本只计一个项目作品。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：运行时适应何时比离线固定配置更划算？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "运行时适应何时比离线固定配置更划算？"
+      ],
+      "boundary": "MULTICUBE正文通过公开镜像读取，作者与出版资料由合作机构记录交叉核对；不将估算精度推广至任意架构。ANTAREX调优、监控及重新编译开销可能吞噬收益，原Exascale目标不是已证明部署规模。",
+      "diagnostic": "固定任务精度与时限，分项测量监控、编译、探索成本及持稳阶段节能。",
+      "challenge": {
+        "lens": "设计空间探索与HPC自适应能效",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "运行时适应何时比离线固定配置更划算？",
+        "variables": "阶段持续时间s、调优成本s、能量J、时限s、软件参数和功率约束。",
+        "model": "编辑诊断模型：净收益取决于阶段内节约是否超过监控、搜索与重新编译成本，同时满足QoS。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "阶段变化快于调优收敛，或准确性限制使可用参数空间极小。",
+        "validation": "固定任务精度与时限，分项测量监控、编译、探索成本及持稳阶段节能。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "silvano-antarex2018",
+          "title": "Autotuning and Adaptivity in Energy Efficient HPC Systems: The ANTAREX Toolbox",
+          "url": "https://cris.unibo.it/retrieve/handle/11585/659829/e1dcb331-bde8-7715-e053-1705fe0a6cc9/2018_CF_Silvano_FP.pdf",
+          "authors": "Cristina Silvano; Gianluca Palermo; Giovanni Agosta; Amir H. Ashouri; Davide Gadioli; Stefano Cherubin; Emanuele Vitali; Luca Benini; Andrea Bartolini; Daniele Cesarini; Joao Cardoso; Joao Bispo; Pedro Pinto; Riccardo Nobre; Erven Rohou; Loïc Besnard; Imane Lasri; Nico Sanna; Carlo Cavazzoni; Radim Cmar; Jan Martinovič; Kateřina Slaninová; Martin Golasowski; Andrea R. Beccari; Candida Manelfi",
+          "date": "2018-05",
+          "locator": "作者接受稿PDF pp.3–4（含两页仓储封面）；§1–3.2、Fig.1；DOI10.1145/3203217.3205338",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        },
+        {
+          "workId": "silvano-multicube2010",
+          "title": "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "url": "https://www.academia.edu/13390634/MULTICUBE_Multi_objective_Design_Space_Exploration_of_Multi_core_Architectures",
+          "authors": "Cristina Silvano; William Fornaciari; Gianluca Palermo; Vittorio Zaccaria; Fabrizio Castro; Marcos Martinez; Sara Bocchio; Roberto Zafalon; Prabhat Avasare; Geert Vanmeerbeeck; Chantal Ykman-Couvreur; Maryse Wouters; Carlos Kavka; Luka Onesti; Alessandro Turco; Umberto Bondi; Giovanni Mariani; Hector Posadas; Eugenio Villar; Chris Wu; Dongrui Fan; Hao Zhang; Shibin Tang",
+          "date": "2010-07",
+          "locator": "原论文作者及§II THE MULTICUBE DESIGN METHODOLOGY，Fig.1；读取公开镜像文本，书目与作者在USI机构记录交叉确认",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节",
+          "accessChannel": "公开论文镜像；非Academia编辑转述",
+          "originalRecord": "https://search.usi.ch/en/publications/16152",
+          "doi": "10.1109/ISVLSI.2010.67"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "silvano-antarex2018",
+          "text": "2018接受稿§2–3.2读取LARA/Clava、软件参数、监控与动态编译连接；本人在Polimi作者列中。"
+        },
+        {
+          "workId": "silvano-multicube2010",
+          "text": "已读MULTICUBE §II：功耗/性能估算框架与探索框架分离，通过统一XML接口交互；响应面可由仿真训练集构建，启发式生成近似Pareto前沿。正文镜像署名与USI机构作者/DOI记录一致。"
+        }
+      ],
+      "sources": [
+        [
+          "Autotuning and Adaptivity in Energy Efficient HPC Systems: The ANTAREX Toolbox",
+          "https://cris.unibo.it/retrieve/handle/11585/659829/e1dcb331-bde8-7715-e053-1705fe0a6cc9/2018_CF_Silvano_FP.pdf",
+          "2018-05 · 论文正文（所列章节）"
+        ],
+        [
+          "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "https://www.academia.edu/13390634/MULTICUBE_Multi_objective_Design_Space_Exploration_of_Multi_core_Architectures",
+          "2010-07 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "选定两项独立一手技术作品及所列机制范围通过核验；不是穷尽个人成果。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2025,
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Cristina Silvano",
+          "url": "https://silvano.faculty.polimi.it/",
+          "readRange": "官方个人主页教授及研究领域介绍"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "silvano-multicube2010",
+          "title": "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "url": "https://search.usi.ch/en/publications/16152",
+          "authors": "Cristina Silvano; William Fornaciari; Gianluca Palermo; Vittorio Zaccaria; Fabrizio Castro; Marcos Martinez; Sara Bocchio; Roberto Zafalon; Prabhat Avasare; Geert Vanmeerbeeck; Chantal Ykman-Couvreur; Maryse Wouters; Carlos Kavka; Luka Onesti; Alessandro Turco; Umberto Bondi; Giovanni Mariani; Hector Posadas; Eugenio Villar; Chris Wu; Dongrui Fan; Hao Zhang; Shibin Tang",
+          "date": "2010-07",
+          "locator": "作者机构记录作者表、Abstract、ISVLSI2010 pp.488–493；DOI10.1109/ISVLSI.2010.67",
+          "type": "合作作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
     }
   ],
   "research": {
@@ -58946,7 +62820,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 473,
+    "totalProfiles": 501,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -58979,13 +62853,14 @@
       "research/batches/2026-11-12-lara-oliver.json",
       "research/batches/2026-11-12-conference-followup.json",
       "research/batches/2026-11-12-conference-remaining.json",
-      "research/batches/2026-11-13-jeff-profiles.json"
+      "research/batches/2026-11-13-jeff-profiles.json",
+      "research/batches/2026-11-13-reach.json"
     ],
-    "completedTotal": 472,
+    "completedTotal": 500,
     "remainingCatalog": 1,
-    "remainingPlanned": 9,
-    "additionalPlannedScope": 183,
-    "additionalCompleted": 172,
+    "remainingPlanned": 13,
+    "additionalPlannedScope": 215,
+    "additionalCompleted": 200,
     "resolvedCandidateDuplicates": 2
   }
 }

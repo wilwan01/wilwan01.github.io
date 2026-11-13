@@ -1,0 +1,837 @@
+{
+  "date": "2026-11-13",
+  "scope": "REACH AI-related speaker subset; global architecture contribution gate",
+  "gate": "two-distinct-primary-works-one-body-v1",
+  "profiles": [
+    {
+      "id": "olivier-temam",
+      "name": "Olivier Temam",
+      "aliases": [],
+      "field": "机器学习加速器与数据局部性",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "memory"
+      ],
+      "core": "参与 DianNao 与 DaDianNao 的共同设计，把神经网络计算的瓶颈从算术单元扩展到权重存储、复用与跨芯片通信。",
+      "background": "2014 年论文署名技术贡献属于共同研究团队；REACH 2026 将其列为 Google DeepMind Director（法国），仅作为会议所列角色。",
+      "contributions": [
+        "DianNao 用神经功能单元和分离的输入、输出及突触缓存组织低成本机器学习计算。",
+        "DaDianNao 以大容量片上存储和多芯片分区减少权重搬运，暴露存储容量与互连的共同约束。"
+      ],
+      "argument": "DianNao 将神经计算放入 NFU，并以分离的输入、输出和突触缓冲区安排分块复用，减少计算单元等待数据。DaDianNao 进一步让权重驻留在分银行的片上 eDRAM 中，并把更大网络分布到多芯片。两者把问题从增加算术单元转向容量、复用和通信的共同设计；模型超出驻留容量或切分产生大量通信时，局部吞吐优势会受限。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：从算术吞吐追踪到权重与通信瓶颈",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。"
+      ],
+      "boundary": "论文设计与评估不等于后续商品芯片实测或商业采用；不能将共同成果归于一人。",
+      "diagnostic": "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "diannao",
+          "title": "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "authors": "Tianshi Chen, Zidong Du, Ninghui Sun, Jia Wang, Chengyong Wu, Yunji Chen, Olivier Temam",
+          "date": "2014",
+          "url": "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "locator": "§4–5，尤其 §5.1–5.3：NFU、NBin/NBout/SB、分块复用与控制；§6–7：评估范围",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07",
+          "reusedFrom": "ai/architects/research/batches/2026-10-07-expansion20.json",
+          "reuseCheckedAt": "2026-11-13"
+        },
+        {
+          "workId": "dadiannao",
+          "title": "DaDianNao: A Machine-Learning Supercomputer",
+          "authors": "Yunji Chen, Tao Luo, Shaoli Liu, Shijin Zhang, Liqiang He, Jia Wang, Ling Li, Tianshi Chen, Zhiwei Xu, Ninghui Sun, Olivier Temam",
+          "date": "2014",
+          "url": "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "locator": "§V.B.1–2、Figs.4–7：权重驻留、eDRAM 分银行与分块布线；§V.C：多芯片组织；§VI–VII：方法与结果",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已下载原始论文 PDF 并提取全文，核对署名及所列机制正文；大学存档。",
+          "evidenceStrength": "强：作者署名的一手技术论文，机制正文已读",
+          "role": "共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-10-07",
+          "reusedFrom": "ai/architects/research/batches/2026-10-07-expansion20.json",
+          "reuseCheckedAt": "2026-11-13"
+        },
+        {
+          "workId": "reach-2026-speaker-olivier-temam",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Olivier Temam speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "DianNao: A Small-Footprint High-Throughput Accelerator for Ubiquitous Machine-Learning",
+          "https://users.cs.duke.edu/~lkw34/papers/diannao-asplos2014.pdf",
+          "2014 · 共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献"
+        ],
+        [
+          "DaDianNao: A Machine-Learning Supercomputer",
+          "https://course.ece.cmu.edu/~ece742/S23/paper_pdfs/DaDianNao_A_Machine-Learning_Supercomputer.pdf",
+          "2014 · 共同署名包含 Olivier Temam；沿用既有机制正文审计，不归为个人独占贡献"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "diannao",
+          "text": "DianNao 的 NFU 与 NBin/NBout/SB 数据组织支持分块复用；Temam 为共同作者。"
+        },
+        {
+          "workId": "dadiannao",
+          "text": "DaDianNao 的 eDRAM 分银行、权重驻留和多芯片组织是另一项体系结构作品；不是 DianNao 的转载或论文版本。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "从算术吞吐追踪到权重与通信瓶颈",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "片上容量、权重字节、复用次数、片外带宽、跨芯片流量",
+        "model": "本站编辑条件性模型（非作者原公式）：总执行时间由计算、供数和跨芯片同步共同约束。",
+        "crossover": "足够权重驻留与复用抵消存储、互连成本时成立。",
+        "counterexample": "小批次、超容量模型或通信密集切分使片上算术优势难以兑现。",
+        "validation": "固定模型与精度，分别测量权重外溢、互连流量和最终任务延迟。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "dong-ping-zhang",
+      "name": "Dong Ping Zhang",
+      "aliases": [],
+      "field": "近存计算与内存密集数据结构",
+      "domain": "memory",
+      "relatedDomains": [
+        "gpu-ai",
+        "datacenter"
+      ],
+      "core": "参与 TOP-PIM 与 Horton Tables，以计算靠近内存和减少多余哈希访存两条独立路径降低数据移动成本。",
+      "background": "2014/2016 作品列 AMD Research；REACH 2026 列 Cerebras Systems Technical Director of Product。论文贡献不能据此延伸为 Cerebras 芯片设计个人归属。",
+      "contributions": [
+        "TOP-PIM 研究把吞吐型 GPU 计算单元放到存储堆叠逻辑层，并把功耗与热限制纳入设计。",
+        "Horton Tables 在桶内保留重映射信息，减少成功和失败查询需触及的桶数。"
+      ],
+      "argument": "TOP-PIM 把吞吐型 GPU 计算单元放入存储堆叠的逻辑层，以更短的数据路径换取供数能效，但必须同时承担堆叠热限制和受限计算功率。Horton Tables 则偏向一个主哈希函数，在桶内用 remap entries 记录溢出元素所用的次级哈希，从而减少查询额外读取的桶。前者改变每次数据移动的代价，后者减少移动次数；预测型 PIM 结果与哈希算法实测须分别看待。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：以访存次数和每次数据移动成本共同建模",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。"
+      ],
+      "boundary": "Horton Tables 与 TOP-PIM 为独立算法/架构作品；不将另一个 PIM 后续应用论文重复充数。会议现职只确认名录所列范围。",
+      "diagnostic": "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "top-pim-2014",
+          "title": "TOP-PIM: Throughput-Oriented Programmable Processing in Memory",
+          "authors": "Dong Ping Zhang; Nuwan Jayasena; Alexander Lyashevsky; Joseph L. Greathouse; Lifan Xu; Michael Ignatowski",
+          "date": "2014-06",
+          "url": "https://www.computermachines.org/joe/publications/pdfs/hpdc2014_top-pim.pdf",
+          "locator": "§3.1–3.2，§5–7",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读作者署名、堆叠组织与 GPU 型 PIM 架构、建模评估边界；下载全文，不宣称全部细节逐字审阅。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "abdc0fe2070f4dbd7f4132b25b35e34062c1311f20b3a9f991fdc4f6ca7ad07f"
+        },
+        {
+          "workId": "horton-tables-2016",
+          "title": "Horton Tables: Fast Hash Tables for In-Memory Data-Intensive Computing",
+          "authors": "Alex D. Breslow; Dong Ping Zhang; Joseph L. Greathouse; Nuwan Jayasena; Dean M. Tullsen",
+          "date": "2016-06",
+          "url": "https://www.usenix.org/system/files/conference/atc16/atc16_paper-breslow.pdf",
+          "locator": "pp.281–284，§4–5 指向；已读署名、导论与 remap-entry 原理",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读会议正文署名、数据移动问题、主/次哈希和桶内 remap 记录机制；不将全文可下载等同所有章节详读。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "6f0d3502c945a13eb0ebd2d77f58e7fb71f85bc6bbd535eeebe5468d8cf1eba7"
+        },
+        {
+          "workId": "reach-2026-speaker-dong-ping-zhang",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Dong Ping Zhang speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "TOP-PIM: Throughput-Oriented Programmable Processing in Memory",
+          "https://www.computermachines.org/joe/publications/pdfs/hpdc2014_top-pim.pdf",
+          "2014-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "Horton Tables: Fast Hash Tables for In-Memory Data-Intensive Computing",
+          "https://www.usenix.org/system/files/conference/atc16/atc16_paper-breslow.pdf",
+          "2016-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "top-pim-2014",
+          "text": "TOP-PIM 是基于硬件测量特征的预测/分析设计，不是已制造的 PIM 商品实硅。"
+        },
+        {
+          "workId": "horton-tables-2016",
+          "text": "Horton Tables 的主哈希偏置与 remap entries 减少多余缓存行读取；Zhang 为共同作者。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "以访存次数和每次数据移动成本共同建模",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "查询混合、装载率、缓存行次数、PIM 热功率和链路成本",
+        "model": "本站编辑条件性模型（非作者原公式）：总数据代价取决于每任务访问次数与每次传输成本。",
+        "crossover": "省下的数据移动必须覆盖元数据维护或近存计算约束。",
+        "counterexample": "写密集哈希维护或计算密集任务让降低读流量不再主导。",
+        "validation": "比较正/负查询与写入混合下的字节/请求和尾延迟；PIM 另列模型假设与热上限。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "carlo-luschi",
+      "name": "Carlo Luschi",
+      "aliases": [],
+      "field": "AI 模型与加速器协同优化",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime",
+        "hpc"
+      ],
+      "core": "参与把实际训练时间而非 FLOPs 作为优化目标，并将 IPU 的片上存储和并行能力用于量子化学数据生成。",
+      "background": "所选 2021/2023 论文列 Graphcore；REACH 2025/2026 均列 Graphcore VP & Head of Research。贡献限于署名团队作品。",
+      "contributions": [
+        "EfficientNet 工作联合改变分组卷积、批次无关归一化与训练分辨率，匹配实际加速器约束。",
+        "PySCF_IPU 将 DFT 数据生成映射至 IPU，并公开 QM1B 数据与其精度范围。"
+      ],
+      "argument": "EfficientNet 优化通过增大卷积分组、调整通道扩张比例，提高算术强度与向量利用率，同时用批次无关归一化适应片上容量所要求的小批次。PySCF_IPU 利用片上存储和 MIMD 并行处理小型 DFT 计算，将科学计算组织为可规模生成训练数据的流水。优化目标是达到同一任务质量所需的实际时间；更低 FLOPs 或更多低分辨率标签本身均不能保证更好的最终结果。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：区分理论计算量与可实现吞吐",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。"
+      ],
+      "boundary": "属于特定 IPU 与应用的共同研究；不代表 Luschi 个人独创 IPU，也不将原硬件结果外推到新代产品。",
+      "diagnostic": "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "efficientnet-ipu-2021",
+          "title": "Making EfficientNet More Efficient: Exploring Batch-Independent Normalization, Group Convolutions and Reduced Resolution Training",
+          "authors": "Dominic Masters; Antoine Labatie; Zach Eaton-Rosen; Carlo Luschi",
+          "date": "2021-06",
+          "url": "https://arxiv.org/pdf/2106.03640",
+          "locator": "§2.2–3.2，训练与评估方法",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、硬件约束、group convolution 与归一化机制正文。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "c808092a11b26d9ed50a001f194c396234d7afe14be67799c884a7e2979e6afa"
+        },
+        {
+          "workId": "pyscf-ipu-qm1b-2023",
+          "title": "Generating QM1B with PySCF_IPU",
+          "authors": "Alexander Mathiasen; Hatem Helal; Kerstin Klaser; Paul Balanca; Josef Dean; Carlo Luschi; Dominique Beaini; Andrew Fitzgibbon; Dominic Masters",
+          "date": "2023",
+          "url": "https://papers.neurips.cc/paper_files/paper/2023/file/ac7f98dd0b342edaf3be79844a180a6b-Paper-Datasets_and_Benchmarks.pdf",
+          "locator": "§2–3，数据集与精度限制",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读共同署名、PySCF_IPU 原理、片上容量/MIMD 动机及低分辨率数据局限。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "9f713920ba1a68b5e5dd2d932597ae1f4b30e0fdd1628707aec46680d2837b1f"
+        },
+        {
+          "workId": "reach-2025-speaker-carlo-luschi",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Carlo Luschi speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "reach-2026-speaker-carlo-luschi",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Carlo Luschi speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "Making EfficientNet More Efficient: Exploring Batch-Independent Normalization, Group Convolutions and Reduced Resolution Training",
+          "https://arxiv.org/pdf/2106.03640",
+          "2021-06 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "Generating QM1B with PySCF_IPU",
+          "https://papers.neurips.cc/paper_files/paper/2023/file/ac7f98dd0b342edaf3be79844a180a6b-Paper-Datasets_and_Benchmarks.pdf",
+          "2023 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "efficientnet-ipu-2021",
+          "text": "分组大小与算术强度、向量利用率、激活容量和小批次归一化相互耦合；不能仅比较 FLOPs。"
+        },
+        {
+          "workId": "pyscf-ipu-qm1b-2023",
+          "text": "PySCF_IPU 用片上内存与 MIMD 支持小型 DFT 任务；数据量增加不自动消除基组与精度偏差。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "区分理论计算量与可实现吞吐",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "精度、批次、向量利用率、激活容量、数据生成误差",
+        "model": "本站编辑条件性模型（非作者原公式）：在达到同一质量阈值后比较训练或数据生成的端到端时间。",
+        "crossover": "任务质量与误差边界可接受且硬件利用率提升时成立。",
+        "counterexample": "低 FLOPs 模型访存受限，或海量低精度标签引入系统偏差。",
+        "validation": "固定质量目标，测量实际时间、内存驻留和不同数据精度的泛化误差。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "michaela-blott",
+      "name": "Michaela Blott",
+      "aliases": [],
+      "field": "FPGA 数据流与低精度 AI",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "network",
+        "compiler-runtime"
+      ],
+      "core": "参与 FINN 与线速哈希表，把神经网络和数据中心查询分别重组为可流水化、资源可配置的 FPGA 数据流。",
+      "background": "FINN 和哈希表论文署名 Xilinx Research/Labs；REACH 2025 列 AMD Senior Fellow。按作品时期归属，不倒填为 AMD 当时成果。",
+      "contributions": [
+        "FINN 用二值点积、阈值融合和每层资源折叠生成异构流式推理引擎。",
+        "线速哈希表通过桶内并行、键值分离和并发控制匹配网络包到达率。"
+      ],
+      "argument": "FINN 将二值点积和归一化后的符号激活转为 popcount 与阈值比较，再用每层折叠因子控制并行资源，使流式各级接近目标吞吐。线速哈希表把键和值分离、并行比较桶内元素，并使长键读取时间与对应网络包的接收时间匹配。两项作品均需把算子或查询改造成稳定数据流；精度损失、层间失衡及内存背压会限制局部硬件节省的收益。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：让流水线吞吐匹配资源与到达率",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。"
+      ],
+      "boundary": "FINN 与 FINN-R 不重复计作两项；本次第二项为独立的线速哈希工作。FPGA 实验不等同当前所有设备的表现。",
+      "diagnostic": "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "finn-2017",
+          "title": "FINN: A Framework for Fast, Scalable Binarized Neural Network Inference",
+          "authors": "Yaman Umuroglu; Nicholas J. Fraser; Giulio Gambardella; Michaela Blott; Philip Leong; Magnus Jahre; Kees Vissers",
+          "date": "2017（预印本 2016-12）",
+          "url": "https://arxiv.org/pdf/1612.07119",
+          "locator": "§4.1–4.4，尤其 MVTU 与 folding",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、异构流式结构、popcount/阈值优化及折叠机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "051fcdd962807b88222a47bc1a76f47a12d923ad110ee8e39e0237b3772baede"
+        },
+        {
+          "workId": "line-rate-hash-2015",
+          "title": "A Hash Table for Line-Rate Data Processing",
+          "authors": "Zsolt István; Gustavo Alonso; Michaela Blott; Kees Vissers",
+          "date": "2015-03",
+          "url": "https://zistvan.github.io/doc/trets15-istvan.pdf",
+          "locator": "§4–5，尤其 key striping 与 concurrency control",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读署名、键值解耦、可变键长度、桶访问与并发控制正文。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "ad19464016fcbe4d87419fa10df902e415dffe191959590d18b25fa9278af7d9"
+        },
+        {
+          "workId": "reach-2025-speaker-michaela-blott",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Michaela Blott speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "FINN: A Framework for Fast, Scalable Binarized Neural Network Inference",
+          "https://arxiv.org/pdf/1612.07119",
+          "2017（预印本 2016-12） · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "A Hash Table for Line-Rate Data Processing",
+          "https://zistvan.github.io/doc/trets15-istvan.pdf",
+          "2015-03 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "finn-2017",
+          "text": "FINN 把二值累加与批归一化/符号激活转为 popcount 和阈值计算；折叠用于吞吐与 FPGA 资源权衡。"
+        },
+        {
+          "workId": "line-rate-hash-2015",
+          "text": "线速哈希把读取较长 key 的时间控制在对应包接收时间内，代价包括存储效率和表容量约束。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "让流水线吞吐匹配资源与到达率",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "层间吞吐、折叠因子、资源预算、包大小、键长度、内存带宽",
+        "model": "本站编辑条件性模型（非作者原公式）：端到端吞吐受最慢流水级约束；资源分配需匹配每级工作量。",
+        "crossover": "精度可接受、各级平衡且输入输出未成为新瓶颈时成立。",
+        "counterexample": "量化导致任务失效，或长键/更新冲突使流水线背压。",
+        "validation": "测每层服务率与停顿，同时固定模型质量、请求混合及资源预算。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "partha-maji",
+      "name": "Partha Maji",
+      "aliases": [],
+      "field": "高效神经网络与量化不确定性",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "compiler-runtime"
+      ],
+      "core": "把模型结构与算术实现联合优化，并把量化的验收从分类精度扩展到预测不确定性的质量。",
+      "background": "2018 论文署名 Cambridge；2021 论文署名 Arm ML Research Lab。REACH 2025 列 Microsoft Senior Director – AI Hardware Acceleration，为会议所列角色。",
+      "contributions": [
+        "1D-FALCON 将低秩结构近似与一维快速卷积相结合；作者声明明确 Maji 设计及实施实验并撰写论文。",
+        "BNN 量化工作研究均匀量化与量化感知训练对预测和不确定性估计的影响。"
+      ],
+      "argument": "1D-FALCON 先用低秩近似改写卷积结构，再以一维 Toom–Cook 运算减少乘法，使模型近似和算术实现协同而非各自优化。BNN 工作通过均匀仿射量化与量化感知训练降低权重和激活位宽，并考察多次采样推理的准确率和不确定性。验收因此不能只看操作数或分类准确率，还需检查采样总成本、校准和目标数据分布的边界。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：压缩同时保留任务质量与不确定性",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。"
+      ],
+      "boundary": "共同署名不能支持个人独占；论文任务范围不等于通用安全保证或 Microsoft 现有产品实测。",
+      "diagnostic": "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "maji-conv-2018",
+          "title": "On the Reduction of Computational Complexity of Deep Convolutional Neural Networks",
+          "authors": "Partha Maji; Robert Mullins",
+          "date": "2018-04-23",
+          "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/29a58de2-1e26-4583-aebf-ca6fdc2ca606/content",
+          "locator": "§3–4；Author Contributions",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读结构低秩近似与 Toom–Cook 卷积组合、作者贡献声明；这是 ICANN 2017 扩展版，仅计一次。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "5d2de3db2c3e7034e61287e8e3b2f81fa82fdc940fa4bbdfd415d7c12e11bd3a"
+        },
+        {
+          "workId": "maji-bnn-2021",
+          "title": "On the Effects of Quantisation on Model Uncertainty in Bayesian Neural Networks",
+          "authors": "Martin Ferianc; Partha Maji; Matthew Mattina; Miguel Rodrigues",
+          "date": "2021",
+          "url": "https://proceedings.mlr.press/v161/ferianc21a/ferianc21a.pdf",
+          "locator": "§3.1–3.2，实验任务与边界",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读作者机构、uniform affine quantisation/QAT 与 Bayesian 推理采样机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "1f9c2d2d0e1e4abd5e1b672726f4d3e322c5003a8afe0660a33df908e978ebde"
+        },
+        {
+          "workId": "reach-2025-speaker-partha-maji",
+          "title": "IET REACH 2025 speakers",
+          "authors": "IET REACH",
+          "date": "2025（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "locator": "Partha Maji speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "On the Reduction of Computational Complexity of Deep Convolutional Neural Networks",
+          "https://api.repository.cam.ac.uk/server/api/core/bitstreams/29a58de2-1e26-4583-aebf-ca6fdc2ca606/content",
+          "2018-04-23 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "On the Effects of Quantisation on Model Uncertainty in Bayesian Neural Networks",
+          "https://proceedings.mlr.press/v161/ferianc21a/ferianc21a.pdf",
+          "2021 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2025 speakers",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "maji-conv-2018",
+          "text": "2018 论文将低秩模型近似与 Toom–Cook 算术协同；不将 2017 会议版另计独立作品。"
+        },
+        {
+          "workId": "maji-bnn-2021",
+          "text": "2021 论文共同研究三类 Bayesian 推理方案的量化；保持准确率不必然等于保持校准。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "压缩同时保留任务质量与不确定性",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "运算数、精度位宽、采样次数、准确率、校准误差和延迟",
+        "model": "本站编辑条件性模型（非作者原公式）：总代价应包含模型计算、Bayesian 多次采样以及维持质量所需的补偿。",
+        "crossover": "端到端成本下降且目标域质量与校准均达标时成立。",
+        "counterexample": "常规准确率不变，但分布外样本过度自信，或采样开销抵消低位宽收益。",
+        "validation": "固定任务和风险阈值，联合比较延迟、准确率、校准与分布外不确定性。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    },
+    {
+      "id": "marian-verhelst",
+      "name": "Marian Verhelst",
+      "aliases": [],
+      "field": "可伸缩 AI 电路与架构映射探索",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "参与 Envision 的精度—电压—频率协同设计与 ZigZag 的内存中心映射探索，连接可编程精度、电路代价和数据流。",
+      "background": "所选论文均列 KU Leuven；REACH 2026 列 KU Leuven Professor。Envision 芯片与 ZigZag 框架为团队共同作品。",
+      "contributions": [
+        "Envision 通过子字并行重用低精度模式下空闲算术单元，并联合电压和频率调整。",
+        "ZigZag 对各操作数和存储层分别表示循环映射，探索以往受均匀映射限制而遗漏的设计点。"
+      ],
+      "argument": "Envision 在低精度模式下将闲置算术单元重组为子字并行运算，再联合调整电压和频率，使精度下降真正转化为能耗伸缩。ZigZag 对各操作数在不同存储层的循环映射分别建模，允许非均匀映射，并估计访问量、带宽约束和硬件成本。前者展示具体芯片机制，后者探索架构与映射空间；解析最优点仍须在相同准确率、时限和实际存储代价下验证。",
+      "evidence": "两项不同实质技术作品的署名与正文机制已核验；会议讲者身份不计入作品数。",
+      "habits": [
+        "编辑归纳：把精度收益落实为电路与数据流收益",
+        "把机制收益与应用约束、额外数据移动一起评估。"
+      ],
+      "questions": [
+        "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。"
+      ],
+      "boundary": "不把论文标题中的最高能效当作通用配置；ZigZag 的不同预印本/期刊版本只计一个作品。",
+      "diagnostic": "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。",
+      "notes": [],
+      "awardsVerified": [],
+      "sourceAudit": [
+        {
+          "workId": "envision-2017",
+          "title": "Envision: A 0.26-to-10TOPS/W Subword-Parallel Dynamic-Voltage-Accuracy-Frequency-Scalable Convolutional Neural Network Processor in 28nm FDSOI",
+          "authors": "Bert Moons; Roel Uytterhoeven; Wim Dehaene; Marian Verhelst",
+          "date": "2017",
+          "url": "https://lirias.kuleuven.be/bitstream/123456789/579133/1/isscc_oa.pdf",
+          "locator": "ISSCC pp.246–247，Fig.14.5.1–2",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "通过网页 PDF 正文读取作者与 DVAFS 机制段落；本地下载返回 503，但公开检索正文成功。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "zigzag-2020",
+          "title": "ZigZag: A Memory-Centric Rapid DNN Accelerator Design Space Exploration Framework",
+          "authors": "Linyan Mei; Pouya Houshmand; Vikram Jain; Sebastian Giraldo; Marian Verhelst",
+          "date": "2020-07（所读预印本版本）",
+          "url": "https://arxiv.org/pdf/2007.11360",
+          "locator": "§III，memory-centric dataflow 与 uneven mapping",
+          "type": "论文正文（所列章节）",
+          "contentStatus": "已读共同署名、内存中心循环表示、成本估计器及非均匀映射机制。",
+          "evidenceStrength": "正文机制及署名可核查",
+          "role": "共同技术贡献；不推定本人独占发明",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "2f6950ff708a0a0b5afac67d834fc8218e9c7ea4f49d4486c22b0273b30ffdb2"
+        },
+        {
+          "workId": "reach-2026-speaker-marian-verhelst",
+          "title": "IET REACH 2026 speakers",
+          "authors": "IET REACH",
+          "date": "2026（页面未标具体发布日期）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Marian Verhelst speaker listing",
+          "type": "官方会议讲者名录",
+          "contentStatus": "已读取对应姓名与会议所列机构角色；不计作技术作品。",
+          "evidenceStrength": "官方身份与会议角色证据",
+          "role": "身份与会议角色；不证明长期现职或独立技术贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sources": [
+        [
+          "Envision: A 0.26-to-10TOPS/W Subword-Parallel Dynamic-Voltage-Accuracy-Frequency-Scalable Convolutional Neural Network Processor in 28nm FDSOI",
+          "https://lirias.kuleuven.be/bitstream/123456789/579133/1/isscc_oa.pdf",
+          "2017 · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "ZigZag: A Memory-Centric Rapid DNN Accelerator Design Space Exploration Framework",
+          "https://arxiv.org/pdf/2007.11360",
+          "2020-07（所读预印本版本） · 共同技术贡献；不推定本人独占发明"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "身份与会议角色；不证明长期现职或独立技术贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "envision-2017",
+          "text": "Envision 的 DVAFS 在精度降低时重新使用算术硬件并配合电压频率伸缩；属于具体芯片和实验条件。"
+        },
+        {
+          "workId": "zigzag-2020",
+          "text": "ZigZag 的内存中心表示把映射、层次容量、带宽和技术成本联合起来；解析估计不等于所有设计已实现。"
+        }
+      ],
+      "contributionBasis": "editorial-synthesis-from-attributed-primary-works",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选历史共同技术作品通过两项独立作品且一项机制正文门槛；不表示穷尽成果或将会议职务外推为实时现职。"
+      },
+      "challenge": {
+        "lens": "把精度收益落实为电路与数据流收益",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "在什么条件下，这一机制的收益会被系统代价抵消？",
+        "variables": "任务准确率、位宽、电压、频率、存储访问量、带宽和阵列利用率",
+        "model": "本站编辑条件性模型（非作者原公式）：总能耗包含计算和各层存储访问，映射改变访问次数与停顿。",
+        "crossover": "精度仍达标且硬件确实利用可缩减资源时，低位宽才兑现为系统收益。",
+        "counterexample": "降低位宽却仍受外存带宽、固定开销或低利用率限制。",
+        "validation": "以同一准确率和时限对比精度/电压配置，并用实测校准存储与映射成本。",
+        "transfer": "迁移到另一平台或负载时，重新测量数据供给、精度、容量及软件代价，不照搬原论文性能数字。"
+      }
+    }
+  ],
+  "held": [],
+  "existingMatches": [],
+  "counts": {
+    "admissionReady": 6,
+    "held": 0
+  },
+  "notes": [
+    "未修改 catalog 或共享生成文件。",
+    "全部贡献为共同署名归属；无个人独占或未公开产品归属。",
+    "Temam 复用 2026-10-07 保存的两项正文审计；其余新读取所列机制范围。",
+    "本轮仅准备供 root 审核的资料；未合并或部署。"
+  ]
+}

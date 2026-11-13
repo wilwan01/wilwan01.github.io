@@ -1,0 +1,679 @@
+{
+  "id": "reach-other-20261113",
+  "checkedAt": "2026-11-13",
+  "baselineProfiles": 473,
+  "scope": [
+    "Themis Prodromakis",
+    "Cameron Barker",
+    "Frédérique Silber-Chaussumier",
+    "Cristina Silvano",
+    "Plamen Asenov",
+    "Matthew Leung"
+  ],
+  "dedup": "六位在起始catalog姓名/全文检索未命中，未修改catalog",
+  "profiles": [
+    {
+      "id": "themis-prodromakis",
+      "name": "Themis Prodromakis",
+      "aliases": [],
+      "field": "忆阻器、神经形态计算与器件模型",
+      "domain": "gpu-ai",
+      "relatedDomains": [
+        "physical-energy",
+        "memory"
+      ],
+      "core": "共同把多状态忆阻器的学习能力与脉冲历史相关的器件模型连接起来，避免把理想突触当成实际器件。",
+      "background": "Edinburgh 官方研究档案列其为 Regius Chair of Engineering；2023论文署名归属 Edinburgh Centre for Electronics Frontiers。2026 REACH列其为APRIL AI Hub相关负责人；不将团队成果归为个人独作。",
+      "contributions": [
+        "共同署名2016年HfO2模拟忆阻突触工作，以前后神经元脉冲的叠加实现时差相关的权重变化，并用于小型字符识别网络。",
+        "共同署名2023年数据驱动模型，以脉冲幅值和宽度拟合电阻状态边界，并用边界条件更新状态。"
+      ],
+      "argument": "2023年正文把序列表征、边界拟合与Verilog-A实现连接；2016年正文通过前后脉冲形状把时差映射成器件电压，研究模拟突触学习。两篇技术目标及实验不同，不能把同项目版本重复计数。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：省略脉冲历史后，模型会不会高估可稳定写入的权重状态？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "省略脉冲历史后，模型会不会高估可稳定写入的权重状态？"
+      ],
+      "boundary": "2016年器件实验和小型网络示例、2023年器件表征及模型仿真不等于大规模AI加速器量产部署；新材料、脉冲范围和任务需重新校准。",
+      "diagnostic": "对不同极性、幅值、宽度和重复序列做留出验证，比较状态误差与网络任务质量。",
+      "challenge": {
+        "lens": "忆阻器、神经形态计算与器件模型",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "省略脉冲历史后，模型会不会高估可稳定写入的权重状态？",
+        "variables": "脉冲幅值V、宽度s、状态电阻Ω、拟合误差及编程开销。",
+        "model": "编辑诊断模型：可用状态由器件响应和脉冲边界共同约束，训练精度须加入写入噪声及控制成本。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "只拟合单脉冲曲线，却在长序列中出现状态饱和与误差积累。",
+        "validation": "对不同极性、幅值、宽度和重复序列做留出验证，比较状态误差与网络任务质量。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "prodromakis-iscas2023-model",
+          "title": "An Improved Data-Driven Memristor Model Accounting for Sequences Stimulus Features",
+          "url": "https://confcats-event-sessions.s3.amazonaws.com/iscas23/papers/2293.pdf",
+          "authors": "Guoyang Huang; Chaohan Wang; Zhaoguang Si; Lu Yang; Shiwei Wang; Alexander Serb; Themis Prodromakis; Christos Papavassiliou",
+          "date": "2023",
+          "locator": "作者页；§II–IV、式(1)–(2)、Algorithm 1；读取表征、边界拟合和状态更新正文",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "9997ac67e43e8ac6f9d128397ee25395fb0abc354f28b453c400d2b68b28ac2c"
+        },
+        {
+          "workId": "prodromakis-frontiers2016-stdp",
+          "title": "Analog Memristive Synapse in Spiking Networks Implementing Unsupervised Learning",
+          "url": "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00482/full",
+          "authors": "Erika Covi; Stefano Brivio; Alexander Serb; Themis Prodromakis; Marco Fanciulli; Sabina Spiga",
+          "date": "2016-10-25",
+          "locator": "作者/机构；§3.2–3.3、Figures3–6：脉冲叠加、电压到时差映射、STDP与字符网络",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "prodromakis-iscas2023-model",
+          "text": "已读2023年§II–IV：通过测量序列拟合状态边界，Algorithm 1按四类边界情况更新RS；不把拟合视为芯片性能证明。"
+        },
+        {
+          "workId": "prodromakis-frontiers2016-stdp",
+          "text": "已读§3.2–3.3：前后脉冲叠加将相对时差映射到器件电压及电阻更新；小型网络使用STDP和winner-take-all进行字符识别。作者机构列本人Southampton。"
+        }
+      ],
+      "sources": [
+        [
+          "An Improved Data-Driven Memristor Model Accounting for Sequences Stimulus Features",
+          "https://confcats-event-sessions.s3.amazonaws.com/iscas23/papers/2293.pdf",
+          "2023 · 论文正文（所列章节）"
+        ],
+        [
+          "Analog Memristive Synapse in Spiking Networks Implementing Unsupervised Learning",
+          "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2016.00482/full",
+          "2016-10-25 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "两项独立作品的限定机制正文与署名已核验；不表示穷尽成果或复现性能。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2026,
+          "url": "https://reach.theiet.org/2026-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Themis Prodromakis",
+          "url": "https://www.research.ed.ac.uk/en/persons/themis-prodromakis/",
+          "readRange": "姓名、Regius Chair of Engineering及ORCID0000-0002-6267-6909"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "prodromakis-ncomms2016-learning",
+          "title": "Unsupervised learning in probabilistic neural networks with multi-state metal-oxide memristive synapses",
+          "url": "https://www.research.ed.ac.uk/en/publications/unsupervised-learning-in-probabilistic-neural-networks-with-multi/",
+          "authors": "Alexander Serb; Johannes Bill; Ali Khiat; Radu Berdan; Robert Legenstein; Themis Prodromakis",
+          "date": "2016-09-29",
+          "locator": "大学作者记录、Abstract和完整作者名单；DOI10.1038/ncomms12611",
+          "type": "作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
+    },
+    {
+      "id": "plamen-asenov",
+      "name": "Plamen Asenov",
+      "aliases": [],
+      "field": "DTCO、统计变异与紧凑模型",
+      "domain": "physical-energy",
+      "relatedDomains": [
+        "memory",
+        "correctness"
+      ],
+      "core": "共同把器件变异的相关性带入电路模型，防止简单工艺角和阈值分布误判SRAM裕量。",
+      "background": "2015论文明确同时列出 Plamen Asenov 与 Asen Asenov，两人不同；Plamen履历为Glasgow BEng2009/PhD2012、曾任Arm片上存储设计师、当时GSS设计顾问。Synopsys官方作者页列其负责TCAD到SPICE及DTCO，与REACH2025身份一致。",
+      "contributions": [
+        "2015年共同提出分层紧凑模型提取：标称模型、全局变异响应面、各设计点局部统计模型。",
+        "2026年共同研究22nm FDSOI低温模型重新校准、背偏置与阈值工程，对比环振功率—延迟。"
+      ],
+      "argument": "2015年FinFET变异建模与2026年FDSOI低温校准涉及不同器件、条件和技术问题。2026作者页再次把Plamen（Synopsys）与Asen（Semiwise/Glasgow）分开，身份归属可交叉核对。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？"
+      ],
+      "boundary": "两篇均包含TCAD/SPICE建模，不能当作制程量产良率或数据中心节能实测。2026年分析需区分4K器件结果与制冷能耗；低于4K还需重新校准。",
+      "diagnostic": "用留出TCAD设计点和电路Monte Carlo，对比联合分布、尾部SNM与读电流。",
+      "challenge": {
+        "lens": "DTCO、统计变异与紧凑模型",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "把全局工艺变化与局部失配独立抽样，会怎样改变电路失效尾部？",
+        "variables": "器件尺寸nm、Vt分布V、SNM V、读电流A、全局/局部协方差。",
+        "model": "编辑诊断模型：在保持联合分布和相关性的前提下估计电路裕量与尾部失效，比较简化模型偏差。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "均值与方差拟合正确，但相关性被破坏导致尾部失效率错误。",
+        "validation": "用留出TCAD设计点和电路Monte Carlo，对比联合分布、尾部SNM与读电流。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "plamen-asenov-finfet-dtco2015",
+          "title": "FinFET Centric Variability-Aware Compact Model Extraction and Generation Technology Supporting DTCO",
+          "url": "https://eprints.gla.ac.uk/108434/1/108434.pdf",
+          "authors": "Xingsheng Wang; Binjie Cheng; Dave Reid; Andrew Pender; Plamen Asenov; Campbell Millar; Asen Asenov",
+          "date": "2015",
+          "locator": "PDF作者/机构页、§II–III、Fig.3；末页Plamen Asenov个人履历",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围",
+          "retrievedSha256": "29e4fb18b550fc745bb9489386cfa3fa3d498b1a3610e109094fa8a14050656d"
+        },
+        {
+          "workId": "plamen-asenov-fdsoi-cryo2026",
+          "title": "FDSOI-Based Cryogenic Circuit Performance Enhancement Using Back-Biasing and Threshold Voltage Engineering",
+          "url": "https://eprints.gla.ac.uk/392649/1/392649.pdf",
+          "authors": "Tapas Dutta; Fikru Adamu-Lema; Djamel Bensouiah; German Cherstvov; Plamen Asenov; Asen Asenov",
+          "date": "2026-05-08",
+          "locator": "作者及机构页；§II–IV pp.269–270：PDK re-centering四步、7级环振及背偏置；DOI10.1109/JEDS.2026.3691285",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "plamen-asenov-finfet-dtco2015",
+          "text": "2015作者页分列Plamen与Asen；§III读取分层模型及两组参数用于全局和局部变异；末页Plamen履历与Synopsys学历信息一致。"
+        },
+        {
+          "workId": "plamen-asenov-fdsoi-cryo2026",
+          "text": "2026作者页明确Plamen Asenov属于Synopsys、Asen Asenov属于Semiwise/Glasgow。§II以室温PDK、晶圆测量、低温TCAD校准和紧凑模型提取四步构建预测模型，§III–IV比较7级环振及背偏置。"
+        }
+      ],
+      "sources": [
+        [
+          "FinFET Centric Variability-Aware Compact Model Extraction and Generation Technology Supporting DTCO",
+          "https://eprints.gla.ac.uk/108434/1/108434.pdf",
+          "2015 · 论文正文（所列章节）"
+        ],
+        [
+          "FDSOI-Based Cryogenic Circuit Performance Enhancement Using Back-Biasing and Threshold Voltage Engineering",
+          "https://eprints.gla.ac.uk/392649/1/392649.pdf",
+          "2026-05-08 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "两项独立作品的限定机制正文与署名已核验；不表示穷尽成果或复现性能。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2025,
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Plamen Asenov",
+          "url": "https://www.synopsys.com/authors/plamen-asenov.html",
+          "readRange": "作者简介：TCAD到SPICE/DTCO职责，Glasgow BEng/PhD；与2015论文Plamen个人履历交叉，不混同Asen"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "plamen-asenov-sram2011",
+          "title": "The effect of compact modelling strategy on SNM and Read Current variability in Modern SRAM",
+          "url": "https://eprints.gla.ac.uk/100447/",
+          "authors": "Plamen Asenov; Fikru Adamu-Lema; Scott Roy; Campbell Millar; Asen Asenov; Gareth Roy; Urban Kovac; David Reid",
+          "date": "2011-09-08",
+          "locator": "Glasgow原记录作者表、Abstract；SISPAD2011 pp.283–286 DOI10.1109/SISPAD.2011.6035024",
+          "type": "作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
+    },
+    {
+      "id": "cristina-silvano",
+      "name": "Cristina Silvano",
+      "aliases": [],
+      "field": "设计空间探索与HPC自适应能效",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "physical-energy",
+        "hpc"
+      ],
+      "core": "把多目标架构探索与运行时自适应连接起来，将应用功能和能效、性能控制策略分离。",
+      "background": "Politecnico di Milano本人官方主页列其为Full Professor，研究计算机架构与EDA；REACH2025列为该校教授。MULTICUBE和ANTAREX均为多机构共同研究，不将框架各组件归为本人单独实现。",
+      "contributions": [
+        "共同署名MULTICUBE，以自动设计空间探索处理多核SoC能量与延迟的权衡。",
+        "共同署名ANTAREX工具链，以LARA/Clava表达额外功能策略，再将可调参数和监控连接到运行时。"
+      ],
+      "argument": "ANTAREX已读正文将应用C/C++、策略DSL、代码变换、动态编译和运行时调优分层；MULTICUBE是独立的较早SoC探索项目。ANTAREX2018和2019相关版本只计一个项目作品。",
+      "evidence": "两项独立共同署名技术作品的所列机制正文已读取；团队归属和验证边界明确。",
+      "habits": [
+        "编辑归纳：运行时适应何时比离线固定配置更划算？",
+        "把模型假设、实验条件与部署结论分开。"
+      ],
+      "questions": [
+        "运行时适应何时比离线固定配置更划算？"
+      ],
+      "boundary": "MULTICUBE正文通过公开镜像读取，作者与出版资料由合作机构记录交叉核对；不将估算精度推广至任意架构。ANTAREX调优、监控及重新编译开销可能吞噬收益，原Exascale目标不是已证明部署规模。",
+      "diagnostic": "固定任务精度与时限，分项测量监控、编译、探索成本及持稳阶段节能。",
+      "challenge": {
+        "lens": "设计空间探索与HPC自适应能效",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "运行时适应何时比离线固定配置更划算？",
+        "variables": "阶段持续时间s、调优成本s、能量J、时限s、软件参数和功率约束。",
+        "model": "编辑诊断模型：净收益取决于阶段内节约是否超过监控、搜索与重新编译成本，同时满足QoS。",
+        "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+        "counterexample": "阶段变化快于调优收敛，或准确性限制使可用参数空间极小。",
+        "validation": "固定任务精度与时限，分项测量监控、编译、探索成本及持稳阶段节能。",
+        "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "silvano-antarex2018",
+          "title": "Autotuning and Adaptivity in Energy Efficient HPC Systems: The ANTAREX Toolbox",
+          "url": "https://cris.unibo.it/retrieve/handle/11585/659829/e1dcb331-bde8-7715-e053-1705fe0a6cc9/2018_CF_Silvano_FP.pdf",
+          "authors": "Cristina Silvano; Gianluca Palermo; Giovanni Agosta; Amir H. Ashouri; Davide Gadioli; Stefano Cherubin; Emanuele Vitali; Luca Benini; Andrea Bartolini; Daniele Cesarini; Joao Cardoso; Joao Bispo; Pedro Pinto; Riccardo Nobre; Erven Rohou; Loïc Besnard; Imane Lasri; Nico Sanna; Carlo Cavazzoni; Radim Cmar; Jan Martinovič; Kateřina Slaninová; Martin Golasowski; Andrea R. Beccari; Candida Manelfi",
+          "date": "2018-05",
+          "locator": "作者接受稿PDF pp.3–4（含两页仓储封面）；§1–3.2、Fig.1；DOI10.1145/3203217.3205338",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列机制正文范围",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        },
+        {
+          "workId": "silvano-multicube2010",
+          "title": "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "url": "https://www.academia.edu/13390634/MULTICUBE_Multi_objective_Design_Space_Exploration_of_Multi_core_Architectures",
+          "authors": "Cristina Silvano; William Fornaciari; Gianluca Palermo; Vittorio Zaccaria; Fabrizio Castro; Marcos Martinez; Sara Bocchio; Roberto Zafalon; Prabhat Avasare; Geert Vanmeerbeeck; Chantal Ykman-Couvreur; Maryse Wouters; Carlos Kavka; Luka Onesti; Alessandro Turco; Umberto Bondi; Giovanni Mariani; Hector Posadas; Eugenio Villar; Chris Wu; Dongrui Fan; Hao Zhang; Shibin Tang",
+          "date": "2010-07",
+          "locator": "原论文作者及§II THE MULTICUBE DESIGN METHODOLOGY，Fig.1；读取公开镜像文本，书目与作者在USI机构记录交叉确认",
+          "type": "论文正文（所列章节）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取作者、机构及所列机制正文；不声称性能复现",
+          "role": "个人共同署名、独立技术作品和机制核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手论文；实际读取范围限于所列章节",
+          "accessChannel": "公开论文镜像；非Academia编辑转述",
+          "originalRecord": "https://search.usi.ch/en/publications/16152",
+          "doi": "10.1109/ISVLSI.2010.67"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "silvano-antarex2018",
+          "text": "2018接受稿§2–3.2读取LARA/Clava、软件参数、监控与动态编译连接；本人在Polimi作者列中。"
+        },
+        {
+          "workId": "silvano-multicube2010",
+          "text": "已读MULTICUBE §II：功耗/性能估算框架与探索框架分离，通过统一XML接口交互；响应面可由仿真训练集构建，启发式生成近似Pareto前沿。正文镜像署名与USI机构作者/DOI记录一致。"
+        }
+      ],
+      "sources": [
+        [
+          "Autotuning and Adaptivity in Energy Efficient HPC Systems: The ANTAREX Toolbox",
+          "https://cris.unibo.it/retrieve/handle/11585/659829/e1dcb331-bde8-7715-e053-1705fe0a6cc9/2018_CF_Silvano_FP.pdf",
+          "2018-05 · 论文正文（所列章节）"
+        ],
+        [
+          "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "https://www.academia.edu/13390634/MULTICUBE_Multi_objective_Design_Space_Exploration_of_Multi_core_Architectures",
+          "2010-07 · 论文正文（所列章节）"
+        ]
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach-speakers",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "两项独立作品的限定机制正文与署名已核验；不表示穷尽成果或复现性能。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2025,
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readAt": "2026-11-13",
+          "role": "讲者身份与当届机构；不计技术作品"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "name": "Cristina Silvano",
+          "url": "https://silvano.faculty.polimi.it/",
+          "readRange": "官方个人主页教授及研究领域介绍"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "additionalEvidence": [
+        {
+          "workId": "silvano-multicube2010",
+          "title": "MULTICUBE: Multi-objective Design Space Exploration of Multi-core Architectures",
+          "url": "https://search.usi.ch/en/publications/16152",
+          "authors": "Cristina Silvano; William Fornaciari; Gianluca Palermo; Vittorio Zaccaria; Fabrizio Castro; Marcos Martinez; Sara Bocchio; Roberto Zafalon; Prabhat Avasare; Geert Vanmeerbeeck; Chantal Ykman-Couvreur; Maryse Wouters; Carlos Kavka; Luka Onesti; Alessandro Turco; Umberto Bondi; Giovanni Mariani; Hector Posadas; Eugenio Villar; Chris Wu; Dongrui Fan; Hao Zhang; Shibin Tang",
+          "date": "2010-07",
+          "locator": "作者机构记录作者表、Abstract、ISVLSI2010 pp.488–493；DOI10.1109/ISVLSI.2010.67",
+          "type": "合作作者机构所存原论文摘要",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+          "role": "个人署名与独立技术作品核验",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手材料；结论限定于实际读取范围"
+        }
+      ]
+    }
+  ],
+  "held": [
+    {
+      "id": "cameron-barker",
+      "name": "Cameron Barker",
+      "status": "needs-evidence",
+      "verified": [
+        "REACH2026及QDA官方讲者页确认Infleqtion软件团队身份。",
+        "arXiv2509.13247作者表存在Cameron Barker；本轮仅读取摘要及作者列表，未将完整量子实验归为本人独作。"
+      ],
+      "sources": [
+        "https://www.qda.global/speakers?e77a0dc8_page=2",
+        "https://arxiv.org/abs/2509.13247"
+      ],
+      "gaps": [
+        "尚未核验第二项独立、可归属目标Infleqtion讲者的一手技术作品及机制正文。",
+        "检索出现与Elliot J. Crowley等合著的同名AI论文；不能未经机构/身份桥接并入目标人物。"
+      ],
+      "nextEvidence": "Infleqtion/Superstaq官方提交记录、个人作者档案与独立论文署名/机构页。"
+    },
+    {
+      "id": "matthew-leung",
+      "name": "Matthew Leung",
+      "status": "needs-evidence",
+      "verified": [
+        "IET委员会官方简介确认Huawei计算机架构研究及此前Marvell/ASTRI/Sun/Apple经历。",
+        "US8526513B2列Matthew Leung与Ruijie Xiao为发明人、Huawei为原申请人；与US20120063526A1为同族，不能计两项。"
+      ],
+      "sources": [
+        "https://reach.theiet.org/about-the-conference/committee",
+        "https://patents.google.com/patent/US8526513B2/en",
+        "https://www.jku.at/fileadmin/gruppen/343/Downloads/2020_11_17_Wille_Best_Paper_Award_Nominee_MLCAD.pdf"
+      ],
+      "gaps": [
+        "专利同名与公司相同仍缺少将发明人可靠桥接到目标讲者的个人身份材料。",
+        "MLCAD2020公开材料为演讲摘要，未取得机制正文；尚无两项独立可归属作品。"
+      ],
+      "nextEvidence": "本人/机构可核验技术履历、发明人地址/合作网络或公开演讲幻灯片；另一个独立专利族。"
+    },
+    {
+      "id": "frederique-silber-chaussumier",
+      "name": "Frédérique Silber-Chaussumier",
+      "status": "needs-evidence",
+      "verified": [
+        "SPEC2026完整PDF取得，已读作者/机构和§VII–VIII pp.10–12；STEP2008出版方确认作者及技术摘要。"
+      ],
+      "gaps": [
+        "第二项独立实质正文尚未读取。不得将SPEC本人博客与SPEC论文重复计为两个项目作品。"
+      ],
+      "sources": [
+        "https://arxiv.org/pdf/2605.01575",
+        "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8"
+      ],
+      "attempts": [
+        {
+          "url": "https://segl.hlrs.de/sites/parma/www.parma-itea2.org/images/parco2009/parco2009finalpaperpdf/step.pdf",
+          "result": "web timeout /502；直接HTTPS503"
+        },
+        {
+          "url": "https://www-inf.telecom-sudparis.eu/COURS/CSC4508.old/Current/Poly/poly-1pp.pdf",
+          "result": "web TimeoutError"
+        }
+      ],
+      "nextEvidence": "合法可读STEP2008/2009论文正文，或本人独立并行编译作品正文；保留已有SPEC核验，不重做。",
+      "preparedProfile": {
+        "id": "frederique-silber-chaussumier",
+        "name": "Frédérique Silber-Chaussumier",
+        "aliases": [],
+        "field": "性能评估、基准方法与并行转换",
+        "domain": "hpc",
+        "relatedDomains": [
+          "compiler-runtime",
+          "cpu"
+        ],
+        "core": "共同推动从单一同构吞吐到可重复异构混部测量，并研究OpenMP到消息传递的自动转换。",
+        "background": "2026论文署名Arm，SPEC本人署名文章列其为CPU Committee Chair，REACH2026列Senior Principal CPU Architect；2008 STEP出版方列GET/INT。委员会与论文均为团队贡献，不将SPEC CPU2026归为一人作品。",
+        "contributions": [
+          "共同署名SPEC CPU2026论文，以PMC和BBV观察负载多样性，并说明确定性的Rolling Round-Robin混部排程。",
+          "共同署名STEP工具论文，由OpenMP注释程序自动生成消息传递代码，面向粗粒度并行。"
+        ],
+        "argument": "已读SPEC正文区分SPECspeed固定工作量强扩展与SPECrate随副本增大的弱扩展；RRR让各执行槽按固定但错位顺序遍历负载。STEP是独立编译工具作品。",
+        "evidence": "两项独立共同署名技术作品已核验；至少一项已读机制正文，其他材料的读取范围逐条标注。",
+        "habits": [
+          "编辑归纳：同构rate领先的机器，在确定性混部下还领先吗？",
+          "把模型假设、实验条件与部署结论分开。"
+        ],
+        "questions": [
+          "同构rate领先的机器，在确定性混部下还领先吗？"
+        ],
+        "boundary": "RRR在论文中为exhibition模式，评分方法仍在评估，不能冒称正式统一混部总分；STEP仅读出版方摘要。不得把基准排名直接当作所有实际服务的性能排名。",
+        "diagnostic": "在相同编译配置和线程绑定下比较同构与RRR排程，保存每任务时间、PMC、结果正确性和重复运行方差。",
+        "challenge": {
+          "lens": "性能评估、基准方法与并行转换",
+          "skills": [
+            "A2",
+            "A3",
+            "A8"
+          ],
+          "question": "同构rate领先的机器，在确定性混部下还领先吗？",
+          "variables": "副本数、固定工作量/扩展工作量、IPC、资源争用、单任务减速与公平性。",
+          "model": "编辑诊断模型：先固定工作量和排程，再分别比较总吞吐与个体减速，避免平均分掩盖饥饿。",
+          "crossover": "仅在验证所列约束后比较净收益；不把作者实验外推为通用保证。",
+          "counterexample": "总吞吐提高，但某类内存敏感任务尾延迟恶化或副本规模改变比较单位。",
+          "validation": "在相同编译配置和线程绑定下比较同构与RRR排程，保存每任务时间、PMC、结果正确性和重复运行方差。",
+          "transfer": "迁移到新硬件、负载或规模前重新校准参数与约束。"
+        },
+        "sourceAudit": [
+          {
+            "workId": "silber-spec2026",
+            "title": "SPEC CPU: The Next Generation",
+            "url": "https://arxiv.org/pdf/2605.01575",
+            "authors": "Mahesh Madhav et al.（34位共同作者；Frédérique Silber-Chaussumier署名Arm）",
+            "date": "2026-05-02",
+            "locator": "v1作者及机构页；§VII–VIII pp.10–12：PMC/BBV分析、强弱扩展、Rolling Round-Robin",
+            "type": "作者提交论文",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "contentStatus": "已读取所列机制正文范围",
+            "role": "个人署名与独立技术作品核验",
+            "retrievedAt": "2026-11-13",
+            "evidenceStrength": "一手材料；结论限定于实际读取范围",
+            "retrievedSha256": "54facc9a62909ad7986220a94fbcddf5b63f26e43fd3f463fcb23badb5ccc5f1"
+          },
+          {
+            "workId": "silber-step2008",
+            "title": "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+            "authors": "Daniel Millot; Alain Muller; Christian Parrot; Frédérique Silber-Chaussumier",
+            "date": "2008",
+            "locator": "出版方作者/机构、Abstract；IWOMP2008 pp.83–99；DOI10.1007/978-3-540-79561-2_8",
+            "type": "出版方原论文摘要",
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": false,
+            "contentStatus": "仅已读作者、摘要与出版信息；不声称读过全文",
+            "role": "个人署名与独立技术作品核验",
+            "retrievedAt": "2026-11-13",
+            "evidenceStrength": "一手材料；结论限定于实际读取范围"
+          }
+        ],
+        "sourceFacts": [
+          {
+            "workId": "silber-spec2026",
+            "text": "SPEC论文作者表确认本人及Arm；§VII–VIII读取扩展方式、BBV去冗余和确定性RRR排程，并明确其exhibition状态。"
+          },
+          {
+            "workId": "silber-step2008",
+            "text": "STEP出版方原摘要和作者表确认本人共同署名、OpenMP到消息传递转换及过程间/非规则程序分析；正文未获取。"
+          }
+        ],
+        "sources": [
+          [
+            "SPEC CPU: The Next Generation",
+            "https://arxiv.org/pdf/2605.01575",
+            "2026-05-02 · 作者提交论文"
+          ],
+          [
+            "STEP: A Distributed OpenMP for Coarse-Grain Parallelism Tool",
+            "https://link.springer.com/chapter/10.1007/978-3-540-79561-2_8",
+            "2008 · 出版方原论文摘要"
+          ]
+        ],
+        "notes": [],
+        "awardsVerified": [],
+        "contributionBasis": "有来源的编辑提炼；共同作品不归为个人独占贡献。",
+        "researchStatus": {
+          "status": "needs-evidence",
+          "batch": "2026-11-13-reach-speakers",
+          "standard": "contribution-led-v1",
+          "verifiedAt": "2026-11-13",
+          "meaning": "所选两项独立作品及署名已核验，至少一项机制正文已读；不表示穷尽成果或复现性能。"
+        },
+        "conferenceEvidence": [
+          {
+            "conference": "IET REACH",
+            "year": 2026,
+            "url": "https://reach.theiet.org/2026-speakers",
+            "readAt": "2026-11-13",
+            "role": "讲者身份与当届机构；不计技术作品"
+          }
+        ],
+        "identityEvidence": [
+          {
+            "name": "Frédérique Silber-Chaussumier",
+            "url": "https://www.spec.org/blog/2026/cpu2026/",
+            "readRange": "本人署名、CPU委员会主席及基准开发文章正文"
+          }
+        ],
+        "admissionGate": {
+          "standard": "two-distinct-primary-works-one-body-v1",
+          "independentWorks": 1,
+          "mechanismBodiesRead": 1,
+          "decision": "hold",
+          "limitedSecondWorkRead": "第二项原论文的作者、摘要、出版资料已读，未声称全文已读。",
+          "reason": "SPEC2026正文已读；STEP2008仅摘要。STEP2009项目托管正文及课程讲义下载失败，未满足当前仓库第二项实质正文门槛。"
+        }
+      }
+    }
+  ],
+  "counts": {
+    "ready": 3,
+    "held": 3
+  },
+  "limits": [
+    "正文读取范围逐条记录。",
+    "保留早先摘要核验到additionalEvidence，不将摘要冒充正文。",
+    "Silvano的MULTICUBE通过明确标注的公开原论文镜像读正文，并与机构书目交叉核对。",
+    "未重复计算ANTAREX不同版本；严格区分Plamen与Asen Asenov。",
+    "Frédérique第二项正文访问受阻，转入待补，不强行入库。"
+  ],
+  "publicationStatus": "prepared-not-published"
+}
