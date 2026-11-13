@@ -5,6 +5,8 @@ on:
       - 'ai/index.html'
       - 'ai/index-en.html'
       - 'ai/home.css'
+      - 'ai/silicon-atlas/**'
+      - 'scripts/check-silicon-atlas.cjs'
       - 'scripts/build-research-home.py'
       - 'scripts/check-research-home.cjs'
       - '.github/workflows/research-home-browser-smoke.yml'
@@ -39,7 +41,9 @@ jobs:
             if curl -fsS http://127.0.0.1:8765/ai/architects/catalog.json -o /dev/null; then break; fi
             sleep 1
           done
+          python3 -m py_compile scripts/build-research-home.py
           node scripts/check-research-home.cjs
+          node scripts/check-silicon-atlas.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
