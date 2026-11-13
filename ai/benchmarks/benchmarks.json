@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-12",
+ "as_of": "2026-11-13",
  "scope": {
   "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
   "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
@@ -218,6 +218,61 @@
    "source_locator": "Evolution of the benchmark; Submissions and Results; AI community participation"
   },
   {
+   "id": "M24",
+   "group": "system",
+   "date": "2026-03-19",
+   "title": {
+    "zh": "MLPerf Endpoints（API 为中心的生成式 AI 服务基准）",
+    "en": "MLPerf Endpoints (API-centric benchmark for generative-AI serving)"
+   },
+   "summary": {
+    "zh": "MLCommons 在2026年3月19日发布的 v0.5 演示版：被测系统“就是一个 URL”，客户端通过 HTTP 或 gRPC 访问，托管云服务也可参加；每次运行改变并发度，记录首 token 时延、吞吐（token/秒）、交互性（每用户 token/秒）和响应时延，结果以帕累托曲线与阶梯函数呈现，只显示已验证的运行点。",
+    "en": "MLCommons’ v0.5 demonstration, published 19 Mar 2026: the system under test is “simply a URL”, reached over HTTP or gRPC, so managed cloud services can take part; each run varies concurrency and records time to first token, throughput (tokens per second), interactivity (tokens per second per user) and response latency, with results plotted as Pareto curves and step functions that show only verified operating points."
+   },
+   "facts": [
+    {
+     "zh": "首版结果来自 AMD、Google、Intel、KRAI 与 NVIDIA；30多个机构支持；模型包括 DeepSeek-R1、GPT OSS 120B、Llama 3.1 8B 与 Qwen 3 Coder 480B，涉及近十二套系统。",
+     "en": "First results came from AMD, Google, Intel, KRAI and NVIDIA, with more than 30 supporting organisations; models included DeepSeek-R1, GPT OSS 120B, Llama 3.1 8B and Qwen 3 Coder 480B on nearly a dozen systems."
+    },
+    {
+     "zh": "自2026年第二季度起改为滚动提交：提交者可随时发布经同行评审与审计的结果，取代固定的半年一轮；Inference v6.1 中过半提交者已使用其 API 为中心的测试框架（见M03）。",
+     "en": "From Q2 2026 submissions roll continuously: submitters can publish peer-reviewed, audited results at any time, replacing the fixed bi-annual cadence; more than half of Inference v6.1 submitters already used its API-centric harness (see M03)."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "MLCommons: MLPerf Endpoints",
+     "url": "https://mlcommons.org/2026/03/mlperf-endpoints-gen-ai-benchmarking/",
+     "type": "primary",
+     "published_at": "2026-03-19",
+     "read_at": "2026-11-13",
+     "locator": "Design, metrics, first submitters, rolling-submission plan",
+     "reading_scope": "Blog post text read; no results tables read"
+    }
+   ],
+   "caveat": {
+    "zh": "这是营销性质的发布文章和 v0.5 演示；文章未给出时延阈值、评分公式或明确的局限。滚动提交意味着没有固定发布日，本站也尚未采集任何滚动结果。",
+    "en": "This is a promotional post about a v0.5 demonstration; it gives no latency thresholds, scoring formula or explicit limitations. Rolling submissions mean there is no fixed release date, and no rolling results have been captured here."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "tail-latency",
+     "slo",
+     "prefill-decode"
+    ],
+    "bridge": [
+     "B8",
+     "B10"
+    ],
+    "benchmarks": [
+     "M03",
+     "M16"
+    ]
+   }
+  },
+  {
    "id": "M06",
    "group": "system",
    "date": "2026-09-01",
@@ -290,6 +345,10 @@
     {
      "zh": "已读CPU2026规则：base禁用反馈优化；断言标志存在“符合语言标准”的明确例外（2.3.6–2.3.7）。线程相关base标志可按OpenMP／C++ threads／doconcurrent组区分，其他标志仍须遵守套件与语言内一致性（2.3.5.1）。",
      "en": "CPU2026 rules: base forbids FDO; assertion flags have an explicit language-standard compliance exception (2.3.6–2.3.7). Threading flags may differ between OpenMP, C++ threads and doconcurrent sets; other base consistency rules remain (2.3.5.1)."
+    },
+    {
+     "zh": "结果已公开：spec.org 按 SPECrate/SPECspeed × 整数/浮点四个套件列出结果，每行含基础/峰值得分、能耗指标、基础拷贝数与线程数，并标注编译器类别（厂商/社区）；索引中可见的最新发布路径在2026年Q4（约10月20日）。",
+     "en": "Results are public: spec.org lists them in four suites (SPECrate and SPECspeed, integer and floating point), each row showing base and peak results, energy metrics, base copies, threads and a compiler category (vendor or community); the most recent visible paths are in the 2026 Q4 folder (around 20 Oct)."
     }
    ],
    "evidence": "primary-read",
@@ -308,11 +367,20 @@
      "label": "SPEC CPU 2017 run and reporting rules",
      "url": "https://www.spec.org/cpu2017/docs/runrules.html",
      "type": "primary"
+    },
+    {
+     "label": "SPEC CPU 2026 results index",
+     "url": "https://spec.org/cpu2026/results/cpu2026/",
+     "type": "primary",
+     "published_at": "2026-10-20",
+     "read_at": "2026-11-13",
+     "locator": "Suite tables and result row structure",
+     "reading_scope": "First ~100,000 of ~393,000 characters read; no results quoted"
     }
    ],
    "caveat": {
-    "zh": "保留此前新闻稿信息；本轮读取CPU2026规则上述正文及4.4节，替代CPU2017规则的间接引用。没有采集CPU2026得分，也不将CPU2017分数换算成CPU2026。",
-    "en": "Prior release information retained. This review read the cited CPU2026 rule sections and section 4.4, replacing the indirect CPU2017 rule reference. No CPU2026 scores collected; no CPU2017-to-2026 score conversion."
+    "zh": "新闻稿正文与结果索引页的结构已读（索引只看到浮点速率表的一部分，约占页面四分之一）；本页仍未采集任何具体得分，也不与 CPU2017 分数换算。厂商（如 Supermicro、AMD）发布的“最高成绩”属营销来源，须对照 spec.org 条目。",
+    "en": "The press release and the structure of the results index were read (only part of the floating-point rate table was visible, about a quarter of the page); no specific scores are captured here and CPU2017 scores cannot be converted. “Top result” claims by vendors such as Supermicro and AMD are marketing sources and must be checked against spec.org entries."
    },
    "links": {
     "terms": [
@@ -323,7 +391,8 @@
     "bridge": [
      "B11",
      "B10"
-    ]
+    ],
+    "benchmarks": []
    },
    "reviewed_at": "2026-11-12"
   },
@@ -517,6 +586,10 @@
     {
      "zh": "2026年3月至9月的不同快照给出不同领先者与分数（约78%到88%），且大小取决于智能体外壳（harness）而不仅是模型。",
      "en": "Snapshots from March to September 2026 give different leaders and scores (roughly 78% to 88%), and the result depends on the agent harness as well as the model."
+    },
+    {
+     "zh": "版本在变：Artificial Analysis 的 v4.3/v5 指数使用 Terminal-Bench 4.0，v5 还新增 Terminal-Bench-Science，所以2.0榜单分数不能与它们比较。",
+     "en": "Versions are moving: Artificial Analysis’s v4.3 and v5 indexes use Terminal-Bench 4.0 and v5 adds Terminal-Bench-Science, so 2.0 leaderboard scores are not comparable with them."
     }
    ],
    "evidence": "secondary",
@@ -921,49 +994,57 @@
   {
    "id": "M15",
    "group": "index",
-   "date": "2026-09-07",
+   "date": "2026-10-27",
    "title": {
-    "zh": "Artificial Analysis 智能指数（v4.3.x）",
-    "en": "Artificial Analysis Intelligence Index (v4.3.x)"
+    "zh": "Artificial Analysis 智能指数（v5）",
+    "en": "Artificial Analysis Intelligence Index (v5)"
    },
    "summary": {
-    "zh": "把10项评测加权平均成一个数：智能体30%（AA-Briefcase 15、GDPval-AA 10、AutomationBench-AA 5）、编码20%（Terminal-Bench 4.0 10、SciCode 10）、科学推理20%（HLE 10、CritPt 10）、通用30%（AA-Omniscience 15、GDP.pdf 10、AA-LCR 5）。权重明显偏向智能体任务。",
-    "en": "Averages ten evaluations into one number, weighted: agents 30% (AA-Briefcase 15, GDPval-AA 10, AutomationBench-AA 5), coding 20% (Terminal-Bench 4.0 10, SciCode 10), scientific reasoning 20% (HLE 10, CritPt 10), general 30% (AA-Omniscience 15, GDP.pdf 10, AA-LCR 5). The weighting clearly favours agentic tasks."
+    "zh": "2026年10月27日发布的 v5 把9项评测按四个类别各占25%加权：知识工作（AA-Briefcase 15、AutomationBench-AA 5、GDP.pdf 5）、编码（FrontierCode 2.0 15、Terminal-Bench 4.0 10）、科学（Terminal-Bench-Science 15、CritPt v2 难题子集 10）、通用（AA-Omniscience v1.1 15、HLE-Diamond 10）。相对 v4.3 新增 FrontierCode 2.0 与 Terminal-Bench-Science，移除 GDPval-AA v2.1、SciCode 与 AA-LCR v1.1。",
+    "en": "Released on 27 Oct 2026, v5 weights nine evaluations in four categories at 25% each: knowledge work (AA-Briefcase 15, AutomationBench-AA 5, GDP.pdf 5), coding (FrontierCode 2.0 15, Terminal-Bench 4.0 10), science (Terminal-Bench-Science 15, CritPt v2 hard subset 10) and general (AA-Omniscience v1.1 15, HLE-Diamond 10). Against v4.3 it adds FrontierCode 2.0 and Terminal-Bench-Science and drops GDPval-AA v2.1, SciCode and AA-LCR v1.1."
    },
    "facts": [
     {
-     "zh": "方法页当前版本为 v4.3.2；v4.1 时只有9项评测、智能体34%；评测集每个版本都在换，v4.1 之后 τ³-Banking 已被 AutomationBench-AA 取代。",
-     "en": "The methodology page shows v4.3.2; v4.1 had nine evaluations with agents at 34%; the evaluation set changes with each version, and τ³-Banking was replaced by AutomationBench-AA after v4.1."
+     "zh": "基础设施含义：每任务输出 token 的中位数由35k升至59k（约三分之二）；四项智能体评测（Terminal-Bench-Science、Terminal-Bench 4.0、AA-Briefcase、FrontierCode 2.0）占55%权重，却占约90%的输出 token；Terminal-Bench-Science 单项约占三分之一。",
+     "en": "Infrastructure reading: the median output tokens per task rose from 35k to 59k (about two thirds); four agentic evaluations (Terminal-Bench-Science, Terminal-Bench 4.0, AA-Briefcase, FrontierCode 2.0) carry 55% of the weight but about 90% of output tokens, with Terminal-Bench-Science alone about a third."
     },
     {
-     "zh": "运行方式：多数评测只跑一次，Terminal-Bench 4.0、SciCode、AA-LCR 跑3次，GDP.pdf、CritPt 跑5次，按 pass@1 汇总；基于 Elo 的评测给出95%置信区间；AA-Briefcase、AutomationBench-AA（657题私有保留集）、AA-Omniscience、CritPt 为私有评测，据称私有/保留评测权重占45%。",
-     "en": "How runs work: most evaluations run once, Terminal-Bench 4.0, SciCode and AA-LCR three times, GDP.pdf and CritPt five times, aggregated as pass@1; Elo-based evaluations get 95% confidence intervals; AA-Briefcase, AutomationBench-AA (a private 657-task held-out split), AA-Omniscience and CritPt are private, and private or held-out evaluations are reported at 45% of the weight."
+     "zh": "推理强度对成本影响更大：文章称 Claude Opus 5.5 低强度得分35、最高强度58，每任务成本约$0.98对$10.04（约10倍）；十个得分最高的模型之间每任务成本相差超过13倍。",
+     "en": "Effort settings matter more: the article reports Claude Opus 5.5 scoring 35 at low effort and 58 at max, at about $0.98 versus $10.04 per task (roughly 10×), and cost per task varying by more than 13× across the ten highest-scoring models."
     },
     {
-     "zh": "由 Artificial Analysis 自己运行（页面未称“独立”）；部分评测来自外部方（Zapier、Harvey、Surge AI）；评分用前沿LLM作评审，部分用三评审团。成本按各API提供商报告的token数计算。",
-     "en": "Run by Artificial Analysis itself (the page does not say “independent”); some evaluations come from outside parties (Zapier, Harvey, Surge AI); frontier LLMs act as judges, with a three-judge panel for some. Cost uses token counts reported by each API provider."
+     "zh": "60%的指数基于私有或保留答案的评测；全部分数来自 Artificial Analysis 自己的智能体框架 Stirrup；FrontierCode 2.0 任务私有；CritPt v2 只有40题；AA-Omniscience v1.1 平均比 v1 低约2分，因此与旧版不完全可比。",
+     "en": "60% of the index rests on evaluations with private test sets or held-out answers; scores come from Artificial Analysis’s own agentic harness, Stirrup; FrontierCode 2.0 tasks are private; CritPt v2 has only 40 questions; AA-Omniscience v1.1 averages about 2 points below v1, so it is not fully like-for-like with the earlier version."
     },
     {
-     "zh": "页面自陈的局限：主要是英文文本；HLE 题目曾用旧模型对抗筛选，不宜与未参与筛选的模型直接比较；不同版本分数不可比；参考归一化参数可能更新。",
-     "en": "Limits the page states itself: mostly English text; HLE questions were adversarially selected with older models, so comparisons with models outside that process are discouraged; scores are not comparable across versions; reference normalisation parameters may be updated."
+     "zh": "同时发布的 Progress Index v1 把2022年11月以来发布的语言模型放在同一能力尺度上，用于跨年代比较；智能指数仍是衡量当前模型的主要指标。领先者排名各来源不一致，本页不引用。",
+     "en": "A Progress Index v1 launched alongside places language models released since November 2022 on one capability scale for comparison over time; the Intelligence Index remains the primary measure of current models. Sources disagree on the top spot, so none is cited."
+    },
+    {
+     "zh": "历史对照（v4.3，2026年9月）：10项评测，智能体30%、编码20%、科学推理20%、通用30%；本条此前记录的 v4.3 细节已被 v5 取代。",
+     "en": "For comparison (v4.3, September 2026): ten evaluations with agents 30%, coding 20%, scientific reasoning 20% and general 30%; the v4.3 detail previously recorded here is superseded by v5."
     }
    ],
    "evidence": "primary-read",
    "sources": [
     {
-     "label": "Artificial Analysis: Intelligence Index methodology",
-     "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
-     "type": "primary"
+     "label": "Artificial Analysis: Intelligence Index v5 announcement",
+     "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+     "type": "primary",
+     "published_at": "2026-10-27",
+     "read_at": "2026-11-13",
+     "locator": "Evaluation list and weights; token and cost section; limitations",
+     "reading_scope": "Announcement page text read; the v5 methodology page was not read"
     },
     {
-     "label": "Artificial Analysis: Index v4.3 announcement",
-     "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+     "label": "Artificial Analysis: Intelligence Index methodology (v4.3, historical)",
+     "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
      "type": "primary"
     }
    ],
    "caveat": {
-    "zh": "读了方法页前约一半（共约18万字符，后半未读）；v4.3 公告日期来自搜索摘要。综合指数把不同评测压成一个数，权重选择本身是判断。",
-    "en": "About the first half of the methodology page was read (about 180,000 characters; the rest was not), and the v4.3 announcement date comes from a search summary. A composite compresses different evaluations into one number, and the weight choices are themselves judgements."
+    "zh": "只读了 v5 公告页，未读 v5 方法页的逐项细节；分数不能跨版本比较，综合指数把不同评测压成一个数，权重选择本身是判断。",
+    "en": "Only the v5 announcement page was read, not the per-evaluation detail of the v5 methodology page; scores are not comparable across versions, and a composite compresses different evaluations into one number, with the weights themselves a judgement."
    },
    "links": {
     "terms": [
@@ -976,7 +1057,8 @@
     ],
     "benchmarks": [
      "M10",
-     "M14"
+     "M14",
+     "M24"
     ]
    }
   },
@@ -1104,8 +1186,8 @@
     "en": "How agentic benchmarks connect to infrastructure"
    },
    "summary": {
-    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。 AgentSysBench（M18）是首批从系统侧量化这些问题的工作：非LLM组件占关键路径、KV缓存状态与TTL过期、沙箱计费。 可靠性用 pass^k（M20）读，不要只看 pass@1；浏览与检索类准确率会随采样与工具调用算力上升（M23）。",
-    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed. AgentSysBench (M18) is among the first works to quantify these from the systems side: non-LLM components on the critical path, KV-cache state and TTL expiry, and sandbox billing. Read reliability with pass^k (M20), not only pass@1; browsing and retrieval accuracy rises with sampling and tool-call compute (M23)."
+    "zh": "智能体基准给的是任务成功率，不是 token、时延或成本。一个任务可能包含数十到数百次模型调用与大量 CPU 侧工具执行，并带着很长的上下文与 KV 缓存。读榜单时问：1) 是单次成功（pass@1）还是多次取最佳？2) 用了什么外壳与工具？3) 每任务消耗多少 token、多长墙钟时间、多少费用？4) 任务是否可能已在训练数据里？基础设施层面，MLPerf Inference v6.1 的边缘智能体测试与 MLPerf Storage v3.0 的 KV 缓存测试是首批把这类负载纳入基准的尝试。 5) 评测由谁运行：第三方、社区榜，还是产品方自己的套件（如 CursorBench）？第一方套件贴近真实用法，但不可复现，也不能与公开榜直接并列。6) 同一模型换外壳，分数可相差20–30分，比较时必须固定外壳。 AgentSysBench（M18）是首批从系统侧量化这些问题的工作：非LLM组件占关键路径、KV缓存状态与TTL过期、沙箱计费。 可靠性用 pass^k（M20）读，不要只看 pass@1；浏览与检索类准确率会随采样与工具调用算力上升（M23）。 Artificial Analysis v5（M15）显示：四项智能体评测占55%权重却占约90%的输出 token，所以智能体权重越大，指数越贵、越吃算力。",
+    "en": "Agentic benchmarks report task success, not tokens, latency or cost. One task can involve tens to hundreds of model calls and heavy CPU-side tool execution, carrying very long context and KV cache. When reading a leaderboard ask: 1) pass@1 or best-of-n? 2) which harness and tools? 3) how many tokens, how much wall-clock time and cost per task? 4) could the tasks be in the training data? At the infrastructure level, the MLPerf Inference v6.1 edge agentic test and the MLPerf Storage v3.0 KV-cache test are first attempts to bring such workloads into benchmarks. 5) Who runs the evaluation: a third party, a community board or the product owner’s own suite (such as CursorBench)? First-party suites sit close to real use but cannot be reproduced and should not be set side by side with public boards. 6) The same model can swing 20–30 points between harnesses, so the harness must be held fixed. AgentSysBench (M18) is among the first works to quantify these from the systems side: non-LLM components on the critical path, KV-cache state and TTL expiry, and sandbox billing. Read reliability with pass^k (M20), not only pass@1; browsing and retrieval accuracy rises with sampling and tool-call compute (M23). Artificial Analysis v5 (M15) shows four agentic evaluations carrying 55% of the weight but about 90% of output tokens, so the heavier the agentic weighting, the more expensive and compute-hungry the index is to run."
    },
    "facts": [
     {
@@ -1143,12 +1225,14 @@
     "benchmarks": [
      "M03",
      "M06",
+     "M15",
      "M18",
      "M19",
      "M20",
      "M21",
      "M22",
-     "M23"
+     "M23",
+     "M24"
     ]
    }
   },
@@ -1193,8 +1277,8 @@
     "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
-    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、AgentSysBench、十个智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive、SPEC 功耗与 ML 套件、MLE-bench、Vending-Bench、WebArena、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。",
-    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, AgentSysBench, ten agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp), the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive, SPEC power and ML suites, MLE-bench, Vending-Bench, WebArena, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding."
+    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、AgentSysBench、十个智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive（可见最新轮次分别为2025年11月与8月，仅来自二手维基）、SPEC 功耗与 ML 套件、MLE-bench、Vending-Bench、WebArena、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。 MLPerf Training v6.1：截至2026年11月13日未找到该轮发布。",
+    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, AgentSysBench, ten agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp), the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive (latest rounds found are November and August 2025, from a secondary wiki only), SPEC power and ML suites, MLE-bench, Vending-Bench, WebArena, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding. MLPerf Training v6.1: no such round was found as of 13 Nov 2026."
    },
    "facts": [],
    "evidence": "editorial",
