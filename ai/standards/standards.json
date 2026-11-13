@@ -1,670 +1,813 @@
 {
-  "version": 1,
-  "as_of": "2026-11-12",
-  "scope": {
-    "zh": "追踪与AI基础设施直接相关的开放标准、联盟与厂商互连项目：它们决定芯粒、内存、纵向/横向网络如何互联。每条标注版本日期、证据级别与未核实之处。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
-    "en": "Tracks open standards, consortia and vendor interconnect programmes that bear on AI infrastructure: how chiplets, memory and scale-up / scale-out networks connect. Each entry carries a version date, an evidence level and what was not verified. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
+ "version": 1,
+ "as_of": "2026-11-13",
+ "scope": {
+  "zh": "追踪与AI基础设施直接相关的开放标准、联盟与厂商互连项目：它们决定芯粒、内存、纵向/横向网络如何互联。每条标注版本日期、证据级别与未核实之处。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
+  "en": "Tracks open standards, consortia and vendor interconnect programmes that bear on AI infrastructure: how chiplets, memory and scale-up / scale-out networks connect. Each entry carries a version date, an evidence level and what was not verified. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
+ },
+ "layers": {
+  "scale-up": {
+   "zh": "纵向扩展（机内/机架内）",
+   "en": "Scale-up (in-node / in-rack)"
   },
-  "layers": {
-    "scale-up": {
-      "zh": "纵向扩展（机内/机架内）",
-      "en": "Scale-up (in-node / in-rack)"
-    },
-    "scale-out": {
-      "zh": "横向扩展（跨机架）",
-      "en": "Scale-out (across racks)"
-    },
-    "chiplet": {
-      "zh": "芯粒互连",
-      "en": "Chiplet interconnect"
-    },
-    "memory": {
-      "zh": "内存与一致性",
-      "en": "Memory and coherence"
-    },
-    "host-io": {
-      "zh": "主机I/O",
-      "en": "Host I/O"
-    }
+  "scale-out": {
+   "zh": "横向扩展（跨机架）",
+   "en": "Scale-out (across racks)"
   },
-  "evidence_levels": {
-    "primary-read": {
-      "zh": "已打开并阅读官方/参与方原始文件",
-      "en": "Official or participant primary document opened and read"
-    },
-    "primary-located": {
-      "zh": "已定位官方文件，细节取自摘要",
-      "en": "Official document located; details from summaries"
-    },
-    "secondary": {
-      "zh": "媒体或二手摘要，未核对原文",
-      "en": "Press or secondary summaries; primary text not checked"
-    }
+  "chiplet": {
+   "zh": "芯粒互连",
+   "en": "Chiplet interconnect"
   },
-  "items": [
-    {
-      "id": "S01",
-      "name": "UALink 200G 1.0",
-      "org": "UALink Consortium",
-      "layer": "scale-up",
-      "date": "2025-04-08",
-      "status": {
-        "zh": "1.0 规范公开",
-        "en": "1.0 specification public"
-      },
-      "summary": {
-        "zh": "面向AI算力池内加速器与交换机的低延迟、高带宽互连：200G每通道，单个计算池最多1,024个加速器；提供读、写与原子事务的加载/存储协议。",
-        "en": "Low-latency, high-bandwidth interconnect between accelerators and switches in an AI pod: 200G per lane, up to 1,024 accelerators per pod, with a load/store protocol using read, write and atomic transactions."
-      },
-      "facts": [
-        {
-          "zh": "联盟新闻稿称代表85家以上成员公司。",
-          "en": "The press release says the consortium represents more than 85 member companies."
-        },
-        {
-          "zh": "新闻稿称其设计目标为93%有效峰值带宽（联盟自述，未经独立验证）。",
-          "en": "The release cites 93% effective peak bandwidth as a design aim (consortium claim, not independently verified)."
-        }
-      ],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "UALink Consortium news release, 8 Apr 2025",
-          "url": "https://ualinkconsortium.org/wp-content/uploads/2025/04/UALink-1.0-Specification-PR_FINAL.pdf",
-          "type": "primary"
-        }
-      ],
-      "caveat": {
-        "zh": "1.0历史条目保留；2.0已于本轮补读联盟2026年4月7日公告，见S09。",
-        "en": "Historical 1.0 entry retained; the 7 April 2026 consortium announcement was read this run, see S09."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2019,
-            "title": "Interconnect names leave mechanisms unresolved."
-          },
-          {
-            "year": 2025,
-            "title": "Fabric mechanisms mattered beyond bandwidth."
-          },
-          {
-            "year": 2026,
-            "title": "Fabric behavior."
-          }
-        ],
-        "bridge": [
-          "B7"
-        ],
-        "earnings": [
-          "QA099",
-          "QA118",
-          "QA114"
-        ],
-        "terms": [
-          "scale-up",
-          "accelerator-pod"
-        ]
-      }
-    },
-    {
-      "id": "S02",
-      "name": "Ultra Ethernet Specification 1.0",
-      "org": "Ultra Ethernet Consortium (UEC)",
-      "layer": "scale-out",
-      "date": "2025-06-11",
-      "status": {
-        "zh": "1.0 规范发布（其后另有点版本）",
-        "en": "1.0 released (point releases followed)"
-      },
-      "summary": {
-        "zh": "以以太网为基础的通信栈，覆盖网卡、交换机、光模块与线缆等各层；把现代RDMA带到以太网与IP，并强调到百万级端点的端到端扩展与多厂商互操作。",
-        "en": "An Ethernet-based communication stack spanning NICs, switches, optics and cables; brings modern RDMA to Ethernet and IP, and stresses end-to-end scaling to millions of endpoints and multi-vendor interoperability."
-      },
-      "facts": [
-        {
-          "zh": "发布页未给出成员数量。",
-          "en": "The release page does not state a member count."
-        },
-        {
-          "zh": "规范站点已列出后续点版本（如 1.0.2），当前下载并非2025年6月原版（据检索结果）。",
-          "en": "The specification site lists later point releases (e.g. 1.0.2), so the current download is not the June 2025 build (per search results)."
-        }
-      ],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "UEC: Specification 1.0 launch",
-          "url": "https://ultraethernet.org/ultra-ethernet-consortium-uec-launches-specification-1-0-transforming-ethernet-for-ai-and-hpc-at-scale/",
-          "type": "primary"
-        },
-        {
-          "label": "Phoronix: UEC 1.0 published",
-          "url": "https://www.phoronix.com/news/Ultra-Ethernet-1.0-UEC",
-          "type": "news"
-        }
-      ],
-      "caveat": {
-        "zh": "页数（562页）等细节来自第三方。",
-        "en": "Details such as the 562-page length come from third parties."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2019,
-            "title": "Interconnect names leave mechanisms unresolved."
-          },
-          {
-            "year": 2020,
-            "title": "Useful scale includes failed links."
-          },
-          {
-            "year": 2025,
-            "title": "Fabric mechanisms mattered beyond bandwidth."
-          }
-        ],
-        "bridge": [
-          "B7"
-        ],
-        "earnings": [
-          "QA113",
-          "QA115",
-          "QA114"
-        ],
-        "terms": [
-          "scale-out",
-          "rdma",
-          "nic"
-        ]
-      }
-    },
-    {
-      "id": "S03",
-      "name": "UCIe 3.0",
-      "org": "UCIe Consortium",
-      "layer": "chiplet",
-      "date": "2025-08-05",
-      "date_note": {
-        "zh": "发布日期取自新闻与百科类来源；联盟博客发表于2025-09-03。",
-        "en": "Release date taken from news and encyclopaedic sources; the consortium blog is dated 2025-09-03."
-      },
-      "status": {
-        "zh": "3.0 规范发布",
-        "en": "3.0 specification released"
-      },
-      "summary": {
-        "zh": "开放芯粒互连标准：数据速率提升至48与64 GT/s（2.0为32 GT/s），适用于2D（UCIe-S）与2.5D（UCIe-A）封装；完全向后兼容；侧带距离扩展到100 mm，并增加多芯片SiP的固件管理与紧急控制。",
-        "en": "Open chiplet interconnect standard: data rates rise to 48 and 64 GT/s (2.0 was 32 GT/s) for 2D (UCIe-S) and 2.5D (UCIe-A) packaging; fully backward compatible; sideband reach extends to 100 mm, with firmware management and emergency controls for multi-chip SiPs."
-      },
-      "facts": [],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "UCIe Consortium: UCIe 3.0 specification (blog)",
-          "url": "https://www.uciexpress.org/post/ucie-3-0-specification-redefining-chiplet-interconnects",
-          "type": "primary"
-        },
-        {
-          "label": "ServeTheHome: UCIe 3.0 spec released",
-          "url": "https://www.servethehome.com/ucie-3-0-spec-released-with-big-speed-up-for-chiplets/",
-          "type": "news"
-        }
-      ],
-      "caveat": {
-        "zh": "只读取了联盟博客，未读取规范本身。",
-        "en": "Only the consortium blog was read, not the specification."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2017,
-            "title": "Packaging needs economic and test evidence."
-          },
-          {
-            "year": 2019,
-            "title": "Integration adds power, test and trust gates."
-          },
-          {
-            "year": 2023,
-            "title": "Packaging raised integration questions."
-          }
-        ],
-        "bridge": [
-          "B5"
-        ],
-        "earnings": [
-          "QA168",
-          "QA167",
-          "QA142"
-        ],
-        "terms": [
-          "chiplet",
-          "known-good-die",
-          "2-5d-3d"
-        ]
-      }
-    },
-    {
-      "id": "S04",
-      "name": "CXL 3.2",
-      "org": "CXL Consortium",
-      "layer": "memory",
-      "date": "2024-12-03",
-      "status": {
-        "zh": "3.2 规范发布",
-        "en": "3.2 specification released"
-      },
-      "summary": {
-        "zh": "开放的一致性互连：新增用于内存分层的热页监测单元（CHMU）、通用事件记录、在线固件激活，并通过可信安全协议（TSP）扩展安全；与此前所有CXL规范完全向后兼容。",
-        "en": "Open coherent interconnect: adds a Hot-Page Monitoring Unit (CHMU) for memory tiering, common event records, online firmware activation and extends security through the Trusted Security Protocol (TSP); fully backward compatible with all earlier CXL specifications."
-      },
-      "facts": [],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "CXL Consortium: CXL 3.2 announcement",
-          "url": "https://computeexpresslink.org/wp-content/uploads/2024/12/CXL_3.2-Spec-Announcement_FINAL-1.pdf",
-          "type": "primary"
-        }
-      ],
-      "caveat": {
-        "zh": "3.2历史条目保留；4.0已由2025年11月18日联盟公告核实，见S10。",
-        "en": "Historical 3.2 entry retained; 4.0 verified against the 18 November 2025 consortium release, see S10."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2022,
-            "title": "Scale depends on mapping and coordination"
-          },
-          {
-            "year": 2024,
-            "title": "Memory placement and coherence drew sustained probing."
-          },
-          {
-            "year": 2025,
-            "title": "Memory expansion needed an access model."
-          }
-        ],
-        "bridge": [
-          "B8",
-          "B11"
-        ],
-        "earnings": [
-          "QA059",
-          "QA157",
-          "QA046"
-        ],
-        "terms": [
-          "cxl",
-          "coherence",
-          "kv-cache"
-        ]
-      }
-    },
-    {
-      "id": "S05",
-      "name": "JEDEC HBM4 (JESD270-4)",
-      "org": "JEDEC",
-      "layer": "memory",
-      "date": "2025-04-16",
-      "status": {
-        "zh": "HBM4 标准发布",
-        "en": "HBM4 standard published"
-      },
-      "summary": {
-        "zh": "2048位接口，引脚速率最高8 Gb/s，单堆栈最高约2 TB/s；独立通道由16个增至32个（各含2个伪通道）；堆叠4–16层，裸片24 Gb或32 Gb；接口定义保持与HBM3控制器的向后兼容。",
-        "en": "2048-bit interface, up to 8 Gb/s per pin, up to about 2 TB/s per stack; independent channels double from 16 to 32 (two pseudo-channels each); 4- to 16-high stacks of 24 Gb or 32 Gb dies; the interface keeps backward compatibility with HBM3 controllers."
-      },
-      "facts": [
-        {
-          "zh": "JEDEC网站在此环境返回403，数值取自对JEDEC新闻稿的转述报道。",
-          "en": "The JEDEC site returned 403 here; figures come from reports restating JEDEC's release."
-        }
-      ],
-      "evidence": "secondary",
-      "sources": [
-        {
-          "label": "JEDEC press release (JESD270-4)",
-          "url": "https://www.jedec.org/news/pressreleases/jedec%C2%AE-and-industry-leaders-collaborate-release-jesd270-4-hbm4-standard-advancing",
-          "type": "primary-located"
-        },
-        {
-          "label": "EE Times Asia: JEDEC releases JESD270-4",
-          "url": "https://www.eetasia.com/jedec-releases-jesd270-4-hbm4-standard/",
-          "type": "news"
-        }
-      ],
-      "caveat": {
-        "zh": "个别设计指南给出不同引脚速率范围（含厂商实现），以JEDEC文本为准。",
-        "en": "Some design guides quote different pin-speed ranges (vendor implementations); JEDEC's text governs."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2018,
-            "title": "Memory needs lifecycle accounting."
-          },
-          {
-            "year": 2020,
-            "title": "Memory choice follows workload and economics."
-          },
-          {
-            "year": 2021,
-            "title": "Feed the accelerator before judging arithmetic."
-          },
-          {
-            "year": 2024,
-            "title": "Memory placement and coherence drew sustained probing."
-          }
-        ],
-        "bridge": [
-          "B1",
-          "B8",
-          "B12"
-        ],
-        "policy": [
-          "P06"
-        ],
-        "earnings": [
-          "QA057",
-          "QA154",
-          "QA152",
-          "QA156",
-          "QA158"
-        ],
-        "terms": [
-          "hbm",
-          "base-die"
-        ]
-      }
-    },
-    {
-      "id": "S06",
-      "name": "PCIe 7.0",
-      "org": "PCI-SIG",
-      "layer": "host-io",
-      "date": "2025-06-11",
-      "status": {
-        "zh": "7.0 规范发布（面向成员）",
-        "en": "7.0 specification released (to members)"
-      },
-      "summary": {
-        "zh": "128 GT/s每通道原始速率，x16双向最高约512 GB/s；采用PAM4与flit编码；保持向后兼容；另有光学感知重定时器ECN。PCI-SIG路线图提到8.0（256 GT/s）计划于2028年前发布。",
-        "en": "128 GT/s raw rate per lane, up to about 512 GB/s bidirectional at x16; PAM4 signalling with flit encoding; backward compatible; an Optical Aware Retimer ECN is separate. The PCI-SIG roadmap mentions 8.0 (256 GT/s) planned by 2028."
-      },
-      "facts": [],
-      "evidence": "secondary",
-      "sources": [
-        {
-          "label": "PCI-SIG press release via Business Wire",
-          "url": "https://www.businesswire.com/news/home/20250611299049/en/PCI-SIG-Releases-PCIe-7.0-Specification-to-Support-the-Bandwidth-Demands-of-Artificial-Intelligence-at-128.0-GTs-Transfer-Rates",
-          "type": "primary-located"
-        },
-        {
-          "label": "HPCwire: PCIe 7.0 released",
-          "url": "https://www.hpcwire.com/off-the-wire/pci-sig-releases-pcie-7-0-specification-to-support-bandwidth-demands-of-ai-at-128-0-gt-s/",
-          "type": "news"
-        }
-      ],
-      "caveat": {
-        "zh": "新闻稿在此环境无法打开，数值取自多家媒体转述。",
-        "en": "The press release could not be opened here; figures come from several outlets restating it."
-      },
-      "links": {
-        "bridge": [
-          "B7"
-        ],
-        "terms": [
-          "pcie",
-          "pam4"
-        ]
-      }
-    },
-    {
-      "id": "S07",
-      "name": "OCP ESUN / SUE-T",
-      "org": "Open Compute Project (Networking Project)",
-      "layer": "scale-up",
-      "date": "2025-10-13",
-      "date_note": {
-        "zh": "日期为Meta工程博客日期；ESUN于2025年OCP全球峰会宣布。",
-        "en": "Date is that of Meta's engineering post; ESUN was announced at the 2025 OCP Global Summit."
-      },
-      "status": {
-        "zh": "工作组（规范状态未核实）",
-        "en": "Workstream (specification status not verified)"
-      },
-      "summary": {
-        "zh": "ESUN（以太网扩展纵向网络）是OCP网络项目中的新工作组，目标是把成熟的以太网生态改造用于AI纵向扩展域：协议头、错误处理、无损传输、以太网帧与交换层；并与UEC、IEEE对齐、避免专有绑定。Broadcom贡献的SUE规范演进为SUE-T工作组（据检索结果）。",
-        "en": "ESUN (Ethernet for Scale-Up Networking) is a new workstream in the OCP Networking Project that adapts the mature Ethernet ecosystem to AI scale-up domains: protocol headers, error handling, lossless transfer, Ethernet framing and switching layers; it aims to align with UEC and IEEE and avoid proprietary ties. Broadcom's SUE contribution evolved into the SUE-T workstream (per search results)."
-      },
-      "facts": [
-        {
-          "zh": "Meta文中点名的参与方：AMD、Arista、Arm、Broadcom、Cisco、HPE、Marvell、Meta、Microsoft、NVIDIA、OpenAI、Oracle。",
-          "en": "Participants named in Meta's post: AMD, Arista, Arm, Broadcom, Cisco, HPE, Marvell, Meta, Microsoft, NVIDIA, OpenAI, Oracle."
-        }
-      ],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "Engineering at Meta: OCP Summit 2025 networking",
-          "url": "https://engineering.fb.com/2025/10/13/data-infrastructure/ocp-summit-2025-the-open-future-of-networking-hardware-for-ai/",
-          "type": "participant"
-        },
-        {
-          "label": "Broadcom: Introducing Ethernet Scale Up Networking",
-          "url": "https://www.broadcom.com/blog/introducing-ethernet-scale-up-networking-advancing-ethernet-for-scale-up-ai-infrastructure",
-          "type": "participant"
-        }
-      ],
-      "caveat": {
-        "zh": "SUE/SUE-T与ESUN的分工取自检索摘要，Broadcom博客正文在此环境未能读取。",
-        "en": "The SUE/SUE-T versus ESUN split comes from search summaries; the Broadcom post body could not be read here."
-      },
-      "links": {
-        "hotchips": [
-          {
-            "year": 2025,
-            "title": "Fabric mechanisms mattered beyond bandwidth."
-          },
-          {
-            "year": 2026,
-            "title": "Fabric behavior."
-          }
-        ],
-        "bridge": [
-          "B7"
-        ],
-        "earnings": [
-          "QA113",
-          "QA115"
-        ],
-        "terms": [
-          "scale-up",
-          "scale-out"
-        ]
-      }
-    },
-    {
-      "id": "S08",
-      "name": "NVLink Fusion",
-      "org": "NVIDIA (partner programme)",
-      "layer": "scale-up",
-      "date": "2025-05-18",
-      "status": {
-        "zh": "NVIDIA 合作项目（非联盟标准）",
-        "en": "NVIDIA partner programme (not a consortium standard)"
-      },
-      "summary": {
-        "zh": "让合作伙伴围绕NVLink构建半定制AI基础设施的方案；首批采用者包括联发科、Marvell、Alchip、Astera Labs、Synopsys与Cadence；富士通与高通表示计划把自研CPU与NVIDIA GPU配对。",
-        "en": "A programme that lets partners build semi-custom AI infrastructure around NVLink; first adopters named include MediaTek, Marvell, Alchip, Astera Labs, Synopsys and Cadence; Fujitsu and Qualcomm said they plan to pair custom CPUs with NVIDIA GPUs."
-      },
-      "facts": [],
-      "evidence": "secondary",
-      "sources": [
-        {
-          "label": "NVIDIA press release (via investor site)",
-          "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Unveils-NVLink-Fusion-for-Industry-to-Build-Semi-Custom-AI-Infrastructure-With-NVIDIA-Partner-Ecosystem/default.aspx",
-          "type": "primary-located"
-        },
-        {
-          "label": "TrendForce: NVLink Fusion",
-          "url": "https://www.trendforce.com/news/2025/05/19/news-nvidia-unveils-nvlink-fusion-amplifying-asic-push-with-mediatek-marvell-onboard/",
-          "type": "news"
-        }
-      ],
-      "caveat": {
-        "zh": "新闻稿在此环境返回403；伙伴名单取自检索摘要。后续投资与新伙伴消息仅有单一来源，未采纳。",
-        "en": "The press release returned 403 here; the partner list comes from search summaries. Later investment and partner news rests on a single source and is not adopted."
-      },
-      "links": {
-        "bridge": [
-          "B9",
-          "B7"
-        ],
-        "earnings": [
-          "QA042",
-          "QA045",
-          "QA047",
-          "QA052"
-        ],
-        "terms": [
-          "nvlink",
-          "scale-up"
-        ]
-      }
-    },
-    {
-      "id": "S09",
-      "name": "UALink Common 2.0 / 200G DL/PL 2.0",
-      "org": "UALink Consortium",
-      "layer": "scale-up",
-      "date": "2026-04-07",
-      "status": {
-        "zh": "联盟宣布批准并公开；历史补证",
-        "en": "Ratified and public per consortium; historical evidence added"
-      },
-      "summary": {
-        "zh": "Common 2.0加入网络内计算；200G链路/物理层规范独立。同期发布Chiplet 1.0及Manageability 1.0。",
-        "en": "Common 2.0 adds in-network compute; the 200G data-link/physical specification is separated. Chiplet 1.0 and Manageability 1.0 accompanied it."
-      },
-      "facts": [],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "UALink four-specification release, 7 Apr 2026",
-          "url": "https://ualinkconsortium.org/wp-content/uploads/2026/04/UALink-2.0-Specification-PR_FINAL.pdf",
-          "type": "primary",
-          "published_at": "2026-04-07",
-          "read_at": "2026-11-12T11:19:08+00:00",
-          "locator": "pp.1–2 New UALink Specifications",
-          "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
-        }
-      ],
-      "caveat": {
-        "zh": "已读发布公告，未读规范全文；不是本周发布，也不证明硅片互操作、生产部署或实测性能。",
-        "en": "Release read, not complete specifications. Not a new weekly release or proof of silicon interoperability, deployment or measured performance."
-      },
-      "links": {
-        "bridge": [
-          "B7"
-        ]
-      }
-    },
-    {
-      "id": "S10",
-      "name": "CXL 4.0",
-      "org": "CXL Consortium",
-      "layer": "memory",
-      "date": "2025-11-18",
-      "status": {
-        "zh": "规范发布；历史补证",
-        "en": "Specification released; historical evidence added"
-      },
-      "summary": {
-        "zh": "联盟公布128 GT/s、端口捆绑和内存RAS增强；捆绑连接面向主机与Type 1/2加速器端口。",
-        "en": "The consortium announces 128 GT/s, port bundling and memory RAS enhancements; bundled connections join host and Type 1/2 accelerator ports."
-      },
-      "facts": [],
-      "evidence": "primary-read",
-      "sources": [
-        {
-          "label": "CXL 4.0 announcement, 18 Nov 2025",
-          "url": "https://computeexpresslink.org/wp-content/uploads/2025/11/CXL_4.0-Specification-Release_FINAL_Website-Copy.pdf",
-          "type": "primary",
-          "published_at": "2025-11-18",
-          "read_at": "2026-11-12T11:19:08+00:00",
-          "locator": "p.1 Key features",
-          "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
-        }
-      ],
-      "caveat": {
-        "zh": "已读公告，未读规范全文。链路速率不等于应用带宽；不据此认定现有CPU支持或已生产部署。",
-        "en": "Announcement read, not the full specification. Link rate is not application bandwidth; current CPU support and production adoption are not established."
-      },
-      "links": {
-        "bridge": [
-          "B8",
-          "B11"
-        ]
-      }
-    }
-  ],
-  "relations": [
-    {
-      "a": "S01",
-      "b": "S07",
-      "type": "scale-up",
-      "note": {
-        "zh": "两条开放的纵向扩展路径：专用的加载/存储互连 vs 以太网适配。",
-        "en": "Two open scale-up paths: a dedicated load/store interconnect versus an Ethernet adaptation."
-      }
-    },
-    {
-      "a": "S07",
-      "b": "S02",
-      "type": "aligns",
-      "note": {
-        "zh": "ESUN称将与UEC、IEEE对齐。",
-        "en": "ESUN says it will align with UEC and IEEE."
-      }
-    },
-    {
-      "a": "S08",
-      "b": "S01",
-      "type": "governance",
-      "note": {
-        "zh": "治理方式不同：厂商合作项目 vs 开放联盟。",
-        "en": "Different governance: a vendor partner programme versus an open consortium."
-      }
-    },
-    {
-      "a": "S03",
-      "b": "S05",
-      "type": "package",
-      "note": {
-        "zh": "两者都由先进封装决定落地：芯粒互连与HBM堆叠。",
-        "en": "Both depend on advanced packaging: chiplet links and HBM stacks."
-      }
-    },
-    {
-      "a": "S04",
-      "b": "S06",
-      "type": "builds-on",
-      "note": {
-        "zh": "CXL运行在PCIe物理层之上（据CXL联盟自述的一致性互连定位，细节需读规范）。",
-        "en": "CXL runs over the PCIe physical layer (details need the specifications)."
-      }
-    }
-  ],
-  "refresh_coverage": {
-    "cutoff": "2026-11-12T11:19:08+00:00",
-    "status": "partial",
-    "note": {
-      "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
-      "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
-    },
-    "record": "research/weekly-20261112.json"
+  "memory": {
+   "zh": "内存与一致性",
+   "en": "Memory and coherence"
+  },
+  "host-io": {
+   "zh": "主机I/O",
+   "en": "Host I/O"
   }
+ },
+ "evidence_levels": {
+  "primary-read": {
+   "zh": "已打开并阅读官方/参与方原始文件",
+   "en": "Official or participant primary document opened and read"
+  },
+  "primary-located": {
+   "zh": "已定位官方文件，细节取自摘要",
+   "en": "Official document located; details from summaries"
+  },
+  "secondary": {
+   "zh": "媒体或二手摘要，未核对原文",
+   "en": "Press or secondary summaries; primary text not checked"
+  }
+ },
+ "items": [
+  {
+   "id": "S01",
+   "name": "UALink 200G 1.0",
+   "org": "UALink Consortium",
+   "layer": "scale-up",
+   "date": "2025-04-08",
+   "status": {
+    "zh": "1.0 规范公开",
+    "en": "1.0 specification public"
+   },
+   "summary": {
+    "zh": "面向AI算力池内加速器与交换机的低延迟、高带宽互连：200G每通道，单个计算池最多1,024个加速器；提供读、写与原子事务的加载/存储协议。",
+    "en": "Low-latency, high-bandwidth interconnect between accelerators and switches in an AI pod: 200G per lane, up to 1,024 accelerators per pod, with a load/store protocol using read, write and atomic transactions."
+   },
+   "facts": [
+    {
+     "zh": "联盟新闻稿称代表85家以上成员公司。",
+     "en": "The press release says the consortium represents more than 85 member companies."
+    },
+    {
+     "zh": "新闻稿称其设计目标为93%有效峰值带宽（联盟自述，未经独立验证）。",
+     "en": "The release cites 93% effective peak bandwidth as a design aim (consortium claim, not independently verified)."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "UALink Consortium news release, 8 Apr 2025",
+     "url": "https://ualinkconsortium.org/wp-content/uploads/2025/04/UALink-1.0-Specification-PR_FINAL.pdf",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "1.0历史条目保留；2.0已于本轮补读联盟2026年4月7日公告，见S09。",
+    "en": "Historical 1.0 entry retained; the 7 April 2026 consortium announcement was read this run, see S09."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2019,
+      "title": "Interconnect names leave mechanisms unresolved."
+     },
+     {
+      "year": 2025,
+      "title": "Fabric mechanisms mattered beyond bandwidth."
+     },
+     {
+      "year": 2026,
+      "title": "Fabric behavior."
+     }
+    ],
+    "bridge": [
+     "B7"
+    ],
+    "earnings": [
+     "QA099",
+     "QA118",
+     "QA114"
+    ],
+    "terms": [
+     "scale-up",
+     "accelerator-pod"
+    ]
+   }
+  },
+  {
+   "id": "S02",
+   "name": "Ultra Ethernet Specification 1.0",
+   "org": "Ultra Ethernet Consortium (UEC)",
+   "layer": "scale-out",
+   "date": "2025-06-11",
+   "status": {
+    "zh": "1.0 规范发布（其后另有点版本）",
+    "en": "1.0 released (point releases followed)"
+   },
+   "summary": {
+    "zh": "以以太网为基础的通信栈，覆盖网卡、交换机、光模块与线缆等各层；把现代RDMA带到以太网与IP，并强调到百万级端点的端到端扩展与多厂商互操作。",
+    "en": "An Ethernet-based communication stack spanning NICs, switches, optics and cables; brings modern RDMA to Ethernet and IP, and stresses end-to-end scaling to millions of endpoints and multi-vendor interoperability."
+   },
+   "facts": [
+    {
+     "zh": "发布页未给出成员数量。",
+     "en": "The release page does not state a member count."
+    },
+    {
+     "zh": "规范站点已列出后续点版本（如 1.0.2），当前下载并非2025年6月原版（据检索结果）。",
+     "en": "The specification site lists later point releases (e.g. 1.0.2), so the current download is not the June 2025 build (per search results)."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "UEC: Specification 1.0 launch",
+     "url": "https://ultraethernet.org/ultra-ethernet-consortium-uec-launches-specification-1-0-transforming-ethernet-for-ai-and-hpc-at-scale/",
+     "type": "primary"
+    },
+    {
+     "label": "Phoronix: UEC 1.0 published",
+     "url": "https://www.phoronix.com/news/Ultra-Ethernet-1.0-UEC",
+     "type": "news"
+    }
+   ],
+   "caveat": {
+    "zh": "页数（562页）等细节来自第三方。",
+    "en": "Details such as the 562-page length come from third parties."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2019,
+      "title": "Interconnect names leave mechanisms unresolved."
+     },
+     {
+      "year": 2020,
+      "title": "Useful scale includes failed links."
+     },
+     {
+      "year": 2025,
+      "title": "Fabric mechanisms mattered beyond bandwidth."
+     }
+    ],
+    "bridge": [
+     "B7"
+    ],
+    "earnings": [
+     "QA113",
+     "QA115",
+     "QA114"
+    ],
+    "terms": [
+     "scale-out",
+     "rdma",
+     "nic"
+    ]
+   }
+  },
+  {
+   "id": "S03",
+   "name": "UCIe 3.0",
+   "org": "UCIe Consortium",
+   "layer": "chiplet",
+   "date": "2025-08-05",
+   "date_note": {
+    "zh": "发布日期取自新闻与百科类来源；联盟博客发表于2025-09-03。",
+    "en": "Release date taken from news and encyclopaedic sources; the consortium blog is dated 2025-09-03."
+   },
+   "status": {
+    "zh": "3.0 规范发布",
+    "en": "3.0 specification released"
+   },
+   "summary": {
+    "zh": "开放芯粒互连标准：数据速率提升至48与64 GT/s（2.0为32 GT/s），适用于2D（UCIe-S）与2.5D（UCIe-A）封装；完全向后兼容；侧带距离扩展到100 mm，并增加多芯片SiP的固件管理与紧急控制。",
+    "en": "Open chiplet interconnect standard: data rates rise to 48 and 64 GT/s (2.0 was 32 GT/s) for 2D (UCIe-S) and 2.5D (UCIe-A) packaging; fully backward compatible; sideband reach extends to 100 mm, with firmware management and emergency controls for multi-chip SiPs."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "UCIe Consortium: UCIe 3.0 specification (blog)",
+     "url": "https://www.uciexpress.org/post/ucie-3-0-specification-redefining-chiplet-interconnects",
+     "type": "primary"
+    },
+    {
+     "label": "ServeTheHome: UCIe 3.0 spec released",
+     "url": "https://www.servethehome.com/ucie-3-0-spec-released-with-big-speed-up-for-chiplets/",
+     "type": "news"
+    }
+   ],
+   "caveat": {
+    "zh": "只读取了联盟博客，未读取规范本身。",
+    "en": "Only the consortium blog was read, not the specification."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2017,
+      "title": "Packaging needs economic and test evidence."
+     },
+     {
+      "year": 2019,
+      "title": "Integration adds power, test and trust gates."
+     },
+     {
+      "year": 2023,
+      "title": "Packaging raised integration questions."
+     }
+    ],
+    "bridge": [
+     "B5"
+    ],
+    "earnings": [
+     "QA168",
+     "QA167",
+     "QA142"
+    ],
+    "terms": [
+     "chiplet",
+     "known-good-die",
+     "2-5d-3d"
+    ]
+   }
+  },
+  {
+   "id": "S04",
+   "name": "CXL 3.2",
+   "org": "CXL Consortium",
+   "layer": "memory",
+   "date": "2024-12-03",
+   "status": {
+    "zh": "3.2 规范发布",
+    "en": "3.2 specification released"
+   },
+   "summary": {
+    "zh": "开放的一致性互连：新增用于内存分层的热页监测单元（CHMU）、通用事件记录、在线固件激活，并通过可信安全协议（TSP）扩展安全；与此前所有CXL规范完全向后兼容。",
+    "en": "Open coherent interconnect: adds a Hot-Page Monitoring Unit (CHMU) for memory tiering, common event records, online firmware activation and extends security through the Trusted Security Protocol (TSP); fully backward compatible with all earlier CXL specifications."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "CXL Consortium: CXL 3.2 announcement",
+     "url": "https://computeexpresslink.org/wp-content/uploads/2024/12/CXL_3.2-Spec-Announcement_FINAL-1.pdf",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "3.2历史条目保留；4.0已由2025年11月18日联盟公告核实，见S10。",
+    "en": "Historical 3.2 entry retained; 4.0 verified against the 18 November 2025 consortium release, see S10."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2022,
+      "title": "Scale depends on mapping and coordination"
+     },
+     {
+      "year": 2024,
+      "title": "Memory placement and coherence drew sustained probing."
+     },
+     {
+      "year": 2025,
+      "title": "Memory expansion needed an access model."
+     }
+    ],
+    "bridge": [
+     "B8",
+     "B11"
+    ],
+    "earnings": [
+     "QA059",
+     "QA157",
+     "QA046"
+    ],
+    "terms": [
+     "cxl",
+     "coherence",
+     "kv-cache"
+    ]
+   }
+  },
+  {
+   "id": "S05",
+   "name": "JEDEC HBM4 (JESD270-4)",
+   "org": "JEDEC",
+   "layer": "memory",
+   "date": "2025-04-16",
+   "status": {
+    "zh": "HBM4 标准发布",
+    "en": "HBM4 standard published"
+   },
+   "summary": {
+    "zh": "2048位接口，引脚速率最高8 Gb/s，单堆栈最高约2 TB/s；独立通道由16个增至32个（各含2个伪通道）；堆叠4–16层，裸片24 Gb或32 Gb；接口定义保持与HBM3控制器的向后兼容。",
+    "en": "2048-bit interface, up to 8 Gb/s per pin, up to about 2 TB/s per stack; independent channels double from 16 to 32 (two pseudo-channels each); 4- to 16-high stacks of 24 Gb or 32 Gb dies; the interface keeps backward compatibility with HBM3 controllers."
+   },
+   "facts": [
+    {
+     "zh": "JEDEC网站在此环境返回403，数值取自对JEDEC新闻稿的转述报道。",
+     "en": "The JEDEC site returned 403 here; figures come from reports restating JEDEC's release."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "JEDEC press release (JESD270-4)",
+     "url": "https://www.jedec.org/news/pressreleases/jedec%C2%AE-and-industry-leaders-collaborate-release-jesd270-4-hbm4-standard-advancing",
+     "type": "primary-located"
+    },
+    {
+     "label": "EE Times Asia: JEDEC releases JESD270-4",
+     "url": "https://www.eetasia.com/jedec-releases-jesd270-4-hbm4-standard/",
+     "type": "news"
+    }
+   ],
+   "caveat": {
+    "zh": "个别设计指南给出不同引脚速率范围（含厂商实现），以JEDEC文本为准。",
+    "en": "Some design guides quote different pin-speed ranges (vendor implementations); JEDEC's text governs."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2018,
+      "title": "Memory needs lifecycle accounting."
+     },
+     {
+      "year": 2020,
+      "title": "Memory choice follows workload and economics."
+     },
+     {
+      "year": 2021,
+      "title": "Feed the accelerator before judging arithmetic."
+     },
+     {
+      "year": 2024,
+      "title": "Memory placement and coherence drew sustained probing."
+     }
+    ],
+    "bridge": [
+     "B1",
+     "B8",
+     "B12"
+    ],
+    "policy": [
+     "P06"
+    ],
+    "earnings": [
+     "QA057",
+     "QA154",
+     "QA152",
+     "QA156",
+     "QA158"
+    ],
+    "terms": [
+     "hbm",
+     "base-die"
+    ]
+   }
+  },
+  {
+   "id": "S06",
+   "name": "PCIe 7.0",
+   "org": "PCI-SIG",
+   "layer": "host-io",
+   "date": "2025-06-11",
+   "status": {
+    "zh": "7.0 规范发布（面向成员）",
+    "en": "7.0 specification released (to members)"
+   },
+   "summary": {
+    "zh": "128 GT/s每通道原始速率，x16双向最高约512 GB/s；采用PAM4与flit编码；保持向后兼容；另有光学感知重定时器ECN。PCI-SIG路线图提到8.0（256 GT/s）计划于2028年前发布。",
+    "en": "128 GT/s raw rate per lane, up to about 512 GB/s bidirectional at x16; PAM4 signalling with flit encoding; backward compatible; an Optical Aware Retimer ECN is separate. The PCI-SIG roadmap mentions 8.0 (256 GT/s) planned by 2028."
+   },
+   "facts": [],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "PCI-SIG press release via Business Wire",
+     "url": "https://www.businesswire.com/news/home/20250611299049/en/PCI-SIG-Releases-PCIe-7.0-Specification-to-Support-the-Bandwidth-Demands-of-Artificial-Intelligence-at-128.0-GTs-Transfer-Rates",
+     "type": "primary-located"
+    },
+    {
+     "label": "HPCwire: PCIe 7.0 released",
+     "url": "https://www.hpcwire.com/off-the-wire/pci-sig-releases-pcie-7-0-specification-to-support-bandwidth-demands-of-ai-at-128-0-gt-s/",
+     "type": "news"
+    }
+   ],
+   "caveat": {
+    "zh": "新闻稿在此环境无法打开，数值取自多家媒体转述。",
+    "en": "The press release could not be opened here; figures come from several outlets restating it."
+   },
+   "links": {
+    "bridge": [
+     "B7"
+    ],
+    "terms": [
+     "pcie",
+     "pam4"
+    ]
+   }
+  },
+  {
+   "id": "S07",
+   "name": "OCP ESUN / SUE-T",
+   "org": "Open Compute Project (Networking Project)",
+   "layer": "scale-up",
+   "date": "2026-10-12",
+   "date_note": {
+    "zh": "最新状态取自Meta工程博客（2026年10月12日）；ESUN于2025年OCP全球峰会成立（2025年10月13日）。",
+    "en": "Latest status is from Meta’s engineering post of 12 Oct 2026; ESUN was founded at the 2025 OCP Global Summit (13 Oct 2025)."
+   },
+   "status": {
+    "zh": "ESUN 1.0 已于2026年发布；1.1 即将完成；SUE-T 目标2026下半年（二手）",
+    "en": "ESUN 1.0 released in 2026; 1.1 close; SUE-T targeted 2H 2026 (secondary)"
+   },
+   "summary": {
+    "zh": "ESUN（以太网扩展纵向网络）是OCP网络项目中的新工作组，目标是把成熟的以太网生态改造用于AI纵向扩展域：协议头、错误处理、无损传输、以太网帧与交换层；并与UEC、IEEE对齐、避免专有绑定。Broadcom贡献的SUE规范演进为SUE-T工作组（据检索结果）。 2026年状态：Meta称“ESUN 1.0 网络运营商需求基础规范”已于今年早些时候发布，下一版 ESUN 1.1 加入交换机配置文件与缩短帧间隙等特性。",
+    "en": "ESUN (Ethernet for Scale-Up Networking) is a new workstream in the OCP Networking Project that adapts the mature Ethernet ecosystem to AI scale-up domains: protocol headers, error handling, lossless transfer, Ethernet framing and switching layers; it aims to align with UEC and IEEE and avoid proprietary ties. Broadcom's SUE contribution evolved into the SUE-T workstream (per search results). 2026 status: Meta says the “ESUN 1.0 Network Operator Requirements Base Specification” was released earlier this year, and the next version, ESUN 1.1, adds features such as switch profiles and inter-packet gap reduction."
+   },
+   "facts": [
+    {
+     "zh": "Meta文中点名的参与方：AMD、Arista、Arm、Broadcom、Cisco、HPE、Marvell、Meta、Microsoft、NVIDIA、OpenAI、Oracle。",
+     "en": "Participants named in Meta's post: AMD, Arista, Arm, Broadcom, Cisco, HPE, Marvell, Meta, Microsoft, NVIDIA, OpenAI, Oracle."
+    },
+    {
+     "zh": "Meta 的 Tahan 是为 MTIA 300 训练加速器构建的以太网纵向扩展交换机：基于 Broadcom 51.2 Tbps Tomahawk 5，四台交换机以无阻塞拓扑互连16个加速器，称已在出货，并沿用其横向扩展网络的无损 RoCE 传输；未来每机架72加速器的刀片基于102.4T 芯片并将采用 ESUN 作为数据平面。",
+     "en": "Meta’s Tahan is an Ethernet scale-up switch built for its MTIA 300 training accelerators: based on Broadcom’s 51.2 Tbps Tomahawk 5, four switches interconnect 16 accelerators in a non-blocking topology, it is said to be shipping and reuses the lossless RoCE transport of Meta’s scale-out network; a future 72-accelerator-per-rack blade on 102.4T silicon will adopt ESUN as its data plane."
+    },
+    {
+     "zh": "ESUN 1.0 的确切发布日期该文未给出；二手来源在2026年2月与3月10日之间不一致。SUE-T（传输层）目标2026下半年、五家以上超大规模厂商已在生产中使用以太网纵向扩展，均来自对 Broadcom 的二手转述，未采信为已核实。",
+     "en": "The post gives no exact release date for ESUN 1.0; secondary sources disagree between February and 10 March 2026. SUE-T (the transport layer) targeted for 2H 2026 and five or more hyperscalers running Ethernet scale-up in production come from secondary reports of Broadcom and are not adopted as verified."
+    },
+    {
+     "zh": "该文称 ESUN 与 IEEE 和 UEC 工作对齐；文中未提及 UALink。",
+     "en": "The post says ESUN coordinates with IEEE and UEC work; it does not mention UALink."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Engineering at Meta: OCP Summit 2026 — scale-up, scale-out and scale-across networks",
+     "url": "https://engineering.fb.com/2026/10/12/open-source/ocp-summit-2026-powering-ai-with-open-innovations-in-scale-up-scale-out-and-scale-across-networks/",
+     "type": "participant",
+     "published_at": "2026-10-12",
+     "read_at": "2026-11-13",
+     "locator": "ESUN 1.0 and 1.1 passages; Tahan switch description",
+     "reading_scope": "Page text read; the ESUN specification itself was not read"
+    },
+    {
+     "label": "Engineering at Meta: OCP Summit 2025 networking",
+     "url": "https://engineering.fb.com/2025/10/13/data-infrastructure/ocp-summit-2025-the-open-future-of-networking-hardware-for-ai/",
+     "type": "participant"
+    },
+    {
+     "label": "Broadcom: Introducing Ethernet Scale Up Networking",
+     "url": "https://www.broadcom.com/blog/introducing-ethernet-scale-up-networking-advancing-ethernet-for-scale-up-ai-infrastructure",
+     "type": "participant"
+    }
+   ],
+   "caveat": {
+    "zh": "已读Meta 2026年博客，未读ESUN规范全文；这是参与方的自述。SUE/SUE-T与ESUN的分工仍取自检索摘要，Broadcom博客正文未读。",
+    "en": "Meta’s 2026 post was read, not the ESUN specification; this is a participant’s own account. The SUE/SUE-T versus ESUN split still comes from search summaries and the Broadcom post body was not read."
+   },
+   "links": {
+    "hotchips": [
+     {
+      "year": 2025,
+      "title": "Fabric mechanisms mattered beyond bandwidth."
+     },
+     {
+      "year": 2026,
+      "title": "Fabric behavior."
+     }
+    ],
+    "bridge": [
+     "B7"
+    ],
+    "earnings": [
+     "QA113",
+     "QA115"
+    ],
+    "terms": [
+     "scale-up",
+     "scale-out"
+    ]
+   }
+  },
+  {
+   "id": "S08",
+   "name": "NVLink Fusion",
+   "org": "NVIDIA (partner programme)",
+   "layer": "scale-up",
+   "date": "2025-05-18",
+   "status": {
+    "zh": "NVIDIA 合作项目（非联盟标准）",
+    "en": "NVIDIA partner programme (not a consortium standard)"
+   },
+   "summary": {
+    "zh": "让合作伙伴围绕NVLink构建半定制AI基础设施的方案；首批采用者包括联发科、Marvell、Alchip、Astera Labs、Synopsys与Cadence；富士通与高通表示计划把自研CPU与NVIDIA GPU配对。",
+    "en": "A programme that lets partners build semi-custom AI infrastructure around NVLink; first adopters named include MediaTek, Marvell, Alchip, Astera Labs, Synopsys and Cadence; Fujitsu and Qualcomm said they plan to pair custom CPUs with NVIDIA GPUs."
+   },
+   "facts": [],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "NVIDIA press release (via investor site)",
+     "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Unveils-NVLink-Fusion-for-Industry-to-Build-Semi-Custom-AI-Infrastructure-With-NVIDIA-Partner-Ecosystem/default.aspx",
+     "type": "primary-located"
+    },
+    {
+     "label": "TrendForce: NVLink Fusion",
+     "url": "https://www.trendforce.com/news/2025/05/19/news-nvidia-unveils-nvlink-fusion-amplifying-asic-push-with-mediatek-marvell-onboard/",
+     "type": "news"
+    }
+   ],
+   "caveat": {
+    "zh": "新闻稿在此环境返回403；伙伴名单取自检索摘要。后续投资与新伙伴消息仅有单一来源，未采纳。",
+    "en": "The press release returned 403 here; the partner list comes from search summaries. Later investment and partner news rests on a single source and is not adopted."
+   },
+   "links": {
+    "bridge": [
+     "B9",
+     "B7"
+    ],
+    "earnings": [
+     "QA042",
+     "QA045",
+     "QA047",
+     "QA052"
+    ],
+    "terms": [
+     "nvlink",
+     "scale-up"
+    ]
+   }
+  },
+  {
+   "id": "S09",
+   "name": "UALink Common 2.0 / 200G DL/PL 2.0",
+   "org": "UALink Consortium",
+   "layer": "scale-up",
+   "date": "2026-04-07",
+   "status": {
+    "zh": "联盟宣布批准并公开；历史补证",
+    "en": "Ratified and public per consortium; historical evidence added"
+   },
+   "summary": {
+    "zh": "Common 2.0加入网络内计算；200G链路/物理层规范独立。同期发布Chiplet 1.0及Manageability 1.0。",
+    "en": "Common 2.0 adds in-network compute; the 200G data-link/physical specification is separated. Chiplet 1.0 and Manageability 1.0 accompanied it."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "UALink four-specification release, 7 Apr 2026",
+     "url": "https://ualinkconsortium.org/wp-content/uploads/2026/04/UALink-2.0-Specification-PR_FINAL.pdf",
+     "type": "primary",
+     "published_at": "2026-04-07",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "pp.1–2 New UALink Specifications",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    }
+   ],
+   "caveat": {
+    "zh": "已读发布公告，未读规范全文；不是本周发布，也不证明硅片互操作、生产部署或实测性能。",
+    "en": "Release read, not complete specifications. Not a new weekly release or proof of silicon interoperability, deployment or measured performance."
+   },
+   "links": {
+    "bridge": [
+     "B7"
+    ]
+   }
+  },
+  {
+   "id": "S10",
+   "name": "CXL 4.0",
+   "org": "CXL Consortium",
+   "layer": "memory",
+   "date": "2025-11-18",
+   "status": {
+    "zh": "规范发布；历史补证",
+    "en": "Specification released; historical evidence added"
+   },
+   "summary": {
+    "zh": "联盟公布128 GT/s、端口捆绑和内存RAS增强；捆绑连接面向主机与Type 1/2加速器端口。",
+    "en": "The consortium announces 128 GT/s, port bundling and memory RAS enhancements; bundled connections join host and Type 1/2 accelerator ports."
+   },
+   "facts": [],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "CXL 4.0 announcement, 18 Nov 2025",
+     "url": "https://computeexpresslink.org/wp-content/uploads/2025/11/CXL_4.0-Specification-Release_FINAL_Website-Copy.pdf",
+     "type": "primary",
+     "published_at": "2025-11-18",
+     "read_at": "2026-11-12T11:19:08+00:00",
+     "locator": "p.1 Key features",
+     "reading_scope": "Selected relevant body sections; not full underlying specification or contract"
+    }
+   ],
+   "caveat": {
+    "zh": "已读公告，未读规范全文。链路速率不等于应用带宽；不据此认定现有CPU支持或已生产部署。",
+    "en": "Announcement read, not the full specification. Link rate is not application bandwidth; current CPU support and production adoption are not established."
+   },
+   "links": {
+    "bridge": [
+     "B8",
+     "B11"
+    ]
+   }
+  },
+  {
+   "id": "S11",
+   "name": "JEDEC SPHBM4 (JESD330-4)",
+   "org": "JEDEC",
+   "layer": "memory",
+   "date": "2026-07-13",
+   "date_note": {
+    "zh": "日期与标准编号取自检索摘要；有来源称董事会6月21日最终批准，发布日期未对照JEDEC网站。",
+    "en": "Date and standard number come from search summaries; one source says the board gave final approval on 21 June and the publication date was not checked against JEDEC’s site."
+   },
+   "status": {
+    "zh": "报道称已发布（日期与编号未经JEDEC原文核实）",
+    "en": "Reported as published (date and number not checked against JEDEC’s own text)"
+   },
+   "summary": {
+    "zh": "SPHBM4（标准封装HBM4）把与处理器的连接由2,048个信号减少到512个，使HBM4级带宽可在有机基板上实现，从而可少用或不用昂贵的硅中介层，旨在降低AI存储封装成本。",
+    "en": "SPHBM4 (standard-package HBM4) cuts the processor connection from 2,048 signals to 512 so that HBM4-class bandwidth can be delivered on organic substrates, reducing or removing the need for an expensive silicon interposer and aiming to lower AI memory packaging cost."
+   },
+   "facts": [
+    {
+     "zh": "HBM4E 未找到 JEDEC 标准：一篇博客称它是厂商产品代际；报道称 Samsung 于2026年5月29日开始提供12层HBM4E样品、Micron 预计2027年量产——均为单一二手来源。",
+     "en": "No JEDEC standard for HBM4E was found: one blog describes it as a vendor product generation; Samsung reportedly began shipping 12-high HBM4E samples on 29 May 2026 and Micron expects volume production in 2027, all from a single secondary source."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Tom’s Hardware: JEDEC releases new SPHBM4 standard",
+     "url": "https://www.tomshardware.com/pc-components/dram/jedec-releases-new-sphbm4-standard-to-slash-ai-memory-costs-narrow-512-bit-interface-enables-dropping-expensive-interposers-for-organic-substrates",
+     "type": "trade-press"
+    },
+    {
+     "label": "TechNews: JEDEC has adopted the SPHBM4 standard",
+     "url": "https://technews.tw/2026/06/23/jedec-has-adopted-the-sphbm4-standard/",
+     "type": "trade-press"
+    },
+    {
+     "label": "BusinessWire release via StreetInsider (blocked, not read)",
+     "url": "https://www.streetinsider.com/Business+Wire/New+JEDEC%C2%AE+SPHBM4+Standard+Enables+HBM4-Class+Bandwidth+on+Organic+Substrates/26761241.html",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "JEDEC新闻稿与标准全文均未读到（页面返回403）；仅凭搜索摘要与标题，没有带宽、容量或产品量产数据。",
+    "en": "Neither the JEDEC release nor the standard was read (the page returned 403); this rests on search summaries and a headline, with no bandwidth, capacity or production data."
+   },
+   "links": {
+    "bridge": [
+     "B1",
+     "B5",
+     "B8"
+    ],
+    "terms": [
+     "hbm",
+     "2-5d-3d"
+    ]
+   }
+  },
+  {
+   "id": "S12",
+   "name": "PCIe 8.0 (Draft 0.5)",
+   "org": "PCI-SIG",
+   "layer": "host-io",
+   "date": "2026-05-01",
+   "date_note": {
+    "zh": "来源对日期不一致（4月23日、5月1日、5月初）；此处记为5月1日。",
+    "en": "Sources disagree on the date (23 April, 1 May, early May); recorded here as 1 May."
+   },
+   "status": {
+    "zh": "草案0.5已向成员提供；完整规范目标2028年",
+    "en": "Draft 0.5 available to members; full release targeted for 2028"
+   },
+   "summary": {
+    "zh": "PCIe 8.0 草案0.5在成员对0.3草案的反馈基础上发布：目标传输速率256 GT/s，x16双向最高约1 TB/s，保持PAM4并向后兼容；PCI-SIG称完整规范仍在2028年的目标轨道上，且指向成员发布而非硬件上市。",
+    "en": "PCIe 8.0 Draft 0.5 followed member feedback on Draft 0.3: it targets 256 GT/s and up to about 1 TB/s bi-directional on x16, keeps PAM4 and stays backward compatible; PCI-SIG says the full specification remains on track for 2028, and that means release to members, not hardware on shelves."
+   },
+   "facts": [],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "Converge Digest: PCIe 8.0 advances toward 256 GT/s and 1 TB/s by 2028",
+     "url": "https://convergedigest.com/pcie-8-0-advances-toward-256-gt-s-and-1-tb-s-by-2028/",
+     "type": "trade-press"
+    },
+    {
+     "label": "Tom’s Hardware: PCI-SIG reveals PCIe 8.0 0.5v spec first draft",
+     "url": "https://tomshardware.com/tech-industry/pci-sig-reveals-pcie-8-0-0-5v-spec-first-draft-includes-1-tb-s-bandwidth-and-new-connector-technology",
+     "type": "trade-press"
+    }
+   ],
+   "caveat": {
+    "zh": "PCI-SIG新闻稿与草案未读；有分析称单条x16、256 GT/s链路可能被移出规范，无法对照PCI-SIG材料核实，本页不采用。",
+    "en": "The PCI-SIG release and the draft were not read; one analysis says a single x16 link at 256 GT/s may be removed from the specification, which could not be checked against PCI-SIG materials and is not adopted."
+   },
+   "links": {
+    "terms": [
+     "pcie",
+     "pam4"
+    ],
+    "bridge": [
+     "B7"
+    ]
+   }
+  }
+ ],
+ "relations": [
+  {
+   "a": "S01",
+   "b": "S07",
+   "type": "scale-up",
+   "note": {
+    "zh": "两条开放的纵向扩展路径：专用的加载/存储互连 vs 以太网适配。",
+    "en": "Two open scale-up paths: a dedicated load/store interconnect versus an Ethernet adaptation."
+   }
+  },
+  {
+   "a": "S07",
+   "b": "S02",
+   "type": "aligns",
+   "note": {
+    "zh": "ESUN称将与UEC、IEEE对齐。",
+    "en": "ESUN says it will align with UEC and IEEE."
+   }
+  },
+  {
+   "a": "S08",
+   "b": "S01",
+   "type": "governance",
+   "note": {
+    "zh": "治理方式不同：厂商合作项目 vs 开放联盟。",
+    "en": "Different governance: a vendor partner programme versus an open consortium."
+   }
+  },
+  {
+   "a": "S03",
+   "b": "S05",
+   "type": "package",
+   "note": {
+    "zh": "两者都由先进封装决定落地：芯粒互连与HBM堆叠。",
+    "en": "Both depend on advanced packaging: chiplet links and HBM stacks."
+   }
+  },
+  {
+   "a": "S04",
+   "b": "S06",
+   "type": "builds-on",
+   "note": {
+    "zh": "CXL运行在PCIe物理层之上（据CXL联盟自述的一致性互连定位，细节需读规范）。",
+    "en": "CXL runs over the PCIe physical layer (details need the specifications)."
+   }
+  },
+  {
+   "a": "S05",
+   "b": "S11",
+   "type": "memory",
+   "note": {
+    "zh": "HBM4 与其窄接口变体 SPHBM4：同级带宽，不同封装路线。",
+    "en": "HBM4 and its narrow-interface variant SPHBM4: the same class of bandwidth through a different packaging route."
+   }
+  },
+  {
+   "a": "S06",
+   "b": "S12",
+   "type": "host-io",
+   "note": {
+    "zh": "PCIe 7.0 已发布给成员；8.0 还在草案阶段，目标2028年。",
+    "en": "PCIe 7.0 has been released to members; 8.0 is still a draft, targeted for 2028."
+   }
+  }
+ ],
+ "refresh_coverage": {
+  "cutoff": "2026-11-12T11:19:08+00:00",
+  "status": "partial",
+  "note": {
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：S07更新ESUN 1.0/1.1状态；新增SPHBM4（S11）与PCIe 8.0草案（S12）。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: S07 updated for ESUN 1.0/1.1; added SPHBM4 (S11) and the PCIe 8.0 draft (S12)."
+  },
+  "record": "research/weekly-20261112.json"
+ }
 }
