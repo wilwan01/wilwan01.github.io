@@ -27,13 +27,14 @@ def render(p):
  if related:primary.tail=' · 关联领域：'
  for i,d in enumerate(related):
   x=link('#domain-'+d,domains[d]['label']);x.tail=' ／ ' if i<len(related)-1 else None;tags.append(x)
- append(a,'p',p['core'],class_='thesis');append(a,'h3','最重要贡献')
+ role_profile=p['researchStatus'].get('standard')=='public-role-profile-v1'
+ append(a,'p',p['core'],class_='thesis');append(a,'h3','代表贡献与公开职责' if role_profile else '最重要贡献')
  ul=append(a,'ul')
  for c in p['contributions']:append(ul,'li',c)
  for w in p.get('awardsVerified',[]):
   x=append(a,'p',f"{w['name']} · {w['year']}：{w['citationZh']}（官方理由的中文转述） ",class_='award-citation');x.append(link(w['url'],'原始来源'))
- if not p.get('awardsVerified'):append(a,'p','以上为基于署名作品的编辑提炼，非官方获奖理由。',class_='contribution-origin')
- append(a,'p','本次关键贡献研究已核验 · '+p['researchStatus'].get('verifiedAt',p['researchStatus'].get('batch','')[:10])+'；不表示穷尽个人成果。',class_='profile-number')
+ if not p.get('awardsVerified'):append(a,'p','基于公开职责与署名论述的编辑提炼；团队领导经历不等同于个人独占技术贡献。' if role_profile else '以上为基于署名作品的编辑提炼，非官方获奖理由。',class_='contribution-origin')
+ append(a,'p',('公开身份与所列贡献已核验 · '+p['researchStatus']['verifiedAt']+'；机制级作品审计未完成。') if role_profile else ('本次关键贡献研究已核验 · '+p['researchStatus'].get('verifiedAt',p['researchStatus'].get('batch','')[:10])+'；不表示穷尽个人成果。'),class_='profile-number')
  de=append(a,'details',class_='research-detail');append(de,'summary','展开：背景、机制、取舍、诊断与来源')
  append(de,'h3','背景与贡献归属');append(de,'p',p['background'])
  if p.get('sourceFacts'):
@@ -62,7 +63,7 @@ def render(p):
   for nid,title in p['notes']:x=link('/ai/notes/'+nid+'.html',title);x.tail=' ';pp.append(x)
  a.append(link('#directory','回到人物名单'));return a
 for p in profiles:
- if p.get('researchStatus',{}).get('standard')!='contribution-led-v1':continue
+ if p.get('researchStatus',{}).get('standard') not in {'contribution-led-v1','public-role-profile-v1'}:continue
  new=render(p);old=page.xpath('//article[@id="'+p['id']+'"]')
  if old:old[0].getparent().replace(old[0],new)
  else:page.xpath('//section[contains(@class,"domain-block")][@aria-labelledby="domain-'+p['domain']+'"]')[0].append(new)

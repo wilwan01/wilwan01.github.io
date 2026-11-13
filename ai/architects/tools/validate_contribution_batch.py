@@ -74,7 +74,16 @@ for p in c['profiles']:
 for pid in done:
  p=by[pid];assert p['researchStatus']['status']=='complete';assert 1<=len(p['contributions'])<=3
  substantive=[s for s in p['sourceAudit'] if s['type'] not in ['机构报告简介','官方获奖名单']];assert len({s['url'] for s in substantive})>=2,pid
- assert any(s['type'] in PRIMARY_BODY_TYPES and '未取得全文' not in s['contentStatus'] for s in substantive),pid
+ # Explicit user-requested public-role profiles retain a narrower evidence scope.
+ # All contribution-led profiles keep the existing technical-body requirement.
+ if p['researchStatus'].get('standard')=='public-role-profile-v1':
+  assert pid in {'jeff-mcveigh','jeff-wilcox'},pid
+  assert p['researchStatus']['batch']=='2026-11-13-jeff-profiles'
+  assert all(s.get('primary') and s.get('retrievedAt') for s in p['sourceAudit'])
+  assert any(s['type']=='机构人物简介' for s in p['sourceAudit'])
+  assert '机制级作品审计未完成' in p['researchStatus']['meaning']
+ else:
+  assert any(s['type'] in PRIMARY_BODY_TYPES and '未取得全文' not in s['contentStatus'] for s in substantive),pid
  for s in p['sourceAudit']:
   assert all(s.get(k) for k in ['title','authors','date','url','locator','type','contentStatus','evidenceStrength','role']),pid
   assert s['url'].startswith('https://'),s

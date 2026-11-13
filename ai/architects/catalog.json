@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "scope": "representative-not-ranked",
   "classification": "editorial-primary-domain-with-cross-links",
   "domains": [
@@ -148,7 +148,8 @@
         "dan-bouvier",
         "irma-esmer-papazian",
         "lance-hacking",
-        "beeman-strong"
+        "beeman-strong",
+        "jeff-wilcox"
       ]
     },
     {
@@ -498,7 +499,8 @@
         "david-culler",
         "fabrizio-petrini",
         "toshio-yoshida",
-        "samantika-sury"
+        "samantika-sury",
+        "jeff-mcveigh"
       ]
     },
     {
@@ -58709,6 +58711,231 @@
         "validation": "对比原生与便携版本的完整路径，并计入运行时开销。",
         "transfer": "把同样的成本核算迁移到CPU、GPU与远端内存组合。"
       }
+    },
+    {
+      "id": "jeff-mcveigh",
+      "name": "Jeff McVeigh",
+      "aliases": [
+        "Jeffrey S. McVeigh"
+      ],
+      "field": "异构 HPC、跨架构软件与产品生态",
+      "domain": "hpc",
+      "relatedDomains": [
+        "gpu-ai",
+        "compiler-runtime",
+        "datacenter"
+      ],
+      "core": "让异构硬件的选择转化为可部署能力，需要把工作负载、软件迁移和产品生态一起评估。",
+      "background": "OCP 董事会公开简介列其为 Intel Data Center and AI 组织的 Corporate VP、Custom Products and Ecosystem 总经理，并记载其 HPC、数据中心 GPU 及跨架构软件领导经历。职务按 2026-11-13 读取的简介记录，页面未注明更新时间。",
+      "contributions": [
+        "共同署名阐述标量、向量、矩阵和空间计算的异构路线，以及 oneAPI 通过统一编程模型减少跨架构软件重复投入的目标。",
+        "公开职责覆盖 HPC 与数据中心 GPU 产品，以及 oneAPI、OpenVINO 等软件生态的工程领导；据此关注硬件路线与软件可用性之间的衔接。"
+      ],
+      "argument": "编辑解读：可选择的硬件越多，软件适配、数据搬运和维护的成本越不能忽略。比较对象应是完成同一工作负载的系统，而非孤立的峰值算力。",
+      "evidence": "已核验共同署名技术文章与 OCP 履历；产品领导与共同论述不等同于本人独立发明具体处理器机制。",
+      "habits": [
+        "编辑归纳：先确定工作负载映射，再检查工具链和库的覆盖范围。",
+        "把代码可移植、性能可移植和生产可用分开验证。"
+      ],
+      "questions": [
+        "换用另一种加速器后，端到端收益是否覆盖移植和持续维护成本？",
+        "统一编程接口隐藏了哪些架构特有的搬运和调优工作？"
+      ],
+      "boundary": "一手文章描述 2020 年的技术方向与当时实现状态，不据此宣称后续产品交付或跨厂商性能已获验证。不把团队成果归为个人独占贡献。",
+      "diagnostic": "选取同一应用的原生与可移植实现，固定精度、输入和资源预算，记录端到端时间、搬运量、调优工时与软件维护面。",
+      "challenge": {
+        "lens": "异构硬件与软件采用成本",
+        "skills": [
+          "A7",
+          "A8",
+          "A9",
+          "A10"
+        ],
+        "question": "更丰富的硬件选择何时真正降低交付成本？",
+        "variables": "完成任务数、执行时间、数据搬运、移植工时、维护成本和部署周期。",
+        "model": "编辑模型：比较同一产出的算力与运维成本，并将软件迁移和维护成本摊入使用周期。",
+        "crossover": "执行节省超过软件投入，且生产功能、正确性与可用性达标时才值得迁移。",
+        "counterexample": "峰值性能更高，但关键库缺失或重复搬运使完整任务更慢。",
+        "validation": "建议验证：真实应用端到端测量，加上至少一次版本升级与回归维护演练。",
+        "transfer": "用于 CPU/GPU/FPGA 选型，以及跨供应商加速平台的采用决策。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "mcveigh-svms-2020",
+          "title": "Harnessing the power of a Heterogeneous Computing Future",
+          "url": "https://community.intel.com/t5/Blogs/Tech-Innovation/Edge-5G/Harnessing-the-power-of-a-Heterogeneous-Computing-Future/post/1332469",
+          "authors": "Jeff McVeigh; Srinivas Chennupaty",
+          "date": "2020-08-05",
+          "locator": "What is SVMS?；oneAPI to deliver performance and productivity across SVMS architectures；署名段",
+          "type": "本人署名技术文章",
+          "contentStatus": "已读 SVMS 分类、架构间能力重叠、软件迁移障碍及 oneAPI 统一模型的论述；厂商愿景不当作独立性能结果。",
+          "role": "技术论述与共同署名",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "公开一手资料；证据范围以所列正文为限。"
+        },
+        {
+          "workId": "mcveigh-ocp-bio",
+          "title": "Open Compute Project — Board Members: Jeff McVeigh",
+          "url": "https://www.opencompute.org/person-role/board-member/",
+          "authors": "Open Compute Project",
+          "date": "页面未标日期；读取 2026-11-13",
+          "locator": "Jeff McVeigh 简介",
+          "type": "机构人物简介",
+          "contentStatus": "已读 Intel 职责及 HPC、GPU、oneAPI、OpenVINO 相关经历。",
+          "role": "身份、公开职责与团队领导贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "公开一手资料；证据范围以所列正文为限。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "sources": [
+        [
+          "Harnessing the power of a Heterogeneous Computing Future",
+          "https://community.intel.com/t5/Blogs/Tech-Innovation/Edge-5G/Harnessing-the-power-of-a-Heterogeneous-Computing-Future/post/1332469",
+          "技术论述与共同署名"
+        ],
+        [
+          "Open Compute Project — Board Members: Jeff McVeigh",
+          "https://www.opencompute.org/person-role/board-member/",
+          "身份、公开职责与团队领导贡献"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "mcveigh-svms-2020",
+          "text": "共同署名文章讨论异构计算与统一编程模型，明确指出跨架构开发和维护的障碍。"
+        },
+        {
+          "workId": "mcveigh-ocp-bio",
+          "text": "OCP 简介记载 HPC、数据中心 GPU 与跨架构软件的工程及产品领导经历。"
+        }
+      ],
+      "contributionBasis": "按用户指定纳入公开职责与平台贡献档案；事实与编辑推理分列，不声明通过两项独立技术作品审计。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-jeff-profiles",
+        "standard": "public-role-profile-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "公开身份、职责与所列贡献的有限核验完成；机制级作品审计未完成。"
+      }
+    },
+    {
+      "id": "jeff-wilcox",
+      "name": "Jeff Wilcox",
+      "aliases": [],
+      "field": "客户端 SoC、功耗管理与整机平台",
+      "domain": "cpu",
+      "relatedDomains": [
+        "physical-energy",
+        "foundations"
+      ],
+      "core": "把 SoC 架构、功耗管理和整机迁移视为一个平台问题，检查完整系统的协同约束。",
+      "background": "MIT Processor DB 委员会简介列其为 Intel Senior Fellow，负责客户端 SoC 架构、功耗、性能及功耗管理固件团队；并记载其曾任 Apple Mac System Architecture Director、2022 年回到 Intel。简介未标更新日期，职务不外推为持续实时状态。",
+      "contributions": [
+        "MIT 简介记载其领导过早期 Centrino、Atom 平台以及 Mac 向 Apple Silicon 的迁移；归属限定为平台与系统架构领导。",
+        "客户端 SoC 的公开职责同时涵盖架构、功耗、性能与功耗管理固件，提供从芯片到整机的协同设计视角。"
+      ],
+      "argument": "编辑解读：处理器选型和 ISA 迁移的收益取决于整机功耗、内存与 I/O、系统软件及兼容性一起交付，不能只由核心性能推断。",
+      "evidence": "已核验 MIT 委员会简介与本人重返 Intel 的公开声明；本条为公开职责与平台贡献档案，未完成个人技术作品的机制级审计。",
+      "habits": [
+        "编辑归纳：同时检查芯片、固件与系统的责任边界。",
+        "将峰值性能与持续负载下的整机表现分开。"
+      ],
+      "questions": [
+        "SoC 节省的能耗是否被外部器件、固件或兼容路径抵消？",
+        "平台迁移中，哪些软件和外设约束先于芯片性能成为门槛？"
+      ],
+      "boundary": "不将 M1 微架构或 Apple Silicon 全部成果归于一人；不据此推断其参与后续 M 系列芯片。未以同名专利记录补齐个人技术归属，也不混入 Microsoft 或 Lockheed Martin 的同名人物。",
+      "diagnostic": "固定整机配置、环境和工作负载，比较持续吞吐、整机能耗、状态切换、兼容性与恢复路径。",
+      "challenge": {
+        "lens": "SoC 到整机的协同边界",
+        "skills": [
+          "A3",
+          "A7",
+          "A8",
+          "A10"
+        ],
+        "question": "芯片层面的改进如何在整机和迁移计划中兑现？",
+        "variables": "持续性能、整机能耗、内存与 I/O 需求、固件状态切换及兼容应用覆盖率。",
+        "model": "编辑模型：把可交付性能视为计算、散热、数据供给与软件兼容约束下的系统结果。",
+        "crossover": "整机约束解除且兼容性达标后，局部芯片改进才转化为用户收益。",
+        "counterexample": "短跑分领先，但持续运行受散热限制，或关键应用依赖昂贵的兼容路径。",
+        "validation": "建议验证：持续负载、混合负载、睡眠唤醒、升级恢复和外设兼容的完整平台测试。",
+        "transfer": "用于 Arm/x86 平台迁移与 Mac 承载服务器工作负载的适用性判断。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "wilcox-mit-bio",
+          "title": "MIT Processor DB — Steering Committee: Jeff Wilcox",
+          "url": "https://processordb.mit.edu/steering-committee",
+          "authors": "MIT Processor DB",
+          "date": "页面未标日期；读取 2026-11-13",
+          "locator": "Jeff Wilcox 委员简介",
+          "type": "机构人物简介",
+          "contentStatus": "已读客户端 SoC、功耗/性能/固件职责及 Apple、Centrino、Atom 经历；仅支持职责和平台领导归属。",
+          "role": "身份、公开职责与平台贡献",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "公开一手资料；证据范围以所列正文为限。"
+        },
+        {
+          "workId": "wilcox-return-2022",
+          "title": "Jeff Wilcox — Return to Intel, Client SoC Architecture",
+          "url": "https://www.linkedin.com/posts/jeffwilcox_im-pleased-to-share-that-i-have-started-activity-6884632333991985152-_2jm",
+          "authors": "Jeff Wilcox",
+          "date": "2022-01（公开声明；页面显示相对日期）",
+          "locator": "本人贴文正文",
+          "type": "本人职业声明",
+          "contentStatus": "已读本人宣布加入 Intel Fellow / Client SoC Architecture 职位的正文；不是技术机制论文。",
+          "role": "本人身份及 2022 年任职交叉核验",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "公开一手资料；证据范围以所列正文为限。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "sources": [
+        [
+          "MIT Processor DB — Steering Committee: Jeff Wilcox",
+          "https://processordb.mit.edu/steering-committee",
+          "身份、公开职责与平台贡献"
+        ],
+        [
+          "Jeff Wilcox — Return to Intel, Client SoC Architecture",
+          "https://www.linkedin.com/posts/jeffwilcox_im-pleased-to-share-that-i-have-started-activity-6884632333991985152-_2jm",
+          "本人身份及 2022 年任职交叉核验"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "wilcox-mit-bio",
+          "text": "MIT 简介记载其负责客户端 SoC 的架构、功耗、性能和功耗管理固件，并曾领导 Mac 向 Apple Silicon 迁移。"
+        },
+        {
+          "workId": "wilcox-return-2022",
+          "text": "本人公开贴文确认重返 Intel 并担任 Client SoC Architecture 相关职位。"
+        }
+      ],
+      "contributionBasis": "按用户指定纳入公开职责与平台贡献档案；事实与编辑推理分列，不声明通过两项独立技术作品审计。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-jeff-profiles",
+        "standard": "public-role-profile-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "公开身份、职责与所列贡献的有限核验完成；机制级作品审计未完成。"
+      }
     }
   ],
   "research": {
@@ -58719,7 +58946,7 @@
     ],
     "batchLog": "research/batches/2026-10-06.json",
     "completedThisBatch": 76,
-    "totalProfiles": 471,
+    "totalProfiles": 473,
     "batchLogs": [
       "research/batches/2026-10-06.json",
       "research/batches/2026-10-06-memory.json",
@@ -58751,13 +58978,14 @@
       "research/batches/2026-11-12-intel-nominations.json",
       "research/batches/2026-11-12-lara-oliver.json",
       "research/batches/2026-11-12-conference-followup.json",
-      "research/batches/2026-11-12-conference-remaining.json"
+      "research/batches/2026-11-12-conference-remaining.json",
+      "research/batches/2026-11-13-jeff-profiles.json"
     ],
-    "completedTotal": 470,
+    "completedTotal": 472,
     "remainingCatalog": 1,
     "remainingPlanned": 9,
-    "additionalPlannedScope": 181,
-    "additionalCompleted": 170,
+    "additionalPlannedScope": 183,
+    "additionalCompleted": 172,
     "resolvedCandidateDuplicates": 2
   }
 }

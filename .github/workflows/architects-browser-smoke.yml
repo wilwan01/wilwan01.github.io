@@ -49,7 +49,7 @@ jobs:
               assert.equal(catalog.research.totalProfiles,catalog.profiles.length);
               assert.equal(new Set(catalog.profiles.map(p=>p.id)).size,catalog.profiles.length);
               const expectedProfiles=catalog.profiles.length;
-              const targets=[['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
+              const targets=[['Jeff McVeigh','jeff-mcveigh'],['Jeff Wilcox','jeff-wilcox'],['Gary Smerdon','gary-smerdon'],['Robert Hormuth','robert-hormuth']];
               assert(catalog.profiles.some(p=>p.id==='anil-kumar-amd-austin'));
               targets.push(['Anil Kumar','anil-kumar-amd-austin']);
               const batchPath='ai/architects/research/batches/2026-11-12-intel-nominations.json';
@@ -150,6 +150,13 @@ jobs:
                 page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:8765/')&&r.status()>=400)failed.push({url:r.url(),status:r.status()});});
                 assert.equal((await page.goto('http://127.0.0.1:8765/ai/architects/',{waitUntil:'networkidle'})).status(),200);
                 assert.equal(await page.locator('article.profile').count(),expectedProfiles);
+                const matrixDomains=await page.locator('#architect-skill-table tbody .matrix-domain').allTextContents();
+                const domainBlocks=matrixDomains.filter((value,index)=>index===0||value!==matrixDomains[index-1]);
+                assert.equal(domainBlocks.length,new Set(matrixDomains).size,'Each main field must occupy one contiguous block');
+                assert.equal(await page.locator('#architect-skill-table thead [aria-sort="ascending"]').count(),1);
+                await page.locator('#skill-matrix').scrollIntoViewIfNeeded();
+                await page.screenshot({path:`browser-results/matrix-domain-${viewport.width}.png`});
+
                 for(const record of excludedPending) assert.equal(await page.locator(`article.profile[id="${record.id}"]`).count(),0);
                 for(const [name,id] of targets){
                   await page.locator('#matrix-name').fill(name);

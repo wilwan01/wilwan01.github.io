@@ -3,6 +3,8 @@
 const KEY='silicon-atlas-research-v1';
 const quarters=['2026 Q4','2027 Q1','2027 Q2','2027 Q3','2027 Q4','2028 Q1','2028 Q2','2028 Q3','2028 Q4'];
 const gates=['工作负载与尾延迟','内存与 NUMA','电力与冷却','软件与 I/O','供货与报价'];
+const cloudGates=['工作负载与尾延迟','vCPU / 内存 / NUMA','区域、配额与服务可用性','软件、存储与网络','计费条款与报价'];
+const capacityKeys=['unitU','nodeKW','nodeCost'];
 const profiles=[
  {id:'epyc9965',vendor:'AMD',name:'EPYC 9965',unit:'x86 · 每 CPU 192 核',nodes:400,unitU:2,nodeKW:0.9,nodeCost:10000,evaluate:0,qualify:1,deploy:2,end:5},
  {id:'epyc9996',vendor:'AMD',name:'EPYC 9996',unit:'x86 · 每 CPU 256 核',nodes:600,unitU:2,nodeKW:1.2,nodeCost:14000,evaluate:1,qualify:2,deploy:4,end:7},
@@ -11,25 +13,45 @@ const profiles=[
  {id:'grace',vendor:'NVIDIA',name:'Grace CPU Superchip',unit:'Arm · 每双 CPU 模块 144 核',nodes:120,unitU:1,nodeKW:0.7,nodeCost:11000,evaluate:0,qualify:2,deploy:3,end:5},
  {id:'vera',vendor:'NVIDIA',name:'Vera CPU',unit:'Arm · 每 CPU 88 核',nodes:80,unitU:1,nodeKW:0.8,nodeCost:12000,evaluate:1,qualify:3,deploy:5,end:7}
 ];
+profiles.push(...[
+ {id:'dragonfly-c1000',vendor:'Qualcomm',name:'Dragonfly C1000',unit:'Arm · Oryon · 公告 250+ 核',evaluate:3,qualify:5,deploy:6,end:8},
+ {id:'arm-agi',vendor:'Arm',name:'AGI CPU',unit:'Arm · Neoverse V3 · 最高 136 核'},
+ {id:'graviton4',vendor:'AWS',name:'Graviton4',unit:'Arm · Neoverse V2 · 每 CPU 96 核',cloud:true},
+ {id:'graviton5',vendor:'AWS',name:'Graviton5',unit:'Arm · Neoverse V3 · 每 CPU 192 核',cloud:true},
+ {id:'axion-c4a',vendor:'GCP',name:'Axion · C4A',unit:'Arm · Neoverse V2 · 云平台',cloud:true},
+ {id:'axion-n4a',vendor:'GCP',name:'Axion · N4A',unit:'Arm · Neoverse N3 · 云平台',cloud:true},
+ {id:'cobalt100',vendor:'Azure',name:'Cobalt 100',unit:'Arm · Neoverse N2 · 云平台',cloud:true},
+ {id:'cobalt200',vendor:'Azure',name:'Cobalt 200',unit:'Arm · CSS V3 · 每 SoC 132 核',cloud:true},
+ {id:'mac-mini-m6',vendor:'Apple',name:'Mac mini · M6',unit:'Arm · 12 核 CPU · 统一内存'},
+ {id:'mac-mini-m5pro',vendor:'Apple',name:'Mac mini · M5 Pro',unit:'Arm · 最高 18 核 CPU · 统一内存'},
+ {id:'mac-studio-m5max',vendor:'Apple',name:'Mac Studio · M5 Max',unit:'Arm · 18 核 CPU · 统一内存'},
+ {id:'mac-studio-m5ultra',vendor:'Apple',name:'Mac Studio · M5 Ultra',unit:'Arm · 30 / 36 核 CPU · 统一内存'},
+ {id:'mac-pro-m2ultra',vendor:'Apple',name:'Mac Pro Rack · M2 Ultra',unit:'Arm · 24 核 CPU · 2023 机架机型',unitU:5}
+].map(p=>({nodes:0,unitU:null,nodeKW:null,nodeCost:null,evaluate:0,qualify:1,deploy:2,end:8,...p})));
+const legacyIds=profiles.slice(0,6).map(p=>p.id);
+const gateLabels=meta=>meta.cloud?cloudGates:gates;
 const globalRules={rackBudget:[0,100000,true],rackU:[1,100,true],rackKW:[0.1,1000],reserveKW:[0,999],pue:[1,3],electricity:[0,10],years:[1,10,true],annualOps:[0,100000]};
-const platformRules={nodes:[0,100000,true],unitU:[1,100,true],nodeKW:[0.01,1000],nodeCost:[0,10000000],evaluate:[0,8,true],qualify:[0,8,true],deploy:[0,8,true],end:[0,8,true]};
+const platformRules={nodes:[0,100000,true],unitU:[0.1,100],nodeKW:[0.01,1000],nodeCost:[0,10000000],evaluate:[0,8,true],qualify:[0,8,true],deploy:[0,8,true],end:[0,8,true]};
 const clone=x=>JSON.parse(JSON.stringify(x));
-function defaults(){return {version:1,name:'2027 容量扩展示例',settings:{rackBudget:140,rackU:40,rackKW:20,reserveKW:2,pue:1.2,electricity:0.12,years:3,annualOps:300},platforms:profiles.map(p=>({id:p.id,...Object.fromEntries(Object.keys(platformRules).map(k=>[k,p[k]])),gates:gates.map(()=>false),evidence:''}))};}
-function numbers(input,rules){const clean={};if(!input||typeof input!=='object')throw Error('缺少输入。');for(const [key,[min,max,int]] of Object.entries(rules)){const n=input[key];if(typeof n!=='number'||!Number.isFinite(n)||n<min||n>max||(int&&!Number.isInteger(n)))throw Error('输入超出范围或不是有效数字：'+key);clean[key]=n;}return clean;}
+function defaults(){return {version:2,name:'2027 容量扩展示例',settings:{rackBudget:140,rackU:40,rackKW:20,reserveKW:2,pue:1.2,electricity:0.12,years:3,annualOps:300},platforms:profiles.map(p=>({id:p.id,...Object.fromEntries(Object.keys(platformRules).map(k=>[k,p[k]])),gates:gates.map(()=>false),evidence:''}))};}
+function numbers(input,rules,nullable=[]){const clean={};if(!input||typeof input!=='object')throw Error('缺少输入。');for(const [key,[min,max,int]] of Object.entries(rules)){const n=input[key];if(n===null&&nullable.includes(key)){clean[key]=null;continue;}if(typeof n!=='number'||!Number.isFinite(n)||n<min||n>max||(int&&!Number.isInteger(n)))throw Error('输入超出范围或不是有效数字：'+key);clean[key]=n;}return clean;}
 function validate(raw){
- if(!raw||raw.version!==1||typeof raw.name!=='string'||!raw.name.trim()||raw.name.length>80)throw Error('计划名称或文件版本无效。');
+ if(!raw||![1,2].includes(raw.version)||typeof raw.name!=='string'||!raw.name.trim()||raw.name.length>80)throw Error('计划名称或文件版本无效。');
+ if(raw.version===1){if(!Array.isArray(raw.platforms)||raw.platforms.length!==6||new Set(raw.platforms.map(p=>p?.id)).size!==6||raw.platforms.some(p=>!legacyIds.includes(p?.id)))throw Error('旧版计划必须包含原有六个平台。');raw={...raw,version:2,platforms:[...raw.platforms,...defaults().platforms.filter(p=>!legacyIds.includes(p.id))]};}
  const settings=numbers(raw.settings,globalRules);
  if(settings.reserveKW>=settings.rackKW)throw Error('每架预留功率必须小于机架 IT 功率上限。');
- if(!Array.isArray(raw.platforms)||raw.platforms.length!==profiles.length)throw Error('计划必须包含全部六个平台。');
- const platforms=profiles.map(meta=>{const matches=raw.platforms.filter(p=>p&&p.id===meta.id);if(matches.length!==1)throw Error('平台缺失或重复。');const p=matches[0],nums=numbers(p,platformRules);
+ if(!Array.isArray(raw.platforms)||raw.platforms.length!==profiles.length)throw Error('计划必须包含全部 '+profiles.length+' 个平台。');
+ const platforms=profiles.map(meta=>{const matches=raw.platforms.filter(p=>p&&p.id===meta.id);if(matches.length!==1)throw Error('平台缺失或重复。');const p=matches[0],nums=numbers(p,platformRules,capacityKeys);
+ if(meta.cloud&&(nums.nodes!==0||capacityKeys.some(k=>nums[k]!==null)))throw Error(meta.name+' 是云端候选，不计自购整机和机架成本。');
+ if(nums.nodes>0&&capacityKeys.some(k=>nums[k]===null))throw Error(meta.name+'：分配节点前，请补齐整机 U、平均功率和采购单价。');
  if(!(nums.evaluate<nums.qualify&&nums.qualify<nums.deploy&&nums.deploy<=nums.end))throw Error(meta.name+' 的时间顺序应为：评估 < 验证 < 部署 ≤ 结束。');
  if(!Array.isArray(p.gates)||p.gates.length!==5||p.gates.some(g=>typeof g!=='boolean'))throw Error('验证记录无效。');
  if(typeof p.evidence!=='string'||p.evidence.length>2000)throw Error('证据说明过长或无效。');
  if(p.gates.some(Boolean)&&!p.evidence.trim())throw Error('勾选验证记录时，请填写证据说明。');
  return {id:meta.id,...nums,gates:[...p.gates],evidence:p.evidence};});
- return {version:1,name:raw.name.trim(),settings,platforms};
+ return {version:2,name:raw.name.trim(),settings,platforms};
 }
-function calculate(raw){const plan=validate(raw),s=plan.settings;const rows=plan.platforms.map(p=>{const space=Math.floor(s.rackU/p.unitU),power=Math.floor((s.rackKW-s.reserveKW)/p.nodeKW+1e-10),perRack=Math.min(space,power),blocked=p.nodes>0&&perRack<1,racks=blocked?null:p.nodes===0?0:Math.ceil(p.nodes/perRack);return {id:p.id,nodes:p.nodes,perRack,racks,blocked,limit:space===power?'空间 + 功率':space<power?'空间':'功率',capex:p.nodes*p.nodeCost};});
+function calculate(raw){const plan=validate(raw),s=plan.settings;const rows=plan.platforms.filter(p=>!profiles.find(meta=>meta.id===p.id).cloud).map(p=>{if(capacityKeys.some(k=>p[k]===null))return {id:p.id,nodes:0,perRack:null,racks:0,blocked:false,limit:'配置待录入',capex:0};const space=Math.floor(s.rackU/p.unitU),power=Math.floor((s.rackKW-s.reserveKW)/p.nodeKW+1e-10),perRack=Math.min(space,power),blocked=p.nodes>0&&perRack<1,racks=blocked?null:p.nodes===0?0:Math.ceil(p.nodes/perRack);return {id:p.id,nodes:p.nodes,perRack,racks,blocked,limit:space===power?'空间 + 功率':space<power?'空间':'功率',capex:p.nodes*p.nodeCost};});
  const nodes=rows.reduce((a,r)=>a+r.nodes,0),capex=rows.reduce((a,r)=>a+r.capex,0),blocked=rows.some(r=>r.blocked);if(blocked)return {rows,nodes,capex,blocked,racks:null,facilityKW:null,energy:null,total:null};
  const racks=rows.reduce((a,r)=>a+r.racks,0),itKW=plan.platforms.reduce((a,p)=>a+p.nodes*p.nodeKW,0)+racks*s.reserveKW,facilityKW=itKW*s.pue,energy=facilityKW*8760*s.years*s.electricity,ops=nodes*s.annualOps*s.years;
  return {rows,nodes,capex,blocked,racks,itKW,facilityKW,energy,ops,total:capex+energy+ops,overBudget:racks>s.rackBudget};}
@@ -40,20 +62,20 @@ function init(){
  const status=msg=>{$('#save-status').textContent=msg;};
  function save(){try{localStorage.setItem(KEY,JSON.stringify(plan));storageReady=true;status('已保存在当前浏览器。导出计划可跨设备使用。');}catch(e){storageReady=false;status('当前浏览器无法保存；请导出计划备份。');}}
  function renderRoadmap(){const vendor=$('#vendor-filter').value;$('#roadmap-head').innerHTML='<tr><th>平台 / 架构</th>'+quarters.map(q=>'<th>'+q+'</th>').join('')+'</tr>';
- $('#roadmap-body').innerHTML=profiles.filter(p=>vendor==='all'||p.vendor===vendor).map(meta=>{const p=plan.platforms.find(p=>p.id===meta.id);return '<tr><th><button type="button" class="edit-link" data-edit="'+meta.id+'">'+meta.vendor+' '+meta.name+'</button><small>'+meta.unit+'</small><small>'+fmt(p.nodes)+' 节点 · 编辑计划</small></th>'+quarters.map((q,i)=>{const phase=i<p.evaluate||i>p.end?'':i<p.qualify?'evaluate':i<p.deploy?'qualify':'deploy';return '<td>'+(phase?'<span class="phase '+phase+'">'+({evaluate:'评估',qualify:'验证',deploy:p.nodes===0?'观察':'部署'}[phase])+'</span>':'—')+'</td>';}).join('')+'</tr>';}).join('');}
+ $('#roadmap-body').innerHTML=profiles.filter(p=>vendor==='all'||p.vendor===vendor).map(meta=>{const p=plan.platforms.find(p=>p.id===meta.id);return '<tr><th><button type="button" class="edit-link" data-edit="'+meta.id+'">'+meta.vendor+' '+meta.name+'</button><small>'+meta.unit+'</small><small>'+(meta.cloud?'云端候选 · 不计自有机架':fmt(p.nodes)+' 节点 · 编辑计划')+'</small></th>'+quarters.map((q,i)=>{const phase=i<p.evaluate||i>p.end?'':i<p.qualify?'evaluate':i<p.deploy?'qualify':'deploy';return '<td>'+(phase?'<span class="phase '+phase+'">'+({evaluate:'评估',qualify:'验证',deploy:p.nodes===0?'观察':'部署'}[phase])+'</span>':'—')+'</td>';}).join('')+'</tr>';}).join('');}
  function renderCapacity(){let candidate=clone(plan);for(const el of document.querySelectorAll('[data-global]'))candidate.settings[el.dataset.global]=el.value.trim()===''?NaN:Number(el.value);
  let result;try{candidate=validate(candidate);result=calculate(candidate);}catch(e){$('#capacity-status').textContent=e.message;$('#capacity-status').classList.add('error');$('#capacity-results').hidden=true;$('#rack-count').textContent='待修正';$('#rack-budget-note').textContent='容量输入无效';return false;}
  plan.settings=candidate.settings;$('#capacity-results').hidden=false;$('#capacity-status').classList.toggle('error',result.blocked||result.overBudget);
  $('#node-count').textContent=fmt(result.nodes);$('#rack-count').textContent=result.blocked?'不可行':fmt(result.racks)+' / '+fmt(plan.settings.rackBudget);$('#rack-budget-note').textContent=result.blocked?'有平台无法装入单个机架':result.overBudget?'超过可用机架预算':'所需 / 可用机架';
  $('#capacity-status').textContent=result.blocked?'有分配的平台无法在当前空间或功率限制下放入一个节点。请调整机架或整机参数。':result.overBudget?'计划超出机架预算 '+fmt(result.racks-plan.settings.rackBudget)+' 架。请调整分配、整机参数或机房约束。':'按当前空间与功率假设可容纳；供货、冷却和业务资格仍须分别验证。';
  $('#capex').textContent=money(result.capex);$('#facility-power').textContent=result.blocked?'—':fmt(result.facilityKW)+' kW';$('#energy-cost').textContent=result.blocked?'—':money(result.energy);$('#listed-cost').textContent=result.blocked?'—':money(result.total);
- $('#capacity-body').innerHTML=result.rows.map(r=>{const p=plan.platforms.find(p=>p.id===r.id),meta=profiles.find(p=>p.id===r.id);return '<tr><th><button type="button" class="secondary" data-edit="'+r.id+'">'+meta.name+'</button></th><td>'+fmt(p.nodes)+'</td><td>'+p.unitU+' U / '+p.nodeKW+' kW</td><td>'+money(p.nodeCost)+'</td><td>'+r.perRack+'</td><td>'+(r.blocked?'不可行':r.racks)+'</td><td>'+r.limit+'</td></tr>';}).join('');return true;}
- function renderReadiness(){const count=plan.platforms.reduce((a,p)=>a+p.gates.filter(Boolean).length,0);$('#gate-count').textContent=count+' / 30';$('#readiness-grid').innerHTML=profiles.map(meta=>{const p=plan.platforms.find(p=>p.id===meta.id),done=p.gates.filter(Boolean).length;return '<article class="readiness-card"><span class="badge">'+done+' / 5 已记录</span><h3>'+meta.name+'</h3><ul>'+gates.map((g,i)=>'<li>'+(p.gates[i]?'已记录':'待验证')+' · '+g+'</li>').join('')+'</ul><p>'+esc(p.evidence||'尚无业务测量、供货或验收证据。')+'</p><button type="button" class="secondary" data-edit="'+meta.id+'">编辑证据与计划</button></article>';}).join('');}
- function render(){ $('#plan-name').value=plan.name;for(const el of document.querySelectorAll('[data-global]'))el.value=plan.settings[el.dataset.global];renderRoadmap();renderCapacity();renderReadiness();}
- function edit(id){editing=id;const p=plan.platforms.find(p=>p.id===id),meta=profiles.find(p=>p.id===id),form=$('#platform-form');$('#platform-title').textContent=meta.vendor+' '+meta.name;for(const key of Object.keys(platformRules)){const el=form.elements.namedItem(key);if(el.tagName==='SELECT')el.innerHTML=quarters.map((q,i)=>'<option value="'+i+'">'+q+'</option>').join('');el.value=p[key];}$('#gate-fields').innerHTML='<legend>验证记录</legend>'+gates.map((g,i)=>'<label><input type="checkbox" name="gate'+i+'" '+(p.gates[i]?'checked':'')+'>'+g+'</label>').join('');form.elements.evidence.value=p.evidence;$('#edit-error').textContent='';$('#platform-dialog').showModal();}
+ $('#capacity-body').innerHTML=result.rows.map(r=>{const p=plan.platforms.find(p=>p.id===r.id),meta=profiles.find(p=>p.id===r.id);return '<tr><th><button type="button" class="secondary" data-edit="'+r.id+'">'+meta.name+'</button></th><td>'+fmt(p.nodes)+'</td><td>'+(p.unitU===null?'—':p.unitU+' U')+' / '+(p.nodeKW===null?'—':p.nodeKW+' kW')+'</td><td>'+(p.nodeCost===null?'待录入':money(p.nodeCost))+'</td><td>'+(r.perRack??'—')+'</td><td>'+(r.blocked?'不可行':r.racks)+'</td><td>'+r.limit+'</td></tr>';}).join('');return true;}
+ function renderReadiness(){const count=plan.platforms.reduce((a,p)=>a+p.gates.filter(Boolean).length,0);$('#gate-count').textContent=count+' / '+(profiles.length*gates.length);$('#readiness-grid').innerHTML=profiles.map(meta=>{const p=plan.platforms.find(p=>p.id===meta.id),done=p.gates.filter(Boolean).length;return '<article class="readiness-card"><span class="badge">'+done+' / 5 已记录</span><h3>'+meta.vendor+' '+meta.name+'</h3><ul>'+gateLabels(meta).map((g,i)=>'<li>'+(p.gates[i]?'已记录':'待验证')+' · '+g+'</li>').join('')+'</ul><p>'+esc(p.evidence||'尚无业务测量、供货或验收证据。')+'</p><button type="button" class="secondary" data-edit="'+meta.id+'">编辑证据与计划</button></article>';}).join('');}
+ function render(){ $('#plan-name').value=plan.name;$('#platform-count').textContent=profiles.length;for(const el of document.querySelectorAll('[data-global]'))el.value=plan.settings[el.dataset.global];renderRoadmap();renderCapacity();renderReadiness();}
+ function edit(id){editing=id;const p=plan.platforms.find(p=>p.id===id),meta=profiles.find(p=>p.id===id),form=$('#platform-form');$('#platform-title').textContent=meta.vendor+' '+meta.name;$('#platform-scope').textContent=meta.cloud?'云端候选：只编辑排期与证据。按区域、实例规格、计费方式核验租赁成本，不纳入自购整机模型。':meta.vendor==='Apple'?'Mac 用作服务器须自行验证机架安装、持续功率、远程管理和服务可用性。机架 U 可按安装方案分摊；未填配置时仅作观察。':'以下为计划输入，不修改公开规格。新增平台分配节点前，须填写整机 U、平均功率与采购单价。';for(const key of Object.keys(platformRules)){const el=form.elements.namedItem(key);if(el.tagName==='SELECT')el.innerHTML=quarters.map((q,i)=>'<option value="'+i+'">'+q+'</option>').join('');el.disabled=!!meta.cloud&&(key==='nodes'||capacityKeys.includes(key));el.required=!capacityKeys.includes(key);el.value=p[key]??'';}$('#gate-fields').innerHTML='<legend>验证记录</legend>'+gateLabels(meta).map((g,i)=>'<label><input type="checkbox" name="gate'+i+'" '+(p.gates[i]?'checked':'')+'>'+g+'</label>').join('');form.elements.evidence.value=p.evidence;$('#edit-error').textContent='';$('#platform-dialog').showModal();}
  document.addEventListener('click',e=>{const button=e.target.closest('[data-edit]');if(button)edit(button.dataset.edit);});
  $('#close-dialog').addEventListener('click',()=>$('#platform-dialog').close());
- $('#platform-form').addEventListener('submit',e=>{e.preventDefault();const candidate=clone(plan),p=candidate.platforms.find(p=>p.id===editing),form=e.currentTarget;for(const k of Object.keys(platformRules))p[k]=Number(form.elements.namedItem(k).value);p.gates=gates.map((g,i)=>form.elements.namedItem('gate'+i).checked);p.evidence=form.elements.evidence.value;try{plan=validate(candidate);save();render();$('#platform-dialog').close();}catch(err){$('#edit-error').textContent=err.message;}});
+ $('#platform-form').addEventListener('submit',e=>{e.preventDefault();const candidate=clone(plan),p=candidate.platforms.find(p=>p.id===editing),form=e.currentTarget;for(const k of Object.keys(platformRules)){const value=form.elements.namedItem(k).value;p[k]=value.trim()===''&&capacityKeys.includes(k)?null:Number(value);}p.gates=gates.map((g,i)=>form.elements.namedItem('gate'+i).checked);p.evidence=form.elements.evidence.value;try{plan=validate(candidate);save();render();$('#platform-dialog').close();}catch(err){$('#edit-error').textContent=err.message;}});
  $('#vendor-filter').addEventListener('change',renderRoadmap);
  $('#capacity-form').addEventListener('submit',e=>e.preventDefault());$('#capacity-form').addEventListener('input',()=>{if(renderCapacity())save();});
  $('#plan-name').addEventListener('change',e=>{const name=e.target.value.trim();if(name){plan.name=name;save();}else{e.target.value=plan.name;status('情景名称不能为空。');}});
