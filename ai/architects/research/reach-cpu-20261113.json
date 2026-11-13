@@ -1,0 +1,1354 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-13",
+  "scope": "REACH 2025/2026 CPU-related speaker subset",
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "status": "admission-ready-for-integration",
+  "counts": {
+    "reviewed": 8,
+    "admissionReady": 7,
+    "held": 1,
+    "alreadyPresent": 0
+  },
+  "profiles": [
+    {
+      "id": "martin-recktenwald",
+      "name": "Martin Recktenwald",
+      "aliases": [],
+      "field": "系统频率协调与专用指令",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "把系统状态协调与可恢复执行纳入通用处理器的机制设计。",
+      "background": "REACH 2026 会议简介记录：IBM Senior Technical Staff Member、Core Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。",
+        "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+      ],
+      "argument": "编辑归纳：局部吞吐收益需要扣除协调、保存和恢复状态的代价。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "长操作和系统调频如何保证中断、恢复与跨部件一致性？"
+      ],
+      "questions": [
+        "长操作和系统调频如何保证中断、恢复与跨部件一致性？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：注入切换与中断，核对恢复后的数据、状态一致性及端到端延迟。",
+      "challenge": {
+        "lens": "系统频率协调与专用指令",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "长操作和系统调频如何保证中断、恢复与跨部件一致性？",
+        "variables": "总线静止时间、切换延迟、参数块大小、中断恢复时间",
+        "model": "编辑训练模型：局部吞吐收益需要扣除协调、保存和恢复状态的代价。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "频繁调频或短列表任务使协调和参数准备成为主要开销。",
+        "validation": "建议验证：注入切换与中断，核对恢复后的数据、状态一致性及端到端延迟。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "recktenwald-dvfs-2003-family",
+          "title": "Method and apparatus for dynamic system-level frequency scaling",
+          "url": "https://patents.google.com/patent/US7865749B2/en",
+          "date": "2011-01-04（优先权 2003-10-31）",
+          "authors": "Peter A. Sandon; Cedric Lichtenau; Martin Recktenwald; Thomas Pflueger; Rolf Hilgendorf",
+          "locator": "Figures 2–4；总线静止、就绪通知与分频选择实施例",
+          "contentStatus": "已读署名、优先权及说明书相关机制；Google Patents 为专利公开镜像。",
+          "sourceFacts": [
+            "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "recktenwald-sortl-2018-family",
+          "title": "Sort and merge instruction for a general-purpose processor",
+          "url": "https://patents.google.com/patent/CA3307478A1/en",
+          "date": "2026-05-13（优先权 2018-11-06）",
+          "authors": "Bruce Conrad Giamei; Martin Recktenwald; Donald William Schmidt; Timothy Slegel; Aditya Nitin Puranik; Mark Farrell; Christian Jacobi; Jonathan Bradbury; Christian Gerhard Zoellin",
+          "locator": "说明书 [0001]–[0012]、[0030]–[0032]",
+          "contentStatus": "已读署名、优先权、SORTL 参数块与中断恢复说明；公开专利镜像。",
+          "sourceFacts": [
+            "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "martin-recktenwald-reach-identity",
+          "title": "REACH 2026 speakers — Martin Recktenwald",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Martin Recktenwald speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Method and apparatus for dynamic system-level frequency scaling",
+          "https://patents.google.com/patent/US7865749B2/en",
+          "2011-01-04（优先权 2003-10-31）；Figures 2–4；总线静止、就绪通知与分频选择实施例"
+        ],
+        [
+          "Sort and merge instruction for a general-purpose processor",
+          "https://patents.google.com/patent/CA3307478A1/en",
+          "2026-05-13（优先权 2018-11-06）；说明书 [0001]–[0012]、[0030]–[0032]"
+        ],
+        [
+          "REACH 2026 speakers — Martin Recktenwald",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Martin Recktenwald speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "recktenwald-dvfs-2003-family",
+          "text": "IBM 共同发明的系统级调频披露：先协调处理器与伴随芯片、使总线静止，再选择同步分频输出并恢复运行。"
+        },
+        {
+          "workId": "recktenwald-sortl-2018-family",
+          "text": "IBM SORTL 共同发明把排序/合并列表、记录格式与恢复状态编码到指令和参数块，支持被中断工作的继续执行。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "2003 年优先权的系统调频族与 2018 年优先权的排序指令族在技术问题和专利族上独立；加拿大后续公开不算第三作品。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "frederic-piry",
+      "name": "Frederic Piry",
+      "aliases": [
+        "Frédéric Piry",
+        "Frederic Claude Marie Piry"
+      ],
+      "field": "一致性低功耗与执行特征掩蔽",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "把低功耗状态和执行路径变化纳入处理器的正确性与安全边界。",
+      "background": "REACH 2026 会议简介记录：Arm VP CPU Technology、Fellow。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。",
+        "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+      ],
+      "argument": "编辑归纳：省电和掩蔽收益必须分别对照一致性成本与可观测泄漏检验。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？"
+      ],
+      "questions": [
+        "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利披露不是已量产证明；申请状态和专利有效性不在本技术审计结论内。未将随机化视为已经证明的侧信道安全。",
+      "diagnostic": "建议验证：测核心休眠时的完整系统功耗和一致性流量；在指定威胁模型下测试泄漏，不以随机化直接判定安全。",
+      "challenge": {
+        "lens": "一致性低功耗与执行特征掩蔽",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "降低核心活动或扰动执行路径时，系统仍需支付哪些成本？",
+        "variables": "缓存待机功耗、一致性延迟、执行时间分布、攻击者观察窗口",
+        "model": "编辑训练模型：省电和掩蔽收益必须分别对照一致性成本与可观测泄漏检验。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "缓存持续活动抵消省电；重复采样也可能消除随机执行带来的掩蔽。",
+        "validation": "建议验证：测核心休眠时的完整系统功耗和一致性流量；在指定威胁模型下测试泄漏，不以随机化直接判定安全。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "piry-coherent-power-2003-family",
+          "title": "Power control within a coherent multi-processing system",
+          "url": "https://patents.google.com/patent/US20050005073A1/en",
+          "date": "2005-01-06（优先权 2003-07-02）",
+          "authors": "Julie-Anne Pruvost; Frederic Piry; Norbert Lataille; Gilles Grandou; Anthony Goodacre",
+          "locator": "说明书核心/缓存独立时钟及 Fig. 5；SCU 一致性请求处理",
+          "contentStatus": "已读署名及核心低功耗、缓存继续服务一致性请求的机制；公开专利镜像。",
+          "sourceFacts": [
+            "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "piry-masking-2002-family",
+          "title": "Processing activity masking in a data processing system",
+          "url": "https://patents.google.com/patent/US7313677B2/en",
+          "date": "2007-12-25（优先权 2002-12-12）",
+          "authors": "Frederic Claude Marie Piry",
+          "locator": "说明书原生/软件模拟执行选择；Figs. 13–14；权利要求 1–26",
+          "contentStatus": "已读独立发明人及伪随机选择硬件/软件执行路径、功耗/时间特征掩蔽机制。",
+          "sourceFacts": [
+            "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "frederic-piry-reach-identity",
+          "title": "REACH 2026 speakers — Frederic Piry",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Frederic Piry speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Power control within a coherent multi-processing system",
+          "https://patents.google.com/patent/US20050005073A1/en",
+          "2005-01-06（优先权 2003-07-02）；说明书核心/缓存独立时钟及 Fig. 5；SCU 一致性请求处理"
+        ],
+        [
+          "Processing activity masking in a data processing system",
+          "https://patents.google.com/patent/US7313677B2/en",
+          "2007-12-25（优先权 2002-12-12）；说明书原生/软件模拟执行选择；Figs. 13–14；权利要求 1–26"
+        ],
+        [
+          "REACH 2026 speakers — Frederic Piry",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Frederic Piry speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "piry-coherent-power-2003-family",
+          "text": "Arm 共同发明将处理器核心和缓存的活动状态分离，使核心低功耗时缓存仍可参与一致性操作。"
+        },
+        {
+          "workId": "piry-masking-2002-family",
+          "text": "Piry 单独署名的 Arm 专利以伪随机选择原生硬件与软件模拟执行来扰动活动特征，同时暴露效率与安全的取舍。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "两个不同优先权的专利族：一致性低功耗与执行特征掩蔽；不把同族授权与申请重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "mark-hayter",
+      "name": "Mark Hayter",
+      "aliases": [
+        "Mark D. Hayter",
+        "Mark David Hayter"
+      ],
+      "field": "网络 SoC、缓存分配与 DMA",
+      "domain": "cpu",
+      "relatedDomains": [
+        "network",
+        "memory"
+      ],
+      "core": "把包数据的缓存位置和搬运控制放在同一个 SoC 设计问题中。",
+      "background": "REACH 2026 会议简介记录：Cambridge Visiting Industrial Fellow。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。",
+        "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+      ],
+      "argument": "编辑归纳：选择性缓存与描述符控制的收益取决于真实复用和可隐藏的 CPU 开销。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？"
+      ],
+      "questions": [
+        "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：固定包长分布，比较 CPU 周期、缓存缺失、队列尾延迟与内存带宽。",
+      "challenge": {
+        "lens": "网络 SoC、缓存分配与 DMA",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "减少 CPU 搬运和控制工作后，瓶颈是否转移到缓存污染与 DMA 排队？",
+        "variables": "包头大小、缓存占用、内存字节、描述符延迟、队列等待",
+        "model": "编辑训练模型：选择性缓存与描述符控制的收益取决于真实复用和可隐藏的 CPU 开销。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "大包体误入缓存或长等待控制描述符阻塞队列，可能抵消卸载收益。",
+        "validation": "建议验证：固定包长分布，比较 CPU 周期、缓存缺失、队列尾延迟与内存带宽。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "hayter-packet-soc-2001-family",
+          "title": "System on a chip for packet processing",
+          "url": "https://patents.google.com/patent/US20020174252A1/en",
+          "date": "2002-11-21（优先权 2001-05-18）",
+          "authors": "Mark Hayter; Shailendra Desai; Daniel Dobberpuhl; Kwong-Tak Chui",
+          "locator": "说明书 [0059]–[0072]、[0082]–[0083]；Figs. 3–4",
+          "contentStatus": "已读发明人及逐事务缓存分配、包头/包体路径；转让记录使用 Mark D. Hayter。",
+          "sourceFacts": [
+            "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "hayter-unified-dma-2005-family",
+          "title": "Unified DMA",
+          "url": "https://patents.google.com/patent/US20070073922A1/en",
+          "date": "2007-03-29（优先权 2005-09-29）",
+          "authors": "Dominic Go; Mark Hayter; Zongjian Chen; Ruchi Wadhawan",
+          "locator": "接口总述；Figs. 10–11 描述符处理",
+          "contentStatus": "已读 P.A. Semi 署名与转让、传输/控制描述符和定时等待机制。",
+          "sourceFacts": [
+            "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "mark-hayter-reach-identity",
+          "title": "REACH 2026 speakers — Mark Hayter",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "date": "2026（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Mark Hayter speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "System on a chip for packet processing",
+          "https://patents.google.com/patent/US20020174252A1/en",
+          "2002-11-21（优先权 2001-05-18）；说明书 [0059]–[0072]、[0082]–[0083]；Figs. 3–4"
+        ],
+        [
+          "Unified DMA",
+          "https://patents.google.com/patent/US20070073922A1/en",
+          "2007-03-29（优先权 2005-09-29）；接口总述；Figs. 10–11 描述符处理"
+        ],
+        [
+          "REACH 2026 speakers — Mark Hayter",
+          "https://reach.theiet.org/2026-speakers",
+          "2026（会议年度；页面未标发布日期）；Mark Hayter speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "hayter-packet-soc-2001-family",
+          "text": "Broadcom 共同专利允许包的前 N 个缓存块进入 L2，其余进内存，以面向 CPU 的包头访问减少不必要的缓存占用。"
+        },
+        {
+          "workId": "hayter-unified-dma-2005-family",
+          "text": "P.A. Semi 共同专利把 Ethernet/PCIe 等接口的 DMA 与控制描述符组合，通过配置写入和定时等待减少 CPU 逐项控制。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "包缓存分配的 2001 年族与统一 DMA 的 2005 年族独立；转让记录的 Mark D. Hayter 姓名一致，历史公司归属不外推现职。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "adi-yoaz",
+      "name": "Adi Yoaz",
+      "aliases": [],
+      "field": "推测调度与取指缓存",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "compiler-runtime"
+      ],
+      "core": "减少调度等待和前端冗余，需要连同误预测与恢复成本一起评估。",
+      "background": "REACH 2025 会议简介记录：Huawei CPU Core Portfolio Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。",
+        "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+      ],
+      "argument": "编辑归纳：提前调度和压缩前端的净收益取决于误预测、重新取指与额外结构的总成本。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "推测减少的等待是否大于误预测恢复和缓存结构成本？"
+      ],
+      "questions": [
+        "推测减少的等待是否大于误预测恢复和缓存结构成本？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "共同署名的 Intel Israel 历史研究；不得归为当前 Huawei 产品实现。论文模拟结果不是量产芯片实测，个人机制分工未由作者声明拆分。",
+      "diagnostic": "建议验证：在同一模拟基线分别关闭各机制，检查误预测率、重放、前端停顿和总 IPC。",
+      "challenge": {
+        "lens": "推测调度与取指缓存",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "推测减少的等待是否大于误预测恢复和缓存结构成本？",
+        "variables": "预测准确率、重放周期、块重复率、取指带宽、面积",
+        "model": "编辑训练模型：提前调度和压缩前端的净收益取决于误预测、重新取指与额外结构的总成本。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "难预测的访存依赖或高分支熵使提前调度和块复用失效。",
+        "validation": "建议验证：在同一模拟基线分别关闭各机制，检查误预测率、重放、前端停顿和总 IPC。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "yoaz-load-scheduling-1999",
+          "title": "Speculation Techniques for Improving Load Related Instruction Scheduling",
+          "url": "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/LoadSched_ISCA26.pdf",
+          "date": "1999（ISCA，pp. 42–53）",
+          "authors": "Adi Yoaz; Mattan Erez; Ronny Ronen; Stephan Jourdan",
+          "locator": "署名页；§1.1–2 负载依赖和调度机制",
+          "contentStatus": "已读大学托管共同作者论文 PDF 的署名、引言及负载调度机制；Intel Israel 工作。",
+          "sourceFacts": [
+            "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "yoaz-xbc-2000",
+          "title": "eXtended Block Cache",
+          "url": "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/XBC_HPCA6.pdf",
+          "date": "2000（HPCA，pp. 61–70）",
+          "authors": "Stephan Jourdan; Lihu Rappoport; Yoav Almog; Mattan Erez; Adi Yoaz; Ronny Ronen",
+          "locator": "署名页；§2、§3.1 XBC 组织",
+          "contentStatus": "已读共同作者公开 PDF：多入口单出口块、结束地址索引和反向存储机制。",
+          "sourceFacts": [
+            "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "adi-yoaz-reach-identity",
+          "title": "REACH 2025 speakers — Adi Yoaz",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Adi Yoaz speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Speculation Techniques for Improving Load Related Instruction Scheduling",
+          "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/LoadSched_ISCA26.pdf",
+          "1999（ISCA，pp. 42–53）；署名页；§1.1–2 负载依赖和调度机制"
+        ],
+        [
+          "eXtended Block Cache",
+          "https://www.lph.ece.utexas.edu/merez/uploads/MattanErez/XBC_HPCA6.pdf",
+          "2000（HPCA，pp. 61–70）；署名页；§2、§3.1 XBC 组织"
+        ],
+        [
+          "REACH 2025 speakers — Adi Yoaz",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Adi Yoaz speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "yoaz-load-scheduling-1999",
+          "text": "提出预测 load/store 依赖、缓存命中/未命中及缓存 bank，以提前安排负载和依赖指令；评估属于模拟。"
+        },
+        {
+          "workId": "yoaz-xbc-2000",
+          "text": "XBC 以多入口单出口块及结束地址索引减少 trace 式存储重复，并配合分支预测组织取指。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "1999 负载调度和 2000 指令前端缓存是不同技术问题与独立论文，不把同文版本重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "atiq-bajwa",
+      "name": "Atiq Bajwa",
+      "aliases": [
+        "Atiq A. Bajwa"
+      ],
+      "field": "乱序控制流与处理器能耗",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "从控制流传递到整机电源状态，设计收益受状态管理成本约束。",
+      "background": "REACH 2025 会议简介记录：Ampere CTO、Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。",
+        "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+      ],
+      "argument": "编辑归纳：收益依赖负载状态分布；更深空闲只有覆盖转换成本时才节能。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？"
+      ],
+      "questions": [
+        "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "历史 Intel 共同作品与会议时点 Ampere 职务分列；专利权利要求不证明已实现。Haswell 团队设计不归于个人独占。",
+      "diagnostic": "建议验证：分开持续负载与突发负载，记录每任务能量、转换时间及尾延迟。",
+      "challenge": {
+        "lens": "乱序控制流与处理器能耗",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "减少空闲功耗和控制流开销后，真实负载的响应与能耗如何变化？",
+        "variables": "分支目标可用时间、状态切换延迟、活动/空闲占比、每任务能量",
+        "model": "编辑训练模型：收益依赖负载状态分布；更深空闲只有覆盖转换成本时才节能。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "持续繁忙的服务器很少进入深空闲，客户端机制的收益不能直接迁移。",
+        "validation": "建议验证：分开持续负载与突发负载，记录每任务能量、转换时间及尾延迟。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "bajwa-control-flow-1995-family",
+          "title": "Method and apparatus for changing flow of control in a processor",
+          "url": "https://patents.justia.com/patent/5809271",
+          "date": "1998-09-15（申请 1995-08-23）",
+          "authors": "Robert P. Colwell; Atiq Bajwa; Michael A. Fetterman; Andrew F. Glew; Glenn J. Hinton; David B. Papworth",
+          "locator": "US5809271；仅摘要、权利要求 1–7、发明人信息（不是说明书描述部分）",
+          "contentStatus": "已读 Justia 专利公开镜像的摘要、权利要求 1–7、发明人及授权信息。未取得或阅读说明书描述部分，不声称阅读全文。",
+          "sourceFacts": [
+            "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利权利要求正文（所列权利要求）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "bajwa-haswell-2014",
+          "title": "Haswell: The Fourth-Generation Intel Core Processor",
+          "url": "https://pages.cs.wisc.edu/~david/courses/cs758/Fall2016/handouts/restricted/Haswell.pdf",
+          "date": "2014（IEEE Micro 34(2)，pp. 6–20）",
+          "authors": "Per Hammarlund; Alberto J. Martinez; Atiq A. Bajwa 等 Intel 合著者",
+          "locator": "署名页及 pp. 6–9 电源管理部分",
+          "contentStatus": "已读公开大学教学镜像的署名和 S0ix、FIVR 机制；未逐页审计其余章节。",
+          "sourceFacts": [
+            "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "atiq-bajwa-reach-identity",
+          "title": "REACH 2025 speakers — Atiq Bajwa",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Atiq Bajwa speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Method and apparatus for changing flow of control in a processor",
+          "https://patents.justia.com/patent/5809271",
+          "1998-09-15（申请 1995-08-23）；US5809271；摘要、权利要求 1–7、发明人信息"
+        ],
+        [
+          "Haswell: The Fourth-Generation Intel Core Processor",
+          "https://pages.cs.wisc.edu/~david/courses/cs758/Fall2016/handouts/restricted/Haswell.pdf",
+          "2014（IEEE Micro 34(2)，pp. 6–20）；署名页及 pp. 6–9 电源管理部分"
+        ],
+        [
+          "REACH 2025 speakers — Atiq Bajwa",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Atiq Bajwa speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "bajwa-control-flow-1995-family",
+          "text": "Intel 共同专利在解码阶段形成绝对分支目标，并复用微操作字段把目标传给保留站，减少单独控制流传递结构。"
+        },
+        {
+          "workId": "bajwa-haswell-2014",
+          "text": "Haswell 合著论文解释 S0ix 深度空闲和片上稳压支持细粒度电压域及电源转换；不能据合著身份认定 Bajwa 独自设计这些机制。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "1995 年申请的分支控制流专利与 2014 Haswell 技术论文独立；未把 Haswell 媒体介绍重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "chris-wilkerson",
+      "name": "Chris Wilkerson",
+      "aliases": [],
+      "field": "低电压缓存与纠错",
+      "domain": "cpu",
+      "relatedDomains": [
+        "memory",
+        "physical-energy"
+      ],
+      "core": "允许受控的容量和纠错代价，换取缓存工作电压或刷新能耗的下降。",
+      "background": "REACH 2025 会议简介记录：Intel Principal Engineer。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。",
+        "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+      ],
+      "argument": "编辑归纳：比较每任务总能量，计入失效屏蔽造成的缺失和 ECC 的慢路径。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "电压或刷新节省是否被容量损失、纠错和读取放大抵消？"
+      ],
+      "questions": [
+        "电压或刷新节省是否被容量损失、纠错和读取放大抵消？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "共同署名研究及模拟/模型结果，不是对所有生产缓存的结论；未用未核实的 Christopher 别名合并人物。",
+      "diagnostic": "建议验证：扫电压、温度与保持时间，报告容量、错误分布、尾延迟和完整内存能量。",
+      "challenge": {
+        "lens": "低电压缓存与纠错",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "电压或刷新节省是否被容量损失、纠错和读取放大抵消？",
+        "variables": "故障率、可用容量、纠错延迟、刷新能量、读取字节",
+        "model": "编辑训练模型：比较每任务总能量，计入失效屏蔽造成的缺失和 ECC 的慢路径。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "高错误率或不利访问局部性触发大量慢纠错与外存访问。",
+        "validation": "建议验证：扫电压、温度与保持时间，报告容量、错误分布、尾延迟和完整内存能量。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "wilkerson-vccmin-2008",
+          "title": "Trading Off Cache Capacity for Low Voltage Operation",
+          "url": "https://www.cs.sfu.ca/~alaa/papers/ieeemicro09_vccmin.pdf",
+          "date": "2009（IEEE Micro；对应 ISCA 2008 工作）",
+          "authors": "Chris Wilkerson; Hongliang Gao; Alaa R. Alameldeen; Zeshan Chishti; Muhammad Khellah; Shih-Lien Lu",
+          "locator": "署名页；pp. 99–101 word disabling / bit fix",
+          "contentStatus": "已读共同作者公开 PDF 的低电压失效映射、字禁用和修复机制。",
+          "sourceFacts": [
+            "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "wilkerson-hiecc-2010",
+          "title": "Reducing Cache Power with Low-Cost, Multi-Bit Error-Correcting Codes",
+          "url": "https://www.cs.sfu.ca/~alaa/papers/isca10_refresh.pdf",
+          "date": "2010（ISCA）",
+          "authors": "Chris Wilkerson; Alaa R. Alameldeen; Zeshan Chishti; Wei Wu; Dinesh Somasekhar; Shih-Lien Lu",
+          "locator": "署名页；§3.2、§5",
+          "contentStatus": "已读 HiECC 快慢纠错路径、1 KB 纠错块、RALT 与功耗边界；未复现实验。",
+          "sourceFacts": [
+            "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "chris-wilkerson-reach-identity",
+          "title": "REACH 2025 speakers — Chris Wilkerson",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Chris Wilkerson speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Trading Off Cache Capacity for Low Voltage Operation",
+          "https://www.cs.sfu.ca/~alaa/papers/ieeemicro09_vccmin.pdf",
+          "2009（IEEE Micro；对应 ISCA 2008 工作）；署名页；pp. 99–101 word disabling / bit fix"
+        ],
+        [
+          "Reducing Cache Power with Low-Cost, Multi-Bit Error-Correcting Codes",
+          "https://www.cs.sfu.ca/~alaa/papers/isca10_refresh.pdf",
+          "2010（ISCA）；署名页；§3.2、§5"
+        ],
+        [
+          "REACH 2025 speakers — Chris Wilkerson",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Chris Wilkerson speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "wilkerson-vccmin-2008",
+          "text": "用字禁用和比特修复，在有效缓存容量、访问逻辑与低电压工作之间作交换。"
+        },
+        {
+          "workId": "wilkerson-hiecc-2010",
+          "text": "HiECC 以低成本常见路径和较慢多比特纠错配合较大纠错块，降低 eDRAM 刷新需求，并处理放大的读取成本。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "低电压 SRAM 容量交换与 eDRAM 保留/刷新纠错是两项独立工作；2008 会议与 2009 Micro 版本只算一项。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    },
+    {
+      "id": "tariq-kurd",
+      "name": "Tariq Kurd",
+      "aliases": [],
+      "field": "乱序结果管理与浮点特殊值",
+      "domain": "cpu",
+      "relatedDomains": [
+        "correctness",
+        "memory"
+      ],
+      "core": "把推测结果和异常数值的处理代价显式放入执行数据通路。",
+      "background": "REACH 2025 会议简介记录：Codasip Chief Architect。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。",
+        "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+      ],
+      "argument": "编辑归纳：常见路径与异常路径解耦的收益，受缓冲和校正/恢复成本限制。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？"
+      ],
+      "questions": [
+        "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "专利是技术披露，不代表已实现、量产、有效性判断或性能复现；共同署名不等于个人独占设计。",
+      "diagnostic": "建议验证：注入分支恢复、依赖冲突、零与非规格化值，核对结果和架构状态。",
+      "challenge": {
+        "lens": "乱序结果管理与浮点特殊值",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "推测结果与特殊值处理如何既缩短常见路径又保持精确状态？",
+        "variables": "广播带宽、结果缓冲容量、恢复延迟、特殊值频率、比较延迟",
+        "model": "编辑训练模型：常见路径与异常路径解耦的收益，受缓冲和校正/恢复成本限制。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "推测失败密集或特殊值频繁时，额外缓冲及校正成为瓶颈。",
+        "validation": "建议验证：注入分支恢复、依赖冲突、零与非规格化值，核对结果和架构状态。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "kurd-stunt-2014-family",
+          "title": "Stunt box to broadcast and store results until retirement for an out-of-order processor",
+          "url": "https://patents.google.com/patent/US10713049B2/en",
+          "date": "2020-07-14（优先权 2014-04-25）",
+          "authors": "Sophie Wilson; Tariq Kurd",
+          "locator": "摘要、结果存储/仲裁说明及权利要求",
+          "contentStatus": "已读原始 Avago/Broadcom 专利族的署名、推测结果广播保存与确认后更新机制。",
+          "sourceFacts": [
+            "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "kurd-nonarithmetic-2001-family",
+          "title": "Circuitry and method for performing non-arithmetic operations",
+          "url": "https://patents.google.com/patent/US7395296B2/en",
+          "date": "2008-07-01（优先权 2001-11-23）",
+          "authors": "Tariq Kurd",
+          "locator": "说明书比较器、特殊浮点值检测与校正路径",
+          "contentStatus": "已读单独发明人、原始 STMicroelectronics UK 归属及并行比较/特殊值检测机制。",
+          "sourceFacts": [
+            "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "专利说明书正文（所列部分）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "tariq-kurd-reach-identity",
+          "title": "REACH 2025 speakers — Tariq Kurd",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Tariq Kurd speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "Stunt box to broadcast and store results until retirement for an out-of-order processor",
+          "https://patents.google.com/patent/US10713049B2/en",
+          "2020-07-14（优先权 2014-04-25）；摘要、结果存储/仲裁说明及权利要求"
+        ],
+        [
+          "Circuitry and method for performing non-arithmetic operations",
+          "https://patents.google.com/patent/US7395296B2/en",
+          "2008-07-01（优先权 2001-11-23）；说明书比较器、特殊浮点值检测与校正路径"
+        ],
+        [
+          "REACH 2025 speakers — Tariq Kurd",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Tariq Kurd speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "kurd-stunt-2014-family",
+          "text": "共同专利通过结果存储及仲裁器广播执行结果，标识推测状态，在确认后依原顺序更新寄存器状态。"
+        },
+        {
+          "workId": "kurd-nonarithmetic-2001-family",
+          "text": "单独署名专利用并行比较和特殊浮点值检测，再由校正电路组合结果，处理非算术比较操作。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "2014 乱序结果族与 2001 浮点比较族独立；US10346165B2 等同族锁定机制未重复计数。后续专利转让不推断就业。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "id": "martin-recktenwald",
+      "name": "Martin Recktenwald",
+      "decision": "admit",
+      "independence": "2003 年优先权的系统调频族与 2018 年优先权的排序指令族在技术问题和专利族上独立；加拿大后续公开不算第三作品。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "frederic-piry",
+      "name": "Frederic Piry",
+      "decision": "admit",
+      "independence": "两个不同优先权的专利族：一致性低功耗与执行特征掩蔽；不把同族授权与申请重复计数。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "mark-hayter",
+      "name": "Mark Hayter",
+      "decision": "admit",
+      "independence": "包缓存分配的 2001 年族与统一 DMA 的 2005 年族独立；转让记录的 Mark D. Hayter 姓名一致，历史公司归属不外推现职。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "adi-yoaz",
+      "name": "Adi Yoaz",
+      "decision": "admit",
+      "independence": "1999 负载调度和 2000 指令前端缓存是不同技术问题与独立论文，不把同文版本重复计数。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "atiq-bajwa",
+      "name": "Atiq Bajwa",
+      "decision": "admit",
+      "independence": "1995 年申请的分支控制流专利与 2014 Haswell 技术论文独立；未把 Haswell 媒体介绍重复计数。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "chris-wilkerson",
+      "name": "Chris Wilkerson",
+      "decision": "admit",
+      "independence": "低电压 SRAM 容量交换与 eDRAM 保留/刷新纠错是两项独立工作；2008 会议与 2009 Micro 版本只算一项。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    },
+    {
+      "id": "emre-ozer",
+      "name": "Emre Ozer",
+      "decision": "hold",
+      "independence": "2020 硬连线分类器与 2021 可编程 ISA 处理器为不同作品，非同一论述重复版本。两者合著归属清楚；具体设计贡献以各自声明为限。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。",
+        "2021 PlasticARM 订阅机制正文未取得；另一独立作品已满足机制正文门槛。",
+        "当前严格验证要求两项可读正文作品；第二篇仅摘要和作者贡献声明，不计入正式准入。"
+      ]
+    },
+    {
+      "id": "tariq-kurd",
+      "name": "Tariq Kurd",
+      "decision": "admit",
+      "independence": "2014 乱序结果族与 2001 浮点比较族独立；US10346165B2 等同族锁定机制未重复计数。后续专利转让不推断就业。",
+      "remainingGaps": [
+        "现任职责不外推；只采用会议时点职责。"
+      ]
+    }
+  ],
+  "limitations": [
+    "不是最终目录、验证或部署记录；由主执行者复核并整合。",
+    "专利族去重按不同优先权/申请与技术问题；专利披露不证明实施或法律状态。",
+    "共同署名仅支持共同作品，不支持全部机制个人独占。"
+  ],
+  "heldProfiles": [
+    {
+      "id": "emre-ozer",
+      "name": "Emre Ozer",
+      "aliases": [
+        "Emre Özer"
+      ],
+      "field": "柔性电子与专用机器学习",
+      "domain": "cpu",
+      "relatedDomains": [
+        "gpu-ai",
+        "physical-energy"
+      ],
+      "core": "把算法化简与柔性工艺约束共同纳入计算架构选择。",
+      "background": "REACH 2025 会议简介记录：Pragmatic Senior Director of Processor Development。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+      "contributions": [
+        "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。",
+        "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+      ],
+      "argument": "编辑归纳：固定算法可减少硬件复杂度，但模型更新和任务变化可能要求重制硬件。",
+      "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+      "habits": [
+        "编辑提炼：把局部机制放回完整系统约束中评估。",
+        "固定分类器相对可编程处理器节省了什么，又牺牲了什么？"
+      ],
+      "questions": [
+        "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+        "哪些状态、故障或负载会使这一机制失效？"
+      ],
+      "boundary": "2020 作品读到机制与具体设计贡献；2021 仅公开摘要及贡献声明，不把 Ozer 写成 PlasticARM 核心设计者。柔性原型不外推服务器性能或商业规模。",
+      "diagnostic": "建议验证：固定工艺和输入分布，对比精度、资源、能量与模型更新路径。",
+      "challenge": {
+        "lens": "柔性电子与专用机器学习",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+        "variables": "查表规模、量化位数、分类准确率、门数、功耗、可更新性",
+        "model": "编辑训练模型：固定算法可减少硬件复杂度，但模型更新和任务变化可能要求重制硬件。",
+        "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+        "counterexample": "分布漂移或新类别使硬连线分类器失效，而可编程设计仍能更新。",
+        "validation": "建议验证：固定工艺和输入分布，对比精度、资源、能量与模型更新路径。",
+        "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "ozer-flexible-ml-2020",
+          "title": "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+          "url": "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+          "date": "2020-07-06（Nature Electronics 3，419–425）",
+          "authors": "Emre Ozer; Jedrzej Kufel; James Myers; John Biggs; Gavin Brown; Anjit Rana; Antony Sou; Catherine Ramsdale; Scott White",
+          "locator": "作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions",
+          "contentStatus": "已读大学托管接受稿的 UB-FVC 查表/投票机制与作者贡献声明。",
+          "sourceFacts": [
+            "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "type": "论文正文（所列章节）",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "ozer-plasticarm-2021",
+          "title": "A natively flexible 32-bit Arm microprocessor",
+          "url": "https://www.nature.com/articles/s41586-021-03625-w",
+          "date": "2021-07-21（Nature 595，532–536）",
+          "authors": "John Biggs; James Myers; Jedrzej Kufel; Emre Ozer; Simon Craske; Antony Sou; Catherine Ramsdale; Ken Williamson; Richard Price; Scott White",
+          "locator": "出版社公开摘要、作者列表、Author contributions",
+          "contentStatus": "已读公开摘要和贡献声明；订阅机制正文未取得，不声称已阅读全文。",
+          "sourceFacts": [
+            "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+          ],
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "出版社原文公开摘要及作者贡献声明",
+          "role": "独立技术作品及可归属署名",
+          "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+        },
+        {
+          "workId": "emre-ozer-reach-identity",
+          "title": "REACH 2025 speakers — Emre Ozer",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "date": "2025（会议年度；页面未标发布日期）",
+          "authors": "IET REACH",
+          "locator": "Emre Ozer speaker biography",
+          "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "type": "会议主办方人物简介",
+          "role": "身份与会议时点职责",
+          "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+        }
+      ],
+      "sources": [
+        [
+          "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+          "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+          "2020-07-06（Nature Electronics 3，419–425）；作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions"
+        ],
+        [
+          "A natively flexible 32-bit Arm microprocessor",
+          "https://www.nature.com/articles/s41586-021-03625-w",
+          "2021-07-21（Nature 595，532–536）；出版社公开摘要、作者列表、Author contributions"
+        ],
+        [
+          "REACH 2025 speakers — Emre Ozer",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025（会议年度；页面未标发布日期）；Emre Ozer speaker biography"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "ozer-flexible-ml-2020",
+          "text": "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+        },
+        {
+          "workId": "ozer-plasticarm-2021",
+          "text": "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "2020 硬连线分类器与 2021 可编程 ISA 处理器为不同作品，非同一论述重复版本。两者合著归属清楚；具体设计贡献以各自声明为限。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+      }
+    }
+  ],
+  "releaseReviewRequired": [
+    "Atiq Bajwa 第一项为真实专利权利要求正文；需验证器支持 专利权利要求正文（所列权利要求） 类型并校验读取范围，不得改写成说明书描述部分。"
+  ],
+  "held": [
+    {
+      "id": "emre-ozer",
+      "name": "Emre Ozer",
+      "decision": "hold",
+      "gap": "第一项已读机制正文；第二项 PlasticARM 仅出版社公开摘要及作者贡献声明，尚缺第二项可读取实质正文。",
+      "profile": {
+        "id": "emre-ozer",
+        "name": "Emre Ozer",
+        "aliases": [
+          "Emre Özer"
+        ],
+        "field": "柔性电子与专用机器学习",
+        "domain": "cpu",
+        "relatedDomains": [
+          "gpu-ai",
+          "physical-energy"
+        ],
+        "core": "把算法化简与柔性工艺约束共同纳入计算架构选择。",
+        "background": "REACH 2025 会议简介记录：Pragmatic Senior Director of Processor Development。下列作品归属以各发表时署名及机构为准，不将会议职务外推为实时现职。",
+        "contributions": [
+          "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。",
+          "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+        ],
+        "argument": "编辑归纳：固定算法可减少硬件复杂度，但模型更新和任务变化可能要求重制硬件。",
+        "evidence": "两项独立一手技术作品的署名和所列读取范围已核验；至少一项机制正文已读。",
+        "habits": [
+          "编辑提炼：把局部机制放回完整系统约束中评估。",
+          "固定分类器相对可编程处理器节省了什么，又牺牲了什么？"
+        ],
+        "questions": [
+          "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+          "哪些状态、故障或负载会使这一机制失效？"
+        ],
+        "boundary": "2020 作品读到机制与具体设计贡献；2021 仅公开摘要及贡献声明，不把 Ozer 写成 PlasticARM 核心设计者。柔性原型不外推服务器性能或商业规模。",
+        "diagnostic": "建议验证：固定工艺和输入分布，对比精度、资源、能量与模型更新路径。",
+        "challenge": {
+          "lens": "柔性电子与专用机器学习",
+          "skills": [
+            "A2",
+            "A3",
+            "A8"
+          ],
+          "question": "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+          "variables": "查表规模、量化位数、分类准确率、门数、功耗、可更新性",
+          "model": "编辑训练模型：固定算法可减少硬件复杂度，但模型更新和任务变化可能要求重制硬件。",
+          "crossover": "只有收益超过额外状态、恢复与实现开销时才可能成立；阈值须由具体平台测定。",
+          "counterexample": "分布漂移或新类别使硬连线分类器失效，而可编程设计仍能更新。",
+          "validation": "建议验证：固定工艺和输入分布，对比精度、资源、能量与模型更新路径。",
+          "transfer": "迁移至另一代处理器时重新核实负载、状态边界和系统约束，不直接套用原文性能。"
+        },
+        "sourceAudit": [
+          {
+            "workId": "ozer-flexible-ml-2020",
+            "title": "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+            "url": "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+            "date": "2020-07-06（Nature Electronics 3，419–425）",
+            "authors": "Emre Ozer; Jedrzej Kufel; James Myers; John Biggs; Gavin Brown; Anjit Rana; Antony Sou; Catherine Ramsdale; Scott White",
+            "locator": "作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions",
+            "contentStatus": "已读大学托管接受稿的 UB-FVC 查表/投票机制与作者贡献声明。",
+            "sourceFacts": [
+              "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+            ],
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": true,
+            "retrievedAt": "2026-11-13",
+            "type": "论文正文（所列章节）",
+            "role": "独立技术作品及可归属署名",
+            "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+          },
+          {
+            "workId": "ozer-plasticarm-2021",
+            "title": "A natively flexible 32-bit Arm microprocessor",
+            "url": "https://www.nature.com/articles/s41586-021-03625-w",
+            "date": "2021-07-21（Nature 595，532–536）",
+            "authors": "John Biggs; James Myers; Jedrzej Kufel; Emre Ozer; Simon Craske; Antony Sou; Catherine Ramsdale; Ken Williamson; Richard Price; Scott White",
+            "locator": "出版社公开摘要、作者列表、Author contributions",
+            "contentStatus": "已读公开摘要和贡献声明；订阅机制正文未取得，不声称已阅读全文。",
+            "sourceFacts": [
+              "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+            ],
+            "primary": true,
+            "substantive": true,
+            "mechanismBody": false,
+            "retrievedAt": "2026-11-13",
+            "type": "出版社原文公开摘要及作者贡献声明",
+            "role": "独立技术作品及可归属署名",
+            "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+          },
+          {
+            "workId": "emre-ozer-reach-identity",
+            "title": "REACH 2025 speakers — Emre Ozer",
+            "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+            "date": "2025（会议年度；页面未标发布日期）",
+            "authors": "IET REACH",
+            "locator": "Emre Ozer speaker biography",
+            "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+            "primary": true,
+            "substantive": false,
+            "mechanismBody": false,
+            "retrievedAt": "2026-11-13",
+            "type": "会议主办方人物简介",
+            "role": "身份与会议时点职责",
+            "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+          }
+        ],
+        "sources": [
+          [
+            "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+            "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+            "2020-07-06（Nature Electronics 3，419–425）；作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions"
+          ],
+          [
+            "A natively flexible 32-bit Arm microprocessor",
+            "https://www.nature.com/articles/s41586-021-03625-w",
+            "2021-07-21（Nature 595，532–536）；出版社公开摘要、作者列表、Author contributions"
+          ],
+          [
+            "REACH 2025 speakers — Emre Ozer",
+            "https://reach.theiet.org/2026-speakers/2025-speakers",
+            "2025（会议年度；页面未标发布日期）；Emre Ozer speaker biography"
+          ]
+        ],
+        "sourceFacts": [
+          {
+            "workId": "ozer-flexible-ml-2020",
+            "text": "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+          },
+          {
+            "workId": "ozer-plasticarm-2021",
+            "text": "PlasticARM 是独立的可编程 32 位柔性处理器作品；贡献声明支持 Ozer 参与数据分析及写作，不支持称其为该核心或 SoC 的设计者。"
+          }
+        ],
+        "notes": [],
+        "awardsVerified": [],
+        "contributionBasis": "2020 硬连线分类器与 2021 可编程 ISA 处理器为不同作品，非同一论述重复版本。两者合著归属清楚；具体设计贡献以各自声明为限。",
+        "researchStatus": {
+          "status": "complete",
+          "batch": "2026-11-13-reach",
+          "standard": "contribution-led-v1",
+          "verifiedAt": "2026-11-13",
+          "meaning": "所列两项历史技术作品的有限审计完成；不是穷尽作品，也不确认现职。"
+        }
+      }
+    }
+  ]
+}

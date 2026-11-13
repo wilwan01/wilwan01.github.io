@@ -65,6 +65,9 @@ PRIMARY_BODY_TYPES.add('作者软件技术文档')
 # Equivalent public-application-body label already used by the approved #51
 # Yang Jiao record. This is not a grant claim or a metadata-only paper record.
 PRIMARY_BODY_TYPES.add('公开专利申请说明书')
+# Read original claim text without calling it a read of the description.
+# Abstracts alone remain ineligible; locators and read ranges are still required.
+PRIMARY_BODY_TYPES.add('专利权利要求正文（所列权利要求）')
 # Explicit aliases are identity checks, not new people.
 aliases={'peter-hofstee':['Peter Hofstee','H. Peter Hofstee'],'tim-mattson':['Tim Mattson','Timothy G. Mattson']}
 seen={}
