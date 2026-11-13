@@ -7,7 +7,7 @@ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
  page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)failed.push(r.url())});
  for(const [file,lang] of [['index.html','zh'],['index-en.html','en']]){
   await page.goto(base+'/ai/'+file,{waitUntil:'networkidle'});
-  assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('#company-reports section.card').count(),15);assert.equal(await page.locator('.report-freshness').count(),15);assert.equal(await page.locator('.update-card').count(),4);
+  assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('#company-reports section.card').count(),15);assert.equal(await page.locator('.report-freshness').count(),15);assert.equal(await page.locator('.update-card').count(),3);
   assert.equal(await page.locator('.research-nav a').first().getAttribute('href'),'/ai/'+file);
   assert.equal(await page.locator('.report-freshness time[datetime="2026-09-27"]').count(),1);assert.equal(await page.locator('.report-freshness time[datetime="2026-09-28"]').count(),14);
   await page.locator('.collection-download>summary').click();assert.equal(await page.locator('.collection-download').evaluate(e=>e.open),true);
