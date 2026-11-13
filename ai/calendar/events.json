@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-12",
+ "as_of": "2026-11-13",
  "scope": {
   "zh": "财报日期来自站内财报刷新台账；其他条目为带来源的会议、电网与基准节点。11月12日增量核验不表示全部历史条目已重核。",
   "en": "Earnings dates use the site refresh ledger; other entries are sourced conference, grid and benchmark milestones. The November 12 increment does not reverify every historical entry."
@@ -55,6 +55,10 @@
   "compute-finance": {
    "zh": "算力金融",
    "en": "Compute finance"
+  },
+  "policy": {
+   "zh": "政策",
+   "en": "Policy"
   }
  },
  "events": [
@@ -120,14 +124,14 @@
    "precision": "month",
    "cat": "grid",
    "title": {
-    "zh": "PJM 2030/31 容量拍卖（12月）",
-    "en": "PJM 2030/31 capacity auction (December)"
+    "zh": "PJM 2029/30 容量拍卖（12月）",
+    "en": "PJM 2029/30 capacity auction (December)"
    },
    "evidence": "secondary",
    "url": "https://marylandmatters.org/2026/07/15/pjm-interconnection-electricity-price-hits-cap-again-in-latest-auction/",
    "note": {
-    "zh": "报道称12月举行，具体日期未核实。",
-    "en": "Reported for December; the exact date was not verified."
+    "zh": "更正：12月拍卖针对2029/30交付年度（此前误写为2030/31）；价格区间已延至该年度。2030/31拍卖目前排在2027年5月。具体日期未核实。",
+    "en": "Corrected: the December auction is for the 2029/30 delivery year (previously mislabelled 2030/31); the price collar extends to it. The 2030/31 auction is currently slated for May 2027. The exact date was not verified."
    },
    "links": {
     "energy": [
@@ -147,8 +151,8 @@
    "evidence": "editorial",
    "url": "https://www.hpcwire.com/off-the-wire/mlcommons-releases-mlperf-training-v6-0-results/",
    "note": {
-    "zh": "依据 v6.0 与 v5.1 相隔约六个月推断；MLCommons 未在此核对发布日期。",
-    "en": "Inferred from the roughly six-month gap between v5.1 and v6.0; MLCommons’ release date was not checked here."
+    "zh": "依据 v6.0 与 v5.1 相隔约六个月推断；截至2026年11月13日未找到 v6.1 发布。MLPerf 推理侧已改向 Endpoints 的滚动提交（见基准页 M24）。",
+    "en": "Inferred from the roughly six-month gap between v5.1 and v6.0; no v6.1 release was found as of 13 Nov 2026. On the inference side MLPerf is moving to Endpoints’ rolling submissions (see benchmarks M24)."
    },
    "links": {
     "benchmarks": [
@@ -628,6 +632,38 @@
    "checked_at": "2026-11-12T11:23:05.060256+00:00",
    "status": "confirmed",
    "organizer": "J.P. Morgan"
+  },
+  {
+   "id": "K28",
+   "date": "2026-11-27",
+   "cat": "policy",
+   "title": {
+    "zh": "中国对美镓、锗、锑出口管制暂停到期",
+    "en": "China’s suspension of gallium, germanium and antimony export limits on the US ends"
+   },
+   "evidence": "secondary-authoritative",
+   "url": "https://pillsburylaw.com/en/news-and-insights/china-suspends-export-controls-certain-critical-minerals-related-items.html",
+   "note": {
+    "zh": "2024年第46号公告第2条自2025-11-09暂停至2026-11-27；到期后的状态尚未核查（见政策页 P15）。",
+    "en": "Article 2 of Announcement 46 of 2024 has been suspended from 9 Nov 2025 to 27 Nov 2026; the status after expiry has not been checked (see policy P15)."
+   },
+   "links": {}
+  },
+  {
+   "id": "K29",
+   "date": "2027-01-10",
+   "cat": "policy",
+   "title": {
+    "zh": "BIS 关联实体规则暂停与中国10月措施暂停同到期",
+    "en": "BIS Affiliates Rule suspension and China’s October-measures suspension both run to this date"
+   },
+   "evidence": "primary-read",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/pdf/2026-22793.pdf",
+   "note": {
+    "zh": "BIS 规则（联邦公报 91 FR 70789，已读）延至2027-01-10；中国的延期为二手报道（见政策页 P13、P16）。",
+    "en": "The BIS rule (91 FR 70789, read) runs to 10 Jan 2027; China’s extension is secondary reporting (see policy P13 and P16)."
+   },
+   "links": {}
   }
  ],
  "finance_subcategories": [
