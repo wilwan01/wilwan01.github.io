@@ -1,0 +1,298 @@
+{
+  "id": "reach-barker-followup-20261113",
+  "checkedAt": "2026-11-13",
+  "status": "qualified",
+  "evidenceGate": "two-distinct-primary-works-one-body-v1",
+  "priorRecord": "ai/architects/research/reach-other-20261113.json#cameron-barker",
+  "changeType": "newly-verified-historical-evidence-and-identity",
+  "profiles": [
+    {
+      "id": "cameron-barker",
+      "name": "Cameron Barker",
+      "aliases": [
+        "Cameron Booker"
+      ],
+      "field": "量子系统软件与逻辑架构",
+      "domain": "compiler-runtime",
+      "relatedDomains": [
+        "hpc",
+        "foundations"
+      ],
+      "core": "参与将中性原子运动、原位门和逻辑编码连接的量子架构，并共同研究耗散系统长期振荡的谱条件。",
+      "background": "REACH与QDA 2026均列Infleqtion UK Software Team Lead；QDA说明其维护Superstaq。2020论文以Cameron Booker署名、机构为Oxford；同一ORCID公开记录将Booker列为Barker的曾用名。2025/2026 Sqale论文以Cameron Barker署名并列Infleqtion。现职最后核实于2026-11-13；历史Oxford成果不归为Infleqtion成果。",
+      "contributions": [
+        "共同署名Sqale逻辑架构：按需移动原子块取得连接，再执行多次原位门，并将电路编译到原生门集。",
+        "以Booker署名共同分析耗散时间晶体：持久非定常运动需非零纯虚谱分量，周期性还受频率可公度性及可观测性约束。"
+      ],
+      "argument": "Sqale先通过原子运动获得连接，再执行多次原位纠缠门；逻辑深度缩短仍须计入物理串行调度和后选择损失。耗散时间晶体论文则把长期振荡连接到Liouvillian纯虚谱分量，并说明频率可公度性和可观测性限制周期行为。编辑归纳：架构抽象或理论条件须经过物理代价与可观测结果检验，不能直接等同于端到端优势。",
+      "evidence": "两项独立作品：2020 Oxford耗散多体理论与2025/2026 Infleqtion中性原子逻辑架构；各自版本/镜像合并计一次。角色简介及Superstaq维护称谓不另计作品。",
+      "habits": [
+        "编辑归纳：区分抽象层条件、物理实现代价与可观测验证。"
+      ],
+      "questions": [
+        "常数逻辑深度经过物理门调度和后选择后，单位时间可用样本是否仍改善？"
+      ],
+      "boundary": "Sqale为概念验证：所示Shor经过不可扩展预编译，部分物理纠缠门串行执行，后处理不具可扩展性；2020作品是理论分析，不证明商用量子优势。Barker为共同作者，未把架构或编译器独归个人。",
+      "diagnostic": "建议同时报告总执行时间、后选择接受率与输出误差；不要仅以逻辑深度或被保留样本的精度判断收益。",
+      "notes": [],
+      "sources": [
+        [
+          "Demonstration of a Logical Architecture Uniting Motion and In-Place Entanglement",
+          "https://arxiv.org/pdf/2509.13247v2",
+          "PDF pp.1–5，署名/机构，§I，§II.A–E，§III开头及结果边界"
+        ],
+        [
+          "Non-stationarity and dissipative time crystals: spectral properties and finite-size effects",
+          "https://inspirehep.net/files/05f50f238f641c20d3ac9c1eb1c1d219",
+          "PDF pp.1、4–6、15，作者/机构，§2–4及§5开头，ORCID iDs"
+        ],
+        [
+          "ORCID public person record 0000-0003-1038-3220",
+          "https://pub.orcid.org/v3.0/0000-0003-1038-3220/person",
+          "JSON $.name；$.other-names.other-name[0]及其source/source-orcid"
+        ],
+        [
+          "QDA Forum 2026 speakers",
+          "https://www.qda.global/speakers?e77a0dc8_page=2",
+          "Cameron Barker条目；网页L49–64"
+        ],
+        [
+          "IET REACH 2026 speakers",
+          "https://reach.theiet.org/2026-speakers",
+          "Cameron Barker讲者条目及其公开个人页链接；网页L147–151"
+        ]
+      ],
+      "sourceAudit": [
+        {
+          "workId": "barker-sqale-motion",
+          "title": "Demonstration of a Logical Architecture Uniting Motion and In-Place Entanglement",
+          "authors": "Rich Rines; Benjamin Hall; Mariesa H. Teo; Joshua Viszlai; Daniel C. Cole; David Mason; Cameron Barker; 等共38位共同作者",
+          "date": "2025-09-16（v1）；2026-04-02（所读v2提交日期）",
+          "url": "https://arxiv.org/pdf/2509.13247v2",
+          "locator": "PDF pp.1–5，署名/机构，§I，§II.A–E，§III开头及结果边界",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读原子分块运动与原位门、编码/编译、后选择/丢失修正、泄漏检测及不可扩展Shor边界；未声称核验全部实验或独立复现。PDF首页另印April6,2026；版本时间采用arXiv提交历史。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "34b6f489f82f4c4b12c131ce6be01c9968226719ebc4430c0e4c6384576217f7"
+        },
+        {
+          "workId": "booker-dissipative-time-crystals",
+          "title": "Non-stationarity and dissipative time crystals: spectral properties and finite-size effects",
+          "authors": "Cameron Booker; Berislav Buča; Dieter Jaksch",
+          "date": "2020-08-28（出版PDF所列Published）",
+          "url": "https://inspirehep.net/files/05f50f238f641c20d3ac9c1eb1c1d219",
+          "locator": "PDF pp.1、4–6、15，作者/机构，§2–4及§5开头，ORCID iDs",
+          "type": "论文正文（所列页）",
+          "contentStatus": "已读Lindblad/谱条件、可公度频率、暗态和动力学对称性边界，以及p.15的作者ORCID。原出版DOI10.1088/1367-2630/ababc4；INSPIRE公开存储原始出版正文，内容一手、托管为镜像。未声称审阅全部数值实验。",
+          "evidenceStrength": "一手署名技术作品；共同署名不代表个人独占贡献。",
+          "role": "独立技术作品与机制正文",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "34e24ea2c5b73691e657271d96fb40763c9b68ed2b9eb14d6a6603c26959a514",
+          "origin": "原始出版论文：New Journal of Physics 22 (2020) 085007，DOI10.1088/1367-2630/ababc4；实际读取渠道为INSPIRE公开研究库所托管的出版PDF镜像。"
+        },
+        {
+          "workId": "barker-booker-orcid",
+          "title": "ORCID public person record 0000-0003-1038-3220",
+          "authors": "Cameron Barker（记录本人）",
+          "date": "2025-08-04（姓名/别名字段修改时间）；读取2026-11-13",
+          "url": "https://pub.orcid.org/v3.0/0000-0003-1038-3220/person",
+          "locator": "JSON $.name；$.other-names.other-name[0]及其source/source-orcid",
+          "type": "作者公开身份记录（API正文）",
+          "contentStatus": "直接GET公开API并解析JSON：given-names=Cameron；family-name=Barker；other-name=Cameron Booker；别名source-orcid为同一ID，source-name为Cameron Barker。网页JS壳不作为正文读取依据。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13",
+          "retrievedSha256": "9ea7da436bebd380d8ec266511b66238e19496126ab33347ea97a7736bd828e9"
+        },
+        {
+          "workId": "barker-qda-2026",
+          "title": "QDA Forum 2026 speakers",
+          "authors": "Quantum Datacenter Alliance",
+          "date": "2026（页面未标发布日期；会议2026-10-01）",
+          "url": "https://www.qda.global/speakers?e77a0dc8_page=2",
+          "locator": "Cameron Barker条目；网页L49–64",
+          "type": "机构人物简介",
+          "contentStatus": "已读Infleqtion UK Software Team Lead、全栈软件架构与Superstaq maintainer描述；不把宣传性能语句当独立验证。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        },
+        {
+          "workId": "barker-reach-2026",
+          "title": "IET REACH 2026 speakers",
+          "authors": "Institution of Engineering and Technology",
+          "date": "2026（页面未标发布日期；读取2026-11-13）",
+          "url": "https://reach.theiet.org/2026-speakers",
+          "locator": "Cameron Barker讲者条目及其公开个人页链接；网页L147–151",
+          "type": "机构人物简介",
+          "contentStatus": "已读Software Team Lead, Infleqtion, UK；该条目个人链接确为https://www.linkedin.com/in/cameron-booker/。链接地址用于身份交叉核对；LinkedIn直接读取受限，不作独立技术作品。",
+          "evidenceStrength": "公开身份记录，不计技术作品。",
+          "role": "身份、别名及会议时职责",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "retrievedAt": "2026-11-13"
+        }
+      ],
+      "sourceFacts": [
+        {
+          "workId": "barker-sqale-motion",
+          "text": "所选论文首页含Cameron Barker与Infleqtion署名；§II描述移动/原位门/编码/后处理，并明确扩展边界。"
+        },
+        {
+          "workId": "booker-dissipative-time-crystals",
+          "text": "Oxford论文以Cameron Booker署名；§3–4分析谱条件、暗态与对称性，p.15列ORCID0000-0003-1038-3220。"
+        },
+        {
+          "workId": "barker-booker-orcid",
+          "text": "同一公开ORCID现名Cameron Barker、本人声明别名Cameron Booker，支持跨姓署名归属。"
+        },
+        {
+          "workId": "barker-qda-2026",
+          "text": "会议官方简介确认Infleqtion UK软件团队负责人及Superstaq维护职责；属于角色证据。"
+        }
+      ],
+      "awardsVerified": [],
+      "contributionBasis": "两项可归属的一手署名作品与已读取机制正文。量子架构工程与耗散理论分别计一项；不把论文版本、会议简介、学位论文重述或维护头衔重复计数。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "所选两项作品、机制和曾用名桥接审核完成；不穷尽个人成果，不外推商业采用。"
+      },
+      "challenge": {
+        "lens": "逻辑深度、物理调度与可用样本",
+        "skills": [
+          "A2",
+          "A3",
+          "A8",
+          "A9"
+        ],
+        "question": "保持任务和误差要求不变，逻辑常数深度是否真的提高单位时间有效结果？",
+        "variables": "物理执行时间t（秒/次）、后选择接受率p（0–1）、输出误差、运动/纠缠/读出耗时",
+        "model": "编辑训练模型：在同一输出误差门槛内比较接受样本率p/t，并单独统计编译、重试和后处理成本；它不是作者原式。",
+        "crossover": "仅在总资源与误差条件匹配、p/t改善时，才判定该工作流存在吞吐收益。",
+        "counterexample": "增加检测门降低接受率并增加噪声，或逻辑并行在物理硬件上仍需串行。",
+        "validation": "固定任务、物理硬件和误差门槛，测量端到端时间与所有尝试次数，报告被舍弃样本及不确定度。",
+        "transfer": "迁移至另一量子平台时重测连接、调度、误差与接受率，不照搬代码距离或论文倍率。"
+      },
+      "evidenceNotes": [
+        "同名Edinburgh机器学习研究者的机构/ORCID不同，未计入其AI论文。",
+        "姓名桥接以ORCID公开API正文为主；未依赖受限LinkedIn页面或个人关系信息。"
+      ]
+    }
+  ],
+  "held": [],
+  "identityAudit": {
+    "orcid": "0000-0003-1038-3220",
+    "verifiedPublicBody": "https://pub.orcid.org/v3.0/0000-0003-1038-3220/person",
+    "retrievedSha256": "9ea7da436bebd380d8ec266511b66238e19496126ab33347ea97a7736bd828e9",
+    "readMethod": "Direct HTTPS GET of ORCID public API with Accept: application/json; parsed response body. Web search open cannot render API, but direct unauthenticated public GET succeeded.",
+    "name": {
+      "created-date": {
+        "value": 1587154529624
+      },
+      "last-modified-date": {
+        "value": 1754324623444
+      },
+      "given-names": {
+        "value": "Cameron"
+      },
+      "family-name": {
+        "value": "Barker"
+      },
+      "credit-name": null,
+      "source": null,
+      "visibility": "public",
+      "path": "0000-0003-1038-3220"
+    },
+    "otherNames": {
+      "last-modified-date": {
+        "value": 1754324623625
+      },
+      "other-name": [
+        {
+          "created-date": {
+            "value": 1754324623625
+          },
+          "last-modified-date": {
+            "value": 1754324623625
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0003-1038-3220",
+              "path": "0000-0003-1038-3220",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Cameron Barker"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "content": "Cameron Booker",
+          "visibility": "public",
+          "path": "/0000-0003-1038-3220/other-names/2114093",
+          "put-code": 2114093,
+          "display-index": 1
+        }
+      ],
+      "path": "/0000-0003-1038-3220/other-names"
+    },
+    "publicationBridge": "2020论文PDF p.15把Cameron Booker绑定至同一ORCID；API works的Crossref记录包含该文DOI10.1088/1367-2630/ababc4。",
+    "targetBridge": "官方REACH 2026把Infleqtion Cameron Barker链接至/cameron-booker/；QDA正文确认其Superstaq职责，Sqale论文首页确认Barker/Infleqtion共同署名。",
+    "supportingOnly": "LinkedIn搜索索引返回本人改姓声明，但直接正文受robots/999限制；没有把索引片段提升为技术作品，决定主要依据公开ORCID正文+论文作者ID。"
+  },
+  "independenceAudit": {
+    "count": 2,
+    "works": [
+      "barker-sqale-motion",
+      "booker-dissipative-time-crystals"
+    ],
+    "rationale": "不同年代、不同机构、不同研究问题的独立发表作品；2020理论分析不是Sqale工程论文的版本或转载。",
+    "notCounted": [
+      "Superstaq维护职责简介",
+      "2020论文的Oxford/INSPIRE副本",
+      "Sqale v1/v2版本差异",
+      "Oxford学位论文与原发表工作的重述",
+      "同名Edinburgh AI论文"
+    ]
+  },
+  "sourceDateConflicts": [
+    {
+      "workId": "booker-dissipative-time-crystals",
+      "pdfPublished": "2020-08-28",
+      "orcidCrossrefRecord": "2020-09-02",
+      "resolution": "页面采用实际读取出版PDF的Published日期，保留Crossref登记差异。"
+    },
+    {
+      "workId": "barker-sqale-motion",
+      "arxivV2Submitted": "2026-04-02",
+      "pdfDated": "2026-04-06",
+      "resolution": "标记已读版本v2及arXiv提交历史，不将PDF内部日期倒写成首次发表日期。"
+    }
+  ],
+  "remainingLimitations": [
+    "未独立复现实验；仅核验所列机制正文与署名。",
+    "没有公开逐作者贡献声明，不把整项团队成果归为个人独占。",
+    "网页、目录、浏览器与部署验收由主任务整合执行。"
+  ],
+  "nextAction": "Integrate qualified profile preserving original held research record, rerender and run repository/source/browser validation; publish only after release gates pass."
+}

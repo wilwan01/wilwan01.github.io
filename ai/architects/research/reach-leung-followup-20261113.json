@@ -1,0 +1,273 @@
+{
+  "id": "reach-leung-followup-20261113",
+  "checkedAt": "2026-11-13",
+  "priorResearch": "ai/architects/research/reach-other-20261113.json",
+  "profiles": [
+    {
+      "id": "matthew-leung",
+      "name": "Matthew Leung",
+      "aliases": [
+        "Pak Hei Matthew Leung"
+      ],
+      "field": "通信向量处理与FFT存储组织",
+      "domain": "network",
+      "relatedDomains": [
+        "cpu",
+        "memory"
+      ],
+      "core": "把通信算法控制与可复制数据通路分离，并为FFT下一阶段预先组织数据。",
+      "background": "IET REACH 2025官方讲者名单列其为Huawei UK计算机架构研究总监；2026-11-13读取的委员会履历记载此前任职Marvell、ASTRI、Sun与Apple。SIGDA 2020同页以Pak Hei Matthew Leung署名、以Matthew Leung介绍Huawei HK职责；两处Michigan/Stanford学历一致。专利使用该精确全名且归属Marvell。",
+      "contributions": [
+        "与Jacky S. Chow、Eugene Yuk-Yin Tang共同署名US7685405B1：选择不同算法控制器，复用可复制的向量数据通路。",
+        "US7996453B1列其为唯一发明人：以蝶形数据组打包、旋转寻址及结果重排，组织下一FFT阶段的访问。"
+      ],
+      "argument": "两项工作分别解决多算法运算资源共享和FFT存储访问组织，申请号、优先权申请及机制不同。前者三人共同发明，后者仅在该专利范围内按单一所列发明人记录。",
+      "evidence": "已读取两项不同专利族的所列说明书机制正文；MLCAD和REACH履历仅用于身份桥接。",
+      "habits": [
+        "编辑归纳：先计算共享控制与数据布局引入的代价，再判断硬件复用是否划算。"
+      ],
+      "questions": [
+        "减少端口与地址计算后，数据打包、重排及算法切换是否抵消收益？"
+      ],
+      "boundary": "两项均是历史Marvell专利披露，不是Huawei处理器实现、实硅性能或商业采用证明；不把共同发明写为个人独作，也不把所列发明扩张为FFT算法本身的发明。",
+      "diagnostic": "保持变换长度、精度及吞吐目标一致，比较端口/位宽、缓冲、重排开销、通路利用率和关键路径。",
+      "challenge": {
+        "lens": "可编程控制与数据布局的成本",
+        "skills": [
+          "A2",
+          "A3",
+          "A8"
+        ],
+        "question": "减少端口与地址计算后，数据打包、重排及算法切换是否抵消收益？",
+        "variables": "算法切换周期、向量利用率、存储位宽/端口数、变换点数、radix、重排缓冲量与能耗。",
+        "model": "编辑训练模型：在相同输出质量和吞吐约束下，比较复用节省的面积/能耗与控制、重排及缓冲代价；可重叠执行按关键路径计算时间。",
+        "crossover": "资源复用的净收益必须在目标负载及物理实现上成立，不能仅凭端口减少判定。",
+        "counterexample": "不规则算法或频繁切换使数据通路空闲，重排与宽存储布线成本超过共享收益。",
+        "validation": "比较相同精度与负载的RTL/时序结果，检查最坏吞吐、缓冲占用、关键路径、能耗与切换等待。",
+        "transfer": "迁移至AI加速器时重新检验布局与算子复用条件；该迁移是编辑练习，不是作者产品主张。"
+      },
+      "sourceAudit": [
+        {
+          "workId": "leung-vector-control-us11510246",
+          "title": "Programmable architecture for digital communication systems that support vector processing and the associated methodology — US7685405B1",
+          "url": "https://patents.google.com/patent/US7685405B1/en",
+          "authors": "Jacky S. Chow; Pak Hei Matthew Leung; Eugene Yuk-Yin Tang",
+          "date": "2010-03-23",
+          "locator": "发明人及申请/优先权信息；Description：Cross Reference、Figs.1–4相关正文，global control、algorithm controllers、datapath及复制向量通路",
+          "type": "专利说明书正文（所列部分）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列说明书正文及书目信息；Google Patents为美国专利公开文本镜像",
+          "role": "三人共同发明及控制/数据通路机制；Marvell时期作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手专利披露；证明所列共同发明，不证明产品采用或性能复现",
+          "sourceNature": "primary-patent-publication-via-public-mirror",
+          "originalPublication": "US7685405B1",
+          "applicationNumber": "US11/510,246",
+          "priorityDate": "2005-10-14",
+          "priorityApplication": "US60/727,046",
+          "originalAssignee": "Marvell International Ltd"
+        },
+        {
+          "workId": "leung-fft-memory-us11835214",
+          "title": "Methods and apparatus for providing an efficient FFT memory addressing and storage scheme — US7996453B1",
+          "url": "https://patents.google.com/patent/US7996453B1/en",
+          "authors": "Pak Hei Matthew Leung",
+          "date": "2011-08-09",
+          "locator": "发明人及申请/优先权信息；Description：Cross Reference；Detailed Description Figs.1–5、Eqs.1–3，单地址蝶形数据组、旋转寻址与shuffle寄存器",
+          "type": "专利说明书正文（所列部分）",
+          "primary": true,
+          "substantive": true,
+          "mechanismBody": true,
+          "contentStatus": "已读取所列说明书正文及书目信息；Google Patents为美国专利公开文本镜像",
+          "role": "单一所列发明人；FFT数据布局及寻址机制；Marvell时期作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "一手专利披露；不把设计实施例当作实硅或商业采用证据",
+          "sourceNature": "primary-patent-publication-via-public-mirror",
+          "originalPublication": "US7996453B1",
+          "applicationNumber": "US11/835,214",
+          "priorityDate": "2006-08-16",
+          "priorityApplication": "US60/822,569",
+          "originalAssignee": "Marvell International Ltd"
+        },
+        {
+          "workId": "leung-mlcad2020-identity",
+          "title": "MLCAD20 Plenary III — Design Challenges on Post Moore’s Law Era: author and biography",
+          "url": "https://www.sigda.org/publications/mlcad20-toc/",
+          "authors": "Pak Hei Matthew Leung; ACM SIGDA conference record",
+          "date": "2020-11-17",
+          "locator": "Plenary III：题名下作者全名；紧随其后的Biography；日期为SIGDA页面发表日期",
+          "type": "会议人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取作者名、摘要与履历；未读取完整演讲，不计独立技术作品",
+          "role": "把Pak Hei Matthew Leung与Matthew Leung、Huawei HK及Michigan/Stanford学历明确连接",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "官方会议作者与履历记录；仅作为身份桥接"
+        },
+        {
+          "workId": "leung-reach-committee-identity",
+          "title": "IET REACH Committee — Matthew Leung",
+          "url": "https://reach.theiet.org/about-the-conference/committee",
+          "authors": "The Institution of Engineering and Technology",
+          "date": "unknown",
+          "locator": "Matthew Leung条目：Research Director in Computer Architecture、Huawei UK、学历及既往Marvell/ASTRI/Sun/Apple经历",
+          "type": "机构人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取该人物完整履历段；页面无明确发表日期",
+          "role": "会议侧角色、历史机构与研究领域核对；不计技术作品",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "主办方公开身份说明；角色限于本次读取页面所载，不推断任职起止日期"
+        },
+        {
+          "workId": "leung-reach2025-speaker-identity",
+          "title": "IET REACH 2025 speakers — Matthew Leung",
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "authors": "The Institution of Engineering and Technology",
+          "date": "2025",
+          "locator": "2025 speakers标题、年份说明及Matthew Leung条目；date表示名单所属会议年度，页面发布日期未知",
+          "type": "会议人物简介",
+          "primary": true,
+          "substantive": false,
+          "mechanismBody": false,
+          "contentStatus": "已读取官方2025讲者名单中Matthew Leung及Huawei UK架构研究职责；未读取该场演讲正文",
+          "role": "确认2025讲者名单归属与当届机构；不计技术作品，也不据此断言实际演讲内容",
+          "retrievedAt": "2026-11-13",
+          "evidenceStrength": "官方历届名单，限定为名单与身份核验；没有视频或完整演讲核验"
+        }
+      ],
+      "sources": [
+        [
+          "Programmable architecture for digital communication systems that support vector processing and the associated methodology — US7685405B1",
+          "https://patents.google.com/patent/US7685405B1/en",
+          "2010-03-23 · 专利说明书正文（所列部分）"
+        ],
+        [
+          "Methods and apparatus for providing an efficient FFT memory addressing and storage scheme — US7996453B1",
+          "https://patents.google.com/patent/US7996453B1/en",
+          "2011-08-09 · 专利说明书正文（所列部分）"
+        ],
+        [
+          "MLCAD20 Plenary III — Design Challenges on Post Moore’s Law Era: author and biography",
+          "https://www.sigda.org/publications/mlcad20-toc/",
+          "2020-11-17 · 会议人物简介"
+        ],
+        [
+          "IET REACH Committee — Matthew Leung",
+          "https://reach.theiet.org/about-the-conference/committee",
+          "unknown · 机构人物简介"
+        ],
+        [
+          "IET REACH 2025 speakers — Matthew Leung",
+          "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "2025会议年度（页面发布日期未知） · 会议人物简介"
+        ]
+      ],
+      "sourceFacts": [
+        {
+          "workId": "leung-vector-control-us11510246",
+          "text": "Description Figs.1–4：全局选择器切换算法控制，算法控制器提供数据通路和存储控制，重复通路共享控制信号。"
+        },
+        {
+          "workId": "leung-fft-memory-us11835214",
+          "text": "Detailed Description Figs.1–5及Eqs.1–3：每个地址容纳蝶形组，按阶段旋转索引，并重排输出供下一阶段读取。"
+        },
+        {
+          "workId": "leung-mlcad2020-identity",
+          "text": "官方会议同页把作者全名Pak Hei Matthew Leung与Matthew Leung履历连接。"
+        },
+        {
+          "workId": "leung-reach-committee-identity",
+          "text": "IET履历提供Marvell历史和与SIGDA一致的学历及领域。"
+        },
+        {
+          "workId": "leung-reach2025-speaker-identity",
+          "text": "2025官方讲者名单列Matthew Leung为Huawei UK的Research Director in Computer Architecture；不以名单替代技术正文。"
+        }
+      ],
+      "notes": [],
+      "awardsVerified": [],
+      "contributionBasis": "有来源的编辑提炼；区分共同发明、所列单一发明人与团队产品归属。",
+      "researchStatus": {
+        "status": "complete",
+        "batch": "2026-11-13-reach",
+        "standard": "contribution-led-v1",
+        "verifiedAt": "2026-11-13",
+        "meaning": "两项独立专利族的限定正文和精确全名归属已核验；不表示穷尽成果或性能复现。"
+      },
+      "conferenceEvidence": [
+        {
+          "conference": "IET REACH",
+          "year": 2025,
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readAt": "2026-11-13",
+          "role": "官方2025讲者名单身份；尚未核验实际演讲内容，不计技术作品"
+        },
+        {
+          "conference": "IET REACH",
+          "year": 2026,
+          "url": "https://reach.theiet.org/about-the-conference/committee",
+          "readAt": "2026-11-13",
+          "role": "委员会履历交叉核对；不由委员会成员身份推断2026讲者资格"
+        }
+      ],
+      "identityEvidence": [
+        {
+          "url": "https://www.sigda.org/publications/mlcad20-toc/",
+          "readRange": "Plenary III：题名下作者全名；紧随其后的Biography；日期为SIGDA页面发表日期"
+        },
+        {
+          "url": "https://reach.theiet.org/about-the-conference/committee",
+          "readRange": "Matthew Leung条目：Research Director in Computer Architecture、Huawei UK、学历及既往Marvell/ASTRI/Sun/Apple经历"
+        },
+        {
+          "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+          "readRange": "2025 speakers标题、年份说明及Matthew Leung条目；date表示名单所属会议年度，页面发布日期未知"
+        }
+      ],
+      "admissionGate": {
+        "standard": "two-distinct-primary-works-one-body-v1",
+        "independentWorks": 2,
+        "mechanismBodiesRead": 2,
+        "decision": "pass"
+      },
+      "evidenceNotes": [
+        "本轮发现的是历史技术证据，不是2026年新发明。",
+        "先前US8526513B2/US20120063526A1仍为一个族，本次不依赖该泛名Huawei专利完成身份核验或作品计数。"
+      ]
+    }
+  ],
+  "held": [],
+  "decision": "admit",
+  "identityResolution": {
+    "method": "官方会议同页全名/短名桥接，学历及研究职责一致，并由IET历史Marvell经历与两项专利精确全名交叉核对。",
+    "explicitAlias": "Pak Hei Matthew Leung = Matthew Leung in MLCAD2020 record",
+    "limits": "未借助泛名Matthew Leung或同公司单点关联强配专利；没有使用私人地址或出生信息。"
+  },
+  "familyIndependence": {
+    "works": [
+      {
+        "publication": "US7685405B1",
+        "application": "US11/510,246",
+        "priorityApplication": "US60/727,046",
+        "priorityDate": "2005-10-14"
+      },
+      {
+        "publication": "US7996453B1",
+        "application": "US11/835,214",
+        "priorityApplication": "US60/822,569",
+        "priorityDate": "2006-08-16"
+      }
+    ],
+    "finding": "两件说明书的Cross Reference分别指向不同临时申请，技术目标不同；本轮各族仅计一项，不计其转载、同族或演讲摘要。"
+  },
+  "remainingLimitations": [
+    "未核实实际产品采用和性能；不作相关主张。",
+    "CUHK人物原页读取失败，仅作定位线索，未用于门槛；未把摘要当作演讲机制正文。",
+    "合入catalog、渲染、页面验证、PR与部署由主任务验收，本文件本身不代表已发布。"
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "id": "reach-ozer-followup-20261113",
+  "checkedAt": "2026-11-13T15:05:17.165003+00:00",
+  "decision": "admit",
+  "profile": {
+    "id": "emre-ozer",
+    "name": "Emre Ozer",
+    "aliases": [
+      "Emre Özer"
+    ],
+    "field": "柔性电子与专用机器学习",
+    "domain": "cpu",
+    "relatedDomains": [
+      "gpu-ai",
+      "physical-energy"
+    ],
+    "core": "把算法选择与柔性工艺约束共同纳入架构设计，比较固定分类电路和可编程处理器的实现代价。",
+    "background": "2020及2021论文署名时为Arm团队；2025 Tsetlin论文明确列Pragmatic Semiconductor与Newcastle联合机构，REACH2025名录列Pragmatic处理器开发高级总监。以上为来源对应时点，未外推为2026实时任职。PlasticARM贡献声明把概念、CPU和SoC设计分配给其他具体作者；Ozer参与数据分析与论文写作。",
+    "contributions": [
+      "2020论文贡献声明确认：Ozer与Brown构思UB-FVC，并参与NFPE设计实现，以特征量化、查表和投票构建柔性硬连线分类器。",
+      "共同署名2025 Tsetlin柔性加速器研究，将布尔子句、类别求和和ArgMax映射到硬件，比较精度、布线和电路代价。",
+      "共同署名PlasticARM论文，参与分析和写作；论文把架构寄存器移到SoC RAM，用较慢访问换CPU面积，展示与固定算法硬件不同的可编程路线。"
+    ],
+    "argument": "2020硬连线分类器将任务约束变成电路简化机会；任务改变时也可能失去可更新性。PlasticARM选择保留Armv6-M程序接口，把寄存器放到既有RAM以节省CPU面积，承担更慢的寄存器访问。2025 Tsetlin工作采用另一种逻辑分类模型，按子句复杂度和物理布线约束取舍；其证据为综合、布局与仿真，不能升级成量产实测。",
+    "evidence": "复用2020已核验正文；本次补读PlasticARM原论文公开镜像的机制段，并新增直接读取作者提交的2025 Tsetlin论文正文。三项作品独立；公开镜像与原始出版来源分列。",
+    "habits": [
+      "编辑提炼：先确认任务是否允许固化算法，再比较专用电路与可编程接口。",
+      "将寄存器、布线、模型复杂度和更新成本纳入同一约束，不只比较运算数量。"
+    ],
+    "questions": [
+      "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+      "面积缩小是否被更慢访存、布线拥塞或任务更新成本抵消？"
+    ],
+    "boundary": "2020作品有明确个人贡献声明；PlasticARM中Ozer的归属限于数据分析与写作，不称其为CPU或SoC设计者。2025 Tsetlin为团队共同作品，正文展示综合、布局和仿真，不等于流片实测或商业采用。其设计段与结论对流水阶段计数措辞不一致，本卡不据此宣称固定阶段数。柔性应用结果不外推到服务器。",
+    "diagnostic": "固定输入质量、准确率、吞吐需求与任务更新次数，测面积、延迟、每次推理能量及重新实现成本；将仿真结果与实测结果分别报告。",
+    "challenge": {
+      "lens": "柔性工艺中的专用化与可更新性",
+      "skills": [
+        "A2",
+        "A3",
+        "A8"
+      ],
+      "question": "固定分类器相对可编程处理器节省了什么，又牺牲了什么？",
+      "variables": "N：部署数量；K：任务更新次数；C_unit：单件成本；C_update：一次更新或重新实现成本；A：面积；t：单次延迟；E：单次能量。",
+      "model": "编辑情景模型：C_total=N×C_unit+K×C_update；只有在相同准确率、寿命和吞吐约束下才比较两条实现路线。此式不是论文公式，也未填入未核实价格。",
+      "crossover": "专用化的单件节省须超过更新与重新实现代价；寄存器外移还必须满足额外访问延迟后的应用时限。",
+      "counterexample": "类别或数据分布频繁改变，使固定分类器必须重做；面积更小却达不到实时响应要求。",
+      "validation": "固定输入质量、准确率、吞吐需求与任务更新次数，测面积、延迟、每次推理能量及重新实现成本；将仿真结果与实测结果分别报告。",
+      "transfer": "迁移到其他低成本传感或边缘任务时，重新确定可更新性、时限与物理实现约束，不照搬原文性能数字。"
+    },
+    "sourceAudit": [
+      {
+        "workId": "ozer-flexible-ml-2020",
+        "title": "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+        "url": "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+        "date": "2020-07-06（Nature Electronics 3，419–425）",
+        "authors": "Emre Ozer; Jedrzej Kufel; James Myers; John Biggs; Gavin Brown; Anjit Rana; Antony Sou; Catherine Ramsdale; Scott White",
+        "locator": "作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions",
+        "contentStatus": "已读大学托管接受稿的 UB-FVC 查表/投票机制与作者贡献声明。",
+        "sourceFacts": [
+          "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+        ],
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-13",
+        "type": "论文正文（所列章节）",
+        "role": "独立技术作品及可归属署名",
+        "evidenceStrength": "支持所列机制及共同署名；不证明个人独占贡献或独立复现实验。"
+      },
+      {
+        "workId": "ozer-flexible-tsetlin-2025",
+        "title": "A Tsetlin Machine Image Classification Accelerator on a Flexible Substrate",
+        "url": "https://arxiv.org/html/2510.15519v1",
+        "date": "2025-10-17（arXiv v1；作者注明ISTM2025接受）",
+        "authors": "Yushu Qin; Marcos L. L. Sartori; Shengyu Duan; Emre Ozer; Rishad Shafik; Alex Yakovlev",
+        "locator": "署名机构；§II-A–C、§III-A–B、§IV–V；HTML行31–32、48–106、128–149。",
+        "contentStatus": "实际读取作者提交正文的模型生成、逻辑映射、物理实现、综合与仿真、结论及未来工作；未复现实验。",
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "type": "论文正文（所列章节）",
+        "retrievedAt": "2026-11-13",
+        "sourceCategory": "作者提交的一手论文正文",
+        "role": "第三项独立技术作品、机制正文及Pragmatic机构署名交叉核验",
+        "evidenceStrength": "直接读取作者提交正文；共同署名，不支持Ozer个人独占设计；该文报告综合/仿真阶段而非量产测量。"
+      },
+      {
+        "workId": "ozer-plasticarm-2021",
+        "title": "A natively flexible 32-bit Arm microprocessor",
+        "url": "https://www.academia.edu/94971368/A_natively_flexible_32_bit_Arm_microprocessor",
+        "date": "2021-07-21（Nature 595，532–536）",
+        "authors": "John Biggs; James Myers; Jedrzej Kufel; Emre Ozer; Simon Craske; Antony Sou; Catherine Ramsdale; Ken Williamson; Richard Price; Scott White",
+        "locator": "Nature595 pp.533–534，Fig.1及PlasticARM system architecture；镜像读取行15–38；个人归属另参出版社Author contributions。",
+        "contentStatus": "本轮实际读取原论文公开镜像的架构正文：寄存器映射到RAM、AHB-LITE、ROM/RAM及面积—访问速度交换。不是仅摘要，也不声称逐页读完全文；出版社直接访问重定向受阻，镜像性质明确保留。",
+        "sourceFacts": [
+          "PlasticARM把架构寄存器映射到SoC RAM，以较慢的寄存器访问换CPU面积；Ozer个人归属仍限于官方贡献声明的数据分析与论文写作。"
+        ],
+        "primary": true,
+        "substantive": true,
+        "mechanismBody": true,
+        "retrievedAt": "2026-11-13",
+        "type": "论文正文（所列章节）",
+        "role": "独立技术作品及可归属署名",
+        "evidenceStrength": "已读原文机制段，镜像与原出版署名一致；不是对产品后续采用或个人独占发明的证明。",
+        "originalUrl": "https://www.nature.com/articles/s41586-021-03625-w",
+        "sourceCategory": "公开镜像中的原论文正文；DOI、署名与贡献分工对照出版社记录"
+      },
+      {
+        "workId": "emre-ozer-reach-identity",
+        "title": "REACH 2025 speakers — Emre Ozer",
+        "url": "https://reach.theiet.org/2026-speakers/2025-speakers",
+        "date": "2025（会议年度；页面未标发布日期）",
+        "authors": "IET REACH",
+        "locator": "Emre Ozer speaker biography",
+        "contentStatus": "会议简介用于身份与会议时点职责；不计技术作品。",
+        "primary": true,
+        "substantive": false,
+        "mechanismBody": false,
+        "retrievedAt": "2026-11-13",
+        "type": "会议主办方人物简介",
+        "role": "身份与会议时点职责",
+        "evidenceStrength": "只确认会议记录的职务，不外推现职。"
+      }
+    ],
+    "sources": [
+      [
+        "A hardwired machine learning processing engine fabricated with submicron metal-oxide thin-film transistors on a flexible substrate",
+        "https://pure.manchester.ac.uk/ws/files/173811114/ML_NFPE_NatureElectronics.pdf",
+        "2020-07-06（Nature Electronics 3，419–425）；作者接受稿 pp. 9–11、Fig. 3；p. 21 Author contributions"
+      ],
+      [
+        "A Tsetlin Machine Image Classification Accelerator on a Flexible Substrate",
+        "https://arxiv.org/html/2510.15519v1",
+        "2025-10-17（arXiv v1；作者注明ISTM2025接受）；署名机构；§II-A–C、§III-A–B、§IV–V；HTML行31–32、48–106、128–149。"
+      ],
+      [
+        "A natively flexible 32-bit Arm microprocessor",
+        "https://www.academia.edu/94971368/A_natively_flexible_32_bit_Arm_microprocessor",
+        "2021-07-21（Nature 595，532–536）；Nature595 pp.533–534，Fig.1及PlasticARM system architecture；镜像读取行15–38；个人归属另参出版社Author contributions。"
+      ],
+      [
+        "REACH 2025 speakers — Emre Ozer",
+        "https://reach.theiet.org/2026-speakers/2025-speakers",
+        "2025（会议年度；页面未标发布日期）；Emre Ozer speaker biography"
+      ]
+    ],
+    "sourceFacts": [
+      {
+        "workId": "ozer-flexible-ml-2020",
+        "text": "作者声明 Ozer 与 Brown 构思 UB-FVC，并与 Kufel、Biggs 设计实现 NFPE；量化特征查表与多数投票降低柔性分类器实现复杂度。"
+      },
+      {
+        "workId": "ozer-flexible-tsetlin-2025",
+        "text": "作者将训练后的逻辑子句并行计算，再做类别求和与ArgMax；小模型减少子句但牺牲准确率。正文评价基于综合、布局和仿真，且列明Ozer的Pragmatic机构。"
+      },
+      {
+        "workId": "ozer-plasticarm-2021",
+        "text": "PlasticARM把架构寄存器映射到SoC RAM，以较慢的寄存器访问换CPU面积；Ozer个人归属仍限于官方贡献声明的数据分析与论文写作。"
+      }
+    ],
+    "notes": [],
+    "awardsVerified": [],
+    "contributionBasis": "共同署名与明确作者贡献声明的编辑提炼；2020 UB-FVC专用分类器、2021 Armv6-M处理器、2025 Tsetlin逻辑推理为三个不同作品，预印本/出版版和同文两个模型不重复计数。",
+    "researchStatus": {
+      "status": "complete",
+      "batch": "2026-11-13-reach",
+      "standard": "contribution-led-v1",
+      "verifiedAt": "2026-11-13",
+      "meaning": "原待补的第二项正文缺口已补齐；另有第三项独立作者正文交叉支持。不表示穷尽成果或确认当前任职。"
+    }
+  },
+  "gapsClosed": [
+    "PlasticARM实际机制正文已读，公开镜像性质明确",
+    "直接读取2025独立Tsetlin作者正文，支持技术作品与机构身份"
+  ],
+  "remainingLimits": [
+    "2020作品沿用已保存审计，没有重复研究。",
+    "PlasticARM出版社直接读取重定向受阻，实际正文来自明确标注的公开镜像；不将其称为出版社直接读取。",
+    "没有独立复现论文实验，也不将仿真称实硅或商业采用。"
+  ],
+  "independentWorks": [
+    "ozer-flexible-ml-2020",
+    "ozer-plasticarm-2021",
+    "ozer-flexible-tsetlin-2025"
+  ],
+  "readProvenance": {
+    "plasticarm": "turn702view1 pp.533–534/lines15–38; originalNature authors/contributions turn701search0 and saved audit",
+    "tsetlin": "turn702view2;turn716view0;turn716view2"
+  },
+  "integration": "Update existing pending fixed-batch record; preserve historical hold as dated prior state; do not introduce duplicate fixed-batch ID.",
+  "qualifyingWorks": [
+    "ozer-flexible-ml-2020",
+    "ozer-flexible-tsetlin-2025"
+  ],
+  "supplementaryWork": "ozer-plasticarm-2021"
+}
