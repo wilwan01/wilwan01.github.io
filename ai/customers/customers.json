@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-12",
+ "as_of": "2026-11-13",
  "scope": {
   "zh": "谁在买、为何买、怎么付钱：十五个买家／云运营商的资本开支、财报问答或服务模式，加四个跨公司主题。2026-10-18复核C02–C04；金额均为美元。先区分自然年/财年、现金购置/融资租赁新增资产/租赁本金及多年承诺，再作比较；本页不汇总为统一的AI资本开支总额。客户集中度未纳入。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。 新增Nebius、Lambda、Fluidstack、GMI Cloud、IREN、Crusoe为服务模式核查，不是财报覆盖扩容；云运营商既供应租赁算力也汇聚上游采购，客户支出与运营商投入不可重复加总。",
   "en": "Who buys, why, and how they pay: capex, Q&A or service models for fifteen buyers/cloud operators plus four themes. C02–C04 reviewed 2026-10-18; amounts in USD. Distinguish calendar/fiscal years, cash purchases, finance-lease additions, lease principal and multi-year commitments before comparing. No normalized AI-capex total or customer-concentration dataset is provided. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending. Nebius, Lambda, Fluidstack, GMI Cloud, IREN and Crusoe additions cover service models, not expanded earnings coverage; cloud operators supply rental compute and aggregate upstream procurement, so tenant spend and provider investment must not be double-counted."
@@ -114,57 +114,76 @@
   {
    "id": "C02",
    "group": "us",
-   "date": "2026-07-22",
+   "date": "2026-10-28",
    "title": {
-    "zh": "Alphabet：2026自然年资本开支 $195–205B，已核对官方原文",
-    "en": "Alphabet: CY2026 capex $195–205B, primary text verified"
+    "zh": "Alphabet：Q3 维持 CY2026 资本开支 $195–205B，2027 将显著增加",
+    "en": "Alphabet: Q3 keeps CY2026 capex at $195–205B; 2027 to increase significantly"
    },
    "summary": {
-    "zh": "7月22日官方电话会中，CFO将2026自然年全公司资本开支指引由$180–190B上调至$195–205B，主要因产能交付加快。该金额不是Google Cloud或AI专属预算。",
-    "en": "On July 22, the CFO raised company-wide CY2026 capex guidance from $180–190B to $195–205B, primarily because capacity delivery accelerated. This is not a Google Cloud or AI-only budget."
+    "zh": "Q3 电话会（2026-10-28）确认全年资本开支指引 $195–205B 不变（7月由 $180–190B 上调），并再次表示2027年资本开支将显著增加。该金额是公司整体，不是 Google Cloud 或纯AI预算。",
+    "en": "On the 28 Oct Q3 call management said full-year 2026 capex guidance of $195–205B is unchanged (raised from $180–190B in July) and again expects capex to increase significantly in 2027. It is company-wide, not a Google Cloud or AI-only budget."
    },
    "facts": [
     {
-     "zh": "Q2（截至6月30日三个月）现金购置PP&E为$44.924B；经营现金流$39.069B，减去PP&E购置后自由现金流为−$5.855B。来源：业绩公告第7、9页。",
-     "en": "Q2 (three months ended June 30): cash PP&E purchases $44.924B; operating cash flow $39.069B; subtracting PP&E gives FCF −$5.855B. Release pp. 7, 9."
+     "zh": "Q3 资本开支 $51.4B（电话会口径；现金流量表“购置不动产和设备”$51.355B）；经营现金流 $42.29B；自由现金流 −$9.065B（含 TPU 系统销售带来的库存积累与52亿美元欧盟罚款支付的影响）。",
+     "en": "Q3 capex $51.4B (call wording; cash-flow line purchases of property and equipment $51.355B); operating cash flow $42.29B; free cash flow −$9.065B, also affected by inventory build for TPU system sales and a $5.2B EC fine payment."
     },
     {
-     "zh": "融资租赁另列：Q2本金现金支付$0.318B、新取得融资租赁资产$0.691B，另有尚未开始租赁的预付款$0.201B；资产新增额与还款不是同一指标。来源：10-Q注4及脚注。",
-     "en": "Finance leases are separate: Q2 principal cash payments $0.318B, new finance-lease assets $0.691B, plus $0.201B of prepayments for uncommenced leases. Additions and repayments are different measures. 10-Q Note 4 and footnote."
+     "zh": "支出结构：约65%为服务器和网络设备（使用寿命约6年），约35%为数据中心（7至40年）。",
+     "en": "Mix: about 65% servers and networking equipment (useful life about six years) and about 35% data centers (seven to 40 years)."
     },
     {
-     "zh": "6月30日尚未开始的租赁未来付款$85.2B；采购承诺及其他合同义务$811.0B涉及多年基础设施、库存、内容及能源，并非2026年现金资本开支。来源：10-Q注4及MD&A。",
-     "en": "At June 30, uncommenced leases carried $85.2B of future payments; $811.0B of purchase/other contractual obligations spans infrastructure, inventory, content and energy over multiple years, not CY2026 cash capex. 10-Q Note 4 and MD&A."
+     "zh": "期末承诺：未来采购承诺 $924B，租赁开始前及其他义务 $152B；管理层称这些是最大合同义务，部分含可变价格和数量弹性，实际支出可能更低。不得与年度资本开支相加。",
+     "en": "Period-end commitments: future purchase commitments $924B and pre-commencement leases and other obligations $152B; management says these are maximum contractual amounts, some with variable pricing and volume flexibility, so spend could be lower. They must not be added to annual capex."
     },
     {
-     "zh": "2027年资本开支预计显著增加，但本次官方电话会未给出金额。",
-     "en": "Management expects a significant capex increase in 2027 but gave no amount on this call."
+     "zh": "7月数据保留为历史对照：Q2 购置不动产和设备 $44.924B，自由现金流 −$5.855B。",
+     "en": "July figures retained for comparison: Q2 purchases of property and equipment $44.924B and free cash flow −$5.855B."
     }
    ],
    "evidence": "primary-read",
    "sources": [
     {
-     "label": "Alphabet Q2 2026 official transcript — CFO, pp. 11–13",
+     "label": "Alphabet Q3 2026 earnings release (PDF)",
+     "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/2026q3-alphabet-earnings-release.pdf",
+     "type": "primary",
+     "published_at": "2026-10-28",
+     "read_at": "2026-11-13",
+     "locator": "Cash-flow statement; non-GAAP free-cash-flow reconciliation",
+     "reading_scope": "Release text extracted and relevant tables read"
+    },
+    {
+     "label": "Alphabet Q3 2026 earnings call transcript (PDF)",
+     "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Oct/28/2026_Q3_Earnings_Transcript.pdf",
+     "type": "primary",
+     "published_at": "2026-10-28",
+     "read_at": "2026-11-13",
+     "locator": "CFO prepared remarks: CapEx, commitments, 2026 guidance and 2027 outlook",
+     "reading_scope": "Prepared remarks read; Q&A skimmed for capex only"
+    },
+    {
+     "label": "Alphabet Q2 2026 official transcript — CFO, pp. 11–13 (July, retained)",
      "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Jul/22/2026_Q2_Earnings_Transcript.pdf",
      "type": "primary"
     },
     {
-     "label": "Alphabet Q2 2026 release — cash flow p. 7; FCF p. 9",
+     "label": "Alphabet Q2 2026 release — cash flow p. 7; FCF p. 9 (July, retained)",
      "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
      "type": "primary"
     },
     {
-     "label": "Alphabet June 2026 10-Q — Note 4; MD&A capital expenditures and commitments",
+     "label": "Alphabet June 2026 10-Q — Note 4; MD&A capital expenditures and commitments (July, retained)",
      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
      "type": "primary"
     }
    ],
    "caveat": {
-    "zh": "本次核对覆盖上述支出与会计事实；所链接的站内问答不因此自动升级。季度资本开支对应现金PP&E口径；官方材料未提供全年含各类租赁及承诺的统一预测。本页不将多年承诺与年度指引相加，也不据金额推算GPU数量或实际算力。",
-    "en": "Verification covers the spending/accounting facts above, not an automatic upgrade of linked site Q&A. Quarterly capex maps to cash PP&E; no full-year all-in lease/commitment forecast is reconciled here. Do not add multi-year obligations to annual guidance or infer GPU counts or delivered compute from dollars."
+    "zh": "Q3 发布稿与电话会已读；10-Q 未读。季度资本开支对应现金购置不动产和设备，融资租赁另列；未据此推断 GPU/TPU 数量或已交付算力。链接的旧问答（QA069–072）不代表 Q3 证词；Q3 相关问答为 QA194。",
+    "en": "Q3 release and call text were read; the 10-Q was not. Quarterly capex maps to cash purchases of property and equipment, with finance leases separate; no GPU or TPU counts or delivered compute are inferred. Linked older Q&As (QA069–072) are not Q3 testimony; the Q3 Q&A is QA194."
    },
    "links": {
     "earnings": [
+     "QA194",
      "QA069",
      "QA070",
      "QA071",
@@ -185,37 +204,55 @@
   {
    "id": "C03",
    "group": "us",
-   "date": "2026-07-29",
+   "date": "2026-10-28",
    "title": {
-    "zh": "Microsoft：2026自然年约$175B，会计重分类不等于削减投入",
-    "en": "Microsoft: CY2026 ~$175B; lease reclassification does not mean an investment cut"
+    "zh": "Microsoft：CY2026 资本开支约 $170B（7月约 $175B），第三方产能交付延后",
+    "en": "Microsoft: CY2026 capex about $170B (about $175B in July) as third-party capacity slips"
    },
    "summary": {
-    "zh": "4月官方指引为2026自然年约$190B；7月29日调整至约$175B，反映更多未来数据中心租赁由融资租赁转为经营租赁。管理层明确表示基础投资计划不变；这两个数不是相同口径下的支出削减。",
-    "en": "April guidance was ~$190B for CY2026; July 29 guidance became ~$175B as more future datacenter leases shift from finance to operating classification. Management said underlying investment expectations were unchanged; these figures do not measure a like-for-like spending cut."
+    "zh": "FY27 Q1 电话会（2026-10-28）：Q1 资本开支 $45.2B（含融资租赁 $7.4B，现金购置不动产和设备 $39.4B）；预计 Q2 资本开支超过 $50B，因部分第三方（3P）产能交付延后，自然年 2026 约 $170B（7月为约 $175B）；下半财年支出将因 CPU（含更高内存与存储成本）、GPU 与移至下半年的 3P 交付而加速。",
+    "en": "FY27 Q1 call (28 Oct): Q1 capex $45.2B (including $7.4B finance leases and $39.4B cash paid for property and equipment); Q2 capex expected over $50B; for the calendar year spend should be about $170B (about $175B in July) because some third-party (3P) capacity deliveries slipped; second-half FY27 spend should accelerate from CPUs (including higher memory and storage costs), GPUs and the 3P deliveries shifted to H2."
    },
    "facts": [
     {
-     "zh": "从FY27开始（2026年7月1日），数据中心及办公楼预计使用年限由15年延至25年；不是CPU/GPU折旧年限。经营租赁不计入公司资本开支，融资租赁计入；不能称所有新租赁都转为经营租赁。",
-     "en": "From FY27 (July 1, 2026), datacenter/office-building useful lives extend from 15 to 25 years, not CPU/GPU lives. Reported capex includes finance leases and excludes operating leases; management did not say all new leases would change classification."
+     "zh": "约四分之三的 Q1 资本开支用于短期资产（主要是 CPU 与 GPU，含更高的内存与存储成本）。财报新闻稿现金流量表“增加不动产和设备”$39.367B（上年同期 $19.394B）。",
+     "en": "About three quarters of Q1 capex was short-lived assets, mainly CPUs and GPUs including higher memory and storage costs. The release cash-flow line additions to property and equipment was $39.367B (versus $19.394B a year earlier)."
     },
     {
-     "zh": "FY26 Q4（2026年4–6月）：报告资本开支约$41B，电话会另披露融资租赁$5.6B；公告现金PP&E购置$35.802B。这不是可直接相加的现金支出表，现金支付时点与资产新增口径不同。",
-     "en": "FY26 Q4 (April–June 2026): reported capex ~$41B; the call separately disclosed $5.6B of finance leases, while release cash PP&E purchases were $35.802B. These are not an additive cash-spending table; payment timing differs from asset additions."
+     "zh": "Azure 收入增长48%（$33.165B，上年同期 $22.384B）；商业剩余履约义务增长73%至 $677B。",
+     "en": "Azure revenue grew 48% ($33.165B versus $22.384B); commercial remaining performance obligation rose 73% to $677B."
     },
     {
-     "zh": "FY26全年（截至2026年6月30日）现金PP&E购置$115.948B，不是自然年$175B指引。4月的$190B指引包含约$25B组件涨价影响，不能全部视作产能增长。",
-     "en": "FY26 cash PP&E purchases were $115.948B for the year ended June 30, 2026, distinct from the CY2026 ~$175B outlook. April’s ~$190B outlook included ~$25B of component-price effects, not solely capacity growth."
+     "zh": "管理层再次提醒：融资租赁在起租时按全额本金计入资本开支；预计 FY27 保持自由现金流为正。",
+     "en": "Management again noted that finance leases are recognised in capex at full principal at commencement, and expects FY27 free cash flow to stay positive."
     },
     {
-     "zh": "FY27（2026年7月–2027年6月）只给出资本开支同比增长方向；FY27 Q1为超过$50B（含重分类影响），不是FY27全年$175B。",
-     "en": "FY27 (July 2026–June 2027) guidance is for capex growth without a full-year amount; FY27 Q1 is over $50B including reclassification. ~$175B is not FY27 guidance."
+     "zh": "7月口径保留为历史对照：CY2026 约 $175B（4月约 $190B，其中约 $25B 为组件涨价），部分租赁改按经营租赁分类，管理层称不代表投资削减。",
+     "en": "July basis retained for comparison: CY2026 about $175B (about $190B in April, including about $25B of component pricing), with some leases moving to operating-lease classification, which management said was not an investment cut."
     }
    ],
    "evidence": "primary-read",
    "sources": [
     {
-     "label": "Microsoft FY26 Q4 official transcript — Amy Hood capex and useful-life/outlook remarks",
+     "label": "Microsoft FY27 Q1 press release and financial statements",
+     "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2027-Q1/press-release-webcast",
+     "type": "primary",
+     "published_at": "2026-10-28",
+     "read_at": "2026-11-13",
+     "locator": "Income statement and cash-flow statement; Azure and RPO headline",
+     "reading_scope": "Release page text read"
+    },
+    {
+     "label": "Microsoft FY27 Q1 earnings call transcript (docx)",
+     "url": "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/TranscriptQandAFY27Q1.docx",
+     "type": "primary",
+     "published_at": "2026-10-28",
+     "read_at": "2026-11-13",
+     "locator": "CFO outlook: capex, finance leases, calendar-year and H2 guidance",
+     "reading_scope": "Full transcript text extracted; capex passages read"
+    },
+    {
+     "label": "Microsoft FY26 Q4 official transcript — Amy Hood capex and useful-life/outlook remarks (July, retained)",
      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
      "type": "primary"
     },
@@ -231,11 +268,13 @@
     }
    ],
    "caveat": {
-    "zh": "融资租赁在开始时确认全额，不等于当期支付的本金；折旧变化本身也不是现金节约。已核对电话会及现金流公告，但未取得可读的FY26 10-K来建立完整租赁/承诺桥接；保留约$41B、$5.6B与$35.802B的原始披露，不强行配平。站内关联问答仍沿用原证据。",
-    "en": "Finance leases are recognized at commencement, not as current principal payments; depreciation changes are not cash savings. Calls and the release were read, but a readable FY26 10-K was not obtained for a full lease/commitment bridge. Retain ~$41B, $5.6B and $35.802B as disclosed without forcing reconciliation. Linked Q&A keeps its original provenance."
+    "zh": "Q1 发布页与电话会文稿已读；FY27 全年资本开支金额未给出（“约 $170B”是自然年 2026 口径，不是 FY27 指引）。10-K/10-Q 未读，租赁与承诺桥接未核对。旧问答 QA077–080 不代表 Q3 证词；相关问答为 QA192–193。",
+    "en": "Q1 release page and call transcript were read; no full FY27 amount was given (about $170B is a calendar-2026 figure, not FY27 guidance). The 10-K and 10-Q were not read, so no lease or commitment bridge is reconciled. Older Q&As QA077–080 are not Q3 testimony; the relevant Q&As are QA192–193."
    },
    "links": {
     "earnings": [
+     "QA192",
+     "QA193",
      "QA077",
      "QA078",
      "QA079",
@@ -257,35 +296,53 @@
   {
    "id": "C04",
    "group": "us",
-   "date": "2026-07-30",
+   "date": "2026-10-29",
    "title": {
-    "zh": "Amazon：现金资本开支已核对，2026年约$220B仍待原始来源确认",
-    "en": "Amazon: cash-capex basis verified; CY2026 ~$220B still needs primary confirmation"
+    "zh": "Amazon：2026 现金资本开支预计约 $220B（已由官方发布稿证实）",
+    "en": "Amazon: 2026 cash capex expected about $220B (confirmed in the company release)"
    },
    "summary": {
-    "zh": "官方10-Q确认Q2现金资本开支$53.1B、上半年$96.3B。第三方电话会转录称2026自然年现金资本开支预期由约$200B升至$220B；本次未核对官方录音中的该句，全年数保留secondary，不作为已获一手验证的预算。",
-    "en": "The official 10-Q confirms Q2 cash capex of $53.1B and H1 $96.3B. A third-party call transcript reports CY2026 cash-capex expectations rising from ~$200B to ~$220B. The official audio statement was not verified in this review; the annual outlook remains secondary."
+    "zh": "Q3 发布稿（2026-10-29）写明“我们继续预计2026年现金资本开支约为 $220B”，并称增长主要来自对人工智能的投资。Q3 购置不动产和设备 $77.259B，AWS 收入增长39%至 $46.0B。此前该数字仅有第三方转述，现已升级为官方来源。",
+    "en": "The 29 Oct Q3 release says: “We continue to expect 2026 cash capital expenditures to be approximately $220 billion,” and attributes the increase primarily to investments in artificial intelligence. Q3 purchases of property and equipment were $77.259B and AWS revenue grew 39% to $46.0B. This figure was previously only secondary and is now backed by the company’s own text."
    },
    "facts": [
     {
-     "zh": "已读一手：Q2现金PP&E购置$54.208B，减出售款及激励$1.132B，净现金资本开支=$53.076B（四舍五入$53.1B）；上半年对应$98.411B−$2.101B=$96.310B。来源：Q2公告现金流表及10-Q MD&A。",
-     "en": "Primary-read: Q2 gross cash PP&E $54.208B less sales/incentives $1.132B = net cash capex $53.076B (~$53.1B); H1 $98.411B − $2.101B = $96.310B. Q2 release cash flows and 10-Q MD&A."
+     "zh": "Q3（三个月）：购置不动产和设备 $77.259B，处置与激励收入 $1.381B，净现金资本开支约 $75.9B（本站计算，文件未直接列出）；前九个月 $175.670B 与 $3.482B，净约 $172.2B。",
+     "en": "Q3 (three months): purchases of property and equipment $77.259B less $1.381B proceeds from sales and incentives, net cash capex about $75.9B (our calculation; not reported directly); nine months $175.670B and $3.482B, net about $172.2B."
     },
     {
-     "zh": "已读一手：Q2融资租赁本金支付$0.395B、新取得融资租赁PP&E $0.563B单独披露；经营租赁现金支付及尚未支付的资产也不等于现金PP&E。公司范围包括AWS和履约网络，并非纯AI/GPU投资。",
-     "en": "Primary-read: Q2 finance-lease principal $0.395B and new finance-lease PP&E $0.563B are separate. Operating-lease cash payments and unpaid asset additions are not cash PP&E either. Company-wide scope includes AWS and fulfillment, not exclusively AI/GPUs."
+     "zh": "融资租赁另列：Q3 本金偿还 $0.433B，融资租赁取得的不动产和设备 $1.472B；不得与现金资本开支相加。",
+     "en": "Finance leases are separate: Q3 principal repayments $0.433B and property and equipment acquired under finance leases $1.472B; they must not be added to cash capex."
     },
     {
-     "zh": "已读一手历史指引：2月5日公告预计2026年全公司资本开支约$200B；这不是7月更新后已核实的最新金额。全年约$220B及内存涨价归因仅见所列第三方转录。",
-     "en": "Primary-read historical guidance: the February 5 release projected ~$200B of company-wide 2026 capex. This is not a verified latest post-July figure. The ~$220B update and memory-price attribution rely on the listed third-party transcript."
+     "zh": "滚动十二个月自由现金流为流出 $42.4B；AWS 收入同比增长39%（$46.0B），为近五年最快。",
+     "en": "Trailing-twelve-month free cash flow was an outflow of $42.4B; AWS revenue grew 39% to $46.0B, its fastest in nearly five years."
     },
     {
-     "zh": "多年承诺：6月30日尚未开始的租赁$137.214B、无条件采购义务$130.065B单独列报，包含非基础设施项目；不是2026年已花出的现金，不能与全年资本开支相加。来源：10-Q注4。",
-     "en": "Multi-year commitments: $137.214B of uncommenced leases and $130.065B of unconditional purchase obligations at June 30 include non-infrastructure items. They are not cash spent in 2026 and must not be added to annual capex. 10-Q Note 4."
+     "zh": "历史对照：2月发布稿预测2026年约 $200B；Q2 净现金资本开支 $53.1B。",
+     "en": "For comparison: the February release projected about $200B for 2026; Q2 net cash capex was $53.1B."
     }
    ],
-   "evidence": "secondary",
+   "evidence": "primary-read",
    "sources": [
+    {
+     "label": "Amazon Q3 2026 results release",
+     "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx?mode=light",
+     "type": "primary",
+     "published_at": "2026-10-29",
+     "read_at": "2026-11-13",
+     "locator": "Outlook sentence on 2026 cash capital expenditures; cash-flow statement; free-cash-flow table",
+     "reading_scope": "Release page text read"
+    },
+    {
+     "label": "Amazon 10-Q for the quarter ended 30 Sep 2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm",
+     "type": "primary",
+     "published_at": "2026-10-30",
+     "read_at": "2026-11-13",
+     "locator": "Consolidated statements of cash flows; Note 1 supplemental cash flow information; Note 3 leases",
+     "reading_scope": "Cash-flow statement and notes read via fetched text; MD&A (item 2) not read"
+    },
     {
      "label": "Amazon Q2 2026 release — cash-flow statement (primary-read actuals)",
      "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx?mode=light",
@@ -295,24 +352,15 @@
      "label": "Amazon June 2026 10-Q — Notes 1, 4; MD&A liquidity (primary-read)",
      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
      "type": "primary"
-    },
-    {
-     "label": "Amazon Q4 2025 release, February 5, 2026 — historical ~$200B outlook",
-     "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-     "type": "primary"
-    },
-    {
-     "label": "Motley Fool Q2 2026 call transcript — Andy Jassy cash-capex update (not company-published)",
-     "url": "https://www.fool.com/earnings/call-transcripts/2026/08/07/amazon-amzn-q2-2026-earnings-call-transcript/",
-     "type": "secondary"
     }
    ],
    "caveat": {
-    "zh": "本条secondary针对最新全年指引；标为“已读一手”的历史金额及定义已核对官方公告/10-Q。Q2公告与10-Q未提供$220B预测，官方录音未听取；不据第三方转录升级。积压、Trainium及NVIDIA的关联问答仍为原有编辑归纳；本次未审核其客户采用结论或分配给自研芯片的预算。",
-    "en": "The secondary badge applies to the latest annual outlook; explicitly marked actuals/definitions were checked in company releases and the 10-Q. Neither Q2 document supplies the $220B forecast; official audio was not listened to. Linked backlog/Trainium/NVIDIA Q&A remains editorial; adoption conclusions and custom-silicon budget allocations were not audited here."
+    "zh": "发布稿与10-Q现金流量表已读；10-Q 的管理层讨论（MD&A）与电话会音频未读。$220B 是公司整体（含 AWS 与履约网络），不是纯AI或GPU采购额；不得与多年期承诺相加。旧问答 QA065–068 不代表 Q3 证词；相关问答为 QA197。",
+    "en": "The release and the 10-Q cash-flow statement were read; the 10-Q MD&A and the call audio were not. $220B is company-wide (AWS and fulfilment included), not an AI- or GPU-only purchase; multi-year commitments must not be added to it. Older Q&As QA065–068 are not Q3 testimony; the relevant Q&A is QA197."
    },
    "links": {
     "earnings": [
+     "QA197",
      "QA065",
      "QA066",
      "QA067",
@@ -363,24 +411,45 @@
   {
    "id": "C06",
    "group": "neo",
-   "date": "2026-08-11",
+   "date": "2026-11-10",
    "title": {
-    "zh": "CoreWeave：延误来自带电厂房交付，而非电力可得性",
-    "en": "CoreWeave: delays came from powered-shell delivery, not power availability"
+    "zh": "CoreWeave：Q3 资本开支指引下限上调至 $37–39B，积压订单约 $1,325亿",
+    "en": "CoreWeave: Q3 raises the capex guidance floor to $37–39B; backlog about $132.5B"
    },
    "summary": {
-    "zh": "管理层称基础设施交付延误由带电厂房（powered shell）交付造成，并强调多供应商分散、客户主导的 NVIDIA 需求，未承诺定制 ASIC 路线。",
-    "en": "Management attributed delivery delays to powered-shell delivery rather than power availability and emphasised provider diversification and customer-led NVIDIA demand without committing to a custom-ASIC roadmap."
+    "zh": "Q3 发布稿（2026-11-10）：2026 全年资本开支指引由 $35–39B 调整为 $37–39B（理由是基础设施比计划更早部署并交付给客户），收入指引上调至 $130–133 亿；积压订单约 $1,325亿；活跃电力超过 1.7 GW，合同电力超过 4.6 GW。Q2 问答中的延误归因（带电厂房交付而非电力可得性）保留作背景。",
+    "en": "Q3 release (10 Nov): full-year 2026 capex guidance moves from $35–39B to $37–39B (because infrastructure is being deployed and delivered to customers sooner than planned) and revenue guidance rises to $13.0–13.3B; revenue backlog about $132.5B; active power over 1.7 GW and contracted power over 4.6 GW. The Q2 Q&A attribution of delays (powered-shell delivery, not power availability) is retained as background."
    },
-   "facts": [],
-   "evidence": "editorial",
-   "sources": [],
+   "facts": [
+    {
+     "zh": "Q3 收入 $3.661B；现金流量表“购置不动产和设备（含资本化内部使用软件）”$9.441B。第三方报道称季度资本开支 $14.5B，口径不同，本页不采用。",
+     "en": "Q3 revenue $3.661B; cash-flow line purchases of property and equipment including capitalised internal-use software $9.441B. Press reports cite quarterly capex of $14.5B on a different basis, which this page does not use."
+    },
+    {
+     "zh": "本季新增超过 200 MW 活跃电力至 1.7 GW 以上；合同电力增加超过 900 MW 至 4.6 GW 以上；预计年底活跃电力超过 1.85 GW。",
+     "en": "Added more than 200 MW of active power to reach over 1.7 GW; total contracted power grew more than 900 MW to over 4.6 GW; more than 1.85 GW of active power still expected at year-end."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "CoreWeave Q3 2026 results release",
+     "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx",
+     "type": "primary",
+     "published_at": "2026-11-10",
+     "read_at": "2026-11-13",
+     "locator": "Guidance paragraph; power highlights; cash-flow table",
+     "reading_scope": "Release page text read"
+    }
+   ],
    "caveat": {
-    "zh": "只依据站内财报问答。",
-    "en": "Based only on the site’s Q&A."
+    "zh": "发布稿已读；电话会文稿未读，Q3 问答（QA217–218）为编辑归纳。延误归因来自 Q2 问答，并非 Q3 证词。季度资本开支两种口径不一致，页面采用现金流量表数字。",
+    "en": "The release was read; the call transcript was not, and the Q3 Q&As (QA217–218) are editorial. The delay attribution comes from the Q2 Q&A, not Q3 testimony. Two bases for quarterly capex disagree, and this page uses the cash-flow line."
    },
    "links": {
     "earnings": [
+     "QA217",
+     "QA218",
      "QA089",
      "QA090",
      "QA091",
@@ -1009,8 +1078,8 @@
   "cutoff": "2026-11-12T11:19:08+00:00",
   "status": "partial",
   "note": {
-   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。",
-   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates."
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：已用官方 Q3 发布稿/电话会更新 Alphabet、Microsoft、Amazon、CoreWeave；Oracle（12月）与中国买家（Baidu 11-16、Alibaba 11-19）待发布。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: Alphabet, Microsoft, Amazon and CoreWeave updated from official Q3 releases and call text; Oracle (December) and the China buyers (Baidu 16 Nov, Alibaba 19 Nov) are still pending."
   },
   "record": "research/weekly-20261112.json"
  }
