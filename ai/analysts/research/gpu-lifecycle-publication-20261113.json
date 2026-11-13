@@ -1,0 +1,112 @@
+{
+  "title": "GPU lifecycle: workload economics",
+  "as_of": "2026-11-13",
+  "timezone": "Europe/London",
+  "page": "/ai/analysts/cases/gpu-lifecycle-workloads-20261113.html",
+  "classification": "editorial analysis with synthetic sensitivity model",
+  "inherited_material": {
+    "title": "Babbage GPU Lifecycle v1",
+    "date": "2026-11-09",
+    "status": "Illustrative model; none of 46 numerical inputs verified; prior NPV, resale and token-cost outputs not adopted as market facts"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "MLCommons Inference Datacenter",
+      "url": "https://mlcommons.org/benchmarks/inference-datacenter/",
+      "checked_on": "2026-11-13",
+      "scope": "Quality/scenario normalization; no extracted system performance ranking",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S2",
+      "title": "NVIDIA T4",
+      "url": "https://www.nvidia.com/en-us/data-center/tesla-t4/",
+      "checked_on": "2026-11-13",
+      "scope": "16 GB capacity and 70 W GPU specification; no whole-system power or claimed speedups used",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S3",
+      "title": "NVIDIA video support matrix",
+      "url": "https://developer.nvidia.com/video-encode-decode-support-matrix",
+      "checked_on": "2026-11-13",
+      "scope": "T4 H.264/HEVC and no AV1 encode; A100 no NVENC",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S4",
+      "title": "NVIDIA A100",
+      "url": "https://www.nvidia.com/en-gb/data-center/a100/",
+      "checked_on": "2026-11-13",
+      "scope": "40/80 GB alternatives; no derived measured throughput",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S5",
+      "title": "CUDA Toolkit 13.0",
+      "url": "https://developer.nvidia.com/blog/whats-new-and-important-in-cuda-toolkit-13-0/",
+      "checked_on": "2026-11-13",
+      "scope": "Pre-SM7.5 offline compilation support removed; existing applications are a separate matter",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S6",
+      "title": "vLLM v0.17.1 quantization",
+      "url": "https://docs.vllm.ai/en/v0.17.1/features/quantization/",
+      "checked_on": "2026-11-13",
+      "scope": "Versioned hardware/kernel compatibility; no universal quantization speed claim",
+      "evidence_type": "primary_public"
+    },
+    {
+      "id": "S7",
+      "title": "QLoRA",
+      "url": "https://arxiv.org/abs/2305.14314",
+      "checked_on": "2026-11-13",
+      "scope": "Capacity feasibility in tested settings; no inference about lifecycle ROI or universal quality parity",
+      "evidence_type": "primary_public"
+    }
+  ],
+  "model": {
+    "equations": [
+      "Q = 3600 * qualified_rate * effective_utilization",
+      "unit_cost = complete_hourly_cost / Q",
+      "old_hourly_cost_ceiling = new_hourly_cost * Q_old / Q_new"
+    ],
+    "input_units": {
+      "cost": "USD/calendar hour",
+      "rate": "matched qualified units/production second",
+      "utilization": "percent of calendar time"
+    },
+    "default_synthetic_inputs": {
+      "oldCost": 0.8,
+      "newCost": 2.4,
+      "oldRate": 1000,
+      "newRate": 2000,
+      "oldUtil": 60,
+      "newUtil": 60
+    },
+    "expected_default_outputs": {
+      "oldCostPerMillion": 0.37037037037037035,
+      "newCostPerMillion": 0.5555555555555556,
+      "oldHourlyCostCeiling": 1.2,
+      "oldUtilizationFloorPercent": 40
+    },
+    "limits": [
+      "No measured benchmark results or live prices",
+      "No automatic power-capacity, demand elasticity, failure hazard or NPV calculation",
+      "Feasibility gates must be established outside calculator",
+      "Costs held fixed per comparison; update them when utilization changes"
+    ]
+  },
+  "corpus_changes": {
+    "real_questions": 0,
+    "analyst_profiles": 0,
+    "thought_cards": 0
+  },
+  "next_evidence": [
+    "Matched workloads and quality/SLO measurements",
+    "Realized rental and resale transactions",
+    "Whole-system power and maintenance cohorts"
+  ]
+}

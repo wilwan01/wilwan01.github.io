@@ -4,6 +4,7 @@ on:
     paths:
       - 'ai/analysts/cases/**'
       - 'scripts/check-analyst-case.cjs'
+      - 'scripts/check-gpu-lifecycle.cjs'
       - '.github/workflows/analyst-case-browser-smoke.yml'
 permissions:
   contents: read
@@ -36,7 +37,9 @@ jobs:
             if curl -fsS http://127.0.0.1:8765/ai/architects/catalog.json -o /dev/null; then break; fi
             sleep 1
           done
+          python3 -m py_compile scripts/build-research-home.py
           node scripts/check-analyst-case.cjs
+          node scripts/check-gpu-lifecycle.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
