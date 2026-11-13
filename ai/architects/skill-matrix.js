@@ -6,6 +6,23 @@
   const count=document.getElementById('matrix-count');
   const empty=document.getElementById('matrix-empty');
   const rows=[...table.tBodies[0].rows];
+  // Use the same domain order as the reading directory, then names within a domain.
+  const domainOrder=new Map([...document.querySelectorAll('.domain-heading h2')].map((heading,index)=>{
+    const label=heading.cloneNode(true);
+    label.querySelectorAll('span').forEach(node=>node.remove());
+    return [label.textContent.trim(),index];
+  }));
+  const collator=new Intl.Collator('en',{sensitivity:'base',numeric:true});
+  const domain=row=>row.querySelector('.matrix-domain').textContent.trim();
+  rows.sort((a,b)=>(domainOrder.get(domain(a))??Infinity)-(domainOrder.get(domain(b))??Infinity)
+    ||domain(a).localeCompare(domain(b),'zh-CN')
+    ||collator.compare(a.dataset.name,b.dataset.name));
+  const ordered=document.createDocumentFragment();
+  rows.forEach(row=>ordered.appendChild(row));
+  table.tBodies[0].appendChild(ordered);
+  table.tHead.rows[0].cells[1].setAttribute('aria-sort','ascending');
+  table.caption.textContent+=' · 按主领域分组，同领域按姓名排序';
+
   const columns=[...table.querySelectorAll('[data-skill]')];
   function update(){
     const selected=skill.value;
