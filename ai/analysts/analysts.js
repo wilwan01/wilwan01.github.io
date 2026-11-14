@@ -88,6 +88,7 @@ function drawRefresh(){
  const labels={archive_reviewed:'档案已读',new_quarterly_disclosure_verified:'新增季度披露已核实',new_long_term_guidance_verified:'新增长期目标已核实',new_preliminary_disclosure_verified:'新增初步业绩已核实',search_checked_archive_incomplete:'档案检查不完整'};
  $('refresh-company-checks').innerHTML='<ul>'+(corpus.earnings_refresh.company_checks||[]).map(x=>`<li><strong>${esc(x.company)}</strong> · ${esc(labels[x.status]||x.status)} · ${sourceLink(x.sources[0].url,'来源')}<br><small>${esc(x.observation)}<br>主电话会：${esc(x.primary_call_check.status)}；独立post-call：${esc(x.post_earnings_call_check.status)}。未确认不存在新发布。</small></li>`).join('')+'</ul>';
  initRefreshPractice();
+ const tr=$('tab-refresh');if(tr&&$('refresh-select'))tr.textContent='近期财报案例 · '+$('refresh-select').options.length;
 }
 const REFRESH_KEY='ai-analyst-refresh-practice-v1';let refreshProgress={},refreshId='';
 try{refreshProgress=JSON.parse(localStorage.getItem(REFRESH_KEY)||'{}');if(!refreshProgress||Array.isArray(refreshProgress)||typeof refreshProgress!=='object')refreshProgress={}}catch{}
@@ -113,3 +114,8 @@ init();
 
 function markRefreshHints(event){const el=event.target;if(!el.matches?.("details[data-refresh-hints]")||!el.open)return;const id=el.dataset.refreshHints;refreshProgress[id]??={stage:0,answers:{},model_seen:false};refreshProgress[id].model_seen=true;saveRefreshStage();if(refreshId===id)$("refresh-practice-status").textContent="已查看编辑提示；不计无提示独立掌握证据。";}
 document.addEventListener("toggle",markRefreshHints,true);
+(()=>{const ts=$('tab-skill'),tr=$('tab-refresh'),sp=$('skill-practice'),rp=$('refresh-practice');if(!ts||!tr||!sp||!rp)return;
+ const show=r=>{sp.hidden=r;rp.hidden=!r;ts.setAttribute('aria-pressed',String(!r));tr.setAttribute('aria-pressed',String(r))};
+ ts.onclick=()=>show(false);tr.onclick=()=>show(true);
+ document.querySelectorAll('[data-open-refresh]').forEach(a=>a.addEventListener('click',()=>show(true)));
+ if(location.hash==='#refresh-practice')show(true);})();
