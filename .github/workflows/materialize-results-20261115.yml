@@ -1,0 +1,49 @@
+name: Materialize reviewed earnings supplement
+on:
+  push:
+    branches: ['research/manual-refresh-20261115']
+    paths:
+      - 'ai/earnings/tools/refresh-results-20261115.py'
+      - 'ai/earnings/research/results-followthrough-20261115.json'
+      - '.github/workflows/materialize-results-20261115.yml'
+# One-off branch-only operation using inherited repository authorization.
+# No repository settings or token permissions are changed. Remove before merge.
+jobs:
+  materialize:
+    if: github.repository == 'wilwan01/wilwan01.github.io' && github.ref_name == 'research/manual-refresh-20261115'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Apply guarded two-release integration
+        run: |
+          python3 ai/earnings/tools/refresh-results-20261115.py
+          node ai/earnings/tools/sync-coverage.mjs
+          node ai/earnings/tools/validate-coverage-layout.mjs
+          python3 scripts/build-search-index.py --as-of 2026-11-15
+          sha256sum ai/analysts/corpus.json ai/earnings/index.html ai/earnings/refresh-ledger.json ai/earnings/coverage-progression.json ai/search-index.json scripts/build-search-index.py > /tmp/earnings-before.sha256
+          python3 ai/earnings/tools/refresh-results-20261115.py
+          node ai/earnings/tools/sync-coverage.mjs
+          python3 scripts/build-search-index.py --as-of 2026-11-15
+          sha256sum -c /tmp/earnings-before.sha256
+          git diff --check
+      - name: Commit generated data only to this research branch
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          git add ai/analysts/corpus.json ai/earnings/index.html ai/earnings/refresh-ledger.json ai/earnings/coverage-progression.json ai/search-index.json scripts/build-search-index.py
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Integrate verified Cisco and Applied Materials results-only releases'
+          git push origin "HEAD:${TARGET_BRANCH}"
+      - name: Preserve generated hashes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: earnings-results-materialization
+          path: /tmp/earnings-before.sha256
+          retention-days: 7
