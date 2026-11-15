@@ -74,6 +74,9 @@ for p in atlas["profiles"]:
 # --- earnings ledger
 for q in load("analysts/corpus.json")["ledger"]:
     add(f"{q['company']} {q['quarter']} · {q['ask']}", f"/ai/earnings/#{q['id']}", "earnings", f"{q['id']} {q.get('theme','')} {q.get('analyst','')}", "en")
+# --- verified financial disclosures (including results-only quarters)
+for d in load("analysts/corpus.json")["financial_disclosures"]:
+    add(f"{d['company']} {d['period']} · {d['event_type'].replace(chr(95), chr(32))}", f"/ai/earnings/#company-evidence-{d['id']}", "earnings", f"{d.get('ticker','')} {d['release_date']} {d.get('data_quality_status','')}", "en")
 # --- notes
 for n in load("notes/catalog.json")["available"]:
     add(n["title"], f"/ai/notes/{n['id'].lower()}.html", "notes", n.get("topic", ""), "en")

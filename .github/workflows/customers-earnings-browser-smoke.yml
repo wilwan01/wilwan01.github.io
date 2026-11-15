@@ -4,7 +4,10 @@ on:
     paths:
       - 'ai/customers/**'
       - 'ai/earnings/**'
+      - 'ai/analysts/corpus.json'
       - 'scripts/check-customers-earnings.cjs'
+      - 'scripts/check-earnings-results-20261115.cjs'
+      - 'scripts/build-search-index.py'
       - 'ai/search*'
       - '.github/workflows/customers-earnings-browser-smoke.yml'
 permissions:
@@ -21,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Verify integrated earnings data and coverage
+        run: node ai/earnings/tools/validate-coverage-layout.mjs
       - name: Install isolated browser dependencies
         run: |
           npm install --prefix "$RUNNER_TEMP/browser-deps" --no-audit --no-fund playwright@1.62.1
@@ -39,6 +44,7 @@ jobs:
             sleep 1
           done
           node scripts/check-customers-earnings.cjs
+          node scripts/check-earnings-results-20261115.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

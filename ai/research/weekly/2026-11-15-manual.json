@@ -1,0 +1,179 @@
+{
+  "run_id": "manual-20261115T132950Z",
+  "research_cutoff": "2026-11-15T13:29:50+00:00",
+  "timezone": "Europe/London",
+  "baseline_commit": "d402cf696483d075bf201edad86e6ad57944d31f",
+  "latest_observed_master": "dd795a81f217fec61135e1069367c0df3a9fe114",
+  "concurrent_change": "One later commit modified only ai/traders/index.html and ai/traders/traders.js; preserved.",
+  "status": "partial_execution_draft_not_published",
+  "execution": "Single-agent tool-assisted research and local validation. No dedicated Deep Research or independent second-agent review claimed.",
+  "artifact_provenance": {
+    "type": "GitHub Pages build artifact, not a git clone",
+    "run_id": 43719173273,
+    "artifact_id": 14163726575,
+    "baseline_only": true
+  },
+  "counts": {
+    "company_endpoints_attempted": 35,
+    "complete_company_windows": 0,
+    "selected_new_releases_verified": 2,
+    "quarterly_slots_baseline": 163,
+    "quarterly_slots_staged": 165,
+    "selected_qa_baseline_and_staged": 224,
+    "new_reviewed_calls": 0,
+    "architect_profiles_baseline_and_staged": 505,
+    "analyst_profiles_baseline_and_staged": 249,
+    "buy_profiles": 125,
+    "sell_profiles": 124,
+    "new_admissions": 0,
+    "draft_skill_exercises": 2,
+    "saved_personal_skills": 0
+  },
+  "evidence": [
+    {
+      "id": "CSCO_2027Q1_results_20261112",
+      "company": "Cisco",
+      "period": "FY2027 Q1",
+      "release_date": "2026-11-12",
+      "url": "https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-FIRST-QUARTER-EARNINGS/default.aspx",
+      "reading_scope": "Selected release, guidance and reconciliation; no call body or full filing.",
+      "reported_revenue_usd_million": 18517,
+      "non_gaap_eps_usd": 1.4,
+      "non_gaap_gross_margin_pct": 65.6,
+      "prior_non_gaap_gross_margin_pct": 68.1,
+      "non_gaap_operating_margin_pct": 37.8,
+      "prior_non_gaap_operating_margin_pct": 34.4,
+      "interpretation": "Inferred: operating-expense leverage can offset weaker aggregate gross margin; this does not establish improved AI networking SKU economics."
+    },
+    {
+      "id": "AMAT_2026Q4_results_20261112",
+      "company": "Applied Materials",
+      "period": "FY2026 Q4",
+      "release_date": "2026-11-12",
+      "url": "https://www.appliedmaterials.com/us/en/newsroom/press-releases/111226-applied-materials-announces-fourth-qtr-fiscal-year-end-2026-results.html",
+      "reading_scope": "Selected release, outlook, segment recast and cash/EPS reconciliation; no call body or full filing. Later refetch errors retained.",
+      "reported_revenue_usd_billion_rounded": 10.41,
+      "gaap_eps_usd": 3.4,
+      "non_gaap_eps_usd": 4.16,
+      "unrealized_investment_eps_adjustment_usd": 0.68,
+      "operating_cash_flow_usd_million": 3300,
+      "capex_usd_million": 684,
+      "non_gaap_free_cash_flow_usd_million": 2616,
+      "interpretation": "Inferred: separate investment valuation adjustments, operating performance and recast segment comparisons before translating EPS into equipment demand."
+    }
+  ],
+  "calculations": {
+    "origin": "Calculated from reported inputs",
+    "cisco_operating_margin_delta_pp": 3.4,
+    "cisco_gross_margin_delta_pp": -2.5,
+    "cisco_opex_ratio_delta_pp": -5.9,
+    "amat_fcf_usd_million": "3300 - 684 = 2616"
+  },
+  "coverage": [
+    {
+      "entry": "/ai/index.html",
+      "inspection": "partial",
+      "result": "Selected AMD archive returned stale material; no production change."
+    },
+    {
+      "entry": "/ai/earnings/",
+      "inspection": "partial",
+      "result": "35 official endpoint attempts; two selected releases verified and staged; zero complete company windows."
+    },
+    {
+      "entry": "/ai/analysts/",
+      "inspection": "partial",
+      "result": "Three candidate/identity checks; two draft skill exercises; no admissions or saved personal skill."
+    },
+    {
+      "entry": "/ai/hot-chips/",
+      "inspection": "partial",
+      "result": "Archive/FAQ only; no new talk or Q&A body reviewed."
+    },
+    {
+      "entry": "/ai/architects/",
+      "inspection": "partial",
+      "result": "REACH baseline reconciliation:41/41 IDs present; current source conflicts/access gaps unresolved."
+    },
+    {
+      "entry": "/ai/notes/",
+      "inspection": "baseline_only",
+      "result": "No new CPU/memory paper body reviewed."
+    },
+    {
+      "entry": "/ai/bridge/",
+      "inspection": "partial",
+      "result": "Two results-based interpretations drafted; historical market-return study not performed."
+    },
+    {
+      "entry": "/ai/policy/",
+      "inspection": "partial",
+      "result": "Selected official listing was stale; no legal-change conclusion."
+    },
+    {
+      "entry": "/ai/standards/",
+      "inspection": "partial",
+      "result": "Selected UALink/CXL indexes; no completeness or new implementation claim."
+    },
+    {
+      "entry": "/ai/customers/",
+      "inspection": "baseline_only",
+      "result": "No independent deployment or procurement update verified."
+    },
+    {
+      "entry": "/ai/benchmarks/",
+      "inspection": "partial",
+      "result": "Selected MLCommons definitions/results-link check; no new measured comparison."
+    },
+    {
+      "entry": "/ai/energy/",
+      "inspection": "partial",
+      "result": "Historical IEA report recheck; no new capacity disclosure verified."
+    },
+    {
+      "entry": "/ai/calendar/",
+      "inspection": "partial",
+      "result": "Selected dated announcements checked; no exhaustive conference refresh."
+    },
+    {
+      "entry": "/ai/method/",
+      "inspection": "partial",
+      "result": "Existing analyst method read; source/status and count safeguards applied."
+    },
+    {
+      "entry": "/ai/search.html",
+      "inspection": "baseline_only",
+      "result": "Formal index not rebuilt or deployed; candidate drafts excluded."
+    }
+  ],
+  "candidate_reconciliation": {
+    "REACH": "41 baseline unique IDs already present; do not recount. Current2025 fetch failed;2026 fetched headings differed from saved roster. No removals inferred.",
+    "Michael Lindsell": "Already admitted as michael-lindsell; not a new candidate admission.",
+    "Sidney Ho": "2024 official Onto IR transition source reviewed. Historical sell-side role is not current employment evidence; substantive-work threshold unmet.",
+    "James Montier": "One2011 official executive summary read; full work and second independent work not reviewed; not admitted."
+  },
+  "validation": {
+    "local_static_checks_passed": 25,
+    "local_static_checks_failed": 0,
+    "coverage_sync_check": "passed:35companies/165quarterly slots/2unreviewed new main-call bodies/224selected questions",
+    "repeat_run": "migration and coverage renderer are byte-identical on rerun",
+    "preservation": "Existing Q&A, event/disclosure history, formal person catalogs and exercise cases preserved",
+    "browser": "blocked:net::ERR_BLOCKED_BY_ADMINISTRATOR on first localhost page;0page/viewport checks completed",
+    "independent_review": "not_performed",
+    "github_ci": "not_claimed",
+    "production_deployment": "not_attempted"
+  },
+  "delivery": {
+    "repository_record": "This research receipt only; staged corpus, coverage table and recovery script are in the conversation handoff package, not applied to master.",
+    "personal_skill": "not_saved",
+    "success_coverage_positions": "not_advanced",
+    "schedule": "unchanged"
+  },
+  "recovery_order": [
+    "Read current master and this receipt; do not reset inherited company coverage windows.",
+    "Recheck the two releases and review both main-call bodies and relevant post-calls; obtain independent evidence review.",
+    "Apply the handoff migration only after its immutable input-blob checks; sync corpus, coverage progression and rendered table together.",
+    "Complete browser validation in an approved environment, regenerate the formal search index, review PR and verify actual deployment.",
+    "Complete remaining company, candidate, CPU/memory-paper and conference-market windows; save only qualified skill changes through a verified skill writer."
+  ]
+}
