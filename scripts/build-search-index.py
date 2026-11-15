@@ -37,7 +37,7 @@ def load(p):
 
 
 # --- pages and report section headings
-SECTION_OF = {"architects": "architects", "analysts": "analysts", "bridge": "bridge", "earnings": "earnings",
+SECTION_OF = {"traders": "traders", "architects": "architects", "analysts": "analysts", "bridge": "bridge", "earnings": "earnings",
               "hot-chips": "hotchips", "notes": "notes", "policy": "policy", "standards": "standards", "method": "method", "customers": "customers", "benchmarks": "benchmarks", "energy": "energy", "calendar": "calendar"}
 for f in sorted(AI.rglob("*.html")):
     rel = f.relative_to(AI).as_posix()
@@ -61,6 +61,9 @@ for f in sorted(AI.rglob("*.html")):
         for m in re.finditer(r'<h2[^>]*id="([^"]+)"[^>]*>(.*?)</h2>', h, re.S):
             add(clean(m.group(2)), f"{url}#{m.group(1)}", "reports", title, "zh" if lang == "zh" else "en")
 
+# --- traders: public methods and explicitly inferred compute applications
+for p in load("traders/catalog.json")["cards"]:
+    add(p["name"], f"/ai/traders/#{p['id']}", "traders", f"{p['domain']} {p['priority']} {p['decision']}", "zh")
 # --- architects
 for p in load("architects/catalog.json")["profiles"]:
     add(p["name"], f"/ai/architects/#{p['id']}", "architects", f"{p['id'].replace(chr(45), chr(32))} {' '.join(p.get('aliases', []))} {p['field']} {p['core']}", "zh")
