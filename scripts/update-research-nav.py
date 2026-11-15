@@ -11,6 +11,7 @@ LINKS = (
     ("/ai/analysts/", "分析师训练"),
     ("/ai/hot-chips/", "Hot Chips"),
     ("/ai/architects/", "架构师思想"),
+    ("/ai/traders/", "交易员策略"),
     ("/ai/notes/", "Architecture Notes"),
     ("/ai/bridge/", "技术 × 投资"),
     ("/ai/policy/", "政策与地缘"),
@@ -24,13 +25,13 @@ LINKS = (
 )
 ENGLISH = (
     "Research home", "Earnings Analysis",
-    "Analyst Mode", "Hot Chips", "Architect Mode", "Architecture Notes", "Tech x Invest",
+    "Analyst Mode", "Hot Chips", "Architect Mode", "Trader Mode", "Architecture Notes", "Tech x Invest",
     "Policy", "Standards", "Customers", "Benchmarks", "Energy & Sites", "Calendar", "Method & Glossary", "Search",
 )
 # Section language, so readers know before clicking. "both" sections carry no mark.
 SECTION_LANG = {
     "/ai/earnings/": "en", "/ai/hot-chips/": "en", "/ai/notes/": "en",
-    "/ai/analysts/": "zh", "/ai/architects/": "zh", "/ai/bridge/": "zh",
+    "/ai/traders/": "zh", "/ai/analysts/": "zh", "/ai/architects/": "zh", "/ai/bridge/": "zh",
 }
 NAV = re.compile(r'<nav\b(?=[^>]*\bclass\s*=\s*[\"\'][^\"\']*\bresearch-nav\b)[^>]*>.*?</nav\s*>', re.I | re.S)
 STYLE = re.compile(r'<link\b(?=[^>]*\bhref\s*=\s*[\"\']/ai/research-nav\.css(?:\?[^\"\']*)?[\"\'])[^>]*>', re.I)

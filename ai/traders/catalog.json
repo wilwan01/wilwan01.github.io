@@ -1,0 +1,369 @@
+{
+  "version": "1.0",
+  "as_of": "2026-11-14",
+  "timezone": "Europe/London",
+  "status": "Source and arithmetic checked; research draft; no market backtest or trade execution",
+  "evidence_origin": [
+    "Public",
+    "Inferred",
+    "Synthetic"
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "author": "John Arnold；主持人 Jason Bordoff",
+      "date": "2025-11-11",
+      "title": "Building Energy Policy on Evidence",
+      "url": "https://www.energypolicy.columbia.edu/building-energy-policy-on-evidence/",
+      "scope": "原始访谈逐字稿，00:06:13–00:14:37；原文职业介绍。",
+      "use": "天然气交易经历；买卖需求错配、供需弹性、数据建模与市场效率。"
+    },
+    {
+      "id": "S02",
+      "author": "John Arnold；主持人 Tyler Cowen",
+      "date": "2025-06-04；录制 2025-04-28",
+      "title": "John Arnold on Trading, Energy, and Evidence-Based Philanthropy",
+      "url": "https://conversationswithtyler.com/episodes/john-arnold/",
+      "scope": "原始逐字稿开头关于 first principles、置信度、专业聚焦及天然气平衡的问答。",
+      "use": "第一性原理、情绪脱离、集中于可建模的细分市场。"
+    },
+    {
+      "id": "S03",
+      "author": "Pierre Andurand；HEC Paris 访谈",
+      "date": "未标明；访问 2026-11-14",
+      "title": "Pierre Andurand",
+      "url": "https://www.hec.edu/en/master-s-programs/stories/pierre-andurand",
+      "scope": "本人关于交易职业、生产／需求增长、金融与数学、exotic derivatives 的问答。",
+      "use": "中长期供需分析；只提取方法，不采信其自报收益作为排名依据。"
+    },
+    {
+      "id": "S04",
+      "author": "Edward O. Thorp",
+      "date": "2003",
+      "title": "A Perspective on Quantitative Finance: Models for Beating the Market",
+      "url": "https://www.edwardothorp.com/wp-content/uploads/2016/11/thorpwilmottqfinrev2003.pdf",
+      "scope": "PDF 第 2–5 页，重点印刷页 35–37：可转债分解、仓位、local/global risk。",
+      "use": "拆解定价、真实执行验证、尾部与日常风险分开。"
+    },
+    {
+      "id": "S05",
+      "author": "Leonard C. MacLean、Edward O. Thorp、Yonggan Zhao、William T. Ziemba",
+      "date": "2010-01-18",
+      "title": "Medium Term Simulations of the Full Kelly and Fractional Kelly Investment Strategies",
+      "url": "https://www.edwardothorp.com/wp-content/uploads/2016/11/KellySimulationsNew.pdf",
+      "scope": "摘要与引言（PDF 第 1 页）；未复现论文全部模拟。",
+      "use": "共同作者研究：增长与安全的权衡；有限期内仍可能严重损失。"
+    },
+    {
+      "id": "S06",
+      "author": "Euan Sinclair",
+      "date": "2026-01-06",
+      "title": "The Power of the Risk-Reversal",
+      "url": "https://www.cboe.com/insights/posts/the-power-of-the-risk-reversal/",
+      "scope": "Cboe 刊载作者文章，开头至 risk-reversal 与方向／波动率分解段落。",
+      "use": "结构性保险需求、备兑卖出与相对定价；不把其权益回测外推到算力。"
+    },
+    {
+      "id": "S07",
+      "author": "Nassim Nicholas Taleb",
+      "date": "未标明；访问 2026-11-14",
+      "title": "Three Problems with Dynamic Hedging in Discrete Time",
+      "url": "https://www.fooledbyrandomness.com/dynamic.pdf",
+      "scope": "作者托管研究稿，第 1–2 页，随机敞口与信息／交易滞后。",
+      "use": "离散对冲误差与执行滞后；未对全文数学证明作独立审稿。"
+    },
+    {
+      "id": "S08",
+      "author": "Mark Spitznagel / Universa",
+      "date": "2020-01",
+      "title": "Safe Haven Investing: Why Do People Still Invest in Hedge Funds?",
+      "url": "https://universa.net/Universa_Spitznagel_SafeHaven_HedgeFunds.pdf",
+      "scope": "第 1–2 页：portfolio effect、几何收益与保护成本。",
+      "use": "按整体组合效果评价对冲；未复核文中指数绩效。"
+    },
+    {
+      "id": "S09",
+      "author": "Blair Hull；主持人 Meb Faber",
+      "date": "2018-01-10；录制 2018-01-08",
+      "title": "Episode 89: Blair Hull — Emotions Will Kill You in This Game",
+      "url": "https://mebfaber.com/2018/01/10/episode-89-blair-hull-emotions-will-kill-game/",
+      "scope": "原始访谈逐字稿：早期期权交易、系统化数据模型及结尾关于单一变量与分散化。",
+      "use": "先验证优势、稳定执行、避免押注单一信号；非完整音频复核。"
+    },
+    {
+      "id": "S10",
+      "author": "Don Wilson / DRW",
+      "date": "2016-03-01",
+      "title": "Starting out in the financial markets",
+      "url": "https://www.drw.com/updates/insights/don-wilson-on-getting-his-start-in-the-industry",
+      "scope": "DRW 托管本人文章正文。",
+      "use": "Eurodollar options 交易经历；研究、技术、风险管理一体化及异常波动教训。"
+    },
+    {
+      "id": "S11",
+      "author": "Don Wilson / DRW",
+      "date": "2016-03-02",
+      "title": "Risk vs. Reward — In the Markets and on the Water",
+      "url": "https://www.drw.com/updates/insights/risk-vs-reward-in-the-markets-and-on-the-water",
+      "scope": "DRW 托管本人文章正文。",
+      "use": "每个决策同时考察收益与不利情景；技术和数据辅助执行。"
+    },
+    {
+      "id": "S12",
+      "author": "CME Group",
+      "date": "访问 2026-11-14；动态页面",
+      "title": "Compute Futures",
+      "url": "https://www.cmegroup.com/markets/energy/power/compute-futures.html",
+      "scope": "产品概览及合约规格表。",
+      "use": "GPU1/GPU2、neocloud 指数、730 GPU-hours、现金结算。"
+    },
+    {
+      "id": "S13",
+      "author": "CME Group",
+      "date": "未标明；访问 2026-11-14",
+      "title": "Compute futures fact card",
+      "url": "https://www.cmegroup.com/markets/energy/files/compute-futures-fact-card.pdf",
+      "scope": "规格表、结算平均及 pending regulatory review。",
+      "use": "每日指数平均且排除 CME 假日；宣传保证金约数不作为资金需求测算。"
+    },
+    {
+      "id": "S14",
+      "author": "NYMEX / CME Legal；CFTC 托管",
+      "date": "2026-11-04",
+      "title": "Voluntary Extension of Review Period for Two Compute Futures Contracts",
+      "url": "https://www.cftc.gov/filings/documents/2026/orgdcmnymexvolexten261105.pdf",
+      "scope": "信函全文，重点最终两段。",
+      "use": "审查同意延长至 2027-01-08，附可提前结束条件；不是批准上市日。"
+    },
+    {
+      "id": "S15",
+      "author": "ICE Futures U.S.",
+      "date": "访问 2026-11-14；动态页面",
+      "title": "Ornn Compute Price Index H100 Future",
+      "url": "https://www.ice.com/products/83050006/Ornn-Compute-Price-Index-OCPI-H100-Future",
+      "scope": "Description、Contract Size、Final Settlement。",
+      "use": "HPR；合约月份小时数；OCPI 月内每日价格平均；未核验成交与持仓。"
+    },
+    {
+      "id": "S16",
+      "author": "ICE Futures U.S.",
+      "date": "访问 2026-11-14；动态页面",
+      "title": "Ornn Compute Price Index B200 Future",
+      "url": "https://www.ice.com/products/83050009/Ornn-Compute-Price-Index-OCPI-B200-Future",
+      "scope": "Description、Contract Size、Final Settlement。",
+      "use": "BKL；合约期间小时数；OCPI 月内每日价格平均；未核验成交与持仓。"
+    },
+    {
+      "id": "S17",
+      "author": "ICE / Ornn",
+      "date": "2026-05-19",
+      "title": "ICE and Ornn to Launch GPU Compute Futures Contracts",
+      "url": "https://ir.theice.com/press/news-details/2026/ICE-and-Ornn-to-Launch-GPU-Compute-Futures-Contracts/",
+      "scope": "发布正文，包括 printed transactions 和监管前提。",
+      "use": "交易数据来源是发行方公开表述，不等于本研究审计了底层成交。"
+    },
+    {
+      "id": "S18",
+      "author": "CME Group / Silicon Data",
+      "date": "2026-08-11",
+      "title": "CME Group and Silicon Data to Launch Compute Futures on October 5",
+      "url": "https://www.cmegroup.com/media-room/press-releases/2026/8/11/cme_group_and_silicondatatolaunchcomputefuturesonoctober5tounloc.html",
+      "scope": "发布正文首段及产品说明。",
+      "use": "原定日期附监管条件；Silicon Data 获 DRW 支持的公开关联。"
+    }
+  ],
+  "cards": [
+    {
+      "id": "T01",
+      "name": "John Arnold",
+      "domain": "天然气衍生品 / Centaurus",
+      "refs": [
+        "S01",
+        "S02"
+      ],
+      "priority": "先学：实物供需与基差",
+      "method": "[Public] 从可建模的供需系统与市场平衡约束出发，测试信息背后的假设；保持专业聚焦，并随证据改判断。天然气的季节性储存约束，是其历史方法的重要背景。",
+      "old": "GPU 出货量增加，出租算力便同比增加。",
+      "new": "应观察已通电、已联网、已验收并能按目标 SLA 出租的容量；本报告尚未获得这样的完整面板。",
+      "mechanism": "[Inferred] 交付、供电、网络、软件和客户资格形成串联门槛；任何一项未就绪，都可令芯片库存无法转化为当前可售小时。",
+      "decision": "先覆盖一个明确实例篮子，再研究其近月缺口和区域／SLA 基差。原始租价、报价可用量与失败预订都要保留。",
+      "variables": "合格 GPU 数、可售 GPU-hours、可用率、同口径成交需求、预订失败率；训练／prefill／decode 分开。",
+      "boundary": "只有供需数据能影响本合约结算篮子、且价格尚未反映该变化，才可能有交易优势。",
+      "counter": "客户可排队、换模型、降精度或迁移；需求比天然气更有弹性。GPU-hours 不可储存，不能照搬天然气库存模型。",
+      "test": "预先冻结容量上线预测，在每次下一轮验收／报价更新时核对：新增合格容量是否降低同规格可成交价格和缺货率。若没有，重建需求与分割市场假设。",
+      "confidence": "方法归因高；算力迁移机制中；当前 alpha 未验证。"
+    },
+    {
+      "id": "T02",
+      "name": "Pierre Andurand",
+      "domain": "能源与商品衍生品 / BlueGold、Andurand",
+      "refs": [
+        "S03"
+      ],
+      "priority": "先学：供需重平衡与跨期",
+      "method": "[Public] 本人在 HEC 访谈中强调生产与需求增长、中长期平衡，以及金融、数学和市场心理的共同作用。该材料未标日期，不能据此推断当前仓位。",
+      "old": "算力长期通缩，做空远月自然赚钱。",
+      "new": "需要比较预期结算价与真正可成交的远月价格；下降方向本身不构成 edge。",
+      "mechanism": "[Inferred] 新容量投产滞后造成期限错配；但远期贴水可以提前消化技术进步，也可能包含生产商套保压力。",
+      "decision": "研究近月紧缺、远月供给释放的日历价差；先证明自己的重平衡时间判断不同于市场。",
+      "variables": "同篮子 F_near、F_far（$/GPU-hour）、投产验收日期、期限需求、单腿／组合可成交深度。",
+      "boundary": "只有预期价差变化超过两腿成本、融资与模型误差缓冲，且短腿尾部可承受，才进入交易评估。",
+      "counter": "延迟投产、需求加速或抢购可令远月更贵；近月和远月并无由现货储存套利保证的利差。",
+      "test": "下一次相关投产里程碑或客户承诺更新时比较“预计可售容量”与“实到可售容量”；若供应释放推迟，撤销原跨期逻辑。",
+      "confidence": "方法归因高但来源时间不明；策略方向条件化；未验证机会。"
+    },
+    {
+      "id": "T03",
+      "name": "Edward O. Thorp",
+      "domain": "权证、可转债与市场中性衍生品",
+      "refs": [
+        "S04",
+        "S05"
+      ],
+      "priority": "先学：合同分解与仓位",
+      "method": "[Public] 拆解证券的组成风险，以真实执行检验模型，并区分常态因子风险和极端事件。与合作者的 Kelly 研究明确显示有限期增长与损失风险的权衡。",
+      "old": "两个产品高度相关，或模型给出正收益，就可以大仓位套利。",
+      "new": "算力租约包含时间、服务等级、信用与可取消性；已知到期等价关系通常不足，回归关系也可能突变。",
+      "mechanism": "[Inferred] 收益可能来自承担未计价的基差、违约或不可退出风险。没有闭合复制路径，价差交易便不是无风险套利。",
+      "decision": "把租约、指数现金流、客户回款和保证金逐项分解；仓位同时受模型不确定性、极端损失和资金期限约束。",
+      "variables": "结算现金流、成本、基差 b、合约乘数 m、压力损失／份、资金可用日期、退出深度。",
+      "boundary": "低样本算力市场不以精确 Kelly 比例伪装已知胜率；先设损失与现金上限，再讨论分数 Kelly 的模型意义。",
+      "counter": "越复杂的租约分解也可能越依赖不可观测参数；复杂并不证明比简单套保更好。",
+      "test": "每次调整标的或合约条款后重算因子敞口；在未见样本上比较零套保、简单套保和模型套保，费用后不能改善目标则弃用。",
+      "confidence": "方法归因高；合同恒等式高；统计对冲比率未知。"
+    },
+    {
+      "id": "T04",
+      "name": "Euan Sinclair",
+      "domain": "期权、波动率与结构性资金流",
+      "refs": [
+        "S06"
+      ],
+      "priority": "先学：谁为风险转移付钱",
+      "method": "[Public] 其 Cboe 文章从买保护和备兑卖出的结构性资金流解释相对期权价格；risk-reversal 同时有方向与波动率敞口，必须区分。",
+      "old": "算力波动大，所以卖波动能稳定收取溢价。",
+      "new": "算力买方可能支付短缺保护，供给方可能支付下跌保护；哪一侧更贵、是否有期权报价都尚未建立。",
+      "mechanism": "[Inferred] 对冲需求可以令风险转移价格偏离交易者的物理期望，但承担风险本身不等于错误定价。",
+      "decision": "先研究真实客户为什么愿意买 cap/floor、愿付多少、能对冲什么；期权与期限结构研究留待报价和合约可用后。",
+      "variables": "真实可成交期权价、期限／行权价、月均或逐时结算、方向敞口、路径与尾部情景、交易成本。",
+      "boundary": "没有可执行期权价格与可兑现保护，就不能声称存在 volatility risk premium；不能直接复制股票市场偏斜方向。",
+      "counter": "高权利金也可能不足以补偿尖峰与缺货；月均指数上涨有限时，某个区域的运营损失仍可能极大。",
+      "test": "取得实际双向报价后，在预注册的独立情景中分解 delta、vol、basis 和 credit 的贡献；若所谓溢价只是方向敞口，则否定原假设。",
+      "confidence": "方法归因高；算力保险需求合理但未定量；当前期权溢价未知。"
+    },
+    {
+      "id": "T05",
+      "name": "Nassim Nicholas Taleb",
+      "domain": "期权交易与离散对冲风险",
+      "refs": [
+        "S07"
+      ],
+      "priority": "约束层：跳跃和不可复制性",
+      "method": "[Public] 作者研究稿分析离散动态对冲中的随机敞口及交易／信息滞后。这里只提取这项具体方法，不把其全部哲学或论文证明当成已复核结论。",
+      "old": "只要 delta 接近零，卖出的期权风险就被消掉了。",
+      "new": "算力可能无法随时买到同规格现货，对冲报价、容量和结算指数也可能不同步。",
+      "mechanism": "[Inferred] 敞口会在无法成交的时间内变动；市场不完整，模型 Greeks 不能消除缺货、跳价或基差。",
+      "decision": "限制不可封顶的卖方承诺；以真实可执行的保护、备用容量和现金缓冲承受不可动态复制的部分。",
+      "variables": "无报价时间、现货履约率、价格跳跃、场景相关性、最坏现金需求；不得仅看正态 VaR。",
+      "boundary": "金融 cap 只补结算价格，不提供机器；对客户承诺的容量需另有可验证的实物保障。",
+      "counter": "长期不断买保护也会侵蚀价值；“凸性好”不能取代价格与成本判断。",
+      "test": "每次承保或扩仓前演练同日价格跳升、备用供应失效和流动性消失；不能履约或维持保证金时缩减结构。",
+      "confidence": "执行误差机制高；具体算力尾部分布与最优保护价格未知。"
+    },
+    {
+      "id": "T06",
+      "name": "Mark Spitznagel",
+      "domain": "尾部对冲 / Universa",
+      "refs": [
+        "S08"
+      ],
+      "priority": "约束层：对冲的企业整体效果",
+      "method": "[Public] 以整个组合的复合增长与风险缓解效果评价保护，而非单看保护仓位收益。来源为其公司文章，带有尾部保护业务视角。",
+      "old": "保护仓位长期亏损就是失败，或危机时获利很大就是成功。",
+      "new": "算力企业需要的是在压力期维持服务、融资和再投资；独立衍生品 P&L 不能解释这些结果。",
+      "mechanism": "[Inferred] 合理保护可能降低被迫清算和断供成本；过贵保护则可能超过其带来的企业价值。",
+      "decision": "把保险、备用容量、闲置现金、降低杠杆放在同一成本／韧性比较表中。",
+      "variables": "企业净现金、保护费、备用容量费、压力缺口、恢复成本、融资条件；不只看交易账户 Sharpe。",
+      "boundary": "只有压力期可兑现、与经营损失相匹配、且全周期成本可承受的保护，才有经济价值。",
+      "counter": "抵押品、客户需求和保护卖方可能同向失效；漂亮的理论尾部收益可能无法及时变现。",
+      "test": "每次融资或保单续期前比较至少一个不买保护但降低杠杆的基线；若保护不能改善压力现金缺口，则重新设计。",
+      "confidence": "方法归因高；经营映射中；保护采购经济性未定价。"
+    },
+    {
+      "id": "T07",
+      "name": "Blair Hull",
+      "domain": "期权做市与系统化交易",
+      "refs": [
+        "S09"
+      ],
+      "priority": "执行层：数据与规则化",
+      "method": "[Public] 访谈把可验证的优势、持续留在市场及系统化数据方法联系起来，并拒绝把多数资产压在单一变量上。",
+      "old": "用一个 GPU 租价走势图或一个供需指标就足以启动交易。",
+      "new": "有效报价、可用量、期限、成交和质量可能不同步；短历史尤其容易把数据错误拟合成信号。",
+      "mechanism": "[Inferred] 数据清洗与执行过程会改变可实现收益；理论中间价回测不等于能以该价双向成交。",
+      "decision": "先做带时间戳的报价／成交回放和规则化模拟；保持不交易选项，避免为增加交易次数而制造信号。",
+      "variables": "bid/ask、有效期、最小数量、填单率、撤单率、滞后、成本和供应商／买方集中度。",
+      "boundary": "系统化方法仍须适应结构变化；供应商多不等于风险独立，单一基础设施故障会制造共振。",
+      "counter": "没有足够独立样本时，所谓多信号可能都是同一芯片价格周期。",
+      "test": "在取得数据后冻结规则，再按时间顺序前向验证；若收益只存在于中间价或单个贡献者，不能进入实盘。",
+      "confidence": "方法归因高；本研究没有行情数据回测。"
+    },
+    {
+      "id": "T08",
+      "name": "Don Wilson",
+      "domain": "利率期权与多市场交易 / DRW",
+      "refs": [
+        "S10",
+        "S11",
+        "S18"
+      ],
+      "priority": "执行层：研究、技术、资本",
+      "method": "[Public] 本人文章说明从 Eurodollar options 交易走向研究、风险软件和执行的结合，并以早期卖出期权的损失强调意外波动。",
+      "old": "拥有定价模型或算力指数就等于拥有交易业务。",
+      "new": "交易还需要可兑现的报价、可靠风险系统、资金与对手方；每一层都能吞掉纸面优势。",
+      "mechanism": "[Inferred] 价格发现与资产负债表能力共同决定是否能承接客户错配和度过压力期。",
+      "decision": "先提供可审计的基差／套保分析，再评估自营做市；指数治理和交易活动须清楚分开。",
+      "variables": "资金占用、保证金、报价时效、库存集中、退出成本、指数贡献者与自身头寸关联。",
+      "boundary": "CME 公开称 Silicon Data 获 DRW 支持，属于需披露的商业关联；不能据此证明方法正确或归因未公开策略。",
+      "counter": "技术领先无法修复薄弱结算标的；更快交易也可能更快累积同一种风险。",
+      "test": "在接受任何做市义务前，通过断流、停报和保证金突升演练；报价无法在资金和履约边界内维持，则暂不承担义务。",
+      "confidence": "个人方法归因高；公开关联高；算力自营盈利能力未知。"
+    }
+  ],
+  "synthetic_scenarios": [
+    {
+      "name": "价格下降，基差为零",
+      "q": 730000,
+      "index": 1.5,
+      "actual": 1.5,
+      "physical": 1095000,
+      "hedge": 365000,
+      "total": 1460000,
+      "basis": 0,
+      "volume_mismatch": 0
+    },
+    {
+      "name": "价格下降，实际租价跌得更多",
+      "q": 730000,
+      "index": 1.5,
+      "actual": 1.2,
+      "physical": 876000,
+      "hedge": 365000,
+      "total": 1241000,
+      "basis": -219000,
+      "volume_mismatch": 0
+    },
+    {
+      "name": "租价上涨，但销量减半",
+      "q": 365000,
+      "index": 3,
+      "actual": 2.7,
+      "physical": 985500,
+      "hedge": -730000,
+      "total": 255500,
+      "basis": -109500,
+      "volume_mismatch": -365000
+    }
+  ],
+  "calculation_code": "from decimal import Decimal as D\nQ0, K = D(\"730000\"), D(\"2\")\nfor q, I, P in [(\"730000\",\"1.5\",\"1.5\"),\n                (\"730000\",\"1.5\",\"1.2\"),\n                (\"365000\",\"3\",\"2.7\")]:\n    q,I,P = map(D,(q,I,P))\n    total = q*P + Q0*(K-I)\n    assert total == q*K + q*(P-I) + (Q0-q)*(K-I)\n    print(total)\n# 1460000.0; 1241000.0; 255500.0\nassert Q0/D(\"730\") == 1000\nassert Q0*D(\"0.3\") == 219000\nassert Q0*(D(\"4\")-K) == 1460000\nassert Q0*(D(\"1.2\")-D(\"1.5\")) == -219000\nassert 1-(D(\"3\")/D(\"2\"))/(D(\"2\")/D(\"1\")) == D(\"0.25\")\nassert Q0*D(\"1.5\")/1000 == 1095\nassert D(\"1.5\")*100/1000 == D(\"0.15\")"
+}
