@@ -32,7 +32,7 @@
     const revenue = q*p, hedge = q0*(k-i), basis=q*(p-i), mismatch=(q0-q)*(k-i), total=revenue+hedge-cost;
     if (![revenue,hedge,basis,mismatch,total].every(Number.isFinite)) { $('calc-output').textContent = '结果超出可计算范围。'; return; }
     const usd = n => n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2});
-    $('calc-output').textContent = `Calculated · 实物收入 ${usd(revenue)} + 空头套保损益 ${usd(hedge)} − 成本 ${usd(cost)} = 合计 ${usd(total)}。基差贡献 ${usd(basis)}；数量错配贡献 ${usd(mismatch)}。`;
+    $('calc-output').textContent = `实物收入 ${usd(revenue)} + 空头套保损益 ${usd(hedge)} − 成本 ${usd(cost)} = 合计 ${usd(total)}。基差贡献 ${usd(basis)}；数量错配贡献 ${usd(mismatch)}。`;
   }
   ids.forEach(id => $(id).addEventListener('input', calculate));
   document.querySelectorAll('[data-scenario]').forEach(button => button.addEventListener('click', () => {
