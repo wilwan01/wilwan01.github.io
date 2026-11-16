@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-13",
+ "as_of": "2026-11-16",
  "scope": {
   "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
   "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
@@ -237,6 +237,10 @@
     {
      "zh": "自2026年第二季度起改为滚动提交：提交者可随时发布经同行评审与审计的结果，取代固定的半年一轮；Inference v6.1 中过半提交者已使用其 API 为中心的测试框架（见M03）。",
      "en": "From Q2 2026 submissions roll continuously: submitters can publish peer-reviewed, audited results at any time, replacing the fixed bi-annual cadence; more than half of Inference v6.1 submitters already used its API-centric harness (see M03)."
+    },
+    {
+     "zh": "2026-09-16 的 Inference v6.1 发布稿称：MLPerf Endpoints 将取代 Inference 成为数据中心基准家族的一员（David Kanter 语），其 API 为中心的测试框架是下一代 Endpoints 套件的基础；另有尚未发布的“MLPerf Agentic 数据中心性能基准”，v6.1 的边缘智能体推理测试沿用其框架并改为边缘场景（边缘模型与量化、单流编码负载、时延指标、准确度门槛）。两者均未给出发布日期。",
+     "en": "The 16 Sep 2026 Inference v6.1 release says MLPerf Endpoints “will replace Inference” in the datacenter benchmark family (David Kanter) and that its API-centric harness is the foundation of the next-generation Endpoints suite; a separate, not-yet-released “MLPerf Agentic datacenter performance benchmark” is the source of the framework that v6.1’s Edge Agentic Inference test adapts for edge use (edge model and quantization, single-stream coding workload, latency metrics, accuracy gate). No release date is given for either."
     }
    ],
    "evidence": "primary-read",
@@ -249,6 +253,15 @@
      "read_at": "2026-11-13",
      "locator": "Design, metrics, first submitters, rolling-submission plan",
      "reading_scope": "Blog post text read; no results tables read"
+    },
+    {
+     "label": "MLCommons Inference v6.1 release via HPCwire",
+     "url": "https://www.hpcwire.com/off-the-wire/mlcommons-sets-participation-record-with-new-mlperf-inference-v6-1-benchmark-results/",
+     "type": "primary",
+     "published_at": "2026-09-16",
+     "read_at": "2026-11-16",
+     "locator": "Agentic and Endpoints passages",
+     "reading_scope": "Release text read"
     }
    ],
    "caveat": {
