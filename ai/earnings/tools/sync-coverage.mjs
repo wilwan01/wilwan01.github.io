@@ -116,6 +116,11 @@ assert.equal(rendered.size, events.length, 'Every incremental event must appear 
 html = html.slice(0, sectionStart) + section + (archive.length ? '<!-- coverage-archive:start --><details id="coverage-evidence-archive"><summary>Historical evidence snapshots · original cutoffs, checks and gaps</summary>' + archive.join('') + '</details><!-- coverage-archive:end -->' : '') + html.slice(sectionEnd);
 // Normalize the whitespace left by migrating sections, without touching their contents.
 html = html.replace(/\n{3,}/g, '\n\n');
+// Keep the current overview separate from dated snapshot totals.
+const overview = `<p class="metricline" id="earnings-current-counts">${corpus.counts.companies} companies · ${corpus.counts.quarterly_events} quarterly slots + ${postCalls.length} separate post-earnings calls · ${corpus.counts.questions} selected Q&amp;A probes · ${corpus.financial_disclosures.length} financial disclosures</p>`;
+const overviewPattern = /<p class="metricline"(?: id="earnings-current-counts")?>\d+ companies · \d+ quarterly (?:events|slots) \+ \d+ (?:standalone|separate) post-earnings calls · \d+ selected Q&amp;A probes · \d+ (?:supplemental non-quarterly|financial) disclosures<\/p>/;
+assert.ok(overviewPattern.test(html), 'Missing current earnings overview');
+html = html.replace(overviewPattern, overview);
 html = html.replace('The historical four-quarter coverage table is retained; new events are listed in the incremental section.', 'The original four-quarter history is retained in Company coverage, with later results, reviewed calls, separate post-calls and editorial progression integrated into each affected company row. Collapsed historical snapshots retain the underlying refresh history.');
 // The original Micron append omitted article IDs; add the existing stable QA IDs for deep links.
 html = html.replace(/<article\b([^>]*)>([\s\S]*?)<\/article>/g, (whole, attrs, body) => {

@@ -1,0 +1,344 @@
+{
+  "run_id": "earnings-nvidia-results-20261118",
+  "cutoff": "2026-11-18T10:32:52+00:00",
+  "timezone": "Europe/London",
+  "baseline_commit": "ec5cbbb9b946cbcad75d39bbbd0f7f6afb506833",
+  "baseline_blob_shas": {
+    "ai/analysts/corpus.json": "9817aebcadd3c7d8d86307ea1daa0036c8388efb",
+    "ai/earnings/refresh-ledger.json": "b5931729e31bc858e9fdcc142a10d029d45ddb7d",
+    "ai/earnings/coverage-progression.json": "e7b47fc7b500a5d8ebf02463adc3c73f9a9023fe",
+    "ai/earnings/index.html": "4abf9d0ccaff9eaf17378c26301a2752647220e8"
+  },
+  "scope": "NVIDIA FY2027 Q3 results, written CFO commentary, selected supplemental statements and dated prior management guidance. One issuer; no full-universe sweep, new Q&A, personal-skill modification or schedule change.",
+  "financial_disclosures": [
+    {
+      "id": "NVDA_2027Q3_results_20261117",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "period": "FY2027 Q3",
+      "period_end": "2026-10-25",
+      "release_date": "2026-11-17",
+      "event_type": "quarterly_results",
+      "counts_as_completed_quarter": true,
+      "counts_as_call": false,
+      "data_quality_status": "Official results, written CFO commentary and selected supplemental statements reviewed; unaudited; main-call Q&A not reviewed",
+      "evidence_origin": "Public",
+      "currency": "USD",
+      "unit": "USD million except EPS (USD/share), margins (percent), and fields with explicitly stated units",
+      "basis": "Unaudited reported actuals; management guidance, issuer commentary and Calculated values separately labeled",
+      "reported_actuals": {
+        "revenue": 115844,
+        "revenue_prior_quarter": 96221,
+        "revenue_prior_year": 57006,
+        "cost_of_revenue_gaap": 29168,
+        "gross_profit_gaap": 86676,
+        "gross_margin_gaap_pct": 74.8,
+        "gross_margin_non_gaap_pct": 74.9,
+        "gross_profit_non_gaap": 86724,
+        "opex_gaap": 9156,
+        "opex_non_gaap": 8841,
+        "operating_income_gaap": 77520,
+        "operating_income_non_gaap": 77883,
+        "net_income_gaap": 65287,
+        "net_income_non_gaap": 64870,
+        "eps_diluted_gaap": 2.7,
+        "eps_diluted_non_gaap": 2.68,
+        "diluted_shares_million": 24186,
+        "gains_from_equity_securities_net": 1767,
+        "stock_based_compensation_expense": 2088,
+        "cash_flow_operating": 48253,
+        "purchases_related_to_property_equipment_and_intangible_assets": 4422,
+        "principal_payments_on_property_equipment_and_intangible_assets": 54,
+        "free_cash_flow_non_gaap_reported": 43777,
+        "cash_flow_accounts_receivable_change": -18052,
+        "cash_flow_inventories_change": -8148,
+        "accounts_receivable_net_at_period_end": 81033,
+        "inventory_at_period_end": 39724
+      },
+      "market_platform_revenue": {
+        "source_id": "S2",
+        "units": "USD billion, issuer rounded to 0.1 billion",
+        "data_center": 107.6,
+        "hyperscale": 60.1,
+        "ai_clouds_industrial_enterprise": 47.5,
+        "edge_computing": 8.2,
+        "separate_reportable_segment_compute_networking": 106.0,
+        "separate_reportable_segment_graphics": 9.8,
+        "standalone_dc_compute_revenue": null,
+        "standalone_dc_networking_revenue": null,
+        "boundary": "Market-platform totals and reportable segments are different classifications. Compute & Networking is not Data Center. Standalone compute/networking splits were not established in inspected material."
+      },
+      "guidance": {
+        "source_ids": [
+          "S1"
+        ],
+        "evidence_type": "management guidance",
+        "units": "USD million except percentages",
+        "revenue_midpoint": 130000,
+        "range_pct": 3,
+        "gaap_gross_margin_pct_range": [
+          71,
+          72
+        ],
+        "non_gaap_gross_margin_pct_range": [
+          71,
+          72
+        ],
+        "opex_gaap_approx": 11000,
+        "opex_non_gaap_approx": 10700,
+        "fiscal_2027_tax_rate_gaap_and_non_gaap_pct_range": [
+          16,
+          18
+        ],
+        "extra_week": true,
+        "china_dc_compute_revenue_assumption": 0,
+        "tax_qualifier": "Excludes discrete items and material tax-environment changes.",
+        "period": "FY2027 Q4"
+      },
+      "prior_management_guidance": {
+        "source_id": "S4",
+        "as_of": "2026-08-26",
+        "target_period": "FY2027 Q3",
+        "revenue_midpoint_usdm": 108000,
+        "range_pct": 2,
+        "gross_margin_gaap_and_non_gaap_pct_midpoint": 74,
+        "gross_margin_plus_minus_pp": 0.5,
+        "opex_gaap_approx_usdm": 9200,
+        "opex_non_gaap_approx_usdm": 9000,
+        "china_dc_compute_revenue_assumption": 0,
+        "consensus_status": "No frozen pre-release Street consensus inspected."
+      },
+      "expectations": {
+        "status": "unavailable_frozen_comparable_pre_release_consensus",
+        "boundary": "The dated prior management outlook is retained as a nominal comparison; no consensus beat or like-for-like ex-China revenue surprise is asserted."
+      },
+      "calculated_checks": {
+        "evidence_type": "Calculated",
+        "nominal_actual_minus_prior_guide_midpoint_usdm": 7844,
+        "nominal_actual_vs_prior_guide_midpoint_pct": 7.26296296296296,
+        "nominal_actual_minus_prior_guide_high_end_usdm": 5684,
+        "comparison_scope_caveat": "Prior outlook assumed no China Data Center compute revenue. CFO reports $2.4bn Data Center Hopper shipments to China in Q3. This is a nominal company-guidance comparison, not a consensus surprise or a like-for-like ex-China revenue beat. Do not subtract shipment value from recognized revenue without a reconciliation.",
+        "fcf_formula": "48253 - 4422 - 54 = 43777 USDm",
+        "fcf_usdm": 43777,
+        "fcf_margin_pct": 37.789613618314284,
+        "ocf_to_gaap_net_income_pct": 73.90904774304225,
+        "receivables_and_inventory_cash_absorption_usdm": 26200,
+        "q4_midpoint_growth_vs_q3_pct": 12.219881910155038,
+        "q4_equal_week_revenue_pace_change_pct": 4.204176059429665,
+        "equal_week_formula": "(130000 / 14) / (115844 / 13) - 1",
+        "equal_week_assumption": "Assumption for illustrative normalization: Q3 13 weeks and Q4 14 weeks. The issuer explicitly states an extra Q4 week. This is not measured weekly demand, shipment linearity or a forecast.",
+        "q4_gaap_gross_margin_midpoint_change_vs_q3_pp": -3.3,
+        "q4_non_gaap_gross_margin_midpoint_change_vs_q3_pp": -3.4
+      },
+      "margin_explanation": {
+        "source_ids": [
+          "S1",
+          "S2"
+        ],
+        "prior_quarter_gaap_and_non_gaap_pct": 75.0,
+        "prior_year_gaap_pct": 73.4,
+        "prior_year_non_gaap_pct": 73.5,
+        "reported_qoq_change_gaap_pp": -0.2,
+        "reported_qoq_change_non_gaap_pp": -0.1,
+        "reported_yoy_change_gaap_and_non_gaap_pp": 1.4,
+        "management_explanation": "Year-on-year improvement: Blackwell Ultra mix. Small sequential decrease: initial Rubin ramp.",
+        "interpretation_boundary": "No SKU-level margin or quantitative mix/cost decomposition disclosed in reviewed material; Q4 margin range is guidance."
+      },
+      "accounting_boundary": {
+        "source_ids": [
+          "S1"
+        ],
+        "non_gaap_sbc": "Starting Q1 FY2027, non-GAAP includes stock-based compensation. Presented historical non-GAAP periods are recast on that basis.",
+        "fcf_boundary": "FCF deducts PP&E/intangible purchases and related principal payments from GAAP operating cash flow. Equity investment purchases are a separate investing cash-flow category, not this FCF capex deduction.",
+        "10Q_status": "As of the 17 November CFO commentary, filing was planned for the coming weeks. No Q3 10-Q was inspected for this increment; present filing absence is not established."
+      },
+      "supply_and_credit": {
+        "source_id": "S2",
+        "units": "USD billion",
+        "supply_commitments": 390,
+        "prior_quarter_supply_commitments": 279,
+        "management_reason": "Increase primarily related to multi-year memory procurement.",
+        "contingent_neocloud_agreements_maximum": 32,
+        "neocloud_conditions": "Financing secured; related compute deployed, operational and accepted.",
+        "guarantees_maximum_gross_exposure": 118,
+        "guarantees_breakdown": {
+          "neocloud_land_power_shell": 3.5,
+          "sb_energy_credit_support": 105,
+          "power_systems_credit_support": 9.5
+        },
+        "guarantee_payments_to_date": 0,
+        "boundary": "Supply commitments, total contractual commitments, contingent neocloud agreements and maximum guarantees are distinct categories; do not add them as present capex, current expense, realized losses or recognized revenue. Guarantee exposure phases in with site readiness.",
+        "future_commitments_table_total": 518
+      },
+      "working_capital_commentary": {
+        "source_id": "S2",
+        "dso_days": 64,
+        "prior_quarter_dso_days": 60,
+        "inventory_usdbn_rounded": 39.7,
+        "prior_quarter_inventory_usdbn_rounded": 31.6,
+        "management_explanation": "DSO: Rubin shipment timing and extended terms for certain investment-grade customers. Inventory: Rubin ramp.",
+        "boundary": "These explanations are management testimony. Rising balances alone do not establish impaired collectability or channel stuffing."
+      },
+      "deployment_status": {
+        "evidence_type": "Public issuer statement",
+        "source_id": "S1",
+        "stage": "Vera Rubin NVL72 ramp and shipments reported.",
+        "boundary": "This does not establish independently measured utilization, workload economics or deployment acceptance across all customers."
+      },
+      "sources": [
+        {
+          "id": "NVDA-S1-20261118",
+          "key": "S1",
+          "title": "NVIDIA Q3 FY2027 earnings release",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/",
+          "publication_date": "2026-11-17",
+          "retrieved_on": "2026-11-18",
+          "locator": "opening paragraph; Condensed consolidated statements of income; reconciliation of GAAP to non-GAAP financial measures; Condensed consolidated statements of cash flows; FCF reconciliation; Outlook; reconciliation of GAAP to non-GAAP outlook; Non-GAAP Measures paragraph beginning Beginning in the first quarter of fiscal 2027; Highlights > Data Center",
+          "evidence_kind": "issuer earnings release; unaudited statements",
+          "evidence_origin": "Public",
+          "source_ref": "turn292206194view0",
+          "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+        },
+        {
+          "id": "NVDA-S2-20261118",
+          "key": "S2",
+          "title": "Q3 FY2027 CFO Commentary (8-K exhibit 99.2)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+          "publication_date": "2026-11-17",
+          "retrieved_on": "2026-11-18",
+          "locator": "Revenue by Market Platform table; Revenue paragraphs; Gross Margin; Commitments; Additional Commitments; Guarantees; Balance Sheet and Cash Flow; paragraph following Revenue by Market Platform table",
+          "evidence_kind": "issuer commentary furnished with 8-K",
+          "evidence_origin": "Public",
+          "source_ref": "turn125573064view0",
+          "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+        },
+        {
+          "id": "NVDA-S3-20261118",
+          "key": "S3",
+          "title": "Q3 FY2027 Supplemental Financial Information (8-K exhibit 99.3)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/supplementalfinancialinfor.htm",
+          "publication_date": "2026-11-17",
+          "retrieved_on": "2026-11-18",
+          "locator": "Condensed consolidated statements of cash flows, pages 3-4; Condensed consolidated balance sheets; Supplemental Financial Statement Information > Inventories; Customer Concentration, page 7",
+          "evidence_kind": "issuer supplemental unaudited financial information",
+          "evidence_origin": "Public",
+          "source_ref": "turn453294225view0",
+          "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+        },
+        {
+          "id": "NVDA-S4-20261118",
+          "key": "S4",
+          "title": "NVIDIA Q2 FY2027 earnings release",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+          "publication_date": "2026-08-26",
+          "retrieved_on": "2026-11-18",
+          "locator": "Outlook",
+          "evidence_kind": "dated management outlook for Q3; not consensus",
+          "evidence_origin": "Public",
+          "source_ref": "turn923100842view2",
+          "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+        },
+        {
+          "id": "NVDA-S7-20261118",
+          "key": "S7",
+          "title": "NVIDIA November 17 2026 Form 8-K",
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm",
+          "publication_date": "2026-11-17",
+          "retrieved_on": "2026-11-18",
+          "locator": "Item 2.02 and Item 9.01",
+          "evidence_kind": "SEC filing envelope; exhibits are furnished",
+          "evidence_origin": "Public",
+          "source_ref": "turn970334008view0",
+          "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+        }
+      ],
+      "gaps": [
+        "Main-call Q&A and any separate post-call remain unreviewed in this increment; no new analyst questions or personal method patterns.",
+        "CFO commentary dated 17 November says the Q3 10-Q is planned for the coming weeks. No Q3 10-Q was inspected in this update; current filing absence is not asserted.",
+        "Standalone Data Center compute/networking split and product-level margin bridge were not established in the inspected sources.",
+        "Customer collections, commissioned capacity and realized workload returns remain separate tests from reported supplier revenue.",
+        "This update covers NVIDIA only; inherited company evidence windows remain open."
+      ],
+      "architecture_decision_signals": [
+        {
+          "classification": "Inferred decision test; baseline is a modeling assumption, not an attributed prior forecast",
+          "baseline_under_test": "Carry Q3 consolidated gross margin into the Q4 revenue plan.",
+          "new_evidence": "Q4 management guidance: revenue $130bn +/-3%, extra week, gross margin 71–72%.",
+          "mechanism": "Calendar length changes reported growth; the margin stepdown requires a separate mix and cost bridge. The reviewed sources do not quantify the cause of the Q4 decline.",
+          "affected_decision": "Use a lower guided margin range and calendar-adjusted revenue sensitivity before extending rack procurement assumptions.",
+          "confidence": "High on disclosed guidance; medium on demand interpretation.",
+          "next_falsifying_observation": "A comparable-period shipment/usage series or an explicit Q4 margin reconciliation contradicting the assumed revenue pace or cost bridge.",
+          "source_ids": [
+            "S1",
+            "S4"
+          ]
+        },
+        {
+          "classification": "Inferred decision test",
+          "baseline_under_test": "Secured component supply is sufficient evidence of deployable output.",
+          "new_evidence": "Supply/capacity commitments rose to $390bn from $279bn; management attributes most of the increase to multiyear memory procurement.",
+          "mechanism": "Longer procurement commitments can secure allocation while leaving qualification, integration and powered-site timing unresolved.",
+          "affected_decision": "Tie memory reservations to qualified output, rack acceptance and cancellation terms.",
+          "confidence": "High on commitments; medium on the binding constraint.",
+          "next_falsifying_observation": "Inventory converts to accepted systems on schedule, or commitments are reduced while output remains unchanged.",
+          "source_ids": [
+            "S2"
+          ]
+        },
+        {
+          "classification": "Inferred decision test",
+          "baseline_under_test": "Recognized supplier revenue implies completed customer funding and cash collection.",
+          "new_evidence": "Receivables $81.033bn; DSO 64 days versus 60. Guarantees have maximum gross exposure $118bn, with no payments reported as of the commentary.",
+          "mechanism": "Payment terms and contingent support leave exposure after shipment. DSO changes alone do not establish impairment.",
+          "affected_decision": "Track collections, financing conditions and site acceptance separately from booked revenue.",
+          "confidence": "High on disclosure categories; medium on future credit effects.",
+          "next_falsifying_observation": "Cash receipts normalize DSO and projects fund independently, or guarantee obligations are activated.",
+          "source_ids": [
+            "S2",
+            "S3"
+          ]
+        }
+      ]
+    }
+  ],
+  "event_increments": [
+    {
+      "quarter_id": "NVDA_2027Q3",
+      "call_id": "NVDA_2027Q3",
+      "call_type": "primary",
+      "company": "NVIDIA",
+      "period": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event_type": "quarterly_results",
+      "call_verification_status": "main_call_body_not_reviewed",
+      "source_disclosure_id": "NVDA_2027Q3_results_20261117",
+      "question_ids": [],
+      "data_quality_status": "Release, written CFO commentary and supplemental financial information reviewed; main-call Q&A not reviewed"
+    }
+  ],
+  "source_checks": {
+    "root_read_source_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S7"
+    ],
+    "independent_source_review": "Reviewed by nvidia_review; actuals, cash-flow arithmetic, disclosure categories and scope qualifiers confirmed.",
+    "source_review_observed_on": "2026-11-18",
+    "review_limitations": "Selected primary source review; not a financial statement audit, full call review or proof of exhaustive issuer-window coverage."
+  },
+  "current_state": {
+    "established": "New quarterly release and guidance verified; same period corroborated by 8-K and supplemental statements.",
+    "decision": "Add one results-only quarter with preserved Q&A history and inherited company windows.",
+    "open_questions": [
+      "Main-call Q&A and 10-Q reconciliation",
+      "Comparable ex-China revenue bridge",
+      "Q4 gross-margin driver decomposition",
+      "Collections and guarantee activation"
+    ],
+    "next_discriminating_action": "Read the filed Q3 10-Q and attributable main-call exchanges when reviewed; reconcile shipment, revenue, collections and contingent support.",
+    "artifact_state": "reviewed_source_packet; publication_acceptance_recorded_separately",
+    "permitted_destination": "Existing public AI Infrastructure research site; public inputs only"
+  }
+}
