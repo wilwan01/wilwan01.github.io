@@ -1,25 +1,35 @@
 {
   "current": {
-    "run_id": "earnings-nvidia-results-20261118",
-    "as_of": "2026-11-18T10:32:52+00:00",
+    "run_id": "earnings-nvidia-call-20261118",
+    "as_of": "2026-11-18T11:28:08+00:00",
     "timezone": "Europe/London",
-    "baseline_commit": "ec5cbbb9b946cbcad75d39bbbd0f7f6afb506833",
-    "previous_earnings_cutoff": "2026-11-15T14:00:01+00:00",
-    "previous_cutoff_precision": "Previous exact increment cutoff retained; issuer-specific successful coverage is unchanged.",
-    "method": "NVIDIA FY2027 Q3 results, written CFO commentary, selected supplemental statements and dated prior management guidance. One issuer; no full-universe sweep, new Q&A, personal-skill modification or schedule change.",
-    "new_quarterly_events": 1,
-    "new_full_quarterly_results": 1,
+    "baseline_commit": "76affe9425eb9647d05b3752da1775964f49c4f7",
+    "previous_earnings_cutoff": "2026-11-18T10:32:52+00:00",
+    "previous_cutoff_precision": "Exact previous results-only cutoff retained.",
+    "method": "One-issuer followthrough: all available NVIDIA FY2027 Q3 main-call mirror turns, distinct prepared remarks and a successful bounded SEC Q3 filing-availability check. No new quarter, post-call, training case or personal-skill change.",
+    "new_quarterly_events": 0,
+    "new_full_quarterly_results": 0,
     "new_quarterly_revenue_updates": 0,
-    "new_primary_calls": 0,
+    "new_primary_calls": 1,
     "new_post_earnings_calls": 0,
-    "new_selected_questions": 0,
+    "new_selected_questions": 8,
     "new_long_term_guidance_disclosures": 0,
     "new_preliminary_earnings_disclosures": 0,
     "new_monthly_revenue_disclosures": 0,
     "financial_disclosure_ids": [
       "NVDA_2027Q3_results_20261117"
     ],
-    "question_ids": [],
+    "new_financial_disclosure_records": 0,
+    "question_ids": [
+      "QA225",
+      "QA226",
+      "QA227",
+      "QA228",
+      "QA229",
+      "QA230",
+      "QA231",
+      "QA232"
+    ],
     "new_reasoning_cases": 0,
     "new_staged_synthetic_exercises": 0,
     "new_recurring_individual_patterns": 0,
@@ -1239,11 +1249,11 @@
       },
       {
         "company": "NVIDIA",
-        "status": "results_verified_call_pending",
+        "status": "main_call_mirror_reviewed_full_10q_pending",
         "inspection_status": "partial_coverage",
-        "observation": "FY2027 Q3 release, written CFO commentary, selected supplemental statements and prior guidance reviewed. Main-call Q&A and 10-Q not reviewed.",
-        "checked_at": "2026-11-18T10:32:52+00:00",
-        "check_method": "NVIDIA FY2027 Q3 results, written CFO commentary, selected supplemental statements and dated prior management guidance. One issuer; no full-universe sweep, new Q&A, personal-skill modification or schedule change.",
+        "observation": "8 of 8 available main-call analyst exchanges reviewed ; 15 substantive asks. No full Q3 10-Q in the successful SEC index check; full filing review pending.",
+        "checked_at": "2026-11-18T11:28:08+00:00",
+        "check_method": "One-issuer followthrough: all available NVIDIA FY2027 Q3 main-call mirror turns, distinct prepared remarks and a successful bounded SEC Q3 filing-availability check. No new quarter, post-call, training case or personal-skill change.",
         "sources": [
           {
             "id": "NVDA-S1-20261118",
@@ -1309,20 +1319,84 @@
             "evidence_origin": "Public",
             "source_ref": "turn970334008view0",
             "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+          },
+          {
+            "id": "NVDA-Q1-20261118",
+            "key": "Q1",
+            "title": "NVIDIA FY2027 Q3 main-call transcript — Stock Analysis / Quartr mirror",
+            "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+            "publication_date": "2026-11-17",
+            "retrieved_on": "2026-11-18",
+            "evidence_origin": "Public",
+            "evidence_kind": "public_transcript_mirror_not_audio_verified",
+            "source_ref": "turn118907795view0",
+            "locator": "Entire available call text lines 119–347; analyst Q&A lines 188–338; named-speaker locators in QA225–QA232",
+            "reading_scope": "All 8 available analyst turns reviewed; 15 editorially separated substantive asks. Original audio and transcript completeness not independently verified."
+          },
+          {
+            "id": "NVDA-Q2-20261118",
+            "key": "Q2",
+            "title": "Official NVIDIA FY2027 Q3 event notice",
+            "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-3rd-Quarter-FY27-Financial-Results/default.aspx",
+            "retrieved_on": "2026-11-18",
+            "evidence_origin": "Public",
+            "evidence_kind": "official_event_notice",
+            "source_ref": "turn113361715view0",
+            "locator": "Event title and November 17 17:00 EST schedule, lines 97–101",
+            "reading_scope": "Event identity and scheduled time only; not transcript or audio evidence."
+          },
+          {
+            "id": "NVDA-F1-20261118",
+            "key": "F1",
+            "title": "SEC current submissions index — NVIDIA CIK1045810",
+            "url": "https://data.sec.gov/submissions/CIK0001045810.json",
+            "retrieved_on": "2026-11-18",
+            "checked_at": "2026-11-18T11:25:07.461404+00:00",
+            "evidence_origin": "Public",
+            "evidence_kind": "official_SEC_submissions_JSON",
+            "locator": "filings.recent; 1002 rows; form and reportDate filter in attached receipt",
+            "reading_scope": "Successful bounded filing-availability check. No Q3 10-Q body available for review.",
+            "response_sha256": "927dd8cbc011d2ff416f0827bf4591b20991564ace772684639cbafeb1a6e928"
           }
         ],
         "results_search_query": null,
-        "search_audit_url": "research/nvidia-results-20261118.json",
+        "search_audit_url": "research/nvidia-main-call-20261118.json",
         "release_check": {
           "status": "new_quarterly_results_verified",
           "confirmed_absence": false
         },
         "guidance_check": {
-          "status": "q4_management_guidance_and_dated_q3_guide_verified"
+          "status": "fy2028_prepared_call_guidance_and_main_call_answers_reviewed",
+          "source_ids": [
+            "Q1"
+          ]
         },
         "primary_call_check": {
-          "status": "main_call_body_not_reviewed",
-          "new_selected_questions": 0
+          "status": "available_main_call_mirror_qa_reviewed",
+          "new_selected_questions": 8,
+          "new_reviewed_call_bodies": 1,
+          "transcript_coverage": {
+            "analyst_turns_reviewed": 8,
+            "analyst_turns_total": 8,
+            "independent_asks": 15,
+            "unique_questioners": 8,
+            "unique_source_time_firms": 8,
+            "audio_verified": false,
+            "moderator_substantive_asks": 0,
+            "unknown_origin_asks": 0,
+            "post_calls_reviewed": 0,
+            "exchange_status_counts": {
+              "answered": 1,
+              "partially answered": 7
+            },
+            "subask_status_counts": {
+              "answered": 3,
+              "partially answered": 5,
+              "unanswered": 7
+            },
+            "counting_rule": "One exchange is one operator-introduced analyst turn plus associated management response. Code separate subasks only where independently assessable. Collapse rhetorical restatements. Rasgon is one clarification ask; his financing interpretation is retained as its premise, not an additional question.",
+            "limit": "8/8 describes this available mirror, not an independent certification of the spoken call or a complete multi-source earnings census."
+          }
         },
         "post_earnings_call_check": {
           "status": "not_reviewed_this_increment",
@@ -1335,10 +1409,34 @@
           "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
         },
         "success_coverage_advanced": false,
-        "limitation": "One-issuer results increment; inherited unresolved window remains open. No full filing, call or post-call census.",
+        "limitation": "NVIDIA-only main-call textual followthrough. Full Q3 10-Q and separate post-calls pending; inherited unresolved issuer window stays open.",
         "checked_on": "2026-11-18",
-        "research_cutoff": "2026-11-18T10:32:52+00:00",
-        "check_time_note": "checked_at is the fixed research cutoff; source retrieval retained at date precision."
+        "research_cutoff": "2026-11-18T11:28:08+00:00",
+        "check_time_note": "Research cutoff and SEC-index observation time are separate fields; filing check was observed at 11:25:07 London.",
+        "full_filing_check": {
+          "status": "pending_publication",
+          "review_completed": false,
+          "checked_at": "2026-11-18T11:25:07.461404+00:00",
+          "period_end": "2026-10-25",
+          "accession": null,
+          "official_index_matches": 0,
+          "index_rows_checked": 1002,
+          "latest_listed_10q": {
+            "form": "10-Q",
+            "filingDate": "2026-08-26",
+            "reportDate": "2026-07-26",
+            "acceptanceDateTime": "2026-08-26T20:36:00.000Z",
+            "accessionNumber": "0001045810-26-000075",
+            "primaryDocument": "nvda-20260726.htm"
+          },
+          "source_ids": [
+            "F1",
+            "S2"
+          ],
+          "observation": "No Q3 FY2027 10-Q appears in the successfully parsed SEC current index at the stated time. The latest listed 10-Q is Q2. NVIDIA described Q3 filing as forthcoming in its November 17 CFO commentary.",
+          "next_action": "Retrieve the actual Q3 Form 10-Q when published; reconcile financial notes, MD&A, commitments, guarantees, concentration, controls and legal/risk disclosures with the November 17 exhibits.",
+          "boundary": "Q2 10-Q and Q3 furnished 8-K supplemental statements do not substitute for a full Q3 filing review."
+        }
       },
       {
         "company": "Oracle",
@@ -1768,11 +1866,14 @@
     ],
     "coverage_summary": {
       "companies": 35,
-      "issuer_releases_rechecked": 1,
+      "issuer_call_bodies_rechecked": 1,
       "other_company_checks_inherited": 34,
-      "new_disclosure_reviewed": 1,
+      "full_q3_10q_reviews_completed": 0,
       "complete_company_windows": 0,
-      "confirmed_absence": 0
+      "transcript_turns_reviewed": 8,
+      "transcript_turns_available": 8,
+      "independently_assessed_asks": 15,
+      "full_filing_status": "pending_publication"
     },
     "gaps": [
       "All inherited issuer unresolved windows remain open; checks are bounded, not a complete SEC/IR census.",
@@ -1786,11 +1887,12 @@
       "CoreWeave two selected exchanges only; no audio/full call audit or full cash-flow reconciliation.",
       "Cisco and Applied Materials main-call Q&A and any post-calls remain unreviewed.",
       "Prior 15 November followthrough: rechecked only two releases. Other issuer timestamps and unresolved coverage are inherited unchanged.",
-      "NVIDIA FY2027 Q3 release/CFO/supplemental statements reviewed; full 10-Q, main-call Q&A and any post-call remain outside this increment.",
-      "The current increment rechecks NVIDIA only. Other 34 issuer check objects and timestamps are inherited unchanged."
+      "NVIDIA: all 8 available main-call mirror analyst turns reviewed; not audio-verified. Any separate post-call remains unreviewed.",
+      "NVIDIA full Q3 10-Q: not listed in the successful current SEC index at 11:25:07 London on 18 November; full filing review pending.",
+      "The current followthrough updates NVIDIA only; the other 34 issuer check objects and all unresolved windows are preserved."
     ],
-    "counting_rule": "One results-only quarter; zero new reviewed calls, selected questions or training cases.",
-    "delivery_state": "integrated_release_data; deployment acceptance is recorded separately"
+    "counting_rule": "Backfill one already-counted quarterly event with one reviewed main-call body and 8 exchange records ; 15 subasks do not add 15 ledger records. No new quarter or post-call.",
+    "delivery_state": "integrated_call_evidence; deployment acceptance recorded separately"
   },
   "history": [
     {
@@ -18593,6 +18695,1799 @@
         "This followthrough rechecked only two releases. Other issuer timestamps and unresolved coverage are inherited unchanged."
       ],
       "counting_rule": "Two results-only quarters; zero reviewed calls, Q&A or skills.",
+      "delivery_state": "integrated_release_data; deployment acceptance is recorded separately"
+    },
+    {
+      "run_id": "earnings-nvidia-results-20261118",
+      "as_of": "2026-11-18T10:32:52+00:00",
+      "timezone": "Europe/London",
+      "baseline_commit": "ec5cbbb9b946cbcad75d39bbbd0f7f6afb506833",
+      "previous_earnings_cutoff": "2026-11-15T14:00:01+00:00",
+      "previous_cutoff_precision": "Previous exact increment cutoff retained; issuer-specific successful coverage is unchanged.",
+      "method": "NVIDIA FY2027 Q3 results, written CFO commentary, selected supplemental statements and dated prior management guidance. One issuer; no full-universe sweep, new Q&A, personal-skill modification or schedule change.",
+      "new_quarterly_events": 1,
+      "new_full_quarterly_results": 1,
+      "new_quarterly_revenue_updates": 0,
+      "new_primary_calls": 0,
+      "new_post_earnings_calls": 0,
+      "new_selected_questions": 0,
+      "new_long_term_guidance_disclosures": 0,
+      "new_preliminary_earnings_disclosures": 0,
+      "new_monthly_revenue_disclosures": 0,
+      "financial_disclosure_ids": [
+        "NVDA_2027Q3_results_20261117"
+      ],
+      "question_ids": [],
+      "new_reasoning_cases": 0,
+      "new_staged_synthetic_exercises": 0,
+      "new_recurring_individual_patterns": 0,
+      "next_confirmed_events": [
+        {
+          "company": "Baidu",
+          "date": "2026-11-16",
+          "period": "2026 Q3",
+          "time": "07:30 ET / 12:30 Europe/London",
+          "url": "https://ir.baidu.com/index.php/news-releases/news-release-details/baidu-report-third-quarter-2026-financial-results-november-16",
+          "locator": "October 27 notice lines 3–11",
+          "source_ref": "turn335view2",
+          "publication_date": "2026-10-27",
+          "status": "officially_announced_pending",
+          "verification_date": "2026-11-04",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        },
+        {
+          "company": "Alibaba",
+          "date": "2026-11-19",
+          "event_at": "2026-11-19T12:00:00+00:00",
+          "period": "September2026 quarter",
+          "url": "https://www.alibabagroup.com/en-US/document-2054756418245885952",
+          "source_ref": "turn392view1",
+          "publication_date": "2026-11-06",
+          "locator": "lines9–20; 07:00 US Eastern /20:00 Hong Kong",
+          "verification_date": "2026-11-09",
+          "status": "officially_announced_pending",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        },
+        {
+          "company": "HPE",
+          "date": "2026-11-23",
+          "period": "FY2026 Q4",
+          "time": "17:00 ET / 22:00 Europe/London",
+          "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/11/hpe-to-present-live-audio-webcast-of-fiscal-2026-fourth-quarter-earnings-conference-call.html",
+          "locator": "November 2 notice lines 340–350",
+          "source_ref": "turn325view3",
+          "publication_date": "2026-11-02",
+          "status": "officially_announced_pending",
+          "verification_date": "2026-11-04",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        },
+        {
+          "company": "Dell",
+          "date": "2026-11-24",
+          "period": "FY2027 Q3",
+          "time": "15:30 CST / 21:30 Europe/London",
+          "url": "https://investors.delltechnologies.com/news-events/events",
+          "locator": "Upcoming events lines 41–45",
+          "source_ref": "turn324view1",
+          "publication_date": null,
+          "status": "officially_announced_pending",
+          "verification_date": "2026-11-04",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        },
+        {
+          "company": "Marvell",
+          "date": "2026-12-01",
+          "event_at": "2026-12-01T21:30:00+00:00",
+          "period": "FY2027 Q3",
+          "url": "https://investor.marvell.com/_assets/_de258ecc084556935b61ff8ecc599288/marvell/news/2026-11-06_Marvell_Technology_Inc_Announces_Conference_Call_1041.pdf",
+          "source_ref": "turn392view2",
+          "publication_date": "2026-11-06",
+          "locator": "p1 lines0–7;13:30 PT",
+          "verification_date": "2026-11-09",
+          "status": "officially_announced_pending",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        },
+        {
+          "company": "Schneider Electric",
+          "date": "2027-02-18",
+          "period": "FY2026",
+          "url": "https://www.se.com/ww/en/assets/pdf/release-Q3-revenues-2026",
+          "locator": "Release p11, line 385",
+          "status": "officially_announced_pending",
+          "verification_date": "2026-10-19",
+          "verification_status": "Inherited announcement; prior verification date retained unless separately recorded in company check."
+        }
+      ],
+      "company_checks": [
+        {
+          "company": "Alibaba",
+          "status": "partial_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "September heading without release link; June and March release links visible; placeholder is not results.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Alibaba official endpoint",
+              "url": "https://www.alibabagroup.com/en-US/ir-financial-reports-quarterly-results",
+              "source_ref": "turn118view0",
+              "locator": "lines43–64",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Alibaba\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Alibaba\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Alphabet",
+          "status": "dynamic_shell",
+          "inspection_status": "partial_coverage",
+          "observation": "Earnings year selector only; no result body.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Alphabet official endpoint",
+              "url": "https://abc.xyz/investor/earnings/",
+              "source_ref": "turn118view1",
+              "locator": "lines22–30",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Alphabet\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Alphabet\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Amazon",
+          "status": "dynamic_shell",
+          "inspection_status": "partial_coverage",
+          "observation": "Quarterly-results heading only.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Amazon official endpoint",
+              "url": "https://ir.aboutamazon.com/quarterly-results/default.aspx",
+              "source_ref": "turn118view2",
+              "locator": "lines29–41",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Amazon\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Amazon\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "AMD",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Q3 2026 latest block; previously recorded.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "AMD official endpoint",
+              "url": "https://ir.amd.com/financial-information/financial-results",
+              "source_ref": "turn118view3",
+              "locator": "lines34–48",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"AMD\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"AMD\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Applied Materials",
+          "status": "results_verified_call_pending",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2026 Q4 official results and selected reconciliation tables rechecked; call Q&A unreviewed.",
+          "checked_at": "2026-11-15T14:00:01+00:00",
+          "check_method": "Bounded two-release followthrough; not full issuer-window coverage.",
+          "sources": [
+            {
+              "id": "AMAT-results-20261112",
+              "key": "AMAT-results-20261112",
+              "title": "Applied Materials FY2026 Q4 results",
+              "url": "https://www.appliedmaterials.com/us/en/newsroom/press-releases/111226-applied-materials-announces-fourth-qtr-fiscal-year-end-2026-results.html",
+              "publication_date": "2026-11-12",
+              "retrieved_on": "2026-11-15",
+              "locator": "Results Summary; Business Outlook; GAAP-to-non-GAAP operating income and diluted EPS reconciliations; non-GAAP free cash flow reconciliation; segment recast notice.",
+              "evidence_kind": "official_issuer_release",
+              "evidence_origin": "Public",
+              "reading_scope": "Selected results, guidance, statements and reconciliation tables; not full filing or call review",
+              "rechecked_at": "2026-11-15T14:00:01+00:00"
+            }
+          ],
+          "results_search_query": null,
+          "search_audit_url": "research/results-followthrough-20261115.json",
+          "release_check": {
+            "status": "new_quarterly_results_verified",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "selected_management_guidance_verified"
+          },
+          "primary_call_check": {
+            "status": "main_call_body_not_reviewed",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "not_reviewed_this_followthrough",
+            "new_selected_questions": 0,
+            "audio_verified": false
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Arista",
+          "status": "historical_release_only",
+          "inspection_status": "partial_coverage",
+          "observation": "November3 release read; already counted; cannot establish later absence.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Arista official endpoint",
+              "url": "https://www.arista.com/en/company/news/press-release/25025-pr-20261103",
+              "source_ref": "turn118view5",
+              "locator": "lines27–41",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Arista\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Arista\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Arm",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2027 Q2 Nov4 result and official transcript links; already counted.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Arm official endpoint",
+              "url": "https://investors.arm.com/financials/quarterly-annual-results",
+              "source_ref": "turn118view6",
+              "locator": "lines3–26",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Arm\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Arm\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "ASML",
+          "status": "access_blocked",
+          "inspection_status": "partial_coverage",
+          "observation": "403 Forbidden.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "ASML official endpoint",
+              "url": "https://investor.asml.com/quarterly-results",
+              "source_ref": "turn121view0",
+              "locator": "fetch failure",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"ASML\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"ASML\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Baidu",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Q3 scheduled November16; Q2 latest presented results.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Baidu official endpoint",
+              "url": "https://ir.baidu.com/",
+              "source_ref": "turn121view1",
+              "locator": "lines4–50",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Baidu\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Baidu\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Broadcom",
+          "status": "stale_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Visible latest FY2026 Q2; later periods not established by extraction.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Broadcom official endpoint",
+              "url": "https://investors.broadcom.com/financial-information/quarterly-results",
+              "source_ref": "turn121view2",
+              "locator": "lines10–27",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Broadcom\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Broadcom\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Cisco",
+          "status": "results_verified_call_pending",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2027 Q1 official results and selected reconciliation tables rechecked; call Q&A unreviewed.",
+          "checked_at": "2026-11-15T14:00:01+00:00",
+          "check_method": "Bounded two-release followthrough; not full issuer-window coverage.",
+          "sources": [
+            {
+              "id": "CSCO-results-20261112",
+              "key": "CSCO-results-20261112",
+              "title": "Cisco FY2027 Q1 results",
+              "url": "https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-FIRST-QUARTER-EARNINGS/default.aspx",
+              "publication_date": "2026-11-12",
+              "retrieved_on": "2026-11-15",
+              "locator": "News Summary; Financial Summary; Guidance; Consolidated Statements of Operations; GAAP-to-non-GAAP reconciliation for both comparable quarters.",
+              "evidence_kind": "official_issuer_release",
+              "evidence_origin": "Public",
+              "reading_scope": "Selected results, guidance, statements and reconciliation tables; not full filing or call review",
+              "rechecked_at": "2026-11-15T14:00:01+00:00"
+            }
+          ],
+          "results_search_query": null,
+          "search_audit_url": "research/results-followthrough-20261115.json",
+          "release_check": {
+            "status": "new_quarterly_results_verified",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "selected_management_guidance_verified"
+          },
+          "primary_call_check": {
+            "status": "main_call_body_not_reviewed",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "not_reviewed_this_followthrough",
+            "new_selected_questions": 0,
+            "audio_verified": false
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "CoreWeave",
+          "status": "new_disclosure_reviewed",
+          "inspection_status": "partial_coverage",
+          "observation": "Quarterly archive shell; separate Nov10 release and official call verified.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "CoreWeave official endpoint",
+              "url": "https://investors.coreweave.com/financials/quarterly-results/",
+              "source_ref": "turn121view4",
+              "locator": "lines4–16",
+              "retrieved_on": "2026-11-12"
+            },
+            {
+              "id": "CRWV-results-20261110",
+              "key": "CRWV-results-20261110",
+              "title": "CoreWeave Q3 2026 earnings release",
+              "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Third-Quarter-2026-Results/default.aspx",
+              "publication_date": "2026-11-10",
+              "locator": "Financial highlights and Business Outlook, lines14–45 and74–98; selected tables",
+              "evidence_kind": "official_issuer_release",
+              "source_ref": "turn143view0",
+              "retrieved_on": "2026-11-12"
+            },
+            {
+              "id": "CRWV-call-20261110",
+              "key": "CRWV-call-20261110",
+              "title": "CoreWeave Q3 2026 issuer-hosted transcript",
+              "url": "https://s205.q4cdn.com/133937190/files/content_files/CoreWeave-3Q26-Transcript-_1_.pdf",
+              "publication_date": null,
+              "locator": "Q&A Borges follow-up and Zelnick first exchange; extracted lines347–379. Selected passages only.",
+              "evidence_kind": "issuer_hosted_transcript_not_audio_verified",
+              "source_ref": "turn151view1",
+              "retrieved_on": "2026-11-12",
+              "event_date": "2026-11-10",
+              "publication_date_status": "Exact upload time unknown; dated call and November11 indexed transcript lead. Not audio-verified."
+            }
+          ],
+          "results_search_query": "\"CoreWeave\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "new_quarterly_results_verified",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "FY2026_and_Q4_guidance_verified"
+          },
+          "primary_call_check": {
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "new_selected_questions": 2
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"CoreWeave\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Dell",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2027 Q2 latest block.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Dell official endpoint",
+              "url": "https://investors.delltechnologies.com/financial-information/financial-results",
+              "source_ref": "turn121view5",
+              "locator": "lines39–53",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Dell\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Dell\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Digital Realty",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Q3 2026 materials listed; prior recorded result.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Digital Realty official endpoint",
+              "url": "https://investor.digitalrealty.com/financials/quarterly-results",
+              "source_ref": "turn121view6",
+              "locator": "lines59–79",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Digital Realty\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Digital Realty\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "DLR_2026Q3",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA219"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        },
+        {
+          "company": "Eaton",
+          "status": "historical_release_only",
+          "inspection_status": "partial_coverage",
+          "observation": "November3 results already counted; not later-period archive coverage.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Eaton official endpoint",
+              "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118226000037/etn09302026exhibit99.htm",
+              "source_ref": "turn122view0",
+              "locator": "lines4–19",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Eaton\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Eaton\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Equinix",
+          "status": "partial_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Returned excerpt navigation; no comprehensive archive read.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Equinix official endpoint",
+              "url": "https://investor.equinix.com/financial-information/financial-results",
+              "source_ref": "turn122view1",
+              "locator": "lines0–47",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Equinix\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Equinix\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "EQIX_2026Q3",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA220"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        },
+        {
+          "company": "HPE",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "2026 Q1–Q3 materials; Q4 empty.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "HPE official endpoint",
+              "url": "https://investors.hpe.com/financial/quarterly-results",
+              "source_ref": "turn122view2",
+              "locator": "lines79–96",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"HPE\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"HPE\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Intel",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Q3 2026 materials visible, already counted.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Intel official endpoint",
+              "url": "https://www.intc.com/financial-info/financial-results",
+              "source_ref": "turn122view3",
+              "locator": "lines54–79",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Intel\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Intel\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "KLA",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Nov5 dividend and Oct28 earnings listed; no new result in displayed portion.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "KLA official endpoint",
+              "url": "https://ir.kla.com/news-events/press-releases",
+              "source_ref": "turn122view4",
+              "locator": "lines51–63",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"KLA\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"KLA\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "KLAC_2027Q1",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA221"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        },
+        {
+          "company": "Lam Research",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "September2026 quarter latest visible.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Lam Research official endpoint",
+              "url": "https://investor.lamresearch.com/quarterly-results",
+              "source_ref": "turn122view5",
+              "locator": "lines12–41",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Lam Research\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Lam Research\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Lenovo",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2026/27 Q1 latest visible.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Lenovo official endpoint",
+              "url": "https://investor.lenovo.com/en/financial/results.php",
+              "source_ref": "turn122view6",
+              "locator": "lines79–93",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Lenovo\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Lenovo\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Marvell",
+          "status": "historical_release_only",
+          "inspection_status": "partial_coverage",
+          "observation": "Previously recorded merger announcement; does not establish new earnings absence.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Marvell official endpoint",
+              "url": "https://investor.marvell.com/news-events/press-releases/detail/1040/marvell-and-lumentum-to-combine-creating-a-category-leader-in-ai-connectivity",
+              "source_ref": "turn124view0",
+              "locator": "lines81–85",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Marvell\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Marvell\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Meta",
+          "status": "dynamic_shell",
+          "inspection_status": "partial_coverage",
+          "observation": "Events shell with no extracted past-event records.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Meta official endpoint",
+              "url": "https://investor.atmeta.com/investor-events/default.aspx",
+              "source_ref": "turn124view1",
+              "locator": "lines81–89",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Meta\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Meta\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Micron",
+          "status": "dynamic_shell",
+          "inspection_status": "partial_coverage",
+          "observation": "Quarterly-result selectors only.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Micron official endpoint",
+              "url": "https://investors.micron.com/financials/quarterly-results/default.aspx",
+              "source_ref": "turn124view2",
+              "locator": "lines4–15",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Micron\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Micron\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Microsoft",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Oct28 FY27Q1 latest announcement displayed.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Microsoft official endpoint",
+              "url": "https://www.microsoft.com/en-us/investor/default?l=5",
+              "source_ref": "turn124view3",
+              "locator": "lines90–123",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Microsoft\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Microsoft\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "NVIDIA",
+          "status": "results_verified_call_pending",
+          "inspection_status": "partial_coverage",
+          "observation": "FY2027 Q3 release, written CFO commentary, selected supplemental statements and prior guidance reviewed. Main-call Q&A and 10-Q not reviewed.",
+          "checked_at": "2026-11-18T10:32:52+00:00",
+          "check_method": "NVIDIA FY2027 Q3 results, written CFO commentary, selected supplemental statements and dated prior management guidance. One issuer; no full-universe sweep, new Q&A, personal-skill modification or schedule change.",
+          "sources": [
+            {
+              "id": "NVDA-S1-20261118",
+              "key": "S1",
+              "title": "NVIDIA Q3 FY2027 earnings release",
+              "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/",
+              "publication_date": "2026-11-17",
+              "retrieved_on": "2026-11-18",
+              "locator": "opening paragraph; Condensed consolidated statements of income; reconciliation of GAAP to non-GAAP financial measures; Condensed consolidated statements of cash flows; FCF reconciliation; Outlook; reconciliation of GAAP to non-GAAP outlook; Non-GAAP Measures paragraph beginning Beginning in the first quarter of fiscal 2027; Highlights > Data Center",
+              "evidence_kind": "issuer earnings release; unaudited statements",
+              "evidence_origin": "Public",
+              "source_ref": "turn292206194view0",
+              "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+            },
+            {
+              "id": "NVDA-S2-20261118",
+              "key": "S2",
+              "title": "Q3 FY2027 CFO Commentary (8-K exhibit 99.2)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+              "publication_date": "2026-11-17",
+              "retrieved_on": "2026-11-18",
+              "locator": "Revenue by Market Platform table; Revenue paragraphs; Gross Margin; Commitments; Additional Commitments; Guarantees; Balance Sheet and Cash Flow; paragraph following Revenue by Market Platform table",
+              "evidence_kind": "issuer commentary furnished with 8-K",
+              "evidence_origin": "Public",
+              "source_ref": "turn125573064view0",
+              "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+            },
+            {
+              "id": "NVDA-S3-20261118",
+              "key": "S3",
+              "title": "Q3 FY2027 Supplemental Financial Information (8-K exhibit 99.3)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/supplementalfinancialinfor.htm",
+              "publication_date": "2026-11-17",
+              "retrieved_on": "2026-11-18",
+              "locator": "Condensed consolidated statements of cash flows, pages 3-4; Condensed consolidated balance sheets; Supplemental Financial Statement Information > Inventories; Customer Concentration, page 7",
+              "evidence_kind": "issuer supplemental unaudited financial information",
+              "evidence_origin": "Public",
+              "source_ref": "turn453294225view0",
+              "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+            },
+            {
+              "id": "NVDA-S4-20261118",
+              "key": "S4",
+              "title": "NVIDIA Q2 FY2027 earnings release",
+              "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+              "publication_date": "2026-08-26",
+              "retrieved_on": "2026-11-18",
+              "locator": "Outlook",
+              "evidence_kind": "dated management outlook for Q3; not consensus",
+              "evidence_origin": "Public",
+              "source_ref": "turn923100842view2",
+              "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+            },
+            {
+              "id": "NVDA-S7-20261118",
+              "key": "S7",
+              "title": "NVIDIA November 17 2026 Form 8-K",
+              "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm",
+              "publication_date": "2026-11-17",
+              "retrieved_on": "2026-11-18",
+              "locator": "Item 2.02 and Item 9.01",
+              "evidence_kind": "SEC filing envelope; exhibits are furnished",
+              "evidence_origin": "Public",
+              "source_ref": "turn970334008view0",
+              "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+            }
+          ],
+          "results_search_query": null,
+          "search_audit_url": "research/nvidia-results-20261118.json",
+          "release_check": {
+            "status": "new_quarterly_results_verified",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "q4_management_guidance_and_dated_q3_guide_verified"
+          },
+          "primary_call_check": {
+            "status": "main_call_body_not_reviewed",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "not_reviewed_this_increment",
+            "new_selected_questions": 0,
+            "audio_verified": false
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "One-issuer results increment; inherited unresolved window remains open. No full filing, call or post-call census.",
+          "checked_on": "2026-11-18",
+          "research_cutoff": "2026-11-18T10:32:52+00:00",
+          "check_time_note": "checked_at is the fixed research cutoff; source retrieval retained at date precision."
+        },
+        {
+          "company": "Oracle",
+          "status": "dynamic_shell",
+          "inspection_status": "partial_coverage",
+          "observation": "Investor news/events headings without event records.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Oracle official endpoint",
+              "url": "https://investor.oracle.com/home/",
+              "source_ref": "turn124view5",
+              "locator": "lines14–20",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Oracle\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Oracle\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Qualcomm",
+          "status": "historical_notice_only",
+          "inspection_status": "partial_coverage",
+          "observation": "October22 announcement for Nov4 call; actual results already recorded previously.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Qualcomm official endpoint",
+              "url": "https://investor.qualcomm.com/news-events/press-releases/news-details/2026/Qualcomm-Schedules-Fourth-Quarter-and-Fiscal-2026-Earnings-Release-and-Conference-Call/default.aspx",
+              "source_ref": "turn124view6",
+              "locator": "lines44–51",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Qualcomm\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Qualcomm\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Samsung",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Nov11 sports release; Oct29 Q3 result already recorded.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Samsung official endpoint",
+              "url": "https://news.samsung.com/global/category/press-release",
+              "source_ref": "turn127view0",
+              "locator": "lines65–73",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Samsung\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Samsung\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "005930.KS_2026Q3",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA223"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        },
+        {
+          "company": "Schneider Electric",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Oct16 Q3 revenue row; FY result unavailable.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Schneider Electric official endpoint",
+              "url": "https://www.se.com/ww/en/about-us/investor-relations/financial-results/",
+              "source_ref": "turn127view1",
+              "locator": "lines14–35",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Schneider Electric\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Schneider Electric\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "SK hynix",
+          "status": "selected_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Nov11 technical news; Oct28 Q3 earnings already recorded.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "SK hynix official endpoint",
+              "url": "https://news.skhynix.com/en/",
+              "source_ref": "turn127view2",
+              "locator": "lines32–71",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"SK hynix\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"SK hynix\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "000660.KS_2026Q3",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA222"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        },
+        {
+          "company": "Supermicro",
+          "status": "historical_release_only",
+          "inspection_status": "partial_coverage",
+          "observation": "Nov3 results already recorded; no financial-close filing audit.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Supermicro official endpoint",
+              "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-First-Quarter-of-Fiscal-Year-2027-Financial-Results/default.aspx",
+              "source_ref": "turn127view3",
+              "locator": "lines51–69",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Supermicro\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Supermicro\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Tencent",
+          "status": "partial_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Opening excerpt navigation; search shows Q2 latest; cannot establish complete archive.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Tencent official endpoint",
+              "url": "https://www.tencent.com/investors/results/",
+              "source_ref": "turn127view4",
+              "locator": "lines103–122",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Tencent\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Tencent\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "TSMC",
+          "status": "new_disclosure_reviewed",
+          "inspection_status": "partial_coverage",
+          "observation": "Q3 page already recorded; separate October monthly report verified.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "TSMC official endpoint",
+              "url": "https://investor.tsmc.com/english/quarterly-results/2026/q3",
+              "source_ref": "turn127view5",
+              "locator": "quarter page opening; separate monthly body",
+              "retrieved_on": "2026-11-12"
+            },
+            {
+              "id": "TSMC-monthly-20261110",
+              "key": "TSMC-monthly-20261110",
+              "title": "TSMC October 2026 Revenue Report",
+              "url": "https://pr.tsmc.com/english/news/3349",
+              "publication_date": "2026-11-10",
+              "locator": "lines290–300; monthly consolidated sales",
+              "evidence_kind": "official_monthly_release",
+              "source_ref": "turn143view1",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"TSMC\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "monthly_sales_verified",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"TSMC\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-19T21:27:36+01:00",
+            "precision": "exact prior cutoff; newly read sources do not certify all intervening filings"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open."
+        },
+        {
+          "company": "Vertiv",
+          "status": "partial_archive",
+          "inspection_status": "partial_coverage",
+          "observation": "Opening excerpt navigation; archive incomplete.",
+          "checked_at": "2026-11-12T11:19:08+00:00",
+          "check_method": "35 issuer-specific combined earnings/guidance/post-earnings discovery queries and 35 official endpoint selected-excerpt attempts. Query date filters may be ignored by index. Not a full filing or call census. Also35 separate issuer-specific post-call queries; historical/irrelevant hits retained as discovery only.",
+          "sources": [
+            {
+              "title": "Vertiv official endpoint",
+              "url": "https://investors.vertiv.com/news/default.aspx",
+              "source_ref": "turn127view6",
+              "locator": "lines0–22",
+              "retrieved_on": "2026-11-12"
+            }
+          ],
+          "results_search_query": "\"Vertiv\" (earnings OR guidance OR \"post-earnings\") after:2026-11-09 before:2026-11-13",
+          "search_audit_url": "refresh-checks-20261112.json",
+          "release_check": {
+            "status": "no_new_result_verified_not_confirmed_absent",
+            "confirmed_absence": false
+          },
+          "guidance_check": {
+            "status": "no_new_guidance_verified_not_confirmed_absent"
+          },
+          "primary_call_check": {
+            "status": "no_new_call_body_added",
+            "new_selected_questions": 0
+          },
+          "post_earnings_call_check": {
+            "status": "separate_discovery_search_no_distinct_new_event_verified_not_confirmed_absent",
+            "new_selected_questions": 0,
+            "audio_verified": false,
+            "search_query": "\"Vertiv\" (\"post-earnings\" OR \"follow-up analyst call\" OR \"earnings Q&A call\") after:2026-11-09 before:2026-11-13"
+          },
+          "unresolved_window": {
+            "status": "carry_forward_not_closed_by_new_global_cutoff",
+            "revisit_from": "2026-10-05",
+            "precision": "conservative prior-run boundary; older inherited gaps also remain unresolved"
+          },
+          "success_coverage_advanced": false,
+          "limitation": "Selected endpoint/search coverage only; all inherited unresolved windows remain open.",
+          "historical_primary_call_followthrough": {
+            "quarter_id": "VRT_2026Q3",
+            "status": "selected_transcript_passages_reviewed_not_audio_verified",
+            "question_ids": [
+              "QA224"
+            ],
+            "record_url": "refresh-followthrough-20261112.json",
+            "success_coverage_advanced": false
+          }
+        }
+      ],
+      "coverage_summary": {
+        "companies": 35,
+        "issuer_releases_rechecked": 1,
+        "other_company_checks_inherited": 34,
+        "new_disclosure_reviewed": 1,
+        "complete_company_windows": 0,
+        "confirmed_absence": 0
+      },
+      "gaps": [
+        "All inherited issuer unresolved windows remain open; checks are bounded, not a complete SEC/IR census.",
+        "Historical followthrough read selected main-call Q&A for Digital Realty, Equinix, KLA, SK hynix, Samsung and Vertiv; complete Q&A and audio verification remain open. See refresh-followthrough-20261112.json.",
+        "Qualcomm official transcript indexed but unresolved; selected public mirror not audio-verified. Arm issuer-hosted transcript also not audio-verified.",
+        "No frozen comparable pre-release consensus established. Prior management guidance is not consensus.",
+        "No distinct new post-earnings analyst call verified; this is not evidence of absence. Samsung prior NDR remains unreviewed.",
+        "Tencent November18 calendar lead has inconsistent timezone wording; Lenovo next date not verified in opened calendar.",
+        "Supermicro filing/closing reconciliation and Marvell prior boundary-day publication timestamp remain outstanding.",
+        "All35 checks partial; no complete filings/post-call census.",
+        "CoreWeave two selected exchanges only; no audio/full call audit or full cash-flow reconciliation.",
+        "Cisco and Applied Materials main-call Q&A and any post-calls remain unreviewed.",
+        "Prior 15 November followthrough: rechecked only two releases. Other issuer timestamps and unresolved coverage are inherited unchanged.",
+        "NVIDIA FY2027 Q3 release/CFO/supplemental statements reviewed; full 10-Q, main-call Q&A and any post-call remain outside this increment.",
+        "The current increment rechecks NVIDIA only. Other 34 issuer check objects and timestamps are inherited unchanged."
+      ],
+      "counting_rule": "One results-only quarter; zero new reviewed calls, selected questions or training cases.",
       "delivery_state": "integrated_release_data; deployment acceptance is recorded separately"
     }
   ]

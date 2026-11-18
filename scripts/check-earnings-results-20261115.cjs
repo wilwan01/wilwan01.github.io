@@ -25,10 +25,50 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
     assert((await detail.innerText()).includes('reported actuals'));
     if(company==='NVIDIA'){
      const text=await detail.innerText();
-     for(const value of ['115844','43777','130000','stock-based compensation','main-call Q&A not reviewed'])assert(text.includes(value),value);
+     for(const value of ['115844','43777','130000','stock-based compensation'])assert(text.includes(value),value);
      const counts=await page.locator('#earnings-current-counts').innerText();
      assert(counts.includes(corpus.counts.quarterly_events+' quarterly slots'));
      assert(counts.includes(corpus.counts.questions+' selected Q&A probes'));
+     assert.deepEqual(JSON.parse(await page.locator('#ledger-data').textContent()),corpus.ledger);
+     assert.deepEqual(await page.locator('article.entry').evaluateAll(xs=>xs.map(x=>x.id).sort()),corpus.ledger.map(q=>q.id).sort());
+     assert.equal(await page.locator('#result-count').innerText(),`${corpus.ledger.length} of ${corpus.ledger.length} probes`);
+     for(const [field,table] of [['status','answer-status-counts'],['theme','theme-counts']]){
+      const options=await page.locator('#'+field+' option').evaluateAll(xs=>xs.map(x=>x.value));
+      for(const value of new Set(corpus.ledger.map(q=>q[field])))assert(options.includes(value),`Missing ${field} option ${value}`);
+      const rows=await page.locator('#'+table+' tbody tr').evaluateAll(xs=>xs.map(x=>[x.cells[0].textContent,Number(x.cells[1].textContent)]));
+      assert.equal(rows.reduce((sum,row)=>sum+row[1],0),corpus.ledger.length);
+      for(const [value,n] of rows)assert.equal(n,corpus.ledger.filter(q=>q[field]===value).length,`${field}: ${value}`);
+     }
+     if(unread)assert(text.includes('main-call Q&A not reviewed'));
+     else{
+      const expectedIds=Array.from({length:8},(_,i)=>'QA'+(225+i));
+      assert.deepEqual(event.question_ids,expectedIds);
+      assert.equal(event.transcript_coverage.analyst_turns_reviewed,8);
+      assert.equal(event.transcript_coverage.analyst_turns_total,8);
+      assert.equal(event.transcript_coverage.independent_asks,15);
+      assert.equal(event.transcript_coverage.audio_verified,false);
+      assert.equal(event.full_filing_status,'pending_publication');
+      const disclosure=corpus.financial_disclosures.find(d=>d.id===id);
+      assert.equal(disclosure.full_filing_review.status,'pending_publication');
+      assert.equal(disclosure.full_filing_review.review_completed,false);
+      assert(!Number.isNaN(Date.parse(disclosure.full_filing_review.checked_at)));
+      assert(text.includes('pending_publication'));
+      const banner=await page.locator('#current-results-update').innerText();
+      for(const value of ['8 of 8 analyst exchanges','15 substantive asks','Full Q3 10-Q pending'])assert(banner.includes(value),value);
+      assert((await card.innerText()).includes('8 of 8 analyst exchanges'));
+      assert((await card.innerText()).includes('15 substantive asks'));
+      assert((await card.innerText()).includes('Not audio-verified'));
+      for(const qaId of expectedIds){
+       const q=corpus.ledger.find(q=>q.id===qaId);
+       assert.equal(q.call_id,quarter);assert(q.source_type.includes('mirror'));
+       await page.locator('#company').selectOption('Cisco');
+       const qCard=page.locator('#'+qaId);assert.equal(await qCard.isVisible(),false);
+       const link=card.locator('a[href="#'+qaId+'"]');assert.equal(await link.count(),1);await link.click();
+       assert.equal(await qCard.isVisible(),true);assert.equal(await page.locator('#company').inputValue(),'');
+       assert.equal(await qCard.locator('a').evaluateAll((xs,url)=>xs.filter(x=>x.href===url).length,q.url),1);
+       assert.equal(await page.locator('#result-count').innerText(),`${corpus.ledger.length} of ${corpus.ledger.length} probes`);
+      }
+     }
     }
     assert(await detail.locator('a[href^="https://"]').count()>0);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);

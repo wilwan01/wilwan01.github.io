@@ -1,0 +1,944 @@
+{
+  "schema_version": 1,
+  "run_id": "earnings-nvidia-call-20261118",
+  "cutoff": "2026-11-18T11:28:08+00:00",
+  "timezone": "Europe/London",
+  "baseline_commit": "76affe9425eb9647d05b3752da1775964f49c4f7",
+  "baseline_blob_shas": {
+    "ai/analysts/corpus.json": "d9d842bb0f2347228040b4d369c9a8be889571d3",
+    "ai/earnings/refresh-ledger.json": "ee01ba9113db46408e82c752b5268ac53f839ecc",
+    "ai/earnings/coverage-progression.json": "a2a5007a573e7ff1801fcb46196aca6edaaea77d",
+    "ai/earnings/index.html": "3c0e7241a57007947a188a8b7eed003b80fddf5a"
+  },
+  "scope": "One-issuer followthrough: all available NVIDIA FY2027 Q3 main-call mirror turns, distinct prepared remarks and a successful bounded SEC Q3 filing-availability check. No new quarter, post-call, training case or personal-skill change.",
+  "event": {
+    "company": "NVIDIA",
+    "ticker": "NVDA",
+    "fiscal_period": "FY2027 Q3",
+    "period_end": "2026-10-25",
+    "call_date": "2026-11-17",
+    "scheduled_at": "2026-11-17T22:00:00+00:00",
+    "scheduled_time_source": "O1",
+    "call_type": "primary",
+    "quarter_id": "NVDA_2027Q3",
+    "call_id": "NVDA_2027Q3"
+  },
+  "sources": [
+    {
+      "id": "NVDA-Q1-20261118",
+      "key": "Q1",
+      "title": "NVIDIA FY2027 Q3 main-call transcript — Stock Analysis / Quartr mirror",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "evidence_origin": "Public",
+      "evidence_kind": "public_transcript_mirror_not_audio_verified",
+      "source_ref": "turn118907795view0",
+      "locator": "Entire available call text lines 119–347; analyst Q&A lines 188–338; named-speaker locators in QA225–QA232",
+      "reading_scope": "All 8 available analyst turns reviewed; 15 editorially separated substantive asks. Original audio and transcript completeness not independently verified."
+    },
+    {
+      "id": "NVDA-Q2-20261118",
+      "key": "Q2",
+      "title": "Official NVIDIA FY2027 Q3 event notice",
+      "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-3rd-Quarter-FY27-Financial-Results/default.aspx",
+      "retrieved_on": "2026-11-18",
+      "evidence_origin": "Public",
+      "evidence_kind": "official_event_notice",
+      "source_ref": "turn113361715view0",
+      "locator": "Event title and November 17 17:00 EST schedule, lines 97–101",
+      "reading_scope": "Event identity and scheduled time only; not transcript or audio evidence."
+    },
+    {
+      "id": "NVDA-F1-20261118",
+      "key": "F1",
+      "title": "SEC current submissions index — NVIDIA CIK1045810",
+      "url": "https://data.sec.gov/submissions/CIK0001045810.json",
+      "retrieved_on": "2026-11-18",
+      "checked_at": "2026-11-18T11:25:07.461404+00:00",
+      "evidence_origin": "Public",
+      "evidence_kind": "official_SEC_submissions_JSON",
+      "locator": "filings.recent; 1002 rows; form and reportDate filter in attached receipt",
+      "reading_scope": "Successful bounded filing-availability check. No Q3 10-Q body available for review.",
+      "response_sha256": "927dd8cbc011d2ff416f0827bf4591b20991564ace772684639cbafeb1a6e928"
+    }
+  ],
+  "inherited_sources": [
+    {
+      "id": "NVDA-S1-20261118",
+      "key": "S1",
+      "title": "NVIDIA Q3 FY2027 earnings release",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "locator": "opening paragraph; Condensed consolidated statements of income; reconciliation of GAAP to non-GAAP financial measures; Condensed consolidated statements of cash flows; FCF reconciliation; Outlook; reconciliation of GAAP to non-GAAP outlook; Non-GAAP Measures paragraph beginning Beginning in the first quarter of fiscal 2027; Highlights > Data Center",
+      "evidence_kind": "issuer earnings release; unaudited statements",
+      "evidence_origin": "Public",
+      "source_ref": "turn292206194view0",
+      "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+    },
+    {
+      "id": "NVDA-S2-20261118",
+      "key": "S2",
+      "title": "Q3 FY2027 CFO Commentary (8-K exhibit 99.2)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "locator": "Revenue by Market Platform table; Revenue paragraphs; Gross Margin; Commitments; Additional Commitments; Guarantees; Balance Sheet and Cash Flow; paragraph following Revenue by Market Platform table",
+      "evidence_kind": "issuer commentary furnished with 8-K",
+      "evidence_origin": "Public",
+      "source_ref": "turn125573064view0",
+      "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+    },
+    {
+      "id": "NVDA-S3-20261118",
+      "key": "S3",
+      "title": "Q3 FY2027 Supplemental Financial Information (8-K exhibit 99.3)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/supplementalfinancialinfor.htm",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "locator": "Condensed consolidated statements of cash flows, pages 3-4; Condensed consolidated balance sheets; Supplemental Financial Statement Information > Inventories; Customer Concentration, page 7",
+      "evidence_kind": "issuer supplemental unaudited financial information",
+      "evidence_origin": "Public",
+      "source_ref": "turn453294225view0",
+      "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+    },
+    {
+      "id": "NVDA-S4-20261118",
+      "key": "S4",
+      "title": "NVIDIA Q2 FY2027 earnings release",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+      "publication_date": "2026-08-26",
+      "retrieved_on": "2026-11-18",
+      "locator": "Outlook",
+      "evidence_kind": "dated management outlook for Q3; not consensus",
+      "evidence_origin": "Public",
+      "source_ref": "turn923100842view2",
+      "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+    },
+    {
+      "id": "NVDA-S7-20261118",
+      "key": "S7",
+      "title": "NVIDIA November 17 2026 Form 8-K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "locator": "Item 2.02 and Item 9.01",
+      "evidence_kind": "SEC filing envelope; exhibits are furnished",
+      "evidence_origin": "Public",
+      "source_ref": "turn970334008view0",
+      "reading_scope": "Selected results, guidance, statements and explanatory disclosures; no earnings-call Q&A or full 10-Q review"
+    }
+  ],
+  "source_resolution": "S1/S2/S3/S4/S7 resolve to inherited_sources and the unchanged nvidia-results-20261118.json record; Q1/Q2/F1 resolve to sources in this packet.",
+  "source_inventory": [
+    {
+      "id": "M1",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "title": "NVIDIA Q3 FY2027 earnings-call transcript",
+      "provider": "Stock Analysis; attributed by page to Quartr",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "source_ref": "turn905543494view1",
+      "publication_date": "2026-11-17",
+      "retrieved_on": "2026-11-18",
+      "reading_scope": "Entire available main-call text, opening through operator conclusion (web lines 119–347); Q&A transition and all eight analyst turns, lines 188–338.",
+      "audio_reviewed": false,
+      "timestamps_available_in_reviewed_text": false,
+      "limitation": "Complete coverage of this accessible mirror is not independent certification of transcript completeness or spoken-word accuracy."
+    },
+    {
+      "id": "O1",
+      "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-3rd-Quarter-FY27-Financial-Results/default.aspx",
+      "title": "NVIDIA 3rd Quarter FY27 Financial Results",
+      "source_type": "official_event_notice",
+      "source_ref": "turn443641067view0",
+      "locator": "Event title, date/time and webcast link, lines 97–101",
+      "retrieved_on": "2026-11-18",
+      "verified_scope": "Event identity and November 17 17:00 EST scheduled time; not call-body evidence."
+    },
+    {
+      "id": "O2",
+      "url": "https://events.q4inc.com/attendee/902213296",
+      "title": "Official webcast linked by NVIDIA",
+      "source_type": "official_webcast_endpoint_attempt",
+      "source_ref": "turn443641067view1",
+      "retrieved_on": "2026-11-18",
+      "status": "JavaScript-required shell; audio not retrieved or reviewed"
+    },
+    {
+      "id": "O3",
+      "url": "https://investor.nvidia.com/home/default.aspx?ncid=GTC-NVWU7UV9",
+      "source_type": "official_home_page_attempt",
+      "source_ref": "turn894226276view0",
+      "retrieved_on": "2026-11-18",
+      "status": "Search snippet advertises transcript and 10-Q labels; opened body provides dynamic headings, without an inspected Q3 transcript or 10-Q target. Labels are not filing evidence."
+    }
+  ],
+  "transcript_coverage": {
+    "analyst_turns_reviewed": 8,
+    "analyst_turns_total": 8,
+    "independent_asks": 15,
+    "unique_questioners": 8,
+    "unique_source_time_firms": 8,
+    "audio_verified": false,
+    "moderator_substantive_asks": 0,
+    "unknown_origin_asks": 0,
+    "post_calls_reviewed": 0,
+    "exchange_status_counts": {
+      "answered": 1,
+      "partially answered": 7
+    },
+    "subask_status_counts": {
+      "answered": 3,
+      "partially answered": 5,
+      "unanswered": 7
+    },
+    "counting_rule": "One exchange is one operator-introduced analyst turn plus associated management response. Code separate subasks only where independently assessable. Collapse rhetorical restatements. Rasgon is one clarification ask; his financing interpretation is retained as its premise, not an additional question.",
+    "limit": "8/8 describes this available mirror, not an independent certification of the spoken call or a complete multi-source earnings census."
+  },
+  "questions": [
+    {
+      "id": "QA225",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Guidance",
+      "analyst": "Joseph Moore",
+      "questioner": "Joseph Moore",
+      "raw_name": "Joseph Moore",
+      "institution_hint": "Morgan Stanley",
+      "respondent": "Colette Kress",
+      "ask": "Why raise growth; does 100% demand survive export rules?",
+      "management_answer": "Supply/demand support 75%; export assessment continues.",
+      "status": "partially answered",
+      "locator": "Joseph Moore; question line196, answer lines201–203; first analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F3",
+        "F7",
+        "F14"
+      ],
+      "hidden_uncertainty": "100% is the analyst's recalled premise; management did not re-endorse that figure. 75% is FY2028 management growth outlook, not measured unconstrained demand.",
+      "model_bridge": "Revenue capacity = accepted systems × recognized revenue per system. Test supply, export eligibility and funded deployment jointly; a growth forecast is not unconstrained demand.",
+      "follow_up": "Reconcile incremental wafer allocation, packaging/memory availability, export eligibility and customer acceptance into a revenue-capacity bridge.",
+      "premise_boundary": "100% is the analyst's recalled premise; management did not re-endorse that figure. 75% is FY2028 management growth outlook, not measured unconstrained demand.",
+      "subasks": [
+        {
+          "id": "QA225-a",
+          "scope": "Raised-growth rationale",
+          "status": "answered"
+        },
+        {
+          "id": "QA225-b",
+          "scope": "100% demand premise",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA226",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Governance",
+      "analyst": "Vivek Arya",
+      "questioner": "Vivek Arya",
+      "raw_name": "Vivek Arya",
+      "institution_hint": "Bank of America Securities",
+      "respondent": "Colette Kress; Harvey Jones",
+      "ask": "Transition effects on resilience and financial strategy?",
+      "management_answer": "Continuity assurances; internal/external CEO search.",
+      "status": "partially answered",
+      "locator": "Vivek Arya; question line212, answers lines216–226; second analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F15",
+        "F20",
+        "F14"
+      ],
+      "hidden_uncertainty": "General confidence statements are not employee-retention measurements or a completed CEO appointment.",
+      "model_bridge": "Separate technical-leadership retention and milestone delivery from confidence statements; no evidence here supports a quantified transition loss.",
+      "follow_up": "Track technical-leadership retention, roadmap milestones and capital-policy decisions separately; do not manufacture a departure probability.",
+      "premise_boundary": "General confidence statements are not employee-retention measurements or a completed CEO appointment.",
+      "subasks": [
+        {
+          "id": "QA226-a",
+          "scope": "Moat/talent/competitive continuity",
+          "status": "partially answered"
+        },
+        {
+          "id": "QA226-b",
+          "scope": "Financial-strategy changes",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA227",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Margins",
+      "analyst": "Timothy Arcuri",
+      "questioner": "Timothy Arcuri",
+      "raw_name": "Timothy Arcuri",
+      "institution_hint": "UBS",
+      "respondent": "Colette Kress",
+      "ask": "Pricing durability; acceptable margin sacrifice against ASICs?",
+      "management_answer": "Honor existing orders; revised pricing; FY2028 range unchanged.",
+      "status": "partially answered",
+      "locator": "Timothy Arcuri; question lines234–235, answer lines239–243; third analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F3",
+        "F11",
+        "F18"
+      ],
+      "hidden_uncertainty": "Question says calendar 2027; management speaks about FY2028. Do not relabel the 72–73% outlook as calendar 2027 or a permanent margin floor.",
+      "model_bridge": "Gross profit = revenue less product costs. Bridge price vintage, realized new pricing, system mix and component cost separately; no quantitative attribution is disclosed.",
+      "follow_up": "Separate existing purchase-order prices, new-price realization, product mix and component costs; request a numerical bridge rather than infer margin loss from ASIC competition.",
+      "premise_boundary": "Question says calendar 2027; management speaks about FY2028. Do not relabel the 72–73% outlook as calendar 2027 or a permanent margin floor.",
+      "subasks": [
+        {
+          "id": "QA227-a",
+          "scope": "Long-term pricing/margin durability",
+          "status": "partially answered"
+        },
+        {
+          "id": "QA227-b",
+          "scope": "Acceptable competitive margin sacrifice",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA228",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Financing",
+      "analyst": "C.J. Muse",
+      "questioner": "C.J. Muse",
+      "raw_name": "C.J. Muse",
+      "institution_hint": "Cantor Fitzgerald",
+      "respondent": "Colette Kress",
+      "ask": "Financing appetite and implications for ACIE growth?",
+      "management_answer": "Selective support; prioritize land, power, shell.",
+      "status": "partially answered",
+      "locator": "C.J. Muse; question line252, answer lines257–263; fourth analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F9",
+        "F20",
+        "F22"
+      ],
+      "hidden_uncertainty": "ACIE contains multiple customer classes; do not equate the entire category with neocloud financing or infer a quantified reduction in support.",
+      "model_bridge": "Stress financed customer deliveries using funding close dates, site acceptance and collection terms; ACIE revenue is not a measure of financing dependence.",
+      "follow_up": "Model the share of sales dependent on each financing instrument and sensitivity to funding delays; no such share is established here.",
+      "premise_boundary": "ACIE contains multiple customer classes; do not equate the entire category with neocloud financing or infer a quantified reduction in support.",
+      "subasks": [
+        {
+          "id": "QA228-a",
+          "scope": "Future financing appetite",
+          "status": "partially answered"
+        },
+        {
+          "id": "QA228-b",
+          "scope": "Growth impact of financing changes",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA229",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Financing",
+      "analyst": "Stacy Rasgon",
+      "questioner": "Stacy Rasgon",
+      "raw_name": "Stacy Rasgon",
+      "institution_hint": "Bernstein Research",
+      "respondent": "Colette Kress",
+      "ask": "New conditions or clearer existing financing disclosure?",
+      "management_answer": "Clarification; no policy change asserted.",
+      "status": "answered",
+      "locator": "Stacy Rasgon; question lines271–273, answer lines278–282; fifth analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F11",
+        "F20",
+        "F22"
+      ],
+      "hidden_uncertainty": "Answer shifts among guarantees, land/power/shell and Portsmouth. It is management's explanation, not contract-level proof that every guarantee automatically cancels on any delay. Keep CFO commitment and guarantee categories separate.",
+      "model_bridge": "Model contractual commitments and guarantees by instrument, trigger and time. Maximum exposure, recognized liability and cash loss are different quantities.",
+      "follow_up": "For each instrument, inspect trigger, cure period, expiry, secured financing and accepted-capacity conditions before changing exposure assumptions.",
+      "premise_boundary": "Answer shifts among guarantees, land/power/shell and Portsmouth. It is management's explanation, not contract-level proof that every guarantee automatically cancels on any delay. Keep CFO commitment and guarantee categories separate.",
+      "subasks": [
+        {
+          "id": "QA229-a",
+          "scope": "New terms versus clarification",
+          "status": "answered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA230",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Policy",
+      "analyst": "Ben Reitzes",
+      "questioner": "Ben Reitzes",
+      "raw_name": "Ben Reitzes",
+      "institution_hint": "Melius Research",
+      "respondent": "Colette Kress",
+      "ask": "Post-2027 demand resilience and specific government reassurance?",
+      "management_answer": "Demand confidence; continued government engagement.",
+      "status": "partially answered",
+      "locator": "Ben Reitzes; question lines291–292, answer lines296–299; sixth analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F14",
+        "F19"
+      ],
+      "hidden_uncertainty": "The political slowdown scenario is a questioner's hypothesis, not an established policy forecast or management guide.",
+      "model_bridge": "Test policy scenarios through permit timing, export eligibility and energized capacity; management demand confidence does not establish regulatory clearance.",
+      "follow_up": "Use dated permit, energization and export-policy milestones to test a delay scenario; separate regulatory causality from demand narratives.",
+      "premise_boundary": "The political slowdown scenario is a questioner's hypothesis, not an established policy forecast or management guide.",
+      "subasks": [
+        {
+          "id": "QA230-a",
+          "scope": "Demand resilience beyond 2027",
+          "status": "partially answered"
+        },
+        {
+          "id": "QA230-b",
+          "scope": "Specific government discussions/assurances",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA231",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Capacity",
+      "analyst": "Joshua Buchalter",
+      "questioner": "Joshua Buchalter",
+      "raw_name": "Joshua Buchalter",
+      "institution_hint": "TD Cowen",
+      "respondent": "Colette Kress",
+      "ask": "Allocation changes; future frontier-lab revenue share?",
+      "management_answer": "Readiness, funding and offtake govern allocation.",
+      "status": "partially answered",
+      "locator": "Joshua Buchalter; question lines307–308, answer lines312–316; seventh analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F7",
+        "F9",
+        "F18"
+      ],
+      "hidden_uncertainty": "Prepared remarks line 148 give current-year frontier labs approximately 15% of Data Center revenue. The question shortens this to revenue. No future mix target is supplied; same-pricing statement does not establish identical total contract economics.",
+      "model_bridge": "Treat site readiness, funding and offtake as joint delivery gates. A purchase order alone does not prove usable or accepted capacity.",
+      "follow_up": "Build delivery eligibility from site readiness, financing and credible offtake, then compare acceptance schedules with allocation requests.",
+      "premise_boundary": "Prepared remarks line 148 give current-year frontier labs approximately 15% of Data Center revenue. The question shortens this to revenue. No future mix target is supplied; same-pricing statement does not establish identical total contract economics.",
+      "subasks": [
+        {
+          "id": "QA231-a",
+          "scope": "Allocation criteria",
+          "status": "answered"
+        },
+        {
+          "id": "QA231-b",
+          "scope": "Future lab revenue mix",
+          "status": "unanswered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Dated operator introduction and transcript label; existing canonical directory identity retained.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    },
+    {
+      "id": "QA232",
+      "company": "NVIDIA",
+      "ticker": "NVDA",
+      "call_id": "NVDA_2027Q3",
+      "quarter": "FY2027 Q3",
+      "date": "2026-11-17",
+      "event": "Quarterly results main call",
+      "theme": "Capital allocation",
+      "analyst": "James Schneider",
+      "questioner": "Jim Schneider",
+      "raw_name": "Jim Schneider",
+      "institution_hint": "Goldman Sachs",
+      "respondent": "Colette Kress",
+      "ask": "Financing hurdles; sequencing versus repurchases?",
+      "management_answer": "Supplier support and selective financing coexist with repurchases.",
+      "status": "partially answered",
+      "locator": "Jim Schneider; question lines325–326, answer lines330–334; eighth analyst turn",
+      "url": "https://stockanalysis.com/stocks/nvda/transcripts/739383-q3-2027/",
+      "source_id": "NVDA-Q1-20261118",
+      "source_key": "NVDA-Q1-20261118",
+      "source_type": "public_transcript_mirror_not_audio_verified",
+      "skills": [
+        "F11",
+        "F20",
+        "F23"
+      ],
+      "hidden_uncertainty": "No numeric hurdle rate or exact quarterly cash waterfall is given. Do not treat the questioner's unchanged-commitments premise as management confirmation. Repurchase authorization and intent are not completed repurchases.",
+      "model_bridge": "Reconcile operating cash flow, supplier advances, investments, customer support and capital returns by cash-flow category and timing; avoid double subtraction.",
+      "follow_up": "Reconcile supplier prepayments, investment obligations, customer support and residual shareholder returns to cash-flow timing under stress.",
+      "premise_boundary": "No numeric hurdle rate or exact quarterly cash waterfall is given. Do not treat the questioner's unchanged-commitments premise as management confirmation. Repurchase authorization and intent are not completed repurchases.",
+      "subasks": [
+        {
+          "id": "QA232-a",
+          "scope": "Changed financing hurdle rates",
+          "status": "unanswered"
+        },
+        {
+          "id": "QA232-b",
+          "scope": "Capital priorities and sequencing",
+          "status": "partially answered"
+        }
+      ],
+      "evidence_origin": "Public",
+      "evidence_status": "All 8 analyst turns in the available main-call mirror reviewed; not audio-verified or an independently certified transcript.",
+      "identity_status": "Raw Jim Schneider retained; existing QA137/QA174 canonical alias James Schneider reused.",
+      "institution_status": "Affiliation at event only; current IR coverage not reverified",
+      "verified_at": "2026-11-18",
+      "mapping_status": "Editorial model and answer coding, not analyst testimony",
+      "pattern_status": "single-call example; no new recurring-pattern certification"
+    }
+  ],
+  "speaker_coverage": {
+    "management_answer_turns": {
+      "Colette Kress": 8,
+      "Harvey Jones": 1
+    },
+    "announced_participant_without_attributed_answer": [
+      "Ian Buck"
+    ],
+    "moderators": [
+      "Toshiya Hari",
+      "Operator"
+    ],
+    "prepared_remarks_speakers": [
+      "Harvey Jones",
+      "Colette Kress"
+    ],
+    "boundary": "Participant announcement does not establish a spoken answer. Prepared remarks and operator procedures do not increase analyst-question counts."
+  },
+  "prepared_remarks": {
+    "source_id": "M1",
+    "locator": "Colette Kress prepared remarks lines 143–183; excluded from eight analyst turns",
+    "management_claims": {
+      "rubin_first_production_quarter_revenue_usdbn_approx": 20,
+      "rubin_qualifier": "nearly",
+      "fiscal_2028_revenue_growth_outlook_pct_approx": 75,
+      "prior_fiscal_2028_revenue_growth_outlook_pct_approx": 70,
+      "fiscal_2028_gross_margin_pct_range": [
+        72,
+        73
+      ],
+      "q3_networking_revenue_usdbn": {
+        "operator": ">",
+        "value": 21
+      }
+    },
+    "boundary": "Call-attributed management statements, not independently measured deployment or a filed 10-Q verification. Retain source precision and fiscal horizons. No new analyst questions are created from these figures."
+  },
+  "full_filing_review": {
+    "status": "pending_publication",
+    "review_completed": false,
+    "checked_at": "2026-11-18T11:25:07.461404+00:00",
+    "period_end": "2026-10-25",
+    "accession": null,
+    "official_index_matches": 0,
+    "index_rows_checked": 1002,
+    "latest_listed_10q": {
+      "form": "10-Q",
+      "filingDate": "2026-08-26",
+      "reportDate": "2026-07-26",
+      "acceptanceDateTime": "2026-08-26T20:36:00.000Z",
+      "accessionNumber": "0001045810-26-000075",
+      "primaryDocument": "nvda-20260726.htm"
+    },
+    "source_ids": [
+      "F1",
+      "S2"
+    ],
+    "observation": "No Q3 FY2027 10-Q appears in the successfully parsed SEC current index at the stated time. The latest listed 10-Q is Q2. NVIDIA described Q3 filing as forthcoming in its November 17 CFO commentary.",
+    "next_action": "Retrieve the actual Q3 Form 10-Q when published; reconcile financial notes, MD&A, commitments, guarantees, concentration, controls and legal/risk disclosures with the November 17 exhibits.",
+    "boundary": "Q2 10-Q and Q3 furnished 8-K supplemental statements do not substitute for a full Q3 filing review."
+  },
+  "full_filing_availability_audit": {
+    "company": "NVIDIA",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "fiscal_period_requested": "FY2027 Q3",
+    "period_end_requested": "2026-10-25",
+    "timezone": "Europe/London",
+    "checked_at": "2026-11-18T11:25:07.461404+00:00",
+    "status": "not_yet_filed_in_current_sec_submissions_index",
+    "availability_conclusion": "No Q3 FY2027 Form 10-Q, amendment, or NT 10-Q appears for period October 25, 2026 in the successfully retrieved current SEC submissions index as of this check. The latest listed Form 10-Q is Q2 FY2027. The issuer CFO commentary dated November 17 says it plans to file the Q3 10-Q in coming weeks. This is a successful bounded official-index check, not a failed discovery claim; subsequent filing remains possible.",
+    "full_q3_10q_review_completed": false,
+    "full_q3_10q_accession": null,
+    "full_q3_10q_filing_date": null,
+    "full_q3_10q_url": null,
+    "full_q3_10q_findings": [],
+    "latest_available_10q": {
+      "form": "10-Q",
+      "filingDate": "2026-08-26",
+      "reportDate": "2026-07-26",
+      "acceptanceDateTime": "2026-08-26T20:36:00.000Z",
+      "accessionNumber": "0001045810-26-000075",
+      "primaryDocument": "nvda-20260726.htm"
+    },
+    "latest_available_10q_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+    "evidence_origin": "Public",
+    "source_checks": [
+      {
+        "id": "NVDA_SEC_CURRENT_SUBMISSIONS_20261118",
+        "url": "https://data.sec.gov/submissions/CIK0001045810.json",
+        "method": "Direct HTTPS JSON retrieval; parsed filings.recent arrays",
+        "http_status": 200,
+        "checked_at": "2026-11-18T11:25:07.461404+00:00",
+        "result": "Successful NVIDIA issuer index; zero rows matching requested Q3 period for 10-Q, 10-Q/A or NT 10-Q.",
+        "receipt_file": "nvidia_q3_10q_sec_receipt.json",
+        "response_sha256": "927dd8cbc011d2ff416f0827bf4591b20991564ace772684639cbafeb1a6e928",
+        "recent_index_row_count": 1002
+      },
+      {
+        "id": "NVDA_Q3_CFO_PENDING_10Q",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm",
+        "published": "2026-11-17",
+        "locator": "Paragraph immediately after Revenue by Market Platform table",
+        "result": "Management describes the Q3 10-Q as a forthcoming filing, with supplemental financial information provided in the interim.",
+        "inspected": true
+      },
+      {
+        "id": "NVDA_Q3_8K_DISTINCT",
+        "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/nvda-20261117.htm",
+        "published": "2026-11-17",
+        "accession": "0001045810-26-000088",
+        "form": "8-K",
+        "locator": "Item 2.02; Item 9.01",
+        "result": "Results, CFO commentary and supplemental financial information are furnished exhibits99.1-99.3; this is not a Form10-Q.",
+        "inspected": true
+      },
+      {
+        "id": "NVDA_IR_SEC_INDEX_RENDER",
+        "url": "https://investor.nvidia.com/financial-info/sec-filings/",
+        "method": "Web text retrieval",
+        "result": "Dynamic filing table did not populate; not used as negative filing evidence."
+      },
+      {
+        "id": "NVDA_SEC_BROWSE_RENDER",
+        "url": "https://www.sec.gov/edgar/browse/?CIK=1045810&owner=exclude",
+        "method": "Web text retrieval",
+        "result": "Dynamic SEC page returned placeholder empty filing labels; not treated as proof of no filings."
+      },
+      {
+        "id": "NVDA_IR_QUARTERLY",
+        "url": "https://investor.nvidia.com/financial-info/quarterly-results/default.aspx",
+        "method": "Official domain search and web text retrieval",
+        "result": "Search identifies Q2 FY2027 10-Q; no usable full Q3 Form10-Q body discovered. Direct SEC JSON is decisive index check."
+      },
+      {
+        "id": "NVDA_SEC_ATOM",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1045810&type=10-Q&dateb=20261118&owner=exclude&count=40&output=atom",
+        "method": "Web retrieval",
+        "result": "Inaccessible via web tool; not used for negative claim."
+      }
+    ],
+    "review_boundaries": [
+      "No full Q3 10-Q source exists in the inspected current index, so no Q3 filing review or filing coverage completion may be recorded.",
+      "The August26 Q2 10-Q is a different quarter and must not be substituted.",
+      "November 17 8-K exhibit99.3 is unaudited supplemental financial information, not a 10-Q.",
+      "Previously extracted commitments, concentration, inventory provisions and investments remain attributable to their actual CFO/supplemental sources, not upgraded to full filing review.",
+      "No new legal, governance, accounting or risk-factor conclusions are drawn from an unavailable filing."
+    ],
+    "recommended_tracker_state": {
+      "full_filing_status": "pending_publication",
+      "full_filing_review_status": "not_reviewed",
+      "coverage_window_status": "partial",
+      "next_action": "Recheck SEC current submissions after filing; inspect the actual Q3 Form10-Q body and reconcile with November 17 furnished exhibits."
+    },
+    "short_current_state": {
+      "facts": "Live SEC current index contains no requested Q3 Form10-Q; latest10-Q is Q2, while Q3 results are in November 17 8-K.",
+      "decision": "Proceed with separately reviewed call Q&A if available, keep full Q3 filing review pending.",
+      "open_question": "Q3 Form10-Q publication timing and any new filing-specific disclosures.",
+      "next_discriminating_action": "Retrieve and inspect Q3 filing after SEC lists it."
+    }
+  },
+  "sec_index_receipt": {
+    "checked_at_utc": "2026-11-18T11:25:07.461404+00:00",
+    "url": "https://data.sec.gov/submissions/CIK0001045810.json",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json",
+      "date": "Wed, 18 Nov 2026 11:25:07 GMT"
+    },
+    "response_sha256": "927dd8cbc011d2ff416f0827bf4591b20991564ace772684639cbafeb1a6e928",
+    "issuer_name": "NVIDIA CORP",
+    "cik": "0001045810",
+    "recent_index_row_count": 1002,
+    "recent_index_latest_filing_date": "2026-11-17",
+    "quarter_filter": {
+      "form": [
+        "10-Q",
+        "10-Q/A",
+        "NT 10-Q"
+      ],
+      "reportDate": "2026-10-25"
+    },
+    "matching_rows": [],
+    "relevant_rows": [
+      {
+        "form": "8-K",
+        "filingDate": "2026-11-17",
+        "reportDate": "2026-11-17",
+        "acceptanceDateTime": "2026-11-17T21:20:51.000Z",
+        "accessionNumber": "0001045810-26-000088",
+        "primaryDocument": "nvda-20261117.htm"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-11-12",
+        "reportDate": "2026-11-11",
+        "acceptanceDateTime": "2026-11-12T13:52:41.000Z",
+        "accessionNumber": "0001045810-26-000082",
+        "primaryDocument": "nvda-20261111.htm"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-09-03",
+        "reportDate": "2026-09-02",
+        "acceptanceDateTime": "2026-09-03T12:03:56.000Z",
+        "accessionNumber": "0001045810-26-000078",
+        "primaryDocument": "nvda-20260902.htm"
+      },
+      {
+        "form": "10-Q",
+        "filingDate": "2026-08-26",
+        "reportDate": "2026-07-26",
+        "acceptanceDateTime": "2026-08-26T20:36:00.000Z",
+        "accessionNumber": "0001045810-26-000075",
+        "primaryDocument": "nvda-20260726.htm"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-08-26",
+        "reportDate": "2026-08-26",
+        "acceptanceDateTime": "2026-08-26T20:21:19.000Z",
+        "accessionNumber": "0001045810-26-000073",
+        "primaryDocument": "nvda-20260826.htm"
+      },
+      {
+        "form": "8-K",
+        "filingDate": "2026-08-17",
+        "reportDate": "2026-08-17",
+        "acceptanceDateTime": "2026-08-17T12:41:33.000Z",
+        "accessionNumber": "0001045810-26-000069",
+        "primaryDocument": "nvda-20260817.htm"
+      }
+    ],
+    "latest_10q": {
+      "form": "10-Q",
+      "filingDate": "2026-08-26",
+      "reportDate": "2026-07-26",
+      "acceptanceDateTime": "2026-08-26T20:36:00.000Z",
+      "accessionNumber": "0001045810-26-000075",
+      "primaryDocument": "nvda-20260726.htm"
+    }
+  },
+  "decision_signals": [
+    {
+      "classification": "Inferred decision test",
+      "baseline_under_test": "Treat the FY2028 growth outlook as unconstrained demand.",
+      "new_evidence": "Management raised FY2028 revenue growth outlook from approximately 70% to 75%; its answer invokes both demand and additional supply.",
+      "mechanism": "Revenue realization depends on eligible supply, customer funding and accepted systems; the analyst's 100% premise was not reaffirmed.",
+      "affected_decision": "Keep unconstrained demand and deliverable capacity as separate scenarios; require a supply-to-acceptance bridge before increasing deployment commitments.",
+      "confidence": "High on the mirrored statement; forecast realization unverified.",
+      "next_falsifying_observation": "Allocated components fail to convert into qualified, funded and accepted systems, or management revises its fiscal growth outlook.",
+      "source_ids": [
+        "Q1"
+      ],
+      "question_ids": [
+        "QA225",
+        "QA231"
+      ]
+    },
+    {
+      "classification": "Inferred decision test",
+      "baseline_under_test": "Carry the Q3 margin into Q4 or treat the guided trough as a permanent competitive floor.",
+      "new_evidence": "Q4 guided gross margin 71–72%; prepared remarks give FY2028 72–73%. Arcuri's answer discusses absorbing supply costs on existing orders and moving to new pricing.",
+      "mechanism": "Purchase-order vintage and price realization can delay cost recovery; the call does not quantify price, mix or cost contributions.",
+      "affected_decision": "Model existing-order and new-order economics separately; keep FY2028 margin recovery conditional.",
+      "confidence": "High on fiscal-period wording; medium on mechanism and low on undisclosed quantitative attribution.",
+      "next_falsifying_observation": "New-price realization or component-cost evidence fails to support the guided fiscal margin recovery.",
+      "source_ids": [
+        "S1",
+        "Q1"
+      ],
+      "question_ids": [
+        "QA227"
+      ]
+    },
+    {
+      "classification": "Inferred decision test",
+      "baseline_under_test": "A purchase order or reserved component capacity is enough to establish deployable output.",
+      "new_evidence": "Buchalter's answer identifies site readiness, capital and credible offtake as allocation criteria.",
+      "mechanism": "Delivery eligibility requires several conditions at once; financing or energization can bind despite available silicon.",
+      "affected_decision": "Gate reservations and deployment dates on funded, powered sites and acceptance evidence.",
+      "confidence": "High on stated criteria; actual customer-level allocation unverified.",
+      "next_falsifying_observation": "Observed allocation proceeds without these stated gates, or funded ready sites remain constrained by upstream qualified output.",
+      "source_ids": [
+        "Q1",
+        "S2"
+      ],
+      "question_ids": [
+        "QA231"
+      ]
+    },
+    {
+      "classification": "Inferred decision test",
+      "baseline_under_test": "New disclosure wording proves a new financing policy or eliminates all guarantee exposure on delays.",
+      "new_evidence": "Rasgon receives a management no-change explanation. Written CFO disclosure separately records 32bn contingent neocloud agreements and 118bn maximum guarantees.",
+      "mechanism": "Instrument-specific activation and expiry determine exposure. Pre-activation conditionality does not establish cancellation of all guarantees or remove post-activation risk.",
+      "affected_decision": "Retain separate exposure schedules and wait for contract-level/filing evidence before reducing modeled support risk.",
+      "confidence": "High on category separation; instrument-level enforceability remains unreviewed.",
+      "next_falsifying_observation": "The actual Q3 10-Q or underlying contract terms disclose revised triggers, amounts, expiry or activated obligations.",
+      "source_ids": [
+        "Q1",
+        "S2"
+      ],
+      "question_ids": [
+        "QA228",
+        "QA229",
+        "QA232"
+      ]
+    }
+  ],
+  "independent_source_review": {
+    "status": "passed_with_boundaries",
+    "performed_on": "2026-11-18",
+    "reviewed_exchanges": [
+      "QA225",
+      "QA227",
+      "QA229",
+      "QA231"
+    ],
+    "findings": [
+      "100% remains analyst premise.",
+      "FY2028 is the margin horizon.",
+      "Frontier-lab 15% denominator is Data Center revenue.",
+      "32bn commitments and 118bn guarantees retain different triggers and categories."
+    ],
+    "review_limit": "Independent textual interpretation review; neither original audio nor the unavailable Q3 10-Q reviewed."
+  },
+  "editorial_progression": "Main-call followthrough: delivery allocation depends on site readiness, capital and offtake; model price vintage and component costs separately. Management describes financing wording as clarification, but instrument-level triggers remain unverified. All 8 mirror turns are reviewed; full Q3 10-Q pending.",
+  "current_state": {
+    "established": "8 of 8 available main-call analyst turns reviewed; full Q3 10-Q not listed at 11:25:07 London in current SEC submissions.",
+    "decision": "Backfill existing NVDA_2027Q3 with 8 exchanges; preserve its quarter ID and all reported actuals. Treat fiscal guidance and financing explanations as management claims.",
+    "open_questions": [
+      "Q3 10-Q availability and filing-specific disclosures",
+      "Numerical margin-cost-price bridge",
+      "Financing hurdle rates and exact cash sequencing",
+      "Audio transcription accuracy and separate post-call coverage"
+    ],
+    "next_discriminating_action": "Inspect and reconcile the actual Q3 10-Q after publication; review remains pending until that source exists.",
+    "completion": "main-call textual review complete within stated mirror scope; full Q3 10-Q review incomplete because filing not available at check",
+    "confidentiality": "Public sources only; existing /ai/ earnings destination"
+  }
+}

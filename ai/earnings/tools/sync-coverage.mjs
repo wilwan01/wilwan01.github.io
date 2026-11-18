@@ -64,7 +64,7 @@ section = section.replace('<div><a href="#MU_2026Q4">FY2026 Q4 · NEW</a><small>
 
 const intro = '<p>Quarters retain the source’s fiscal labels; they are not synchronized calendar periods. The original four-quarter history is preserved, with later results and separately labeled post-earnings calls added to each company. Transcript links identify official text versus public mirrors; results-only links are releases, not reviewed calls. Dates are event dates for reviewed calls and release dates for results-only entries. Schneider’s Q1 and Q3 slots are revenue updates; its other slots are half-year and full-year results. Progression updates are editorial inferences from the linked selected exchanges, not analyst quotations or certified recurring personal patterns.</p>';
 section = section.replace(/(<h2>Company coverage and four-quarter progression<\/h2>)<p>[\s\S]*?<\/p>/, '$1' + intro);
-const summary = `<!-- coverage-summary:start --><p class="note" id="coverage-status">Evidence cutoff: <strong>${esc(corpus.cutoff_at)}</strong> (Europe/London). <strong>${corpus.counts.companies} companies · ${corpus.counts.quarterly_events} quarterly slots · ${postCalls.length} separate post-earnings calls</strong>. The ${quarters.size} added quarters include ${gaps.length} results-only entries whose main-call bodies remain unreviewed. All ${corpus.counts.questions} selected Q&amp;A records retain their existing IDs; this integration adds no new research records. Non-quarter preliminary notices, monthly revenue and long-term targets are included in each company’s expandable financial evidence and do not add quarterly slots.</p><!-- coverage-summary:end -->`;
+const summary = `<!-- coverage-summary:start --><p class="note" id="coverage-status">Evidence cutoff: <strong>${esc(corpus.cutoff_at)}</strong> (Europe/London). <strong>${corpus.counts.companies} companies · ${corpus.counts.quarterly_events} quarterly slots · ${postCalls.length} separate post-earnings calls</strong>. The ${quarters.size} added quarters include ${gaps.length} results-only entries whose main-call bodies remain unreviewed. The current ledger contains ${corpus.counts.questions} selected Q&amp;A records with stable IDs; each call retains its own review scope. Non-quarter preliminary notices, monthly revenue and long-term targets are included in each company’s expandable financial evidence and do not add quarterly slots.</p><!-- coverage-summary:end -->`;
 section = section.replace('<div class="table-wrap">', summary + '<div class="table-wrap">');
 section = section.replace('Historical four calls + incremental additions', 'Original four-quarter history + later results / calls');
 
@@ -91,7 +91,14 @@ section = section.replace(/<tr><td><strong>([^<]+)<\/strong>[\s\S]*?<\/tr>/g, ro
       const first = questions[0];
       const official = /official|issuer_hosted/.test(first.source_type || '');
       sources += link(first.url, official ? 'Official transcript' : 'Public transcript mirror');
-      sources += `<small>Selected passages reviewed; not audio-verified.</small>`;
+      const scope = e.transcript_coverage;
+      if (scope) {
+        assert.ok(Number.isInteger(scope.analyst_turns_reviewed) && Number.isInteger(scope.analyst_turns_total));
+        assert.ok(scope.analyst_turns_reviewed >= 0 && scope.analyst_turns_reviewed <= scope.analyst_turns_total);
+        assert.ok(Number.isInteger(scope.independent_asks) && scope.independent_asks >= scope.analyst_turns_reviewed);
+        const medium = official ? 'transcript' : 'mirrored transcript';
+        sources += `<small>${scope.analyst_turns_reviewed} of ${scope.analyst_turns_total} analyst exchanges reviewed in the ${medium}; ${scope.independent_asks} substantive asks. ${scope.audio_verified === true ? 'Audio verification recorded.' : 'Not audio-verified.'}</small>`;
+      } else sources += `<small>Selected passages reviewed; not audio-verified.</small>`;
     }
     if (disclosure) sources += link(disclosure.sources[0].url, /syndicated/.test(disclosure.sources[0].evidence_kind) ? 'Issuer-distributed results' : 'Official results');
     if (!disclosure && !post && company === 'Micron') sources += link('#MU_2026Q4', 'Results and source notes');
@@ -121,6 +128,32 @@ const overview = `<p class="metricline" id="earnings-current-counts">${corpus.co
 const overviewPattern = /<p class="metricline"(?: id="earnings-current-counts")?>\d+ companies · \d+ quarterly (?:events|slots) \+ \d+ (?:standalone|separate) post-earnings calls · \d+ selected Q&amp;A probes · \d+ (?:supplemental non-quarterly|financial) disclosures<\/p>/;
 assert.ok(overviewPattern.test(html), 'Missing current earnings overview');
 html = html.replace(overviewPattern, overview);
+// Current statistics derive from the ledger; dated archive sections remain verbatim.
+assert.equal(corpus.ledger.length, corpus.counts.questions, 'Question count must match the ledger');
+const frequencies = field => corpus.ledger.reduce((out, q) => out.set(q[field], (out.get(q[field]) || 0) + 1), new Map());
+const statusCounts = frequencies('status'), themeCounts = frequencies('theme');
+const statusOrder = [...new Set(['answered', 'partially answered', 'deferred', 'deflected', 'unanswered', ...statusCounts.keys()])];
+const countTable = (id, label, rows) => `<table id="${id}"><thead><tr><th>${label}</th><th>Probes / ${corpus.ledger.length}</th></tr></thead><tbody>${rows.map(([name, count]) => `<tr><td>${esc(name)}</td><td>${count}</td></tr>`).join('')}</tbody></table>`;
+const methodPattern = /<section id="method">[\s\S]*?<\/section>/;
+assert.ok(methodPattern.test(html), 'Missing current method section');
+html = html.replace(methodPattern, method => {
+  method = method.replace('current totals are 160 quarters and two standalone post-calls.', 'totals at the 4 November cutoff were 160 quarters and two standalone post-calls.');
+  method = method.replace(/The \d+ probes are grouped question-level records/, `The ${corpus.ledger.length} probes are grouped question-level records`);
+  method = method.replace(/they are not \d+ exhaustively normalized atomic asks/, `they are not ${corpus.ledger.length} exhaustively normalized atomic asks`);
+  const statusPattern = /(<h3>Answer status in this selected ledger<\/h3>)<table\b[^>]*>[\s\S]*?<\/table>/;
+  const themePattern = /(<summary>Theme counts in the selected ledger<\/summary>)<table\b[^>]*>[\s\S]*?<\/table>/;
+  assert.ok(statusPattern.test(method) && themePattern.test(method), 'Missing current count tables');
+  method = method.replace(statusPattern, '$1' + countTable('answer-status-counts', 'Status', statusOrder.map(name => [name, statusCounts.get(name) || 0])));
+  method = method.replace(themePattern, '$1' + countTable('theme-counts', 'Primary theme', [...themeCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))));
+  return method;
+});
+html = html.replace(/(<section id="ledger"><h2>Auditable question ledger<\/h2><p>[\s\S]*?Export includes all )\d+( records,)/, `$1${corpus.ledger.length}$2`);
+html = html.replace(/(<p\b[^>]*\bid="result-count"[^>]*>)[\s\S]*?(<\/p>)/, `$1${corpus.ledger.length} of ${corpus.ledger.length} probes$2`);
+for (const [field, values] of [['theme', [...themeCounts.keys()].sort()], ['status', statusOrder.filter(name => statusCounts.has(name))]]) {
+  const pattern = new RegExp(`<select id="${field}">[\\s\\S]*?<\\/select>`);
+  assert.ok(pattern.test(html), `Missing ${field} filter`);
+  html = html.replace(pattern, `<select id="${field}"><option value="">All ${field === 'status' ? 'statuses' : 'themes'}</option>${values.map(value => `<option>${esc(value)}</option>`).join('')}</select>`);
+}
 html = html.replace('The historical four-quarter coverage table is retained; new events are listed in the incremental section.', 'The original four-quarter history is retained in Company coverage, with later results, reviewed calls, separate post-calls and editorial progression integrated into each affected company row. Collapsed historical snapshots retain the underlying refresh history.');
 // The original Micron append omitted article IDs; add the existing stable QA IDs for deep links.
 html = html.replace(/<article\b([^>]*)>([\s\S]*?)<\/article>/g, (whole, attrs, body) => {
