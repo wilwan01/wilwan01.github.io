@@ -1,4 +1,4 @@
-// Browser regression for two recorded releases; source and call verification are separate.
+// Browser regression for recorded releases; source and call verification are separate.
 const {chromium}=require('playwright');
 const fs=require('node:fs'),assert=require('node:assert/strict');
 (async()=>{
@@ -11,7 +11,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
   for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
    const page=await browser.newPage({viewport});const errors=[];
    page.on('pageerror',e=>errors.push(e.message));
-   for(const [company,quarter,id] of [['Cisco','CSCO_2027Q1','CSCO_2027Q1_results_20261112'],['Applied Materials','AMAT_2026Q4','AMAT_2026Q4_results_20261112']]){
+   for(const [company,quarter,id] of [['Cisco','CSCO_2027Q1','CSCO_2027Q1_results_20261112'],['Applied Materials','AMAT_2026Q4','AMAT_2026Q4_results_20261112'],['NVIDIA','NVDA_2027Q3','NVDA_2027Q3_results_20261117']]){
     await page.goto(base+'/ai/earnings/#company-evidence-'+id,{waitUntil:'networkidle'});
     assert.equal(await page.locator('#coverage tbody tr').count(),corpus.counts.companies);
     const card=page.locator('#coverage-'+quarter);
@@ -23,6 +23,13 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
     await detail.locator(':scope > summary').click();
     assert.equal(await detail.evaluate(x=>x.open),true);
     assert((await detail.innerText()).includes('reported actuals'));
+    if(company==='NVIDIA'){
+     const text=await detail.innerText();
+     for(const value of ['115844','43777','130000','stock-based compensation','main-call Q&A not reviewed'])assert(text.includes(value),value);
+     const counts=await page.locator('#earnings-current-counts').innerText();
+     assert(counts.includes(corpus.counts.quarterly_events+' quarterly slots'));
+     assert(counts.includes(corpus.counts.questions+' selected Q&A probes'));
+    }
     assert(await detail.locator('a[href^="https://"]').count()>0);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false);
     await page.goto(base+'/ai/search.html',{waitUntil:'networkidle'});
@@ -33,7 +40,7 @@ const fs=require('node:fs'),assert=require('node:assert/strict');
     await page.locator('#company-evidence-'+id).waitFor({state:'visible'});
    }
    assert.deepEqual(errors,[]);
-   report.rows.push({viewport,releaseRows:2,searchDeepLinks:2,expansion:true,noHorizontalOverflow:true,errors});
+   report.rows.push({viewport,releaseRows:3,searchDeepLinks:3,expansion:true,noHorizontalOverflow:true,errors});
    await page.screenshot({path:'browser-results/earnings-results-'+viewport.width+'.png'});await page.close();
   }
   report.status='passed';
