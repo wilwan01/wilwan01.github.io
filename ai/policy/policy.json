@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-13",
+ "as_of": "2026-11-23",
  "scope": {
   "zh": "聚焦影响AI芯片、存储、设备与材料的出口管制、关税、产业政策与反垄断事件；不含AI模型监管（如欧盟AI法案）。条目按日期排列，每条标注证据级别与未核实之处。 本轮2026-11-12仅对选定条目补证或更新；其余内容保留历史日期，完整覆盖尚未完成。",
   "en": "Covers export controls, tariffs, industrial policy and antitrust events that bear on AI chips, memory, equipment and materials. AI-model regulation (e.g. the EU AI Act) is out of scope. Entries are dated and carry an evidence level and what was not verified. The 12 November 2026 review updates selected entries only; other content retains historical dates and complete coverage remains pending."
@@ -841,14 +841,72 @@
      "en": "Next check dates: 27 Nov 2026 (gallium/germanium/antimony suspension ends) and 10 Jan 2027."
     }
    }
+  },
+  {
+   "id": "P19",
+   "date": "2026-11-19",
+   "region": "US",
+   "kind": "export-control",
+   "title": {
+    "zh": "BIS 临时最终规则：境外数据中心远程算力、五国许可要求与正式废止AI扩散规则",
+    "en": "BIS interim final rule: remote compute from overseas data centres, five-country licensing and formal rescission of the AI Diffusion Rule"
+   },
+   "summary": {
+    "zh": "《处理对先进半导体的远程访问》（91 FR 74970）于11月19日发布并生效：（1）向为总部在 D:5 国家组或澳门的公司远程提供大量算力的境外数据中心出口、再出口或转让先进芯片须许可，数据中心、境外晶圆厂和出口商须做尽职调查，现有提供方须在生效后90天内取得许可；商用推荐系统不受限；（2）向印尼、马来西亚、新加坡、泰国、巴西（及商务部长另行指定的国家）出口先进芯片须许可，总部在美国或最终母公司在美国的公司在满足报告要求时除外；（3）收紧前端晶圆厂与封装厂出口先进制程逻辑芯片时的推定；（4）正式废止AI扩散规则的实施条款。评论截止2027年1月19日。",
+    "en": "“Addressing Remote Access to Advanced Semiconductors” (91 FR 74970) was published and took effect on 19 November: (1) a licence is required to export, reexport or transfer advanced chips to overseas data centres that remotely supply significant compute to companies headquartered in Country Group D:5 or Macau, with due diligence required of data centres, foreign foundries and exporters and existing providers needing a licence within 90 days of the effective date; commercial recommender systems are excluded; (2) a licence is required for advanced chips to Indonesia, Malaysia, Singapore, Thailand and Brazil (and any country the Commerce Secretary designates), except for companies headquartered in or ultimately owned by US parents that meet reporting requirements; (3) the presumptions facing front-end fabs and packagers exporting advanced-node logic chips are tightened; and (4) the AI Diffusion Rule’s implementing regulations are formally rescinded. Comments are due 19 January 2027."
+   },
+   "nodes": [
+    "accelerator",
+    "datacenter",
+    "fab"
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "Federal Register: Addressing Remote Access to Advanced Semiconductors (2026-23529)",
+     "url": "https://www.federalregister.gov/documents/2026/11/19/2026-23529/addressing-remote-access-to-advanced-semiconductors",
+     "type": "primary",
+     "published_at": "2026-11-19",
+     "read_at": "2026-11-23",
+     "locator": "Abstract, DATES and summary passages; 91 FR 74970",
+     "reading_scope": "Abstract, dates and summary read; the full 30-page rule text and the ECCN/section amendments were not read"
+    },
+    {
+     "label": "Skadden: “AI Diffusion” 2.0",
+     "url": "https://www.skadden.com/insights/publications/2026/11/ai-diffusion-2-bis-introduces-new-export-controls",
+     "type": "law-firm"
+    },
+    {
+     "label": "SCMP: US tightens AI chip export curbs to close China’s overseas data centre loophole",
+     "url": "https://www.scmp.com/tech/article/3374639/us-tightens-ai-chip-export-curbs-close-chinas-overseas-data-centre-loophole",
+     "type": "trade-press"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了摘要、生效/评论日期与概述，未读全文30页及具体条款修订；数量阈值、豁免条件与“显著算力”的定义须以规则全文为准。据二手报道：中国商务部称将采取反制措施，NVIDIA 在11月17日电话会上称已停止对华销售 H200（见 QA225、QA230 的站内问答）；两者均未用原始文件核对。",
+    "en": "Only the abstract, dates and overview were read, not the full 30 pages or the individual regulatory amendments; thresholds, exemptions and the definition of “significant” compute must be taken from the full text. Secondary reports say China’s commerce ministry will take countermeasures and that NVIDIA said on its 17 November call it has stopped H200 sales to China (see the site’s QA225 and QA230); neither was checked against primary documents."
+   },
+   "links": {
+    "earnings": [
+     "QA225",
+     "QA230"
+    ],
+    "reports": [
+     "nvidia-en.html"
+    ],
+    "note": {
+     "zh": "与P18（5月31日指南）与P13（关联实体规则暂停）相衔接。",
+     "en": "Follows P18 (the 31 May guidance) and sits alongside P13 (the Affiliates Rule suspension)."
+    }
+   }
   }
  ],
  "refresh_coverage": {
   "cutoff": "2026-11-12T11:19:08+00:00",
   "status": "partial",
   "note": {
-   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：新增中国10月措施的暂停与延期（P14–P16）与NVIDIA 10-K对H200许可的披露（P17），并更新P11状态。",
-   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: added China’s October measures with their suspension and extension (P14–P16) and NVIDIA’s 10-K disclosure on the H200 licence (P17), and updated the P11 status."
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：新增中国10月措施的暂停与延期（P14–P16）与NVIDIA 10-K对H200许可的披露（P17），并更新P11状态。 2026-11-23：新增 BIS 远程访问临时最终规则（P19）。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: added China’s October measures with their suspension and extension (P14–P16) and NVIDIA’s 10-K disclosure on the H200 licence (P17), and updated the P11 status. 23 Nov: added the BIS remote-access interim final rule (P19)."
   },
   "record": "research/weekly-20261112.json"
  }

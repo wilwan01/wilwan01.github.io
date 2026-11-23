@@ -1,6 +1,6 @@
 {
  "version": 1,
- "as_of": "2026-11-13",
+ "as_of": "2026-11-23",
  "scope": {
   "zh": "MLPerf 近三个轮次、系统与CPU基准（MLPerf Storage、InferenceX、SPEC CPU 2026、AgentSysBench）、智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）以及读基准的问题。不给排名：智能体榜单的领先者在不同聚合站之间互相矛盾，这里只写基准测什么、规模和已知口径问题。厂商自报结果单独标注。 另含综合指数与第一方套件（Artificial Analysis、CursorBench）。",
   "en": "The last three MLPerf rounds, system and CPU benchmarks (MLPerf Storage, InferenceX, SPEC CPU 2026, AgentSysBench), agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp) and questions for reading them. No rankings: agentic leaderboard leaders conflict between aggregators, so this page states what each benchmark measures, its scale and known basis problems. Vendor self-reports are labelled. Also covers composite indexes and first-party suites (Artificial Analysis, CursorBench)."
@@ -143,6 +143,9 @@
     ],
     "bridge": [
      "B10"
+    ],
+    "benchmarks": [
+     "M25"
     ]
    }
   },
@@ -218,6 +221,69 @@
    "source_locator": "Evolution of the benchmark; Submissions and Results; AI community participation"
   },
   {
+   "id": "M25",
+   "group": "round",
+   "date": "2026-11-16",
+   "title": {
+    "zh": "MLPerf Training v6.1",
+    "en": "MLPerf Training v6.1"
+   },
+   "summary": {
+    "zh": "新增两项基准：DLRMv4-HSTU（推荐系统，取代 DLRM-dcnv2，使用 HSTU 注意力架构与 Yambda 数据集）和 Qwen3.5-397B（首个大规模 LLM 后训练基准，使用 GRPO，反映智能体能力所依赖的后训练）。",
+    "en": "Two new benchmarks: DLRMv4-HSTU (a recommender that replaces DLRM-dcnv2, built on the HSTU attention architecture and the Yambda dataset) and Qwen3.5-397B (the first large-scale LLM post-training workload in MLPerf Training, using GRPO, reflecting the post-training that agentic functionality relies on)."
+   },
+   "facts": [
+    {
+     "zh": "参与规模：24个机构、153套系统、250项结果；其中57套（37%）为云系统，v6.0 为29%；有12套系统使用1,000块或更多加速器。",
+     "en": "Scale: 24 organisations, 153 systems and 250 results; 57 systems (37%) were cloud-based versus 29% in v6.0; twelve systems used 1,000 or more accelerators."
+    },
+    {
+     "zh": "厂商自报（未核对 MLCommons 结果页）：NVIDIA 称 Vera Rubin NVL72 首次参赛，每GPU性能最高为 GB300 NVL72 的2倍，并称在所有基准上领先；AMD 称在四个可比的8-GPU 配置上训练时间平均缩短约16%（相对 v6.0，同型号 GPU）。",
+     "en": "Vendor self-reports (not checked against the MLCommons results page): NVIDIA says Vera Rubin NVL72 debuted with up to 2× the performance per GPU of GB300 NVL72 and led every benchmark; AMD says training time fell about 16% on average across four comparable eight-GPU configurations versus v6.0 on the same GPU models."
+    }
+   ],
+   "evidence": "primary-read",
+   "sources": [
+    {
+     "label": "MLCommons: MLPerf Training v6.1 results",
+     "url": "https://mlcommons.org/2026/11/mlperf-training-v6-1-results/",
+     "type": "primary",
+     "published_at": "2026-11-16",
+     "read_at": "2026-11-23",
+     "locator": "New benchmarks, participation and system counts",
+     "reading_scope": "Release page text read; results tables not read"
+    },
+    {
+     "label": "NVIDIA blog: MLPerf Training and Endpoints, Vera Rubin debut (vendor)",
+     "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+     "type": "primary"
+    },
+    {
+     "label": "AMD blog: MLPerf Training 6.1 (vendor)",
+     "url": "https://www.amd.com/en/blogs/2026/amd-advances-ai-training-across-more-workloads-in-mlperf-training.html",
+     "type": "primary"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了发布页文字，没读逐系统结果；“横扫”“提升X倍”等是厂商表述，系统规模、精度与软件栈各不相同，不能直接比较；本页不排名。",
+    "en": "Only the release page text was read, not per-system results; “sweep” and “X× faster” are vendor framings across systems of different scale, precision and software stack, so they are not directly comparable and nothing is ranked here."
+   },
+   "links": {
+    "terms": [
+     "mlperf",
+     "low-precision",
+     "mfu"
+    ],
+    "bridge": [
+     "B10"
+    ],
+    "benchmarks": [
+     "M02",
+     "M24"
+    ]
+   }
+  },
+  {
    "id": "M24",
    "group": "system",
    "date": "2026-03-19",
@@ -237,6 +303,14 @@
     {
      "zh": "自2026年第二季度起改为滚动提交：提交者可随时发布经同行评审与审计的结果，取代固定的半年一轮；Inference v6.1 中过半提交者已使用其 API 为中心的测试框架（见M03）。",
      "en": "From Q2 2026 submissions roll continuously: submitters can publish peer-reviewed, audited results at any time, replacing the fixed bi-annual cadence; more than half of Inference v6.1 submitters already used its API-centric harness (see M03)."
+    },
+    {
+     "zh": "v1.0 已于2026-11-09发布（据 NVIDIA 与 AMD 的博客引用）：含“标准化”部门，结果字段包括首 token P90、系统 token/秒、每用户交互性与运行功率（kW），工作负载涵盖智能体编码与企业流程（如 Kimi K3）；部分提交仍标注“临时”，待 MLCommons 验证。",
+     "en": "v1.0 was published on 9 Nov 2026 (as cited by NVIDIA’s and AMD’s blogs): it has a “Standardized” division, result fields include P90 time to first token, system tokens per second, per-user interactivity and operating power (kW), and workloads cover agentic coding and enterprise flows (for example Kimi K3); some entries are still marked provisional pending MLCommons verification."
+    },
+    {
+     "zh": "NVIDIA 称其 Vera Rubin NVL72 在 Kimi K3 上相同响应速度下每瓦吞吐为 GB300 NVL72 的10倍以上——这是厂商基于临时结果的说法。",
+     "en": "NVIDIA says Vera Rubin NVL72 delivers more than 10× the throughput per watt of GB300 NVL72 on Kimi K3 at the same response speed; this is a vendor claim based on provisional results."
     }
    ],
    "evidence": "primary-read",
@@ -249,11 +323,21 @@
      "read_at": "2026-11-13",
      "locator": "Design, metrics, first submitters, rolling-submission plan",
      "reading_scope": "Blog post text read; no results tables read"
+    },
+    {
+     "label": "NVIDIA blog (vendor): MLPerf Endpoints v1.0 citations",
+     "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+     "type": "primary"
+    },
+    {
+     "label": "AMD blog (vendor): MLPerf Endpoints v1.0 entry note",
+     "url": "https://www.amd.com/en/blogs/2026/amd-advances-ai-training-across-more-workloads-in-mlperf-training.html",
+     "type": "primary"
     }
    ],
    "caveat": {
-    "zh": "这是营销性质的发布文章和 v0.5 演示；文章未给出时延阈值、评分公式或明确的局限。滚动提交意味着没有固定发布日，本站也尚未采集任何滚动结果。",
-    "en": "This is a promotional post about a v0.5 demonstration; it gives no latency thresholds, scoring formula or explicit limitations. Rolling submissions mean there is no fixed release date, and no rolling results have been captured here."
+    "zh": "这是营销性质的发布文章和 v0.5 演示；文章未给出时延阈值、评分公式或明确的局限。滚动提交意味着没有固定发布日，本站也尚未采集任何滚动结果。 v1.0 细节来自厂商博客的引用，未打开 MLCommons 的 Endpoints v1.0 结果页。",
+    "en": "This is a promotional post about a v0.5 demonstration; it gives no latency thresholds, scoring formula or explicit limitations. Rolling submissions mean there is no fixed release date, and no rolling results have been captured here. The v1.0 details come from vendors’ citations; MLCommons’ own Endpoints v1.0 results page was not opened."
    },
    "links": {
     "terms": [
@@ -395,6 +479,50 @@
     "benchmarks": []
    },
    "reviewed_at": "2026-11-12"
+  },
+  {
+   "id": "M26",
+   "group": "system",
+   "date": "2026-11-16",
+   "title": {
+    "zh": "TOP500 第68期（SC26）",
+    "en": "TOP500, 68th edition (SC26)"
+   },
+   "summary": {
+    "zh": "2026年11月16日在 SC26 发布。第一名仍是中国 LineShine（HPL 约2.198 EFLOPS，专有304核 LX2 CPU）；前十名与6月相同；新进系统仅27个（5.4%），为榜单历史最低；JUPITER 仍是欧洲最强（第5）。",
+    "en": "Published at SC26 on 16 Nov 2026. China’s LineShine stays No. 1 (HPL about 2.198 exaflops, on a proprietary 304-core LX2 CPU); the top ten are unchanged since June; only 27 systems are new (5.4%), the lowest turnover in the list’s history; JUPITER remains Europe’s most powerful at No. 5."
+   },
+   "facts": [
+    {
+     "zh": "报道称榜单组织者写道，计算硬件的增长已转向大型AI算力集群；HPL 衡量稠密线性代数，不等于AI训练或推理性能。",
+     "en": "Reports say the list’s organisers wrote that hardware growth has shifted to large AI compute clusters; HPL measures dense linear algebra and is not AI training or inference performance."
+    }
+   ],
+   "evidence": "secondary",
+   "sources": [
+    {
+     "label": "HPCwire: No change at the top of TOP500",
+     "url": "https://www.hpcwire.com/2026/11/16/no-change-at-the-top-of-top500-lineshine-still-no-1/",
+     "type": "trade-press"
+    },
+    {
+     "label": "StorageNewsletter: Top500 leadership holds steady",
+     "url": "https://www.storagenewsletter.com/?p=307119",
+     "type": "trade-press"
+    }
+   ],
+   "caveat": {
+    "zh": "只读了搜索摘要，未打开 TOP500.org；厂商份额等计数来自个别媒体对榜单表格的统计，这里不采用。",
+    "en": "Only search summaries were read and TOP500.org was not opened; vendor-share counts come from individual outlets’ tallies of the list spreadsheet and are not adopted."
+   },
+   "links": {
+    "terms": [
+     "flops"
+    ],
+    "benchmarks": [
+     "M07"
+    ]
+   }
   },
   {
    "id": "M08",
@@ -1277,8 +1405,8 @@
     "en": "Benchmarks and cost bases not yet covered"
    },
    "summary": {
-    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、AgentSysBench、十个智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive（可见最新轮次分别为2025年11月与8月，仅来自二手维基）、SPEC 功耗与 ML 套件、MLE-bench、Vending-Bench、WebArena、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。 MLPerf Training v6.1：截至2026年11月13日未找到该轮发布。",
-    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, AgentSysBench, ten agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp), the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive (latest rounds found are November and August 2025, from a secondary wiki only), SPEC power and ML suites, MLE-bench, Vending-Bench, WebArena, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding. MLPerf Training v6.1: no such round was found as of 13 Nov 2026."
+    "zh": "已纳入：MLPerf 推理/训练/存储、InferenceX、SPEC CPU 2026、AgentSysBench、十个智能体基准（SWE-bench、Terminal-Bench、OSWorld、GAIA、METR、GDPval、τ-bench、MCP-Atlas、Toolathlon、BrowseComp）、Artificial Analysis 指数与 CursorBench。尚未纳入：MLPerf Client/Automotive（可见最新轮次分别为2025年11月与8月，仅来自二手维基）、SPEC 功耗与 ML 套件、MLE-bench、Vending-Bench、WebArena、LiveCodeBench、Aider Polyglot、SWE-Lancer、Arena WebDev（人类偏好榜）、Artificial Analysis 的具体硬件数字，以及云实例真实价格与每美元/每瓦特口径；加入前须核实方法与来源。 MLPerf Training v6.1：截至2026年11月13日未找到该轮发布。 NVIDIA 11月博客提到、尚未核查的新智能体基础设施基准：SemiAnalysis AgentX、Artificial Analysis AgentPerf。",
+    "en": "Now included: MLPerf inference, training and storage, InferenceX, SPEC CPU 2026, AgentSysBench, ten agentic benchmarks (SWE-bench, Terminal-Bench, OSWorld, GAIA, METR, GDPval, τ-bench, MCP-Atlas, Toolathlon, BrowseComp), the Artificial Analysis index and CursorBench. Not yet included: MLPerf Client and Automotive (latest rounds found are November and August 2025, from a secondary wiki only), SPEC power and ML suites, MLE-bench, Vending-Bench, WebArena, LiveCodeBench, Aider Polyglot, SWE-Lancer, Arena WebDev (a human-preference board), Artificial Analysis’s hardware figures, and real cloud-instance prices and per-dollar / per-watt bases; method and source must be checked before adding. MLPerf Training v6.1: no such round was found as of 13 Nov 2026. Also named in NVIDIA’s November post and not yet examined: SemiAnalysis AgentX and Artificial Analysis AgentPerf (new agentic-infrastructure benchmarks)."
    },
    "facts": [],
    "evidence": "editorial",
