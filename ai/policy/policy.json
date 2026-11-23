@@ -756,6 +756,50 @@
    }
   },
   {
+   "id": "P18",
+   "date": "2026-05-31",
+   "date_note": {
+    "zh": "BIS 在周日（5月31日）发布指南；路透社于6月1日报道，指南生效日未载明。",
+    "en": "BIS posted the guidance on a Sunday (31 May); Reuters reported it on 1 June, and no effective date is stated."
+   },
+   "region": "US",
+   "kind": "export-control",
+   "title": {
+    "zh": "BIS 指南：对总部在中国、位于境外的实体适用先进芯片许可要求",
+    "en": "BIS guidance: licence requirements apply to China-headquartered entities located outside China"
+   },
+   "summary": {
+    "zh": "BIS 表示将执行对“总部在中国、但设在中国境外”实体的先进芯片许可要求，称这是澄清自2023年起已有的要求，并补上2025年5月宣布不执行AI扩散规则后出现的漏洞。这是指南而非新规则；据报道不要求数据中心停用或停止维护已有芯片，英伟达称因已通过函件收到许可要求，对其无变化。",
+    "en": "BIS said it would enforce licence requirements for advanced chips sent to entities headquartered in China but located outside China, calling it a clarification of requirements in place since 2023 and a fix for the gap opened when Commerce said in May 2025 it would not enforce the AI Diffusion Rule. It is guidance, not a new rule; it reportedly does not require data centres to stop using or servicing chips already installed, and NVIDIA said nothing changes for it because it had already received a licence requirement by letter."
+   },
+   "nodes": [
+    "accelerator",
+    "datacenter"
+   ],
+   "evidence": "secondary-authoritative",
+   "sources": [
+    {
+     "label": "Reuters via Khaleej Times: US takes step to halt Nvidia AI chip shipments to Chinese firms outside China",
+     "url": "https://www.khaleejtimes.com/tech/us-takes-step-to-halt-nvidia-ai-chip-shipments-to-chinese-firms-outside-china-2",
+     "type": "trade-press",
+     "published_at": "2026-06-01",
+     "read_at": "2026-11-16",
+     "locator": "Report of the BIS guidance and reactions",
+     "reading_scope": "Article text read; the BIS guidance itself was not opened"
+    }
+   ],
+   "caveat": {
+    "zh": "未打开 BIS 指南原文；细节取自路透社报道（含匿名知情人与一份未署名文件），“数十万颗芯片”之类的出口量估计来自一位匿名行业来源，本页不采用。批评者称对台积电等的尽职调查要求仍未恢复，这是观点，不是规则内容。",
+    "en": "The BIS guidance text was not opened; details come from a Reuters report that relies on people familiar and an unsigned paper, and the “hundreds of thousands of chips” estimate comes from one unnamed industry source and is not adopted. Critics say foundry due-diligence requirements remain unrestored; that is a view, not rule text."
+   },
+   "links": {
+    "note": {
+     "zh": "与P09（撤销AI扩散规则）相衔接。",
+     "en": "Follows from P09 (rescission of the AI Diffusion Rule)."
+    }
+   }
+  },
+  {
    "id": "P13",
    "date": "2026-11-09",
    "region": "US",
@@ -905,8 +949,8 @@
   "cutoff": "2026-11-12T11:19:08+00:00",
   "status": "partial",
   "note": {
-   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：新增中国10月措施的暂停与延期（P14–P16）与NVIDIA 10-K对H200许可的披露（P17），并更新P11状态。 2026-11-23：新增 BIS 远程访问临时最终规则（P19）。",
-   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: added China’s October measures with their suspension and extension (P14–P16) and NVIDIA’s 10-K disclosure on the H200 licence (P17), and updated the P11 status. 23 Nov: added the BIS remote-access interim final rule (P19)."
+   "zh": "本轮为有界增量核查；未完成全栏目来源复核，旧条目保留各自日期。 2026-11-13：新增中国10月措施的暂停与延期（P14–P16）与NVIDIA 10-K对H200许可的披露（P17），并更新P11状态。 2026-11-23：新增 BIS 远程访问临时最终规则（P19）。 2026-11-23：补入2026年5月31日 BIS 指南（P18）。",
+   "en": "Bounded incremental review; not all column sources were rechecked. Historical entries retain their own dates. 13 Nov: added China’s October measures with their suspension and extension (P14–P16) and NVIDIA’s 10-K disclosure on the H200 licence (P17), and updated the P11 status. 23 Nov: added the BIS remote-access interim final rule (P19). 23 Nov: added the 31 May 2026 BIS guidance (P18)."
   },
   "record": "research/weekly-20261112.json"
  }

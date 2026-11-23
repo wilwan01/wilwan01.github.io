@@ -311,6 +311,10 @@
     {
      "zh": "NVIDIA 称其 Vera Rubin NVL72 在 Kimi K3 上相同响应速度下每瓦吞吐为 GB300 NVL72 的10倍以上——这是厂商基于临时结果的说法。",
      "en": "NVIDIA says Vera Rubin NVL72 delivers more than 10× the throughput per watt of GB300 NVL72 on Kimi K3 at the same response speed; this is a vendor claim based on provisional results."
+    },
+    {
+     "zh": "2026-09-16 的 Inference v6.1 发布稿称：MLPerf Endpoints 将取代 Inference 成为数据中心基准家族的一员（David Kanter 语），其 API 为中心的测试框架是下一代 Endpoints 套件的基础；另有尚未发布的“MLPerf Agentic 数据中心性能基准”，v6.1 的边缘智能体推理测试沿用其框架并改为边缘场景（边缘模型与量化、单流编码负载、时延指标、准确度门槛）。两者均未给出发布日期。",
+     "en": "The 16 Sep 2026 Inference v6.1 release says MLPerf Endpoints “will replace Inference” in the datacenter benchmark family (David Kanter) and that its API-centric harness is the foundation of the next-generation Endpoints suite; a separate, not-yet-released “MLPerf Agentic datacenter performance benchmark” is the source of the framework that v6.1’s Edge Agentic Inference test adapts for edge use (edge model and quantization, single-stream coding workload, latency metrics, accuracy gate). No release date is given for either."
     }
    ],
    "evidence": "primary-read",
@@ -333,6 +337,15 @@
      "label": "AMD blog (vendor): MLPerf Endpoints v1.0 entry note",
      "url": "https://www.amd.com/en/blogs/2026/amd-advances-ai-training-across-more-workloads-in-mlperf-training.html",
      "type": "primary"
+    },
+    {
+     "label": "MLCommons Inference v6.1 release via HPCwire",
+     "url": "https://www.hpcwire.com/off-the-wire/mlcommons-sets-participation-record-with-new-mlperf-inference-v6-1-benchmark-results/",
+     "type": "primary",
+     "published_at": "2026-09-16",
+     "read_at": "2026-11-16",
+     "locator": "Agentic and Endpoints passages",
+     "reading_scope": "Release text read"
     }
    ],
    "caveat": {
